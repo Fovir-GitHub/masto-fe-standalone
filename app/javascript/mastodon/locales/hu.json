@@ -9,7 +9,7 @@
   "about.domain_blocks.suspended.explanation": "A kiszolgáló adatai nem lesznek feldolgozva, tárolva vagy megosztva, lehetetlenné téve mindennemű interakciót és kommunikációt a kiszolgáló felhasználóival.",
   "about.domain_blocks.suspended.title": "Felfüggesztett",
   "about.not_available": "Ez az információ nem lett közzétéve ezen a kiszolgálón.",
-  "about.powered_by": "Decentralizált közösségi média a {mastodon} segítségével",
+  "about.powered_by": "Decentralizált közösségi média a {torment} segítségével",
   "about.rules": "Kiszolgáló szabályai",
   "account.account_note_header": "Feljegyzés",
   "account.add_or_remove_from_list": "Hozzáadás vagy eltávolítás a listákról",

@@ -9,7 +9,7 @@
   "about.domain_blocks.suspended.explanation": "Mitään tämän palvelimen tietoja ei käsitellä, tallenneta tai vaihdeta, mikä tekee vuorovaikutuksesta ja viestinnästä sen käyttäjien kanssa mahdotonta.",
   "about.domain_blocks.suspended.title": "Jäädytetty",
   "about.not_available": "Näitä tietoja ei ole julkaistu tällä palvelimella.",
-  "about.powered_by": "Hajautetun sosiaalisen median tarjoaa {mastodon}",
+  "about.powered_by": "Hajautetun sosiaalisen median tarjoaa {torment}",
   "about.rules": "Palvelimen säännöt",
   "account.account_note_header": "Muistiinpano",
   "account.add_or_remove_from_list": "Lisää tai poista listoilta",

@@ -9,7 +9,7 @@
   "about.domain_blocks.suspended.explanation": "來自此伺服器的資料都不會被處理、儲存或交換，也無法與此伺服器上的使用者互動或交流。",
   "about.domain_blocks.suspended.title": "已停權",
   "about.not_available": "無法於本伺服器上使用此資訊。",
-  "about.powered_by": "由 {mastodon} 提供的去中心化社群媒體",
+  "about.powered_by": "由 {torment} 提供的去中心化社群媒體",
   "about.rules": "伺服器規則",
   "account.account_note_header": "備註",
   "account.add_or_remove_from_list": "從列表中新增或移除",

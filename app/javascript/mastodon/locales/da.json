@@ -9,7 +9,7 @@
   "about.domain_blocks.suspended.explanation": "Data fra denne server hverken behandles, gemmes eller udveksles, hvilket umuliggør interaktion eller kommunikation med brugere fra denne server.",
   "about.domain_blocks.suspended.title": "Udelukket",
   "about.not_available": "Denne information er ikke blevet gjort tilgængelig på denne server.",
-  "about.powered_by": "Decentraliserede sociale medier drevet af {mastodon}",
+  "about.powered_by": "Decentraliserede sociale medier drevet af {torment}",
   "about.rules": "Serverregler",
   "account.account_note_header": "Note",
   "account.add_or_remove_from_list": "Tilføj eller fjern fra lister",

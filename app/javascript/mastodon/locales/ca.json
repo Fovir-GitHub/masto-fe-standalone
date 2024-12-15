@@ -9,7 +9,7 @@
   "about.domain_blocks.suspended.explanation": "No es processaran, emmagatzemaran ni intercanviaran dades d'aquest servidor, fent impossible qualsevol interacció o comunicació amb els seus usuaris.",
   "about.domain_blocks.suspended.title": "Suspès",
   "about.not_available": "Aquesta informació no és disponible en aquest servidor.",
-  "about.powered_by": "Xarxa social descentralitzada impulsada per {mastodon}",
+  "about.powered_by": "Xarxa social descentralitzada impulsada per {torment}",
   "about.rules": "Normes del servidor",
   "account.account_note_header": "Nota",
   "account.add_or_remove_from_list": "Afegeix o elimina de les llistes",

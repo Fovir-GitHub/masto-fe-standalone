@@ -9,7 +9,7 @@
   "about.domain_blocks.suspended.explanation": "S’do të përpunohen, depozitohen apo shkëmbehen të dhëna të këtij shërbyesi, duke e bërë të pamundur çfarëdo ndërveprimi apo komunikimi me përdorues nga ky shërbyes.",
   "about.domain_blocks.suspended.title": "E pezulluar",
   "about.not_available": "Ky informacion, në këtë shërbyes, nuk jepet.",
-  "about.powered_by": "Media shoqërore e decentralizuar, bazuar në {mastodon}",
+  "about.powered_by": "Media shoqërore e decentralizuar, bazuar në {torment}",
   "about.rules": "Rregulla shërbyesi",
   "account.account_note_header": "Shënim",
   "account.add_or_remove_from_list": "Shtoni ose Hiqni prej listash",

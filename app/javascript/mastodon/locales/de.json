@@ -9,7 +9,7 @@
   "about.domain_blocks.suspended.explanation": "Es werden keine Daten von diesem Server verarbeitet, gespeichert oder ausgetauscht, sodass eine Interaktion oder Kommunikation mit Nutzer*innen dieses Servers nicht möglich ist.",
   "about.domain_blocks.suspended.title": "Gesperrt",
   "about.not_available": "Diese Informationen sind auf diesem Server nicht verfügbar.",
-  "about.powered_by": "Ein dezentralisiertes soziales Netzwerk, angetrieben von {mastodon}",
+  "about.powered_by": "Ein dezentralisiertes soziales Netzwerk, angetrieben von {torment}",
   "about.rules": "Serverregeln",
   "account.account_note_header": "Notiz",
   "account.add_or_remove_from_list": "Hinzufügen oder Entfernen von Listen",

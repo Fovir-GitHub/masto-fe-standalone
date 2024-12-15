@@ -9,7 +9,7 @@
   "about.domain_blocks.suspended.explanation": "Ніякая інфармацыя з гэтага сервера не будзе апрацавана, захавана або абменена, узаемадзеянне або камунікацыя з карыстальнікамі гэтага сервера немагчымы.",
   "about.domain_blocks.suspended.title": "Прыпынены",
   "about.not_available": "Дадзеная інфармацыя не дасяжная на гэтым серверы.",
-  "about.powered_by": "Дэцэнтралізаваная сацыяльная сетка, створаная {mastodon}",
+  "about.powered_by": "Дэцэнтралізаваная сацыяльная сетка, створаная {torment}",
   "about.rules": "Правілы сервера",
   "account.account_note_header": "Нататка",
   "account.add_or_remove_from_list": "Дадаць або выдаліць са спісаў",

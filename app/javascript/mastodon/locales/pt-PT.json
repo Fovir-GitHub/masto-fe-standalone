@@ -9,7 +9,7 @@
   "about.domain_blocks.suspended.explanation": "Nenhum dado deste servidor será processado, armazenado ou trocado, impossibilitando qualquer interação ou comunicação com os utilizadores dessas instâncias.",
   "about.domain_blocks.suspended.title": "Supensos",
   "about.not_available": "Esta informação não foi disponibilizada neste servidor.",
-  "about.powered_by": "Rede social descentralizada baseada no {mastodon}",
+  "about.powered_by": "Rede social descentralizada baseada no {torment}",
   "about.rules": "Regras do servidor",
   "account.account_note_header": "Nota",
   "account.add_or_remove_from_list": "Adicionar ou remover das listas",

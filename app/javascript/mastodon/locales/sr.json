@@ -9,7 +9,7 @@
   "about.domain_blocks.suspended.explanation": "Подаци са овог сервера неће се обрађивати, чувати нити размењивати, што ће онемогућити било какву интеракцију или комуникацију са корисницима са овог сервера.",
   "about.domain_blocks.suspended.title": "Суспендован",
   "about.not_available": "Ове информације нису доступне на овом серверу.",
-  "about.powered_by": "Децентрализована друштвена мрежа коју покреће {mastodon}",
+  "about.powered_by": "Децентрализована друштвена мрежа коју покреће {torment}",
   "about.rules": "Правила сервера",
   "account.account_note_header": "Напомена",
   "account.add_or_remove_from_list": "Додај или уклони са листа",

@@ -9,7 +9,7 @@
   "about.domain_blocks.suspended.explanation": "هیچ داتایەک لەم سێرڤەرەوە پرۆسێس ناکرێت، هەڵناگیرێت یان ئاڵوگۆڕ ناکرێت، ئەمەش وا دەکات هیچ کارلێکێک یان پەیوەندییەک لەگەڵ بەکارهێنەران لەم سێرڤەرەوە مەحاڵ بێت.",
   "about.domain_blocks.suspended.title": "هەڵپەسێردراوە",
   "about.not_available": "ئەم زانیاریانە لەسەر ئەم سێرڤەرە بەردەست نەکراون.",
-  "about.powered_by": "سۆشیال میدیای لامەرکەزی کە لەلایەن {mastodon} ەوە بەهێز دەکرێت",
+  "about.powered_by": "سۆشیال میدیای لامەرکەزی کە لەلایەن {torment} ەوە بەهێز دەکرێت",
   "about.rules": "یاساکانی سێرڤەر",
   "account.account_note_header": "تێبینی    ",
   "account.add_or_remove_from_list": "زیادکردن یان سڕینەوە لە پێرستەکان",

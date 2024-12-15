@@ -9,7 +9,7 @@
   "about.domain_blocks.suspended.explanation": "Mitte mingeid andmeid sellelt serverilt ei töödelda, salvestata ega vahetata, tehes igasuguse interaktsiooni või kirjavahetuse selle serveri kasutajatega võimatuks.",
   "about.domain_blocks.suspended.title": "Peatatud",
   "about.not_available": "See info ei ole sellel serveril saadavaks tehtud.",
-  "about.powered_by": "Hajutatud sotsiaalmeedia, mille taga on {mastodon}",
+  "about.powered_by": "Hajutatud sotsiaalmeedia, mille taga on {torment}",
   "about.rules": "Serveri reeglid",
   "account.account_note_header": "Märge",
   "account.add_or_remove_from_list": "Lisa või Eemalda nimekirjadest",

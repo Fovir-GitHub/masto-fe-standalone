@@ -9,7 +9,7 @@
   "about.domain_blocks.suspended.explanation": "Никакие данные с этого сервера не будут обрабатываться, храниться или обмениваться, что делает невозможным любое взаимодействие или связь с пользователями с этого сервера.",
   "about.domain_blocks.suspended.title": "Заблокирован",
   "about.not_available": "Эта информация не указана на данном сервере.",
-  "about.powered_by": "Децентрализованная социальная сеть на базе {mastodon}",
+  "about.powered_by": "Децентрализованная социальная сеть на базе {torment}",
   "about.rules": "Правила сервера",
   "account.account_note_header": "Заметка",
   "account.add_or_remove_from_list": "Управление списками",

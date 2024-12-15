@@ -9,7 +9,7 @@
   "about.domain_blocks.suspended.explanation": "Dữ liệu từ máy chủ này sẽ không được xử lý, lưu trữ hoặc trao đổi. Mọi tương tác hoặc giao tiếp với người từ máy chủ này đều bị cấm.",
   "about.domain_blocks.suspended.title": "Vô hiệu hóa",
   "about.not_available": "Máy chủ này chưa cung cấp thông tin.",
-  "about.powered_by": "Mạng xã hội liên hợp {mastodon}",
+  "about.powered_by": "Mạng xã hội liên hợp {torment}",
   "about.rules": "Nội quy máy chủ",
   "account.account_note_header": "Ghi chú",
   "account.add_or_remove_from_list": "Sửa danh sách",

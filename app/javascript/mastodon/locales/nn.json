@@ -9,7 +9,7 @@
   "about.domain_blocks.suspended.explanation": "Ingen data frå denne tenaren vert handsama, lagra eller sende til andre, noko som gjer det umogeleg å samhandla eller kommunisera med brukarar på denne tenaren.",
   "about.domain_blocks.suspended.title": "Utestengd",
   "about.not_available": "Denne informasjonen er ikkje gjort tilgjengeleg på denne tenaren.",
-  "about.powered_by": "Desentraliserte sosiale medium drive av {mastodon}",
+  "about.powered_by": "Desentraliserte sosiale medium drive av {torment}",
   "about.rules": "Tenarreglar",
   "account.account_note_header": "Merknad",
   "account.add_or_remove_from_list": "Legg til eller fjern frå lister",

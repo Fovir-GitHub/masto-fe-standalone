@@ -9,7 +9,7 @@
   "about.domain_blocks.suspended.explanation": "Никакви данни от този сървър няма да се обработват, съхраняват или обменят, правещи невъзможно всяко взаимодействие или комуникация с потребители от тези сървъри.",
   "about.domain_blocks.suspended.title": "Спряно",
   "about.not_available": "Тази информация не е била направена налична на този сървър.",
-  "about.powered_by": "Децентрализирана социална мрежа, захранвана от {mastodon}",
+  "about.powered_by": "Децентрализирана социална мрежа, захранвана от {torment}",
   "about.rules": "Правила на сървъра",
   "account.account_note_header": "Бележка",
   "account.add_or_remove_from_list": "Добавяне или премахване от списъци",

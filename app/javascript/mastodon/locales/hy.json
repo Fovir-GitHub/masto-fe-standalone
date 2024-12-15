@@ -5,7 +5,7 @@
   "about.domain_blocks.silenced.title": "Սահմանափակ",
   "about.domain_blocks.suspended.title": "Սպասող",
   "about.not_available": "Այս տեղեկութիւնը տեսանելի չի այս սերուերում։",
-  "about.powered_by": "Ապակենտրոն սոց. ցանց սեղծուած {mastodon}-ով։",
+  "about.powered_by": "Ապակենտրոն սոց. ցանց սեղծուած {torment}-ով։",
   "about.rules": "Սերուերի կանոնները",
   "account.account_note_header": "Նշում",
   "account.add_or_remove_from_list": "Աւելացնել կամ հեռացնել ցանկերից",

@@ -8,9 +8,9 @@ import ImmutablePureComponent from 'react-immutable-pure-component';
 import { Avatar } from 'flavours/glitch/components/avatar';
 import Permalink from 'flavours/glitch/components/permalink';
 import { profileLink } from 'flavours/glitch/utils/backend_links';
+import initialState from 'mastodon/initial_state';
 
 import ActionBar from './action_bar';
-import initialState from 'mastodon/initial_state';
 
 export default class NavigationBar extends ImmutablePureComponent {
 

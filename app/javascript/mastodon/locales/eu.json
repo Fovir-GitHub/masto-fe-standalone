@@ -9,7 +9,7 @@
   "about.domain_blocks.suspended.explanation": "Ez da zerbitzari honetako daturik prozesatuko, gordeko, edo partekatuko, zerbitzari honetako erabiltzaileekin komunikatzea ezinezkoa eginez.",
   "about.domain_blocks.suspended.title": "Kanporatua",
   "about.not_available": "Zerbitzari honek ez du informazio hau eskuragarri jarri.",
-  "about.powered_by": "{mastodon} erabiltzen duen sare sozial deszentralizatua",
+  "about.powered_by": "{torment} erabiltzen duen sare sozial deszentralizatua",
   "about.rules": "Zerbitzariaren arauak",
   "account.account_note_header": "Oharra",
   "account.add_or_remove_from_list": "Gehitu edo kendu zerrendetatik",

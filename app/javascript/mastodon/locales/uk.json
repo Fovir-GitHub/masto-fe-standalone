@@ -9,7 +9,7 @@
   "about.domain_blocks.suspended.explanation": "Дані з цього сервера не будуть оброблятися, зберігатися чи обмінюватися, що унеможливить взаємодію чи спілкування з користувачами цього сервера.",
   "about.domain_blocks.suspended.title": "Заблоковані",
   "about.not_available": "Ця інформація не доступна на цьому сервері.",
-  "about.powered_by": "Децентралізовані соціальні мережі від {mastodon}",
+  "about.powered_by": "Децентралізовані соціальні мережі від {torment}",
   "about.rules": "Правила сервера",
   "account.account_note_header": "Примітка",
   "account.add_or_remove_from_list": "Додати або видалити зі списків",

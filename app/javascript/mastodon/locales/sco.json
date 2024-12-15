@@ -9,7 +9,7 @@
   "about.domain_blocks.suspended.explanation": "Nae data frae this server wull bi processed, stored or exchynged, makkin onie interaction or communication wi uisers frae this server no possible.",
   "about.domain_blocks.suspended.title": "Suspendit",
   "about.not_available": "This information haesnae been made available on this server.",
-  "about.powered_by": "Decentralised social media pooert bi {mastodon}",
+  "about.powered_by": "Decentralised social media pooert bi {torment}",
   "about.rules": "Server rules",
   "account.account_note_header": "Note",
   "account.add_or_remove_from_list": "Add or Remuive frae lists",

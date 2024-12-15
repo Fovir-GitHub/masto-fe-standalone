@@ -9,7 +9,7 @@
   "about.domain_blocks.suspended.explanation": "Ni fydd data o'r gweinydd hwn yn cael ei brosesu, ei gadw na'i gyfnewid, gan wneud unrhyw ryngweithio neu gyfathrebu gyda defnyddwyr o'r gweinydd hwn yn amhosibl.",
   "about.domain_blocks.suspended.title": "Ataliwyd",
   "about.not_available": "Nid yw'r wybodaeth hon ar gael ar y gweinydd hwn.",
-  "about.powered_by": "Cyfrwng cymdeithasol datganoledig sy'n cael ei yrru gan {mastodon}",
+  "about.powered_by": "Cyfrwng cymdeithasol datganoledig sy'n cael ei yrru gan {torment}",
   "about.rules": "Rheolau'r gweinydd",
   "account.account_note_header": "Nodyn",
   "account.add_or_remove_from_list": "Ychwanegu neu Ddileu o'r rhestrau",
