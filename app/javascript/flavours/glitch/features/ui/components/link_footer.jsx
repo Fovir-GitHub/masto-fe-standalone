@@ -8,8 +8,7 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 import { openModal } from 'flavours/glitch/actions/modal';
-import { domain, version, source_url, statusPageUrl, profile_directory as profileDirectory } from 'flavours/glitch/initial_state';
-import { PERMISSION_INVITE_USERS } from 'flavours/glitch/permissions';
+import { version, source_url } from 'flavours/glitch/initial_state';
 import { logOut } from 'flavours/glitch/utils/log_out';
 
 const messages = defineMessages({
@@ -53,18 +52,11 @@ class LinkFooter extends PureComponent {
   };
 
   render () {
-    const { signedIn, permissions } = this.context.identity;
-    const { multiColumn } = this.props;
-
-    const canInvite = signedIn && ((permissions & PERMISSION_INVITE_USERS) === PERMISSION_INVITE_USERS);
-    const canProfileDirectory = profileDirectory;
-
     const DividingCircle = <span aria-hidden>{' · '}</span>;
-
     return (
       <div className='link-footer'>
         <p>
-          <strong>Masto-FE-standalone</strong>
+          <strong>Masto-FE (GoToSocial flavour)</strong>
           {DividingCircle}
           <a href={source_url} rel='noopener noreferrer' target='_blank'><FormattedMessage id='footer.source_code' defaultMessage='Source code' /></a>
           {DividingCircle}
