@@ -56,7 +56,7 @@ class LinkFooter extends PureComponent {
     return (
       <div className='link-footer'>
         <p>
-          <strong>Masto-FE (GoToSocial flavour)</strong>
+          <strong>Masto-FE (sloth flavour)</strong>
           {DividingCircle}
           <a href={source_url} rel='noopener noreferrer' target='_blank'><FormattedMessage id='footer.source_code' defaultMessage='Source code' /></a>
           {DividingCircle}

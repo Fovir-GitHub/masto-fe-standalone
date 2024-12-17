@@ -213,11 +213,6 @@ class ComposerOptions extends ImmutablePureComponent {
         name: 'text/plain',
         text: formatMessage(messages.plain),
       },
-      html: {
-        icon: 'code',
-        name: 'text/html',
-        text: formatMessage(messages.html),
-      },
       markdown: {
         icon: 'arrow-circle-down',
         name: 'text/markdown',
@@ -279,7 +274,6 @@ class ComposerOptions extends ImmutablePureComponent {
             icon={(contentTypeItems[contentType.split('/')[1]] || {}).icon}
             items={[
               contentTypeItems.plain,
-              contentTypeItems.html,
               contentTypeItems.markdown,
             ]}
             onChange={onChangeContentType}

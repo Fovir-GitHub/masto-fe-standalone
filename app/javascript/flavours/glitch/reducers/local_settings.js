@@ -6,7 +6,7 @@ import { LOCAL_SETTING_CHANGE, LOCAL_SETTING_DELETE } from 'flavours/glitch/acti
 import { STORE_HYDRATE } from 'flavours/glitch/actions/store';
 
 const initialState = ImmutableMap({
-  layout    : 'auto',
+  layout    : 'mobile',
   stretch   : true,
   side_arm  : 'none',
   side_arm_reply_mode : 'keep',
@@ -19,13 +19,13 @@ const initialState = ImmutableMap({
   preselect_on_reply: false,
   inline_preview_cards: true,
   hicolor_privacy_icons: false,
-  show_content_type_choice: false,
+  show_content_type_choice: true,
   tag_misleading_links: true,
   rewrite_mentions: 'no',
   content_warnings : ImmutableMap({
     filter       : null,
-    media_outside: false,
-    shared_state : false,
+    media_outside: true,
+    shared_state : true,
   }),
   collapsed : ImmutableMap({
     enabled     : true,
@@ -45,7 +45,7 @@ const initialState = ImmutableMap({
     show_action_bar : true,
   }),
   media     : ImmutableMap({
-    letterbox        : true,
+    letterbox        : false,
     fullwidth        : true,
     reveal_behind_cw : false,
     pop_in_player    : true,

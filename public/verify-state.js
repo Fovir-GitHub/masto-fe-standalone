@@ -1,6 +1,8 @@
 loadState().then(_ => null);
 
 async function loadState() {
+  const protocol = localStorage.getItem('protocol') ?? 'https://';
+  const streamingProtocol = protocol.startsWith('https') ? 'wss://' : 'ws://'
   const domain = localStorage.getItem('domain');
   const access_token = localStorage.getItem('access_token');
   const storedState = localStorage.getItem('initial_state');
@@ -14,7 +16,7 @@ async function loadState() {
     document.getElementById('initial-state').textContent = storedState;
   }
 
-  const apiUrl = `https://${domain}/api`;
+  const apiUrl = `${protocol}${domain}/api`;
   const instance = await fetch(`${apiUrl}/v1/instance`).then(async p => await p.json());
   const options = {headers: {Authorization: `Bearer ${access_token}`}};
   const credentials = await fetch(`${apiUrl}/v1/accounts/verify_credentials`, options).then(async p => await p.json());
@@ -65,6 +67,7 @@ async function loadState() {
       "auto_play_gif": false,
       "boost_modal": false,
       "compact_reaction": false,
+      "default_content_type": credentials.source?.status_content_type ?? "text/plain",
       "delete_modal": true,
       "display_sensitive_media": false,
       "domain": domain,
@@ -74,8 +77,9 @@ async function loadState() {
       "me": credentials.id,
       "reduce_motion": false,
       "show_quote_button": true,
-      "base_url": `https://${domain}`,
-      "streaming_api_base_url": `wss://${domain}`,
+      "base_url": `${protocol}${domain}`,
+      "search_enabled": true,
+      "streaming_api_base_url": `${streamingProtocol}${domain}`,
       "title": `${instance.title}`,
       "unfollow_modal": true,
       "source_url": 'https://codeberg.org/superseriousbusiness/masto-fe-standalone',
