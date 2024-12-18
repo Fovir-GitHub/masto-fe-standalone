@@ -204,7 +204,11 @@ class About extends PureComponent {
           <LinkFooter />
 
           <div className='about__footer'>
-            <p><FormattedMessage id='about.fork_disclaimer' defaultMessage='Masto-FE (sloth flavour) is open source software forked from Mastodon via Glitch.' /></p>
+            <p><FormattedMessage
+              id='about.fork_disclaimer'
+              // eslint-disable-next-line formatjs/no-emoji
+              defaultMessage='Masto-FE (🦥 flavour) is open source software forked from Mastodon via Glitch.'
+            /></p>
           </div>
         </div>
 

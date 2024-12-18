@@ -53,10 +53,11 @@ class LinkFooter extends PureComponent {
 
   render () {
     const DividingCircle = <span aria-hidden>{' · '}</span>;
+    const software = 'Masto-FE (🦥 flavour)';
     return (
       <div className='link-footer'>
         <p>
-          <strong>Masto-FE (sloth flavour)</strong>
+          <strong>{software}</strong>
           {DividingCircle}
           <a href={source_url} rel='noopener noreferrer' target='_blank'><FormattedMessage id='footer.source_code' defaultMessage='Source code' /></a>
           {DividingCircle}
