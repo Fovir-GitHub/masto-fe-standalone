@@ -69,33 +69,6 @@ const fetchServerTranslationLanguagesFail = error => ({
   error,
 });
 
-export const fetchExtendedDescription = () => (dispatch, getState) => {
-  if (getState().getIn(['server', 'extendedDescription', 'isLoading'])) {
-    return;
-  }
-
-  dispatch(fetchExtendedDescriptionRequest());
-
-  api(getState)
-    .get('/api/v1/instance/extended_description')
-    .then(({ data }) => dispatch(fetchExtendedDescriptionSuccess(data)))
-    .catch(err => dispatch(fetchExtendedDescriptionFail(err)));
-};
-
-const fetchExtendedDescriptionRequest = () => ({
-  type: EXTENDED_DESCRIPTION_REQUEST,
-});
-
-const fetchExtendedDescriptionSuccess = description => ({
-  type: EXTENDED_DESCRIPTION_SUCCESS,
-  description,
-});
-
-const fetchExtendedDescriptionFail = error => ({
-  type: EXTENDED_DESCRIPTION_FAIL,
-  error,
-});
-
 export const fetchDomainBlocks = () => (dispatch, getState) => {
   if (getState().getIn(['server', 'domainBlocks', 'isLoading'])) {
     return;

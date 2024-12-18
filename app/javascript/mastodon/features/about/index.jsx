@@ -10,7 +10,7 @@ import { List as ImmutableList } from 'immutable';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import { connect } from 'react-redux';
 
-import { fetchServer, fetchExtendedDescription, fetchDomainBlocks  } from 'mastodon/actions/server';
+import { fetchServer, fetchDomainBlocks  } from 'mastodon/actions/server';
 import Column from 'mastodon/components/column';
 import { Icon  }  from 'mastodon/components/icon';
 import { ServerHeroImage } from 'mastodon/components/server_hero_image';
@@ -42,7 +42,6 @@ const severityMessages = {
 
 const mapStateToProps = state => ({
   server: state.getIn(['server', 'server']),
-  extendedDescription: state.getIn(['server', 'extendedDescription']),
   domainBlocks: state.getIn(['server', 'domainBlocks']),
 });
 
@@ -89,7 +88,6 @@ class About extends PureComponent {
 
   static propTypes = {
     server: ImmutablePropTypes.map,
-    extendedDescription: ImmutablePropTypes.map,
     domainBlocks: ImmutablePropTypes.contains({
       isLoading: PropTypes.bool,
       isAvailable: PropTypes.bool,
@@ -103,7 +101,6 @@ class About extends PureComponent {
   componentDidMount () {
     const { dispatch } = this.props;
     dispatch(fetchServer());
-    dispatch(fetchExtendedDescription());
   }
 
   handleDomainBlocksOpen = () => {
@@ -112,7 +109,7 @@ class About extends PureComponent {
   };
 
   render () {
-    const { multiColumn, intl, server, extendedDescription, domainBlocks } = this.props;
+    const { multiColumn, intl, server, domainBlocks } = this.props;
     const isLoading = server.get('isLoading');
 
     return (
@@ -141,7 +138,7 @@ class About extends PureComponent {
           </div>
 
           <Section open title={intl.formatMessage(messages.title)}>
-            {extendedDescription.get('isLoading') ? (
+            {isLoading ? (
               <>
                 <Skeleton width='100%' />
                 <br />
@@ -151,10 +148,10 @@ class About extends PureComponent {
                 <br />
                 <Skeleton width='70%' />
               </>
-            ) : (extendedDescription.get('content')?.length > 0 ? (
+            ) : (server.get('description')?.length > 0 ? (
               <div
                 className='prose'
-                dangerouslySetInnerHTML={{ __html: extendedDescription.get('content') }}
+                dangerouslySetInnerHTML={{ __html: server.get('description') }}
               />
             ) : (
               <p><FormattedMessage id='about.not_available' defaultMessage='This information has not been made available on this server.' /></p>
