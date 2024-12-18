@@ -17,7 +17,7 @@ import { uploadCompose, resetCompose, changeComposeSpoilerness } from 'flavours/
 import { clearHeight } from 'flavours/glitch/actions/height_cache';
 import { synchronouslySubmitMarkers, submitMarkers, fetchMarkers } from 'flavours/glitch/actions/markers';
 import { expandNotifications, notificationsSetVisibility } from 'flavours/glitch/actions/notifications';
-import { fetchServer, fetchServerTranslationLanguages } from 'flavours/glitch/actions/server';
+import { fetchServer } from 'flavours/glitch/actions/server';
 import { expandHomeTimeline } from 'flavours/glitch/actions/timelines';
 import PermaLink from 'flavours/glitch/components/permalink';
 import PictureInPicture from 'flavours/glitch/features/picture_in_picture';
@@ -423,7 +423,6 @@ class UI extends Component {
       this.props.dispatch(fetchMarkers());
       this.props.dispatch(expandHomeTimeline());
       this.props.dispatch(expandNotifications());
-      this.props.dispatch(fetchServerTranslationLanguages());
 
       setTimeout(() => this.props.dispatch(fetchServer()), 3000);
     }

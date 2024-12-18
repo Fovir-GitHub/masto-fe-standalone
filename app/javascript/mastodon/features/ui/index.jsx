@@ -20,7 +20,7 @@ import { layoutFromWindow } from 'mastodon/is_mobile';
 import { uploadCompose, resetCompose, changeComposeSpoilerness } from '../../actions/compose';
 import { clearHeight } from '../../actions/height_cache';
 import { expandNotifications } from '../../actions/notifications';
-import { fetchServer, fetchServerTranslationLanguages } from '../../actions/server';
+import { fetchServer } from '../../actions/server';
 import { expandHomeTimeline } from '../../actions/timelines';
 import initialState, { me, owner, singleUserMode, trendsEnabled, trendsAsLanding } from '../../initial_state';
 
@@ -404,7 +404,6 @@ class UI extends PureComponent {
       this.props.dispatch(fetchMarkers());
       this.props.dispatch(expandHomeTimeline());
       this.props.dispatch(expandNotifications());
-      this.props.dispatch(fetchServerTranslationLanguages());
 
       setTimeout(() => this.props.dispatch(fetchServer()), 3000);
     }
