@@ -86,6 +86,7 @@ async function loadState() {
       "version": instance.version
     },
     "max_toot_chars": instance.configuration.statuses.max_characters,
+    "max_media_attachments": instance.configuration.statuses.max_media_attachments,
     "poll_limits": {
       "max_expiration": instance.configuration.polls.max_expiration,
       "max_option_chars": instance.configuration.polls.max_characters_per_option,

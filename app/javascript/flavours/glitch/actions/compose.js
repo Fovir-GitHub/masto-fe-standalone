@@ -5,6 +5,7 @@ import { throttle } from 'lodash';
 
 import api from 'flavours/glitch/api';
 import { search as emojiSearch } from 'flavours/glitch/features/emoji/emoji_mart_search_light';
+import { maxMediaAttachments } from 'flavours/glitch/initial_state';
 import { tagHistory } from 'flavours/glitch/settings';
 import { recoverHashtags } from 'flavours/glitch/utils/hashtag';
 import resizeImage from 'flavours/glitch/utils/resize_image';
@@ -299,7 +300,7 @@ export function doodleSet(options) {
 
 export function uploadCompose(files) {
   return function (dispatch, getState) {
-    const uploadLimit = 4;
+    const uploadLimit = maxMediaAttachments;
     const media  = getState().getIn(['compose', 'media_attachments']);
     const pending  = getState().getIn(['compose', 'pending_media_attachments']);
     const progress = new Array(files.length).fill(0);
