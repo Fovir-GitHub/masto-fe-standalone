@@ -17,7 +17,7 @@ import { INTRODUCTION_VERSION } from 'mastodon/actions/onboarding';
 import PictureInPicture from 'mastodon/features/picture_in_picture';
 import { layoutFromWindow } from 'mastodon/is_mobile';
 
-import { uploadCompose, resetCompose, changeComposeSpoilerness } from '../../actions/compose';
+import { uploadCompose, resetCompose } from '../../actions/compose';
 import { clearHeight } from '../../actions/height_cache';
 import { expandNotifications } from '../../actions/notifications';
 import { fetchServer } from '../../actions/server';
@@ -453,11 +453,6 @@ class UI extends PureComponent {
   handleHotkeyForceNew = e => {
     this.handleHotkeyNew(e);
     this.props.dispatch(resetCompose());
-  };
-
-  handleHotkeyToggleComposeSpoilers = e => {
-    e.preventDefault();
-    this.props.dispatch(changeComposeSpoilerness());
   };
 
   handleHotkeyFocusColumn = e => {

@@ -21,7 +21,6 @@ import PollButtonContainer from '../containers/poll_button_container';
 import PollFormContainer from '../containers/poll_form_container';
 import PrivacyDropdownContainer from '../containers/privacy_dropdown_container';
 import ReplyIndicatorContainer from '../containers/reply_indicator_container';
-import SpoilerButtonContainer from '../containers/spoiler_button_container';
 import UploadButtonContainer from '../containers/upload_button_container';
 import UploadFormContainer from '../containers/upload_form_container';
 import WarningContainer from '../containers/warning_container';
@@ -33,7 +32,7 @@ const allowedAroundShortCode = '><\u0085\u0020\u00a0\u1680\u2000\u2001\u2002\u20
 
 const messages = defineMessages({
   placeholder: { id: 'compose_form.placeholder', defaultMessage: 'What is on your mind?' },
-  spoiler_placeholder: { id: 'compose_form.spoiler_placeholder', defaultMessage: 'Write your warning here' },
+  spoiler_placeholder: { id: 'compose_form.spoiler_placeholder', defaultMessage: '(Optional) post title / content warning' },
   publish: { id: 'compose_form.publish', defaultMessage: 'Promulgate' },
   publishLoud: { id: 'compose_form.publish_loud', defaultMessage: '{publish}!' },
   saveChanges: { id: 'compose_form.save_changes', defaultMessage: 'Save changes' },
@@ -49,7 +48,6 @@ class ComposeForm extends ImmutablePureComponent {
     intl: PropTypes.object.isRequired,
     text: PropTypes.string.isRequired,
     suggestions: ImmutablePropTypes.list,
-    spoiler: PropTypes.bool,
     privacy: PropTypes.string,
     spoilerText: PropTypes.string,
     focusDate: PropTypes.instanceOf(Date),
@@ -244,13 +242,12 @@ class ComposeForm extends ImmutablePureComponent {
 
         <ReplyIndicatorContainer />
 
-        <div className={`spoiler-input ${this.props.spoiler ? 'spoiler-input--visible' : ''}`} ref={this.setRef} aria-hidden={!this.props.spoiler}>
+        <div className={'spoiler-input spoiler-input--visible'} ref={this.setRef}>
           <AutosuggestInput
             placeholder={intl.formatMessage(messages.spoiler_placeholder)}
             value={this.props.spoilerText}
             onChange={this.handleChangeSpoilerText}
             onKeyDown={this.handleKeyDown}
-            disabled={!this.props.spoiler}
             ref={this.setSpoilerText}
             suggestions={this.props.suggestions}
             onSuggestionsFetchRequested={this.onSuggestionsFetchRequested}
@@ -293,7 +290,6 @@ class ComposeForm extends ImmutablePureComponent {
               <UploadButtonContainer />
               <PollButtonContainer />
               <PrivacyDropdownContainer disabled={this.props.isEditing} />
-              <SpoilerButtonContainer />
               <LanguageDropdown />
             </div>
 

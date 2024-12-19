@@ -28,7 +28,6 @@ import {
   COMPOSE_SUGGESTION_TAGS_UPDATE,
   COMPOSE_TAG_HISTORY_UPDATE,
   COMPOSE_SENSITIVITY_CHANGE,
-  COMPOSE_SPOILERNESS_CHANGE,
   COMPOSE_SPOILER_TEXT_CHANGE,
   COMPOSE_VISIBILITY_CHANGE,
   COMPOSE_LANGUAGE_CHANGE,
@@ -299,15 +298,6 @@ export default function compose(state = initialState, action) {
       }
 
       map.set('idempotencyKey', uuid());
-    });
-  case COMPOSE_SPOILERNESS_CHANGE:
-    return state.withMutations(map => {
-      map.set('spoiler', !state.get('spoiler'));
-      map.set('idempotencyKey', uuid());
-
-      if (!state.get('sensitive') && state.get('media_attachments').size >= 1) {
-        map.set('sensitive', true);
-      }
     });
   case COMPOSE_SPOILER_TEXT_CHANGE:
     if (!state.get('spoiler')) return state;
