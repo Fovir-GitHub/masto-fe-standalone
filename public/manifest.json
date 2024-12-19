@@ -1,9 +1,9 @@
 {
   "background_color": "#191b22",
   "categories": ["social"],
-  "description": "Masto-FE standalone",
+  "description": "Masto-FE (🦥 flavour)",
   "display": "standalone",
-  "name": "Masto-FE standalone",
+  "name": "Masto-FE (🦥 flavour)",
   "serviceworker": {
     "src": "/sw.js"
   },
