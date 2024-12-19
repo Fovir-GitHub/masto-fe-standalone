@@ -1,31 +1,41 @@
-# Mastodon Glitch Edition (standalone frontend)
+# Masto-FE (🦥 flavour)
 
-This is a somewhat hacky fork of glitch-soc that adds standalone support (meaning your browser can OAuth against an arbitrary instance). It's currently tested to work (for the most part) with Iceshrimp and GoToSocial (and obviously Mastodon).
+This is a fork of [Iceshrimp's Masto-FE Standalone](https://iceshrimp.dev/iceshrimp/masto-fe-standalone) repository, which is itself a fork of [Mastodon Glitch Edition](https://github.com/glitch-soc/mastodon), which in turn forks [Mastodon](https://github.com/mastodon/mastodon/). Phew!
 
-To try this out, go to [masto-fe.iceshrimp.dev](https://masto-fe.iceshrimp.dev), type in your instance domain name (for split domain setups, use the web domain) & press the button.
+The goal of this repository is to make it possible to smoothly and intuitively use the Mastodon frontend with a GoToSocial instance as the backend.
 
-To set this up yourself, clone the repo into e.g. `/home/user/masto-fe-standalone` and run `yarn && yarn build:production`.
+This mostly means making changes to the frontend to allow it to work with GoToSocial-specific features, making it slightly less Mastodon-y by changing some of the branding, wording, iconography, etc, and fixing other small issues.
 
-Then configure nginx for a subdomain like this:
+There's a version running here that you can try:
 
-```
-map $http_upgrade $connection_upgrade {
-        default upgrade;
-        ''      close;
-}
+https://masto-fe.superseriousbusiness.org
 
-server {
-        include sites/example.com/inc/ssl.conf;
-        server_name masto.example.com;
+The application doesn't gather or store any information that you give it, including access tokens or passwords, everything just happens in your browser's local storage.
 
-        location / {
-                root /home/user/masto-fe-standalone/public/;
-                index index.html;
-                try_files $uri /index.html;
-        }
-}
+## Building
+
+### Not Docker (must have Node + Yarn installed)
+
+You can build the whole thingy by running:
+
+```bash
+yarn && yarn build:production
 ```
 
-And open `https://masto.example.com` in your browser, type in your instance domain, press the button & follow the OAuth flow.
+### Docker (don't need to have Node or Yarn installed)
 
-Should anything break, open `https://masto.example.com/logout.html` or clear local storage manually.
+You can build a docker container for the whole thingy by running (for example):
+
+```bash
+docker build -t superseriousbusiness/masto-fe-standalone:0.1.0 .
+```
+
+## Deploying
+
+### Not Docker
+
+Serve all the stuff in `public` behind an nginx or whatever you want! See the included `nginx.conf` for one example of how to do this, it's not too bad.
+
+### Docker (definitely the easiest way)
+
+The Docker container is based on Nginx, and serves over port 3000. Just deploy it and listen on that port, preferably with a reverse proxy at some point (Traefik? Caddy? Another Nginx perhaps?) handling https.

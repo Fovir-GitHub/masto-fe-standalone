@@ -1,0 +1,15 @@
+# Ignore everything by default.
+*
+
+# Allow files and directories
+!/public
+!/nginx.conf
+!/app
+!/config
+!/public
+!/.browserslistrc
+!/babel.config.js
+!/jsconfig.json
+!/package.json
+!/tsconfig.json
+!/yarn.lock
