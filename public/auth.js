@@ -50,6 +50,7 @@ async function registerApp(domain) {
   const appsUrl = `${protocol}${domain}/api/v1/apps`;
   const formData = new FormData();
   formData.append('client_name', 'Masto-FE (🦥 flavour)');
+  formData.append('website', 'https://codeberg.org/superseriousbusiness/masto-fe-standalone');
   formData.append('redirect_uris', document.location.origin + document.location.pathname);
   formData.append('scopes', 'read write follow push');
 
