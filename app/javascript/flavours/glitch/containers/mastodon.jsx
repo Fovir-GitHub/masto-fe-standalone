@@ -19,6 +19,8 @@ import initialState, { title as siteTitle } from 'flavours/glitch/initial_state'
 import { IntlProvider } from 'flavours/glitch/locales';
 import { store } from 'flavours/glitch/store';
 
+import { ThemeComponent } from './theme_component';
+
 const title = process.env.NODE_ENV === 'production' ? siteTitle : `${siteTitle} (Dev)`;
 
 const hydrateAction = hydrateStore(initialState);
@@ -79,15 +81,17 @@ export default class Mastodon extends PureComponent {
     return (
       <IntlProvider>
         <ReduxProvider store={store}>
-          <ErrorBoundary>
-            <Router>
-              <ScrollContext shouldUpdateScroll={this.shouldUpdateScroll}>
-                <Route path='/' component={UI} />
-              </ScrollContext>
-            </Router>
+          <ThemeComponent>
+            <ErrorBoundary>
+              <Router>
+                <ScrollContext shouldUpdateScroll={this.shouldUpdateScroll}>
+                  <Route path='/' component={UI} />
+                </ScrollContext>
+              </Router>
 
-            <Helmet defaultTitle={title} titleTemplate={`%s - ${title}`} />
-          </ErrorBoundary>
+              <Helmet defaultTitle={title} titleTemplate={`%s - ${title}`} />
+            </ErrorBoundary>
+          </ThemeComponent>
         </ReduxProvider>
       </IntlProvider>
     );

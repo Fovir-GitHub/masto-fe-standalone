@@ -62,6 +62,7 @@ const initialState = ImmutableMap({
     media:      true,
     visibility: true,
   }),
+  theme: 'mastodon-light',
 });
 
 const hydrate = (state, localSettings) => state.mergeDeep(localSettings);
