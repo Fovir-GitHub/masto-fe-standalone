@@ -6,14 +6,20 @@ async function loadState() {
   const domain = localStorage.getItem('domain');
   const access_token = localStorage.getItem('access_token');
   const storedState = localStorage.getItem('initial_state');
+  const webSettings = localStorage.getItem('web_settings');
 
   if (!domain || !access_token) {
     window.location.href = '/login.html';
     return;
   }
 
+  /* We try to load the initial state now to prevent a race between us and mastodon */
   if (storedState && window.location.pathname !== '/prepare.html') {
-    document.getElementById('initial-state').textContent = storedState;
+    const state = JSON.parse(storedState);
+    if (webSettings) {
+      state.settings = JSON.parse(webSettings);
+    }
+    document.getElementById('initial-state').textContent = JSON.stringify(state);
   }
 
   const apiUrl = `${protocol}${domain}/api`;
@@ -1091,6 +1097,10 @@ async function loadState() {
       ]
     ],
   };
+
+  if (webSettings) {
+    state.settings = JSON.parse(webSettings);
+  }
 
   const json = JSON.stringify(state);
   if (window.location.pathname !== '/prepare.html') document.getElementById('initial-state').textContent = json;
