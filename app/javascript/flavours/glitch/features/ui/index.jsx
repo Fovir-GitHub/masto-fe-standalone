@@ -13,7 +13,7 @@ import { debounce } from 'lodash';
 import { HotKeys } from 'react-hotkeys';
 
 import { changeLayout } from 'flavours/glitch/actions/app';
-import { uploadCompose, resetCompose } from 'flavours/glitch/actions/compose';
+import { uploadCompose, resetCompose, changeComposeSpoilerness } from 'flavours/glitch/actions/compose';
 import { clearHeight } from 'flavours/glitch/actions/height_cache';
 import { synchronouslySubmitMarkers, submitMarkers, fetchMarkers } from 'flavours/glitch/actions/markers';
 import { expandNotifications, notificationsSetVisibility } from 'flavours/glitch/actions/notifications';
@@ -516,6 +516,11 @@ class UI extends Component {
   handleHotkeyForceNew = e => {
     this.handleHotkeyNew(e);
     this.props.dispatch(resetCompose());
+  };
+
+  handleHotkeyToggleComposeSpoilers = e => {
+    e.preventDefault();
+    this.props.dispatch(changeComposeSpoilerness());
   };
 
   handleHotkeyFocusColumn = e => {

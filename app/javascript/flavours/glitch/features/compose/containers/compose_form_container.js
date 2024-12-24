@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import {
   changeCompose,
   changeComposeSpoilerText,
+  changeComposeSpoilerness,
   changeComposeVisibility,
   clearComposeSuggestions,
   fetchComposeSuggestions,
@@ -114,6 +115,10 @@ const mapDispatchToProps = (dispatch, { intl }) => ({
 
   onPickEmoji(position, emoji) {
     dispatch(insertEmojiCompose(position, emoji));
+  },
+
+  onChangeSpoilerness() {
+    dispatch(changeComposeSpoilerness());
   },
 
   onChangeVisibility(value) {

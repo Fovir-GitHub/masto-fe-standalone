@@ -34,7 +34,7 @@ const messages = defineMessages({
     id: 'confirmations.missing_media_description.confirm',
     defaultMessage: 'Send anyway',
   },
-  spoiler_placeholder: { id: 'compose_form.spoiler_placeholder', defaultMessage: '(Optional) post title / content warning' },
+  spoiler_placeholder: { id: 'compose_form.spoiler_placeholder', defaultMessage: 'Write your warning here' },
 });
 
 class ComposeForm extends ImmutablePureComponent {
@@ -79,6 +79,7 @@ class ComposeForm extends ImmutablePureComponent {
     spoilersAlwaysOn: PropTypes.bool,
     mediaDescriptionConfirmation: PropTypes.bool,
     preselectOnReply: PropTypes.bool,
+    onChangeSpoilerness: PropTypes.func,
     onChangeVisibility: PropTypes.func,
     onMediaDescriptionConfirm: PropTypes.func,
   };
@@ -291,6 +292,7 @@ class ComposeForm extends ImmutablePureComponent {
       intl,
       isSubmitting,
       layout,
+      onChangeSpoilerness,
       onClearSuggestions,
       onFetchSuggestions,
       onPaste,
@@ -298,8 +300,10 @@ class ComposeForm extends ImmutablePureComponent {
       sensitive,
       showSearch,
       sideArm,
+      spoiler,
       spoilerText,
       suggestions,
+      spoilersAlwaysOn,
       isEditing,
     } = this.props;
 
@@ -311,12 +315,13 @@ class ComposeForm extends ImmutablePureComponent {
 
         <ReplyIndicatorContainer />
 
-        <div className={'spoiler-input spoiler-input--visible'} ref={this.setRef}>
+        <div className={`spoiler-input ${spoiler ? 'spoiler-input--visible' : ''}`} ref={this.setRef} aria-hidden={!this.props.spoiler}>
           <AutosuggestInput
             placeholder={intl.formatMessage(messages.spoiler_placeholder)}
             value={spoilerText}
             onChange={this.handleChangeSpoiler}
             onKeyDown={this.handleKeyDown}
+            disabled={!spoiler}
             ref={this.handleRefSpoilerText}
             suggestions={suggestions}
             onSuggestionsFetchRequested={onFetchSuggestions}
@@ -359,9 +364,11 @@ class ComposeForm extends ImmutablePureComponent {
           <OptionsContainer
             advancedOptions={advancedOptions}
             disabled={isSubmitting}
+            onToggleSpoiler={spoilersAlwaysOn ? null : onChangeSpoilerness}
             onUpload={onPaste}
             isEditing={isEditing}
-            sensitive={sensitive || (spoilerText && spoilerText.length > 0)}
+            sensitive={sensitive || (spoilersAlwaysOn && spoilerText && spoilerText.length > 0)}
+            spoiler={spoilersAlwaysOn ? (spoilerText && spoilerText.length > 0) : spoiler}
           />
           <div className='character-counter__wrapper'>
             <CharacterCounter text={countText} max={maxChars} />
