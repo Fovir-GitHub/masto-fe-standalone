@@ -34,7 +34,7 @@ const messages = defineMessages({
     id: 'confirmations.missing_media_description.confirm',
     defaultMessage: 'Send anyway',
   },
-  spoiler_placeholder: { id: 'compose_form.spoiler_placeholder', defaultMessage: 'Write your warning here' },
+  spoiler_placeholder: { id: 'compose_form.spoiler_placeholder', defaultMessage: '(Optional) post title / content warning' },
 });
 
 class ComposeForm extends ImmutablePureComponent {

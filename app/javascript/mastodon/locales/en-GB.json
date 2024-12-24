@@ -159,7 +159,7 @@
   "compose_form.sensitive.unmarked": "{count, plural, one {Media is not marked as sensitive} other {Media is not marked as sensitive}}",
   "compose_form.spoiler.marked": "Remove content warning",
   "compose_form.spoiler.unmarked": "Add content warning",
-  "compose_form.spoiler_placeholder": "Write your warning here",
+  "compose_form.spoiler_placeholder": "(Optional) post title / content warning",
   "confirmation_modal.cancel": "Cancel",
   "confirmations.block.block_and_report": "Block & Report",
   "confirmations.block.confirm": "Block",
