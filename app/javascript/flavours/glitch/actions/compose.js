@@ -57,6 +57,7 @@ export const COMPOSE_UNMOUNT = 'COMPOSE_UNMOUNT';
 
 export const COMPOSE_ADVANCED_OPTIONS_CHANGE = 'COMPOSE_ADVANCED_OPTIONS_CHANGE';
 export const COMPOSE_SENSITIVITY_CHANGE  = 'COMPOSE_SENSITIVITY_CHANGE';
+export const COMPOSE_SPOILERNESS_CHANGE  = 'COMPOSE_SPOILERNESS_CHANGE';
 export const COMPOSE_SPOILER_TEXT_CHANGE = 'COMPOSE_SPOILER_TEXT_CHANGE';
 export const COMPOSE_VISIBILITY_CHANGE   = 'COMPOSE_VISIBILITY_CHANGE';
 export const COMPOSE_LISTABILITY_CHANGE  = 'COMPOSE_LISTABILITY_CHANGE';
@@ -171,7 +172,8 @@ export function submitCompose(routerHistory) {
     let status     = getState().getIn(['compose', 'text'], '');
     const media    = getState().getIn(['compose', 'media_attachments']);
     const statusId = getState().getIn(['compose', 'id'], null);
-    let spoilerText = getState().getIn(['compose', 'spoiler_text'], '');
+    const spoilers = getState().getIn(['compose', 'spoiler']) || getState().getIn(['local_settings', 'always_show_spoilers_field']);
+    let spoilerText = spoilers ? getState().getIn(['compose', 'spoiler_text'], '') : '';
 
     if ((!status || !status.length) && media.size === 0) {
       return;
@@ -742,6 +744,12 @@ export const changeComposeLanguage = language => ({
   type: COMPOSE_LANGUAGE_CHANGE,
   language,
 });
+
+export function changeComposeSpoilerness() {
+  return {
+    type: COMPOSE_SPOILERNESS_CHANGE,
+  };
+}
 
 export function changeComposeSpoilerText(text) {
   return {

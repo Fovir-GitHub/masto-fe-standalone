@@ -52,6 +52,7 @@ export const COMPOSE_MOUNT   = 'COMPOSE_MOUNT';
 export const COMPOSE_UNMOUNT = 'COMPOSE_UNMOUNT';
 
 export const COMPOSE_SENSITIVITY_CHANGE  = 'COMPOSE_SENSITIVITY_CHANGE';
+export const COMPOSE_SPOILERNESS_CHANGE  = 'COMPOSE_SPOILERNESS_CHANGE';
 export const COMPOSE_SPOILER_TEXT_CHANGE = 'COMPOSE_SPOILER_TEXT_CHANGE';
 export const COMPOSE_VISIBILITY_CHANGE   = 'COMPOSE_VISIBILITY_CHANGE';
 export const COMPOSE_COMPOSING_CHANGE    = 'COMPOSE_COMPOSING_CHANGE';
@@ -731,6 +732,12 @@ export const changeComposeLanguage = language => ({
   type: COMPOSE_LANGUAGE_CHANGE,
   language,
 });
+
+export function changeComposeSpoilerness() {
+  return {
+    type: COMPOSE_SPOILERNESS_CHANGE,
+  };
+}
 
 export function changeComposeSpoilerText(text) {
   return {
