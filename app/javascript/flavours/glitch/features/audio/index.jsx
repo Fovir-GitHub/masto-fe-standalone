@@ -12,7 +12,7 @@ import { throttle, debounce } from 'lodash';
 import { Blurhash } from 'flavours/glitch/components/blurhash';
 import { Icon } from 'flavours/glitch/components/icon';
 import { formatTime, getPointerPosition, fileNameFromURL } from 'flavours/glitch/features/video';
-import { displayMedia, useBlurhash } from 'flavours/glitch/initial_state';
+import { displayMedia } from 'flavours/glitch/initial_state';
 
 import Visualizer from './visualizer';
 
@@ -56,6 +56,7 @@ class Audio extends PureComponent {
     volume: PropTypes.number,
     muted: PropTypes.bool,
     deployPictureInPicture: PropTypes.func,
+    useBlurhash: PropTypes.bool,
   };
 
   state = {
@@ -472,7 +473,7 @@ class Audio extends PureComponent {
   };
 
   render () {
-    const { src, intl, alt, lang, editable, autoPlay, sensitive, blurhash } = this.props;
+    const { src, intl, alt, lang, editable, autoPlay, sensitive, blurhash, useBlurhash } = this.props;
     const { paused, volume, currentTime, duration, buffer, dragging, revealed } = this.state;
     const progress = Math.min((currentTime / duration) * 100, 100);
     const muted = this.state.muted || volume === 0;

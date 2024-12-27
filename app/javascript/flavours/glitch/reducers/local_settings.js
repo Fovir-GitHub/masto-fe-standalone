@@ -45,6 +45,7 @@ const initialState = ImmutableMap({
     show_action_bar : true,
   }),
   media     : ImmutableMap({
+    use_blurhash     : true,
     letterbox        : false,
     fullwidth        : true,
     reveal_behind_cw : false,

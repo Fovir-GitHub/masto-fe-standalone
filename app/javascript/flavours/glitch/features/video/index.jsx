@@ -11,7 +11,7 @@ import { throttle } from 'lodash';
 
 import { Blurhash } from 'flavours/glitch/components/blurhash';
 import { Icon } from 'flavours/glitch/components/icon';
-import { displayMedia, useBlurhash } from 'flavours/glitch/initial_state';
+import { displayMedia } from 'flavours/glitch/initial_state';
 
 import { isFullscreen, requestFullscreen, exitFullscreen } from '../ui/util/fullscreen';
 
@@ -129,6 +129,7 @@ class Video extends PureComponent {
     muted: PropTypes.bool,
     componentIndex: PropTypes.number,
     autoFocus: PropTypes.bool,
+    useBlurhash: PropTypes.bool,
   };
 
   static defaultProps = {
@@ -509,8 +510,35 @@ class Video extends PureComponent {
   }
 
   render () {
-    const { preview, src, inline, onOpenVideo, onCloseVideo, intl, alt, lang, letterbox, fullwidth, detailed, sensitive, editable, blurhash, autoFocus } = this.props;
-    const { currentTime, duration, volume, buffer, dragging, paused, fullscreen, hovered, revealed } = this.state;
+    const {
+      preview,
+      src,
+      inline,
+      onOpenVideo,
+      onCloseVideo,
+      intl,
+      alt,
+      lang,
+      letterbox,
+      fullwidth,
+      detailed,
+      sensitive,
+      editable,
+      blurhash,
+      autoFocus,
+      useBlurhash
+    } = this.props;
+    const {
+      currentTime,
+      duration,
+      volume,
+      buffer,
+      dragging,
+      paused,
+      fullscreen,
+      hovered,
+      revealed
+    } = this.state;
     const progress = Math.min((currentTime / duration) * 100, 100);
     const muted = this.state.muted || volume === 0;
 

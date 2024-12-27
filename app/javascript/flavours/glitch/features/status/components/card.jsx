@@ -10,7 +10,6 @@ import ImmutablePropTypes from 'react-immutable-proptypes';
 
 import { Blurhash } from 'flavours/glitch/components/blurhash';
 import { Icon } from 'flavours/glitch/components/icon';
-import { useBlurhash } from 'flavours/glitch/initial_state';
 import { decode as decodeIDNA } from 'flavours/glitch/utils/idna';
 
 const getHostname = url => {
@@ -49,6 +48,7 @@ export default class Card extends PureComponent {
     onOpenMedia: PropTypes.func.isRequired,
     compact: PropTypes.bool,
     sensitive: PropTypes.bool,
+    useBlurhash: PropTypes.bool,
   };
 
   static defaultProps = {
@@ -138,7 +138,7 @@ export default class Card extends PureComponent {
   }
 
   render () {
-    const { card, compact } = this.props;
+    const { card, compact, useBlurhash } = this.props;
     const { embedded, revealed } = this.state;
 
     if (card === null) {

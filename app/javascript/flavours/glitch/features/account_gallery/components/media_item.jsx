@@ -7,9 +7,7 @@ import ImmutablePureComponent from 'react-immutable-pure-component';
 
 import { Blurhash } from 'flavours/glitch/components/blurhash';
 import { Icon } from 'flavours/glitch/components/icon';
-import { autoPlayGif, displayMedia, useBlurhash } from 'flavours/glitch/initial_state';
-
-
+import { autoPlayGif, displayMedia } from 'flavours/glitch/initial_state';
 
 export default class MediaItem extends ImmutablePureComponent {
 
@@ -17,6 +15,7 @@ export default class MediaItem extends ImmutablePureComponent {
     attachment: ImmutablePropTypes.map.isRequired,
     displayWidth: PropTypes.number.isRequired,
     onOpenMedia: PropTypes.func.isRequired,
+    useBlurhash: PropTypes.bool,
   };
 
   state = {
@@ -58,7 +57,7 @@ export default class MediaItem extends ImmutablePureComponent {
   };
 
   render () {
-    const { attachment, displayWidth } = this.props;
+    const { attachment, displayWidth, useBlurhash } = this.props;
     const { visible, loaded } = this.state;
 
     const width  = `${Math.floor((displayWidth - 4) / 3) - 4}px`;

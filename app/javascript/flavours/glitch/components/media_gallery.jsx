@@ -11,7 +11,7 @@ import ImmutablePropTypes from 'react-immutable-proptypes';
 import { debounce } from 'lodash';
 
 import { Blurhash } from 'flavours/glitch/components/blurhash';
-import { autoPlayGif, displayMedia, useBlurhash } from 'flavours/glitch/initial_state';
+import { autoPlayGif, displayMedia } from 'flavours/glitch/initial_state';
 
 import { IconButton } from './icon_button';
 
@@ -51,6 +51,7 @@ class Item extends PureComponent {
     displayWidth: PropTypes.number,
     visible: PropTypes.bool.isRequired,
     autoplay: PropTypes.bool,
+    useBlurhash: PropTypes.bool,
   };
 
   static defaultProps = {
@@ -105,7 +106,17 @@ class Item extends PureComponent {
   };
 
   render () {
-    const { attachment, lang, index, size, standalone, letterbox, displayWidth, visible } = this.props;
+    const {
+      attachment,
+      lang,
+      index,
+      size,
+      standalone,
+      letterbox,
+      displayWidth,
+      visible,
+      useBlurhash,
+    } = this.props;
 
     let badges = [], thumbnail;
 
@@ -243,6 +254,7 @@ class MediaGallery extends PureComponent {
     visible: PropTypes.bool,
     autoplay: PropTypes.bool,
     onToggleVisibility: PropTypes.func,
+    useBlurhash: PropTypes.bool,
   };
 
   static defaultProps = {
@@ -326,7 +338,7 @@ class MediaGallery extends PureComponent {
   }
 
   render () {
-    const { media, lang, intl, sensitive, letterbox, fullwidth, defaultWidth, autoplay } = this.props;
+    const { media, lang, intl, sensitive, letterbox, fullwidth, defaultWidth, autoplay, useBlurhash } = this.props;
     const { visible } = this.state;
     const size     = media.take(4).size;
     const uncached = media.every(attachment => attachment.get('type') === 'unknown');
@@ -346,9 +358,33 @@ class MediaGallery extends PureComponent {
     }
 
     if (this.isStandaloneEligible()) {
-      children = <Item standalone autoplay={autoplay} onClick={this.handleClick} attachment={media.get(0)} lang={lang} displayWidth={width} visible={visible} />;
+      children = (
+        <Item
+          standalone
+          autoplay={autoplay}
+          onClick={this.handleClick}
+          attachment={media.get(0)}
+          lang={lang}
+          displayWidth={width}
+          visible={visible}
+          useBlurhash={useBlurhash}
+        />
+      );
     } else {
-      children = media.take(4).map((attachment, i) => <Item key={attachment.get('id')} autoplay={autoplay} onClick={this.handleClick} attachment={attachment} index={i} lang={lang} size={size} letterbox={letterbox} displayWidth={width} visible={visible || uncached} />);
+      children = media.take(4).map((attachment, i) => (
+        <Item
+          key={attachment.get('id')}
+          autoplay={autoplay}
+          onClick={this.handleClick}
+          attachment={attachment}
+          index={i}
+          lang={lang}
+          size={size}
+          letterbox={letterbox}
+          displayWidth={width}
+          visible={visible || uncached}
+          useBlurhash={useBlurhash} />
+      ));
     }
 
     if (uncached) {
