@@ -468,6 +468,14 @@ class LocalSettingsPage extends PureComponent {
         <h1><FormattedMessage id='settings.media' defaultMessage='Media' /></h1>
         <LocalSettingsPageItem
           settings={settings}
+          item={['media', 'use_blurhash']}
+          id='mastodon-settings--media-use-blurhash'
+          onChange={onChange}
+        >
+          <FormattedMessage id='setting_use_blurhash' defaultMessage='Show colorful gradients for hidden media' />
+        </LocalSettingsPageItem>
+        <LocalSettingsPageItem
+          settings={settings}
           item={['media', 'letterbox']}
           id='mastodon-settings--media-letterbox'
           onChange={onChange}

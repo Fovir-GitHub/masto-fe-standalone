@@ -667,6 +667,7 @@ class Status extends ImmutablePureComponent {
                 blurhash={attachment.get('blurhash')}
                 visible={this.state.showMedia}
                 onToggleVisibility={this.handleToggleMediaVisibility}
+                useBlurhash={settings.getIn(['media', 'use_blurhash'])}
               />
             )}
           </Bundle>,
@@ -694,6 +695,7 @@ class Status extends ImmutablePureComponent {
               deployPictureInPicture={pictureInPicture.get('available') ? this.handleDeployPictureInPicture : undefined}
               visible={this.state.showMedia}
               onToggleVisibility={this.handleToggleMediaVisibility}
+              useBlurhash={settings.getIn(['media', 'use_blurhash'])}
             />)}
           </Bundle>,
         );
@@ -714,6 +716,7 @@ class Status extends ImmutablePureComponent {
                 defaultWidth={this.props.cachedMediaWidth}
                 visible={this.state.showMedia}
                 onToggleVisibility={this.handleToggleMediaVisibility}
+                useBlurhash={settings.getIn(['media', 'use_blurhash'])}
               />
             )}
           </Bundle>,
@@ -731,6 +734,7 @@ class Status extends ImmutablePureComponent {
           card={status.get('card')}
           compact
           sensitive={status.get('sensitive')}
+          useBlurhash={settings.getIn(['media', 'use_blurhash'])}
         />,
       );
       mediaIcons.push('link');

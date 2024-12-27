@@ -185,6 +185,7 @@ class DetailedStatus extends ImmutablePureComponent {
             blurhash={attachment.get('blurhash')}
             height={150}
             onToggleVisibility={this.props.onToggleMediaVisibility}
+            useBlurhash={settings.getIn(['media', 'use_blurhash'])}
           />,
         );
         mediaIcons.push('music');
@@ -209,6 +210,7 @@ class DetailedStatus extends ImmutablePureComponent {
             autoplay
             visible={this.props.showMedia}
             onToggleVisibility={this.props.onToggleMediaVisibility}
+            useBlurhash={settings.getIn(['media', 'use_blurhash'])}
           />,
         );
         mediaIcons.push('video-camera');
@@ -225,12 +227,19 @@ class DetailedStatus extends ImmutablePureComponent {
             onOpenMedia={this.props.onOpenMedia}
             visible={this.props.showMedia}
             onToggleVisibility={this.props.onToggleMediaVisibility}
+            useBlurhash={settings.getIn(['media', 'use_blurhash'])}
           />,
         );
         mediaIcons.push('picture-o');
       }
     } else if (status.get('card')) {
-      media.push(<Card sensitive={status.get('sensitive')} onOpenMedia={this.props.onOpenMedia} card={status.get('card')} />);
+      media.push(
+        <Card
+          sensitive={status.get('sensitive')}
+          onOpenMedia={this.props.onOpenMedia}
+          card={status.get('card')}
+          useBlurhash={settings.getIn(['media', 'use_blurhash'])} />
+      );
       mediaIcons.push('link');
     }
 

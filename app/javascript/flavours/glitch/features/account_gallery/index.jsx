@@ -32,6 +32,7 @@ const mapStateToProps = (state, { params: { acct, id } }) => {
 
   return {
     accountId,
+    settings: state.get('local_settings'),
     isAccount: !!state.getIn(['accounts', accountId]),
     attachments: getAccountGallery(state, accountId),
     isLoading: state.getIn(['timelines', `account:${accountId}:media`, 'isLoading']),
@@ -69,6 +70,7 @@ class AccountGallery extends ImmutablePureComponent {
       acct: PropTypes.string,
       id: PropTypes.string,
     }).isRequired,
+    settings: ImmutablePropTypes.map.isRequired,
     accountId: PropTypes.string,
     dispatch: PropTypes.func.isRequired,
     attachments: ImmutablePropTypes.list.isRequired,
@@ -175,7 +177,7 @@ class AccountGallery extends ImmutablePureComponent {
   };
 
   render () {
-    const { attachments, isLoading, hasMore, isAccount, multiColumn, suspended } = this.props;
+    const { attachments, isLoading, hasMore, isAccount, settings, multiColumn, suspended } = this.props;
     const { width } = this.state;
 
     if (!isAccount) {
@@ -215,7 +217,13 @@ class AccountGallery extends ImmutablePureComponent {
                 {attachments.map((attachment, index) => attachment === null ? (
                   <LoadMoreMedia key={'more:' + attachments.getIn(index + 1, 'id')} maxId={index > 0 ? attachments.getIn(index - 1, 'id') : null} onLoadMore={this.handleLoadMore} />
                 ) : (
-                  <MediaItem key={attachment.get('id')} attachment={attachment} displayWidth={width} onOpenMedia={this.handleOpenMedia} />
+                  <MediaItem
+                    key={attachment.get('id')}
+                    attachment={attachment}
+                    displayWidth={width}
+                    onOpenMedia={this.handleOpenMedia}
+                    useBlurhash={settings.getIn(['media', 'use_blurhash'])}
+                  />
                 ))}
 
                 {loadOlder}
