@@ -179,10 +179,6 @@ export function submitCompose(routerHistory) {
       return;
     }
 
-    if (getState().getIn(['compose', 'advanced_options', 'do_not_federate'])) {
-      status = status + ' 👁️';
-    }
-
     dispatch(submitComposeRequest());
 
     // If we're editing a post with media attachments, those have not
@@ -219,6 +215,7 @@ export function submitCompose(routerHistory) {
         visibility: getState().getIn(['compose', 'privacy']),
         poll: getState().getIn(['compose', 'poll'], null),
         language: getState().getIn(['compose', 'language']),
+        local_only: getState().getIn(['compose', 'advanced_options', 'do_not_federate']),
       },
       headers: {
         'Idempotency-Key': getState().getIn(['compose', 'idempotencyKey']),
