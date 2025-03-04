@@ -52,6 +52,7 @@ class Item extends PureComponent {
     visible: PropTypes.bool.isRequired,
     autoplay: PropTypes.bool,
     useBlurhash: PropTypes.bool,
+    imageStyle: PropTypes.object,
   };
 
   static defaultProps = {
@@ -116,6 +117,7 @@ class Item extends PureComponent {
       displayWidth,
       visible,
       useBlurhash,
+      imageStyle
     } = this.props;
 
     let badges = [], thumbnail;
@@ -182,7 +184,7 @@ class Item extends PureComponent {
             alt={description}
             title={description}
             lang={lang}
-            style={{ objectPosition: letterbox ? null : `${x}% ${y}%` }}
+            style={{ ...imageStyle, objectPosition: letterbox ? null : `${x}% ${y}%` }}
             onLoad={this.handleImageLoad}
           />
         </a>
@@ -353,8 +355,6 @@ class MediaGallery extends PureComponent {
 
     if (this.isStandaloneEligible()) { // TODO: cropImages setting
       style.aspectRatio = `${this.props.media.getIn([0, 'meta', 'small', 'aspect'])}`;
-    } else {
-      style.aspectRatio = '16 / 9';
     }
 
     if (this.isStandaloneEligible()) {
@@ -371,7 +371,7 @@ class MediaGallery extends PureComponent {
         />
       );
     } else {
-      children = media.take(4).map((attachment, i) => (
+      children = media.map((attachment, i) => (
         <Item
           key={attachment.get('id')}
           autoplay={autoplay}
@@ -383,7 +383,9 @@ class MediaGallery extends PureComponent {
           letterbox={letterbox}
           displayWidth={width}
           visible={visible || uncached}
-          useBlurhash={useBlurhash} />
+          useBlurhash={useBlurhash}
+          imageStyle={{ aspectRatio: '16 / 9' }}
+        />
       ));
     }
 
