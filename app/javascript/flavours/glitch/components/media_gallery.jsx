@@ -52,7 +52,7 @@ class Item extends PureComponent {
     visible: PropTypes.bool.isRequired,
     autoplay: PropTypes.bool,
     useBlurhash: PropTypes.bool,
-    imageStyle: PropTypes.object,
+    contentStyles: PropTypes.object,
   };
 
   static defaultProps = {
@@ -117,7 +117,7 @@ class Item extends PureComponent {
       displayWidth,
       visible,
       useBlurhash,
-      imageStyle
+      contentStyles
     } = this.props;
 
     let badges = [], thumbnail;
@@ -129,7 +129,7 @@ class Item extends PureComponent {
       width = 100;
     }
 
-    if (size === 4 || (size === 3 && index > 0)) {
+    if (size >= 4 || (size === 3 && index > 0)) {
       height = 50;
     }
 
@@ -184,7 +184,7 @@ class Item extends PureComponent {
             alt={description}
             title={description}
             lang={lang}
-            style={{ ...imageStyle, objectPosition: letterbox ? null : `${x}% ${y}%` }}
+            style={{ objectPosition: letterbox ? null : `${x}% ${y}%` }}
             onLoad={this.handleImageLoad}
           />
         </a>
@@ -216,7 +216,7 @@ class Item extends PureComponent {
     }
 
     return (
-      <div className={classNames('media-gallery__item', { standalone, letterbox, 'media-gallery__item--tall': height === 100, 'media-gallery__item--wide': width === 100 })} key={attachment.get('id')}>
+      <div className={classNames('media-gallery__item', { standalone, letterbox, 'media-gallery__item--tall': height === 100, 'media-gallery__item--wide': width === 100 })} key={attachment.get('id')} style={contentStyles}>
         <Blurhash
           hash={attachment.get('blurhash')}
           dummy={!useBlurhash}
@@ -384,7 +384,7 @@ class MediaGallery extends PureComponent {
           displayWidth={width}
           visible={visible || uncached}
           useBlurhash={useBlurhash}
-          imageStyle={{ aspectRatio: '16 / 9' }}
+          contentStyles={{ aspectRatio: '16 / 9' }}
         />
       ));
     }
