@@ -30,7 +30,9 @@ async function auth() {
   
   const domain = matches[2];
   if (!domain) {
-    setMessage('Invalid instance', false);
+    setMessage('Invalid instance', true);
+    await new Promise(r => setTimeout(r, 2000));
+    setMessage('Authorize', false, false);
     return;
   }
   localStorage.setItem('domain', domain);
@@ -92,7 +94,6 @@ async function getToken(code, domain) {
   formData.append('scope', 'read write follow push');
   formData.append('redirect_uri', document.location.origin + document.location.pathname);
 
-
   // eslint-disable-next-line promise/catch-or-return
   return fetch(tokenUrl, {
     method: 'POST',
@@ -108,7 +109,14 @@ async function getToken(code, domain) {
     });
 }
 
-function setMessage(message, disabled = true) {
+function setMessage(message, error = false, disabled = true) {
+  document.getElementById('message').setAttribute('role', 'status');
   document.getElementById('message').textContent = message;
   document.getElementById('btn').disabled = disabled;
+
+  if (!error) return;
+
+  const instance = document.getElementById('instance');
+  instance.setAttribute('aria-invalid', true);
+  instance.setAttribute('aria-describedby', 'message');
 }

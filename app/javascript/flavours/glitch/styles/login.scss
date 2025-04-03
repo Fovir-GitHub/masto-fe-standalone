@@ -1,0 +1,118 @@
+@import 'variables';
+@import 'styles/fonts/roboto';
+@import 'styles/fonts/roboto-mono';
+@import 'reset';
+@import 'basics';
+
+body {
+    height: 100vh;
+
+    a {
+        color: #89caff;
+    }
+}
+
+.login-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    max-width: 30rem;
+    padding: 1rem;
+    margin: auto;
+    box-sizing: border-box;
+}
+
+header {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 1rem;
+}
+
+.mascot {
+    height: 10rem;
+}
+
+main {
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    row-gap: 10px;
+}
+
+.login {
+    display: flex;
+    position: relative;
+    column-gap: 10px;
+}
+
+.instance {
+    background: #282c37;
+    border: 0;
+    border-radius: 4px;
+    box-shadow: none;
+    box-sizing: border-box;
+    color: #9baec8;
+    display: block;
+    font-family: inherit;
+    font-size: 16px;
+    line-height: 18px;
+    margin: 0;
+    outline: 0;
+    padding: 15px;
+    padding-inline-end: 30px;
+    width: 100%;
+}
+
+.button {
+    display: flex;
+    column-gap: .5rem;
+    align-items: center;
+    justify-content: center;
+    background-color: #66befe;
+    border: 0 none;
+    border-radius: 4px;
+    box-sizing: border-box;
+    color: #2a2b2f;
+    cursor: pointer;
+    font-size: 16px;
+    letter-spacing: 0;
+    line-height: 22px;
+    font-family: inherit;
+    font-weight: 500;
+    padding: 7px 10px;
+    position: relative;
+    text-align: center;
+    text-decoration: none;
+    white-space: nowrap;
+    flex-basis: auto;
+
+    &:hover {
+        background-color: #89caff;
+    }
+
+    &:disabled {
+        background-color: #9baec8;
+        cursor: default;
+    }
+}
+
+.content {
+    background-color: #444b5d;
+    padding: 15px;
+    font-size: 1rem;
+    line-height: 1.5rem;
+    border-radius: 4px;
+    display: flex;
+    flex-direction: column;
+    row-gap: .75rem;
+}
+
+.link-footer {
+    padding: 10px;
+
+    p, a {
+        color: #97A8B4;
+    }
+}
