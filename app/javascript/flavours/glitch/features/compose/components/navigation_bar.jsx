@@ -1,13 +1,11 @@
 import PropTypes from 'prop-types';
 
-import { FormattedMessage } from 'react-intl';
-
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 
 import { Avatar } from 'flavours/glitch/components/avatar';
 import Permalink from 'flavours/glitch/components/permalink';
-import { profileLink } from 'flavours/glitch/utils/backend_links';
+// eslint-disable-next-line import/no-restricted-paths
 import initialState from 'mastodon/initial_state';
 
 import ActionBar from './action_bar';

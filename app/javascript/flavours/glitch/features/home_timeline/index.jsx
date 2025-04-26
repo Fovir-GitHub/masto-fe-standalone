@@ -24,7 +24,6 @@ import StatusListContainer from '../ui/containers/status_list_container';
 
 import { ColumnSettings } from './components/column_settings';
 import { CriticalUpdateBanner } from './components/critical_update_banner';
-import { ExplorePrompt } from './components/explore_prompt';
 
 const messages = defineMessages({
   title: { id: 'column.home', defaultMessage: 'Home' },
@@ -167,7 +166,7 @@ class HomeTimeline extends PureComponent {
   };
 
   render () {
-    const { intl, hasUnread, columnId, multiColumn, tooSlow, hasAnnouncements, unreadAnnouncements, showAnnouncements } = this.props;
+    const { intl, hasUnread, columnId, multiColumn, hasAnnouncements, unreadAnnouncements, showAnnouncements } = this.props;
     const pinned = !!columnId;
     const { signedIn } = this.context.identity;
     const banners = [];

@@ -1,9 +1,5 @@
 import { debounce } from 'lodash';
 
-import api from '../api';
-
-import { showAlertForError } from './alerts';
-
 export const SETTING_CHANGE = 'SETTING_CHANGE';
 export const SETTING_SAVE   = 'SETTING_SAVE';
 
