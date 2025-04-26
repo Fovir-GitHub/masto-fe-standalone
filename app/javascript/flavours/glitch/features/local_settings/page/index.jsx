@@ -9,7 +9,6 @@ import ImmutablePropTypes from 'react-immutable-proptypes';
 
 //  Our imports
 import { expandSpoilers } from 'flavours/glitch/initial_state';
-import { preferenceLink } from 'flavours/glitch/utils/backend_links';
 
 import DeprecatedLocalSettingsPageItem from './deprecated_item';
 import LocalSettingsPageItem from './item';

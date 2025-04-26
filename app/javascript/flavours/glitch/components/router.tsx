@@ -4,8 +4,6 @@ import React from 'react';
 import { createBrowserHistory } from 'history';
 import { Router as OriginalRouter } from 'react-router';
 
-import { layoutFromWindow } from 'flavours/glitch/is_mobile';
-
 interface MastodonLocationState {
   fromMastodon?: boolean;
   mastodonModalKey?: string;

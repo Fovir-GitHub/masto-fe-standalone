@@ -53,7 +53,7 @@ const authorizationHeaderFromState = getState => {
 
 /**
  * @param {() => import('immutable').Map<string,any>} getState
- * @returns string
+ * @returns {string}
  */
 const baseUrlFromState = getState => {
   const baseUrl = getState && getState().getIn(['meta', 'base_url'], '');
@@ -61,7 +61,7 @@ const baseUrlFromState = getState => {
 };
 
 /**
- * @param {() => import('immutable').Map} getState
+ * @param {() => import('immutable').Map<string,any>} getState
  * @returns {import('axios').AxiosInstance}
  */
 export default function api(getState) {
