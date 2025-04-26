@@ -2,7 +2,11 @@ steps:
   lint:
     image: node:22-alpine
     pull: true
+    volumes:
+      - /woodpecker/masto-fe-standalone/node_modules:/woodpecker/src/codeberg.org/superseriousbusiness/masto-fe-standalone/node_modules
+      - /woodpecker/masto-fe-standalone/.eslintcache:/woodpecker/src/codeberg.org/superseriousbusiness/masto-fe-standalone/.eslintcache
     commands:
+      - yarn
       - yarn lint:js
     when:
       - event: pull_request
