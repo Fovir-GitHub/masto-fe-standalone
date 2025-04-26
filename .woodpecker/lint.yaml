@@ -1,0 +1,8 @@
+steps:
+  lint:
+    image: node:22-alpine
+    pull: true
+    commands:
+      - yarn lint:js
+    when:
+      - event: pull_request
