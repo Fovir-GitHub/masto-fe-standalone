@@ -20,7 +20,7 @@ async function ready() {
 async function auth() {
   setMessage('Please wait');
 
-  const instance = document.getElementById('instance').value;
+  const instance = document.getElementById('instance').value.trim();
   const matches = instance.match(/((?:http|https):\/\/)?(.*)/);
 
   const protocol = matches[1];
