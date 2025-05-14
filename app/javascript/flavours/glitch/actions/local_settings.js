@@ -1,4 +1,4 @@
-import { expandSpoilers, disableSwiping } from 'flavours/glitch/initial_state';
+import { disableSwiping } from 'flavours/glitch/initial_state';
 
 import { openModal } from './modal';
 
@@ -7,17 +7,8 @@ export const LOCAL_SETTING_DELETE = 'LOCAL_SETTING_DELETE';
 
 export function checkDeprecatedLocalSettings() {
   return (dispatch, getState) => {
-    const local_auto_unfold = getState().getIn(['local_settings', 'content_warnings', 'auto_unfold']);
     const local_swipe_to_change_columns = getState().getIn(['local_settings', 'swipe_to_change_columns']);
     let changed_settings = [];
-
-    if (local_auto_unfold !== null && local_auto_unfold !== undefined) {
-      if (local_auto_unfold === expandSpoilers) {
-        dispatch(deleteLocalSetting(['content_warnings', 'auto_unfold']));
-      } else {
-        changed_settings.push('user_setting_expand_spoilers');
-      }
-    }
 
     if (local_swipe_to_change_columns !== null && local_swipe_to_change_columns !== undefined) {
       if (local_swipe_to_change_columns === !disableSwiping) {
