@@ -55,6 +55,7 @@ export default class ColumnsArea extends ImmutablePureComponent {
     singleColumn: PropTypes.bool,
     children: PropTypes.node,
     openSettings: PropTypes.func,
+    onLogout: PropTypes.func,
   };
 
   // Corresponds to (max-width: $no-gap-breakpoint + 285px - 1px) in SCSS
@@ -139,7 +140,7 @@ export default class ColumnsArea extends ImmutablePureComponent {
   };
 
   render () {
-    const { columns, children, singleColumn, openSettings } = this.props;
+    const { columns, children, singleColumn, openSettings, onLogout } = this.props;
     const { renderComposePanel } = this.state;
 
     if (singleColumn) {
@@ -158,7 +159,7 @@ export default class ColumnsArea extends ImmutablePureComponent {
 
           <div className='columns-area__panels__pane columns-area__panels__pane--start columns-area__panels__pane--navigational'>
             <div className='columns-area__panels__pane__inner'>
-              <NavigationPanel onOpenSettings={openSettings} />
+              <NavigationPanel onOpenSettings={openSettings} onLogout={onLogout} />
             </div>
           </div>
         </div>
