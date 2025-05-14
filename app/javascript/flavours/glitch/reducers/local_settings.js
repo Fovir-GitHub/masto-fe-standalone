@@ -23,6 +23,7 @@ const initialState = ImmutableMap({
   tag_misleading_links: true,
   rewrite_mentions: 'no',
   content_warnings : ImmutableMap({
+    auto_unfold  : false,
     filter       : null,
     media_outside: true,
     shared_state : true,
