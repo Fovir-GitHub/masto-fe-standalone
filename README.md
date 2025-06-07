@@ -40,7 +40,7 @@ Serve all the stuff in `public` behind an nginx or whatever you want! See the in
 
 ### Docker (definitely the easiest way)
 
-The Docker container is based on Nginx, and serves over port 3000. Just deploy it and listen on that port, preferably with a reverse proxy at some point (Traefik? Caddy? Another Nginx perhaps?) handling https.
+The Docker container is based on Nginx, and serves over port 80. Just deploy it and listen on that port, preferably with a reverse proxy at some point (Traefik? Caddy? Another Nginx perhaps?) handling https.
 
 ## Testing locally, linting, etc
 
