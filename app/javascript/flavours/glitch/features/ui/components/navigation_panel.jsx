@@ -30,6 +30,7 @@ const messages = defineMessages({
   advancedInterface: { id: 'navigation_bar.advanced_interface', defaultMessage: 'Open in advanced web interface' },
   openedInClassicInterface: { id: 'navigation_bar.opened_in_classic_interface', defaultMessage: 'Posts, accounts, and other specific pages are opened by default in the classic web interface.' },
   app_settings: { id: 'navigation_bar.app_settings', defaultMessage: 'App settings' },
+  logout: { id: 'navigation_bar.logout', defaultMessage: 'Log out' },
 });
 
 class NavigationPanel extends Component {
@@ -42,6 +43,7 @@ class NavigationPanel extends Component {
   static propTypes = {
     intl: PropTypes.object.isRequired,
     onOpenSettings: PropTypes.func,
+    onLogout: PropTypes.func,
   };
 
   isFirehoseActive = (match, location) => {
@@ -49,7 +51,7 @@ class NavigationPanel extends Component {
   };
 
   render() {
-    const { intl, onOpenSettings } = this.props;
+    const { intl, onOpenSettings, onLogout } = this.props;
     const { signedIn, disabledAccountId } = this.context.identity;
 
     return (
@@ -104,6 +106,7 @@ class NavigationPanel extends Component {
             <hr />
 
             <ColumnLink transparent onClick={onOpenSettings} icon='cogs' text={intl.formatMessage(messages.app_settings)} />
+            <ColumnLink transparent onClick={onLogout} icon='sign-out' text={intl.formatMessage(messages.logout)} />
           </>
         )}
 
@@ -111,6 +114,7 @@ class NavigationPanel extends Component {
           <hr />
           <ColumnLink transparent to='/about' icon='ellipsis-h' text={intl.formatMessage(messages.about)} />
         </div>
+
 
         <NavigationPortal />
       </div>
