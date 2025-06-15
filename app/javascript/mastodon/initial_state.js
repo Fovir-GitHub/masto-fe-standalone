@@ -90,6 +90,7 @@
  * @property {boolean=} critical_updates_pending
  * @property {InitialStateMeta} meta
  * @property {number} max_toot_chars
+ * @property {number} max_media_desc_chars
  */
 
 const element = document.getElementById('initial-state');
@@ -149,5 +150,6 @@ export const sso_redirect = getMeta('sso_redirect');
 
 // Glitch-soc-specific settings
 export const maxChars = (initialState && initialState.max_toot_chars) || 500;
+export const maxMediaDescChars = (initialState && initialState.max_media_desc_chars) || 1500;
 
 export default initialState;
