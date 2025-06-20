@@ -17,11 +17,18 @@ export const fetchServer = () => (dispatch, getState) => {
 
   dispatch(fetchServerRequest());
 
-  api(getState)
-    .get('/api/v2/instance').then(({ data }) => {
+  try {
+    api(getState)
+      .get('/api/v2/instance').then({ data });
       if (data.contact.account) dispatch(importFetchedAccount(data.contact.account));
       dispatch(fetchServerSuccess(data));
+  } catch (e) {
+    api(getState)
+      .get('/api/v1/instance').then(({ data }) => {
+        if (data.contact.account) dispatch(importFetchedAccount(data.contact.account));
+        dispatch(fetchServerSuccess(data));
     }).catch(err => dispatch(fetchServerFail(err)));
+  }
 };
 
 const fetchServerRequest = () => ({

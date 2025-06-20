@@ -23,7 +23,15 @@ async function loadState() {
   }
 
   const apiUrl = `${protocol}${domain}/api`;
-  const instance = await fetch(`${apiUrl}/v2/instance`).then(async p => await p.json());
+  let instance
+  try {
+    instance = await fetch(`${apiUrl}/v2/instance`).then(async p => await p.json());
+    if (!instance.configuration) {
+      throw new Error('Instance API v2 unavaialble');
+    }
+  } catch (e) {
+    instance = await fetch(`${apiUrl}/v1/instance`).then(async p => await p.json());
+  }
   const options = {headers: {Authorization: `Bearer ${access_token}`}};
   const credentials = await fetch(`${apiUrl}/v1/accounts/verify_credentials`, options).then(async p => await p.json());
   const state = {
