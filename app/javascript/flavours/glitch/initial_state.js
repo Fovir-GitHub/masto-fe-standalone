@@ -104,6 +104,7 @@ export const hasMultiColumnPath = initialPath === '/'
  * @property {object} local_settings
  * @property {number} max_toot_chars
  * @property {number} max_media_attachments
+ * @property {number} max_media_desc_chars
  * @property {number} poll_limits
  */
 
@@ -167,6 +168,7 @@ export const sso_redirect = getMeta('sso_redirect');
 // Glitch-soc-specific settings
 export const maxChars = (initialState && initialState.max_toot_chars) || 500;
 export const maxMediaAttachments = (initialState && initialState.max_media_attachments) || 4;
+export const maxMediaDescChars = (initialState && initialState.max_media_desc_chars) || 1500;
 export const favouriteModal = getMeta('favourite_modal');
 export const pollLimits = (initialState && initialState.poll_limits);
 export const defaultContentType = getMeta('default_content_type');

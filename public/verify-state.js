@@ -23,7 +23,15 @@ async function loadState() {
   }
 
   const apiUrl = `${protocol}${domain}/api`;
-  const instance = await fetch(`${apiUrl}/v1/instance`).then(async p => await p.json());
+  let instance
+  try {
+    instance = await fetch(`${apiUrl}/v2/instance`).then(async p => await p.json());
+    if (!instance.configuration) {
+      throw new Error('Instance API v2 unavaialble');
+    }
+  } catch (e) {
+    instance = await fetch(`${apiUrl}/v1/instance`).then(async p => await p.json());
+  }
   const options = {headers: {Authorization: `Bearer ${access_token}`}};
   const credentials = await fetch(`${apiUrl}/v1/accounts/verify_credentials`, options).then(async p => await p.json());
   const state = {
@@ -93,6 +101,7 @@ async function loadState() {
     },
     "max_toot_chars": instance.configuration.statuses.max_characters,
     "max_media_attachments": instance.configuration.statuses.max_media_attachments,
+    "max_media_desc_chars": instance.configuration.media_attachments.description_limit,
     "poll_limits": {
       "max_expiration": instance.configuration.polls.max_expiration,
       "max_option_chars": instance.configuration.polls.max_characters_per_option,
