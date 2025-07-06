@@ -89,6 +89,9 @@ export const COMPOSE_SET_STATUS = 'COMPOSE_SET_STATUS';
 const messages = defineMessages({
   uploadErrorLimit: { id: 'upload_error.limit', defaultMessage: 'File upload limit exceeded.' },
   uploadErrorPoll:  { id: 'upload_error.poll', defaultMessage: 'File upload not allowed with polls.' },
+  open: { id: 'compose.published.open', defaultMessage: 'Open' },
+  published: { id: 'compose.published.body', defaultMessage: 'Post published.' },
+  saved: { id: 'compose.saved.body', defaultMessage: 'Post saved.' },
 });
 
 export const ensureComposeIsVisible = (getState, routerHistory) => {
@@ -262,6 +265,13 @@ export function submitCompose(routerHistory) {
       } else if (statusId === null && response.data.visibility === 'direct') {
         insertIfOnline('direct');
       }
+
+      dispatch(showAlert({
+        message: statusId === null ? messages.published : messages.saved,
+        action: messages.open,
+        dismissAfter: 10000,
+        onClick: () => routerHistory.push(`/@${response.data.account.username}/${response.data.id}`),
+      }));
     }).catch(function (error) {
       dispatch(submitComposeFail(error));
     });
@@ -304,12 +314,12 @@ export function uploadCompose(files) {
     let total = Array.from(files).reduce((a, v) => a + v.size, 0);
 
     if (files.length + media.size + pending > uploadLimit) {
-      dispatch(showAlert(undefined, messages.uploadErrorLimit));
+      dispatch(showAlert({ message: messages.uploadErrorLimit }));
       return;
     }
 
     if (getState().getIn(['compose', 'poll'])) {
-      dispatch(showAlert(undefined, messages.uploadErrorPoll));
+      dispatch(showAlert({ message: messages.uploadErrorPoll }));
       return;
     }
 

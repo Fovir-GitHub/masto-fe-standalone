@@ -25,12 +25,10 @@ export function clearAlert() {
   };
 }
 
-export function showAlert(title = messages.unexpectedTitle, message = messages.unexpectedMessage, message_values = undefined) {
+export function showAlert(alert) {
   return {
     type: ALERT_SHOW,
-    title,
-    message,
-    message_values,
+    alert,
   };
 }
 
@@ -44,20 +42,23 @@ export function showAlertForError(error, skipNotFound = false) {
     }
 
     if (status === 429 && headers['x-ratelimit-reset']) {
-      const reset_date = new Date(headers['x-ratelimit-reset']);
-      return showAlert(messages.rateLimitedTitle, messages.rateLimitedMessage, { 'retry_time': reset_date });
+      return showAlert({
+        title: messages.rateLimitedTitle,
+        message: messages.rateLimitedMessage,
+        values: { 'retry_time': new Date(headers['x-ratelimit-reset']) },
+      });
     }
 
-    let message = statusText;
-    let title   = `${status}`;
-
-    if (data.error) {
-      message = data.error;
-    }
-
-    return showAlert(title, message);
-  } else {
-    console.error(error);
-    return showAlert();
+    return showAlert({
+      title: `${status}`,
+      message: data.error || statusText,
+    });
   }
+
+  console.error(error);
+
+  return showAlert({
+    title: messages.unexpectedTitle,
+    message: messages.unexpectedMessage,
+  });
 }
