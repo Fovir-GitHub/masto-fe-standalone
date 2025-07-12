@@ -10,6 +10,8 @@ import accounts_map from './accounts_map';
 import alerts from './alerts';
 import announcements from './announcements';
 import blocks from './blocks';
+import bookmarkFolders from './bookmark_folders';
+import bookmarkFolderEditor from './bookmark_folder_editor';
 import boosts from './boosts';
 import compose from './compose';
 import contexts from './contexts';
@@ -49,6 +51,8 @@ import user_lists from './user_lists';
 
 const reducers = {
   announcements,
+  bookmarkFolders,
+  bookmarkFolderEditor,
   dropdownMenu: dropdownMenuReducer,
   timelines,
   meta,

@@ -205,3 +205,15 @@ export function About () {
 export function PrivacyPolicy () {
   return import(/*webpackChunkName: "features/glitch/async/privacy_policy" */'flavours/glitch/features/privacy_policy');
 }
+
+export function SelectBookmarkFolderModal () {
+  return import(/*webpackChunkName: "flavours/glitch/async/modals/select_bookmark_folder_modal" */'flavours/glitch/features/select_bookmark_folder_modal');
+}
+
+export function BookmarkFolders () {
+  return import(/*webpackChunkName: "flavours/glitch/async/bookmark_folders" */'flavours/glitch/features/bookmark_folders');
+}
+
+export function BookmarkFolder () {
+  return import(/*webpackChunkName: "flavours/glitch/async/bookmark_folder" */'flavours/glitch/features/bookmark_folder');
+}

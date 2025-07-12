@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 
-import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
+import { injectIntl, FormattedMessage } from 'react-intl';
 
 import { Helmet } from 'react-helmet';
 
@@ -13,21 +13,23 @@ import { debounce } from 'lodash';
 import { fetchBookmarkedStatuses, expandBookmarkedStatuses } from 'flavours/glitch/actions/bookmarks';
 import { addColumn, removeColumn, moveColumn } from 'flavours/glitch/actions/columns';
 import ColumnHeader from 'flavours/glitch/components/column_header';
+import { LoadingIndicator } from 'flavours/glitch/components/loading_indicator';
 import StatusList from 'flavours/glitch/components/status_list';
+import BundleColumnError from 'flavours/glitch/features/ui/components/bundle_column_error';
 import Column from 'flavours/glitch/features/ui/components/column';
 import { getStatusList } from 'flavours/glitch/selectors';
 
-const messages = defineMessages({
-  heading: { id: 'column.bookmarks', defaultMessage: 'Bookmarks' },
-});
+const mapStateToProps = (state, props) => {
+  const key = `bookmarks:${props.params.folderId}`;
+  return {
+    folder: state.getIn(['bookmarkFolders', props.params.folderId]),
+    statusIds: getStatusList(state, key),
+    isLoading: state.getIn(['status_lists', key, 'isLoading'], true),
+    hasMore: !!state.getIn(['status_lists', key, 'next']),
+  };
+};
 
-const mapStateToProps = state => ({
-  statusIds: getStatusList(state, 'bookmarks'),
-  isLoading: state.getIn(['status_lists', 'bookmarks', 'isLoading'], true),
-  hasMore: !!state.getIn(['status_lists', 'bookmarks', 'next']),
-});
-
-class Bookmarks extends ImmutablePureComponent {
+class BookmarkFolder extends ImmutablePureComponent {
 
   static propTypes = {
     dispatch: PropTypes.func.isRequired,
@@ -40,7 +42,17 @@ class Bookmarks extends ImmutablePureComponent {
   };
 
   UNSAFE_componentWillMount () {
-    this.props.dispatch(fetchBookmarkedStatuses());
+    this.props.dispatch(fetchBookmarkedStatuses(this.props.params.folderId));
+  }
+  
+  UNSAFE_componentWillReceiveProps (nextProps) {
+    const { folderId } = nextProps.params;
+  
+    if (folderId !== this.props.params.folderId) {
+  
+      this.props.dispatch(fetchBookmarkedStatuses(folderId));
+
+    }
   }
 
   handlePin = () => {
@@ -49,7 +61,7 @@ class Bookmarks extends ImmutablePureComponent {
     if (columnId) {
       dispatch(removeColumn(columnId));
     } else {
-      dispatch(addColumn('BOOKMARKS', {}));
+      dispatch(addColumn('BOOKMARK_FOLDER', { folderId: this.props.params.folderId }));
     }
   };
 
@@ -67,20 +79,36 @@ class Bookmarks extends ImmutablePureComponent {
   };
 
   handleLoadMore = debounce(() => {
-    this.props.dispatch(expandBookmarkedStatuses());
+    this.props.dispatch(expandBookmarkedStatuses(this.props.params.folderId));
   }, 300, { leading: true });
 
   render () {
-    const { intl, statusIds, columnId, multiColumn, hasMore, isLoading } = this.props;
+    const { statusIds, columnId, multiColumn, folder, hasMore, isLoading, params } = this.props;
+    const { folderId } = params;
     const pinned = !!columnId;
+    const name = folder ? folder.get('name') : folderId;
 
-    const emptyMessage = <FormattedMessage id='empty_column.bookmarked_statuses' defaultMessage="You don't have any bookmarked posts yet. When you bookmark one, it will show up here." />;
+    const emptyMessage = <FormattedMessage id='empty_column.bookmarked_statuses.folder' defaultMessage="You don't have any bookmarked posts in this folder yet. When you ad one, it will show up here." />;
+    
+    if (typeof folder === 'undefined') {
+      return (
+        <Column>
+          <div className='scrollable'>
+            <LoadingIndicator />
+          </div>
+        </Column>
+      );
+    } else if (folder === false) {
+      return (
+        <BundleColumnError multiColumn={multiColumn} errorType='routing' />
+      );
+    }
 
     return (
-      <Column bindToDocument={!multiColumn} ref={this.setRef} name='bookmarks'>
+      <Column bindToDocument={!multiColumn} ref={this.setRef} label={name}>
         <ColumnHeader
           icon='bookmark'
-          title={intl.formatMessage(messages.heading)}
+          title={name}
           onPin={this.handlePin}
           onMove={this.handleMove}
           onClick={this.handleHeaderClick}
@@ -92,7 +120,7 @@ class Bookmarks extends ImmutablePureComponent {
         <StatusList
           trackScroll={!pinned}
           statusIds={statusIds}
-          scrollKey={`bookmarked_statuses-${columnId}`}
+          scrollKey={`bookmarked_statuses:${folderId}-${columnId}`}
           hasMore={hasMore}
           isLoading={isLoading}
           onLoadMore={this.handleLoadMore}
@@ -102,7 +130,7 @@ class Bookmarks extends ImmutablePureComponent {
         />
 
         <Helmet>
-          <title>{intl.formatMessage(messages.heading)}</title>
+          <title>{name}</title>
           <meta name='robots' content='noindex' />
         </Helmet>
       </Column>
@@ -111,4 +139,4 @@ class Bookmarks extends ImmutablePureComponent {
 
 }
 
-export default connect(mapStateToProps)(injectIntl(Bookmarks));
+export default connect(mapStateToProps)(injectIntl(BookmarkFolder));

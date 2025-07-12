@@ -64,6 +64,8 @@ import {
   FollowRecommendations,
   About,
   PrivacyPolicy,
+  BookmarkFolders,
+  BookmarkFolder,
 } from './util/async-components';
 import { WrappedSwitch, WrappedRoute } from './util/react_router_helpers';
 // Dummy import, to make sure that <Status /> ends up in the application bundle.
@@ -212,7 +214,9 @@ class SwitchingColumnsArea extends PureComponent {
           <WrappedRoute path='/notifications' component={Notifications} content={children} />
           <WrappedRoute path='/favourites' component={FavouritedStatuses} content={children} />
 
+          <WrappedRoute path='/bookmarks/:folderId' component={BookmarkFolder} content={children} />
           <WrappedRoute path='/bookmarks' component={BookmarkedStatuses} content={children} />
+          <WrappedRoute path='/bookmark_folders' component={BookmarkFolders} content={children} />
           <WrappedRoute path='/pinned' component={PinnedStatuses} content={children} />
 
           <WrappedRoute path='/start' component={FollowRecommendations} content={children} />

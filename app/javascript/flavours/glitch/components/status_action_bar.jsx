@@ -48,6 +48,7 @@ const messages = defineMessages({
   edited: { id: 'status.edited', defaultMessage: 'Edited {date}' },
   filter: { id: 'status.filter', defaultMessage: 'Filter this post' },
   openOriginalPage: { id: 'account.open_original_page', defaultMessage: 'Open original page' },
+  changeBookmarkFolder: { id: 'status.bookmark.change_folder', defaultMessage: 'Change bookmark folder' },
 });
 
 class StatusActionBar extends ImmutablePureComponent {
@@ -75,9 +76,11 @@ class StatusActionBar extends ImmutablePureComponent {
     onFilter: PropTypes.func,
     onAddFilter: PropTypes.func,
     onInteractionModal: PropTypes.func,
+    onChangeBookmarkFolder: PropTypes.func,
     withDismiss: PropTypes.bool,
     withCounters: PropTypes.bool,
     showReplyCount: PropTypes.bool,
+    fromBookmarks: PropTypes.bool,
     scrollKey: PropTypes.string,
     intl: PropTypes.object.isRequired,
   };
@@ -127,8 +130,8 @@ class StatusActionBar extends ImmutablePureComponent {
     }
   };
 
-  handleBookmarkClick = (e) => {
-    this.props.onBookmark(this.props.status, e);
+  handleBookmarkClick = () => {
+    this.props.onBookmark(this.props.status, undefined, this.context.router.history);
   };
 
   handleDeleteClick = () => {
@@ -197,8 +200,12 @@ class StatusActionBar extends ImmutablePureComponent {
     this.props.onAddFilter(this.props.status);
   };
 
+  handleChangeBookmarkFolder = () => {
+    this.props.onChangeBookmarkFolder(this.props.status);
+  };
+
   render () {
-    const { status, intl, withDismiss, withCounters, showReplyCount, scrollKey } = this.props;
+    const { status, intl, withDismiss, withCounters, showReplyCount, fromBookmarks, scrollKey } = this.props;
     const { permissions, signedIn } = this.context.identity;
 
     const mutingConversation = status.get('muted');
@@ -211,6 +218,11 @@ class StatusActionBar extends ImmutablePureComponent {
     let reblogIcon = 'retweet';
     let replyIcon;
     let replyTitle;
+
+    if (status.get('bookmarked') && fromBookmarks) {
+      menu.push({ text: intl.formatMessage(messages.changeBookmarkFolder), action: this.handleChangeBookmarkFolder });
+      menu.push(null);
+    }
 
     menu.push({ text: intl.formatMessage(messages.open), action: this.handleOpen });
 

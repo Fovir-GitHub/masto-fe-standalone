@@ -15,17 +15,14 @@ const formatIfNeeded = (intl, message, values) => {
   return message;
 };
 
-const mapStateToProps = (state, { intl }) => {
-  console.log(getAlerts(state));
-  return ({
+const mapStateToProps = (state, { intl }) => ({
   notifications: getAlerts(state).map(alert => ({
     ...alert,
     action: formatIfNeeded(intl, alert.action, alert.values),
     title: formatIfNeeded(intl, alert.title, alert.values),
     message: formatIfNeeded(intl, alert.message, alert.values),
   })),
-})
-};
+});
 
 const mapDispatchToProps = (dispatch) => ({
   onDismiss (alert) {

@@ -378,7 +378,7 @@ class Status extends ImmutablePureComponent {
     if (status.get('bookmarked')) {
       this.props.dispatch(unbookmark(status));
     } else {
-      this.props.dispatch(bookmark(status));
+      this.props.dispatch(bookmark(status, undefined, this.context.router.history));
     }
   };
 

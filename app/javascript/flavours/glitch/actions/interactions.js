@@ -1,7 +1,11 @@
+import { defineMessages } from 'react-intl';
+
 import api, { getLinks } from '../api';
 
 import { fetchRelationships } from './accounts';
+import { showAlert } from './alerts';
 import { importFetchedAccounts, importFetchedStatus } from './importer';
+import { openModal } from './modal';
 
 export const REBLOG_REQUEST = 'REBLOG_REQUEST';
 export const REBLOG_SUCCESS = 'REBLOG_SUCCESS';
@@ -50,6 +54,14 @@ export const BOOKMARK_FAIL    = 'BOOKMARKED_FAIL';
 export const UNBOOKMARK_REQUEST = 'UNBOOKMARKED_REQUEST';
 export const UNBOOKMARK_SUCCESS = 'UNBOOKMARKED_SUCCESS';
 export const UNBOOKMARK_FAIL    = 'UNBOOKMARKED_FAIL';
+
+const messages = defineMessages({
+  bookmarkAdded: { id: 'status.bookmarked', defaultMessage: 'Bookmark added.' },
+  folderChanged: { id: 'status.bookmark_folder_changed', defaultMessage: 'Changed folder' },
+  view: { id: 'toast.view', defaultMessage: 'View' },
+  selectFolder: { id: 'status.bookmark.select_folder', defaultMessage: 'Select folder' },
+
+});
 
 export function reblog(status, visibility) {
   return function (dispatch, getState) {
@@ -193,13 +205,23 @@ export function unfavouriteFail(status, error) {
   };
 }
 
-export function bookmark(status) {
+export function bookmark(status, folder_id, routerHistory) {
   return function (dispatch, getState) {
     dispatch(bookmarkRequest(status));
 
-    api(getState).post(`/api/v1/statuses/${status.get('id')}/bookmark`).then(function (response) {
+    return api(getState).post(`/api/v1/statuses/${status.get('id')}/bookmark`, { folder_id }).then(function (response) {
       dispatch(importFetchedStatus(response.data));
-      dispatch(bookmarkSuccess(status));
+      dispatch(bookmarkSuccess(status, folder_id));
+
+      dispatch(showAlert({
+        message: folder_id !== undefined ? messages.folderChanged : messages.bookmarkAdded,
+        action: folder_id !== undefined ? messages.view : messages.selectFolder,
+        dismissAfter: 10000,
+        onClick: () => folder_id !== undefined ? routerHistory.push(`/bookmarks/${folder_id}`) : dispatch(openModal({
+          modalType: 'SELECT_BOOKMARK_FOLDER',
+          modalProps: { statusId: status.get('id') },
+        })),
+      }));
     }).catch(function (error) {
       dispatch(bookmarkFail(status, error));
     });
@@ -226,10 +248,11 @@ export function bookmarkRequest(status) {
   };
 }
 
-export function bookmarkSuccess(status) {
+export function bookmarkSuccess(status, folderId) {
   return {
     type: BOOKMARK_SUCCESS,
     status: status,
+    folderId,
   };
 }
 

@@ -1,4 +1,4 @@
-import { List as ImmutableList, Map as ImmutableMap } from 'immutable';
+import { List as ImmutableList, Map as ImmutableMap, OrderedSet as ImmutableOrderedSet } from 'immutable';
 import { createSelector } from 'reselect';
 
 import { me } from 'flavours/glitch/initial_state';
@@ -129,5 +129,5 @@ export const getAccountHidden = createSelector([
 });
 
 export const getStatusList = createSelector([
-  (state, type) => state.getIn(['status_lists', type, 'items']),
+  (state, type) => state.getIn(['status_lists', type, 'items'], ImmutableOrderedSet()),
 ], (items) => items.toList());

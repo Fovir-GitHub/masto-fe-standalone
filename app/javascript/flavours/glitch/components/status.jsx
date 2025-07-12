@@ -96,11 +96,13 @@ class Status extends ImmutablePureComponent {
     onToggleHidden: PropTypes.func,
     onTranslate: PropTypes.func,
     onInteractionModal: PropTypes.func,
+    onChangeBookmarkFolder: PropTypes.func,
     muted: PropTypes.bool,
     hidden: PropTypes.bool,
     unread: PropTypes.bool,
     prepend: PropTypes.string,
     withDismiss: PropTypes.bool,
+    fromBookmarks: PropTypes.bool,
     onMoveUp: PropTypes.func,
     onMoveDown: PropTypes.func,
     getScrollPosition: PropTypes.func,
@@ -442,8 +444,8 @@ class Status extends ImmutablePureComponent {
     this.props.onReblog(this.props.status, e);
   };
 
-  handleHotkeyBookmark = e => {
-    this.props.onBookmark(this.props.status, e);
+  handleHotkeyBookmark = () => {
+    this.props.onBookmark(this.props.status, undefined, this.context.router.history);
   };
 
   handleHotkeyMention = e => {

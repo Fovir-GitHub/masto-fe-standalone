@@ -21,6 +21,7 @@ import {
   BookmarkedStatuses,
   ListTimeline,
   Directory,
+  BookmarkFolder,
 } from '../util/async-components';
 
 import BundleColumnError from './bundle_column_error';
@@ -40,6 +41,7 @@ const componentMap = {
   'DIRECT': DirectTimeline,
   'FAVOURITES': FavouritedStatuses,
   'BOOKMARKS': BookmarkedStatuses,
+  'BOOKMARK_FOLDER': BookmarkFolder,
   'LIST': ListTimeline,
   'DIRECTORY': Directory,
 };

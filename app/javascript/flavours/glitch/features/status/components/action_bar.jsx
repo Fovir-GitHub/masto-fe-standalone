@@ -81,8 +81,8 @@ class ActionBar extends PureComponent {
     this.props.onFavourite(this.props.status, e);
   };
 
-  handleBookmarkClick = (e) => {
-    this.props.onBookmark(this.props.status, e);
+  handleBookmarkClick = () => {
+    this.props.onBookmark(this.props.status, undefined, this.context.router.history);
   };
 
   handleDeleteClick = () => {

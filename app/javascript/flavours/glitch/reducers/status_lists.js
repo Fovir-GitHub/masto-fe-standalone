@@ -96,7 +96,33 @@ const removeOneFromList = (state, listType, status) => {
   return state.updateIn([listType, 'items'], (list) => list.delete(status.get('id')));
 };
 
+const addBookmark = (state, status, folderId) => {
+  state = prependOneToList(state, 'bookmarks', status);
+  return state.map((list, key) => {
+    if (!key.startsWith('bookmarks:')) return list;
+    return list.update('items', (list) => {
+      if (key === `bookmarks:${folderId}`) {
+        if (list.includes(status.get('id'))) {
+          return list;
+        } else {
+          return ImmutableOrderedSet([status.get('id')]).union(list);
+        }
+      } else {
+        return list.delete(status.get('id'));
+      }
+    });
+  });
+};
+
+const removeBookmark = (state, status) => {
+  return state.map((list, key) => {
+    if (!key.startsWith('bookmarks')) return list;
+    return list.update('items', (list) => list.delete(status.get('id')));
+  });
+};
+
 export default function statusLists(state = initialState, action) {
+  let key;
   switch(action.type) {
   case FAVOURITED_STATUSES_FETCH_REQUEST:
   case FAVOURITED_STATUSES_EXPAND_REQUEST:
@@ -110,14 +136,18 @@ export default function statusLists(state = initialState, action) {
     return appendToList(state, 'favourites', action.statuses, action.next);
   case BOOKMARKED_STATUSES_FETCH_REQUEST:
   case BOOKMARKED_STATUSES_EXPAND_REQUEST:
-    return state.setIn(['bookmarks', 'isLoading'], true);
+    key = action.folderId ? `bookmarks:${action.folderId}`: 'bookmarks';
+    return state.setIn([key, 'isLoading'], true);
   case BOOKMARKED_STATUSES_FETCH_FAIL:
   case BOOKMARKED_STATUSES_EXPAND_FAIL:
-    return state.setIn(['bookmarks', 'isLoading'], false);
+    key = action.folderId ? `bookmarks:${action.folderId}`: 'bookmarks';
+    return state.setIn([key, 'isLoading'], false);
   case BOOKMARKED_STATUSES_FETCH_SUCCESS:
-    return normalizeList(state, 'bookmarks', action.statuses, action.next);
+    key = action.folderId ? `bookmarks:${action.folderId}`: 'bookmarks';
+    return normalizeList(state, key, action.statuses, action.next);
   case BOOKMARKED_STATUSES_EXPAND_SUCCESS:
-    return appendToList(state, 'bookmarks', action.statuses, action.next);
+    key = action.folderId ? `bookmarks:${action.folderId}`: 'bookmarks';
+    return appendToList(state, key, action.statuses, action.next);
   case TRENDS_STATUSES_FETCH_REQUEST:
   case TRENDS_STATUSES_EXPAND_REQUEST:
     return state.setIn(['trending', 'isLoading'], true);
@@ -133,9 +163,9 @@ export default function statusLists(state = initialState, action) {
   case UNFAVOURITE_SUCCESS:
     return removeOneFromList(state, 'favourites', action.status);
   case BOOKMARK_SUCCESS:
-    return prependOneToList(state, 'bookmarks', action.status);
+    return addBookmark(state, action.status, action.folderId);
   case UNBOOKMARK_SUCCESS:
-    return removeOneFromList(state, 'bookmarks', action.status);
+    return removeBookmark(state, action.status);
   case PINNED_STATUSES_FETCH_SUCCESS:
     return normalizeList(state, 'pins', action.statuses, action.next);
   case PIN_SUCCESS:

@@ -19,6 +19,7 @@ import {
   InteractionModal,
   SubscribedLanguagesModal,
   ClosedRegistrationsModal,
+  SelectBookmarkFolderModal,
 } from 'flavours/glitch/features/ui/util/async-components';
 import { getScrollbarWidth } from 'flavours/glitch/utils/scrollbar';
 
@@ -64,6 +65,7 @@ export const MODAL_COMPONENTS = {
   'SUBSCRIBED_LANGUAGES': SubscribedLanguagesModal,
   'INTERACTION': InteractionModal,
   'CLOSED_REGISTRATIONS': ClosedRegistrationsModal,
+  'SELECT_BOOKMARK_FOLDER': SelectBookmarkFolderModal,
 };
 
 export default class ModalRoot extends PureComponent {

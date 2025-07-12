@@ -11,6 +11,7 @@ import { connect } from 'react-redux';
 import { createSelector } from 'reselect';
 
 import { fetchFollowRequests } from 'flavours/glitch/actions/accounts';
+import { fetchBookmarkFolders } from 'flavours/glitch/actions/bookmark_folders';
 import { fetchLists } from 'flavours/glitch/actions/lists';
 import { openModal } from 'flavours/glitch/actions/modal';
 import Column from 'flavours/glitch/features/ui/components/column';
@@ -69,6 +70,7 @@ const makeMapStateToProps = () => {
 const mapDispatchToProps = dispatch => ({
   fetchFollowRequests: () => dispatch(fetchFollowRequests()),
   fetchLists: () => dispatch(fetchLists()),
+  fetchBookmarkFolders: () => dispatch(fetchBookmarkFolders()),
   openSettings: () => dispatch(openModal({
     modalType: 'SETTINGS',
     modalProps: {},
@@ -102,15 +104,17 @@ class GettingStarted extends ImmutablePureComponent {
     unreadNotifications: PropTypes.number,
     lists: ImmutablePropTypes.list,
     fetchLists: PropTypes.func.isRequired,
+    fetchBookmarkFolders: PropTypes.func.isRequired,
     openSettings: PropTypes.func.isRequired,
   };
 
   UNSAFE_componentWillMount () {
     this.props.fetchLists();
+    this.props.fetchBookmarkFolders();
   }
 
   componentDidMount () {
-    const { fetchFollowRequests } = this.props;
+    const { fetchFollowRequests, fetchBookmarkFolders } = this.props;
     const { signedIn } = this.context.identity;
 
     if (!signedIn) {
@@ -118,6 +122,7 @@ class GettingStarted extends ImmutablePureComponent {
     }
 
     fetchFollowRequests();
+    fetchBookmarkFolders();
   }
 
   render () {

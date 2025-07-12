@@ -135,11 +135,11 @@ const mapDispatchToProps = (dispatch, { intl, contextType }) => ({
     });
   },
 
-  onBookmark (status) {
+  onBookmark (status, folderId, router) {
     if (status.get('bookmarked')) {
       dispatch(unbookmark(status));
     } else {
-      dispatch(bookmark(status));
+      dispatch(bookmark(status, folderId, router));
     }
   },
 
@@ -295,6 +295,13 @@ const mapDispatchToProps = (dispatch, { intl, contextType }) => ({
         accountId: status.getIn(['account', 'id']),
         url: status.get('uri'),
       },
+    }));
+  },
+
+  onChangeBookmarkFolder (status) {
+    dispatch(openModal({
+      modalType: 'SELECT_BOOKMARK_FOLDER',
+      modalProps: { statusId: status.get('id') },
     }));
   },
 
