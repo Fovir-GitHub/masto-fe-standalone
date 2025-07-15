@@ -4,7 +4,11 @@
     <meta charset="UTF-8">
     <title>Logout | Masto-FE (🦥 flavour)</title>
     <script>
+        const preserveSettings = localStorage.getItem("mastodon-settings");
         localStorage.clear();
+        if (preserveSettings !== null) {
+          localStorage.setItem("mastodon-settings", preserveSettings);
+        }
         window.location.href = "/login.html";
     </script>
 </head>
