@@ -16,13 +16,13 @@
         </header>
         <main>
             <h1>Log into your instance</h1>
-            <div id="login">
+            <form method="post" id="login">
                 <label for="instance">Instance URL</label>
-                <input type="text" id="instance" value="" class="input instance" onkeypress="if (event.keyCode == 13) auth()">
-                <button type="submit" class="button" id="btn" onclick="auth()">
+                <input type="text" id="instance" value="" class="input instance">
+                <button type="submit" class="button" id="btn">
                     <span id="message">Authorize</span>
                 </button>
-            </div>
+            </form>
             <aside class="content">
                 <p>
                     <strong>Note:</strong>

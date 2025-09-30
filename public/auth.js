@@ -1,5 +1,11 @@
 document.addEventListener("DOMContentLoaded", async function() {
   await ready();
+  
+  const form = document.querySelector('#login')
+  form?.addEventListener("submit", (event) => {
+    event.preventDefault();
+    auth();
+  });
 });
 
 async function ready() {
