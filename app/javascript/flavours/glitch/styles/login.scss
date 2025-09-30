@@ -67,7 +67,7 @@ main {
 
 .button {
     display: flex;
-    column-gap: .5rem;
+    column-gap: 0.5rem;
     align-items: center;
     justify-content: center;
     background-color: #66befe;
@@ -106,13 +106,14 @@ main {
     border-radius: 4px;
     display: flex;
     flex-direction: column;
-    row-gap: .75rem;
+    row-gap: 0.75rem;
 }
 
 .link-footer {
     padding: 10px;
 
-    p, a {
-        color: #97A8B4;
+    p,
+    a {
+        color: #97a8b4;
     }
 }
