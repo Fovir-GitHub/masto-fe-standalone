@@ -8,7 +8,14 @@ To work on the code decently, you should have Node and Yarn installed. To avoid 
 
 ## Testing Locally
 
-You can fairly easily test builds of Masto-FE locally by using Docker and the GoToSocial testrig.
+If you want to run Masto-FE in dev mode:
+
+- install the project: `yarn install`
+- start the dev server: `yarn dev`
+
+You should now be able to connect on http://localhost:3035. Changes will automatically compile.
+
+You can also fairly easily test builds of Masto-FE locally by using Docker and the GoToSocial testrig.
 
 ### Build GoToSocial + launch the GtS testrig
 
@@ -37,7 +44,7 @@ Leave the testrig running.
 
 ### Build Masto-FE + run it locally
 
-Now in a *separate* terminal window, get back to the Masto-FE directory, and do a Docker build (this might take a bit of time):
+Now in a _separate_ terminal window, get back to the Masto-FE directory, and do a Docker build (this might take a bit of time):
 
 ```bash
 docker build -t superseriousbusiness/masto-fe-standalone:latest .
