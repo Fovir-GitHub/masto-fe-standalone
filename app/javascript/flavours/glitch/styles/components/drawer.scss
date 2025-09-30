@@ -59,29 +59,34 @@
   border-radius: 4px;
   overflow: hidden;
 
-  & > * {
-    display: block;
-    box-sizing: border-box;
-    border-bottom: 2px solid transparent;
-    padding: 15px 5px 13px;
-    height: 48px;
-    flex: 1 1 auto;
-    color: $darker-text-color;
-    text-align: center;
-    text-decoration: none;
-    cursor: pointer;
-  }
-
   a {
     transition: background 100ms ease-in;
 
-    &:focus,
+    &:focus-visible,
     &:hover {
-      outline: none;
       background: lighten($ui-base-color, 3%);
       transition: background 200ms ease-out;
     }
   }
+}
+
+.layout-multiple-columns .drawer__tab {
+  display: flex;
+  flex: 1 1 auto;
+  align-items: center;
+  justify-content: center;
+  margin: 5px;
+  padding: 5px;
+  height: 40px;
+  box-sizing: border-box;
+  border-radius: 6px;
+  color: $darker-text-color;
+  text-decoration: none;
+  transition: all 0.3s;
+}
+
+.layout-multiple-columns .drawer__tab:active {
+  transform: scale(0.9);
 }
 
 .search {

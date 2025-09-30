@@ -16,6 +16,8 @@ import { assetHost } from "flavours/glitch/utils/config";
 import { buildCustomEmojis, categoriesFromEmojis } from "../../emoji/emoji";
 import { EmojiPicker as EmojiPickerAsync } from "../../ui/util/async-components";
 
+import { IconSVG } from 'flavours/glitch/components/icon_svg';
+
 const messages = defineMessages({
   emoji: { id: "emoji_button.label", defaultMessage: "Insert emoji" },
   emoji_search: { id: "emoji_button.search", defaultMessage: "Search..." },
@@ -390,10 +392,11 @@ class EmojiPickerDropdown extends PureComponent {
     return (
       <div className='emoji-picker-dropdown' onKeyDown={this.handleKeyDown}>
         <div ref={this.setTargetRef} className='emoji-button' title={title} aria-label={title} aria-expanded={active} role='button' onClick={this.onToggle} onKeyDown={this.onToggle} tabIndex={0}>
-          {button || <img
-            className={classNames("emojione", { "pulse-loading": active && loading })}
-            alt='🙂'
-            src={`${assetHost}/emoji/1f642.svg`}
+          {button || <Icon 
+            fixedWidth
+            id='smiley'
+            aria-hidden='true'
+            className={classNames('emojione', { 'pulse-loading': active && loading })}
           />}
         </div>
 

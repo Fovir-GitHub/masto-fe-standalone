@@ -85,7 +85,7 @@ class StatusIcons extends PureComponent {
 
   renderIcon (mediaIcon) {
     return (
-      <Icon
+      <IconSVG
         fixedWidth
         className='status__media-icon'
         key={`media-icon--${mediaIcon}`}
@@ -109,12 +109,12 @@ class StatusIcons extends PureComponent {
 
     return (
       <div className='status__info__icons'>
-        {settings.get("language") && status.get("language") && <LanguageIcon language={status.get("language")} />}
-        {settings.get("reply") && status.get("in_reply_to_id", null) !== null ? (
+        {settings.get('language') && status.get('language') && <LanguageIcon language={status.get('language')} />}
+        {settings.get('reply') && status.get('in_reply_to_id', null) !== null ? (
           <Icon
             className='status__reply-icon'
             fixedWidth
-            id='comment'
+            id='arrow-bend-double-up-left'
             aria-hidden='true'
             title={intl.formatMessage(messages.inReplyTo)}
           />
@@ -129,7 +129,7 @@ class StatusIcons extends PureComponent {
         {settings.get("media") && !!mediaIcons && mediaIcons.map(icon => this.renderIcon(icon))}
         {settings.get("visibility") && <VisibilityIcon visibility={status.get("visibility")} />}
         {collapsible && (
-          <IconButton
+          <IconSVGButton
             className='status__collapse-button'
             animate
             active={collapsed}
@@ -138,7 +138,7 @@ class StatusIcons extends PureComponent {
                 intl.formatMessage(messages.uncollapse) :
                 intl.formatMessage(messages.collapse)
             }
-            icon='angle-double-up'
+            icon='caret-circle-double-up'
             onClick={this.handleCollapsedClick}
           />
         )}

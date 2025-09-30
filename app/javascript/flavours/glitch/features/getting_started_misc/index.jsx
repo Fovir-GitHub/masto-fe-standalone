@@ -60,13 +60,13 @@ class GettingStartedMisc extends ImmutablePureComponent {
         <div className='scrollable'>
           <ColumnSubheading text={intl.formatMessage(messages.subheading)} />
           {signedIn && (<ColumnLink key='favourites' icon='star' text={intl.formatMessage(messages.favourites)} to='/favourites' />)}
-          {signedIn && (<ColumnLink key='pinned' icon='thumb-tack' text={intl.formatMessage(messages.pins)} to='/pinned' />)}
+          {signedIn && (<ColumnLink key='pinned' icon='push-pin' text={intl.formatMessage(messages.pins)} to='/pinned' />)}
           {signedIn && (<ColumnLink key='featured_users' icon='users' text={intl.formatMessage(messages.featured_users)} onClick={this.openFeaturedAccountsModal} />)}
-          {signedIn && (<ColumnLink key='mutes' icon='volume-off' text={intl.formatMessage(messages.mutes)} to='/mutes' />)}
-          {signedIn && (<ColumnLink key='blocks' icon='ban' text={intl.formatMessage(messages.blocks)} to='/blocks' />)}
-          {signedIn && (<ColumnLink key='domain_blocks' icon='minus-circle' text={intl.formatMessage(messages.domain_blocks)} to='/domain_blocks' />)}
-          <ColumnLink key='shortcuts' icon='question' text={intl.formatMessage(messages.keyboard_shortcuts)} to='/keyboard-shortcuts' />
-          {signedIn && (<ColumnLink key='onboarding' icon='hand-o-right' text={intl.formatMessage(messages.show_me_around)} onClick={this.openOnboardingModal} />)}
+          {signedIn && (<ColumnLink key='mutes' icon='bell-slash' text={intl.formatMessage(messages.mutes)} to='/mutes' />)}
+          {signedIn && (<ColumnLink key='blocks' icon='prohibit' text={intl.formatMessage(messages.blocks)} to='/blocks' />)}
+          {signedIn && (<ColumnLink key='domain_blocks' icon='network-slash' text={intl.formatMessage(messages.domain_blocks)} to='/domain_blocks' />)}
+          <ColumnLink key='shortcuts' icon='keyboard' text={intl.formatMessage(messages.keyboard_shortcuts)} to='/keyboard-shortcuts' />
+          {signedIn && (<ColumnLink key='onboarding' icon='signpost' text={intl.formatMessage(messages.show_me_around)} onClick={this.openOnboardingModal} />)}
         </div>
       </Column>
     );

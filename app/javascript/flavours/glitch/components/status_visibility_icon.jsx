@@ -26,15 +26,15 @@ class VisibilityIcon extends ImmutablePureComponent {
     const { withLabel, visibility, intl } = this.props;
 
     const visibilityIcon = {
-      public: "globe",
-      unlisted: "unlock",
-      private: "lock",
-      direct: "envelope",
+      public: 'planet',
+      unlisted: 'lock-open-simple',
+      private: 'lock-simple',
+      direct: 'at',
     }[visibility];
 
     const label = intl.formatMessage(messages[visibility]);
 
-    const icon = (<Icon
+    const icon = (<IconSVG
       className='status__visibility-icon'
       fixedWidth
       id={visibilityIcon}

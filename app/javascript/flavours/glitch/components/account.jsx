@@ -112,7 +112,7 @@ class Account extends ImmutablePureComponent {
 
     if (onActionClick) {
       if (actionIcon) {
-        buttons = <IconButton icon={actionIcon} title={actionTitle} onClick={this.handleAction} />;
+        buttons = <IconSVGButton icon={actionIcon} title={actionTitle} onClick={this.handleAction} />;
       }
     } else if (account.get("id") !== me && !small && account.get("relationship", null) !== null) {
       const following = account.getIn(["relationship", "following"]);
@@ -121,9 +121,9 @@ class Account extends ImmutablePureComponent {
       const muting  = account.getIn(["relationship", "muting"]);
 
       if (requested) {
-        buttons = <IconButton disabled icon='hourglass' title={intl.formatMessage(messages.requested)} />;
+        buttons = <IconSVGButton disabled icon='hourglass' title={intl.formatMessage(messages.requested)} />;
       } else if (blocking) {
-        buttons = <IconButton active icon='unlock' title={intl.formatMessage(messages.unblock, { name: account.get("username") })} onClick={this.handleBlock} />;
+        buttons = <IconButton active icon='lock-open-simple' title={intl.formatMessage(messages.unblock, { name: account.get("username") })} onClick={this.handleBlock} />;
       } else if (muting) {
         let hidingNotificationsButton;
         if (account.getIn(["relationship", "muting_notifications"])) {

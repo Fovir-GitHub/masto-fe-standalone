@@ -361,8 +361,8 @@ class Search extends PureComponent {
         />
 
         <div role='button' tabIndex={0} className='search__icon' onClick={this.handleClear}>
-          <Icon id='search' className={hasValue ? "" : "active"} />
-          <Icon id='times-circle' className={hasValue ? "active" : ""} />
+          <Icon id='magnifying-glass' className={hasValue ? '' : 'active'} />
+          <Icon id='x-circle' className={hasValue ? 'active' : ''} />
         </div>
         <div className='search__popout'>
           {options.length === 0 && (

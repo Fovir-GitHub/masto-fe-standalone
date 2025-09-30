@@ -71,7 +71,7 @@ class NavigationPanel extends Component {
 
         {signedIn && (
           <>
-            <ColumnLink transparent to='/home' icon='home' text={intl.formatMessage(messages.home)} />
+            <ColumnLink transparent to='/home' icon='house-line' text={intl.formatMessage(messages.home)} />
             <ColumnLink transparent to='/notifications' icon={<NotificationsCounterIcon className='column-link__icon' />} text={intl.formatMessage(messages.notifications)} />
             <FollowRequestsColumnLink />
           </>
@@ -80,11 +80,11 @@ class NavigationPanel extends Component {
         {trendsEnabled ? (
           <ColumnLink transparent to='/explore' icon='hashtag' text={intl.formatMessage(messages.explore)} />
         ) : (
-          <ColumnLink transparent to='/search' icon='search' text={intl.formatMessage(messages.search)} />
+          <ColumnLink transparent to='/search' icon='magnifying-glass' text={intl.formatMessage(messages.search)} />
         )}
 
         {(signedIn || timelinePreview) && (
-          <ColumnLink transparent to='/public/local' isActive={this.isFirehoseActive} icon='globe' text={intl.formatMessage(messages.firehose)} />
+          <ColumnLink transparent to='/public/local' isActive={this.isFirehoseActive} icon='planet' text={intl.formatMessage(messages.firehose)} />
         )}
 
         {!signedIn && (
@@ -97,15 +97,15 @@ class NavigationPanel extends Component {
         {signedIn && (
           <>
             <ColumnLink transparent to='/conversations' icon='at' text={intl.formatMessage(messages.direct)} />
-            <ColumnLink transparent to='/bookmarks' icon='bookmark' text={intl.formatMessage(messages.bookmarks)} />
+            <ColumnLink transparent to='/bookmarks' icon='bookmarks' text={intl.formatMessage(messages.bookmarks)} />
             <ColumnLink transparent to='/favourites' icon='star' text={intl.formatMessage(messages.favourites)} />
-            <ColumnLink transparent to='/lists' icon='list-ul' text={intl.formatMessage(messages.lists)} />
+            <ColumnLink transparent to='/lists' icon='list' text={intl.formatMessage(messages.lists)} />
 
             <ListPanel />
 
             <hr />
 
-            <ColumnLink transparent onClick={onOpenSettings} icon='cogs' text={intl.formatMessage(messages.app_settings)} />
+            <ColumnLink transparent onClick={onOpenSettings} icon='gear' text={intl.formatMessage(messages.app_settings)} />
             <ColumnLink transparent onClick={onLogout} icon='sign-out' text={intl.formatMessage(messages.logout)} />
           </>
         )}

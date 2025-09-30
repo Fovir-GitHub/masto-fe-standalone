@@ -311,7 +311,7 @@ class FocalPointModal extends ImmutablePureComponent {
     return (
       <div className='modal-root__modal report-modal' style={{ maxWidth: 960 }}>
         <div className='report-modal__target'>
-          <IconButton className='report-modal__close' title={intl.formatMessage(messages.close)} icon='times' onClick={onClose} size={20} />
+          <IconSVGButton className='report-modal__close' title={intl.formatMessage(messages.close)} icon='x' onClick={onClose} size={20} />
           <FormattedMessage id='upload_modal.edit_media' defaultMessage='Edit media' />
         </div>
 

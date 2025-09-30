@@ -117,7 +117,7 @@ const PageFour = ({ domain, intl }) => (
         </div>
 
         <div>
-          <div className='figure non-interactive' style={{ marginBottom: 0 }}><ColumnHeader icon='globe' type={intl.formatMessage(messages.federated_title)} /></div>
+          <div className='figure non-interactive' style={{ marginBottom: 0 }}><ColumnHeader icon='planet' type={intl.formatMessage(messages.federated_title)} /></div>
         </div>
       </div>
 

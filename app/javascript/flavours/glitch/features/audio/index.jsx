@@ -585,7 +585,7 @@ class Audio extends PureComponent {
             </div>
 
             <div className='video-player__buttons right'>
-              {!editable && <button type='button' title={intl.formatMessage(messages.hide)} aria-label={intl.formatMessage(messages.hide)} className='player-button' onClick={this.toggleReveal}><Icon id='eye-slash' fixedWidth /></button>}
+              {!editable && <button type='button' title={intl.formatMessage(messages.hide)} aria-label={intl.formatMessage(messages.hide)} className='player-button' onClick={this.toggleReveal}><IconSVG id='eye-slash' fixedWidth /></button>}
               <a title={intl.formatMessage(messages.download)} aria-label={intl.formatMessage(messages.download)} className='video-player__download__icon player-button' href={this.props.src} download>
                 <Icon id={"download"} fixedWidth />
               </a>

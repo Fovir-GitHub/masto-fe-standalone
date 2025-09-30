@@ -1,0 +1,126 @@
+/* 🦥 GoToSocial */
+.gts-icon {
+  --size: 1em;
+  display: inline-block;
+  width: var(--size);
+  height: var(--size);
+
+  &__badge {
+  }
+}
+
+.gts-icon-with-badge {
+  position: relative;
+  display: block;
+
+  &__badge {
+    position: absolute;
+    border: 2px solid lighten($ui-base-color, 8%);
+    color: $primary-text-color;
+    background: $ui-highlight-color;
+  }
+
+  &__issue-badge {
+    position: absolute;
+    background: $error-red;
+  }
+}
+
+.drawer__tab .gts-icon,
+.column-header .gts-icon,
+.column-link .gts-icon,
+.local-settings__navigation__item .gts-icon {
+  --size: 24px;
+}
+
+.navigation-panel {
+  justify-content: start;
+}
+
+.column-header > button,
+.column-header__button,
+.glitch.local-settings__navigation__item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.column-header__icon {
+  margin: 0;
+}
+
+.column-link {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.column-link__icon {
+  margin: 0;
+}
+
+.search__icon > svg {
+  display: none;
+  position: absolute;
+  top: 16px;
+  inset-inline-end: 10px;
+  width: 18px;
+  height: 18px;
+  color: $secondary-text-color;
+
+  &.active {
+    display: block;
+  }
+}
+
+.notification__filter-bar svg,
+.status__info__icons svg {
+  --size: 18px;
+  width: var(--size);
+  height: var(--size);
+}
+
+.status__prepend {
+  margin-inline-start: 28px;
+}
+
+.status__prepend-icon {
+  --size: 18px;
+  width: var(--size);
+  height: var(--size);
+}
+
+.detailed-status__meta {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1ch;
+}
+
+.column-header__back-button,
+.column-back-button,
+.detailed-status__link {
+  display: flex;
+  align-items: center;
+}
+
+.column-back-button--slim-button svg {
+  margin-block: -3px;
+}
+
+.detailed-status__meta svg {
+  --size: 14px;
+  width: var(--size);
+  height: var(--size);
+}
+
+.emoji-button {
+  color: $inverted-text-color;
+}
+
+.notification__favourite-icon-wrapper svg {
+  --size: 16px;
+  width: var(--size);
+  height: var(--size);
+  color: $highlight-text-color;
+}

@@ -54,7 +54,7 @@ class Publisher extends ImmutablePureComponent {
       over: diff < 0,
     });
 
-    const privacyIcons = { direct: "envelope", private: "lock", public: "globe", unlisted: "unlock" };
+    const privacyIcons = { direct: 'at', private: 'lock-simple', public: 'planet', unlisted: 'lock-open-simple' };
 
     let publishText;
     if (isEditing) {
@@ -63,7 +63,7 @@ class Publisher extends ImmutablePureComponent {
       const iconId = privacyIcons[privacy];
       publishText = (
         <span>
-          <Icon id={iconId} /> {intl.formatMessage(messages.publish)}
+          <IconSVG id={iconId} /> {intl.formatMessage(messages.publish)}
         </span>
       );
     } else {
@@ -86,7 +86,7 @@ class Publisher extends ImmutablePureComponent {
               disabled={disabled}
               onClick={onSecondarySubmit}
               style={{ padding: null }}
-              text={<Icon id={privacyIcons[sideArm]} />}
+              text={<IconSVG id={privacyIcons[sideArm]} />}
               title={`${intl.formatMessage(messages.publish)}: ${intl.formatMessage(privacyNames[sideArm])}`}
             />
           </div>

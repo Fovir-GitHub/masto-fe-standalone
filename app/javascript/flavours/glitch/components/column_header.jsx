@@ -121,7 +121,7 @@ class ColumnHeader extends PureComponent {
 
       moveButtons = (
         <div key='move-buttons' className='column-header__setting-arrows'>
-          <button title={formatMessage(messages.moveLeft)} aria-label={formatMessage(messages.moveLeft)} className='icon-button column-header__setting-btn' onClick={this.handleMoveLeft}><Icon id='chevron-left' /></button>
+          <button title={formatMessage(messages.moveLeft)} aria-label={formatMessage(messages.moveLeft)} className='icon-button column-header__setting-btn' onClick={this.handleMoveLeft}><IconSVG id='arrow-left' /></button>
           <button title={formatMessage(messages.moveRight)} aria-label={formatMessage(messages.moveRight)} className='icon-button column-header__setting-btn' onClick={this.handleMoveRight}><Icon id='chevron-right' /></button>
         </div>
       );
@@ -132,7 +132,7 @@ class ColumnHeader extends PureComponent {
     if (!pinned && ((multiColumn && router.history.location?.state?.fromMastodon) || showBackButton)) {
       backButton = (
         <button onClick={this.handleBackClick} className='column-header__back-button'>
-          <Icon id='chevron-left' className='column-back-button__icon' fixedWidth />
+          <IconSVG id='arrow-left' className='column-back-button__icon' fixedWidth />
           <FormattedMessage id='column_back_button.label' defaultMessage='Back' />
         </button>
       );
@@ -155,10 +155,10 @@ class ColumnHeader extends PureComponent {
           aria-label={formatMessage(collapsed ? messages.show : messages.hide)}
           onClick={this.handleToggleClick}
         >
-          <i className='icon-with-badge'>
-            <Icon id='sliders' />
-            {collapseIssues && <i className='icon-with-badge__issue-badge' />}
-          </i>
+          <div className='gts-icon-with-badge'>
+            <IconSVG id='slider-horizontal' />
+            {collapseIssues && <i className='gts-icon-with-badge__issue-badge' />}
+          </div>
         </button>
       );
     }
@@ -170,7 +170,7 @@ class ColumnHeader extends PureComponent {
         <h1 className={buttonClassName}>
           {hasTitle && (
             <button onClick={this.handleTitleClick}>
-              <Icon id={icon} fixedWidth className='column-header__icon' />
+              <IconSVG id={icon} fixedWidth className='column-header__icon' />
               {title}
             </button>
           )}

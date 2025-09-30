@@ -296,7 +296,7 @@ export default class Dropdown extends PureComponent {
       onKeyDown: this.handleButtonKeyDown,
       onKeyPress: this.handleKeyPress,
     }) : (
-      <IconButton
+      <IconSVGButton
         icon={icon}
         title={title}
         active={open}

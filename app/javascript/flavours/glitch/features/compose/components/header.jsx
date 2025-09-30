@@ -79,22 +79,25 @@ class Header extends ImmutablePureComponent {
           aria-label={intl.formatMessage(messages.start)}
           title={intl.formatMessage(messages.start)}
           to='/getting-started'
+          className='drawer__tab'
         ><Icon id='asterisk' /></Link>
-        {renderForColumn("HOME", (
+        {renderForColumn('HOME', (
           <Link
             aria-label={intl.formatMessage(messages.home_timeline)}
             title={intl.formatMessage(messages.home_timeline)}
             to='/home'
-          ><Icon id='home' /></Link>
+            className='drawer__tab'
+          ><IconSVG id='house-line' /></Link>
         ))}
         {renderForColumn("NOTIFICATIONS", (
           <Link
             aria-label={intl.formatMessage(messages.notifications)}
             title={intl.formatMessage(messages.notifications)}
             to='/notifications'
+            className='drawer__tab'
           >
             <span className='icon-badge-wrapper'>
-              <Icon id='bell' />
+              <IconSVG id='bell' />
               { showNotificationsBadge && unreadNotifications > 0 && <div className='icon-badge' />}
             </span>
           </Link>
@@ -104,27 +107,31 @@ class Header extends ImmutablePureComponent {
             aria-label={intl.formatMessage(messages.community)}
             title={intl.formatMessage(messages.community)}
             to='/public/local'
-          ><Icon id='users' /></Link>
+            className='drawer__tab'
+          ><IconSVG id='users' /></Link>
         ))}
         {renderForColumn("PUBLIC", (
           <Link
             aria-label={intl.formatMessage(messages.public)}
             title={intl.formatMessage(messages.public)}
             to='/public'
-          ><Icon id='globe' /></Link>
+            className='drawer__tab'
+          ><IconSVG id='planet' /></Link>
         ))}
         <a
           aria-label={intl.formatMessage(messages.settings)}
           onClick={onSettingsClick}
           href='/settings/preferences'
           title={intl.formatMessage(messages.settings)}
-        ><Icon id='cogs' /></a>
+          className='drawer__tab'
+        ><IconSVG id='gear' /></a>
         <a
           aria-label={intl.formatMessage(messages.logout)}
           onClick={this.handleLogoutClick}
           href={signOutLink}
           title={intl.formatMessage(messages.logout)}
-        ><Icon id='sign-out' /></a>
+          className='drawer__tab'
+        ><IconSVG id='sign-out' /></a>
       </nav>
     );
   }
