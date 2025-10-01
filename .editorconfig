@@ -1,0 +1,9 @@
+[*.scss]
+indent_size = 2
+
+[{
+    tangerine.scss,
+    login.scss,
+    **/tangerine/*.scss
+}]
+indent_size = 4

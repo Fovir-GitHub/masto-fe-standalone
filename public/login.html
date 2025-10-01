@@ -5,35 +5,31 @@
     <meta charset="UTF-8">
     <title>Login | Masto-FE (🦥 flavour)</title>
     <meta content="width=device-width, initial-scale=1" name="viewport">
-    <link rel="stylesheet" media="all" href="/packs/css/core/common.css" />
     <link rel="stylesheet" media="all" href="/packs/css/flavours/glitch/login.css" />
     <script src="/auth.js"></script>
 </head>
 
-<body>
+<body class="app-body">
     <div class="login-container">
         <header>
-            <img class="mascot" alt src="images/mascot.svg" />
+            <img  alt="a friendly smiling sloth" src="images/mascot.svg" />
         </header>
         <main>
-            <div class="login">
-                <input class="instance" id="instance" placeholder="Instance URL" aria-label="Instance URL" value="" onkeypress="if (event.keyCode == 13) auth()">
-                <button type="submit" class="button" id="btn" onclick="auth()">
+            <h1>Log into your instance</h1>
+            <form method="post" id="login">
+                <label for="instance">Instance URL</label>
+                <input type="text" id="instance" value="" class="input instance">
+                <button type="submit" class="button" id="btn">
                     <span id="message">Authorize</span>
                 </button>
-            </div>
-            <div class="content">
+            </form>
+            <aside class="content">
                 <p>
-                    This is a standalone version of the Mastodon front-end that offers compatibility with GoToSocial instances. It is based
-                    on <a href="https://iceshrimp.dev/iceshrimp/masto-fe-standalone" rel="nofollow">Iceshrimp's Masto-FE Standalone</a>,
-                    which is itself a fork of <a href="https://github.com/glitch-soc/mastodon" rel="nofollow">Mastodon Glitch Edition</a>,
-                    which in turn forks <a href="https://github.com/mastodon/mastodon/" rel="nofollow">Mastodon</a>. Phew!
+                    <strong>Note:</strong>
+                    this application is completely client-side, meaning everything happens in the browser on your machine.
+                    It does not store information anywhere else than your browser's local storage.
                 </p>
-                <p>
-                    The application is completely client-side, meaning everything happens in the browser on your machine. It does not store
-                    information anywhere else than your browser's local storage.
-                </p>
-            </div>
+            </aside>
         </main>
         <footer class="link-footer">
             <p>
