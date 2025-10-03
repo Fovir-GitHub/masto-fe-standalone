@@ -391,14 +391,14 @@ class EmojiPickerDropdown extends PureComponent {
 
     return (
       <div className='emoji-picker-dropdown' onKeyDown={this.handleKeyDown}>
-        <div ref={this.setTargetRef} className='emoji-button' title={title} aria-label={title} aria-expanded={active} role='button' onClick={this.onToggle} onKeyDown={this.onToggle} tabIndex={0}>
-          {button || <Icon 
+        <button ref={this.setTargetRef} className='emoji-button' title={title} aria-label={title} aria-expanded={active} onClick={this.onToggle} onKeyDown={this.onToggle}>
+          {button || <IconSVG 
             fixedWidth
             id='smiley'
             aria-hidden='true'
             className={classNames('emojione', { 'pulse-loading': active && loading })}
           />}
-        </div>
+        </button>
 
         <Overlay show={active} placement={"bottom"} target={this.findTarget} popperConfig={{ strategy: "fixed" }}>
           {({ props, placement })=> (
