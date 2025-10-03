@@ -479,46 +479,41 @@
 }
 
 .compose-form__buttons-wrapper {
-  padding: 10px;
-  background: darken($simple-background-color, 8%);
-  border-radius: 0 0 4px 4px;
-  height: 27px;
   display: flex;
+  align-items: center;
   justify-content: space-between;
-  flex: 0 0 auto;
+  padding: 10px;
+  border-radius: 0 0 4px 4px;
+  color: $action-button-color;
+  background: darken($simple-background-color, 8%);
 }
 
 .compose-form__buttons {
   display: flex;
-  flex: 0 0 auto;
+  gap: 1px;
+  align-items: center;
+  justify-content: center;
 
-  & .icon-button,
-  & .text-icon-button {
-    display: inline-block;
-    box-sizing: content-box;
-    padding: 0 3px;
-    height: 27px;
-    line-height: 27px;
-    vertical-align: bottom;
+  .icon-button,
+  .text-icon-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+  }
+
+  svg.gts-icon {
+    --size: 20px;
+    scale: 1.2;
   }
 
   & > hr {
-    display: inline-block;
-    margin: 0 3px;
-    border-width: 0 0 0 1px;
-    border-style: none none none solid;
-    border-color: transparent transparent transparent
-      darken($simple-background-color, 24%);
-    padding: 0;
-    width: 0;
-    height: 27px;
-    background: transparent;
+    margin: 0 1px;
+    height: 24px;
+    border: 0;
+    border-right: 1px solid $action-button-color;
   }
-}
-
-.character-counter__wrapper {
-  align-self: center;
-  margin-inline-end: 4px;
 }
 
 .privacy-dropdown.active {
@@ -564,6 +559,10 @@
   padding: 10px;
   color: $inverted-text-color;
   cursor: pointer;
+
+  svg.gts-icon {
+    --size: 24px;
+  }
 
   .privacy-dropdown__option__content {
     flex: 1 1 auto;
