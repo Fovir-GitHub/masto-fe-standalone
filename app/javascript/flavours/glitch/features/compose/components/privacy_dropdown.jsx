@@ -56,7 +56,7 @@ class PrivacyDropdown extends PureComponent {
         text: formatMessage(messages.public_short),
       },
       unlisted: {
-        icon: 'lock-open-simple',
+        icon: 'moon',
         meta: formatMessage(messages.unlisted_long),
         name: "unlisted",
         text: formatMessage(messages.unlisted_short),
