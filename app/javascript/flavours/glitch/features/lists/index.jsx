@@ -64,7 +64,7 @@ class Lists extends ImmutablePureComponent {
     const emptyMessage = <FormattedMessage id='empty_column.lists' defaultMessage="You don't have any lists yet. When you create one, it will show up here." />;
 
     return (
-      <Column bindToDocument={!multiColumn} icon='bars' heading={intl.formatMessage(messages.heading)}>
+      <Column bindToDocument={!multiColumn} icon='list' heading={intl.formatMessage(messages.heading)}>
         <ColumnBackButtonSlim />
 
         <NewListForm />
@@ -76,7 +76,7 @@ class Lists extends ImmutablePureComponent {
           bindToDocument={!multiColumn}
         >
           {lists.map(list =>
-            <ColumnLink key={list.get("id")} to={`/lists/${list.get("id")}`} icon='list-ul' text={list.get("title")} />,
+            <ColumnLink key={list.get('id')} to={`/lists/${list.get('id')}`} icon='dot' text={list.get('title')} />,
           )}
         </ScrollableList>
 

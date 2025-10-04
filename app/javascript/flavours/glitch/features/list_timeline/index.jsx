@@ -181,7 +181,7 @@ class ListTimeline extends PureComponent {
     return (
       <Column bindToDocument={!multiColumn} ref={this.setRef} label={title}>
         <ColumnHeader
-          icon='list-ul'
+          icon='dot'
           active={hasUnread}
           title={title}
           onPin={this.handlePin}

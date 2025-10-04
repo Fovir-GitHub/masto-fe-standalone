@@ -168,7 +168,7 @@ class GettingStarted extends ImmutablePureComponent {
         <div key='9'>
           <ColumnLink key='lists' icon='list' text={intl.formatMessage(messages.lists)} to='/lists' />
           {lists.filter(list => !columns.find(item => item.get('id') === 'LIST' && item.getIn(['params', 'id']) === list.get('id'))).map(list =>
-            <ColumnLink key={`list-${list.get('id')}`} to={`/lists/${list.get('id')}`} icon='list-ul' text={list.get('title')} />,
+            <ColumnLink key={`list-${list.get('id')}`} to={`/lists/${list.get('id')}`} icon='dot' text={list.get('title')} />,
           )}
         </div>,
       ]);
