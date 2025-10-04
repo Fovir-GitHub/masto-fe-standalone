@@ -1,182 +1,152 @@
 .search {
-  margin-bottom: 10px;
   position: relative;
+  margin-bottom: 10px;
+}
 
-  &__popout {
-    box-sizing: border-box;
-    display: none;
-    position: absolute;
-    inset-inline-start: 0;
-    margin-top: -2px;
-    width: 100%;
-    background: $ui-base-color;
-    border-radius: 0 0 4px 4px;
-    box-shadow: 4px 4px 6px rgba($base-shadow-color, 0.4);
-    z-index: 99;
-    font-size: 13px;
-    padding: 15px 5px;
-
-    h4 {
-      text-transform: uppercase;
-      color: $dark-text-color;
-      font-weight: 500;
-      padding: 0 10px;
-      margin-bottom: 10px;
-    }
-
-    &__menu {
-      margin-bottom: 20px;
-
-      &:last-child {
-        margin-bottom: 0;
-      }
-
-      &__message {
-        color: $dark-text-color;
-        padding: 0 10px;
-      }
-
-      &__item {
-        display: block;
-        box-sizing: border-box;
-        width: 100%;
-        border: 0;
-        font: inherit;
-        background: transparent;
-        color: $darker-text-color;
-        padding: 10px;
-        cursor: pointer;
-        border-radius: 4px;
-        text-align: start;
-        text-overflow: ellipsis;
-        overflow: hidden;
-        white-space: nowrap;
-
-        &--flex {
-          display: flex;
-          justify-content: space-between;
-        }
-
-        .icon-button {
-          transition: none;
-        }
-
-        &:hover,
-        &:focus,
-        &:active,
-        &.selected {
-          background: $ui-highlight-color;
-          color: $primary-text-color;
-
-          .icon-button {
-            color: $primary-text-color;
-          }
-        }
-
-        mark {
-          background: transparent;
-          font-weight: 700;
-          color: $primary-text-color;
-        }
-
-        span {
-          overflow: inherit;
-          text-overflow: inherit;
-        }
-      }
-    }
-  }
-
-  &.active {
-    .search__popout {
-      display: block;
-    }
-  }
+.search__icon,
+.search__icon.gts-icon {
+  position: absolute;
+  top: 13px;
+  left: 13px;
+  --size: 20px;
 }
 
 .search__input {
   @include search-input;
 
   display: block;
-  padding: 15px;
-  padding-inline-end: 30px;
-  line-height: 18px;
+  padding: 12px 40px;
   font-size: 16px;
+  line-height: 20px;
 
   &::placeholder {
     color: lighten($darker-text-color, 4%);
-  }
-
-  &::-moz-focus-inner {
-    border: 0;
-  }
-
-  &::-moz-focus-inner,
-  &:focus,
-  &:active {
-    outline: 0 !important;
+    font-weight: 500;
   }
 
   &:focus {
-    background: lighten($ui-base-color, 4%);
+    background: darken($ui-base-color, 4%);
   }
 }
 
-.search__icon {
-  &::-moz-focus-inner {
-    border: 0;
+.search__button {
+  position: absolute;
+  top: 7px;
+  right: 7px;
+  display: none;
+  padding: 6px;
+  border: 0;
+  border-radius: var(--button-border-radius);
+  color: inherit;
+  font: inherit;
+  background: transparent;
+  transition: all 0.3s;
+
+  .gts-icon {
+    --size: 20px;
+    display: block;
   }
 
-  &::-moz-focus-inner,
-  &:focus {
-    outline: 0 !important;
+  &:focus-visible,
+  &:hover {
+    background: darken($ui-base-color, 10%);
+  }
+}
+
+.search__button.active {
+  display: flex;
+}
+
+.search__popout {
+  position: absolute;
+  display: none;
+  margin-top: 10px;
+  padding: 15px 5px;
+  width: 100%;
+  border: 1px solid var(--color-lines);
+  border-radius: var(--drawer-border-radius);
+  box-sizing: border-box;
+  background: $ui-base-color;
+
+  inset-inline-start: 0;
+  box-shadow: 4px 4px 6px rgba($base-shadow-color, 0.4);
+  z-index: 99;
+  // font-size: 13px;
+  // padding: 15px 5px;
+
+  h4 {
+    text-transform: uppercase;
+    color: $dark-text-color;
+    font-weight: 500;
+    padding: 0 10px;
+    margin-bottom: 10px;
   }
 
-  .fa {
-    position: absolute;
-    top: 16px;
-    inset-inline-end: 10px;
-    display: inline-block;
-    opacity: 0;
-    transition: all 100ms linear;
-    transition-property: color, transform, opacity;
-    font-size: 18px;
-    width: 18px;
-    height: 18px;
-    color: $secondary-text-color;
-    cursor: default;
-    pointer-events: none;
+  &__menu {
+    margin-bottom: 20px;
 
-    &.active {
-      pointer-events: auto;
-      opacity: 0.3;
+    &:last-child {
+      margin-bottom: 0;
+    }
+
+    &__message {
+      color: $dark-text-color;
+      padding: 0 10px;
+    }
+
+    &__item {
+      display: block;
+      box-sizing: border-box;
+      width: 100%;
+      border: 0;
+      font: inherit;
+      background: transparent;
+      color: $darker-text-color;
+      padding: 10px;
+      cursor: pointer;
+      border-radius: 4px;
+      text-align: start;
+      text-overflow: ellipsis;
+      overflow: hidden;
+      white-space: nowrap;
+
+      &--flex {
+        display: flex;
+        justify-content: space-between;
+      }
+
+      .icon-button {
+        transition: none;
+      }
+
+      &:hover,
+      &:focus,
+      &:active,
+      &.selected {
+        background: $ui-highlight-color;
+        color: $primary-text-color;
+
+        .icon-button {
+          color: $primary-text-color;
+        }
+      }
+
+      mark {
+        background: transparent;
+        font-weight: 700;
+        color: $primary-text-color;
+      }
+
+      span {
+        overflow: inherit;
+        text-overflow: inherit;
+      }
     }
   }
+}
 
-  .fa-search {
-    transform: rotate(0deg);
-
-    &.active {
-      pointer-events: auto;
-      opacity: 0.3;
-    }
-  }
-
-  .fa-times-circle {
-    top: 17px;
-    transform: rotate(0deg);
-    color: $action-button-color;
-    cursor: pointer;
-
-    &.active {
-      transform: rotate(90deg);
-      opacity: 1;
-    }
-
-    &:hover {
-      color: lighten($action-button-color, 7%);
-    }
-  }
+.search.active .search__popout {
+  display: block;
 }
 
 .search-results__header {

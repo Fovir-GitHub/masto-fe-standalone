@@ -361,8 +361,9 @@
   display: flex;
   gap: 8px;
   padding: 6px;
+  border: 1px solid var(--color-accent-lines);
   cursor: default;
-  background: darken($ui-base-color, 4%);
+  background: var(--color-accent-bg);
 
   a,
   button {
