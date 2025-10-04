@@ -50,14 +50,15 @@
 }
 
 .drawer__header {
-  flex: none;
-  font-size: 16px;
-  background: lighten($ui-base-color, 8%);
-  margin-bottom: 10px;
   display: flex;
-  flex-direction: row;
-  border-radius: 4px;
-  overflow: hidden;
+  gap: 10px;
+  margin-bottom: 10px;
+  padding: 5px;
+  border-radius: var(--drawer-border-radius);
+  color: $darker-text-color;
+  font-size: 16px;
+  font-weight: 700;
+  background: lighten($ui-base-color, 4%);
 
   a {
     transition: background 100ms ease-in;
@@ -72,17 +73,29 @@
 
 .layout-multiple-columns .drawer__tab {
   display: flex;
-  flex: 1 1 auto;
+  gap: 5px;
   align-items: center;
   justify-content: center;
-  margin: 5px;
-  padding: 5px;
-  height: 40px;
-  box-sizing: border-box;
-  border-radius: 6px;
-  color: $darker-text-color;
+  flex-grow: 1;
+  padding: 8px;
+  border: 0;
+  border-radius: var(--button-border-radius);
+  color: inherit;
+  font: inherit;
   text-decoration: none;
+  background: transparent;
   transition: all 0.3s;
+
+  .gts-icon {
+    --size: 24px;
+    display: block;
+  }
+
+  &:focus-visible,
+  &:hover,
+  &.active {
+    background: darken($ui-base-color, 4%);
+  }
 }
 
 .layout-multiple-columns .drawer__tab:active {
