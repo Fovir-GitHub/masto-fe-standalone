@@ -66,42 +66,42 @@ class FilterBar extends PureComponent {
           onClick={this.onClick("mention")}
           title={intl.formatMessage(tooltips.mentions)}
         >
-          <IconSVG id='arrow-bend-double-up-left' fixedWidth />
+          <IconSVG id={selectedFilter === 'mention' ? 'arrow-bend-double-up-left-filled' : 'arrow-bend-double-up-left'} fixedWidth />
         </button>
         <button
           className={selectedFilter === "favourite" ? "active" : ""}
           onClick={this.onClick("favourite")}
           title={intl.formatMessage(tooltips.favourites)}
         >
-          <IconSVG id='star' fixedWidth />
+          <IconSVG id={selectedFilter === 'favourite' ? 'star-filled' : 'star'} fixedWidth />
         </button>
         <button
           className={selectedFilter === "reblog" ? "active" : ""}
           onClick={this.onClick("reblog")}
           title={intl.formatMessage(tooltips.boosts)}
         >
-          <IconSVG id='rocket-launch' fixedWidth />
+          <IconSVG id={selectedFilter === 'reblog' ? 'rocket-launch-filled' : 'rocket-launch'} fixedWidth />
         </button>
         <button
           className={selectedFilter === "poll" ? "active" : ""}
           onClick={this.onClick("poll")}
           title={intl.formatMessage(tooltips.polls)}
         >
-          <IconSVG id='chart-bar-horizontal' fixedWidth />
+          <IconSVG id={selectedFilter === 'poll' ? 'chart-bar-horizontal-filled' : 'chart-bar-horizontal'} fixedWidth />
         </button>
         <button
           className={selectedFilter === "status" ? "active" : ""}
           onClick={this.onClick("status")}
           title={intl.formatMessage(tooltips.statuses)}
         >
-          <IconSVG id='house-line' fixedWidth />
+          <IconSVG id={selectedFilter === 'status' ? 'chat-circle-dots-filled' : 'chat-circle-dots'} fixedWidth />
         </button>
         <button
           className={selectedFilter === "follow" ? "active" : ""}
           onClick={this.onClick("follow")}
           title={intl.formatMessage(tooltips.follows)}
         >
-          <IconSVG id='user-plus' fixedWidth />
+          <IconSVG id={selectedFilter === 'follow' ? 'user-plus-filled' : 'user-plus'} fixedWidth />
         </button>
       </div>
     );

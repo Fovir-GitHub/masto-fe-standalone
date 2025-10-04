@@ -1,4 +1,12 @@
 /* 🦥 GoToSocial */
+
+/* Variables */
+:root {
+  --drawer-border-radius: 8px;
+  --button-border-radius: 6px;
+}
+
+/* Diff */
 .gts-icon {
   --size: 1em;
   display: inline-block;
