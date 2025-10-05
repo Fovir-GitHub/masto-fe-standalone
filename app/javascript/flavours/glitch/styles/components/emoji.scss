@@ -76,13 +76,7 @@
   padding-bottom: 2px;
   padding-inline-start: 2px;
   padding-inline-end: 5px;
-  outline: 0;
   cursor: pointer;
-
-  &:active,
-  &:focus {
-    outline: 0 !important;
-  }
 
   img {
     filter: grayscale(100%);

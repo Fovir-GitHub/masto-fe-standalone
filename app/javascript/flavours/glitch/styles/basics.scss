@@ -164,10 +164,6 @@ body {
 button {
   font-family: inherit;
   cursor: pointer;
-
-  &:focus {
-    outline: none;
-  }
 }
 
 .app-holder {
@@ -178,7 +174,6 @@ button {
     width: 100%;
     align-items: center;
     justify-content: center;
-    outline: 0 !important;
   }
 
   & > noscript {
@@ -250,7 +245,6 @@ button {
     margin: 0;
     line-height: inherit;
     cursor: pointer;
-    outline: 0;
     transition: color 300ms linear;
     text-decoration: underline;
 

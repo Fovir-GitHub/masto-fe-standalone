@@ -123,16 +123,6 @@
     border: 1px solid $ui-secondary-color;
     border-radius: 4px;
 
-    &::-moz-focus-inner {
-      border: 0;
-    }
-
-    &::-moz-focus-inner,
-    &:focus,
-    &:active {
-      outline: 0 !important;
-    }
-
     &::-webkit-search-cancel-button {
       display: none;
     }

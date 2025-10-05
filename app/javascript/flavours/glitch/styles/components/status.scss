@@ -57,10 +57,6 @@
   padding-top: 5px;
   clear: both;
 
-  &:focus {
-    outline: 0;
-  }
-
   .emojione {
     width: 20px;
     height: 20px;
@@ -213,7 +209,6 @@
 
 .focusable {
   &:focus {
-    outline: 0;
     background: lighten($ui-base-color, 4%);
 
     &.status.status-direct {

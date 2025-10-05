@@ -77,7 +77,6 @@
 
     &:focus,
     &:hover {
-      outline: none;
       background: lighten($ui-base-color, 3%);
       transition: background 200ms ease-out;
     }

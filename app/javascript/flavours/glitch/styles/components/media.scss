@@ -454,10 +454,6 @@
     height: 100% !important;
   }
 
-  &:focus {
-    outline: 0;
-  }
-
   .detailed-status & {
     width: 100%;
     height: 100%;
@@ -483,7 +479,6 @@
       max-height: 100% !important;
       width: 100% !important;
       height: 100% !important;
-      outline: 0;
     }
   }
 
@@ -590,7 +585,6 @@
 
     .player-button {
       display: inline-block;
-      outline: 0;
       flex: 0 0 auto;
       background: transparent;
       padding: 5px;

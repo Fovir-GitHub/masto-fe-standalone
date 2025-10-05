@@ -693,16 +693,11 @@
     line-height: 22px;
     resize: vertical;
     border: 0;
-    outline: 0;
     border-radius: 4px;
     margin: 20px 0;
 
     &::placeholder {
       color: $dark-text-color;
-    }
-
-    &:focus {
-      outline: 0;
     }
   }
 
@@ -821,7 +816,6 @@
     font-family: inherit;
     font-size: 14px;
     resize: none;
-    outline: 0;
     border-radius: 4px;
     border: 1px solid $ui-secondary-color;
     min-height: 100px;
@@ -1019,7 +1013,6 @@
     color: $inverted-text-color;
     display: inline-block;
     width: auto;
-    outline: 0;
     font-family: inherit;
     background: $simple-background-color
       url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 14.933 18.467' height='19.698' width='15.929'><path d='M3.467 14.967l-3.393-3.5H14.86l-3.392 3.5c-1.866 1.925-3.666 3.5-4 3.5-.335 0-2.135-1.575-4-3.5zm.266-11.234L7.467 0 11.2 3.733l3.733 3.734H0l3.733-3.734z' fill='#{hex-color(darken($simple-background-color, 14%))}'/></svg>")
@@ -1128,7 +1121,6 @@
     }
 
     .embed-modal__html {
-      outline: 0;
       box-sizing: border-box;
       display: block;
       width: 100%;
@@ -1141,16 +1133,6 @@
       margin: 0;
       margin-bottom: 15px;
       border-radius: 4px;
-
-      &::-moz-focus-inner {
-        border: 0;
-      }
-
-      &::-moz-focus-inner,
-      &:focus,
-      &:active {
-        outline: 0 !important;
-      }
 
       &:focus {
         background: lighten($ui-base-color, 4%);
@@ -1377,10 +1359,6 @@ img.modal-warning {
         &::placeholder {
           color: lighten($darker-text-color, 4%);
         }
-
-        &:focus {
-          outline: 0;
-        }
       }
 
       .button {
@@ -1477,7 +1455,6 @@ img.modal-warning {
     overflow: hidden;
 
     &:focus {
-      outline: 0;
       background: darken($ui-base-color, 4%);
     }
   }

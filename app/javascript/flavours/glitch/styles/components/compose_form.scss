@@ -50,7 +50,6 @@
     border-radius: 4px;
     padding: 10px;
     width: 100%;
-    outline: 0;
     color: $inverted-text-color;
     background: $simple-background-color;
     font-size: 14px;
@@ -61,9 +60,6 @@
       color: $dark-text-color;
     }
 
-    &:focus {
-      outline: 0;
-    }
     @include single-column('screen and (max-width: 630px)') {
       font-size: 16px;
     }
@@ -220,7 +216,6 @@
       padding: 10px 32px 0 10px;
       width: 100%;
       min-height: 100px;
-      outline: 0;
       color: $inverted-text-color;
       background: $simple-background-color;
       font-size: 14px;
@@ -234,10 +229,6 @@
 
       &::-webkit-scrollbar {
         all: unset;
-      }
-
-      &:focus {
-        outline: 0;
       }
 
       @include single-column('screen and (max-width: 630px)') {
@@ -670,7 +661,6 @@
         &.active {
           background: $ui-highlight-color;
           color: $primary-text-color;
-          outline: 0;
 
           .language-dropdown__dropdown__results__item__common-name {
             color: $secondary-text-color;
