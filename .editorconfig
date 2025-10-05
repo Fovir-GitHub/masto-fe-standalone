@@ -1,9 +1,7 @@
+root = true
+
 [*.scss]
 indent_size = 2
 
-[{
-    tangerine.scss,
-    login.scss,
-    **/tangerine/*.scss
-}]
+[login.scss]
 indent_size = 4
