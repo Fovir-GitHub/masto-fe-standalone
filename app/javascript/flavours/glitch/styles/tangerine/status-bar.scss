@@ -1,0 +1,12 @@
+/* 🚥 Status Bar */
+.status-favourite.active svg {
+    animation: bounce 0.4s ease-out;
+}
+
+.status-boost.active svg {
+    animation: launch 1.2s ease-in 1;
+}
+
+.status-bookmark.active svg {
+    animation: bounce-vertical 0.4s ease-out;
+}
