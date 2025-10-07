@@ -168,14 +168,14 @@
 
   &:hover,
   &:active,
-  &:focus {
+  &:focus-visible {
     color: lighten($action-button-color, 7%);
     background-color: rgba($action-button-color, 0.15);
     transition: all 200ms ease-out;
     transition-property: background-color, color;
   }
 
-  &:focus {
+  &:focus-visible {
     background-color: rgba($action-button-color, 0.3);
   }
 
@@ -213,12 +213,12 @@
 
     &:hover,
     &:active,
-    &:focus {
+    &:focus-visible {
       color: darken($lighter-text-color, 7%);
       background-color: rgba($lighter-text-color, 0.15);
     }
 
-    &:focus {
+    &:focus-visible {
       background-color: rgba($lighter-text-color, 0.3);
     }
 
@@ -288,14 +288,14 @@
 
   &:hover,
   &:active,
-  &:focus {
+  &:focus-visible {
     color: darken($lighter-text-color, 7%);
     background-color: rgba($lighter-text-color, 0.15);
     transition: all 200ms ease-out;
     transition-property: background-color, color;
   }
 
-  &:focus {
+  &:focus-visible {
     background-color: rgba($lighter-text-color, 0.3);
   }
 
