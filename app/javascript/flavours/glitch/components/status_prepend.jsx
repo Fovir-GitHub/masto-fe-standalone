@@ -28,10 +28,10 @@ export default class StatusPrepend extends PureComponent {
     let link = (
       <a
         onClick={this.handleClick}
-        href={account.get("url")}
-        className='status__display-name'
+        href={account.get('url')}
+        className='status__prepend-display-name'
       >
-        <b
+        <span
           dangerouslySetInnerHTML={{
             __html : account.get("display_name_html") || account.get("username"),
           }}

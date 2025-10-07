@@ -88,16 +88,6 @@
   height: var(--size);
 }
 
-.status__prepend {
-  margin-inline-start: 28px;
-}
-
-.status__prepend-icon {
-  --size: 18px;
-  width: var(--size);
-  height: var(--size);
-}
-
 .detailed-status__meta {
   display: flex;
   align-items: center;

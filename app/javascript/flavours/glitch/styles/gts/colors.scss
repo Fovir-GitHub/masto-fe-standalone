@@ -1,0 +1,14 @@
+/* 🎨 Colors */
+:root {
+    color-scheme: dark;
+
+    --color-accent: #8c8dff;
+    --color-accent-hover: #a3a3ff;
+    --color-accent-focus: var(--color-accent-hover);
+    --color-accent-fg: #9baec8;
+
+    --color-fg: #d6d2e0;
+    --color-secondary-bg: #13111f;
+    --color-content-fg: var(--color-fg);
+    --color-content-secondary-bg: var(--color-secondary-bg);
+}
