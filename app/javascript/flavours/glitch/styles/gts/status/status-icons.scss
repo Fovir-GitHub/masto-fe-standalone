@@ -1,0 +1,45 @@
+/* 🚥 Status: Icons */
+.status__info__icons {
+    position: relative;
+    display: flex;
+    gap: 5px;
+    align-items: start;
+    color: var(--color-secondary-fg);
+
+    svg.gts-icon {
+        display: block;
+        --size: 18px;
+    }
+
+    .text-icon {
+        line-height: 20px;
+    }
+
+    &::before {
+        position: absolute;
+        top: 0;
+        right: calc(100% + 5px);
+        width: 20px;
+        height: 100%;
+        content: '';
+        background: linear-gradient(90deg, transparent, var(--color-status-bg));
+        transition: all 0.2s;
+    }
+}
+
+.status__info__icons button.icon-button {
+    display: block;
+    color: inherit;
+
+    svg.gts-icon {
+        transition: transform ease-in-out 0.2s;
+    }
+
+    &.active svg.gts-icon {
+        transform: rotate(-180deg);
+    }
+
+    &:hover {
+        color: var(--color-accent-hover);
+    }
+}

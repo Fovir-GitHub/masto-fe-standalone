@@ -1,0 +1,29 @@
+/* 🚥 Status: Display name */
+.status__display-name {
+    align-self: start;
+    justify-self: start;
+    color: var(--color-content-fg);
+    font-size: 15px;
+    text-decoration: none;
+    overflow: hidden;
+
+    .display-name {
+        font-weight: 700;
+        text-overflow: clip;
+    }
+
+    .display-name__html {
+        font-weight: 700;
+    }
+
+    .display-name__account {
+        color: var(--color-secondary-fg);
+    }
+
+    &:hover .display-name__html {
+        text-decoration-line: underline;
+        text-decoration-color: currentColor;
+        text-decoration-thickness: 2px;
+        text-underline-offset: 2px;
+    }
+}

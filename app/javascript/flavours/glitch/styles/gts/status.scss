@@ -1,0 +1,15 @@
+/* 🚥 Status */
+@import 'status/status-account';
+@import 'status/status-display-name';
+@import 'status/status-icons';
+@import 'status/status-info';
+@import 'status/status-prepend';
+@import 'status/status-spoiler';
+
+.status__content {
+    line-height: 1.5;
+}
+
+.status__action-bar :is(a, button) {
+    color: var(--color-secondary-fg);
+}

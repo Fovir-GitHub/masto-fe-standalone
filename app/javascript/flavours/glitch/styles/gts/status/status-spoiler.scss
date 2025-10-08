@@ -1,0 +1,23 @@
+/* 🚥 Status: Spoiler link */
+.status__content__spoiler-link {
+    display: flex;
+    gap: 5px;
+    margin-top: 5px;
+    padding: 5px 8px;
+    border: 1px solid var(--color-secondary-fg);
+    border-radius: 8px;
+    color: var(--color-secondary-fg);
+    font-size: 12px;
+    font-weight: 500;
+    background: transparent;
+    transition: all 0.3s;
+
+    .gts-icon {
+        --size: 14px;
+    }
+
+    &:hover {
+        border-color: var(--color-fg);
+        color: var(--color-fg);
+    }
+}

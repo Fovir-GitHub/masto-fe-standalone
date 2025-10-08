@@ -48,13 +48,11 @@
 
 .status__content {
   position: relative;
-  margin: 10px 0;
   font-size: 15px;
   line-height: 20px;
   word-wrap: break-word;
   font-weight: 400;
   overflow: visible;
-  padding-top: 5px;
   clear: both;
 
   &:focus {
@@ -122,16 +120,6 @@
       font-size: 0.8em;
     }
   }
-
-  .status__content__spoiler-link {
-    background: lighten($ui-base-color, 30%);
-
-    &:hover,
-    &:focus {
-      background: lighten($ui-base-color, 33%);
-      text-decoration: none;
-    }
-  }
 }
 
 .translate-button {
@@ -141,36 +129,6 @@
   display: flex;
   justify-content: space-between;
   color: $dark-text-color;
-}
-
-.status__content__spoiler-link {
-  display: inline-block;
-  border-radius: 2px;
-  background: lighten($ui-base-color, 30%);
-  border: 0;
-  color: $inverted-text-color;
-  font-weight: 700;
-  font-size: 11px;
-  padding: 0 5px;
-  text-transform: uppercase;
-  line-height: inherit;
-  cursor: pointer;
-  vertical-align: top;
-
-  &:hover {
-    background: lighten($ui-base-color, 33%);
-    text-decoration: none;
-  }
-
-  .status__content__spoiler-icon {
-    display: inline-block;
-    margin-inline-start: 5px;
-    border-inline-start: 1px solid currentColor;
-    padding: 0;
-    padding-inline-start: 4px;
-    font-size: 16px;
-    vertical-align: -2px;
-  }
 }
 
 .notif-cleaning {
@@ -227,6 +185,9 @@
 }
 
 .status {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
   padding: 15px;
   position: relative;
   height: auto;
@@ -401,45 +362,6 @@
   overflow: hidden;
 }
 
-.status__info__account .status__display-name {
-  display: block;
-  max-width: 100%;
-}
-
-.status__info {
-  display: flex;
-  justify-content: space-between;
-  font-size: 15px;
-
-  > span {
-    text-overflow: ellipsis;
-    overflow: hidden;
-  }
-
-  .notification__message > span {
-    word-wrap: break-word;
-  }
-}
-
-.status__info__icons {
-  display: flex;
-  align-items: center;
-  height: 1em;
-  color: $action-button-color;
-
-  .status__media-icon,
-  .status__visibility-icon,
-  .status__reply-icon,
-  .text-icon {
-    padding-inline-start: 2px;
-    padding-inline-end: 2px;
-  }
-
-  .status__collapse-button.active > .svg-icon {
-    transform: rotate(-180deg);
-  }
-}
-
 .no-reduce-motion .status__collapse-button {
   &.activate {
     & > .fa-angle-double-up {
@@ -452,12 +374,6 @@
       animation: spring-flip-out 1s linear;
     }
   }
-}
-
-.status__info__account {
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
 }
 
 .status-check-box__status {
@@ -499,10 +415,15 @@
   display: flex;
   gap: 10px;
   align-items: center;
-  margin-top: 8px;
 
   svg.gts-icon {
     --size: 20px;
+  }
+
+  &.detailed-status__action-bar {
+    svg.gts-icon {
+      --size: 24px;
+    }
   }
 }
 
