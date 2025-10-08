@@ -27,11 +27,12 @@
 
 .status__prepend-display-name {
     color: inherit;
-    text-decoration: none;
+    text-decoration: underline;
+    text-decoration-color: var(--color-accent-muted-fg);
 
     &:hover {
         color: var(--color-accent-hover);
-        text-decoration: underline;
+        text-decoration-thickness: 2px;
     }
 
     &:focus-visible {
