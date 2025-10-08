@@ -21,9 +21,12 @@ export const fetchServer = () => (dispatch, getState) => {
 
   dispatch(fetchServerRequest());
 
+  /* global data */
   try {
     api(getState)
-      .get('/api/v2/instance').then({ data });
+      .get('/api/v2/instance').then({ data }).catch(error => {
+        console.error(error);
+      });
     if (data.contact.account) dispatch(importFetchedAccount(data.contact.account));
     dispatch(fetchServerSuccess(data));
   } catch (e) {
