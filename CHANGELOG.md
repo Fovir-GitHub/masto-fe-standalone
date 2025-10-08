@@ -26,6 +26,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [0.4.0] - 2025-05-14
 
+### Added
+
+- Added a step to JS linting (#35)
+- Added CONTRIBUTING.md (#36)
+
+### Fixed
+
+- Fixed an issue where the trailing space on a instance URL wasn’t removed (#38)
+- Fixed an issue where the “Automatically unfold content-warnings” setting wouldn’t unfold content-warnings (#46)
+
 ## [0.3.0] - 2025-04-03
 
 ### Added
