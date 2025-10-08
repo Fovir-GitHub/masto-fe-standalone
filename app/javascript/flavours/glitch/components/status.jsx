@@ -819,7 +819,6 @@ class Status extends ImmutablePureComponent {
           {(connectReply || connectUp || connectToRoot) && <div className={classNames("status__line", { "status__line--full": connectReply, "status__line--first": !status.get("in_reply_to_id") && !connectToRoot })} />}
 
           <header className='status__info'>
-            <span>
               {muted && prepend}
               {!muted || !isCollapsed ? (
                 <StatusHeader
@@ -829,7 +828,6 @@ class Status extends ImmutablePureComponent {
                   parseClick={parseClick}
                 />
               ) : null}
-            </span>
             <StatusIcons
               status={status}
               mediaIcons={contentMediaIcons.concat(extraMediaIcons)}
