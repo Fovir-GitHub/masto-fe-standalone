@@ -36,6 +36,27 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [0.2.0] - 2024-12-27
 
+### Added
+
+- Added theme selector to app settings
+- App settings are now stored locally for persistence (#2)
+
+### Changed
+
+- Media attachment cap is now read from instance settings
+- Changed spoiler/content-warning box to always be visible (#1)
+- Moved `use_blurhash` to app settings (#5)
+
+### Fixed
+
+- Fixed an issue where a spoiler would not be set
+- Fixed an issue where a “Can’t verify CSRF token authenticity” error message would appear (#2)
+- Fixed an issue where the logo / workmark wouldn’t appear (#4)
+
+### Removed
+
+- Removed unused development environment files (#3)
+
 ## [0.1.0] - 2025-12-19
 
 Initial release
