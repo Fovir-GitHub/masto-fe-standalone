@@ -28,35 +28,37 @@ module.exports = merge(sharedConfig, {
   },
 
   devServer: {
-    clientLogLevel: 'none',
     compress: settings.dev_server.compress,
-    quiet: settings.dev_server.quiet,
-    disableHostCheck: settings.dev_server.disable_host_check,
     host: settings.dev_server.host,
     port: settings.dev_server.port,
     https: settings.dev_server.https,
     hot: settings.dev_server.hmr,
-    contentBase: settings.public_root_path,
-    inline: settings.dev_server.inline,
-    useLocalIp: settings.dev_server.use_local_ip,
-    public: settings.dev_server.public,
-    publicPath: output.publicPath,
     historyApiFallback: {
       disableDotRule: true,
     },
     headers: settings.dev_server.headers,
-    overlay: settings.dev_server.overlay,
-    stats: {
-      entrypoints: false,
-      errorDetails: false,
-      modules: false,
-      moduleTrace: false,
+    client: {
+      logging: 'none',
+      overlay: settings.dev_server.overlay,
     },
-    watchOptions: Object.assign(
-      {},
-      settings.dev_server.watch_options,
-      watchOptions,
-    ),
-    writeToDisk: filePath => /ocr/.test(filePath),
+    static: {
+      directory: settings.public_root_path,
+      serveIndex: true,
+      watch: Object.assign(
+        {},
+        settings.dev_server.watch_options,
+        watchOptions,
+      ),
+    },
+    devMiddleware: {
+      publicPath: output.publicPath,
+      stats: {
+        entrypoints: false,
+        errorDetails: false,
+        modules: false,
+        moduleTrace: false,
+      },
+      writeToDisk: filePath => /ocr/.test(filePath)
+    }
   },
 });

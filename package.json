@@ -213,7 +213,7 @@
     "stylelint": "^15.10.1",
     "stylelint-config-standard-scss": "^11.0.0",
     "typescript": "^5.0.4",
-    "webpack-dev-server": "^3.11.3",
+    "webpack-dev-server": "^4.0.0",
     "yargs": "^17.7.2"
   },
   "resolutions": {
