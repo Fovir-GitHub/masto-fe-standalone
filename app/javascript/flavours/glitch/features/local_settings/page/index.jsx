@@ -109,6 +109,35 @@ class LocalSettingsPage extends PureComponent {
           <FormattedMessage id='settings.rewrite_mentions' defaultMessage='Rewrite mentions in displayed statuses' />
         </LocalSettingsPageItem>
         <section>
+          <h2><FormattedMessage id='settings.confirmation_dialogs' defaultMessage='Confirmation Dialogs'/></h2>
+          <LocalSettingsPageItem
+            settings={settings}
+            item={['confirm_unfollow']}
+            id='mastodon-settings--confirm_unfollow'
+            onChange={onChange}
+          >
+            <FormattedMessage id='settings.confirm_unfollow' defaultMessage='Show confirmation dialog before unfollowing an account' />
+          </LocalSettingsPageItem>
+          <LocalSettingsPageItem
+            settings={settings}
+            item={['confirm_boost']}
+            id='mastodon-settings--confirm_boost'
+            onChange={onChange}
+          >
+            <FormattedMessage id='settings.confirm_boost' defaultMessage='Show confirmation dialog before boosting' />
+          </LocalSettingsPageItem>
+          
+          <LocalSettingsPageItem
+            settings={settings}
+            item={['confirm_delete']}
+            id='mastodon-settings--confirm_delete'
+            onChange={onChange}
+          >
+            <FormattedMessage id='settings.confirm_post_deletion' defaultMessage='Show confirmation dialog before deleting a post' />
+          </LocalSettingsPageItem>
+          
+        </section>
+        <section>
           <h2><FormattedMessage id='settings.notifications_opts' defaultMessage='Notifications options' /></h2>
           <LocalSettingsPageItem
             settings={settings}
