@@ -357,6 +357,8 @@ class Status extends ImmutablePureComponent {
     if (signedIn) {
       if (settings.get('confirm_boost_missing_media_description') && status.get('media_attachments').some(item => !item.get('description')) && !status.get('reblogged')) {
         dispatch(initBoostModal({ status, onReblog: this.handleModalReblog, missingMediaDescription: true }));
+      } else if (settings.get('confirm_boost') && !e.shiftKey && !status.get('reblogged')) {
+        dispatch(initBoostModal({ status, onReblog:this.handleModalReblog}));
       } else if ((e && e.shiftKey) || !boostModal) {
         this.handleModalReblog(status);
       } else {
