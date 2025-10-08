@@ -30,9 +30,18 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- Added instructions for testing locally (#12)
+- Added a `yarn dev` command for easier development (#16)
 - Added a nicer login page design (#19)
 
-### Changed
+### Fixed
+
+- Fixed an issue where local only statuses weren’t local only (#13)
+- Fixed an issue where `blurhash` would lose proportion (#17)
+
+### Removed
+
+- Removed hardcoded limit for media (#11)
 
 ## [0.2.0] - 2024-12-27
 
