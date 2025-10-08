@@ -24,6 +24,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [0.5.0] - 2025-07-14
 
+### Added
+
+- Added a logout button to the sidebar (#48)
+
+### Fixed
+
+- Fixed an incorrect port number in the documentation (#58)
+- Fixed an issue where the media description character limit wasn’t read from the instance settings (#62, #63)
+
 ## [0.4.0] - 2025-05-14
 
 ### Added
