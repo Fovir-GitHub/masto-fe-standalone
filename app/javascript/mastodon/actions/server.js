@@ -20,8 +20,8 @@ export const fetchServer = () => (dispatch, getState) => {
   /* global data */
   try {
     api(getState)
-      .get('/api/v2/instance').then({ data }).catch(err => {
-        throw new Error(err);
+      .get('/api/v2/instance').then({ data }).catch(error => {
+        console.error(error);
       });
     if (data.contact.account) dispatch(importFetchedAccount(data.contact.account));
     dispatch(fetchServerSuccess(data));
