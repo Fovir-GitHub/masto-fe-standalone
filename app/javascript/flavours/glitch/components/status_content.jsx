@@ -360,6 +360,7 @@ class StatusContent extends PureComponent {
             <span dangerouslySetInnerHTML={spoilerContent} className='translate' lang={language} />
             {" "}
             <button type='button' className='status__content__spoiler-link' onClick={this.handleSpoilerClick} aria-expanded={!hidden}>
+              <IconSVG id={hidden ? 'eye-closed' : 'eye'} />
               {toggleText}
             </button>
           </p>
