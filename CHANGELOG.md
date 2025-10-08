@@ -9,14 +9,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
-- Added an .editorconfig
 - Added documentation for `yarn dev` (#75)
+- Added an .editorconfig (#78)
+- Added a changelog basaed on “Keep a Changelog” (#80)
 
 ### Changed
 
 - Preserve ‘mastodon-settings’ in localStorage (#66)
 - Redesigned the login page (#76)
-- Changed icons to the Phosphor iconset (#77)
 
 ### Fixed
 
