@@ -455,6 +455,19 @@ $ui-header-height: 55px;
   margin-inline-end: 10px;
 }
 
+.column-header__notif-cleaning-buttons {
+  display: flex;
+  gap: 5px;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  padding: 5px;
+}
+
+.column-header__notif-cleaning-buttons .column-header__button {
+  padding: 5px;
+}
+
 .layout-single-column .column-header__notif-cleaning-buttons {
   @media screen and (min-width: $no-gap-breakpoint) {
     b,

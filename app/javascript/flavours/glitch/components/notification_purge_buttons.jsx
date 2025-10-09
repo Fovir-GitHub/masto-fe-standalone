@@ -17,10 +17,10 @@ import ImmutablePureComponent from "react-immutable-pure-component";
 import { Icon } from "flavours/glitch/components/icon";
 
 const messages = defineMessages({
-  btnAll : { id: "notification_purge.btn_all", defaultMessage: "Select\nall" },
-  btnNone : { id: "notification_purge.btn_none", defaultMessage: "Select\nnone" },
-  btnInvert : { id: "notification_purge.btn_invert", defaultMessage: "Invert\nselection" },
-  btnApply : { id: "notification_purge.btn_apply", defaultMessage: "Clear\nselected" },
+  btnAll : { id: 'notification_purge.btn_all', defaultMessage: 'All' },
+  btnNone : { id: 'notification_purge.btn_none', defaultMessage: 'None' },
+  btnInvert : { id: 'notification_purge.btn_invert', defaultMessage: 'Invert' },
+  btnApply : { id: 'notification_purge.btn_apply', defaultMessage: 'Remove' },
 });
 
 class NotificationPurgeButtons extends ImmutablePureComponent {
@@ -37,23 +37,22 @@ class NotificationPurgeButtons extends ImmutablePureComponent {
   render () {
     const { intl, markNewForDelete } = this.props;
 
-    //className='active'
     return (
       <div className='column-header__notif-cleaning-buttons'>
-        <button onClick={this.props.onMarkAll} className={classNames("column-header__button", { active: markNewForDelete })}>
-          <b>∀</b><br />{intl.formatMessage(messages.btnAll)}
+        <button onClick={this.props.onMarkAll} className={classNames('column-header__button')}>
+          {intl.formatMessage(messages.btnAll)}
         </button>
 
-        <button onClick={this.props.onMarkNone} className={classNames("column-header__button", { active: !markNewForDelete })}>
-          <b>∅</b><br />{intl.formatMessage(messages.btnNone)}
+        <button onClick={this.props.onMarkNone} className={classNames('column-header__button')}>
+          {intl.formatMessage(messages.btnNone)}
         </button>
 
         <button onClick={this.props.onInvert} className='column-header__button'>
-          <b>¬</b><br />{intl.formatMessage(messages.btnInvert)}
+          {intl.formatMessage(messages.btnInvert)}
         </button>
 
         <button onClick={this.props.onDeleteMarked} className='column-header__button'>
-          <Icon id='trash' /><br />{intl.formatMessage(messages.btnApply)}
+          {intl.formatMessage(messages.btnApply)}
         </button>
       </div>
     );
