@@ -66,9 +66,9 @@ class NewListForm extends PureComponent {
           />
         </label>
 
-        <IconButton
+        <IconSVGButton
           disabled={disabled || !value}
-          icon='plus'
+          icon='list-plus'
           title={title}
           onClick={this.handleClick}
         />

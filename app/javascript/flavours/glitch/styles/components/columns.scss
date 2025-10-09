@@ -757,6 +757,11 @@ $ui-header-height: 55px;
   .icon-button {
     flex: 0 0 auto;
     margin: 0 5px;
+    padding: 6px;
+  }
+
+  .gts-icon {
+    --size: 20px;
   }
 }
 
