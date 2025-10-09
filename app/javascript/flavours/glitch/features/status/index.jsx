@@ -52,7 +52,7 @@ import ScrollContainer from 'flavours/glitch/containers/scroll_container';
 import StatusContainer from 'flavours/glitch/containers/status_container';
 import BundleColumnError from 'flavours/glitch/features/ui/components/bundle_column_error';
 import Column from 'flavours/glitch/features/ui/components/column';
-import { boostModal, favouriteModal, deleteModal } from 'flavours/glitch/initial_state';
+import { favouriteModal, deleteModal } from 'flavours/glitch/initial_state';
 import { makeGetStatus, makeGetPictureInPicture } from 'flavours/glitch/selectors';
 import { autoUnfoldCW } from 'flavours/glitch/utils/content_warning';
 
@@ -357,9 +357,7 @@ class Status extends ImmutablePureComponent {
     if (signedIn) {
       if (settings.get('confirm_boost_missing_media_description') && status.get('media_attachments').some(item => !item.get('description')) && !status.get('reblogged')) {
         dispatch(initBoostModal({ status, onReblog: this.handleModalReblog, missingMediaDescription: true }));
-      } else if (settings.get('confirm_boost') && !e.shiftKey && !status.get('reblogged')) {
-        dispatch(initBoostModal({ status, onReblog:this.handleModalReblog}));
-      } else if ((e && e.shiftKey) || !boostModal) {
+      } else if ((e && e.shiftKey) || !settings.get('confirm_boost') || status.get('reblogged')) {
         this.handleModalReblog(status);
       } else {
         dispatch(initBoostModal({ status, onReblog: this.handleModalReblog }));

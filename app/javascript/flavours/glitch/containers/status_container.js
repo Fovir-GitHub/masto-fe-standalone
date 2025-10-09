@@ -38,7 +38,7 @@ import {
   undoStatusTranslation,
 } from 'flavours/glitch/actions/statuses';
 import Status from 'flavours/glitch/components/status';
-import { boostModal, favouriteModal, deleteModal } from 'flavours/glitch/initial_state';
+import { favouriteModal, deleteModal } from 'flavours/glitch/initial_state';
 import { makeGetStatus, makeGetPictureInPicture } from 'flavours/glitch/selectors';
 
 import { showAlertForError } from '../actions/alerts';
@@ -127,9 +127,7 @@ const mapDispatchToProps = (dispatch, { intl, contextType }) => ({
       let state = getState();
       if (state.getIn(['local_settings', 'confirm_boost_missing_media_description']) && status.get('media_attachments').some(item => !item.get('description')) && !status.get('reblogged')) {
         dispatch(initBoostModal({ status, onReblog: this.onModalReblog, missingMediaDescription: true }));
-      } else if (state.getIn(['local_settings', 'confirm_boost']) && !e.shiftKey && !status.get('reblogged')) {
-        dispatch(initBoostModal({ status, onReblog: this.onModalReblog }));
-      } else if ( e.shiftKey || !boostModal) {
+      } else if ( e.shiftKey || !state.getIn(['local_settings', 'confirm_boost']) || status.get('reblogged')) {
         this.onModalReblog(status);
       } else {
         dispatch(initBoostModal({ status, onReblog: this.onModalReblog }));
