@@ -333,7 +333,8 @@ $ui-header-height: 55px;
 .column-header > button,
 .column-header__button,
 .column-header__back-button,
-.column-header__footer-button {
+.column-header__footer-button,
+.column-header__setting-btn {
   display: flex;
   border: 0;
   color: inherit;
@@ -400,7 +401,8 @@ $ui-header-height: 55px;
   }
 }
 
-.column-header__footer-button {
+.column-header__footer-button,
+.column-header__setting-btn {
   gap: 5px;
   align-items: center;
   padding: 6px;
@@ -526,6 +528,11 @@ $ui-header-height: 55px;
     color: $darker-text-color;
     text-decoration: underline;
   }
+}
+
+.column-header__button-row {
+  display: flex;
+  gap: 5px;
 }
 
 .column-header__collapsible__extra + .column-header__setting-btn {

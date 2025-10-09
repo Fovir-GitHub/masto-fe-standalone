@@ -190,13 +190,15 @@ class ListTimeline extends PureComponent {
           pinned={pinned}
           multiColumn={multiColumn}
         >
-          <div className='column-settings__row column-header__links'>
+          <div className='column-settings__row column-header__links column-header__button-row'>
             <button type='button' className='text-btn column-header__setting-btn' tabIndex={0} onClick={this.handleEditClick}>
-              <Icon id='pencil' /> <FormattedMessage id='lists.edit' defaultMessage='Edit list' />
+              <IconSVG id='pencil-simple-line' />
+              <FormattedMessage id='lists.edit' defaultMessage='Edit list' />
             </button>
 
             <button type='button' className='text-btn column-header__setting-btn' tabIndex={0} onClick={this.handleDeleteClick}>
-              <Icon id='trash' /> <FormattedMessage id='lists.delete' defaultMessage='Delete list' />
+              <IconSVG id='trash' />
+              <FormattedMessage id='lists.delete' defaultMessage='Delete list' />
             </button>
           </div>
 
