@@ -122,7 +122,7 @@ class StatusIcons extends PureComponent {
         {settings.get("local_only") && status.get("local_only") &&
           <Icon
             fixedWidth
-            id='home'
+            id='house-line'
             aria-hidden='true'
             title={intl.formatMessage(messages.localOnly)}
           />}
