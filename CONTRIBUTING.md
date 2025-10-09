@@ -4,7 +4,11 @@
 
 ## Dependencies
 
-To work on the code decently, you should have Node and Yarn installed. To avoid fuckery, Node Version Manager is **highly recommended**: https://github.com/nvm-sh/nvm.
+To work on the code, you must have Node installed.
+
+To avoid fuckery, Node Version Manager is **highly recommended**: https://github.com/nvm-sh/nvm. You can then install the latest `lts` version of node with `nvm install --lts && nvm use --lts`.
+
+You should install yarn as described [here](https://yarnpkg.com/getting-started/install) and/or [here](https://yarnpkg.com/migration/guide).
 
 ## Testing Locally
 
