@@ -332,7 +332,8 @@ $ui-header-height: 55px;
 
 .column-header > button,
 .column-header__button,
-.column-header__back-button {
+.column-header__back-button,
+.column-header__footer-button {
   display: flex;
   border: 0;
   color: inherit;
@@ -381,6 +382,45 @@ $ui-header-height: 55px;
 
 .column-header__back-button {
   color: $highlight-text-color;
+}
+
+.column-header__footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--size-layout-gap);
+}
+
+.column-header__footer-arrows {
+  display: flex;
+  gap: 5px;
+
+  .rtl & {
+    flex-direction: row-reverse;
+  }
+}
+
+.column-header__footer-button {
+  gap: 5px;
+  align-items: center;
+  padding: 6px;
+  border-radius: var(--button-border-radius);
+  color: inherit;
+
+  .gts-icon {
+    --size: 20px;
+  }
+
+  &:focus-visible,
+  &:hover,
+  &.active {
+    color: inherit;
+    background: darken($ui-base-color, 4%);
+  }
+
+  &:active {
+    transform: scale(0.9);
+  }
 }
 
 .column {

@@ -135,7 +135,7 @@ class PublicTimeline extends PureComponent {
     return (
       <Column bindToDocument={!multiColumn} ref={this.setRef} name='federated' label={intl.formatMessage(messages.title)}>
         <ColumnHeader
-          icon='globe'
+          icon='planet'
           active={hasUnread}
           title={intl.formatMessage(messages.title)}
           onPin={this.handlePin}
