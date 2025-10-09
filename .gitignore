@@ -55,6 +55,9 @@ npm-debug.log
 yarn-error.log
 yarn-debug.log
 
+# Ignore yarn state file
+.yarn/install-state.gz
+
 # Ignore vagrant log files
 *-cloudimg-console.log
 

@@ -1,6 +1,6 @@
 steps:
   lint:
-    image: node:22-alpine
+    image: docker.io/superseriousbusiness/masto-fe-standalone-woodpecker-build:0.1.0
     pull: true
 
     # https://woodpecker-ci.org/docs/usage/volumes
