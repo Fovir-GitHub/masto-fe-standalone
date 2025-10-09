@@ -281,11 +281,13 @@
     border-bottom: 1px solid lighten($ui-base-color, 8%);
   }
 
-  .column-header,
-  .column-back-button,
-  .scrollable,
-  .error-column {
-    border-radius: 0 !important;
+  .layout-single-column {
+    .column-header,
+    .column-back-button,
+    .scrollable,
+    .error-column {
+      border-radius: 0 !important;
+    }
   }
 }
 
