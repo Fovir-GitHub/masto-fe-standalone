@@ -52,7 +52,7 @@ import ScrollContainer from 'flavours/glitch/containers/scroll_container';
 import StatusContainer from 'flavours/glitch/containers/status_container';
 import BundleColumnError from 'flavours/glitch/features/ui/components/bundle_column_error';
 import Column from 'flavours/glitch/features/ui/components/column';
-import { favouriteModal, deleteModal } from 'flavours/glitch/initial_state';
+import { favouriteModal } from 'flavours/glitch/initial_state';
 import { makeGetStatus, makeGetPictureInPicture } from 'flavours/glitch/selectors';
 import { autoUnfoldCW } from 'flavours/glitch/utils/content_warning';
 
@@ -385,7 +385,7 @@ class Status extends ImmutablePureComponent {
   handleDeleteClick = (status, history, withRedraft = false) => {
     const { dispatch, intl } = this.props;
 
-    if (!deleteModal) {
+    if (!settings.get('confirm_delete')) {
       dispatch(deleteStatus(status.get('id'), history, withRedraft));
     } else {
       dispatch(openModal({

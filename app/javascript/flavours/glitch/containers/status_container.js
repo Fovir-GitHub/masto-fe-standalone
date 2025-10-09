@@ -38,7 +38,7 @@ import {
   undoStatusTranslation,
 } from 'flavours/glitch/actions/statuses';
 import Status from 'flavours/glitch/components/status';
-import { favouriteModal, deleteModal } from 'flavours/glitch/initial_state';
+import { favouriteModal } from 'flavours/glitch/initial_state';
 import { makeGetStatus, makeGetPictureInPicture } from 'flavours/glitch/selectors';
 
 import { showAlertForError } from '../actions/alerts';
@@ -184,18 +184,20 @@ const mapDispatchToProps = (dispatch, { intl, contextType }) => ({
   },
 
   onDelete (status, history, withRedraft = false) {
-    if (state.getIn(['local_settings', 'confirm_delete']) ) {
-      dispatch(deleteStatus(status.get('id'), history, withRedraft));
-    } else {
-      dispatch(openModal({
-        modalType: 'CONFIRM',
-        modalProps: {
-          message: intl.formatMessage(withRedraft ? messages.redraftMessage : messages.deleteMessage),
-          confirm: intl.formatMessage(withRedraft ? messages.redraftConfirm : messages.deleteConfirm),
-          onConfirm: () => dispatch(deleteStatus(status.get('id'), history, withRedraft)),
-        },
-      }));
-    }
+    dispatch((_, getState) => {
+      let state = getState(); // state used to be passed as a global variable through `deleteModal`, but everything else works like this (see non-described media and clearing drafts, for example)
+      if (!state.getIn(['local_settings', 'confirm_delete'])) {
+        dispatch(deleteStatus(status.get('id'), history, withRedraft));
+      } else {
+        dispatch(openModal({
+          modalType: 'CONFIRM',
+          modalProps: {
+            message: intl.formatMessage(withRedraft ? messages.redraftMessage : messages.deleteMessage),
+            confirm: intl.formatMessage(withRedraft ? messages.redraftConfirm : messages.deleteConfirm),
+            onConfirm: () => dispatch(deleteStatus(status.get('id'), history, withRedraft)),
+          },
+      }))};
+    });
   },
 
   onEdit (status, history) {
