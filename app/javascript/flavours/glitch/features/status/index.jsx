@@ -278,7 +278,7 @@ class Status extends ImmutablePureComponent {
       if (status.get('favourited')) {
         dispatch(unfavourite(status));
       } else {
-        if ((e && e.shiftKey) || !favouriteModal) {
+        if ((e && e.shiftKey) || !settings.get('confirm_favourite')) {
           this.handleModalFavourite(status);
         } else {
           dispatch(openModal({

@@ -38,7 +38,6 @@ import {
   undoStatusTranslation,
 } from 'flavours/glitch/actions/statuses';
 import Status from 'flavours/glitch/components/status';
-import { favouriteModal } from 'flavours/glitch/initial_state';
 import { makeGetStatus, makeGetPictureInPicture } from 'flavours/glitch/selectors';
 
 import { showAlertForError } from '../actions/alerts';
@@ -148,10 +147,12 @@ const mapDispatchToProps = (dispatch, { intl, contextType }) => ({
   },
 
   onFavourite (status, e) {
+    dispatch((_, getState) => {
+    let state = getState();
     if (status.get('favourited')) {
       dispatch(unfavourite(status));
     } else {
-      if (e.shiftKey || !favouriteModal) {
+      if (e.shiftKey || !state.getIn(['local_settings', 'confirm_favourite'])) {
         this.onModalFavourite(status);
       } else {
         dispatch(openModal({
@@ -162,7 +163,7 @@ const mapDispatchToProps = (dispatch, { intl, contextType }) => ({
           },
         }));
       }
-    }
+    }});
   },
 
   onPin (status) {
