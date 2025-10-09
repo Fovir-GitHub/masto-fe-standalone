@@ -23,8 +23,9 @@ const initialState = ImmutableMap({
   tag_misleading_links: true,
   rewrite_mentions: 'no',
   confirm_unfollow: true,
-  confirm_boost: false,
   confirm_delete: true,
+  confirm_boost: false,
+  confirm_favourite: false,
   content_warnings : ImmutableMap({
     auto_unfold  : false,
     filter       : null,
