@@ -270,7 +270,7 @@ class Status extends ImmutablePureComponent {
   };
 
   handleFavouriteClick = (status, e) => {
-    const { dispatch } = this.props;
+    const { settings, dispatch } = this.props;
     const { signedIn } = this.context.identity;
 
     if (signedIn) {
@@ -382,7 +382,7 @@ class Status extends ImmutablePureComponent {
   };
 
   handleDeleteClick = (status, history, withRedraft = false) => {
-    const { dispatch, intl } = this.props;
+    const { settings, dispatch, intl } = this.props;
 
     if (!settings.get('confirm_delete')) {
       dispatch(deleteStatus(status.get('id'), history, withRedraft));
