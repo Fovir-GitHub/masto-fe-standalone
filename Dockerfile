@@ -1,5 +1,5 @@
 ### BUILDER IMAGE ###
-FROM node:lts-alpine AS builder
+FROM docker.io/superseriousbusiness/masto-fe-standalone-woodpecker-build:0.1.0 AS builder
 
 # Prepare the build directory, copy
 # relevant source + config files over.
