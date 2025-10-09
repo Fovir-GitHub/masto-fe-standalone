@@ -21,6 +21,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 
 - Updated caniuse-lite browserlist (#82)
+- Fixed various linter issues (#85)
+- Updated Prettier to 3.6.2 (#86)
 
 ## [0.5.0] - 2025-07-14
 
