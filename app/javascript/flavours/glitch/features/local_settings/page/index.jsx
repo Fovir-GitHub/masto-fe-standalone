@@ -116,7 +116,7 @@ class LocalSettingsPage extends PureComponent {
             id='mastodon-settings--confirm_unfollow'
             onChange={onChange}
           >
-            <FormattedMessage id='settings.confirm_unfollow' defaultMessage='Show confirmation dialog before unfollowing an account' />
+            <FormattedMessage id='settings.confirm_unfollow' defaultMessage='Show a confirmation dialog before unfollowing an account' />
           </LocalSettingsPageItem>
           <LocalSettingsPageItem
             settings={settings}
@@ -124,7 +124,7 @@ class LocalSettingsPage extends PureComponent {
             id='mastodon-settings--confirm_boost'
             onChange={onChange}
           >
-            <FormattedMessage id='settings.confirm_boost' defaultMessage='Show confirmation dialog before boosting' />
+            <FormattedMessage id='settings.confirm_boost' defaultMessage='Show a confirmation dialog before boosting' />
           </LocalSettingsPageItem>
           
           <LocalSettingsPageItem
@@ -133,7 +133,7 @@ class LocalSettingsPage extends PureComponent {
             id='mastodon-settings--confirm_deletion'
             onChange={onChange}
           >
-            <FormattedMessage id='settings.confirm_post_deletion' defaultMessage='Show confirmation dialog before deleting a post' />
+            <FormattedMessage id='settings.confirm_post_deletion' defaultMessage='Show a confirmation dialog before deleting a post' />
           </LocalSettingsPageItem>
           
         </section>
