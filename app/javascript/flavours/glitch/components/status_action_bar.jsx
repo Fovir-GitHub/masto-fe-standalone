@@ -208,7 +208,6 @@ class StatusActionBar extends ImmutablePureComponent {
     const isRemote           = status.getIn(["account", "username"]) !== status.getIn(["account", "acct"]);
 
     let menu = [];
-    let reblogIcon = 'rocket-launch';
     let replyIcon;
     let replyTitle;
 

@@ -16,8 +16,6 @@ import { assetHost } from "flavours/glitch/utils/config";
 import { buildCustomEmojis, categoriesFromEmojis } from "../../emoji/emoji";
 import { EmojiPicker as EmojiPickerAsync } from "../../ui/util/async-components";
 
-import { IconSVG } from 'flavours/glitch/components/icon_svg';
-
 const messages = defineMessages({
   emoji: { id: "emoji_button.label", defaultMessage: "Insert emoji" },
   emoji_search: { id: "emoji_button.search", defaultMessage: "Search..." },

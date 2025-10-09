@@ -117,10 +117,10 @@ class ColumnHeader extends PureComponent {
     }
 
     if (multiColumn && pinned) {
-      pinButton = <button key='pin-button' className='text-btn column-header__setting-btn' onClick={this.handlePin}>
+      pinButton = (<button key='pin-button' className='text-btn column-header__setting-btn' onClick={this.handlePin}>
         <IconSVG id='x' />
         <FormattedMessage id='column_header.unpin' defaultMessage='Unpin' />
-      </button>;
+      </button>);
 
       moveButtons = (
         <div key='move-buttons' className='column-header__setting-arrows'>
