@@ -15,6 +15,7 @@ steps:
 
     # https://woodpecker-ci.org/docs/usage/workflow-syntax#commands
     commands:
+      - corepack enable && corepack prepare yarn@berry
       - yarn
       - yarn lint:js
 
