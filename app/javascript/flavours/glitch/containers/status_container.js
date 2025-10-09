@@ -184,7 +184,7 @@ const mapDispatchToProps = (dispatch, { intl, contextType }) => ({
   },
 
   onDelete (status, history, withRedraft = false) {
-    if (!deleteModal) {
+    if (state.getIn(['local_settings', 'confirm_delete']) ) {
       dispatch(deleteStatus(status.get('id'), history, withRedraft));
     } else {
       dispatch(openModal({

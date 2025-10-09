@@ -129,11 +129,11 @@ class LocalSettingsPage extends PureComponent {
           
           <LocalSettingsPageItem
             settings={settings}
-            item={['confirm_deletion']}
-            id='mastodon-settings--confirm_deletion'
+            item={['confirm_delete']}
+            id='mastodon-settings--confirm_delete'
             onChange={onChange}
           >
-            <FormattedMessage id='settings.confirm_post_deletion' defaultMessage='Show a confirmation dialog before deleting a post' />
+            <FormattedMessage id='settings.confirm_delete' defaultMessage='Show a confirmation dialog before deleting a post' />
           </LocalSettingsPageItem>
           
         </section>

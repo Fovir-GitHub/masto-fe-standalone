@@ -24,7 +24,7 @@ const initialState = ImmutableMap({
   rewrite_mentions: 'no',
   confirm_unfollow: true,
   confirm_boost: false,
-  confirm_deletion: true,
+  confirm_delete: true,
   content_warnings : ImmutableMap({
     auto_unfold  : false,
     filter       : null,
