@@ -52,7 +52,6 @@ import ScrollContainer from 'flavours/glitch/containers/scroll_container';
 import StatusContainer from 'flavours/glitch/containers/status_container';
 import BundleColumnError from 'flavours/glitch/features/ui/components/bundle_column_error';
 import Column from 'flavours/glitch/features/ui/components/column';
-import { favouriteModal } from 'flavours/glitch/initial_state';
 import { makeGetStatus, makeGetPictureInPicture } from 'flavours/glitch/selectors';
 import { autoUnfoldCW } from 'flavours/glitch/utils/content_warning';
 
