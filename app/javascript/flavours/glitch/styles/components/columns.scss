@@ -1029,10 +1029,19 @@ $ui-header-height: 55px;
 
   &__action {
     float: right;
-    padding: 15px 10px;
 
     .icon-button {
       color: $highlight-text-color;
+    }
+
+    .dismissable-banner__action-button {
+      margin: 5px;
+      padding: 6px;
+    }
+
+    .gts-icon {
+      --size: 20px;
+      display: block;
     }
   }
 }
