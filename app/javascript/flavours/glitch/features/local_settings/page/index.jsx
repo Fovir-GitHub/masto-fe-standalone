@@ -136,11 +136,11 @@ class LocalSettingsPage extends PureComponent {
           </LocalSettingsPageItem>
           <LocalSettingsPageItem
             settings={settings}
-            item={['confirm_favorite']}
-            id='mastodon-settings--confirm_favorite'
+            item={['confirm_favourite']}
+            id='mastodon-settings--confirm_favourite'
             onChange={onChange}
           >
-            <FormattedMessage id='settings.confirm_favorite' defaultMessage='Show a confirmation dialog before favoriting a post' />
+            <FormattedMessage id='settings.confirm_favourite' defaultMessage='Show a confirmation dialog before favouriting a post' />
           </LocalSettingsPageItem>
           
         </section>

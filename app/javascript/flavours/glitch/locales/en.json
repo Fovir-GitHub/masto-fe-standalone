@@ -166,6 +166,7 @@
   "settings.confirm_unfollow": "Show a confirmation dialog before unfollowing an account",
   "settings.confirm_boost": "Show a confirmation dialog before boosting",
   "settings.confirm_delete": "Show a confirmation dialog before deleting a post",
+  "settings.confirm_favourite": "Show a confirmation dialog before favouriting a post",
   "settings.shared_settings_link": "user preferences",
   "settings.show_action_bar": "Show action buttons in collapsed toots",
   "settings.show_content_type_choice": "Show content-type choice when authoring toots",
