@@ -2,22 +2,22 @@ steps:
   lint:
     image: node:22-alpine
     pull: true
-    
+
     # https://woodpecker-ci.org/docs/usage/volumes
     volumes:
       - /woodpecker/masto-fe-standalone/node_modules:/woodpecker/src/codeberg.org/superseriousbusiness/masto-fe-standalone/node_modules
       - /woodpecker/masto-fe-standalone/.eslintcache:/woodpecker/src/codeberg.org/superseriousbusiness/masto-fe-standalone/.eslintcache
-    
+
     # https://woodpecker-ci.org/docs/administration/configuration/backends/docker#run-user
     backend_options:
       docker:
         user: 1000:1000
-    
+
     # https://woodpecker-ci.org/docs/usage/workflow-syntax#commands
     commands:
       - yarn
       - yarn lint:js
-    
+
     # https://woodpecker-ci.org/docs/usage/workflow-syntax#when---conditional-execution
     when:
       - event: pull_request

@@ -23,9 +23,8 @@ import Audio from 'mastodon/features/audio';
 import CharacterCounter from 'mastodon/features/compose/components/character_counter';
 import UploadProgress from 'mastodon/features/compose/components/upload_progress';
 import { Tesseract as fetchTesseract } from 'mastodon/features/ui/util/async-components';
-import { me } from 'mastodon/initial_state';
+import { me , maxMediaDescChars } from 'mastodon/initial_state';
 import { assetHost } from 'mastodon/utils/config';
-import { maxMediaDescChars } from 'mastodon/initial_state';
 
 import { changeUploadCompose, uploadThumbnail, onChangeMediaDescription, onChangeMediaFocus } from '../../../actions/compose';
 import Video, { getPointerPosition } from '../../video';

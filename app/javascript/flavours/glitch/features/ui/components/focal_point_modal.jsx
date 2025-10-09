@@ -24,9 +24,8 @@ import CharacterCounter from 'flavours/glitch/features/compose/components/charac
 import UploadProgress from 'flavours/glitch/features/compose/components/upload_progress';
 import { Tesseract as fetchTesseract } from 'flavours/glitch/features/ui/util/async-components';
 import Video, { getPointerPosition } from 'flavours/glitch/features/video';
-import { me } from 'flavours/glitch/initial_state';
+import { me , maxMediaDescChars } from 'flavours/glitch/initial_state';
 import { assetHost } from 'flavours/glitch/utils/config';
-import { maxMediaDescChars } from 'flavours/glitch/initial_state';
 
 import { changeUploadCompose, uploadThumbnail, onChangeMediaDescription, onChangeMediaFocus } from '../../../actions/compose';
 
