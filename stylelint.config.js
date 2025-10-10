@@ -26,6 +26,7 @@ module.exports = {
         "after-comment"
       ]
     }],
+    'custom-property-pattern': null, // should be kebab-case, except for status, ex: --color-ui--hover
     "declaration-block-no-redundant-longhand-properties": null,
     "no-descending-specificity": null,
     "no-duplicate-selectors": null,
