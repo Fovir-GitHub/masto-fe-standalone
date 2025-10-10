@@ -424,7 +424,7 @@ class ZoomableImage extends PureComponent {
 
     return (
       <>
-        <IconSVGButton
+        <IconButton
           className={`media-modal__zoom-button ${zoomButtonShouldHide}`}
           title={zoomButtonTitle}
           icon={zoomButtonIcon}

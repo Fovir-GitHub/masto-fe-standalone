@@ -252,7 +252,7 @@ class ComposerOptions extends ImmutablePureComponent {
           title={formatMessage(messages.attach)}
         />
         {!!pollLimits && (
-          <IconSVGButton
+          <IconButton
             active={hasPoll}
             disabled={disabled || !allowPoll}
             icon='chart-bar-horizontal'

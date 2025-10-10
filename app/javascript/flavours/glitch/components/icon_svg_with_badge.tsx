@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import { IconSVG } from './icon_svg';
+import { Icon } from './icon_svg';
 
 const formatNumber = (num: number): number | string => (num > 40 ? '40+' : num);
 
@@ -17,7 +17,7 @@ export const IconWithBadge: React.FC<Props> = ({
   className,
 }) => (
   <div className='gts-icon-with-badge'>
-    <IconSVG id={id} fixedWidth className={className} />
+    <Icon id={id} fixedWidth className={className} />
     {count > 0 && (
       <span className='gts-icon-with-badge__badge'>{formatNumber(count)}</span>
     )}

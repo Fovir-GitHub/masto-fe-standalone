@@ -112,7 +112,7 @@ class Account extends ImmutablePureComponent {
 
     if (onActionClick) {
       if (actionIcon) {
-        buttons = <IconSVGButton icon={actionIcon} title={actionTitle} onClick={this.handleAction} />;
+        buttons = <IconButton icon={actionIcon} title={actionTitle} onClick={this.handleAction} />;
       }
     } else if (account.get("id") !== me && !small && account.get("relationship", null) !== null) {
       const following = account.getIn(["relationship", "following"]);
@@ -121,7 +121,7 @@ class Account extends ImmutablePureComponent {
       const muting  = account.getIn(["relationship", "muting"]);
 
       if (requested) {
-        buttons = <IconSVGButton disabled icon='hourglass' title={intl.formatMessage(messages.requested)} />;
+        buttons = <IconButton disabled icon='hourglass' title={intl.formatMessage(messages.requested)} />;
       } else if (blocking) {
         buttons = <IconButton active icon='moon' title={intl.formatMessage(messages.unblock, { name: account.get('username') })} onClick={this.handleBlock} />;
       } else if (muting) {
@@ -137,12 +137,12 @@ class Account extends ImmutablePureComponent {
             {hidingNotificationsButton}
           </>
         );
-      } else if (defaultAction === "mute") {
-        buttons = <IconButton icon='volume-off' title={intl.formatMessage(messages.mute, { name: account.get("username") })} onClick={this.handleMute} />;
-      } else if (defaultAction === "block") {
-        buttons = <IconButton icon='lock' title={intl.formatMessage(messages.block, { name: account.get("username") })} onClick={this.handleBlock} />;
-      } else if (!account.get("moved") || following) {
-        buttons = <IconButton icon={following ? "user-times" : "user-plus"} title={intl.formatMessage(following ? messages.unfollow : messages.follow)} onClick={this.handleFollow} active={following} />;
+      } else if (defaultAction === 'mute') {
+        buttons = <IconButton icon='volume-off' title={intl.formatMessage(messages.mute, { name: account.get('username') })} onClick={this.handleMute} />;
+      } else if (defaultAction === 'block') {
+        buttons = <IconButton icon='lock' title={intl.formatMessage(messages.block, { name: account.get('username') })} onClick={this.handleBlock} />;
+      } else if (!account.get('moved') || following) {
+        buttons = <IconButton icon={following ? 'user-minus' : 'user-plus'} title={intl.formatMessage(following ? messages.unfollow : messages.follow)} onClick={this.handleFollow} className={following ? 'destructive' : ''} active={following} />;
       }
     }
 

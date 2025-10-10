@@ -34,7 +34,7 @@ class VisibilityIcon extends ImmutablePureComponent {
 
     const label = intl.formatMessage(messages[visibility]);
 
-    const icon = (<IconSVG
+    const icon = (<Icon
       className='status__visibility-icon'
       fixedWidth
       id={visibilityIcon}

@@ -3,7 +3,7 @@ import * as React from 'react';
 import classNames from 'classnames';
 
 import { AnimatedNumber } from './animated_number';
-import { IconSVG } from './icon_svg';
+import { Icon } from './icon_svg';
 
 interface Props {
   className?: string;
@@ -33,7 +33,7 @@ interface States {
   activate: boolean;
   deactivate: boolean;
 }
-export class IconSVGButton extends React.PureComponent<Props, States> {
+export class IconButton extends React.PureComponent<Props, States> {
   static defaultProps = {
     size: 18,
     active: false,
@@ -125,7 +125,7 @@ export class IconSVGButton extends React.PureComponent<Props, States> {
 
     let contents = (
       <>
-        <IconSVG id={icon} fixedWidth aria-hidden='true' />{' '}
+        <Icon id={icon} fixedWidth aria-hidden='true' />{' '}
         {typeof counter !== 'undefined' && (
           <span className='icon-button__counter'>
             <AnimatedNumber value={counter} obfuscate={obfuscateCount} />

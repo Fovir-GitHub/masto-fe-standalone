@@ -298,12 +298,12 @@ class StatusActionBar extends ImmutablePureComponent {
     }
 
     const filterButton = this.props.onFilter && (
-      <IconSVGButton className='status__action-bar-button' title={intl.formatMessage(messages.hide)} icon='eye' onClick={this.handleHideClick} />
+      <IconButton className='status__action-bar-button' title={intl.formatMessage(messages.hide)} icon='eye' onClick={this.handleHideClick} />
     );
 
     return (
       <div className='status__action-bar'>
-        <IconSVGButton
+        <IconButton
           className='status__action-bar-button'
           title={replyTitle}
           icon={replyIcon}

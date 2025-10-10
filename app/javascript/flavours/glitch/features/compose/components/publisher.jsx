@@ -63,7 +63,7 @@ class Publisher extends ImmutablePureComponent {
       const iconId = privacyIcons[privacy];
       publishText = (
         <span>
-          <IconSVG id={iconId} /> {intl.formatMessage(messages.publish)}
+          <Icon id={iconId} /> {intl.formatMessage(messages.publish)}
         </span>
       );
     } else {
@@ -86,7 +86,7 @@ class Publisher extends ImmutablePureComponent {
               disabled={disabled}
               onClick={onSecondarySubmit}
               style={{ padding: null }}
-              text={<IconSVG id={privacyIcons[sideArm]} />}
+              text={<Icon id={privacyIcons[sideArm]} />}
               title={`${intl.formatMessage(messages.publish)}: ${intl.formatMessage(privacyNames[sideArm])}`}
             />
           </div>

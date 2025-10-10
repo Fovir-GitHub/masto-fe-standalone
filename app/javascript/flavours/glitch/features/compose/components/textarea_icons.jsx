@@ -45,7 +45,7 @@ class TextareaIcons extends ImmutablePureComponent {
               key={key}
               title={intl.formatMessage(message)}
             >
-              <IconSVG
+              <Icon
                 fixedWidth
                 id={icon}
               />

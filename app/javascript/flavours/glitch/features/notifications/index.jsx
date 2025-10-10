@@ -297,7 +297,7 @@ class Notifications extends PureComponent {
           onClick={this.handleMarkAsRead}
           className='column-header__button'
         >
-          <IconSVG id='checks' />
+          <Icon id='checks' />
         </button>,
       );
     }
@@ -321,7 +321,7 @@ class Notifications extends PureComponent {
         onClick={this.onEnterCleaningMode}
         className={notifCleaningButtonClassName}
       >
-        <IconSVG id='eraser' />
+        <Icon id='eraser' />
       </button>,
     );
 

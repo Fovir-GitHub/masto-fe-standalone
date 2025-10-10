@@ -86,7 +86,7 @@ export default class NotificationFollow extends ImmutablePureComponent {
         <div className={classNames("notification notification-admin-sign-up focusable", { unread })} tabIndex={0}>
           <div className='notification__message'>
             <div className='notification__favourite-icon-wrapper'>
-              <IconSVG fixedWidth id='user-plus' />
+              <Icon fixedWidth id='user-plus' />
             </div>
 
             <FormattedMessage

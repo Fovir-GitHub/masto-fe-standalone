@@ -34,7 +34,7 @@ export const DismissableBanner: React.FC<PropsWithChildren<Props>> = ({
   return (
     <div className='dismissable-banner'>
       <div className='dismissable-banner__action'>
-        <IconSVGButton
+        <IconButton
           icon='x'
           className='dismissable-banner__action-button'
           title={intl.formatMessage(messages.dismiss)}

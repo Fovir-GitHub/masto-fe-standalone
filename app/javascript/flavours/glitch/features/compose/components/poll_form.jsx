@@ -87,7 +87,7 @@ class OptionIntl extends PureComponent {
         </label>
 
         <div className='poll__cancel'>
-          <IconSVGButton disabled={index <= 1} title={intl.formatMessage(messages.remove_option)} icon='x' onClick={this.handleOptionRemove} />
+          <IconButton disabled={index <= 1} title={intl.formatMessage(messages.remove_option)} icon='x' onClick={this.handleOptionRemove} />
         </div>
       </li>
     );

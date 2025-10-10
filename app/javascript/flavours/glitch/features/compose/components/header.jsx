@@ -87,7 +87,7 @@ class Header extends ImmutablePureComponent {
             title={intl.formatMessage(messages.home_timeline)}
             to='/home'
             className='drawer__tab'
-          ><IconSVG id='house-line' /></Link>
+          ><Icon id='house-line' /></Link>
         ))}
         {renderForColumn("NOTIFICATIONS", (
           <Link
@@ -97,7 +97,7 @@ class Header extends ImmutablePureComponent {
             className='drawer__tab'
           >
             <span className='icon-badge-wrapper'>
-              <IconSVG id='bell' />
+              <Icon id='bell' />
               { showNotificationsBadge && unreadNotifications > 0 && <div className='icon-badge' />}
             </span>
           </Link>
@@ -108,7 +108,7 @@ class Header extends ImmutablePureComponent {
             title={intl.formatMessage(messages.community)}
             to='/public/local'
             className='drawer__tab'
-          ><IconSVG id='users' /></Link>
+          ><Icon id='users' /></Link>
         ))}
         {renderForColumn("PUBLIC", (
           <Link
@@ -116,7 +116,7 @@ class Header extends ImmutablePureComponent {
             title={intl.formatMessage(messages.public)}
             to='/public'
             className='drawer__tab'
-          ><IconSVG id='planet' /></Link>
+          ><Icon id='planet' /></Link>
         ))}
         <a
           aria-label={intl.formatMessage(messages.settings)}
@@ -124,14 +124,14 @@ class Header extends ImmutablePureComponent {
           href='/settings/preferences'
           title={intl.formatMessage(messages.settings)}
           className='drawer__tab'
-        ><IconSVG id='gear' /></a>
+        ><Icon id='gear' /></a>
         <a
           aria-label={intl.formatMessage(messages.logout)}
           onClick={this.handleLogoutClick}
           href={signOutLink}
           title={intl.formatMessage(messages.logout)}
           className='drawer__tab'
-        ><IconSVG id='sign-out' /></a>
+        ><Icon id='sign-out' /></a>
       </nav>
     );
   }

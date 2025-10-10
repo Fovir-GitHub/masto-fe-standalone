@@ -390,7 +390,7 @@ class EmojiPickerDropdown extends PureComponent {
     return (
       <div className='emoji-picker-dropdown' onKeyDown={this.handleKeyDown}>
         <button ref={this.setTargetRef} className='emoji-button' title={title} aria-label={title} aria-expanded={active} onClick={this.onToggle} onKeyDown={this.onToggle}>
-          {button || <IconSVG 
+          {button || <Icon 
             fixedWidth
             id='smiley'
             aria-hidden='true'

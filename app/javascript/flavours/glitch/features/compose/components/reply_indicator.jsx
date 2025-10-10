@@ -50,7 +50,7 @@ class ReplyIndicator extends ImmutablePureComponent {
     return (
       <article className='reply-indicator'>
         <header className='reply-indicator__header'>
-          <IconSVGButton
+          <IconButton
             className='reply-indicator__cancel'
             icon='x'
             onClick={this.handleClick}

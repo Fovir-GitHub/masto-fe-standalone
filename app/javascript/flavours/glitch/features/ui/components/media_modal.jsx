@@ -244,7 +244,7 @@ class MediaModal extends ImmutablePureComponent {
         </div>
 
         <div className={navigationClassName}>
-          <IconSVGButton className='media-modal__close' title={intl.formatMessage(messages.close)} icon='x' onClick={onClose} size={40} />
+          <IconButton className='media-modal__close' title={intl.formatMessage(messages.close)} icon='x' onClick={onClose} size={40} />
 
           {leftNav}
           {rightNav}

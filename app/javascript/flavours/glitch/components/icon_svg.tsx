@@ -9,7 +9,7 @@ interface Props extends React.HTMLAttributes<HTMLImageElement> {
   children?: never;
 }
 
-export const IconSVG: React.FC<Props> = ({
+export const Icon: React.FC<Props> = ({
   id,
   className,
   fixedWidth,

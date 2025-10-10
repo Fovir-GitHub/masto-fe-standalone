@@ -85,7 +85,7 @@ class StatusIcons extends PureComponent {
 
   renderIcon (mediaIcon) {
     return (
-      <IconSVG
+      <Icon
         fixedWidth
         className='status__media-icon'
         key={`media-icon--${mediaIcon}`}
@@ -129,7 +129,7 @@ class StatusIcons extends PureComponent {
         {settings.get("media") && !!mediaIcons && mediaIcons.map(icon => this.renderIcon(icon))}
         {settings.get("visibility") && <VisibilityIcon visibility={status.get("visibility")} />}
         {collapsible && (
-          <IconSVGButton
+          <IconButton
             className='status__collapse-button'
             animate
             active={collapsed}

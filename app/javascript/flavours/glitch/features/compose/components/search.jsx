@@ -372,7 +372,9 @@ class Search extends PureComponent {
                 {recent.size > 0 ? this._getOptions().map(({ label, action, forget }, i) => (
                   <button key={label} onMouseDown={action} className={classNames("search__popout__menu__item search__popout__menu__item--flex", { selected: selectedOption === i })}>
                     <span>{label}</span>
-                    <button className='icon-button' onMouseDown={forget}><Icon id='times' /></button>
+                    <button className='icon-button' onMouseDown={forget}>
+                      <Icon id='x' />
+                    </button>
                   </button>
                 )) : (
                   <div className='search__popout__menu__message'>

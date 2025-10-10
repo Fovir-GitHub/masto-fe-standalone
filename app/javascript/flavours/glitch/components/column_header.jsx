@@ -118,22 +118,22 @@ class ColumnHeader extends PureComponent {
     }
 
     if (multiColumn && pinned) {
-      pinButton = (<IconSVGButton key='pin-button' onClick={this.handlePin} className='column-header__footer-button' label='Unpin' icon='push-pin-slash' />);
+      pinButton = (<IconButton key='pin-button' onClick={this.handlePin} className='column-header__footer-button' label='Unpin' icon='push-pin-slash' />);
 
       moveButtons = (
         <div key='move-buttons' className='column-header__footer-arrows'>
-          <button title={formatMessage(messages.moveLeft)} aria-label={formatMessage(messages.moveLeft)} className='column-header__footer-button' onClick={this.handleMoveLeft}><IconSVG id='caret-left' /></button>
-          <button title={formatMessage(messages.moveRight)} aria-label={formatMessage(messages.moveRight)} className='column-header__footer-button' onClick={this.handleMoveRight}><IconSVG id='caret-right' /></button>
+          <button title={formatMessage(messages.moveLeft)} aria-label={formatMessage(messages.moveLeft)} className='column-header__footer-button' onClick={this.handleMoveLeft}><Icon id='caret-left' /></button>
+          <button title={formatMessage(messages.moveRight)} aria-label={formatMessage(messages.moveRight)} className='column-header__footer-button' onClick={this.handleMoveRight}><Icon id='caret-right' /></button>
         </div>
       );
     } else if (multiColumn && this.props.onPin) {
-      pinButton = (<IconSVGButton key='pin-button' onClick={this.handlePin} className='column-header__footer-button' label='Pin' icon='push-pin' />);
+      pinButton = (<IconButton key='pin-button' onClick={this.handlePin} className='column-header__footer-button' label='Pin' icon='push-pin' />);
     }
 
     if (!pinned && ((multiColumn && router.history.location?.state?.fromMastodon) || showBackButton)) {
       backButton = (
         <button onClick={this.handleBackClick} className='column-header__back-button'>
-          <IconSVG id='arrow-left' className='column-back-button__icon' fixedWidth />
+          <Icon id='arrow-left' className='column-back-button__icon' fixedWidth />
           <FormattedMessage id='column_back_button.label' defaultMessage='Back' />
         </button>
       );
@@ -162,7 +162,7 @@ class ColumnHeader extends PureComponent {
           onClick={this.handleToggleClick}
         >
           <div className='gts-icon-with-badge'>
-            <IconSVG id='slider-horizontal' />
+            <Icon id='slider-horizontal' />
             {collapseIssues && <i className='gts-icon-with-badge__issue-badge' />}
           </div>
         </button>
@@ -176,7 +176,7 @@ class ColumnHeader extends PureComponent {
         <h1 className={buttonClassName}>
           {hasTitle && (
             <button onClick={this.handleTitleClick}>
-              <IconSVG id={icon} fixedWidth className='column-header__icon' />
+              <Icon id={icon} fixedWidth className='column-header__icon' />
               {title}
             </button>
           )}
