@@ -1,5 +1,6 @@
-@import "styles/fonts/roboto";
-@import "reset";
+@use 'sass:color';
+@use 'styles/fonts/roboto';
+@use 'reset';
 
 :root {
     --color-bg: #191b22;
@@ -70,7 +71,7 @@ button:focus-visible {
 
 button {
     padding: 7px 10px;
-    border: 1px solid lighten(#66befe, 7%);
+    border: 1px solid color.scale(#66befe, $lightness: 7%);
     border-radius: 4px;
     box-sizing: border-box;
     color: #2a2b2f;
@@ -95,7 +96,7 @@ input[type="text"] {
     display: block;
     margin: 0;
     padding: 15px;
-    border: 1px solid lighten(#282c37, 7%);
+    border: 1px solid color.scale(#282c37, $lightness: 7%);
     border-radius: 4px;
     box-sizing: border-box;
     box-shadow: none;
@@ -109,7 +110,7 @@ input[type="text"] {
 .content {
     padding: 15px;
     border-radius: 4px;
-    border: 1px solid lighten(#39404f, 7%);
+    border: 1px solid color.scale(#39404f, $lightness: 7%);
     color: #fff;
     background-color: #39404f;
 }
