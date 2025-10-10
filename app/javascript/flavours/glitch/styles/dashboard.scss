@@ -1,3 +1,5 @@
+@use 'sass:color';
+
 .dashboard__counters {
   display: flex;
   flex-wrap: wrap;
@@ -13,7 +15,7 @@
     & > div,
     & > a {
       padding: 20px;
-      background: lighten($ui-base-color, 4%);
+      background: color.adjust($ui-base-color, $lightness: 4%);
       border-radius: 4px;
       box-sizing: border-box;
       height: 100%;
@@ -27,7 +29,7 @@
       &:hover,
       &:focus,
       &:active {
-        background: lighten($ui-base-color, 8%);
+        background: color.adjust($ui-base-color, $lightness: 8%);
       }
     }
   }
@@ -99,12 +101,12 @@
     }
 
     &.positive {
-      background: lighten($ui-base-color, 4%);
+      background: color.adjust($ui-base-color, $lightness: 4%);
       color: $valid-value-color;
     }
 
     &.negative {
-      background: lighten($ui-base-color, 4%);
+      background: color.adjust($ui-base-color, $lightness: 4%);
       color: $error-value-color;
     }
 

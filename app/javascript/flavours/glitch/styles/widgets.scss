@@ -1,3 +1,4 @@
+@use "sass:color";
 @use "sass:math";
 
 .hero-widget {
@@ -54,7 +55,7 @@
       font-family: inherit;
       font-size: inherit;
       line-height: inherit;
-      color: lighten($darker-text-color, 10%);
+      color: color.adjust($darker-text-color, $lightness: 10%);
     }
 
     a {
@@ -223,7 +224,7 @@
       &:hover,
       &:active,
       &:focus {
-        background: lighten($ui-base-color, 8%);
+        background: color.adjust($ui-base-color, $lightness: 8%);
       }
     }
 
@@ -305,7 +306,7 @@
   tbody td {
     padding: 15px 0;
     vertical-align: middle;
-    border-bottom: 1px solid lighten($ui-base-color, 8%);
+    border-bottom: 1px solid color.adjust($ui-base-color, $lightness: 8%);
   }
 
   tbody tr:last-child td {

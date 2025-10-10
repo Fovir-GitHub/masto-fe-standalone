@@ -1,3 +1,5 @@
+@use 'sass:color';
+
 // Commonly used web colors
 $black: #000000; // Black
 $white: #ffffff; // White
@@ -32,9 +34,9 @@ $error-value-color: $error-red !default;
 
 // Tell UI to use selected colors
 $ui-base-color: $classic-base-color !default; // Darkest
-$ui-base-lighter-color: lighten(
+$ui-base-lighter-color: color.scale(
   $ui-base-color,
-  26%
+  $lightness: 26%
 ) !default; // Lighter darkest
 $ui-primary-color: $classic-primary-color !default; // Lighter
 $ui-secondary-color: $classic-secondary-color !default; // Lightest
@@ -61,9 +63,15 @@ $primary-text-color: $white !default;
 $darker-text-color: $ui-primary-color !default;
 $dark-text-color: $ui-base-lighter-color !default;
 $secondary-text-color: $ui-secondary-color !default;
-$highlight-text-color: lighten($ui-highlight-color, 8%) !default;
+$highlight-text-color: color.scale(
+  $ui-highlight-color,
+  $lightness: 8%
+) !default;
 $action-button-color: $ui-base-lighter-color !default;
-$action-button-focus-color: lighten($ui-base-lighter-color, 4%) !default;
+$action-button-focus-color: color.scale(
+  $ui-base-lighter-color,
+  $lightness: 4%
+) !default;
 $passive-text-color: $gold-star !default;
 $active-passive-text-color: $success-green !default;
 
@@ -94,11 +102,11 @@ $ui-avatar-border-size: 8%;
 $dismiss-overlay-width: 4rem;
 
 :root {
-  --dropdown-border-color: #{lighten($ui-base-color, 12%)};
-  --dropdown-background-color: #{lighten($ui-base-color, 4%)};
+  --dropdown-border-color: #{color.scale($ui-base-color, $lightness: 12%)};
+  --dropdown-background-color: #{color.scale($ui-base-color, $lightness: 4%)};
   --dropdown-shadow:
     0 20px 25px -5px #{rgba($base-shadow-color, 0.25)},
     0 8px 10px -6px #{rgba($base-shadow-color, 0.25)};
-  --modal-background-color: #{darken($ui-base-color, 4%)};
-  --modal-border-color: #{lighten($ui-base-color, 4%)};
+  --modal-background-color: #{color.scale($ui-base-color, $lightness: -4%)};
+  --modal-border-color: #{color.scale($ui-base-color, $lightness: 4%)};
 }

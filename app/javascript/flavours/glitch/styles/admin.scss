@@ -1,3 +1,4 @@
+@use "sass:color";
 @use "sass:math";
 
 $no-columns-breakpoint: 600px;
@@ -31,8 +32,8 @@ $content-width: 840px;
 
     &__toggle {
       display: none;
-      background: darken($ui-base-color, 4%);
-      border-bottom: 1px solid lighten($ui-base-color, 4%);
+      background: color.adjust($ui-base-color, $lightness: -4%);
+      border-bottom: 1px solid color.adjust($ui-base-color, $lightness: 4%);
       align-items: center;
 
       &__logo {
@@ -122,7 +123,7 @@ $content-width: 840px;
 
         &:hover {
           color: $primary-text-color;
-          background-color: darken($ui-base-color, 5%);
+          background-color: color.adjust($ui-base-color, $lightness: -5%);
           transition: all 100ms linear;
           transition-property: color, background-color;
         }
@@ -133,7 +134,7 @@ $content-width: 840px;
       }
 
       ul {
-        background: darken($ui-base-color, 4%);
+        background: color.adjust($ui-base-color, $lightness: -4%);
         border-radius: 0 0 0 4px;
         margin: 0;
 
@@ -239,7 +240,7 @@ $content-width: 840px;
           &:hover,
           &:focus,
           &:active {
-            background: lighten($ui-base-color, 4%);
+            background: color.adjust($ui-base-color, $lightness: 4%);
           }
 
           &.selected {
@@ -292,7 +293,7 @@ $content-width: 840px;
       color: $darker-text-color;
       padding-bottom: 8px;
       margin-bottom: 8px;
-      border-bottom: 1px solid lighten($ui-base-color, 8%);
+      border-bottom: 1px solid color.adjust($ui-base-color, $lightness: 8%);
     }
 
     h6 {
@@ -393,7 +394,7 @@ $content-width: 840px;
       ul a,
       ul ul a {
         border-radius: 0;
-        border-bottom: 1px solid lighten($ui-base-color, 4%);
+        border-bottom: 1px solid color.adjust($ui-base-color, $lightness: 4%);
         transition: none;
 
         &:hover {
@@ -521,7 +522,7 @@ body,
 
       &:hover {
         color: $primary-text-color;
-        border-bottom: 2px solid lighten($ui-base-color, 5%);
+        border-bottom: 2px solid color.adjust($ui-base-color, $lightness: 5%);
       }
 
       &.selected {
@@ -692,7 +693,7 @@ body,
   padding: 15px;
   padding-inline-start: 15px * 2 + 40px;
   background: $ui-base-color;
-  border-bottom: 1px solid darken($ui-base-color, 8%);
+  border-bottom: 1px solid color.adjust($ui-base-color, $lightness: -8%);
   position: relative;
   text-decoration: none;
   color: $darker-text-color;
@@ -712,7 +713,7 @@ body,
   &:hover,
   &:focus,
   &:active {
-    background: lighten($ui-base-color, 4%);
+    background: color.adjust($ui-base-color, $lightness: 4%);
   }
 
   &__avatar {
@@ -766,7 +767,7 @@ a.inline-name-tag,
   &.suspended {
     .username {
       text-decoration: line-through;
-      color: lighten($error-red, 12%);
+      color: color.adjust($error-red, $lightness: 12%);
     }
 
     .avatar {
@@ -806,7 +807,7 @@ a.name-tag,
   }
 
   &.negative {
-    border-left-color: lighten($error-red, 12%);
+    border-left-color: color.adjust($error-red, $lightness: 12%);
   }
 
   &.warning {
@@ -871,7 +872,7 @@ a.name-tag,
         &:focus,
         &:hover,
         &:active {
-          color: lighten($darker-text-color, 8%);
+          color: color.adjust($darker-text-color, $lightness: 8%);
         }
       }
 
@@ -885,10 +886,10 @@ a.name-tag,
     &__item {
       display: flex;
       justify-content: flex-start;
-      border-top: 1px solid darken($ui-base-color, 4%);
+      border-top: 1px solid color.adjust($ui-base-color, $lightness: -4%);
 
       &:hover {
-        background: lighten($ui-base-color, 2%);
+        background: color.adjust($ui-base-color, $lightness: 2%);
       }
 
       &__reported-by,
@@ -960,7 +961,7 @@ a.name-tag,
 
   .account__header__fields,
   .account__header__content {
-    background: lighten($ui-base-color, 8%);
+    background: color.adjust($ui-base-color, $lightness: 8%);
     border-radius: 4px;
     height: 100%;
   }
@@ -997,7 +998,7 @@ a.name-tag,
 .filters-list__item {
   padding: 15px 0;
   background: $ui-base-color;
-  border: 1px solid lighten($ui-base-color, 4%);
+  border: 1px solid color.adjust($ui-base-color, $lightness: 4%);
   border-radius: 4px;
   margin-top: 15px;
 }
@@ -1008,13 +1009,13 @@ a.name-tag,
 
 .announcements-list,
 .filters-list {
-  border: 1px solid lighten($ui-base-color, 4%);
+  border: 1px solid color.adjust($ui-base-color, $lightness: 4%);
   border-radius: 4px;
 
   &__item {
     padding: 15px 0;
     background: $ui-base-color;
-    border-bottom: 1px solid lighten($ui-base-color, 4%);
+    border-bottom: 1px solid color.adjust($ui-base-color, $lightness: 4%);
 
     &__title {
       padding: 0 15px;
@@ -1089,7 +1090,7 @@ a.name-tag,
 
   &.expired {
     .expiration {
-      color: lighten($error-red, 12%);
+      color: color.adjust($error-red, $lightness: 12%);
     }
 
     .permissions-list__item__icon {
@@ -1165,7 +1166,7 @@ a.name-tag,
 .sparkline {
   display: block;
   text-decoration: none;
-  background: lighten($ui-base-color, 4%);
+  background: color.adjust($ui-base-color, $lightness: 4%);
   border-radius: 4px;
   padding: 0;
   position: relative;
@@ -1228,7 +1229,7 @@ a.name-tag,
     }
 
     path:last-child {
-      stroke: lighten($highlight-text-color, 6%) !important;
+      stroke: color.adjust($highlight-text-color, $lightness: 6%) !important;
       fill: none !important;
     }
   }
@@ -1238,17 +1239,17 @@ a.sparkline {
   &:hover,
   &:focus,
   &:active {
-    background: lighten($ui-base-color, 6%);
+    background: color.adjust($ui-base-color, $lightness: 6%);
   }
 }
 
 .skeleton {
-  background-color: lighten($ui-base-color, 8%);
+  background-color: color.adjust($ui-base-color, $lightness: 8%);
   background-image: linear-gradient(
     90deg,
-    lighten($ui-base-color, 8%),
-    lighten($ui-base-color, 12%),
-    lighten($ui-base-color, 8%)
+    color.adjust($ui-base-color, $lightness: 8%),
+    color.adjust($ui-base-color, $lightness: 12%),
+    color.adjust($ui-base-color, $lightness: 8%)
   );
   background-size: 200px 100%;
   background-repeat: no-repeat;
@@ -1275,7 +1276,7 @@ a.sparkline {
   }
 
   &__item {
-    border-bottom: 1px solid lighten($ui-base-color, 4%);
+    border-bottom: 1px solid color.adjust($ui-base-color, $lightness: 4%);
 
     &__key {
       font-weight: 500;
@@ -1328,7 +1329,7 @@ a.sparkline {
 
   &__category {
     cursor: pointer;
-    border-bottom: 1px solid darken($ui-base-color, 8%);
+    border-bottom: 1px solid color.adjust($ui-base-color, $lightness: -8%);
 
     &:last-child {
       border-bottom: 0;
@@ -1356,7 +1357,7 @@ a.sparkline {
 
   &__details {
     &__item {
-      border-bottom: 1px solid lighten($ui-base-color, 8%);
+      border-bottom: 1px solid color.adjust($ui-base-color, $lightness: 8%);
       padding: 15px 0;
 
       &:last-child {
@@ -1405,7 +1406,7 @@ a.sparkline {
       width: 100%;
       height: 100%;
       object-fit: cover;
-      background: darken($ui-base-color, 8%);
+      background: color.adjust($ui-base-color, $lightness: -8%);
     }
   }
 
@@ -1423,7 +1424,7 @@ a.sparkline {
         margin: 0;
         width: 56px;
         height: 56px;
-        background-color: darken($ui-base-color, 8%);
+        background-color: color.adjust($ui-base-color, $lightness: -8%);
         border-radius: 8px;
         border: 1px solid $ui-base-color;
       }
@@ -1542,7 +1543,7 @@ a.sparkline {
     position: relative;
     padding: 15px;
     padding-inline-start: 15px * 2 + 40px;
-    border-bottom: 1px solid darken($ui-base-color, 8%);
+    border-bottom: 1px solid color.adjust($ui-base-color, $lightness: -8%);
 
     &:first-child {
       border-top-left-radius: 4px;
@@ -1556,7 +1557,7 @@ a.sparkline {
     }
 
     &:hover {
-      background-color: lighten($ui-base-color, 4%);
+      background-color: color.adjust($ui-base-color, $lightness: 4%);
     }
 
     &__avatar {
@@ -1634,13 +1635,13 @@ a.sparkline {
 }
 
 .report-actions {
-  border: 1px solid darken($ui-base-color, 8%);
+  border: 1px solid color.adjust($ui-base-color, $lightness: -8%);
 
   &__item {
     display: flex;
     align-items: center;
     line-height: 18px;
-    border-bottom: 1px solid darken($ui-base-color, 8%);
+    border-bottom: 1px solid color.adjust($ui-base-color, $lightness: -8%);
 
     &:last-child {
       border-bottom: 0;
@@ -1752,15 +1753,15 @@ a.sparkline {
 
   &__statuses-list {
     border-radius: 4px;
-    border: 1px solid darken($ui-base-color, 8%);
+    border: 1px solid color.adjust($ui-base-color, $lightness: -8%);
     font-size: 13px;
     line-height: 18px;
     overflow: hidden;
 
     &__item {
       padding: 16px;
-      background: lighten($ui-base-color, 2%);
-      border-bottom: 1px solid darken($ui-base-color, 8%);
+      background: color.adjust($ui-base-color, $lightness: 2%);
+      border-bottom: 1px solid color.adjust($ui-base-color, $lightness: -8%);
 
       &:last-child {
         border-bottom: 0;
@@ -1804,7 +1805,7 @@ a.sparkline {
       flex: 0 0 auto;
       width: 4px;
       height: 21px;
-      background: lighten($ui-base-color, 8%);
+      background: color.adjust($ui-base-color, $lightness: 8%);
       margin: 0 2px;
       border-radius: 2px;
 
@@ -1876,7 +1877,7 @@ a.sparkline {
     }
 
     .status {
-      border: 1px solid lighten($ui-base-color, 4%);
+      border: 1px solid color.adjust($ui-base-color, $lightness: 4%);
       background: $ui-base-color;
       border-radius: 4px;
     }
