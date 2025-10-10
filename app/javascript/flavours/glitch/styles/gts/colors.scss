@@ -26,11 +26,20 @@
     --color-ui-base: ;
     --color-ui-bg: ;
 
+    /* Button */
+    --color-button-fg-destructive: red;
+
+    /* Drawer */
+    --color-drawer-bg: #313543;
+    --color-drawer-bg--hover: #1f232b;
+    --color-drawer-fg: #9baec8;
+    --color-drawer-lines: var(--color-accent-lines);
+
     /* Notifications */
     --color-notifications-bg: var(--color-accent-bg);
     --color-notifications-bg--active: #313543;
     --color-notifications-bg--hover: var(--color-lines);
-    --color-notifications-fg: var(--color-accent-fg);
+    --color-notifications-fg: #9baec8;
     --color-notifications-lines: var(--color-accent-lines);
 
     /* Search */

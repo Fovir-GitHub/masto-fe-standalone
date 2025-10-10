@@ -5,11 +5,17 @@
   /* Base */
   --color-fg: #000;
   --color-bg: #eff3f5;
+  --color-lines: #c0cdd9;
 
   /* Accent */
   --color-accent-bg: #d9e1e8;
   --color-accent-fg: #282c37;
   --color-accent-lines: #c0cdd9;
+
+  /* Drawer */
+  --color-drawer-bg: #fff;
+  --color-drawer-bg--hover: #ccd7e0;
+  --color-drawer-fg: var(--color-fg);
 
   /* Notifications */
   --color-notifications-bg--active: #fff;
