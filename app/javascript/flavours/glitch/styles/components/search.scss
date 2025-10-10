@@ -152,18 +152,24 @@
   display: block;
 }
 
+.search-results__header,
+.search-results__section__header h3 {
+  display: flex;
+  gap: 5px;
+  align-items: center;
+
+  .gts-icon {
+    --size: 20px;
+  }
+}
+
 .search-results__header {
-  color: $dark-text-color;
-  background: lighten($ui-base-color, 2%);
   padding: 15px;
+  color: $dark-text-color;
   font-weight: 500;
   font-size: 16px;
+  background: lighten($ui-base-color, 2%);
   cursor: default;
-
-  .fa {
-    display: inline-block;
-    margin-inline-end: 5px;
-  }
 }
 
 .search-results__info {
