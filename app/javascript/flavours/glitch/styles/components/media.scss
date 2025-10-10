@@ -186,7 +186,14 @@
 
   &__close,
   &__zoom-button {
+    padding: 6px;
     color: rgba($white, 0.7);
+
+    .gts-icon {
+      --size: 24px;
+
+      display: block;
+    }
 
     &:hover,
     &:focus,
@@ -278,6 +285,10 @@
 
     .icon-button {
       color: $white;
+
+      .gts-icon {
+        --size: 24px;
+      }
 
       &:hover,
       &:focus,
