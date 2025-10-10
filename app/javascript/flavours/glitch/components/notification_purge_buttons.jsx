@@ -35,7 +35,7 @@ class NotificationPurgeButtons extends ImmutablePureComponent {
   };
 
   render () {
-    const { intl, markNewForDelete } = this.props;
+    const { intl } = this.props;
 
     //className='active'
     return (
