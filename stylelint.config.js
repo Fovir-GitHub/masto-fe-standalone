@@ -15,9 +15,17 @@ module.exports = {
   reportInvalidScopeDisables: true,
   reportNeedlessDisables: true,
   rules: {
+    "alpha-value-notation": "number",
     "at-rule-empty-line-before": null,
     "color-function-notation": null,
     "color-hex-length": null,
+    "custom-property-empty-line-before": ["always", {
+      "except": [
+        "after-custom-property",
+        "first-nested",
+        "after-comment"
+      ]
+    }],
     "declaration-block-no-redundant-longhand-properties": null,
     "no-descending-specificity": null,
     "no-duplicate-selectors": null,
@@ -27,7 +35,6 @@ module.exports = {
     "selector-id-pattern": null,
     "value-keyword-case": null,
     "value-no-vendor-prefix": null,
-
     "scss/dollar-variable-empty-line-before": null,
     "scss/no-global-function-names": null,
   },
