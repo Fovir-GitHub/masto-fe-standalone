@@ -1,14 +1,14 @@
-import api from '../../api';
-import { pushNotificationsSetting } from '../../settings';
+import api from "../../api";
+import { pushNotificationsSetting } from "../../settings";
 
-import { setBrowserSupport, setSubscription, clearSubscription } from './setter';
+import { setBrowserSupport, setSubscription, clearSubscription } from "./setter";
 
 // Taken from https://www.npmjs.com/package/web-push
 const urlBase64ToUint8Array = (base64String) => {
-  const padding = '='.repeat((4 - base64String.length % 4) % 4);
+  const padding = "=".repeat((4 - base64String.length % 4) % 4);
   const base64 = (base64String + padding)
-    .replace(/-/g, '+')
-    .replace(/_/g, '/');
+    .replace(/-/g, "+")
+    .replace(/_/g, "/");
 
   const rawData = window.atob(base64);
   const outputArray = new Uint8Array(rawData.length);
@@ -19,7 +19,7 @@ const urlBase64ToUint8Array = (base64String) => {
   return outputArray;
 };
 
-const getApplicationServerKey = () => document.querySelector('[name="applicationServerKey"]').getAttribute('content');
+const getApplicationServerKey = () => document.querySelector("[name=\"applicationServerKey\"]").getAttribute("content");
 
 const getRegistration = () => navigator.serviceWorker.ready;
 
@@ -46,20 +46,20 @@ const sendSubscriptionToBackend = (getState, subscription, me) => {
     }
   }
 
-  return api(getState).post('/api/web/push_subscriptions', params).then(response => response.data);
+  return api(getState).post("/api/web/push_subscriptions", params).then(response => response.data);
 };
 
 // Last one checks for payload support: https://web-push-book.gauntface.com/chapter-06/01-non-standards-browsers/#no-payload
-const supportsPushNotifications = ('serviceWorker' in navigator && 'PushManager' in window && 'getKey' in PushSubscription.prototype);
+const supportsPushNotifications = ("serviceWorker" in navigator && "PushManager" in window && "getKey" in PushSubscription.prototype);
 
 export function register () {
   return (dispatch, getState) => {
     dispatch(setBrowserSupport(supportsPushNotifications));
-    const me = getState().getIn(['meta', 'me']);
+    const me = getState().getIn(["meta", "me"]);
 
     if (supportsPushNotifications) {
       if (!getApplicationServerKey()) {
-        console.error('The VAPID public key is not set. You will not be able to receive Web Push Notifications.');
+        console.error("The VAPID public key is not set. You will not be able to receive Web Push Notifications.");
         return;
       }
 
@@ -70,7 +70,7 @@ export function register () {
             // We have a subscription, check if it is still valid
             const currentServerKey = (new Uint8Array(subscription.options.applicationServerKey)).toString();
             const subscriptionServerKey = urlBase64ToUint8Array(getApplicationServerKey()).toString();
-            const serverEndpoint = getState().getIn(['push_notifications', 'subscription', 'endpoint']);
+            const serverEndpoint = getState().getIn(["push_notifications", "subscription", "endpoint"]);
 
             // If the VAPID public key did not change and the endpoint corresponds
             // to the endpoint saved in the backend, the subscription is valid
@@ -98,10 +98,10 @@ export function register () {
           }
         })
         .catch(error => {
-          if (error.code === 20 && error.name === 'AbortError') {
-            console.warn('Your browser supports Web Push Notifications, but does not seem to implement the VAPID protocol.');
-          } else if (error.code === 5 && error.name === 'InvalidCharacterError') {
-            console.error('The VAPID public key seems to be invalid:', getApplicationServerKey());
+          if (error.code === 20 && error.name === "AbortError") {
+            console.warn("Your browser supports Web Push Notifications, but does not seem to implement the VAPID protocol.");
+          } else if (error.code === 5 && error.name === "InvalidCharacterError") {
+            console.error("The VAPID public key seems to be invalid:", getApplicationServerKey());
           }
 
           // Clear alerts and hide UI settings
@@ -116,22 +116,22 @@ export function register () {
         })
         .catch(console.warn);
     } else {
-      console.warn('Your browser does not support Web Push Notifications.');
+      console.warn("Your browser does not support Web Push Notifications.");
     }
   };
 }
 
 export function saveSettings() {
   return (_, getState) => {
-    const state = getState().get('push_notifications');
-    const subscription = state.get('subscription');
-    const alerts = state.get('alerts');
+    const state = getState().get("push_notifications");
+    const subscription = state.get("subscription");
+    const alerts = state.get("alerts");
     const data = { alerts };
 
-    api(getState).put(`/api/web/push_subscriptions/${subscription.get('id')}`, {
+    api(getState).put(`/api/web/push_subscriptions/${subscription.get("id")}`, {
       data,
     }).then(() => {
-      const me = getState().getIn(['meta', 'me']);
+      const me = getState().getIn(["meta", "me"]);
       if (me) {
         pushNotificationsSetting.set(me, data);
       }

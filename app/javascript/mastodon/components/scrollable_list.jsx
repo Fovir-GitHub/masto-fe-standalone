@@ -1,23 +1,23 @@
-import PropTypes from 'prop-types';
-import { Children, cloneElement, PureComponent } from 'react';
+import PropTypes from "prop-types";
+import { Children, cloneElement, PureComponent } from "react";
 
-import classNames from 'classnames';
+import classNames from "classnames";
 
-import { List as ImmutableList } from 'immutable';
-import { connect } from 'react-redux';
+import { List as ImmutableList } from "immutable";
+import { connect } from "react-redux";
 
-import { supportsPassiveEvents } from 'detect-passive-events';
-import { throttle } from 'lodash';
+import { supportsPassiveEvents } from "detect-passive-events";
+import { throttle } from "lodash";
 
-import ScrollContainer from 'mastodon/containers/scroll_container';
+import ScrollContainer from "mastodon/containers/scroll_container";
 
-import IntersectionObserverArticleContainer from '../containers/intersection_observer_article_container';
-import { attachFullscreenListener, detachFullscreenListener, isFullscreen } from '../features/ui/util/fullscreen';
-import IntersectionObserverWrapper from '../features/ui/util/intersection_observer_wrapper';
+import IntersectionObserverArticleContainer from "../containers/intersection_observer_article_container";
+import { attachFullscreenListener, detachFullscreenListener, isFullscreen } from "../features/ui/util/fullscreen";
+import IntersectionObserverWrapper from "../features/ui/util/intersection_observer_wrapper";
 
-import { LoadMore } from './load_more';
-import { LoadPending } from './load_pending';
-import { LoadingIndicator } from './loading_indicator';
+import { LoadMore } from "./load_more";
+import { LoadPending } from "./load_pending";
+import { LoadingIndicator } from "./loading_indicator";
 
 const MOUSE_IDLE_DELAY = 300;
 
@@ -236,7 +236,7 @@ class ScrollableList extends PureComponent {
   attachIntersectionObserver () {
     let nodeOptions = {
       root: this.node,
-      rootMargin: '300% 0px',
+      rootMargin: "300% 0px",
     };
 
     this.intersectionObserverWrapper
@@ -249,21 +249,21 @@ class ScrollableList extends PureComponent {
 
   attachScrollListener () {
     if (this.props.bindToDocument) {
-      document.addEventListener('scroll', this.handleScroll);
-      document.addEventListener('wheel', this.handleWheel,  listenerOptions);
+      document.addEventListener("scroll", this.handleScroll);
+      document.addEventListener("wheel", this.handleWheel,  listenerOptions);
     } else {
-      this.node.addEventListener('scroll', this.handleScroll);
-      this.node.addEventListener('wheel', this.handleWheel, listenerOptions);
+      this.node.addEventListener("scroll", this.handleScroll);
+      this.node.addEventListener("wheel", this.handleWheel, listenerOptions);
     }
   }
 
   detachScrollListener () {
     if (this.props.bindToDocument) {
-      document.removeEventListener('scroll', this.handleScroll);
-      document.removeEventListener('wheel', this.handleWheel, listenerOptions);
+      document.removeEventListener("scroll", this.handleScroll);
+      document.removeEventListener("wheel", this.handleWheel, listenerOptions);
     } else {
-      this.node.removeEventListener('scroll', this.handleScroll);
-      this.node.removeEventListener('wheel', this.handleWheel, listenerOptions);
+      this.node.removeEventListener("scroll", this.handleScroll);
+      this.node.removeEventListener("wheel", this.handleWheel, listenerOptions);
     }
   }
 
@@ -324,7 +324,7 @@ class ScrollableList extends PureComponent {
       );
     } else if (isLoading || childrenCount > 0 || numPending > 0 || hasMore || !emptyMessage) {
       scrollableArea = (
-        <div className={classNames('scrollable', { fullscreen })} ref={this.setRef} onMouseMove={this.handleMouseMove}>
+        <div className={classNames("scrollable", { fullscreen })} ref={this.setRef} onMouseMove={this.handleMouseMove}>
           <div role='feed' className='item-list'>
             {prepend}
 
@@ -356,7 +356,7 @@ class ScrollableList extends PureComponent {
       );
     } else {
       scrollableArea = (
-        <div className={classNames('scrollable scrollable--flex', { fullscreen })} ref={this.setRef}>
+        <div className={classNames("scrollable scrollable--flex", { fullscreen })} ref={this.setRef}>
           {alwaysPrepend && prepend}
 
           <div className='empty-column-indicator'>

@@ -1,4 +1,4 @@
-import EXIF from 'exif-js';
+import EXIF from "exif-js";
 
 const MAX_IMAGE_PIXELS = 2073600; // 1920x1080px
 
@@ -10,34 +10,34 @@ const _browser_quirks = {};
 // See https://github.com/w3c/csswg-drafts/issues/4666
 // and https://github.com/blueimp/JavaScript-Load-Image/commit/1e4df707821a0afcc11ea0720ee403b8759f3881
 const dropOrientationIfNeeded = (orientation) => new Promise(resolve => {
-  switch (_browser_quirks['image-orientation-automatic']) {
-  case true:
-    resolve(1);
-    break;
-  case false:
-    resolve(orientation);
-    break;
-  default:
+  switch (_browser_quirks["image-orientation-automatic"]) {
+    case true:
+      resolve(1);
+      break;
+    case false:
+      resolve(orientation);
+      break;
+    default:
     // black 2x1 JPEG, with the following meta information set:
     // - EXIF Orientation: 6 (Rotated 90° CCW)
-    const testImageURL =
-      'data:image/jpeg;base64,/9j/4QAiRXhpZgAATU0AKgAAAAgAAQESAAMAAAABAAYAAAA' +
-      'AAAD/2wCEAAEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBA' +
-      'QEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQE' +
-      'BAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAf/AABEIAAEAAgMBEQACEQEDEQH/x' +
-      'ABKAAEAAAAAAAAAAAAAAAAAAAALEAEAAAAAAAAAAAAAAAAAAAAAAQEAAAAAAAAAAAAAAAA' +
-      'AAAAAEQEAAAAAAAAAAAAAAAAAAAAA/9oADAMBAAIRAxEAPwA/8H//2Q==';
-    const img = new Image();
-    img.onload = () => {
-      const automatic = (img.width === 1 && img.height === 2);
-      _browser_quirks['image-orientation-automatic'] = automatic;
-      resolve(automatic ? 1 : orientation);
-    };
-    img.onerror = () => {
-      _browser_quirks['image-orientation-automatic'] = false;
-      resolve(orientation);
-    };
-    img.src = testImageURL;
+      const testImageURL =
+      "data:image/jpeg;base64,/9j/4QAiRXhpZgAATU0AKgAAAAgAAQESAAMAAAABAAYAAAA" +
+      "AAAD/2wCEAAEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBA" +
+      "QEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQE" +
+      "BAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAf/AABEIAAEAAgMBEQACEQEDEQH/x" +
+      "ABKAAEAAAAAAAAAAAAAAAAAAAALEAEAAAAAAAAAAAAAAAAAAAAAAQEAAAAAAAAAAAAAAAA" +
+      "AAAAAEQEAAAAAAAAAAAAAAAAAAAAA/9oADAMBAAIRAxEAPwA/8H//2Q==";
+      const img = new Image();
+      img.onload = () => {
+        const automatic = (img.width === 1 && img.height === 2);
+        _browser_quirks["image-orientation-automatic"] = automatic;
+        resolve(automatic ? 1 : orientation);
+      };
+      img.onerror = () => {
+        _browser_quirks["image-orientation-automatic"] = false;
+        resolve(orientation);
+      };
+      img.src = testImageURL;
   }
 });
 
@@ -45,38 +45,38 @@ const dropOrientationIfNeeded = (orientation) => new Promise(resolve => {
 // or randomized data. Use a pre-defined image to check if reading the canvas
 // works.
 const checkCanvasReliability = () => new Promise((resolve, reject) => {
-  switch(_browser_quirks['canvas-read-unreliable']) {
-  case true:
-    reject('Canvas reading unreliable');
-    break;
-  case false:
-    resolve();
-    break;
-  default:
+  switch(_browser_quirks["canvas-read-unreliable"]) {
+    case true:
+      reject("Canvas reading unreliable");
+      break;
+    case false:
+      resolve();
+      break;
+    default:
     // 2×2 GIF with white, red, green and blue pixels
-    const testImageURL =
-      'data:image/gif;base64,R0lGODdhAgACAKEDAAAA//8AAAD/AP///ywAAAAAAgACAAACA1wEBQA7';
-    const refData =
+      const testImageURL =
+      "data:image/gif;base64,R0lGODdhAgACAKEDAAAA//8AAAD/AP///ywAAAAAAgACAAACA1wEBQA7";
+      const refData =
       [255, 255, 255, 255,  255, 0, 0, 255,  0, 255, 0, 255,  0, 0, 255, 255];
-    const img = new Image();
-    img.onload = () => {
-      const canvas  = document.createElement('canvas');
-      const context = canvas.getContext('2d');
-      context.drawImage(img, 0, 0, 2, 2);
-      const imageData = context.getImageData(0, 0, 2, 2);
-      if (imageData.data.every((x, i) => refData[i] === x)) {
-        _browser_quirks['canvas-read-unreliable'] = false;
-        resolve();
-      } else {
-        _browser_quirks['canvas-read-unreliable'] = true;
-        reject('Canvas reading unreliable');
-      }
-    };
-    img.onerror = () => {
-      _browser_quirks['canvas-read-unreliable'] = true;
-      reject('Failed to load test image');
-    };
-    img.src = testImageURL;
+      const img = new Image();
+      img.onload = () => {
+        const canvas  = document.createElement("canvas");
+        const context = canvas.getContext("2d");
+        context.drawImage(img, 0, 0, 2, 2);
+        const imageData = context.getImageData(0, 0, 2, 2);
+        if (imageData.data.every((x, i) => refData[i] === x)) {
+          _browser_quirks["canvas-read-unreliable"] = false;
+          resolve();
+        } else {
+          _browser_quirks["canvas-read-unreliable"] = true;
+          reject("Canvas reading unreliable");
+        }
+      };
+      img.onerror = () => {
+        _browser_quirks["canvas-read-unreliable"] = true;
+        reject("Failed to load test image");
+      };
+      img.src = testImageURL;
   }
 });
 
@@ -108,14 +108,14 @@ const loadImage = inputFile => new Promise((resolve, reject) => {
   }).catch(reject);
 });
 
-const getOrientation = (img, type = 'image/png') => new Promise(resolve => {
-  if (!['image/jpeg', 'image/webp'].includes(type)) {
+const getOrientation = (img, type = "image/png") => new Promise(resolve => {
+  if (!["image/jpeg", "image/webp"].includes(type)) {
     resolve(1);
     return;
   }
 
   EXIF.getData(img, () => {
-    const orientation = EXIF.getTag(img, 'Orientation');
+    const orientation = EXIF.getTag(img, "Orientation");
     if (orientation !== 1) {
       dropOrientationIfNeeded(orientation).then(resolve).catch(() => resolve(orientation));
     } else {
@@ -124,8 +124,8 @@ const getOrientation = (img, type = 'image/png') => new Promise(resolve => {
   });
 });
 
-const processImage = (img, { width, height, orientation, type = 'image/png' }) => new Promise(resolve => {
-  const canvas  = document.createElement('canvas');
+const processImage = (img, { width, height, orientation, type = "image/png" }) => new Promise(resolve => {
+  const canvas  = document.createElement("canvas");
 
   if (4 < orientation && orientation < 9) {
     canvas.width  = height;
@@ -135,16 +135,16 @@ const processImage = (img, { width, height, orientation, type = 'image/png' }) =
     canvas.height = height;
   }
 
-  const context = canvas.getContext('2d');
+  const context = canvas.getContext("2d");
 
   switch (orientation) {
-  case 2: context.transform(-1, 0, 0, 1, width, 0); break;
-  case 3: context.transform(-1, 0, 0, -1, width, height); break;
-  case 4: context.transform(1, 0, 0, -1, 0, height); break;
-  case 5: context.transform(0, 1, 1, 0, 0, 0); break;
-  case 6: context.transform(0, 1, -1, 0, height, 0); break;
-  case 7: context.transform(0, -1, -1, 0, height, width); break;
-  case 8: context.transform(0, -1, 1, 0, 0, width); break;
+    case 2: context.transform(-1, 0, 0, 1, width, 0); break;
+    case 3: context.transform(-1, 0, 0, -1, width, height); break;
+    case 4: context.transform(1, 0, 0, -1, 0, height); break;
+    case 5: context.transform(0, 1, 1, 0, 0, 0); break;
+    case 6: context.transform(0, 1, -1, 0, height, 0); break;
+    case 7: context.transform(0, -1, -1, 0, height, width); break;
+    case 8: context.transform(0, -1, 1, 0, 0, width); break;
   }
 
   context.drawImage(img, 0, 0, width, height);
@@ -152,7 +152,7 @@ const processImage = (img, { width, height, orientation, type = 'image/png' }) =
   canvas.toBlob(resolve, type);
 });
 
-const resizeImage = (img, type = 'image/png') => new Promise((resolve, reject) => {
+const resizeImage = (img, type = "image/png") => new Promise((resolve, reject) => {
   const { width, height } = img;
 
   const newWidth  = Math.round(Math.sqrt(MAX_IMAGE_PIXELS * (width / height)));
@@ -171,7 +171,7 @@ const resizeImage = (img, type = 'image/png') => new Promise((resolve, reject) =
 });
 
 const resizeFile = (inputFile) => new Promise((resolve) => {
-  if (!inputFile.type.match(/image.*/) || inputFile.type === 'image/gif') {
+  if (!inputFile.type.match(/image.*/) || inputFile.type === "image/gif") {
     resolve(inputFile);
     return;
   }

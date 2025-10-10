@@ -1,21 +1,21 @@
 // Common configuration for webpacker loaded from config/webpacker.yml
 
-const { lstatSync, readFileSync } = require('fs');
-const { basename, dirname, extname, join, resolve } = require('path');
-const { env } = require('process');
+const { lstatSync, readFileSync } = require("fs");
+const { basename, dirname, extname, join, resolve } = require("path");
+const { env } = require("process");
 
-const glob = require('glob');
-const { load } = require('js-yaml');
+const glob = require("glob");
+const { load } = require("js-yaml");
 
-const configPath = resolve('config', 'webpacker.yml');
-const settings = load(readFileSync(configPath), 'utf8')[env.RAILS_ENV || env.NODE_ENV];
-const flavourFiles = glob.sync('app/javascript/flavours/*/theme.yml');
-const skinFiles = glob.sync('app/javascript/skins/*/*');
+const configPath = resolve("config", "webpacker.yml");
+const settings = load(readFileSync(configPath), "utf8")[env.RAILS_ENV || env.NODE_ENV];
+const flavourFiles = glob.sync("app/javascript/flavours/*/theme.yml");
+const skinFiles = glob.sync("app/javascript/skins/*/*");
 const flavours = {};
 
 const core = function () {
-  const coreFile = resolve('app', 'javascript', 'core', 'theme.yml');
-  const data = load(readFileSync(coreFile), 'utf8');
+  const coreFile = resolve("app", "javascript", "core", "theme.yml");
+  const data = load(readFileSync(coreFile), "utf8");
   if (!data.pack_directory) {
     data.pack_directory = dirname(coreFile);
   }
@@ -23,7 +23,7 @@ const core = function () {
 }();
 
 flavourFiles.forEach((flavourFile) => {
-  const data = load(readFileSync(flavourFile), 'utf8');
+  const data = load(readFileSync(flavourFile), "utf8");
   data.name = basename(dirname(flavourFile));
   data.skin = {};
   if (!data.pack_directory) {
@@ -32,7 +32,7 @@ flavourFiles.forEach((flavourFile) => {
   if (data.locales) {
     data.locales = join(dirname(flavourFile), data.locales);
   }
-  if (data.pack && typeof data.pack === 'object') {
+  if (data.pack && typeof data.pack === "object") {
     flavours[data.name] = data;
   }
 });
@@ -46,7 +46,7 @@ skinFiles.forEach((skinFile) => {
   const data = flavours[name].skin;
   if (lstatSync(skinFile).isDirectory()) {
     data[skin] = {};
-    const skinPacks = glob.sync(join(skinFile, '*.{css,scss}'));
+    const skinPacks = glob.sync(join(skinFile, "*.{css,scss}"));
     skinPacks.forEach((pack) => {
       data[skin][basename(pack, extname(pack))] = pack;
     });
@@ -56,7 +56,7 @@ skinFiles.forEach((skinFile) => {
 });
 
 const output = {
-  path: resolve('public', settings.public_output_path),
+  path: resolve("public", settings.public_output_path),
   publicPath: `/${settings.public_output_path}/`,
 };
 

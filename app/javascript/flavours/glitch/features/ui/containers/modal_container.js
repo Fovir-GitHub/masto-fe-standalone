@@ -1,13 +1,13 @@
-import { connect } from 'react-redux';
+import { connect } from "react-redux";
 
-import { openModal, closeModal } from 'flavours/glitch/actions/modal';
+import { openModal, closeModal } from "flavours/glitch/actions/modal";
 
-import ModalRoot from '../components/modal_root';
+import ModalRoot from "../components/modal_root";
 
 const mapStateToProps = state => ({
-  ignoreFocus: state.getIn(['modal', 'ignoreFocus']),
-  type: state.getIn(['modal', 'stack', 0, 'modalType'], null),
-  props: state.getIn(['modal', 'stack', 0, 'modalProps'], {}),
+  ignoreFocus: state.getIn(["modal", "ignoreFocus"]),
+  type: state.getIn(["modal", "stack", 0, "modalType"], null),
+  props: state.getIn(["modal", "stack", 0, "modalProps"], {}),
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -15,7 +15,7 @@ const mapDispatchToProps = dispatch => ({
     if (confirmationMessage) {
       dispatch(
         openModal({
-          modalType: 'CONFIRM',
+          modalType: "CONFIRM",
           modalProps: {
             message: confirmationMessage.message,
             confirm: confirmationMessage.confirm,

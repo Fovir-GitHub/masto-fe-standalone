@@ -1,13 +1,13 @@
-import PropTypes from 'prop-types';
-import { PureComponent } from 'react';
+import PropTypes from "prop-types";
+import { PureComponent } from "react";
 
-import { FormattedMessage } from 'react-intl';
+import { FormattedMessage } from "react-intl";
 
-import { connect } from 'react-redux';
+import { connect } from "react-redux";
 
-import { revealAccount } from 'flavours/glitch/actions/accounts';
-import Button from 'flavours/glitch/components/button';
-import { domain } from 'flavours/glitch/initial_state';
+import { revealAccount } from "flavours/glitch/actions/accounts";
+import Button from "flavours/glitch/components/button";
+import { domain } from "flavours/glitch/initial_state";
 
 const mapDispatchToProps = (dispatch, { accountId }) => ({
 

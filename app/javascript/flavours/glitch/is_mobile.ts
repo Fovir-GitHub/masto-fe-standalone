@@ -1,6 +1,6 @@
-import { supportsPassiveEvents } from 'detect-passive-events';
+import { supportsPassiveEvents } from "detect-passive-events";
 
-import { forceSingleColumn, hasMultiColumnPath } from './initial_state';
+import { forceSingleColumn, hasMultiColumnPath } from "./initial_state";
 
 const LAYOUT_BREAKPOINT = 630;
 
@@ -8,24 +8,24 @@ export const isMobile = (width: number) => width <= LAYOUT_BREAKPOINT;
 
 export const transientSingleColumn = !forceSingleColumn && !hasMultiColumnPath;
 
-export type LayoutType = 'mobile' | 'single-column' | 'multi-column';
+export type LayoutType = "mobile" | "single-column" | "multi-column";
 export const layoutFromWindow = (layout_local_setting: string): LayoutType => {
   switch (layout_local_setting) {
-    case 'multiple':
-      return 'multi-column';
-    case 'single':
+    case "multiple":
+      return "multi-column";
+    case "single":
       if (isMobile(window.innerWidth)) {
-        return 'mobile';
+        return "mobile";
       } else {
-        return 'single-column';
+        return "single-column";
       }
     default:
       if (isMobile(window.innerWidth)) {
-        return 'mobile';
+        return "mobile";
       } else if (forceSingleColumn) {
-        return 'single-column';
+        return "single-column";
       } else {
-        return 'multi-column';
+        return "multi-column";
       }
   }
 };
@@ -37,9 +37,9 @@ let userTouching = false;
 const touchListener = () => {
   userTouching = true;
 
-  window.removeEventListener('touchstart', touchListener);
+  window.removeEventListener("touchstart", touchListener);
 };
 
-window.addEventListener('touchstart', touchListener, listenerOptions);
+window.addEventListener("touchstart", touchListener, listenerOptions);
 
 export const isUserTouching = () => userTouching;

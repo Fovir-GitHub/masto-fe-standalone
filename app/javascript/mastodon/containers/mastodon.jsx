@@ -1,24 +1,24 @@
-import PropTypes from 'prop-types';
-import { PureComponent } from 'react';
+import PropTypes from "prop-types";
+import { PureComponent } from "react";
 
-import { Helmet } from 'react-helmet';
-import { Route } from 'react-router-dom';
+import { Helmet } from "react-helmet";
+import { Route } from "react-router-dom";
 
-import { Provider as ReduxProvider } from 'react-redux';
+import { Provider as ReduxProvider } from "react-redux";
 
-import { ScrollContext } from 'react-router-scroll-4';
+import { ScrollContext } from "react-router-scroll-4";
 
-import { fetchCustomEmojis } from 'mastodon/actions/custom_emojis';
-import { hydrateStore } from 'mastodon/actions/store';
-import { connectUserStream } from 'mastodon/actions/streaming';
-import ErrorBoundary from 'mastodon/components/error_boundary';
-import { Router } from 'mastodon/components/router';
-import UI from 'mastodon/features/ui';
-import initialState, { title as siteTitle } from 'mastodon/initial_state';
-import { IntlProvider } from 'mastodon/locales';
-import { store } from 'mastodon/store';
+import { fetchCustomEmojis } from "mastodon/actions/custom_emojis";
+import { hydrateStore } from "mastodon/actions/store";
+import { connectUserStream } from "mastodon/actions/streaming";
+import ErrorBoundary from "mastodon/components/error_boundary";
+import { Router } from "mastodon/components/router";
+import UI from "mastodon/features/ui";
+import initialState, { title as siteTitle } from "mastodon/initial_state";
+import { IntlProvider } from "mastodon/locales";
+import { store } from "mastodon/store";
 
-const title = process.env.NODE_ENV === 'production' ? siteTitle : `${siteTitle} (Dev)`;
+const title = process.env.NODE_ENV === "production" ? siteTitle : `${siteTitle} (Dev)`;
 
 const hydrateAction = hydrateStore(initialState);
 

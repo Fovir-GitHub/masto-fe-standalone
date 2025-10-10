@@ -1,19 +1,19 @@
 //  Package imports.
-import PropTypes from 'prop-types';
-import { PureComponent } from 'react';
+import PropTypes from "prop-types";
+import { PureComponent } from "react";
 
-import ImmutablePropTypes from 'react-immutable-proptypes';
-import { connect } from 'react-redux';
+import ImmutablePropTypes from "react-immutable-proptypes";
+import { connect } from "react-redux";
 
 //  Our imports
-import { changeLocalSetting } from 'flavours/glitch/actions/local_settings';
-import { closeModal } from 'flavours/glitch/actions/modal';
+import { changeLocalSetting } from "flavours/glitch/actions/local_settings";
+import { closeModal } from "flavours/glitch/actions/modal";
 
-import LocalSettingsNavigation from './navigation';
-import LocalSettingsPage from './page';
+import LocalSettingsNavigation from "./navigation";
+import LocalSettingsPage from "./page";
 
 const mapStateToProps = state => ({
-  settings: state.get('local_settings'),
+  settings: state.get("local_settings"),
 });
 
 const mapDispatchToProps = dispatch => ({

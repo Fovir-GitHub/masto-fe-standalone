@@ -1,16 +1,16 @@
-import PropTypes from 'prop-types';
+import PropTypes from "prop-types";
 
-import classNames from 'classnames';
+import classNames from "classnames";
 
-import ImmutablePropTypes from 'react-immutable-proptypes';
-import ImmutablePureComponent from 'react-immutable-pure-component';
+import ImmutablePropTypes from "react-immutable-proptypes";
+import ImmutablePureComponent from "react-immutable-pure-component";
 
-import Textarea from 'react-textarea-autosize';
+import Textarea from "react-textarea-autosize";
 
-import AutosuggestAccountContainer from '../features/compose/containers/autosuggest_account_container';
+import AutosuggestAccountContainer from "../features/compose/containers/autosuggest_account_container";
 
-import AutosuggestEmoji from './autosuggest_emoji';
-import { AutosuggestHashtag } from './autosuggest_hashtag';
+import AutosuggestEmoji from "./autosuggest_emoji";
+import { AutosuggestHashtag } from "./autosuggest_hashtag";
 
 const textAtCursorMatchesToken = (str, caretPosition) => {
   let word;
@@ -24,7 +24,7 @@ const textAtCursorMatchesToken = (str, caretPosition) => {
     word = str.slice(left, right + caretPosition);
   }
 
-  if (!word || word.trim().length < 3 || ['@', ':', '#'].indexOf(word[0]) === -1) {
+  if (!word || word.trim().length < 3 || ["@", ":", "#"].indexOf(word[0]) === -1) {
     return [null, null];
   }
 
@@ -97,39 +97,39 @@ export default class AutosuggestTextarea extends ImmutablePureComponent {
     }
 
     switch(e.key) {
-    case 'Escape':
-      if (suggestions.size === 0 || suggestionsHidden) {
-        document.querySelector('.ui').parentElement.focus();
-      } else {
-        e.preventDefault();
-        this.setState({ suggestionsHidden: true });
-      }
+      case "Escape":
+        if (suggestions.size === 0 || suggestionsHidden) {
+          document.querySelector(".ui").parentElement.focus();
+        } else {
+          e.preventDefault();
+          this.setState({ suggestionsHidden: true });
+        }
 
-      break;
-    case 'ArrowDown':
-      if (suggestions.size > 0 && !suggestionsHidden) {
-        e.preventDefault();
-        this.setState({ selectedSuggestion: Math.min(selectedSuggestion + 1, suggestions.size - 1) });
-      }
+        break;
+      case "ArrowDown":
+        if (suggestions.size > 0 && !suggestionsHidden) {
+          e.preventDefault();
+          this.setState({ selectedSuggestion: Math.min(selectedSuggestion + 1, suggestions.size - 1) });
+        }
 
-      break;
-    case 'ArrowUp':
-      if (suggestions.size > 0 && !suggestionsHidden) {
-        e.preventDefault();
-        this.setState({ selectedSuggestion: Math.max(selectedSuggestion - 1, 0) });
-      }
+        break;
+      case "ArrowUp":
+        if (suggestions.size > 0 && !suggestionsHidden) {
+          e.preventDefault();
+          this.setState({ selectedSuggestion: Math.max(selectedSuggestion - 1, 0) });
+        }
 
-      break;
-    case 'Enter':
-    case 'Tab':
+        break;
+      case "Enter":
+      case "Tab":
       // Select suggestion
-      if (this.state.lastToken !== null && suggestions.size > 0 && !suggestionsHidden) {
-        e.preventDefault();
-        e.stopPropagation();
-        this.props.onSuggestionSelected(this.state.tokenStart, this.state.lastToken, suggestions.get(selectedSuggestion));
-      }
+        if (this.state.lastToken !== null && suggestions.size > 0 && !suggestionsHidden) {
+          e.preventDefault();
+          e.stopPropagation();
+          this.props.onSuggestionSelected(this.state.tokenStart, this.state.lastToken, suggestions.get(selectedSuggestion));
+        }
 
-      break;
+        break;
     }
 
     if (e.defaultPrevented || !this.props.onKeyDown) {
@@ -151,7 +151,7 @@ export default class AutosuggestTextarea extends ImmutablePureComponent {
   };
 
   onSuggestionClick = (e) => {
-    const suggestion = this.props.suggestions.get(e.currentTarget.getAttribute('data-index'));
+    const suggestion = this.props.suggestions.get(e.currentTarget.getAttribute("data-index"));
     e.preventDefault();
     this.props.onSuggestionSelected(this.state.tokenStart, this.state.lastToken, suggestion);
     this.textarea.focus();
@@ -178,19 +178,19 @@ export default class AutosuggestTextarea extends ImmutablePureComponent {
     const { selectedSuggestion } = this.state;
     let inner, key;
 
-    if (suggestion.type === 'emoji') {
+    if (suggestion.type === "emoji") {
       inner = <AutosuggestEmoji emoji={suggestion} />;
       key   = suggestion.id;
-    } else if (suggestion.type === 'hashtag') {
+    } else if (suggestion.type === "hashtag") {
       inner = <AutosuggestHashtag tag={suggestion} />;
       key   = suggestion.name;
-    } else if (suggestion.type === 'account') {
+    } else if (suggestion.type === "account") {
       inner = <AutosuggestAccountContainer id={suggestion.id} />;
       key   = suggestion.id;
     }
 
     return (
-      <div role='button' tabIndex={0} key={key} data-index={i} className={classNames('autosuggest-textarea__suggestions__item', { selected: i === selectedSuggestion })} onMouseDown={this.onSuggestionClick}>
+      <div role='button' tabIndex={0} key={key} data-index={i} className={classNames("autosuggest-textarea__suggestions__item", { selected: i === selectedSuggestion })} onMouseDown={this.onSuggestionClick}>
         {inner}
       </div>
     );
@@ -204,7 +204,7 @@ export default class AutosuggestTextarea extends ImmutablePureComponent {
       <div className='compose-form__autosuggest-wrapper' key='autosuggest-wrapper'>
         <div className='autosuggest-textarea'>
           <label>
-            <span style={{ display: 'none' }}>{placeholder}</span>
+            <span style={{ display: "none" }}>{placeholder}</span>
 
             <Textarea
               ref={this.setTextarea}
@@ -229,7 +229,7 @@ export default class AutosuggestTextarea extends ImmutablePureComponent {
       </div>,
 
       <div className='autosuggest-textarea__suggestions-wrapper' key='suggestions-wrapper'>
-        <div className={`autosuggest-textarea__suggestions ${suggestionsHidden || suggestions.isEmpty() ? '' : 'autosuggest-textarea__suggestions--visible'}`}>
+        <div className={`autosuggest-textarea__suggestions ${suggestionsHidden || suggestions.isEmpty() ? "" : "autosuggest-textarea__suggestions--visible"}`}>
           {suggestions.map(this.renderSuggestion)}
         </div>
       </div>,

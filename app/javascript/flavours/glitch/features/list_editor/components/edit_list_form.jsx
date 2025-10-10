@@ -1,20 +1,20 @@
-import PropTypes from 'prop-types';
-import { PureComponent } from 'react';
+import PropTypes from "prop-types";
+import { PureComponent } from "react";
 
-import { defineMessages, injectIntl } from 'react-intl';
+import { defineMessages, injectIntl } from "react-intl";
 
-import { connect } from 'react-redux';
+import { connect } from "react-redux";
 
-import { changeListEditorTitle, submitListEditor } from 'flavours/glitch/actions/lists';
-import { IconButton } from 'flavours/glitch/components/icon_button';
+import { changeListEditorTitle, submitListEditor } from "flavours/glitch/actions/lists";
+import { IconButton } from "flavours/glitch/components/icon_button";
 
 const messages = defineMessages({
-  title: { id: 'lists.edit.submit', defaultMessage: 'Change title' },
+  title: { id: "lists.edit.submit", defaultMessage: "Change title" },
 });
 
 const mapStateToProps = state => ({
-  value: state.getIn(['listEditor', 'title']),
-  disabled: !state.getIn(['listEditor', 'isChanged']) || !state.getIn(['listEditor', 'title']),
+  value: state.getIn(["listEditor", "title"]),
+  disabled: !state.getIn(["listEditor", "isChanged"]) || !state.getIn(["listEditor", "title"]),
 });
 
 const mapDispatchToProps = dispatch => ({

@@ -3,10 +3,10 @@
 // Open up Chrome Dev Tools, then Timeline, then User Timing to see output.
 // Also see config/webpack/loaders/mark.js for the webpack loader marks.
 
-import * as marky from 'marky';
+import * as marky from "marky";
 
-if (process.env.NODE_ENV === 'development') {
-  if (typeof performance !== 'undefined' && performance.setResourceTimingBufferSize) {
+if (process.env.NODE_ENV === "development") {
+  if (typeof performance !== "undefined" && performance.setResourceTimingBufferSize) {
     // Increase Firefox's performance entry limit; otherwise it's capped to 150.
     // See: https://bugzilla.mozilla.org/show_bug.cgi?id=1331135
     performance.setResourceTimingBufferSize(Infinity);
@@ -18,13 +18,13 @@ if (process.env.NODE_ENV === 'development') {
 }
 
 export function start(name) {
-  if (process.env.NODE_ENV === 'development') {
+  if (process.env.NODE_ENV === "development") {
     marky.mark(name);
   }
 }
 
 export function stop(name) {
-  if (process.env.NODE_ENV === 'development') {
+  if (process.env.NODE_ENV === "development") {
     marky.stop(name);
   }
 }

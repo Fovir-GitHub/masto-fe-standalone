@@ -1,12 +1,12 @@
-import PropTypes from 'prop-types';
+import PropTypes from "prop-types";
 
-import ImmutablePropTypes from 'react-immutable-proptypes';
-import ImmutablePureComponent from 'react-immutable-pure-component';
+import ImmutablePropTypes from "react-immutable-proptypes";
+import ImmutablePureComponent from "react-immutable-pure-component";
 
-import { debounce } from 'lodash';
+import { debounce } from "lodash";
 
-import ScrollableList from '../../../components/scrollable_list';
-import ConversationContainer from '../containers/conversation_container';
+import ScrollableList from "../../../components/scrollable_list";
+import ConversationContainer from "../containers/conversation_container";
 
 export default class ConversationsList extends ImmutablePureComponent {
 
@@ -18,7 +18,7 @@ export default class ConversationsList extends ImmutablePureComponent {
     onLoadMore: PropTypes.func,
   };
 
-  getCurrentIndex = id => this.props.conversations.findIndex(x => x.get('id') === id);
+  getCurrentIndex = id => this.props.conversations.findIndex(x => x.get("id") === id);
 
   handleMoveUp = id => {
     const elementIndex = this.getCurrentIndex(id) - 1;
@@ -51,8 +51,8 @@ export default class ConversationsList extends ImmutablePureComponent {
   handleLoadOlder = debounce(() => {
     const last = this.props.conversations.last();
 
-    if (last && last.get('last_status')) {
-      this.props.onLoadMore(last.get('last_status'));
+    if (last && last.get("last_status")) {
+      this.props.onLoadMore(last.get("last_status"));
     }
   }, 300, { leading: true });
 
@@ -63,8 +63,8 @@ export default class ConversationsList extends ImmutablePureComponent {
       <ScrollableList {...other} isLoading={isLoading} showLoading={isLoading && conversations.isEmpty()} onLoadMore={onLoadMore && this.handleLoadOlder} ref={this.setRef}>
         {conversations.map(item => (
           <ConversationContainer
-            key={item.get('id')}
-            conversationId={item.get('id')}
+            key={item.get("id")}
+            conversationId={item.get("id")}
             onMoveUp={this.handleMoveUp}
             onMoveDown={this.handleMoveDown}
             scrollKey={this.props.scrollKey}

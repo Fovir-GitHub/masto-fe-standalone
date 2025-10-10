@@ -1,14 +1,14 @@
-import PropTypes from 'prop-types';
+import PropTypes from "prop-types";
 
-import classNames from 'classnames';
-import { NavLink } from 'react-router-dom';
+import classNames from "classnames";
+import { NavLink } from "react-router-dom";
 
-import { Icon } from 'flavours/glitch/components/icon';
+import { Icon } from "flavours/glitch/components/icon";
 
 const ColumnLink = ({ icon, text, to, onClick, href, method, badge, transparent, ...other }) => {
-  const className = classNames('column-link', { 'column-link--transparent': transparent });
-  const badgeElement = typeof badge !== 'undefined' ? <span className='column-link__badge'>{badge}</span> : null;
-  const iconElement = typeof icon === 'string' ? <Icon id={icon} fixedWidth className='column-link__icon' /> : icon;
+  const className = classNames("column-link", { "column-link--transparent": transparent });
+  const badgeElement = typeof badge !== "undefined" ? <span className='column-link__badge'>{badge}</span> : null;
+  const iconElement = typeof icon === "string" ? <Icon id={icon} fixedWidth className='column-link__icon' /> : icon;
 
   if (href) {
     return (

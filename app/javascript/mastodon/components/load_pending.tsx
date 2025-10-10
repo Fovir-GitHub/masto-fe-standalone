@@ -1,8 +1,8 @@
-import { FormattedMessage } from 'react-intl';
+import { FormattedMessage } from "react-intl";
 
 interface Props {
-  onClick: (event: React.MouseEvent) => void;
-  count: number;
+  onClick: (event: React.MouseEvent) => void,
+  count: number,
 }
 
 export const LoadPending: React.FC<Props> = ({ onClick, count }) => {

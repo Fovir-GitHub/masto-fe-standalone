@@ -20,7 +20,7 @@ COPY \
 RUN yarn && yarn build:production
 
 ### RUNTIME IMAGE ###
-FROM nginx:1.28.0-alpine AS runtime
+FROM nginx:alpine AS runtime
 
 # Copy bigger nested stuff.
 COPY --from=builder /build/public/packs/js/flavours/glitch /usr/share/nginx/html/packs/js/flavours/glitch

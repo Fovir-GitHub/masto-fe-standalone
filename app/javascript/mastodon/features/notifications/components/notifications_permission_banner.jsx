@@ -1,18 +1,18 @@
-import PropTypes from 'prop-types';
-import { PureComponent } from 'react';
+import PropTypes from "prop-types";
+import { PureComponent } from "react";
 
-import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
+import { defineMessages, injectIntl, FormattedMessage } from "react-intl";
 
-import { connect } from 'react-redux';
+import { connect } from "react-redux";
 
-import { requestBrowserPermission } from 'mastodon/actions/notifications';
-import { changeSetting } from 'mastodon/actions/settings';
-import Button from 'mastodon/components/button';
-import { Icon }  from 'mastodon/components/icon';
-import { IconButton } from 'mastodon/components/icon_button';
+import { requestBrowserPermission } from "mastodon/actions/notifications";
+import { changeSetting } from "mastodon/actions/settings";
+import Button from "mastodon/components/button";
+import { Icon }  from "mastodon/components/icon";
+import { IconButton } from "mastodon/components/icon_button";
 
 const messages = defineMessages({
-  close: { id: 'lightbox.close', defaultMessage: 'Close' },
+  close: { id: "lightbox.close", defaultMessage: "Close" },
 });
 
 class NotificationsPermissionBanner extends PureComponent {
@@ -27,7 +27,7 @@ class NotificationsPermissionBanner extends PureComponent {
   };
 
   handleClose = () => {
-    this.props.dispatch(changeSetting(['notifications', 'dismissPermissionBanner'], true));
+    this.props.dispatch(changeSetting(["notifications", "dismissPermissionBanner"], true));
   };
 
   render () {

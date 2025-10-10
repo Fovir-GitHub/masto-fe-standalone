@@ -1,14 +1,14 @@
-import { useRef, useEffect } from 'react';
-import * as React from 'react';
+import { useRef, useEffect } from "react";
+import * as React from "react";
 
-import { decode } from 'blurhash';
+import { decode } from "blurhash";
 
 interface Props extends React.HTMLAttributes<HTMLCanvasElement> {
-  hash: string;
-  width?: number;
-  height?: number;
-  dummy?: boolean; // Whether dummy mode is enabled. If enabled, nothing is rendered and canvas left untouched
-  children?: never;
+  hash: string,
+  width?: number,
+  height?: number,
+  dummy?: boolean, // Whether dummy mode is enabled. If enabled, nothing is rendered and canvas left untouched
+  children?: never,
 }
 const Blurhash: React.FC<Props> = ({
   hash,
@@ -26,16 +26,18 @@ const Blurhash: React.FC<Props> = ({
     // eslint-disable-next-line no-self-assign
     canvas.width = canvas.width; // resets canvas
 
-    if (dummy || !hash) return;
+    if (dummy || !hash) {
+      return;
+    }
 
     try {
       const pixels = decode(hash, width, height);
-      const ctx = canvas.getContext('2d');
+      const ctx = canvas.getContext("2d");
       const imageData = new ImageData(pixels, width, height);
 
       ctx?.putImageData(imageData, 0, 0);
     } catch (err) {
-      console.error('Blurhash decoding failure', { err, hash });
+      console.error("Blurhash decoding failure", { err, hash });
     }
   }, [dummy, hash, width, height]);
 

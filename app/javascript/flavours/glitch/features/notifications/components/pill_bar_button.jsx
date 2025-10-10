@@ -1,9 +1,9 @@
-import PropTypes from 'prop-types';
-import { PureComponent } from 'react';
+import PropTypes from "prop-types";
+import { PureComponent } from "react";
 
-import classNames from 'classnames';
+import classNames from "classnames";
 
-import ImmutablePropTypes from 'react-immutable-proptypes';
+import ImmutablePropTypes from "react-immutable-proptypes";
 
 export default class PillBarButton extends PureComponent {
 
@@ -23,14 +23,14 @@ export default class PillBarButton extends PureComponent {
 
   render () {
     const { prefix, settings, settingPath, label, disabled } = this.props;
-    const id = ['setting-pillbar-button', prefix, ...settingPath].filter(Boolean).join('-');
+    const id = ["setting-pillbar-button", prefix, ...settingPath].filter(Boolean).join("-");
     const active = settings.getIn(settingPath);
 
     return (
       <button
         key={id}
         id={id}
-        className={classNames('pillbar-button', { active })}
+        className={classNames("pillbar-button", { active })}
         disabled={disabled}
         onClick={this.onChange}
         aria-pressed={active}

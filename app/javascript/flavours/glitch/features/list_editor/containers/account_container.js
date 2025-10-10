@@ -1,18 +1,18 @@
-import { injectIntl } from 'react-intl';
+import { injectIntl } from "react-intl";
 
-import { connect } from 'react-redux';
+import { connect } from "react-redux";
 
-import { removeFromListEditor, addToListEditor } from 'flavours/glitch/actions/lists';
-import { makeGetAccount } from 'flavours/glitch/selectors';
+import { removeFromListEditor, addToListEditor } from "flavours/glitch/actions/lists";
+import { makeGetAccount } from "flavours/glitch/selectors";
 
-import Account from '../components/account';
+import Account from "../components/account";
 
 const makeMapStateToProps = () => {
   const getAccount = makeGetAccount();
 
   const mapStateToProps = (state, { accountId, added }) => ({
     account: getAccount(state, accountId),
-    added: typeof added === 'undefined' ? state.getIn(['listEditor', 'accounts', 'items']).includes(accountId) : added,
+    added: typeof added === "undefined" ? state.getIn(["listEditor", "accounts", "items"]).includes(accountId) : added,
   });
 
   return mapStateToProps;

@@ -1,19 +1,19 @@
-import { injectIntl } from 'react-intl';
+import { injectIntl } from "react-intl";
 
-import { connect } from 'react-redux';
+import { connect } from "react-redux";
 
-import { NotificationStack } from 'react-notification';
+import { NotificationStack } from "react-notification";
 
-import { dismissAlert } from 'flavours/glitch/actions/alerts';
-import { getAlerts } from 'flavours/glitch/selectors';
+import { dismissAlert } from "flavours/glitch/actions/alerts";
+import { getAlerts } from "flavours/glitch/selectors";
 
 const mapStateToProps = (state, { intl }) => {
   const notifications = getAlerts(state);
 
-  notifications.forEach(notification => ['title', 'message'].forEach(key => {
+  notifications.forEach(notification => ["title", "message"].forEach(key => {
     const value = notification[key];
 
-    if (typeof value === 'object') {
+    if (typeof value === "object") {
       notification[key] = intl.formatMessage(value, notification[`${key}_values`]);
     }
   }));

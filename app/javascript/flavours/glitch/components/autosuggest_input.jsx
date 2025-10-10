@@ -1,14 +1,14 @@
-import PropTypes from 'prop-types';
+import PropTypes from "prop-types";
 
-import classNames from 'classnames';
+import classNames from "classnames";
 
-import ImmutablePropTypes from 'react-immutable-proptypes';
-import ImmutablePureComponent from 'react-immutable-pure-component';
+import ImmutablePropTypes from "react-immutable-proptypes";
+import ImmutablePureComponent from "react-immutable-pure-component";
 
-import AutosuggestAccountContainer from 'flavours/glitch/features/compose/containers/autosuggest_account_container';
+import AutosuggestAccountContainer from "flavours/glitch/features/compose/containers/autosuggest_account_container";
 
-import AutosuggestEmoji from './autosuggest_emoji';
-import { AutosuggestHashtag } from './autosuggest_hashtag';
+import AutosuggestEmoji from "./autosuggest_emoji";
+import { AutosuggestHashtag } from "./autosuggest_hashtag";
 
 const textAtCursorMatchesToken = (str, caretPosition, searchTokens) => {
   let word;
@@ -59,7 +59,7 @@ export default class AutosuggestInput extends ImmutablePureComponent {
 
   static defaultProps = {
     autoFocus: true,
-    searchTokens: ['@', ':', '#'],
+    searchTokens: ["@", ":", "#"],
   };
 
   state = {
@@ -100,39 +100,39 @@ export default class AutosuggestInput extends ImmutablePureComponent {
     }
 
     switch(e.key) {
-    case 'Escape':
-      if (suggestions.size === 0 || suggestionsHidden) {
-        document.querySelector('.ui').parentElement.focus();
-      } else {
-        e.preventDefault();
-        this.setState({ suggestionsHidden: true });
-      }
+      case "Escape":
+        if (suggestions.size === 0 || suggestionsHidden) {
+          document.querySelector(".ui").parentElement.focus();
+        } else {
+          e.preventDefault();
+          this.setState({ suggestionsHidden: true });
+        }
 
-      break;
-    case 'ArrowDown':
-      if (suggestions.size > 0 && !suggestionsHidden) {
-        e.preventDefault();
-        this.setState({ selectedSuggestion: Math.min(selectedSuggestion + 1, suggestions.size - 1) });
-      }
+        break;
+      case "ArrowDown":
+        if (suggestions.size > 0 && !suggestionsHidden) {
+          e.preventDefault();
+          this.setState({ selectedSuggestion: Math.min(selectedSuggestion + 1, suggestions.size - 1) });
+        }
 
-      break;
-    case 'ArrowUp':
-      if (suggestions.size > 0 && !suggestionsHidden) {
-        e.preventDefault();
-        this.setState({ selectedSuggestion: Math.max(selectedSuggestion - 1, 0) });
-      }
+        break;
+      case "ArrowUp":
+        if (suggestions.size > 0 && !suggestionsHidden) {
+          e.preventDefault();
+          this.setState({ selectedSuggestion: Math.max(selectedSuggestion - 1, 0) });
+        }
 
-      break;
-    case 'Enter':
-    case 'Tab':
+        break;
+      case "Enter":
+      case "Tab":
       // Select suggestion
-      if (this.state.lastToken !== null && suggestions.size > 0 && !suggestionsHidden) {
-        e.preventDefault();
-        e.stopPropagation();
-        this.props.onSuggestionSelected(this.state.tokenStart, this.state.lastToken, suggestions.get(selectedSuggestion));
-      }
+        if (this.state.lastToken !== null && suggestions.size > 0 && !suggestionsHidden) {
+          e.preventDefault();
+          e.stopPropagation();
+          this.props.onSuggestionSelected(this.state.tokenStart, this.state.lastToken, suggestions.get(selectedSuggestion));
+        }
 
-      break;
+        break;
     }
 
     if (e.defaultPrevented || !this.props.onKeyDown) {
@@ -151,7 +151,7 @@ export default class AutosuggestInput extends ImmutablePureComponent {
   };
 
   onSuggestionClick = (e) => {
-    const suggestion = this.props.suggestions.get(e.currentTarget.getAttribute('data-index'));
+    const suggestion = this.props.suggestions.get(e.currentTarget.getAttribute("data-index"));
     e.preventDefault();
     this.props.onSuggestionSelected(this.state.tokenStart, this.state.lastToken, suggestion);
     this.input.focus();
@@ -171,19 +171,19 @@ export default class AutosuggestInput extends ImmutablePureComponent {
     const { selectedSuggestion } = this.state;
     let inner, key;
 
-    if (suggestion.type === 'emoji') {
+    if (suggestion.type === "emoji") {
       inner = <AutosuggestEmoji emoji={suggestion} />;
       key   = suggestion.id;
-    } else if (suggestion.type ==='hashtag') {
+    } else if (suggestion.type ==="hashtag") {
       inner = <AutosuggestHashtag tag={suggestion} />;
       key   = suggestion.name;
-    } else if (suggestion.type === 'account') {
+    } else if (suggestion.type === "account") {
       inner = <AutosuggestAccountContainer id={suggestion.id} />;
       key   = suggestion.id;
     }
 
     return (
-      <div role='button' tabIndex={0} key={key} data-index={i} className={classNames('autosuggest-textarea__suggestions__item', { selected: i === selectedSuggestion })} onMouseDown={this.onSuggestionClick}>
+      <div role='button' tabIndex={0} key={key} data-index={i} className={classNames("autosuggest-textarea__suggestions__item", { selected: i === selectedSuggestion })} onMouseDown={this.onSuggestionClick}>
         {inner}
       </div>
     );
@@ -196,7 +196,7 @@ export default class AutosuggestInput extends ImmutablePureComponent {
     return (
       <div className='autosuggest-input'>
         <label>
-          <span style={{ display: 'none' }}>{placeholder}</span>
+          <span style={{ display: "none" }}>{placeholder}</span>
 
           <input
             type='text'
@@ -220,7 +220,7 @@ export default class AutosuggestInput extends ImmutablePureComponent {
           />
         </label>
 
-        <div className={`autosuggest-textarea__suggestions ${suggestionsHidden || suggestions.isEmpty() ? '' : 'autosuggest-textarea__suggestions--visible'}`}>
+        <div className={`autosuggest-textarea__suggestions ${suggestionsHidden || suggestions.isEmpty() ? "" : "autosuggest-textarea__suggestions--visible"}`}>
           {suggestions.map(this.renderSuggestion)}
         </div>
       </div>

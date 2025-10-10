@@ -1,26 +1,26 @@
-import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
+import { defineMessages, injectIntl, FormattedMessage } from "react-intl";
 
-import { connect } from 'react-redux';
+import { connect } from "react-redux";
 
 import {
   unmuteAccount,
   unblockAccount,
-} from '../actions/accounts';
-import { showAlertForError } from '../actions/alerts';
-import { initBlockModal } from '../actions/blocks';
-import { initBoostModal } from '../actions/boosts';
+} from "../actions/accounts";
+import { showAlertForError } from "../actions/alerts";
+import { initBlockModal } from "../actions/blocks";
+import { initBoostModal } from "../actions/boosts";
 import {
   replyCompose,
   mentionCompose,
   directCompose,
-} from '../actions/compose';
+} from "../actions/compose";
 import {
   blockDomain,
   unblockDomain,
-} from '../actions/domain_blocks';
+} from "../actions/domain_blocks";
 import {
   initAddFilter,
-} from '../actions/filters';
+} from "../actions/filters";
 import {
   reblog,
   favourite,
@@ -30,11 +30,11 @@ import {
   unbookmark,
   pin,
   unpin,
-} from '../actions/interactions';
-import { openModal } from '../actions/modal';
-import { initMuteModal } from '../actions/mutes';
-import { deployPictureInPicture } from '../actions/picture_in_picture';
-import { initReport } from '../actions/reports';
+} from "../actions/interactions";
+import { openModal } from "../actions/modal";
+import { initMuteModal } from "../actions/mutes";
+import { deployPictureInPicture } from "../actions/picture_in_picture";
+import { initReport } from "../actions/reports";
 import {
   muteStatus,
   unmuteStatus,
@@ -45,21 +45,21 @@ import {
   editStatus,
   translateStatus,
   undoStatusTranslation,
-} from '../actions/statuses';
-import Status from '../components/status';
-import { boostModal, deleteModal } from '../initial_state';
-import { makeGetStatus, makeGetPictureInPicture } from '../selectors';
+} from "../actions/statuses";
+import Status from "../components/status";
+import { boostModal, deleteModal } from "../initial_state";
+import { makeGetStatus, makeGetPictureInPicture } from "../selectors";
 
 const messages = defineMessages({
-  deleteConfirm: { id: 'confirmations.delete.confirm', defaultMessage: 'Delete' },
-  deleteMessage: { id: 'confirmations.delete.message', defaultMessage: 'Are you sure you want to delete this status?' },
-  redraftConfirm: { id: 'confirmations.redraft.confirm', defaultMessage: 'Delete & redraft' },
-  redraftMessage: { id: 'confirmations.redraft.message', defaultMessage: 'Are you sure you want to delete this status and re-draft it? Favorites and boosts will be lost, and replies to the original post will be orphaned.' },
-  replyConfirm: { id: 'confirmations.reply.confirm', defaultMessage: 'Reply' },
-  replyMessage: { id: 'confirmations.reply.message', defaultMessage: 'Replying now will overwrite the message you are currently composing. Are you sure you want to proceed?' },
-  editConfirm: { id: 'confirmations.edit.confirm', defaultMessage: 'Edit' },
-  editMessage: { id: 'confirmations.edit.message', defaultMessage: 'Editing now will overwrite the message you are currently composing. Are you sure you want to proceed?' },
-  blockDomainConfirm: { id: 'confirmations.domain_block.confirm', defaultMessage: 'Block entire domain' },
+  deleteConfirm: { id: "confirmations.delete.confirm", defaultMessage: "Delete" },
+  deleteMessage: { id: "confirmations.delete.message", defaultMessage: "Are you sure you want to delete this status?" },
+  redraftConfirm: { id: "confirmations.redraft.confirm", defaultMessage: "Delete & redraft" },
+  redraftMessage: { id: "confirmations.redraft.message", defaultMessage: "Are you sure you want to delete this status and re-draft it? Favorites and boosts will be lost, and replies to the original post will be orphaned." },
+  replyConfirm: { id: "confirmations.reply.confirm", defaultMessage: "Reply" },
+  replyMessage: { id: "confirmations.reply.message", defaultMessage: "Replying now will overwrite the message you are currently composing. Are you sure you want to proceed?" },
+  editConfirm: { id: "confirmations.edit.confirm", defaultMessage: "Edit" },
+  editMessage: { id: "confirmations.edit.message", defaultMessage: "Editing now will overwrite the message you are currently composing. Are you sure you want to proceed?" },
+  blockDomainConfirm: { id: "confirmations.domain_block.confirm", defaultMessage: "Block entire domain" },
 });
 
 const makeMapStateToProps = () => {
@@ -68,7 +68,7 @@ const makeMapStateToProps = () => {
 
   const mapStateToProps = (state, props) => ({
     status: getStatus(state, props),
-    nextInReplyToId: props.nextId ? state.getIn(['statuses', props.nextId, 'in_reply_to_id']) : null,
+    nextInReplyToId: props.nextId ? state.getIn(["statuses", props.nextId, "in_reply_to_id"]) : null,
     pictureInPicture: getPictureInPicture(state, props),
   });
 
@@ -81,9 +81,9 @@ const mapDispatchToProps = (dispatch, { intl, contextType }) => ({
     dispatch((_, getState) => {
       let state = getState();
 
-      if (state.getIn(['compose', 'text']).trim().length !== 0) {
+      if (state.getIn(["compose", "text"]).trim().length !== 0) {
         dispatch(openModal({
-          modalType: 'CONFIRM',
+          modalType: "CONFIRM",
           modalProps: {
             message: intl.formatMessage(messages.replyMessage),
             confirm: intl.formatMessage(messages.replyConfirm),
@@ -96,7 +96,7 @@ const mapDispatchToProps = (dispatch, { intl, contextType }) => ({
   },
 
   onModalReblog (status, privacy) {
-    if (status.get('reblogged')) {
+    if (status.get("reblogged")) {
       dispatch(unreblog(status));
     } else {
       dispatch(reblog(status, privacy));
@@ -112,7 +112,7 @@ const mapDispatchToProps = (dispatch, { intl, contextType }) => ({
   },
 
   onFavourite (status) {
-    if (status.get('favourited')) {
+    if (status.get("favourited")) {
       dispatch(unfavourite(status));
     } else {
       dispatch(favourite(status));
@@ -120,7 +120,7 @@ const mapDispatchToProps = (dispatch, { intl, contextType }) => ({
   },
 
   onBookmark (status) {
-    if (status.get('bookmarked')) {
+    if (status.get("bookmarked")) {
       dispatch(unbookmark(status));
     } else {
       dispatch(bookmark(status));
@@ -128,7 +128,7 @@ const mapDispatchToProps = (dispatch, { intl, contextType }) => ({
   },
 
   onPin (status) {
-    if (status.get('pinned')) {
+    if (status.get("pinned")) {
       dispatch(unpin(status));
     } else {
       dispatch(pin(status));
@@ -137,9 +137,9 @@ const mapDispatchToProps = (dispatch, { intl, contextType }) => ({
 
   onEmbed (status) {
     dispatch(openModal({
-      modalType: 'EMBED',
+      modalType: "EMBED",
       modalProps: {
-        id: status.get('id'),
+        id: status.get("id"),
         onError: error => dispatch(showAlertForError(error)),
       },
     }));
@@ -147,14 +147,14 @@ const mapDispatchToProps = (dispatch, { intl, contextType }) => ({
 
   onDelete (status, history, withRedraft = false) {
     if (!deleteModal) {
-      dispatch(deleteStatus(status.get('id'), history, withRedraft));
+      dispatch(deleteStatus(status.get("id"), history, withRedraft));
     } else {
       dispatch(openModal({
-        modalType: 'CONFIRM',
+        modalType: "CONFIRM",
         modalProps: {
           message: intl.formatMessage(withRedraft ? messages.redraftMessage : messages.deleteMessage),
           confirm: intl.formatMessage(withRedraft ? messages.redraftConfirm : messages.deleteConfirm),
-          onConfirm: () => dispatch(deleteStatus(status.get('id'), history, withRedraft)),
+          onConfirm: () => dispatch(deleteStatus(status.get("id"), history, withRedraft)),
         },
       }));
     }
@@ -163,26 +163,26 @@ const mapDispatchToProps = (dispatch, { intl, contextType }) => ({
   onEdit (status, history) {
     dispatch((_, getState) => {
       let state = getState();
-      if (state.getIn(['compose', 'text']).trim().length !== 0) {
+      if (state.getIn(["compose", "text"]).trim().length !== 0) {
         dispatch(openModal({
-          modalType: 'CONFIRM',
+          modalType: "CONFIRM",
           modalProps: {
             message: intl.formatMessage(messages.editMessage),
             confirm: intl.formatMessage(messages.editConfirm),
-            onConfirm: () => dispatch(editStatus(status.get('id'), history)),
+            onConfirm: () => dispatch(editStatus(status.get("id"), history)),
           },
         }));
       } else {
-        dispatch(editStatus(status.get('id'), history));
+        dispatch(editStatus(status.get("id"), history));
       }
     });
   },
 
   onTranslate (status) {
-    if (status.get('translation')) {
-      dispatch(undoStatusTranslation(status.get('id'), status.get('poll')));
+    if (status.get("translation")) {
+      dispatch(undoStatusTranslation(status.get("id"), status.get("poll")));
     } else {
-      dispatch(translateStatus(status.get('id')));
+      dispatch(translateStatus(status.get("id")));
     }
   },
 
@@ -196,29 +196,29 @@ const mapDispatchToProps = (dispatch, { intl, contextType }) => ({
 
   onOpenMedia (statusId, media, index, lang) {
     dispatch(openModal({
-      modalType: 'MEDIA',
+      modalType: "MEDIA",
       modalProps: { statusId, media, index, lang },
     }));
   },
 
   onOpenVideo (statusId, media, lang, options) {
     dispatch(openModal({
-      modalType: 'VIDEO',
+      modalType: "VIDEO",
       modalProps: { statusId, media, lang, options },
     }));
   },
 
   onBlock (status) {
-    const account = status.get('account');
+    const account = status.get("account");
     dispatch(initBlockModal(account));
   },
 
   onUnblock (account) {
-    dispatch(unblockAccount(account.get('id')));
+    dispatch(unblockAccount(account.get("id")));
   },
 
   onReport (status) {
-    dispatch(initReport(status.get('account'), status));
+    dispatch(initReport(status.get("account"), status));
   },
 
   onAddFilter (status) {
@@ -230,32 +230,32 @@ const mapDispatchToProps = (dispatch, { intl, contextType }) => ({
   },
 
   onUnmute (account) {
-    dispatch(unmuteAccount(account.get('id')));
+    dispatch(unmuteAccount(account.get("id")));
   },
 
   onMuteConversation (status) {
-    if (status.get('muted')) {
-      dispatch(unmuteStatus(status.get('id')));
+    if (status.get("muted")) {
+      dispatch(unmuteStatus(status.get("id")));
     } else {
-      dispatch(muteStatus(status.get('id')));
+      dispatch(muteStatus(status.get("id")));
     }
   },
 
   onToggleHidden (status) {
-    if (status.get('hidden')) {
-      dispatch(revealStatus(status.get('id')));
+    if (status.get("hidden")) {
+      dispatch(revealStatus(status.get("id")));
     } else {
-      dispatch(hideStatus(status.get('id')));
+      dispatch(hideStatus(status.get("id")));
     }
   },
 
   onToggleCollapsed (status, isCollapsed) {
-    dispatch(toggleStatusCollapse(status.get('id'), isCollapsed));
+    dispatch(toggleStatusCollapse(status.get("id"), isCollapsed));
   },
 
   onBlockDomain (domain) {
     dispatch(openModal({
-      modalType: 'CONFIRM',
+      modalType: "CONFIRM",
       modalProps: {
         message: <FormattedMessage id='confirmations.domain_block.message' defaultMessage='Are you really, really sure you want to block the entire {domain}? In most cases a few targeted blocks or mutes are sufficient and preferable. You will not see content from that domain in any public timelines or your notifications. Your followers from that domain will be removed.' values={{ domain: <strong>{domain}</strong> }} />,
         confirm: intl.formatMessage(messages.blockDomainConfirm),
@@ -269,16 +269,16 @@ const mapDispatchToProps = (dispatch, { intl, contextType }) => ({
   },
 
   deployPictureInPicture (status, type, mediaProps) {
-    dispatch(deployPictureInPicture(status.get('id'), status.getIn(['account', 'id']), type, mediaProps));
+    dispatch(deployPictureInPicture(status.get("id"), status.getIn(["account", "id"]), type, mediaProps));
   },
 
   onInteractionModal (type, status) {
     dispatch(openModal({
-      modalType: 'INTERACTION',
+      modalType: "INTERACTION",
       modalProps: {
         type,
-        accountId: status.getIn(['account', 'id']),
-        url: status.get('uri'),
+        accountId: status.getIn(["account", "id"]),
+        url: status.get("uri"),
       },
     }));
   },

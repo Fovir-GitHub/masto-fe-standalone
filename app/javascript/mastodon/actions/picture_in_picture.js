@@ -1,7 +1,7 @@
 // @ts-check
 
-export const PICTURE_IN_PICTURE_DEPLOY = 'PICTURE_IN_PICTURE_DEPLOY';
-export const PICTURE_IN_PICTURE_REMOVE = 'PICTURE_IN_PICTURE_REMOVE';
+export const PICTURE_IN_PICTURE_DEPLOY = "PICTURE_IN_PICTURE_DEPLOY";
+export const PICTURE_IN_PICTURE_REMOVE = "PICTURE_IN_PICTURE_REMOVE";
 
 /**
  * @typedef MediaProps
@@ -26,7 +26,7 @@ export const deployPictureInPicture = (statusId, accountId, playerType, props) =
   // @ts-expect-error
   return (dispatch, getState) => {
     // Do not open a player for a toot that does not exist
-    if (getState().hasIn(['statuses', statusId])) {
+    if (getState().hasIn(["statuses", statusId])) {
       dispatch({
         type: PICTURE_IN_PICTURE_DEPLOY,
         statusId,

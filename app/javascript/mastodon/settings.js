@@ -5,7 +5,7 @@ export default class Settings {
   }
 
   generateKey(id) {
-    return this.keyBase ? [this.keyBase, `id${id}`].join('.') : id;
+    return this.keyBase ? [this.keyBase, `id${id}`].join(".") : id;
   }
 
   set(id, data) {
@@ -36,6 +36,7 @@ export default class Settings {
       try {
         localStorage.removeItem(key);
       } catch (e) {
+        console.error(e);
       }
     }
     return data;
@@ -43,7 +44,7 @@ export default class Settings {
 
 }
 
-export const pushNotificationsSetting = new Settings('mastodon_push_notification_data');
-export const tagHistory = new Settings('mastodon_tag_history');
-export const bannerSettings = new Settings('mastodon_banner_settings');
-export const searchHistory = new Settings('mastodon_search_history');
+export const pushNotificationsSetting = new Settings("mastodon_push_notification_data");
+export const tagHistory = new Settings("mastodon_tag_history");
+export const bannerSettings = new Settings("mastodon_banner_settings");
+export const searchHistory = new Settings("mastodon_search_history");

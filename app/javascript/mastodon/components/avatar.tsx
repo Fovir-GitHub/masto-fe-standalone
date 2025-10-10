@@ -1,15 +1,15 @@
-import classNames from 'classnames';
+import classNames from "classnames";
 
-import { useHovering } from '../../hooks/useHovering';
-import type { Account } from '../../types/resources';
-import { autoPlayGif } from '../initial_state';
+import { useHovering } from "../../hooks/useHovering";
+import  { type Account } from "../../types/resources";
+import { autoPlayGif } from "../initial_state";
 
 interface Props {
-  account: Account | undefined; // FIXME: remove `undefined` once we know for sure its always there
-  size: number;
-  style?: React.CSSProperties;
-  inline?: boolean;
-  animate?: boolean;
+  account: Account | undefined, // FIXME: remove `undefined` once we know for sure its always there
+  size: number,
+  style?: React.CSSProperties,
+  inline?: boolean,
+  animate?: boolean,
 }
 
 export const Avatar: React.FC<Props> = ({
@@ -29,19 +29,19 @@ export const Avatar: React.FC<Props> = ({
 
   const src =
     hovering || animate
-      ? account?.get('avatar')
-      : account?.get('avatar_static');
+      ? account?.get("avatar")
+      : account?.get("avatar_static");
 
   return (
     <div
-      className={classNames('account__avatar', {
-        'account__avatar-inline': inline,
+      className={classNames("account__avatar", {
+        "account__avatar-inline": inline,
       })}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
       style={style}
     >
-      {src && <img src={src} alt={account?.get('acct')} />}
+      {src && <img src={src} alt={account?.get("acct")} />}
     </div>
   );
 };

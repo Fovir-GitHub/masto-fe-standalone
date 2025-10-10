@@ -1,24 +1,24 @@
-import 'packs/public-path';
-import { createRoot }  from 'react-dom/client';
+import "packs/public-path";
+import { createRoot }  from "react-dom/client";
 
-import { IntlMessageFormat } from 'intl-messageformat';
-import { defineMessages } from 'react-intl';
+import { IntlMessageFormat } from "intl-messageformat";
+import { defineMessages } from "react-intl";
 
-import Rails  from '@rails/ujs';
-import axios from 'axios';
-import { createBrowserHistory }  from 'history';
-import { throttle } from 'lodash';
+import Rails  from "@rails/ujs";
+import axios from "axios";
+import { createBrowserHistory }  from "history";
+import { throttle } from "lodash";
 
-import { timeAgoString }  from 'flavours/glitch/components/relative_timestamp';
-import emojify  from 'flavours/glitch/features/emoji/emoji';
-import loadKeyboardExtensions from 'flavours/glitch/load_keyboard_extensions';
-import { loadLocale, getLocale } from 'flavours/glitch/locales';
-import { loadPolyfills } from 'flavours/glitch/polyfills';
+import { timeAgoString }  from "flavours/glitch/components/relative_timestamp";
+import emojify  from "flavours/glitch/features/emoji/emoji";
+import loadKeyboardExtensions from "flavours/glitch/load_keyboard_extensions";
+import { loadLocale, getLocale } from "flavours/glitch/locales";
+import { loadPolyfills } from "flavours/glitch/polyfills";
 
 const messages = defineMessages({
-  usernameTaken: { id: 'username.taken', defaultMessage: 'That username is taken. Try another' },
-  passwordExceedsLength: { id: 'password_confirmation.exceeds_maxlength', defaultMessage: 'Password confirmation exceeds the maximum password length' },
-  passwordDoesNotMatch: { id: 'password_confirmation.mismatching', defaultMessage: 'Password confirmation does not match' },
+  usernameTaken: { id: "username.taken", defaultMessage: "That username is taken. Try another" },
+  passwordExceedsLength: { id: "password_confirmation.exceeds_maxlength", defaultMessage: "Password confirmation exceeds the maximum password length" },
+  passwordDoesNotMatch: { id: "password_confirmation.mismatching", defaultMessage: "Password confirmation does not match" },
 });
 
 function main() {
@@ -26,7 +26,7 @@ function main() {
 
   const scrollToDetailedStatus = () => {
     const history = createBrowserHistory();
-    const detailedStatuses = document.querySelectorAll('.public-layout .detailed-status');
+    const detailedStatuses = document.querySelectorAll(".public-layout .detailed-status");
     const location = history.location;
 
     if (detailedStatuses.length === 1 && (!location.state || !location.state.scrolledToDetailedStatus)) {
@@ -44,22 +44,22 @@ function main() {
   const locale = document.documentElement.lang;
 
   const dateTimeFormat = new Intl.DateTimeFormat(locale, {
-    year: 'numeric',
-    month: 'long',
-    day: 'numeric',
-    hour: 'numeric',
-    minute: 'numeric',
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+    hour: "numeric",
+    minute: "numeric",
   });
 
   const dateFormat = new Intl.DateTimeFormat(locale, {
-    year: 'numeric',
-    month: 'short',
-    day: 'numeric',
+    year: "numeric",
+    month: "short",
+    day: "numeric",
     timeFormat: false,
   });
 
   const timeFormat = new Intl.DateTimeFormat(locale, {
-    timeStyle: 'short',
+    timeStyle: "short",
     hour12: false,
   });
 
@@ -68,12 +68,12 @@ function main() {
     return messageFormat.format(values);
   };
 
-  [].forEach.call(document.querySelectorAll('.emojify'), (content) => {
+  [].forEach.call(document.querySelectorAll(".emojify"), (content) => {
     content.innerHTML = emojify(content.innerHTML);
   });
 
-  [].forEach.call(document.querySelectorAll('time.formatted'), (content) => {
-    const datetime = new Date(content.getAttribute('datetime'));
+  [].forEach.call(document.querySelectorAll("time.formatted"), (content) => {
+    const datetime = new Date(content.getAttribute("datetime"));
     const formattedDate = dateTimeFormat.format(datetime);
 
     content.title = formattedDate;
@@ -87,10 +87,10 @@ function main() {
       date.getMonth() === today.getMonth() &&
       date.getFullYear() === today.getFullYear();
   };
-  const todayFormat = new IntlMessageFormat(localeData['relative_format.today'] || 'Today at {time}', locale);
+  const todayFormat = new IntlMessageFormat(localeData["relative_format.today"] || "Today at {time}", locale);
 
-  [].forEach.call(document.querySelectorAll('time.relative-formatted'), (content) => {
-    const datetime = new Date(content.getAttribute('datetime'));
+  [].forEach.call(document.querySelectorAll("time.relative-formatted"), (content) => {
+    const datetime = new Date(content.getAttribute("datetime"));
 
     let formattedContent;
 
@@ -106,11 +106,11 @@ function main() {
     content.textContent = formattedContent;
   });
 
-  [].forEach.call(document.querySelectorAll('time.time-ago'), (content) => {
-    const datetime = new Date(content.getAttribute('datetime'));
+  [].forEach.call(document.querySelectorAll("time.time-ago"), (content) => {
+    const datetime = new Date(content.getAttribute("datetime"));
     const now      = new Date();
 
-    const timeGiven = content.getAttribute('datetime').includes('T');
+    const timeGiven = content.getAttribute("datetime").includes("T");
     content.title = timeGiven ? dateTimeFormat.format(datetime) : dateFormat.format(datetime);
     content.textContent = timeAgoString({
       formatMessage,
@@ -118,9 +118,9 @@ function main() {
     }, datetime, now, now.getFullYear(), timeGiven);
   });
 
-  const reactComponents = document.querySelectorAll('[data-component]');
+  const reactComponents = document.querySelectorAll("[data-component]");
   if (reactComponents.length > 0) {
-    import(/* webpackChunkName: "containers/media_container" */ 'flavours/glitch/containers/media_container')
+    import(/* webpackChunkName: "containers/media_container" */ "flavours/glitch/containers/media_container")
       .then(({ default: MediaContainer }) => {
         [].forEach.call(reactComponents, (component) => {
           [].forEach.call(component.children, (child) => {
@@ -128,7 +128,7 @@ function main() {
           });
         });
 
-        const content = document.createElement('div');
+        const content = document.createElement("div");
 
         const root = createRoot(content);
         root.render(<MediaContainer locale={locale} components={reactComponents} />);
@@ -143,79 +143,81 @@ function main() {
     scrollToDetailedStatus();
   }
 
-  Rails.delegate(document, '#user_account_attributes_username', 'input', throttle(() => {
-    const username = document.getElementById('user_account_attributes_username');
+  Rails.delegate(document, "#user_account_attributes_username", "input", throttle(() => {
+    const username = document.getElementById("user_account_attributes_username");
 
     if (username.value && username.value.length > 0) {
-      axios.get('/api/v1/accounts/lookup', { params: { acct: username.value } }).then(() => {
+      axios.get("/api/v1/accounts/lookup", { params: { acct: username.value } }).then(() => {
         username.setCustomValidity(formatMessage(messages.usernameTaken));
       }).catch(() => {
-        username.setCustomValidity('');
+        username.setCustomValidity("");
       });
     } else {
-      username.setCustomValidity('');
+      username.setCustomValidity("");
     }
   }, 500, { leading: false, trailing: true }));
 
-  Rails.delegate(document, '#user_password,#user_password_confirmation', 'input', () => {
-    const password = document.getElementById('user_password');
-    const confirmation = document.getElementById('user_password_confirmation');
-    if (!confirmation) return;
+  Rails.delegate(document, "#user_password,#user_password_confirmation", "input", () => {
+    const password = document.getElementById("user_password");
+    const confirmation = document.getElementById("user_password_confirmation");
+    if (!confirmation) {
+      return;
+    }
 
     if (confirmation.value && confirmation.value.length > password.maxLength) {
       confirmation.setCustomValidity(formatMessage(messages.passwordExceedsLength));
     } else if (password.value && password.value !== confirmation.value) {
       confirmation.setCustomValidity(formatMessage(messages.passwordDoesNotMatch));
     } else {
-      confirmation.setCustomValidity('');
+      confirmation.setCustomValidity("");
     }
   });
 
-  Rails.delegate(document, '.custom-emoji', 'mouseover', getEmojiAnimationHandler('data-original'));
-  Rails.delegate(document, '.custom-emoji', 'mouseout', getEmojiAnimationHandler('data-static'));
+  Rails.delegate(document, ".custom-emoji", "mouseover", getEmojiAnimationHandler("data-original"));
+  Rails.delegate(document, ".custom-emoji", "mouseout", getEmojiAnimationHandler("data-static"));
 
-  Rails.delegate(document, '.status__content__spoiler-link', 'click', function() {
+  Rails.delegate(document, ".status__content__spoiler-link", "click", function() {
     const statusEl = this.parentNode.parentNode;
 
-    if (statusEl.dataset.spoiler === 'expanded') {
-      statusEl.dataset.spoiler = 'folded';
-      this.textContent = (new IntlMessageFormat(localeData['status.show_more'] || 'Show more', locale)).format();
+    if (statusEl.dataset.spoiler === "expanded") {
+      statusEl.dataset.spoiler = "folded";
+      this.textContent = (new IntlMessageFormat(localeData["status.show_more"] || "Show more", locale)).format();
     } else {
-      statusEl.dataset.spoiler = 'expanded';
-      this.textContent = (new IntlMessageFormat(localeData['status.show_less'] || 'Show less', locale)).format();
+      statusEl.dataset.spoiler = "expanded";
+      this.textContent = (new IntlMessageFormat(localeData["status.show_less"] || "Show less", locale)).format();
     }
 
     return false;
   });
 
-  [].forEach.call(document.querySelectorAll('.status__content__spoiler-link'), (spoilerLink) => {
+  [].forEach.call(document.querySelectorAll(".status__content__spoiler-link"), (spoilerLink) => {
     const statusEl = spoilerLink.parentNode.parentNode;
-    const message = (statusEl.dataset.spoiler === 'expanded') ? (localeData['status.show_less'] || 'Show less') : (localeData['status.show_more'] || 'Show more');
+    const message = (statusEl.dataset.spoiler === "expanded") ? (localeData["status.show_less"] || "Show less") : (localeData["status.show_more"] || "Show more");
     spoilerLink.textContent = (new IntlMessageFormat(message, locale)).format();
   });
 
   const toggleSidebar = () => {
-    const sidebar = document.querySelector('.sidebar ul');
-    const toggleButton = document.querySelector('.sidebar__toggle__icon');
+    const sidebar = document.querySelector(".sidebar ul");
+    const toggleButton = document.querySelector(".sidebar__toggle__icon");
 
-    if (sidebar.classList.contains('visible')) {
+    if (sidebar.classList.contains("visible")) {
       document.body.style.overflow = null;
-      toggleButton.setAttribute('aria-expanded', 'false');
+      toggleButton.setAttribute("aria-expanded", "false");
     } else {
-      document.body.style.overflow = 'hidden';
-      toggleButton.setAttribute('aria-expanded', 'true');
+      document.body.style.overflow = "hidden";
+      toggleButton.setAttribute("aria-expanded", "true");
     }
 
-    toggleButton.classList.toggle('active');
-    sidebar.classList.toggle('visible');
+    toggleButton.classList.toggle("active");
+    sidebar.classList.toggle("visible");
   };
 
-  Rails.delegate(document, '.sidebar__toggle__icon', 'click', () => {
+  Rails.delegate(document, ".sidebar__toggle__icon", "click", () => {
     toggleSidebar();
   });
 
-  Rails.delegate(document, '.sidebar__toggle__icon', 'keydown', e => {
-    if (e.key === ' ' || e.key === 'Enter') {
+  Rails.delegate(document, ".sidebar__toggle__icon", "keydown", e => {
+    if (e.key === " " || e.key === "Enter") {
       e.preventDefault();
       toggleSidebar();
     }
@@ -223,11 +225,11 @@ function main() {
 
   // Empty the honeypot fields in JS in case something like an extension
   // automatically filled them.
-  Rails.delegate(document, '#registration_new_user,#new_user', 'submit', () => {
-    ['user_website', 'user_confirm_password', 'registration_user_website', 'registration_user_confirm_password'].forEach(id => {
+  Rails.delegate(document, "#registration_new_user,#new_user", "submit", () => {
+    ["user_website", "user_confirm_password", "registration_user_website", "registration_user_confirm_password"].forEach(id => {
       const field = document.getElementById(id);
       if (field) {
-        field.value = '';
+        field.value = "";
       }
     });
   });

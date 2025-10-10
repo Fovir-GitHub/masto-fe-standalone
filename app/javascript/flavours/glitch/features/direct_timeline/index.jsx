@@ -1,30 +1,30 @@
-import PropTypes from 'prop-types';
-import { PureComponent } from 'react';
+import PropTypes from "prop-types";
+import { PureComponent } from "react";
 
-import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
+import { defineMessages, injectIntl, FormattedMessage } from "react-intl";
 
-import { Helmet } from 'react-helmet';
+import { Helmet } from "react-helmet";
 
-import { connect } from 'react-redux';
+import { connect } from "react-redux";
 
-import { addColumn, removeColumn, moveColumn } from 'flavours/glitch/actions/columns';
-import { mountConversations, unmountConversations, expandConversations } from 'flavours/glitch/actions/conversations';
-import { connectDirectStream } from 'flavours/glitch/actions/streaming';
-import { expandDirectTimeline } from 'flavours/glitch/actions/timelines';
-import Column from 'flavours/glitch/components/column';
-import ColumnHeader from 'flavours/glitch/components/column_header';
-import StatusListContainer from 'flavours/glitch/features/ui/containers/status_list_container';
+import { addColumn, removeColumn, moveColumn } from "flavours/glitch/actions/columns";
+import { mountConversations, unmountConversations, expandConversations } from "flavours/glitch/actions/conversations";
+import { connectDirectStream } from "flavours/glitch/actions/streaming";
+import { expandDirectTimeline } from "flavours/glitch/actions/timelines";
+import Column from "flavours/glitch/components/column";
+import ColumnHeader from "flavours/glitch/components/column_header";
+import StatusListContainer from "flavours/glitch/features/ui/containers/status_list_container";
 
-import ColumnSettingsContainer from './containers/column_settings_container';
-import ConversationsListContainer from './containers/conversations_list_container';
+import ColumnSettingsContainer from "./containers/column_settings_container";
+import ConversationsListContainer from "./containers/conversations_list_container";
 
 const messages = defineMessages({
-  title: { id: 'column.direct', defaultMessage: 'Private mentions' },
+  title: { id: "column.direct", defaultMessage: "Private mentions" },
 });
 
 const mapStateToProps = state => ({
-  hasUnread: state.getIn(['timelines', 'direct', 'unread']) > 0,
-  conversationsMode: state.getIn(['settings', 'direct', 'conversations']),
+  hasUnread: state.getIn(["timelines", "direct", "unread"]) > 0,
+  conversationsMode: state.getIn(["settings", "direct", "conversations"]),
 });
 
 class DirectTimeline extends PureComponent {
@@ -44,7 +44,7 @@ class DirectTimeline extends PureComponent {
     if (columnId) {
       dispatch(removeColumn(columnId));
     } else {
-      dispatch(addColumn('DIRECT', {}));
+      dispatch(addColumn("DIRECT", {}));
     }
   };
 

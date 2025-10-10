@@ -1,16 +1,16 @@
-import PropTypes from 'prop-types';
-import { PureComponent } from 'react';
+import PropTypes from "prop-types";
+import { PureComponent } from "react";
 
-import { FormattedMessage } from 'react-intl';
+import { FormattedMessage } from "react-intl";
 
-import ImmutablePropTypes from 'react-immutable-proptypes';
-import { connect } from 'react-redux';
+import ImmutablePropTypes from "react-immutable-proptypes";
+import { connect } from "react-redux";
 
-import Button from 'mastodon/components/button';
-import { toServerSideType } from 'mastodon/utils/filters';
+import Button from "mastodon/components/button";
+import { toServerSideType } from "mastodon/utils/filters";
 
 const mapStateToProps = (state, { filterId }) => ({
-  filter: state.getIn(['filters', filterId]),
+  filter: state.getIn(["filters", filterId]),
 });
 
 class AddedToFilter extends PureComponent {
@@ -31,7 +31,7 @@ class AddedToFilter extends PureComponent {
     const { filter, contextType } = this.props;
 
     let expiredMessage = null;
-    if (filter.get('expires_at') && filter.get('expires_at') < new Date()) {
+    if (filter.get("expires_at") && filter.get("expires_at") < new Date()) {
       expiredMessage = (
         <>
           <h4 className='report-dialog-modal__subtitle'><FormattedMessage id='filter_modal.added.expired_title' defaultMessage='Expired filter!' /></h4>
@@ -46,7 +46,7 @@ class AddedToFilter extends PureComponent {
     }
 
     let contextMismatchMessage = null;
-    if (contextType && !filter.get('context').includes(toServerSideType(contextType))) {
+    if (contextType && !filter.get("context").includes(toServerSideType(contextType))) {
       contextMismatchMessage = (
         <>
           <h4 className='report-dialog-modal__subtitle'><FormattedMessage id='filter_modal.added.context_mismatch_title' defaultMessage='Context mismatch!' /></h4>
@@ -61,7 +61,7 @@ class AddedToFilter extends PureComponent {
     }
 
     const settings_link = (
-      <a href={`/filters/${filter.get('id')}/edit`}>
+      <a href={`/filters/${filter.get("id")}/edit`}>
         <FormattedMessage
           id='filter_modal.added.settings_link'
           defaultMessage='settings page'
@@ -76,7 +76,7 @@ class AddedToFilter extends PureComponent {
           <FormattedMessage
             id='filter_modal.added.short_explanation'
             defaultMessage='This post has been added to the following filter category: {title}.'
-            values={{ title: filter.get('title') }}
+            values={{ title: filter.get("title") }}
           />
         </p>
 

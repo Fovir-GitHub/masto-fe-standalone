@@ -1,11 +1,11 @@
-import { createReducer } from '@reduxjs/toolkit';
+import { createReducer } from "@reduxjs/toolkit";
 
-import { closeDropdownMenu, openDropdownMenu } from '../actions/dropdown_menu';
+import { closeDropdownMenu, openDropdownMenu } from "../actions/dropdown_menu";
 
 interface DropdownMenuState {
-  openId: string | null;
-  keyboard: boolean;
-  scrollKey: string | null;
+  openId: string | null,
+  keyboard: boolean,
+  scrollKey: string | null,
 }
 
 const initialState: DropdownMenuState = {

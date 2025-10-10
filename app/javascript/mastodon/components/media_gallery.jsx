@@ -1,23 +1,23 @@
-import PropTypes from 'prop-types';
-import { PureComponent } from 'react';
+import PropTypes from "prop-types";
+import { PureComponent } from "react";
 
-import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
+import { defineMessages, injectIntl, FormattedMessage } from "react-intl";
 
-import classNames from 'classnames';
+import classNames from "classnames";
 
-import { is } from 'immutable';
-import ImmutablePropTypes from 'react-immutable-proptypes';
+import { is } from "immutable";
+import ImmutablePropTypes from "react-immutable-proptypes";
 
-import { debounce } from 'lodash';
+import { debounce } from "lodash";
 
-import { Blurhash } from 'mastodon/components/blurhash';
+import { Blurhash } from "mastodon/components/blurhash";
 
-import { autoPlayGif, displayMedia, useBlurhash } from '../initial_state';
+import { autoPlayGif, displayMedia, useBlurhash } from "../initial_state";
 
-import { IconButton } from './icon_button';
+import { IconButton } from "./icon_button";
 
 const messages = defineMessages({
-  toggle_visible: { id: 'media_gallery.toggle_visible', defaultMessage: '{number, plural, one {Hide image} other {Hide images}}' },
+  toggle_visible: { id: "media_gallery.toggle_visible", defaultMessage: "{number, plural, one {Hide image} other {Hide images}}" },
 });
 
 class Item extends PureComponent {
@@ -63,7 +63,7 @@ class Item extends PureComponent {
 
   hoverToPlay () {
     const { attachment } = this.props;
-    return !this.getAutoPlay() && attachment.get('type') === 'gifv';
+    return !this.getAutoPlay() && attachment.get("type") === "gifv";
   }
 
   handleClick = (e) => {
@@ -101,45 +101,45 @@ class Item extends PureComponent {
       height = 50;
     }
 
-    if (attachment.get('description')?.length > 0) {
+    if (attachment.get("description")?.length > 0) {
       badges.push(<span key='alt' className='media-gallery__gifv__label'>ALT</span>);
     }
 
-    const description = attachment.getIn(['translation', 'description']) || attachment.get('description');
+    const description = attachment.getIn(["translation", "description"]) || attachment.get("description");
 
-    if (attachment.get('type') === 'unknown') {
+    if (attachment.get("type") === "unknown") {
       return (
-        <div className={classNames('media-gallery__item', { standalone, 'media-gallery__item--tall': height === 100, 'media-gallery__item--wide': width === 100 })} key={attachment.get('id')}>
-          <a className='media-gallery__item-thumbnail' href={attachment.get('remote_url') || attachment.get('url')} style={{ cursor: 'pointer' }} title={description} lang={lang} target='_blank' rel='noopener noreferrer'>
+        <div className={classNames("media-gallery__item", { standalone, "media-gallery__item--tall": height === 100, "media-gallery__item--wide": width === 100 })} key={attachment.get("id")}>
+          <a className='media-gallery__item-thumbnail' href={attachment.get("remote_url") || attachment.get("url")} style={{ cursor: "pointer" }} title={description} lang={lang} target='_blank' rel='noopener noreferrer'>
             <Blurhash
-              hash={attachment.get('blurhash')}
+              hash={attachment.get("blurhash")}
               className='media-gallery__preview'
               dummy={!useBlurhash}
             />
           </a>
         </div>
       );
-    } else if (attachment.get('type') === 'image') {
-      const previewUrl   = attachment.get('preview_url');
-      const previewWidth = attachment.getIn(['meta', 'small', 'width']);
+    } else if (attachment.get("type") === "image") {
+      const previewUrl   = attachment.get("preview_url");
+      const previewWidth = attachment.getIn(["meta", "small", "width"]);
 
-      const originalUrl   = attachment.get('url');
-      const originalWidth = attachment.getIn(['meta', 'original', 'width']);
+      const originalUrl   = attachment.get("url");
+      const originalWidth = attachment.getIn(["meta", "original", "width"]);
 
-      const hasSize = typeof originalWidth === 'number' && typeof previewWidth === 'number';
+      const hasSize = typeof originalWidth === "number" && typeof previewWidth === "number";
 
       const srcSet = hasSize ? `${originalUrl} ${originalWidth}w, ${previewUrl} ${previewWidth}w` : null;
       const sizes  = hasSize && (displayWidth > 0) ? `${displayWidth * (width / 100)}px` : null;
 
-      const focusX = attachment.getIn(['meta', 'focus', 'x']) || 0;
-      const focusY = attachment.getIn(['meta', 'focus', 'y']) || 0;
+      const focusX = attachment.getIn(["meta", "focus", "x"]) || 0;
+      const focusY = attachment.getIn(["meta", "focus", "y"]) || 0;
       const x      = ((focusX /  2) + .5) * 100;
       const y      = ((focusY / -2) + .5) * 100;
 
       thumbnail = (
         <a
           className='media-gallery__item-thumbnail'
-          href={attachment.get('remote_url') || originalUrl}
+          href={attachment.get("remote_url") || originalUrl}
           onClick={this.handleClick}
           target='_blank'
           rel='noopener noreferrer'
@@ -156,20 +156,20 @@ class Item extends PureComponent {
           />
         </a>
       );
-    } else if (attachment.get('type') === 'gifv') {
+    } else if (attachment.get("type") === "gifv") {
       const autoPlay = this.getAutoPlay();
 
       badges.push(<span key='gif' className='media-gallery__gifv__label'>GIF</span>);
 
       thumbnail = (
-        <div className={classNames('media-gallery__gifv', { autoplay: autoPlay })}>
+        <div className={classNames("media-gallery__gifv", { autoplay: autoPlay })}>
           <video
             className='media-gallery__item-gifv-thumbnail'
             aria-label={description}
             title={description}
             lang={lang}
             role='application'
-            src={attachment.get('url')}
+            src={attachment.get("url")}
             onClick={this.handleClick}
             onMouseEnter={this.handleMouseEnter}
             onMouseLeave={this.handleMouseLeave}
@@ -183,12 +183,12 @@ class Item extends PureComponent {
     }
 
     return (
-      <div className={classNames('media-gallery__item', { standalone, 'media-gallery__item--tall': height === 100, 'media-gallery__item--wide': width === 100 })} key={attachment.get('id')}>
+      <div className={classNames("media-gallery__item", { standalone, "media-gallery__item--tall": height === 100, "media-gallery__item--wide": width === 100 })} key={attachment.get("id")}>
         <Blurhash
-          hash={attachment.get('blurhash')}
+          hash={attachment.get("blurhash")}
           dummy={!useBlurhash}
-          className={classNames('media-gallery__preview', {
-            'media-gallery__preview--hidden': visible && this.state.loaded,
+          className={classNames("media-gallery__preview", {
+            "media-gallery__preview--hidden": visible && this.state.loaded,
           })}
         />
 
@@ -223,21 +223,21 @@ class MediaGallery extends PureComponent {
   };
 
   state = {
-    visible: this.props.visible !== undefined ? this.props.visible : (displayMedia !== 'hide_all' && !this.props.sensitive || displayMedia === 'show_all'),
+    visible: this.props.visible !== undefined ? this.props.visible : (displayMedia !== "hide_all" && !this.props.sensitive || displayMedia === "show_all"),
     width: this.props.defaultWidth,
   };
 
   componentDidMount () {
-    window.addEventListener('resize', this.handleResize, { passive: true });
+    window.addEventListener("resize", this.handleResize, { passive: true });
   }
 
   componentWillUnmount () {
-    window.removeEventListener('resize', this.handleResize);
+    window.removeEventListener("resize", this.handleResize);
   }
 
   UNSAFE_componentWillReceiveProps (nextProps) {
     if (!is(nextProps.media, this.props.media) && nextProps.visible === undefined) {
-      this.setState({ visible: displayMedia !== 'hide_all' && !nextProps.sensitive || displayMedia === 'show_all' });
+      this.setState({ visible: displayMedia !== "hide_all" && !nextProps.sensitive || displayMedia === "show_all" });
     } else if (!is(nextProps.visible, this.props.visible) && nextProps.visible !== undefined) {
       this.setState({ visible: nextProps.visible });
     }
@@ -286,7 +286,7 @@ class MediaGallery extends PureComponent {
 
   isFullSizeEligible() {
     const { media } = this.props;
-    return media.size === 1 && media.getIn([0, 'meta', 'small', 'aspect']);
+    return media.size === 1 && media.getIn([0, "meta", "small", "aspect"]);
   }
 
   render () {
@@ -299,18 +299,18 @@ class MediaGallery extends PureComponent {
     const style = {};
 
     if (this.isFullSizeEligible()) {
-      style.aspectRatio = `${this.props.media.getIn([0, 'meta', 'small', 'aspect'])}`;
+      style.aspectRatio = `${this.props.media.getIn([0, "meta", "small", "aspect"])}`;
     } else {
-      style.aspectRatio = '3 / 2';
+      style.aspectRatio = "3 / 2";
     }
 
     const size     = media.take(4).size;
-    const uncached = media.every(attachment => attachment.get('type') === 'unknown');
+    const uncached = media.every(attachment => attachment.get("type") === "unknown");
 
     if (this.isFullSizeEligible()) {
       children = <Item standalone autoplay={autoplay} onClick={this.handleClick} attachment={media.get(0)} lang={lang} displayWidth={width} visible={visible} />;
     } else {
-      children = media.take(4).map((attachment, i) => <Item key={attachment.get('id')} autoplay={autoplay} onClick={this.handleClick} attachment={attachment} index={i} lang={lang} size={size} displayWidth={width} visible={visible || uncached} />);
+      children = media.take(4).map((attachment, i) => <Item key={attachment.get("id")} autoplay={autoplay} onClick={this.handleClick} attachment={attachment} index={i} lang={lang} size={size} displayWidth={width} visible={visible || uncached} />);
     }
 
     if (uncached) {
@@ -337,7 +337,7 @@ class MediaGallery extends PureComponent {
 
     return (
       <div className='media-gallery' style={style} ref={this.handleRef}>
-        <div className={classNames('spoiler-button', { 'spoiler-button--minified': visible && !uncached, 'spoiler-button--click-thru': uncached })}>
+        <div className={classNames("spoiler-button", { "spoiler-button--minified": visible && !uncached, "spoiler-button--click-thru": uncached })}>
           {spoilerButton}
         </div>
 

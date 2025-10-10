@@ -1,28 +1,28 @@
-import PropTypes from 'prop-types';
+import PropTypes from "prop-types";
 
-import { defineMessages, injectIntl } from 'react-intl';
+import { defineMessages, injectIntl } from "react-intl";
 
-import classNames from 'classnames';
+import classNames from "classnames";
 
-import ImmutablePropTypes from 'react-immutable-proptypes';
-import ImmutablePureComponent from 'react-immutable-pure-component';
+import ImmutablePropTypes from "react-immutable-proptypes";
+import ImmutablePureComponent from "react-immutable-pure-component";
 
-import ReactSwipeableViews from 'react-swipeable-views';
+import ReactSwipeableViews from "react-swipeable-views";
 
-import { getAverageFromBlurhash } from 'mastodon/blurhash';
-import { GIFV } from 'mastodon/components/gifv';
-import { Icon }  from 'mastodon/components/icon';
-import { IconButton } from 'mastodon/components/icon_button';
-import Footer from 'mastodon/features/picture_in_picture/components/footer';
-import Video from 'mastodon/features/video';
-import { disableSwiping } from 'mastodon/initial_state';
+import { getAverageFromBlurhash } from "mastodon/blurhash";
+import { GIFV } from "mastodon/components/gifv";
+import { Icon }  from "mastodon/components/icon";
+import { IconButton } from "mastodon/components/icon_button";
+import Footer from "mastodon/features/picture_in_picture/components/footer";
+import Video from "mastodon/features/video";
+import { disableSwiping } from "mastodon/initial_state";
 
-import ImageLoader from './image_loader';
+import ImageLoader from "./image_loader";
 
 const messages = defineMessages({
-  close: { id: 'lightbox.close', defaultMessage: 'Close' },
-  previous: { id: 'lightbox.previous', defaultMessage: 'Previous' },
-  next: { id: 'lightbox.next', defaultMessage: 'Next' },
+  close: { id: "lightbox.close", defaultMessage: "Close" },
+  previous: { id: "lightbox.previous", defaultMessage: "Previous" },
+  next: { id: "lightbox.next", defaultMessage: "Next" },
 });
 
 class MediaModal extends ImmutablePureComponent {
@@ -71,7 +71,7 @@ class MediaModal extends ImmutablePureComponent {
   };
 
   handleChangeIndex = (e) => {
-    const index = Number(e.currentTarget.getAttribute('data-index'));
+    const index = Number(e.currentTarget.getAttribute("data-index"));
 
     this.setState({
       index: index % this.props.media.size,
@@ -81,21 +81,21 @@ class MediaModal extends ImmutablePureComponent {
 
   handleKeyDown = (e) => {
     switch(e.key) {
-    case 'ArrowLeft':
-      this.handlePrevClick();
-      e.preventDefault();
-      e.stopPropagation();
-      break;
-    case 'ArrowRight':
-      this.handleNextClick();
-      e.preventDefault();
-      e.stopPropagation();
-      break;
+      case "ArrowLeft":
+        this.handlePrevClick();
+        e.preventDefault();
+        e.stopPropagation();
+        break;
+      case "ArrowRight":
+        this.handleNextClick();
+        e.preventDefault();
+        e.stopPropagation();
+        break;
     }
   };
 
   componentDidMount () {
-    window.addEventListener('keydown', this.handleKeyDown, false);
+    window.addEventListener("keydown", this.handleKeyDown, false);
 
     this._sendBackgroundColor();
   }
@@ -109,7 +109,7 @@ class MediaModal extends ImmutablePureComponent {
   _sendBackgroundColor () {
     const { media, onChangeBackgroundColor } = this.props;
     const index = this.getIndex();
-    const blurhash = media.getIn([index, 'blurhash']);
+    const blurhash = media.getIn([index, "blurhash"]);
 
     if (blurhash) {
       const backgroundColor = getAverageFromBlurhash(blurhash);
@@ -118,7 +118,7 @@ class MediaModal extends ImmutablePureComponent {
   }
 
   componentWillUnmount () {
-    window.removeEventListener('keydown', this.handleKeyDown);
+    window.removeEventListener("keydown", this.handleKeyDown);
 
     this.props.onChangeBackgroundColor(null);
   }
@@ -143,36 +143,36 @@ class MediaModal extends ImmutablePureComponent {
     const rightNav = media.size > 1 && <button tabIndex={0} className='media-modal__nav  media-modal__nav--right' onClick={this.handleNextClick} aria-label={intl.formatMessage(messages.next)}><Icon id='chevron-right' fixedWidth /></button>;
 
     const content = media.map((image) => {
-      const width  = image.getIn(['meta', 'original', 'width']) || null;
-      const height = image.getIn(['meta', 'original', 'height']) || null;
-      const description = image.getIn(['translation', 'description']) || image.get('description');
+      const width  = image.getIn(["meta", "original", "width"]) || null;
+      const height = image.getIn(["meta", "original", "height"]) || null;
+      const description = image.getIn(["translation", "description"]) || image.get("description");
 
-      if (image.get('type') === 'image') {
+      if (image.get("type") === "image") {
         return (
           <ImageLoader
-            previewSrc={image.get('preview_url')}
-            src={image.get('url')}
+            previewSrc={image.get("preview_url")}
+            src={image.get("url")}
             width={width}
             height={height}
             alt={description}
             lang={lang}
-            key={image.get('url')}
+            key={image.get("url")}
             onClick={this.toggleNavigation}
             zoomButtonHidden={this.state.zoomButtonHidden}
           />
         );
-      } else if (image.get('type') === 'video') {
+      } else if (image.get("type") === "video") {
         const { currentTime, autoPlay, volume } = this.props;
 
         return (
           <Video
-            preview={image.get('preview_url')}
-            blurhash={image.get('blurhash')}
-            src={image.get('url')}
-            width={image.get('width')}
-            height={image.get('height')}
-            frameRate={image.getIn(['meta', 'original', 'frame_rate'])}
-            aspectRatio={`${image.getIn(['meta', 'original', 'width'])} / ${image.getIn(['meta', 'original', 'height'])}`}
+            preview={image.get("preview_url")}
+            blurhash={image.get("blurhash")}
+            src={image.get("url")}
+            width={image.get("width")}
+            height={image.get("height")}
+            frameRate={image.getIn(["meta", "original", "frame_rate"])}
+            aspectRatio={`${image.getIn(["meta", "original", "width"])} / ${image.getIn(["meta", "original", "height"])}`}
             currentTime={currentTime || 0}
             autoPlay={autoPlay || false}
             volume={volume || 1}
@@ -180,16 +180,16 @@ class MediaModal extends ImmutablePureComponent {
             detailed
             alt={description}
             lang={lang}
-            key={image.get('url')}
+            key={image.get("url")}
           />
         );
-      } else if (image.get('type') === 'gifv') {
+      } else if (image.get("type") === "gifv") {
         return (
           <GIFV
-            src={image.get('url')}
+            src={image.get("url")}
             width={width}
             height={height}
-            key={image.get('url')}
+            key={image.get("url")}
             alt={description}
             lang={lang}
             onClick={this.toggleNavigation}
@@ -205,23 +205,23 @@ class MediaModal extends ImmutablePureComponent {
     // browsers when it's address bar is visible.
     // https://developers.google.com/web/updates/2016/12/url-bar-resizing
     const swipeableViewsStyle = {
-      width: '100%',
-      height: '100%',
+      width: "100%",
+      height: "100%",
     };
 
     const containerStyle = {
-      alignItems: 'center', // center vertically
+      alignItems: "center", // center vertically
     };
 
-    const navigationClassName = classNames('media-modal__navigation', {
-      'media-modal__navigation--hidden': navigationHidden,
+    const navigationClassName = classNames("media-modal__navigation", {
+      "media-modal__navigation--hidden": navigationHidden,
     });
 
     let pagination;
 
     if (media.size > 1) {
       pagination = media.map((item, i) => (
-        <button key={i} className={classNames('media-modal__page-dot', { active: i === index })} data-index={i} onClick={this.handleChangeIndex}>
+        <button key={i} className={classNames("media-modal__page-dot", { active: i === index })} data-index={i} onClick={this.handleChangeIndex}>
           {i + 1}
         </button>
       ));

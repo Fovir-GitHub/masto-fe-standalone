@@ -1,10 +1,10 @@
 //  Package imports.
-import { connect } from 'react-redux';
+import { connect } from "react-redux";
 
 //  Our imports.
-import { markNotificationForDelete } from 'flavours/glitch/actions/notifications';
+import { markNotificationForDelete } from "flavours/glitch/actions/notifications";
 
-import NotificationOverlay from '../components/overlay';
+import NotificationOverlay from "../components/overlay";
 
 const mapDispatchToProps = dispatch => ({
   onMarkForDelete(id, yes) {
@@ -13,7 +13,7 @@ const mapDispatchToProps = dispatch => ({
 });
 
 const mapStateToProps = state => ({
-  show: state.getIn(['notifications', 'cleaningMode']),
+  show: state.getIn(["notifications", "cleaningMode"]),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(NotificationOverlay);

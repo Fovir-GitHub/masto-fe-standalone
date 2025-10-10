@@ -1,9 +1,9 @@
 // Note: You must restart bin/webpack-dev-server for changes to take effect
 
-const { merge } = require('webpack-merge');
+const { merge } = require("webpack-merge");
 
-const { settings, output } = require('./configuration');
-const sharedConfig = require('./shared');
+const { settings, output } = require("./configuration");
+const sharedConfig = require("./shared");
 
 const watchOptions = {};
 
@@ -15,9 +15,9 @@ if (process.env.VAGRANT) {
 }
 
 module.exports = merge(sharedConfig, {
-  mode: 'development',
+  mode: "development",
   cache: true,
-  devtool: 'cheap-module-eval-source-map',
+  devtool: "cheap-module-eval-source-map",
 
   stats: {
     errorDetails: true,
@@ -28,7 +28,7 @@ module.exports = merge(sharedConfig, {
   },
 
   devServer: {
-    clientLogLevel: 'none',
+    clientLogLevel: "none",
     compress: settings.dev_server.compress,
     quiet: settings.dev_server.quiet,
     disableHostCheck: settings.dev_server.disable_host_check,

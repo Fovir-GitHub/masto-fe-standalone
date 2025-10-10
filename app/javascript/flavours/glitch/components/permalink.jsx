@@ -1,5 +1,5 @@
-import PropTypes from 'prop-types';
-import { PureComponent } from 'react';
+import PropTypes from "prop-types";
+import { PureComponent } from "react";
 
 export default class Permalink extends PureComponent {
 
@@ -40,7 +40,7 @@ export default class Permalink extends PureComponent {
     } = this.props;
 
     return (
-      <a target='_blank' href={href} onClick={this.handleClick} {...other} className={`permalink${className ? ' ' + className : ''}`}>
+      <a target='_blank' href={href} onClick={this.handleClick} {...other} className={`permalink${className ? " " + className : ""}`}>
         {children}
       </a>
     );

@@ -1,16 +1,16 @@
-import PropTypes from 'prop-types';
-import { PureComponent } from 'react';
+import PropTypes from "prop-types";
+import { PureComponent } from "react";
 
-import { FormattedMessage } from 'react-intl';
+import { FormattedMessage } from "react-intl";
 
-import ImmutablePropTypes from 'react-immutable-proptypes';
+import ImmutablePropTypes from "react-immutable-proptypes";
 
-import { PERMISSION_MANAGE_USERS, PERMISSION_MANAGE_REPORTS } from 'flavours/glitch/permissions';
+import { PERMISSION_MANAGE_USERS, PERMISSION_MANAGE_REPORTS } from "flavours/glitch/permissions";
 
-import ClearColumnButton from './clear_column_button';
-import GrantPermissionButton from './grant_permission_button';
-import PillBarButton from './pill_bar_button';
-import SettingToggle from './setting_toggle';
+import ClearColumnButton from "./clear_column_button";
+import GrantPermissionButton from "./grant_permission_button";
+import PillBarButton from "./pill_bar_button";
+import SettingToggle from "./setting_toggle";
 
 export default class ColumnSettings extends PureComponent {
 
@@ -30,7 +30,7 @@ export default class ColumnSettings extends PureComponent {
   };
 
   onPushChange = (path, checked) => {
-    this.props.onChange(['push', ...path], checked);
+    this.props.onChange(["push", ...path], checked);
   };
 
   render () {
@@ -43,18 +43,18 @@ export default class ColumnSettings extends PureComponent {
     const showStr = <FormattedMessage id='notifications.column_settings.show' defaultMessage='Show in column' />;
     const soundStr = <FormattedMessage id='notifications.column_settings.sound' defaultMessage='Play sound' />;
 
-    const showPushSettings = pushSettings.get('browserSupport') && pushSettings.get('isSubscribed');
+    const showPushSettings = pushSettings.get("browserSupport") && pushSettings.get("isSubscribed");
     const pushStr = showPushSettings && <FormattedMessage id='notifications.column_settings.push' defaultMessage='Push notifications' />;
 
     return (
       <div>
-        {alertsEnabled && browserSupport && browserPermission === 'denied' && (
+        {alertsEnabled && browserSupport && browserPermission === "denied" && (
           <div className='column-settings__row column-settings__row--with-margin'>
             <span className='warning-hint'><FormattedMessage id='notifications.permission_denied' defaultMessage='Desktop notifications are unavailable due to previously denied browser permissions request' /></span>
           </div>
         )}
 
-        {alertsEnabled && browserSupport && browserPermission === 'default' && (
+        {alertsEnabled && browserSupport && browserPermission === "default" && (
           <div className='column-settings__row column-settings__row--with-margin'>
             <span className='warning-hint'>
               <FormattedMessage id='notifications.permission_required' defaultMessage='Desktop notifications are unavailable because the required permission has not been granted.' /> <GrantPermissionButton onClick={onRequestNotificationPermission} />
@@ -72,7 +72,7 @@ export default class ColumnSettings extends PureComponent {
           </span>
 
           <div className='column-settings__row'>
-            <SettingToggle id='unread-notification-markers' prefix='notifications' settings={settings} settingPath={['showUnread']} onChange={onChange} label={unreadMarkersShowStr} />
+            <SettingToggle id='unread-notification-markers' prefix='notifications' settings={settings} settingPath={["showUnread"]} onChange={onChange} label={unreadMarkersShowStr} />
           </div>
         </div>
 
@@ -82,8 +82,8 @@ export default class ColumnSettings extends PureComponent {
           </span>
 
           <div className='column-settings__row'>
-            <SettingToggle id='show-filter-bar' prefix='notifications' settings={settings} settingPath={['quickFilter', 'show']} onChange={onChange} label={filterBarShowStr} />
-            <SettingToggle id='show-filter-bar' prefix='notifications' settings={settings} settingPath={['quickFilter', 'advanced']} onChange={onChange} label={filterAdvancedStr} />
+            <SettingToggle id='show-filter-bar' prefix='notifications' settings={settings} settingPath={["quickFilter", "show"]} onChange={onChange} label={filterBarShowStr} />
+            <SettingToggle id='show-filter-bar' prefix='notifications' settings={settings} settingPath={["quickFilter", "advanced"]} onChange={onChange} label={filterAdvancedStr} />
           </div>
         </div>
 
@@ -91,10 +91,10 @@ export default class ColumnSettings extends PureComponent {
           <span id='notifications-follow' className='column-settings__section'><FormattedMessage id='notifications.column_settings.follow' defaultMessage='New followers:' /></span>
 
           <div className='column-settings__pillbar'>
-            <PillBarButton disabled={browserPermission === 'denied'} prefix='notifications_desktop' settings={settings} settingPath={['alerts', 'follow']} onChange={onChange} label={alertStr} />
-            {showPushSettings && <PillBarButton prefix='notifications_push' settings={pushSettings} settingPath={['alerts', 'follow']} onChange={this.onPushChange} label={pushStr} />}
-            <PillBarButton prefix='notifications' settings={settings} settingPath={['shows', 'follow']} onChange={onChange} label={showStr} />
-            <PillBarButton prefix='notifications' settings={settings} settingPath={['sounds', 'follow']} onChange={onChange} label={soundStr} />
+            <PillBarButton disabled={browserPermission === "denied"} prefix='notifications_desktop' settings={settings} settingPath={["alerts", "follow"]} onChange={onChange} label={alertStr} />
+            {showPushSettings && <PillBarButton prefix='notifications_push' settings={pushSettings} settingPath={["alerts", "follow"]} onChange={this.onPushChange} label={pushStr} />}
+            <PillBarButton prefix='notifications' settings={settings} settingPath={["shows", "follow"]} onChange={onChange} label={showStr} />
+            <PillBarButton prefix='notifications' settings={settings} settingPath={["sounds", "follow"]} onChange={onChange} label={soundStr} />
           </div>
         </div>
 
@@ -102,10 +102,10 @@ export default class ColumnSettings extends PureComponent {
           <span id='notifications-follow-request' className='column-settings__section'><FormattedMessage id='notifications.column_settings.follow_request' defaultMessage='New follow requests:' /></span>
 
           <div className='column-settings__pillbar'>
-            <PillBarButton disabled={browserPermission === 'denied'} prefix='notifications_desktop' settings={settings} settingPath={['alerts', 'follow_request']} onChange={onChange} label={alertStr} />
-            {showPushSettings && <PillBarButton prefix='notifications_push' settings={pushSettings} settingPath={['alerts', 'follow_request']} onChange={this.onPushChange} label={pushStr} />}
-            <PillBarButton prefix='notifications' settings={settings} settingPath={['shows', 'follow_request']} onChange={onChange} label={showStr} />
-            <PillBarButton prefix='notifications' settings={settings} settingPath={['sounds', 'follow_request']} onChange={onChange} label={soundStr} />
+            <PillBarButton disabled={browserPermission === "denied"} prefix='notifications_desktop' settings={settings} settingPath={["alerts", "follow_request"]} onChange={onChange} label={alertStr} />
+            {showPushSettings && <PillBarButton prefix='notifications_push' settings={pushSettings} settingPath={["alerts", "follow_request"]} onChange={this.onPushChange} label={pushStr} />}
+            <PillBarButton prefix='notifications' settings={settings} settingPath={["shows", "follow_request"]} onChange={onChange} label={showStr} />
+            <PillBarButton prefix='notifications' settings={settings} settingPath={["sounds", "follow_request"]} onChange={onChange} label={soundStr} />
           </div>
         </div>
 
@@ -113,10 +113,10 @@ export default class ColumnSettings extends PureComponent {
           <span id='notifications-favourite' className='column-settings__section'><FormattedMessage id='notifications.column_settings.favourite' defaultMessage='Favorites:' /></span>
 
           <div className='column-settings__pillbar'>
-            <PillBarButton disabled={browserPermission === 'denied'} prefix='notifications_desktop' settings={settings} settingPath={['alerts', 'favourite']} onChange={onChange} label={alertStr} />
-            {showPushSettings && <PillBarButton prefix='notifications_push' settings={pushSettings} settingPath={['alerts', 'favourite']} onChange={this.onPushChange} label={pushStr} />}
-            <PillBarButton prefix='notifications' settings={settings} settingPath={['shows', 'favourite']} onChange={onChange} label={showStr} />
-            <PillBarButton prefix='notifications' settings={settings} settingPath={['sounds', 'favourite']} onChange={onChange} label={soundStr} />
+            <PillBarButton disabled={browserPermission === "denied"} prefix='notifications_desktop' settings={settings} settingPath={["alerts", "favourite"]} onChange={onChange} label={alertStr} />
+            {showPushSettings && <PillBarButton prefix='notifications_push' settings={pushSettings} settingPath={["alerts", "favourite"]} onChange={this.onPushChange} label={pushStr} />}
+            <PillBarButton prefix='notifications' settings={settings} settingPath={["shows", "favourite"]} onChange={onChange} label={showStr} />
+            <PillBarButton prefix='notifications' settings={settings} settingPath={["sounds", "favourite"]} onChange={onChange} label={soundStr} />
           </div>
         </div>
 
@@ -124,10 +124,10 @@ export default class ColumnSettings extends PureComponent {
           <span id='notifications-mention' className='column-settings__section'><FormattedMessage id='notifications.column_settings.mention' defaultMessage='Mentions:' /></span>
 
           <div className='column-settings__pillbar'>
-            <PillBarButton disabled={browserPermission === 'denied'} prefix='notifications_desktop' settings={settings} settingPath={['alerts', 'mention']} onChange={onChange} label={alertStr} />
-            {showPushSettings && <PillBarButton prefix='notifications_push' settings={pushSettings} settingPath={['alerts', 'mention']} onChange={this.onPushChange} label={pushStr} />}
-            <PillBarButton prefix='notifications' settings={settings} settingPath={['shows', 'mention']} onChange={onChange} label={showStr} />
-            <PillBarButton prefix='notifications' settings={settings} settingPath={['sounds', 'mention']} onChange={onChange} label={soundStr} />
+            <PillBarButton disabled={browserPermission === "denied"} prefix='notifications_desktop' settings={settings} settingPath={["alerts", "mention"]} onChange={onChange} label={alertStr} />
+            {showPushSettings && <PillBarButton prefix='notifications_push' settings={pushSettings} settingPath={["alerts", "mention"]} onChange={this.onPushChange} label={pushStr} />}
+            <PillBarButton prefix='notifications' settings={settings} settingPath={["shows", "mention"]} onChange={onChange} label={showStr} />
+            <PillBarButton prefix='notifications' settings={settings} settingPath={["sounds", "mention"]} onChange={onChange} label={soundStr} />
           </div>
         </div>
 
@@ -135,10 +135,10 @@ export default class ColumnSettings extends PureComponent {
           <span id='notifications-reblog' className='column-settings__section'><FormattedMessage id='notifications.column_settings.reblog' defaultMessage='Boosts:' /></span>
 
           <div className='column-settings__pillbar'>
-            <PillBarButton disabled={browserPermission === 'denied'} prefix='notifications_desktop' settings={settings} settingPath={['alerts', 'reblog']} onChange={onChange} label={alertStr} />
-            {showPushSettings && <PillBarButton prefix='notifications_push' settings={pushSettings} settingPath={['alerts', 'reblog']} onChange={this.onPushChange} label={pushStr} />}
-            <PillBarButton prefix='notifications' settings={settings} settingPath={['shows', 'reblog']} onChange={onChange} label={showStr} />
-            <PillBarButton prefix='notifications' settings={settings} settingPath={['sounds', 'reblog']} onChange={onChange} label={soundStr} />
+            <PillBarButton disabled={browserPermission === "denied"} prefix='notifications_desktop' settings={settings} settingPath={["alerts", "reblog"]} onChange={onChange} label={alertStr} />
+            {showPushSettings && <PillBarButton prefix='notifications_push' settings={pushSettings} settingPath={["alerts", "reblog"]} onChange={this.onPushChange} label={pushStr} />}
+            <PillBarButton prefix='notifications' settings={settings} settingPath={["shows", "reblog"]} onChange={onChange} label={showStr} />
+            <PillBarButton prefix='notifications' settings={settings} settingPath={["sounds", "reblog"]} onChange={onChange} label={soundStr} />
           </div>
         </div>
 
@@ -146,10 +146,10 @@ export default class ColumnSettings extends PureComponent {
           <span id='notifications-poll' className='column-settings__section'><FormattedMessage id='notifications.column_settings.poll' defaultMessage='Poll results:' /></span>
 
           <div className='column-settings__pillbar'>
-            <PillBarButton disabled={browserPermission === 'denied'} prefix='notifications_desktop' settings={settings} settingPath={['alerts', 'poll']} onChange={onChange} label={alertStr} />
-            {showPushSettings && <PillBarButton prefix='notifications_push' settings={pushSettings} settingPath={['alerts', 'poll']} onChange={this.onPushChange} label={pushStr} />}
-            <PillBarButton prefix='notifications' settings={settings} settingPath={['shows', 'poll']} onChange={onChange} label={showStr} />
-            <PillBarButton prefix='notifications' settings={settings} settingPath={['sounds', 'poll']} onChange={onChange} label={soundStr} />
+            <PillBarButton disabled={browserPermission === "denied"} prefix='notifications_desktop' settings={settings} settingPath={["alerts", "poll"]} onChange={onChange} label={alertStr} />
+            {showPushSettings && <PillBarButton prefix='notifications_push' settings={pushSettings} settingPath={["alerts", "poll"]} onChange={this.onPushChange} label={pushStr} />}
+            <PillBarButton prefix='notifications' settings={settings} settingPath={["shows", "poll"]} onChange={onChange} label={showStr} />
+            <PillBarButton prefix='notifications' settings={settings} settingPath={["sounds", "poll"]} onChange={onChange} label={soundStr} />
           </div>
         </div>
 
@@ -157,10 +157,10 @@ export default class ColumnSettings extends PureComponent {
           <span id='notifications-status' className='column-settings__section'><FormattedMessage id='notifications.column_settings.status' defaultMessage='New posts:' /></span>
 
           <div className='column-settings__pillbar'>
-            <PillBarButton disabled={browserPermission === 'denied'} prefix='notifications_desktop' settings={settings} settingPath={['alerts', 'status']} onChange={onChange} label={alertStr} />
-            {showPushSettings && <PillBarButton prefix='notifications_push' settings={pushSettings} settingPath={['alerts', 'status']} onChange={this.onPushChange} label={pushStr} />}
-            <PillBarButton prefix='notifications' settings={settings} settingPath={['shows', 'status']} onChange={onChange} label={showStr} />
-            <PillBarButton prefix='notifications' settings={settings} settingPath={['sounds', 'status']} onChange={onChange} label={soundStr} />
+            <PillBarButton disabled={browserPermission === "denied"} prefix='notifications_desktop' settings={settings} settingPath={["alerts", "status"]} onChange={onChange} label={alertStr} />
+            {showPushSettings && <PillBarButton prefix='notifications_push' settings={pushSettings} settingPath={["alerts", "status"]} onChange={this.onPushChange} label={pushStr} />}
+            <PillBarButton prefix='notifications' settings={settings} settingPath={["shows", "status"]} onChange={onChange} label={showStr} />
+            <PillBarButton prefix='notifications' settings={settings} settingPath={["sounds", "status"]} onChange={onChange} label={soundStr} />
           </div>
         </div>
 
@@ -168,10 +168,10 @@ export default class ColumnSettings extends PureComponent {
           <span id='notifications-update' className='column-settings__section'><FormattedMessage id='notifications.column_settings.update' defaultMessage='Edits:' /></span>
 
           <div className='column-settings__pillbar'>
-            <PillBarButton disabled={browserPermission === 'denied'} prefix='notifications_desktop' settings={settings} settingPath={['alerts', 'update']} onChange={onChange} label={alertStr} />
-            {showPushSettings && <PillBarButton prefix='notifications_push' settings={pushSettings} settingPath={['alerts', 'update']} onChange={this.onPushChange} label={pushStr} />}
-            <PillBarButton prefix='notifications' settings={settings} settingPath={['shows', 'update']} onChange={onChange} label={showStr} />
-            <PillBarButton prefix='notifications' settings={settings} settingPath={['sounds', 'update']} onChange={onChange} label={soundStr} />
+            <PillBarButton disabled={browserPermission === "denied"} prefix='notifications_desktop' settings={settings} settingPath={["alerts", "update"]} onChange={onChange} label={alertStr} />
+            {showPushSettings && <PillBarButton prefix='notifications_push' settings={pushSettings} settingPath={["alerts", "update"]} onChange={this.onPushChange} label={pushStr} />}
+            <PillBarButton prefix='notifications' settings={settings} settingPath={["shows", "update"]} onChange={onChange} label={showStr} />
+            <PillBarButton prefix='notifications' settings={settings} settingPath={["sounds", "update"]} onChange={onChange} label={soundStr} />
           </div>
         </div>
 
@@ -180,10 +180,10 @@ export default class ColumnSettings extends PureComponent {
             <span id='notifications-status' className='column-settings__section'><FormattedMessage id='notifications.column_settings.admin.sign_up' defaultMessage='New sign-ups:' /></span>
 
             <div className='column-settings__pillbar'>
-              <PillBarButton disabled={browserPermission === 'denied'} prefix='notifications_desktop' settings={settings} settingPath={['alerts', 'admin.sign_up']} onChange={onChange} label={alertStr} />
-              {showPushSettings && <PillBarButton prefix='notifications_push' settings={pushSettings} settingPath={['alerts', 'admin.sign_up']} onChange={this.onPushChange} label={pushStr} />}
-              <PillBarButton prefix='notifications' settings={settings} settingPath={['shows', 'admin.sign_up']} onChange={onChange} label={showStr} />
-              <PillBarButton prefix='notifications' settings={settings} settingPath={['sounds', 'admin.sign_up']} onChange={onChange} label={soundStr} />
+              <PillBarButton disabled={browserPermission === "denied"} prefix='notifications_desktop' settings={settings} settingPath={["alerts", "admin.sign_up"]} onChange={onChange} label={alertStr} />
+              {showPushSettings && <PillBarButton prefix='notifications_push' settings={pushSettings} settingPath={["alerts", "admin.sign_up"]} onChange={this.onPushChange} label={pushStr} />}
+              <PillBarButton prefix='notifications' settings={settings} settingPath={["shows", "admin.sign_up"]} onChange={onChange} label={showStr} />
+              <PillBarButton prefix='notifications' settings={settings} settingPath={["sounds", "admin.sign_up"]} onChange={onChange} label={soundStr} />
             </div>
           </div>
         )}
@@ -193,10 +193,10 @@ export default class ColumnSettings extends PureComponent {
             <span id='notifications-status' className='column-settings__section'><FormattedMessage id='notifications.column_settings.admin.report' defaultMessage='New reports:' /></span>
 
             <div className='column-settings__pillbar'>
-              <PillBarButton disabled={browserPermission === 'denied'} prefix='notifications_desktop' settings={settings} settingPath={['alerts', 'admin.report']} onChange={onChange} label={alertStr} />
-              {showPushSettings && <PillBarButton prefix='notifications_push' settings={pushSettings} settingPath={['alerts', 'admin.report']} onChange={this.onPushChange} label={pushStr} />}
-              <PillBarButton prefix='notifications' settings={settings} settingPath={['shows', 'admin.report']} onChange={onChange} label={showStr} />
-              <PillBarButton prefix='notifications' settings={settings} settingPath={['sounds', 'admin.report']} onChange={onChange} label={soundStr} />
+              <PillBarButton disabled={browserPermission === "denied"} prefix='notifications_desktop' settings={settings} settingPath={["alerts", "admin.report"]} onChange={onChange} label={alertStr} />
+              {showPushSettings && <PillBarButton prefix='notifications_push' settings={pushSettings} settingPath={["alerts", "admin.report"]} onChange={this.onPushChange} label={pushStr} />}
+              <PillBarButton prefix='notifications' settings={settings} settingPath={["shows", "admin.report"]} onChange={onChange} label={showStr} />
+              <PillBarButton prefix='notifications' settings={settings} settingPath={["sounds", "admin.report"]} onChange={onChange} label={soundStr} />
             </div>
           </div>
         )}

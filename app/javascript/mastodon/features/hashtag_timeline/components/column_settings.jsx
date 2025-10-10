@@ -1,19 +1,19 @@
-import PropTypes from 'prop-types';
-import { PureComponent } from 'react';
+import PropTypes from "prop-types";
+import { PureComponent } from "react";
 
-import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
+import { defineMessages, injectIntl, FormattedMessage } from "react-intl";
 
-import ImmutablePropTypes from 'react-immutable-proptypes';
+import ImmutablePropTypes from "react-immutable-proptypes";
 
-import { NonceProvider } from 'react-select';
-import AsyncSelect from 'react-select/async';
-import Toggle from 'react-toggle';
+import { NonceProvider } from "react-select";
+import AsyncSelect from "react-select/async";
+import Toggle from "react-toggle";
 
-import SettingToggle from '../../notifications/components/setting_toggle';
+import SettingToggle from "../../notifications/components/setting_toggle";
 
 const messages = defineMessages({
-  placeholder: { id: 'hashtag.column_settings.select.placeholder', defaultMessage: 'Enter hashtags…' },
-  noOptions: { id: 'hashtag.column_settings.select.no_options_message', defaultMessage: 'No suggestions found' },
+  placeholder: { id: "hashtag.column_settings.select.placeholder", defaultMessage: "Enter hashtags…" },
+  noOptions: { id: "hashtag.column_settings.select.no_options_message", defaultMessage: "No suggestions found" },
 });
 
 class ColumnSettings extends PureComponent {
@@ -30,11 +30,11 @@ class ColumnSettings extends PureComponent {
   };
 
   hasTags () {
-    return ['all', 'any', 'none'].map(mode => this.tags(mode).length > 0).includes(true);
+    return ["all", "any", "none"].map(mode => this.tags(mode).length > 0).includes(true);
   }
 
   tags (mode) {
-    let tags = this.props.settings.getIn(['tags', mode]) || [];
+    let tags = this.props.settings.getIn(["tags", mode]) || [];
 
     if (tags.toJS) {
       return tags.toJS();
@@ -52,12 +52,12 @@ class ColumnSettings extends PureComponent {
       return;
     }
 
-    this.props.onChange(['tags', mode], value);
+    this.props.onChange(["tags", mode], value);
   };
 
   onToggle = () => {
     if (this.state.open && this.hasTags()) {
-      this.props.onChange('tags', {});
+      this.props.onChange("tags", {});
     }
 
     this.setState({ open: !this.state.open });
@@ -72,7 +72,7 @@ class ColumnSettings extends PureComponent {
           {this.modeLabel(mode)}
         </span>
 
-        <NonceProvider nonce={document.querySelector('meta[name=style-nonce]').content} cacheKey='tags'>
+        <NonceProvider nonce={document.querySelector("meta[name=style-nonce]").content} cacheKey='tags'>
           <AsyncSelect
             isMulti
             autoFocus
@@ -92,14 +92,14 @@ class ColumnSettings extends PureComponent {
 
   modeLabel (mode) {
     switch(mode) {
-    case 'any':
-      return <FormattedMessage id='hashtag.column_settings.tag_mode.any' defaultMessage='Any of these' />;
-    case 'all':
-      return <FormattedMessage id='hashtag.column_settings.tag_mode.all' defaultMessage='All of these' />;
-    case 'none':
-      return <FormattedMessage id='hashtag.column_settings.tag_mode.none' defaultMessage='None of these' />;
-    default:
-      return '';
+      case "any":
+        return <FormattedMessage id='hashtag.column_settings.tag_mode.any' defaultMessage='Any of these' />;
+      case "all":
+        return <FormattedMessage id='hashtag.column_settings.tag_mode.all' defaultMessage='All of these' />;
+      case "none":
+        return <FormattedMessage id='hashtag.column_settings.tag_mode.none' defaultMessage='None of these' />;
+      default:
+        return "";
     }
   }
 
@@ -120,14 +120,14 @@ class ColumnSettings extends PureComponent {
 
         {this.state.open && (
           <div className='column-settings__hashtags'>
-            {this.modeSelect('any')}
-            {this.modeSelect('all')}
-            {this.modeSelect('none')}
+            {this.modeSelect("any")}
+            {this.modeSelect("all")}
+            {this.modeSelect("none")}
           </div>
         )}
 
         <div className='column-settings__row'>
-          <SettingToggle settings={settings} settingPath={['local']} onChange={onChange} label={<FormattedMessage id='community.column_settings.local_only' defaultMessage='Local only' />} />
+          <SettingToggle settings={settings} settingPath={["local"]} onChange={onChange} label={<FormattedMessage id='community.column_settings.local_only' defaultMessage='Local only' />} />
         </div>
       </div>
     );

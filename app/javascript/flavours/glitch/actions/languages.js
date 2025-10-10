@@ -1,6 +1,6 @@
-import { saveSettings } from './settings';
+import { saveSettings } from "./settings";
 
-export const LANGUAGE_USE = 'LANGUAGE_USE';
+export const LANGUAGE_USE = "LANGUAGE_USE";
 
 export const useLanguage = language => dispatch => {
   dispatch({

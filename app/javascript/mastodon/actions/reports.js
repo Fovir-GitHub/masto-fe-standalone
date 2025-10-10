@@ -1,29 +1,33 @@
-import api from '../api';
+import api from "../api";
 
-import { openModal } from './modal';
+import { openModal } from "./modal";
 
-export const REPORT_SUBMIT_REQUEST = 'REPORT_SUBMIT_REQUEST';
-export const REPORT_SUBMIT_SUCCESS = 'REPORT_SUBMIT_SUCCESS';
-export const REPORT_SUBMIT_FAIL    = 'REPORT_SUBMIT_FAIL';
+export const REPORT_SUBMIT_REQUEST = "REPORT_SUBMIT_REQUEST";
+export const REPORT_SUBMIT_SUCCESS = "REPORT_SUBMIT_SUCCESS";
+export const REPORT_SUBMIT_FAIL    = "REPORT_SUBMIT_FAIL";
 
 export const initReport = (account, status) => dispatch =>
   dispatch(openModal({
-    modalType: 'REPORT',
+    modalType: "REPORT",
     modalProps: {
-      accountId: account.get('id'),
-      statusId: status?.get('id'),
+      accountId: account.get("id"),
+      statusId: status?.get("id"),
     },
   }));
 
 export const submitReport = (params, onSuccess, onFail) => (dispatch, getState) => {
   dispatch(submitReportRequest());
 
-  api(getState).post('/api/v1/reports', params).then(response => {
+  api(getState).post("/api/v1/reports", params).then(response => {
     dispatch(submitReportSuccess(response.data));
-    if (onSuccess) onSuccess();
+    if (onSuccess) {
+      onSuccess();
+    }
   }).catch(error => {
     dispatch(submitReportFail(error));
-    if (onFail) onFail();
+    if (onFail) {
+      onFail();
+    }
   });
 };
 

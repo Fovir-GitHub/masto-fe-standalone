@@ -1,10 +1,10 @@
-import { List as ImmutableList } from 'immutable';
+import { List as ImmutableList } from "immutable";
 
 import {
   ALERT_SHOW,
   ALERT_DISMISS,
   ALERT_CLEAR,
-} from '../actions/alerts';
+} from "../actions/alerts";
 
 const initialState = ImmutableList([]);
 
@@ -18,13 +18,13 @@ const addAlert = (state, alert) =>
 
 export default function alerts(state = initialState, action) {
   switch(action.type) {
-  case ALERT_SHOW:
-    return addAlert(state, action.alert);
-  case ALERT_DISMISS:
-    return state.filterNot(item => item.key === action.alert.key);
-  case ALERT_CLEAR:
-    return state.clear();
-  default:
-    return state;
+    case ALERT_SHOW:
+      return addAlert(state, action.alert);
+    case ALERT_DISMISS:
+      return state.filterNot(item => item.key === action.alert.key);
+    case ALERT_CLEAR:
+      return state.clear();
+    default:
+      return state;
   }
 }

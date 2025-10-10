@@ -1,28 +1,28 @@
-import PropTypes from 'prop-types';
-import { PureComponent } from 'react';
+import PropTypes from "prop-types";
+import { PureComponent } from "react";
 
-import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
+import { defineMessages, injectIntl, FormattedMessage } from "react-intl";
 
-import { connect } from 'react-redux';
+import { connect } from "react-redux";
 
-import fuzzysort from 'fuzzysort';
+import fuzzysort from "fuzzysort";
 
-import { Icon } from 'flavours/glitch/components/icon';
-import { toServerSideType } from 'flavours/glitch/utils/filters';
-import { loupeIcon, deleteIcon } from 'flavours/glitch/utils/icons';
+import { Icon } from "flavours/glitch/components/icon";
+import { toServerSideType } from "flavours/glitch/utils/filters";
+import { loupeIcon, deleteIcon } from "flavours/glitch/utils/icons";
 
 const messages = defineMessages({
-  search: { id: 'filter_modal.select_filter.search', defaultMessage: 'Search or create' },
-  clear: { id: 'emoji_button.clear', defaultMessage: 'Clear' },
+  search: { id: "filter_modal.select_filter.search", defaultMessage: "Search or create" },
+  clear: { id: "emoji_button.clear", defaultMessage: "Clear" },
 });
 
 const mapStateToProps = (state, { contextType }) => ({
-  filters: Array.from(state.get('filters').values()).map((filter) => [
-    filter.get('id'),
-    filter.get('title'),
-    filter.get('keywords')?.map((keyword) => keyword.get('keyword')).join('\n'),
-    filter.get('expires_at') && filter.get('expires_at') < new Date(),
-    contextType && !filter.get('context').includes(toServerSideType(contextType)),
+  filters: Array.from(state.get("filters").values()).map((filter) => [
+    filter.get("id"),
+    filter.get("title"),
+    filter.get("keywords")?.map((keyword) => keyword.get("keyword")).join("\n"),
+    filter.get("expires_at") && filter.get("expires_at") < new Date(),
+    contextType && !filter.get("context").includes(toServerSideType(contextType)),
   ]),
 });
 
@@ -36,19 +36,19 @@ class SelectFilter extends PureComponent {
   };
 
   state = {
-    searchValue: '',
+    searchValue: "",
   };
 
   search () {
     const { filters } = this.props;
     const { searchValue } = this.state;
 
-    if (searchValue === '') {
+    if (searchValue === "") {
       return filters;
     }
 
     return fuzzysort.go(searchValue, filters, {
-      keys: ['1', '2'],
+      keys: ["1", "2"],
       limit: 5,
       threshold: -10000,
     }).map(result => result.obj);
@@ -61,7 +61,7 @@ class SelectFilter extends PureComponent {
         <span className='language-dropdown__dropdown__results__item__common-name'>
           (
           {filter[3] && <FormattedMessage id='filter_modal.select_filter.expired' defaultMessage='expired' />}
-          {filter[3] && filter[4] && ', '}
+          {filter[3] && filter[4] && ", "}
           {filter[4] && <FormattedMessage id='filter_modal.select_filter.context_mismatch' defaultMessage='does not apply to this context' />}
           )
         </span>
@@ -97,29 +97,29 @@ class SelectFilter extends PureComponent {
     let element = null;
 
     switch(e.key) {
-    case ' ':
-    case 'Enter':
-      e.currentTarget.click();
-      break;
-    case 'ArrowDown':
-      element = this.listNode.childNodes[index + 1] || this.listNode.firstChild;
-      break;
-    case 'ArrowUp':
-      element = this.listNode.childNodes[index - 1] || this.listNode.lastChild;
-      break;
-    case 'Tab':
-      if (e.shiftKey) {
-        element = this.listNode.childNodes[index - 1] || this.listNode.lastChild;
-      } else {
+      case " ":
+      case "Enter":
+        e.currentTarget.click();
+        break;
+      case "ArrowDown":
         element = this.listNode.childNodes[index + 1] || this.listNode.firstChild;
-      }
-      break;
-    case 'Home':
-      element = this.listNode.firstChild;
-      break;
-    case 'End':
-      element = this.listNode.lastChild;
-      break;
+        break;
+      case "ArrowUp":
+        element = this.listNode.childNodes[index - 1] || this.listNode.lastChild;
+        break;
+      case "Tab":
+        if (e.shiftKey) {
+          element = this.listNode.childNodes[index - 1] || this.listNode.lastChild;
+        } else {
+          element = this.listNode.childNodes[index + 1] || this.listNode.firstChild;
+        }
+        break;
+      case "Home":
+        element = this.listNode.firstChild;
+        break;
+      case "End":
+        element = this.listNode.lastChild;
+        break;
     }
 
     if (element) {
@@ -133,26 +133,26 @@ class SelectFilter extends PureComponent {
     let element = null;
 
     switch(e.key) {
-    case 'Tab':
-    case 'ArrowDown':
-      element = this.listNode.firstChild;
+      case "Tab":
+      case "ArrowDown":
+        element = this.listNode.firstChild;
 
-      if (element) {
-        element.focus();
-        e.preventDefault();
-        e.stopPropagation();
-      }
+        if (element) {
+          element.focus();
+          e.preventDefault();
+          e.stopPropagation();
+        }
 
-      break;
+        break;
     }
   };
 
   handleClear = () => {
-    this.setState({ searchValue: '' });
+    this.setState({ searchValue: "" });
   };
 
   handleItemClick = e => {
-    const value = e.currentTarget.getAttribute('data-index');
+    const value = e.currentTarget.getAttribute("data-index");
 
     e.preventDefault();
 
@@ -169,7 +169,7 @@ class SelectFilter extends PureComponent {
     const { intl } = this.props;
 
     const { searchValue } = this.state;
-    const isSearching = searchValue !== '';
+    const isSearching = searchValue !== "";
     const results = this.search();
 
     return (

@@ -1,44 +1,55 @@
 // Note: You must restart bin/webpack-dev-server for changes to take effect
 
-const { resolve } = require('path');
+const { resolve } = require("path");
 
-const CircularDependencyPlugin = require('circular-dependency-plugin');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const webpack = require('webpack');
-const AssetsManifestPlugin = require('webpack-assets-manifest');
+const CircularDependencyPlugin = require("circular-dependency-plugin");
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const webpack = require("webpack");
+const AssetsManifestPlugin = require("webpack-assets-manifest");
 
-const { env, settings, core, flavours, output } = require('./configuration');
-const rules = require('./rules');
+const { env, settings, core, flavours, output } = require("./configuration");
+const rules = require("./rules");
 
 function reducePacks (data, into = {}) {
-  if (!data.pack) return into;
+  if (!data.pack) {
+    return into;
+  }
 
   for (const entry in data.pack) {
     const pack = data.pack[entry];
-    if (!pack) continue;
+    if (!pack) {
+      continue;
+    }
 
-    let packFiles = [];
-    if (typeof pack === 'string')
+    let packFiles;
+    if (typeof pack === "string") {
       packFiles = [pack];
-    else if (Array.isArray(pack))
+    } else if (Array.isArray(pack)) {
       packFiles = pack;
-    else
+    } else {
       packFiles = [pack.filename];
+    }
 
     if (packFiles) {
       into[data.name ? `flavours/${data.name}/${entry}` : `core/${entry}`] = packFiles.map(packFile => resolve(data.pack_directory, packFile));
     }
   }
 
-  if (!data.name) return into;
+  if (!data.name) {
+    return into;
+  }
 
   for (const skinName in data.skin) {
     const skin = data.skin[skinName];
-    if (!skin) continue;
+    if (!skin) {
+      continue;
+    }
 
     for (const entry in skin) {
       const packFile = skin[entry];
-      if (!packFile) continue;
+      if (!packFile) {
+        continue;
+      }
 
       into[`skins/${data.name}/${skinName}/${entry}`] = resolve(packFile);
     }
@@ -57,24 +68,24 @@ module.exports = {
   entry: entries,
 
   output: {
-    filename: 'js/[name].js',
-    hotUpdateChunkFilename: 'js/[id]-[hash].hot-update.js',
-    hashFunction: 'sha256',
-    crossOriginLoading: 'anonymous',
+    filename: "js/[name].js",
+    hotUpdateChunkFilename: "js/[id]-[hash].hot-update.js",
+    hashFunction: "sha256",
+    crossOriginLoading: "anonymous",
     path: output.path,
     publicPath: output.publicPath,
   },
 
   optimization: {
     runtimeChunk: {
-      name: 'common',
+      name: "common",
     },
     splitChunks: {
       cacheGroups: {
         default: false,
         vendors: false,
         common: {
-          name: 'common',
+          name: "common",
           chunks (chunk) {
             return !(chunk.name in entries);
           },
@@ -98,34 +109,34 @@ module.exports = {
       /^history\//, (resource) => {
         // temporary fix for https://github.com/ReactTraining/react-router/issues/5576
         // to reduce bundle size
-        resource.request = resource.request.replace(/^history/, 'history/es');
+        resource.request = resource.request.replace(/^history/, "history/es");
       },
     ),
     new MiniCssExtractPlugin({
-      filename: 'css/[name].css',
+      filename: "css/[name].css",
     }),
     new AssetsManifestPlugin({
       integrity: true,
-      integrityHashes: ['sha256'],
+      integrityHashes: ["sha256"],
       entrypoints: true,
       writeToDisk: true,
       publicPath: true,
     }),
     new CircularDependencyPlugin({
       failOnError: true,
-    })
+    }),
   ],
 
   resolve: {
     extensions: settings.extensions,
     modules: [
       resolve(settings.source_path),
-      'node_modules',
+      "node_modules",
     ],
   },
 
   resolveLoader: {
-    modules: ['node_modules'],
+    modules: ["node_modules"],
   },
 
   node: {

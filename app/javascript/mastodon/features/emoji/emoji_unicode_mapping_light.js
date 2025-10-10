@@ -2,8 +2,8 @@
 // (i.e. the svg filename) and a shortCode intended to be shown
 // as a "title" attribute in an HTML element (aka tooltip).
 
-import emojiCompressed from './emoji_compressed';
-import { unicodeToFilename } from './unicode_to_filename';
+import emojiCompressed from "./emoji_compressed";
+import { unicodeToFilename } from "./unicode_to_filename";
 
 const [
   shortCodesToEmojiData,

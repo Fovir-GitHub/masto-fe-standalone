@@ -1,12 +1,12 @@
-import { injectIntl } from 'react-intl';
+import { injectIntl } from "react-intl";
 
-import { connect } from 'react-redux';
+import { connect } from "react-redux";
 
-import { fetchListSuggestions, clearListSuggestions, changeListSuggestions } from '../../../actions/lists';
-import Search from '../components/search';
+import { fetchListSuggestions, clearListSuggestions, changeListSuggestions } from "../../../actions/lists";
+import Search from "../components/search";
 
 const mapStateToProps = state => ({
-  value: state.getIn(['listEditor', 'suggestions', 'value']),
+  value: state.getIn(["listEditor", "suggestions", "value"]),
 });
 
 const mapDispatchToProps = dispatch => ({

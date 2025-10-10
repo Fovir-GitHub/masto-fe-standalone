@@ -1,20 +1,20 @@
-import PropTypes from 'prop-types';
-import { PureComponent } from 'react';
+import PropTypes from "prop-types";
+import { PureComponent } from "react";
 
-import { defineMessages, injectIntl } from 'react-intl';
+import { defineMessages, injectIntl } from "react-intl";
 
-import Dropdown from './dropdown';
+import Dropdown from "./dropdown";
 
 const messages = defineMessages({
-  public_short: { id: 'privacy.public.short', defaultMessage: 'Public' },
-  public_long: { id: 'privacy.public.long', defaultMessage: 'Visible for all' },
-  unlisted_short: { id: 'privacy.unlisted.short', defaultMessage: 'Unlisted' },
-  unlisted_long: { id: 'privacy.unlisted.long', defaultMessage: 'Visible for all, but opted-out of discovery features' },
-  private_short: { id: 'privacy.private.short', defaultMessage: 'Followers only' },
-  private_long: { id: 'privacy.private.long', defaultMessage: 'Visible for followers only' },
-  direct_short: { id: 'privacy.direct.short', defaultMessage: 'Mentioned people only' },
-  direct_long: { id: 'privacy.direct.long', defaultMessage: 'Visible for mentioned users only' },
-  change_privacy: { id: 'privacy.change', defaultMessage: 'Adjust status privacy' },
+  public_short: { id: "privacy.public.short", defaultMessage: "Public" },
+  public_long: { id: "privacy.public.long", defaultMessage: "Visible for all" },
+  unlisted_short: { id: "privacy.unlisted.short", defaultMessage: "Unlisted" },
+  unlisted_long: { id: "privacy.unlisted.long", defaultMessage: "Visible for all, but opted-out of discovery features" },
+  private_short: { id: "privacy.private.short", defaultMessage: "Followers only" },
+  private_long: { id: "privacy.private.long", defaultMessage: "Visible for followers only" },
+  direct_short: { id: "privacy.direct.short", defaultMessage: "Mentioned people only" },
+  direct_long: { id: "privacy.direct.long", defaultMessage: "Visible for mentioned users only" },
+  change_privacy: { id: "privacy.change", defaultMessage: "Adjust status privacy" },
 });
 
 class PrivacyDropdown extends PureComponent {
@@ -38,27 +38,27 @@ class PrivacyDropdown extends PureComponent {
     //  dropdown icon later.
     const privacyItems = {
       direct: {
-        icon: 'envelope',
+        icon: "envelope",
         meta: formatMessage(messages.direct_long),
-        name: 'direct',
+        name: "direct",
         text: formatMessage(messages.direct_short),
       },
       private: {
-        icon: 'lock',
+        icon: "lock",
         meta: formatMessage(messages.private_long),
-        name: 'private',
+        name: "private",
         text: formatMessage(messages.private_short),
       },
       public: {
-        icon: 'globe',
+        icon: "globe",
         meta: formatMessage(messages.public_long),
-        name: 'public',
+        name: "public",
         text: formatMessage(messages.public_short),
       },
       unlisted: {
-        icon: 'unlock',
+        icon: "unlock",
         meta: formatMessage(messages.unlisted_long),
-        name: 'unlisted',
+        name: "unlisted",
         text: formatMessage(messages.unlisted_short),
       },
     };

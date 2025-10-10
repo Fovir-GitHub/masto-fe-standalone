@@ -1,7 +1,7 @@
-import { connect } from 'react-redux';
+import { connect } from "react-redux";
 
-import { fetchBundleRequest, fetchBundleSuccess, fetchBundleFail } from '../../../actions/bundles';
-import Bundle from '../components/bundle';
+import { fetchBundleRequest, fetchBundleSuccess, fetchBundleFail } from "../../../actions/bundles";
+import Bundle from "../components/bundle";
 
 const mapDispatchToProps = dispatch => ({
   onFetch () {

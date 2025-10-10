@@ -1,24 +1,24 @@
 //  Package imports.
-import PropTypes from 'prop-types';
+import PropTypes from "prop-types";
 
-import { defineMessages, injectIntl } from 'react-intl';
+import { defineMessages, injectIntl } from "react-intl";
 
-import ImmutablePropTypes from 'react-immutable-proptypes';
-import ImmutablePureComponent from 'react-immutable-pure-component';
-import { connect } from 'react-redux';
+import ImmutablePropTypes from "react-immutable-proptypes";
+import ImmutablePureComponent from "react-immutable-pure-component";
+import { connect } from "react-redux";
 
-import Toggle from 'react-toggle';
+import Toggle from "react-toggle";
 
 
 //  Components.
-import { IconButton } from 'flavours/glitch/components/icon_button';
-import { pollLimits } from 'flavours/glitch/initial_state';
+import { IconButton } from "flavours/glitch/components/icon_button";
+import { pollLimits } from "flavours/glitch/initial_state";
 
-import DropdownContainer from '../containers/dropdown_container';
-import LanguageDropdown from '../containers/language_dropdown_container';
-import PrivacyDropdownContainer from '../containers/privacy_dropdown_container';
+import DropdownContainer from "../containers/dropdown_container";
+import LanguageDropdown from "../containers/language_dropdown_container";
+import PrivacyDropdownContainer from "../containers/privacy_dropdown_container";
 
-import TextIconButton from './text_icon_button';
+import TextIconButton from "./text_icon_button";
 
 
 
@@ -27,69 +27,69 @@ import TextIconButton from './text_icon_button';
 //  Messages.
 const messages = defineMessages({
   advanced_options_icon_title: {
-    defaultMessage: 'Advanced options',
-    id: 'advanced_options.icon_title',
+    defaultMessage: "Advanced options",
+    id: "advanced_options.icon_title",
   },
   attach: {
-    defaultMessage: 'Attach...',
-    id: 'compose.attach',
+    defaultMessage: "Attach...",
+    id: "compose.attach",
   },
   content_type: {
-    defaultMessage: 'Content type',
-    id: 'content-type.change',
+    defaultMessage: "Content type",
+    id: "content-type.change",
   },
   doodle: {
-    defaultMessage: 'Draw something',
-    id: 'compose.attach.doodle',
+    defaultMessage: "Draw something",
+    id: "compose.attach.doodle",
   },
   html: {
-    defaultMessage: 'HTML',
-    id: 'compose.content-type.html',
+    defaultMessage: "HTML",
+    id: "compose.content-type.html",
   },
   local_only_long: {
-    defaultMessage: 'Do not post to other instances',
-    id: 'advanced_options.local-only.long',
+    defaultMessage: "Do not post to other instances",
+    id: "advanced_options.local-only.long",
   },
   local_only_short: {
-    defaultMessage: 'Local-only',
-    id: 'advanced_options.local-only.short',
+    defaultMessage: "Local-only",
+    id: "advanced_options.local-only.short",
   },
   markdown: {
-    defaultMessage: 'Markdown',
-    id: 'compose.content-type.markdown',
+    defaultMessage: "Markdown",
+    id: "compose.content-type.markdown",
   },
   plain: {
-    defaultMessage: 'Plain text',
-    id: 'compose.content-type.plain',
+    defaultMessage: "Plain text",
+    id: "compose.content-type.plain",
   },
   spoiler: {
-    defaultMessage: 'Hide text behind warning',
-    id: 'compose_form.spoiler',
+    defaultMessage: "Hide text behind warning",
+    id: "compose_form.spoiler",
   },
   threaded_mode_long: {
-    defaultMessage: 'Automatically opens a reply on posting',
-    id: 'advanced_options.threaded_mode.long',
+    defaultMessage: "Automatically opens a reply on posting",
+    id: "advanced_options.threaded_mode.long",
   },
   threaded_mode_short: {
-    defaultMessage: 'Threaded mode',
-    id: 'advanced_options.threaded_mode.short',
+    defaultMessage: "Threaded mode",
+    id: "advanced_options.threaded_mode.short",
   },
   upload: {
-    defaultMessage: 'Upload a file',
-    id: 'compose.attach.upload',
+    defaultMessage: "Upload a file",
+    id: "compose.attach.upload",
   },
   add_poll: {
-    defaultMessage: 'Add a poll',
-    id: 'poll_button.add_poll',
+    defaultMessage: "Add a poll",
+    id: "poll_button.add_poll",
   },
   remove_poll: {
-    defaultMessage: 'Remove poll',
-    id: 'poll_button.remove_poll',
+    defaultMessage: "Remove poll",
+    id: "poll_button.remove_poll",
   },
 });
 
 const mapStateToProps = (state, { name }) => ({
-  checked: state.getIn(['compose', 'advanced_options', name]),
+  checked: state.getIn(["compose", "advanced_options", name]),
 });
 
 class ToggleOptionImpl extends ImmutablePureComponent {
@@ -161,16 +161,16 @@ class ComposerOptions extends ImmutablePureComponent {
 
     //  We switch over the name of the option.
     switch (name) {
-    case 'upload':
-      if (fileElement) {
-        fileElement.click();
-      }
-      return;
-    case 'doodle':
-      if (onDoodleOpen) {
-        onDoodleOpen();
-      }
-      return;
+      case "upload":
+        if (fileElement) {
+          fileElement.click();
+        }
+        return;
+      case "doodle":
+        if (onDoodleOpen) {
+          onDoodleOpen();
+        }
+        return;
     }
   };
 
@@ -209,13 +209,13 @@ class ComposerOptions extends ImmutablePureComponent {
 
     const contentTypeItems = {
       plain: {
-        icon: 'file-text',
-        name: 'text/plain',
+        icon: "file-text",
+        name: "text/plain",
         text: formatMessage(messages.plain),
       },
       markdown: {
-        icon: 'arrow-circle-down',
-        name: 'text/markdown',
+        icon: "arrow-circle-down",
+        name: "text/markdown",
         text: formatMessage(messages.markdown),
       },
     };
@@ -231,20 +231,20 @@ class ComposerOptions extends ImmutablePureComponent {
           ref={this.handleRefFileElement}
           type='file'
           multiple
-          style={{ display: 'none' }}
+          style={{ display: "none" }}
         />
         <DropdownContainer
           disabled={disabled || !allowMedia}
           icon='paperclip'
           items={[
             {
-              icon: 'cloud-upload',
-              name: 'upload',
+              icon: "cloud-upload",
+              name: "upload",
               text: formatMessage(messages.upload),
             },
             {
-              icon: 'paint-brush',
-              name: 'doodle',
+              icon: "paint-brush",
+              name: "doodle",
               text: formatMessage(messages.doodle),
             },
           ]}
@@ -271,7 +271,7 @@ class ComposerOptions extends ImmutablePureComponent {
         {showContentTypeChoice && (
           <DropdownContainer
             disabled={disabled}
-            icon={(contentTypeItems[contentType.split('/')[1]] || {}).icon}
+            icon={(contentTypeItems[contentType.split("/")[1]] || {}).icon}
             items={[
               contentTypeItems.plain,
               contentTypeItems.markdown,
@@ -297,12 +297,12 @@ class ComposerOptions extends ImmutablePureComponent {
           items={advancedOptions ? [
             {
               meta: formatMessage(messages.local_only_long),
-              name: 'do_not_federate',
+              name: "do_not_federate",
               text: formatMessage(messages.local_only_short),
             },
             {
               meta: formatMessage(messages.threaded_mode_long),
-              name: 'threaded_mode',
+              name: "threaded_mode",
               text: formatMessage(messages.threaded_mode_short),
             },
           ] : null}

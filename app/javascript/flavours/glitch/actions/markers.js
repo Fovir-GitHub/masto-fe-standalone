@@ -1,33 +1,33 @@
-import { List as ImmutableList } from 'immutable';
+import { List as ImmutableList } from "immutable";
 
-import { debounce } from 'lodash';
+import { debounce } from "lodash";
 
-import api from '../api';
-import { compareId } from '../compare_id';
+import api from "../api";
+import { compareId } from "../compare_id";
 
-export const MARKERS_FETCH_REQUEST = 'MARKERS_FETCH_REQUEST';
-export const MARKERS_FETCH_SUCCESS = 'MARKERS_FETCH_SUCCESS';
-export const MARKERS_FETCH_FAIL    = 'MARKERS_FETCH_FAIL';
-export const MARKERS_SUBMIT_SUCCESS = 'MARKERS_SUBMIT_SUCCESS';
+export const MARKERS_FETCH_REQUEST = "MARKERS_FETCH_REQUEST";
+export const MARKERS_FETCH_SUCCESS = "MARKERS_FETCH_SUCCESS";
+export const MARKERS_FETCH_FAIL    = "MARKERS_FETCH_FAIL";
+export const MARKERS_SUBMIT_SUCCESS = "MARKERS_SUBMIT_SUCCESS";
 
 export const synchronouslySubmitMarkers = () => (dispatch, getState) => {
-  const accessToken = getState().getIn(['meta', 'access_token'], '');
+  const accessToken = getState().getIn(["meta", "access_token"], "");
   const params      = _buildParams(getState());
 
-  if (Object.keys(params).length === 0 || accessToken === '') {
+  if (Object.keys(params).length === 0 || accessToken === "") {
     return;
   }
 
   // The Fetch API allows us to perform requests that will be carried out
   // after the page closes. But that only works if the `keepalive` attribute
   // is supported.
-  if (window.fetch && 'keepalive' in new Request('')) {
-    fetch('/api/v1/markers', {
+  if (window.fetch && "keepalive" in new Request("")) {
+    fetch("/api/v1/markers", {
       keepalive: true,
-      method: 'POST',
+      method: "POST",
       headers: {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${accessToken}`,
+        "Content-Type": "application/json",
+        "Authorization": `Bearer ${accessToken}`,
       },
       body: JSON.stringify(params),
     });
@@ -38,13 +38,13 @@ export const synchronouslySubmitMarkers = () => (dispatch, getState) => {
     // FormData for DoorKeeper to recognize the token.
     const formData = new FormData();
 
-    formData.append('bearer_token', accessToken);
+    formData.append("bearer_token", accessToken);
 
     for (const [id, value] of Object.entries(params)) {
       formData.append(`${id}[last_read_id]`, value.last_read_id);
     }
 
-    if (navigator.sendBeacon('/api/v1/markers', formData)) {
+    if (navigator.sendBeacon("/api/v1/markers", formData)) {
       return;
     }
   }
@@ -54,9 +54,9 @@ export const synchronouslySubmitMarkers = () => (dispatch, getState) => {
   try {
     const client = new XMLHttpRequest();
 
-    client.open('POST', '/api/v1/markers', false);
-    client.setRequestHeader('Content-Type', 'application/json');
-    client.setRequestHeader('Authorization', `Bearer ${accessToken}`);
+    client.open("POST", "/api/v1/markers", false);
+    client.setRequestHeader("Content-Type", "application/json");
+    client.setRequestHeader("Authorization", `Bearer ${accessToken}`);
     client.send(JSON.stringify(params));
   } catch (e) {
     // Do not make the BeforeUnload handler error out
@@ -66,16 +66,16 @@ export const synchronouslySubmitMarkers = () => (dispatch, getState) => {
 const _buildParams = (state) => {
   const params = {};
 
-  const lastHomeId         = state.getIn(['timelines', 'home', 'items'], ImmutableList()).find(item => item !== null);
-  const lastNotificationId = state.getIn(['notifications', 'lastReadId']);
+  const lastHomeId         = state.getIn(["timelines", "home", "items"], ImmutableList()).find(item => item !== null);
+  const lastNotificationId = state.getIn(["notifications", "lastReadId"]);
 
-  if (lastHomeId && compareId(lastHomeId, state.getIn(['markers', 'home'])) > 0) {
+  if (lastHomeId && compareId(lastHomeId, state.getIn(["markers", "home"])) > 0) {
     params.home = {
       last_read_id: lastHomeId,
     };
   }
 
-  if (lastNotificationId && lastNotificationId !== '0' && compareId(lastNotificationId, state.getIn(['markers', 'notifications'])) > 0) {
+  if (lastNotificationId && lastNotificationId !== "0" && compareId(lastNotificationId, state.getIn(["markers", "notifications"])) > 0) {
     params.notifications = {
       last_read_id: lastNotificationId,
     };
@@ -85,14 +85,14 @@ const _buildParams = (state) => {
 };
 
 const debouncedSubmitMarkers = debounce((dispatch, getState) => {
-  const accessToken = getState().getIn(['meta', 'access_token'], '');
+  const accessToken = getState().getIn(["meta", "access_token"], "");
   const params      = _buildParams(getState());
 
-  if (Object.keys(params).length === 0 || accessToken === '') {
+  if (Object.keys(params).length === 0 || accessToken === "") {
     return;
   }
 
-  api(getState).post('/api/v1/markers', params).then(() => {
+  api(getState).post("/api/v1/markers", params).then(() => {
     dispatch(submitMarkersSuccess(params));
   }).catch(() => {});
 }, 300000, { leading: true, trailing: true });
@@ -116,11 +116,11 @@ export function submitMarkers(params = {}) {
 }
 
 export const fetchMarkers = () => (dispatch, getState) => {
-  const params = { timeline: ['notifications'] };
+  const params = { timeline: ["notifications"] };
 
   dispatch(fetchMarkersRequest());
 
-  api(getState).get('/api/v1/markers', { params }).then(response => {
+  api(getState).get("/api/v1/markers", { params }).then(response => {
     dispatch(fetchMarkersSuccess(response.data));
   }).catch(error => {
     dispatch(fetchMarkersFail(error));

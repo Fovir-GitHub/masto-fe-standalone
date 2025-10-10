@@ -1,21 +1,21 @@
-import PropTypes from 'prop-types';
-import { PureComponent } from 'react';
+import PropTypes from "prop-types";
+import { PureComponent } from "react";
 
-import { injectIntl, FormattedMessage } from 'react-intl';
+import { injectIntl, FormattedMessage } from "react-intl";
 
-import { connect } from 'react-redux';
+import { connect } from "react-redux";
 
-import { blockAccount } from '../../../actions/accounts';
-import { closeModal } from '../../../actions/modal';
-import { initReport } from '../../../actions/reports';
-import Button from '../../../components/button';
-import { makeGetAccount } from '../../../selectors';
+import { blockAccount } from "../../../actions/accounts";
+import { closeModal } from "../../../actions/modal";
+import { initReport } from "../../../actions/reports";
+import Button from "../../../components/button";
+import { makeGetAccount } from "../../../selectors";
 
 const makeMapStateToProps = () => {
   const getAccount = makeGetAccount();
 
   const mapStateToProps = state => ({
-    account: getAccount(state, state.getIn(['blocks', 'new', 'account_id'])),
+    account: getAccount(state, state.getIn(["blocks", "new", "account_id"])),
   });
 
   return mapStateToProps;
@@ -24,11 +24,11 @@ const makeMapStateToProps = () => {
 const mapDispatchToProps = dispatch => {
   return {
     onConfirm(account) {
-      dispatch(blockAccount(account.get('id')));
+      dispatch(blockAccount(account.get("id")));
     },
 
     onBlockAndReport(account) {
-      dispatch(blockAccount(account.get('id')));
+      dispatch(blockAccount(account.get("id")));
       dispatch(initReport(account));
     },
 
@@ -83,7 +83,7 @@ class BlockModal extends PureComponent {
             <FormattedMessage
               id='confirmations.block.message'
               defaultMessage='Are you sure you want to block {name}?'
-              values={{ name: <strong>@{account.get('acct')}</strong> }}
+              values={{ name: <strong>@{account.get("acct")}</strong> }}
             />
           </p>
         </div>

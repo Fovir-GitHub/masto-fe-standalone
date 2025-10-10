@@ -1,48 +1,48 @@
-import { render, fireEvent, screen } from '@testing-library/react';
-import renderer from 'react-test-renderer';
+import { render, fireEvent, screen } from "@testing-library/react";
+import renderer from "react-test-renderer";
 
-import Button from '../button';
+import Button from "../button";
 
-describe('<Button />', () => {
-  it('renders a button element', () => {
+describe("<Button />", () => {
+  it("renders a button element", () => {
     const component = renderer.create(<Button />);
     const tree      = component.toJSON();
 
     expect(tree).toMatchSnapshot();
   });
 
-  it('renders the given text', () => {
-    const text      = 'foo';
+  it("renders the given text", () => {
+    const text      = "foo";
     const component = renderer.create(<Button text={text} />);
     const tree      = component.toJSON();
 
     expect(tree).toMatchSnapshot();
   });
 
-  it('handles click events using the given handler', () => {
+  it("handles click events using the given handler", () => {
     const handler = jest.fn();
     render(<Button onClick={handler}>button</Button>);
-    fireEvent.click(screen.getByText('button'));
+    fireEvent.click(screen.getByText("button"));
 
-    expect(handler.mock.calls.length).toEqual(1);
+    expect(handler.mock.calls).toHaveLength(1);
   });
 
-  it('does not handle click events if props.disabled given', () => {
+  it("does not handle click events if props.disabled given", () => {
     const handler = jest.fn();
     render(<Button onClick={handler} disabled>button</Button>);
-    fireEvent.click(screen.getByText('button'));
+    fireEvent.click(screen.getByText("button"));
 
-    expect(handler.mock.calls.length).toEqual(0);
+    expect(handler.mock.calls).toHaveLength(0);
   });
 
-  it('renders a disabled attribute if props.disabled given', () => {
+  it("renders a disabled attribute if props.disabled given", () => {
     const component = renderer.create(<Button disabled />);
     const tree      = component.toJSON();
 
     expect(tree).toMatchSnapshot();
   });
 
-  it('renders the children', () => {
+  it("renders the children", () => {
     const children  = <p>children</p>;
     const component = renderer.create(<Button>{children}</Button>);
     const tree      = component.toJSON();
@@ -50,8 +50,8 @@ describe('<Button />', () => {
     expect(tree).toMatchSnapshot();
   });
 
-  it('renders the props.text instead of children', () => {
-    const text      = 'foo';
+  it("renders the props.text instead of children", () => {
+    const text      = "foo";
     const children  = <p>children</p>;
     const component = renderer.create(<Button text={text}>{children}</Button>);
     const tree      = component.toJSON();
@@ -59,14 +59,14 @@ describe('<Button />', () => {
     expect(tree).toMatchSnapshot();
   });
 
-  it('renders class="button--block" if props.block given', () => {
+  it("renders class=\"button--block\" if props.block given", () => {
     const component = renderer.create(<Button block />);
     const tree      = component.toJSON();
 
     expect(tree).toMatchSnapshot();
   });
 
-  it('adds class "button-secondary" if props.secondary given', () => {
+  it("adds class \"button-secondary\" if props.secondary given", () => {
     const component = renderer.create(<Button secondary />);
     const tree      = component.toJSON();
 

@@ -1,15 +1,15 @@
-import PropTypes from 'prop-types';
+import PropTypes from "prop-types";
 
-import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
+import { defineMessages, injectIntl, FormattedMessage } from "react-intl";
 
-import ImmutablePropTypes from 'react-immutable-proptypes';
+import ImmutablePropTypes from "react-immutable-proptypes";
 
-import Button from 'mastodon/components/button';
-import { ShortNumber } from 'mastodon/components/short_number';
+import Button from "mastodon/components/button";
+import { ShortNumber } from "mastodon/components/short_number";
 
 const messages = defineMessages({
-  followHashtag: { id: 'hashtag.follow', defaultMessage: 'Follow hashtag' },
-  unfollowHashtag: { id: 'hashtag.unfollow', defaultMessage: 'Unfollow hashtag' },
+  followHashtag: { id: "hashtag.follow", defaultMessage: "Follow hashtag" },
+  unfollowHashtag: { id: "hashtag.unfollow", defaultMessage: "Unfollow hashtag" },
 });
 
 const usesRenderer = (displayNumber, pluralReady) => (
@@ -50,14 +50,14 @@ export const HashtagHeader = injectIntl(({ tag, intl, disabled, onClick }) => {
     return null;
   }
 
-  const [uses, people] = tag.get('history').reduce((arr, day) => [arr[0] + day.get('uses') * 1, arr[1] + day.get('accounts') * 1], [0, 0]);
-  const dividingCircle = <span aria-hidden>{' · '}</span>;
+  const [uses, people] = tag.get("history").reduce((arr, day) => [arr[0] + day.get("uses") * 1, arr[1] + day.get("accounts") * 1], [0, 0]);
+  const dividingCircle = <span aria-hidden>{" · "}</span>;
 
   return (
     <div className='hashtag-header'>
       <div className='hashtag-header__header'>
-        <h1>#{tag.get('name')}</h1>
-        <Button onClick={onClick} text={intl.formatMessage(tag.get('following') ? messages.unfollowHashtag : messages.followHashtag)} disabled={disabled} />
+        <h1>#{tag.get("name")}</h1>
+        <Button onClick={onClick} text={intl.formatMessage(tag.get("following") ? messages.unfollowHashtag : messages.followHashtag)} disabled={disabled} />
       </div>
 
       <div>
@@ -65,7 +65,7 @@ export const HashtagHeader = injectIntl(({ tag, intl, disabled, onClick }) => {
         {dividingCircle}
         <ShortNumber value={people} renderer={peopleRenderer} />
         {dividingCircle}
-        <ShortNumber value={tag.getIn(['history', 0, 'uses']) * 1} renderer={usesTodayRenderer} />
+        <ShortNumber value={tag.getIn(["history", 0, "uses"]) * 1} renderer={usesTodayRenderer} />
       </div>
     </div>
   );

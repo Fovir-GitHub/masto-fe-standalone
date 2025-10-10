@@ -8,29 +8,29 @@ and performs no other task.
 
 */
 
-import 'packs/public-path';
+import "packs/public-path";
 
-import axios from 'axios';
+import axios from "axios";
 
 interface JRDLink {
-  rel: string;
-  template?: string;
-  href?: string;
+  rel: string,
+  template?: string,
+  href?: string,
 }
 
 const isJRDLink = (link: unknown): link is JRDLink =>
-  typeof link === 'object' &&
+  typeof link === "object" &&
   link !== null &&
-  'rel' in link &&
-  typeof link.rel === 'string' &&
-  (!('template' in link) || typeof link.template === 'string') &&
-  (!('href' in link) || typeof link.href === 'string');
+  "rel" in link &&
+  typeof link.rel === "string" &&
+  (!("template" in link) || typeof link.template === "string") &&
+  (!("href" in link) || typeof link.href === "string");
 
 const findLink = (rel: string, data: unknown): JRDLink | undefined => {
   if (
-    typeof data === 'object' &&
+    typeof data === "object" &&
     data !== null &&
-    'links' in data &&
+    "links" in data &&
     data.links instanceof Array
   ) {
     return data.links.find(
@@ -42,7 +42,7 @@ const findLink = (rel: string, data: unknown): JRDLink | undefined => {
 };
 
 const findTemplateLink = (data: unknown) =>
-  findLink('http://ostatus.org/schema/1.0/subscribe', data)?.template;
+  findLink("http://ostatus.org/schema/1.0/subscribe", data)?.template;
 
 const fetchInteractionURLSuccess = (
   uri_or_domain: string,
@@ -50,7 +50,7 @@ const fetchInteractionURLSuccess = (
 ) => {
   window.parent.postMessage(
     {
-      type: 'fetchInteractionURL-success',
+      type: "fetchInteractionURL-success",
       uri_or_domain,
       template,
     },
@@ -61,14 +61,14 @@ const fetchInteractionURLSuccess = (
 const fetchInteractionURLFailure = () => {
   window.parent.postMessage(
     {
-      type: 'fetchInteractionURL-failure',
+      type: "fetchInteractionURL-failure",
     },
     window.origin,
   );
 };
 
 const isValidDomain = (value: string) => {
-  const url = new URL('https:///path');
+  const url = new URL("https:///path");
   url.hostname = value;
   return url.hostname === value;
 };
@@ -112,9 +112,9 @@ const fromURL = (url: string) => {
 
 // Attempt to find a remote interaction URL from a `user@domain` string
 const fromAcct = (acct: string) => {
-  acct = acct.replace(/^@/, '');
+  acct = acct.replace(/^@/, "");
 
-  const segments = acct.split('@');
+  const segments = acct.split("@");
 
   if (segments.length !== 2 || !segments[0] || !isValidDomain(segments[1])) {
     fetchInteractionURLFailure();
@@ -140,18 +140,18 @@ const fromAcct = (acct: string) => {
 };
 
 const fetchInteractionURL = (uri_or_domain: string) => {
-  if (uri_or_domain === '') {
+  if (uri_or_domain === "") {
     fetchInteractionURLFailure();
   } else if (/^https?:\/\//.test(uri_or_domain)) {
     fromURL(uri_or_domain);
-  } else if (uri_or_domain.includes('@')) {
+  } else if (uri_or_domain.includes("@")) {
     fromAcct(uri_or_domain);
   } else {
     fromDomain(uri_or_domain);
   }
 };
 
-window.addEventListener('message', (event: MessageEvent<unknown>) => {
+window.addEventListener("message", (event: MessageEvent<unknown>) => {
   // Check message origin
   if (
     !window.origin ||
@@ -163,11 +163,11 @@ window.addEventListener('message', (event: MessageEvent<unknown>) => {
 
   if (
     event.data &&
-    typeof event.data === 'object' &&
-    'type' in event.data &&
-    event.data.type === 'fetchInteractionURL' &&
-    'uri_or_domain' in event.data &&
-    typeof event.data.uri_or_domain === 'string'
+    typeof event.data === "object" &&
+    "type" in event.data &&
+    event.data.type === "fetchInteractionURL" &&
+    "uri_or_domain" in event.data &&
+    typeof event.data.uri_or_domain === "string"
   ) {
     fetchInteractionURL(event.data.uri_or_domain);
   }

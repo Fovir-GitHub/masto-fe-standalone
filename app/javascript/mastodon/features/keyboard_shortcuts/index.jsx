@@ -1,16 +1,16 @@
-import PropTypes from 'prop-types';
+import PropTypes from "prop-types";
 
-import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
+import { defineMessages, injectIntl, FormattedMessage } from "react-intl";
 
-import { Helmet } from 'react-helmet';
+import { Helmet } from "react-helmet";
 
-import ImmutablePureComponent from 'react-immutable-pure-component';
+import ImmutablePureComponent from "react-immutable-pure-component";
 
-import Column from 'mastodon/components/column';
-import ColumnHeader from 'mastodon/components/column_header';
+import Column from "mastodon/components/column";
+import ColumnHeader from "mastodon/components/column_header";
 
 const messages = defineMessages({
-  heading: { id: 'keyboard_shortcuts.heading', defaultMessage: 'Keyboard Shortcuts' },
+  heading: { id: "keyboard_shortcuts.heading", defaultMessage: "Keyboard Shortcuts" },
 });
 
 class KeyboardShortcuts extends ImmutablePureComponent {

@@ -1,21 +1,21 @@
-import PropTypes from 'prop-types';
+import PropTypes from "prop-types";
 
-import { injectIntl, defineMessages } from 'react-intl';
+import { injectIntl, defineMessages } from "react-intl";
 
-import ImmutablePropTypes from 'react-immutable-proptypes';
-import ImmutablePureComponent from 'react-immutable-pure-component';
-import { connect } from 'react-redux';
+import ImmutablePropTypes from "react-immutable-proptypes";
+import ImmutablePureComponent from "react-immutable-pure-component";
+import { connect } from "react-redux";
 
-import { followAccount, unfollowAccount } from 'flavours/glitch/actions/accounts';
-import { Avatar } from 'flavours/glitch/components/avatar';
-import { DisplayName } from 'flavours/glitch/components/display_name';
-import { IconButton } from 'flavours/glitch/components/icon_button';
-import Permalink from 'flavours/glitch/components/permalink';
-import { makeGetAccount } from 'flavours/glitch/selectors';
+import { followAccount, unfollowAccount } from "flavours/glitch/actions/accounts";
+import { Avatar } from "flavours/glitch/components/avatar";
+import { DisplayName } from "flavours/glitch/components/display_name";
+import { IconButton } from "flavours/glitch/components/icon_button";
+import Permalink from "flavours/glitch/components/permalink";
+import { makeGetAccount } from "flavours/glitch/selectors";
 
 const messages = defineMessages({
-  follow: { id: 'account.follow', defaultMessage: 'Follow' },
-  unfollow: { id: 'account.unfollow', defaultMessage: 'Unfollow' },
+  follow: { id: "account.follow", defaultMessage: "Follow" },
+  unfollow: { id: "account.unfollow", defaultMessage: "Unfollow" },
 });
 
 const makeMapStateToProps = () => {
@@ -45,10 +45,10 @@ class Account extends ImmutablePureComponent {
   handleFollow = () => {
     const { account, dispatch } = this.props;
 
-    if (account.getIn(['relationship', 'following']) || account.getIn(['relationship', 'requested'])) {
-      dispatch(unfollowAccount(account.get('id')));
+    if (account.getIn(["relationship", "following"]) || account.getIn(["relationship", "requested"])) {
+      dispatch(unfollowAccount(account.get("id")));
     } else {
-      dispatch(followAccount(account.get('id')));
+      dispatch(followAccount(account.get("id")));
     }
   };
 
@@ -57,7 +57,7 @@ class Account extends ImmutablePureComponent {
 
     let button;
 
-    if (account.getIn(['relationship', 'following'])) {
+    if (account.getIn(["relationship", "following"])) {
       button = <IconButton icon='check' title={intl.formatMessage(messages.unfollow)} active onClick={this.handleFollow} />;
     } else {
       button = <IconButton icon='plus' title={intl.formatMessage(messages.follow)} onClick={this.handleFollow} />;
@@ -66,12 +66,12 @@ class Account extends ImmutablePureComponent {
     return (
       <div className='account follow-recommendations-account'>
         <div className='account__wrapper'>
-          <Permalink className='account__display-name account__display-name--with-note' title={account.get('acct')} href={account.get('url')} to={`/@${account.get('acct')}`}>
+          <Permalink className='account__display-name account__display-name--with-note' title={account.get("acct")} href={account.get("url")} to={`/@${account.get("acct")}`}>
             <div className='account__avatar-wrapper'><Avatar account={account} size={36} /></div>
 
             <DisplayName account={account} />
 
-            <div className='account__note'>{getFirstSentence(account.get('note_plain'))}</div>
+            <div className='account__note'>{getFirstSentence(account.get("note_plain"))}</div>
           </Permalink>
 
           <div className='account__relationship'>

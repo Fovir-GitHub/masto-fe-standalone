@@ -1,39 +1,39 @@
-import PropTypes from 'prop-types';
-import { PureComponent } from 'react';
+import PropTypes from "prop-types";
+import { PureComponent } from "react";
 
-import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
+import { defineMessages, injectIntl, FormattedMessage } from "react-intl";
 
-import { Helmet } from 'react-helmet';
+import { Helmet } from "react-helmet";
 
-import { connect } from 'react-redux';
+import { connect } from "react-redux";
 
-import { addColumn, removeColumn, moveColumn } from 'flavours/glitch/actions/columns';
-import { connectPublicStream } from 'flavours/glitch/actions/streaming';
-import { expandPublicTimeline } from 'flavours/glitch/actions/timelines';
-import Column from 'flavours/glitch/components/column';
-import ColumnHeader from 'flavours/glitch/components/column_header';
-import { DismissableBanner } from 'flavours/glitch/components/dismissable_banner';
-import StatusListContainer from 'flavours/glitch/features/ui/containers/status_list_container';
-import { domain } from 'flavours/glitch/initial_state';
+import { addColumn, removeColumn, moveColumn } from "flavours/glitch/actions/columns";
+import { connectPublicStream } from "flavours/glitch/actions/streaming";
+import { expandPublicTimeline } from "flavours/glitch/actions/timelines";
+import Column from "flavours/glitch/components/column";
+import ColumnHeader from "flavours/glitch/components/column_header";
+import { DismissableBanner } from "flavours/glitch/components/dismissable_banner";
+import StatusListContainer from "flavours/glitch/features/ui/containers/status_list_container";
+import { domain } from "flavours/glitch/initial_state";
 
-import ColumnSettingsContainer from './containers/column_settings_container';
+import ColumnSettingsContainer from "./containers/column_settings_container";
 
 const messages = defineMessages({
-  title: { id: 'column.public', defaultMessage: 'Federated timeline' },
+  title: { id: "column.public", defaultMessage: "Federated timeline" },
 });
 
 const mapStateToProps = (state, { columnId }) => {
   const uuid = columnId;
-  const columns = state.getIn(['settings', 'columns']);
-  const index = columns.findIndex(c => c.get('uuid') === uuid);
-  const onlyMedia = (columnId && index >= 0) ? columns.get(index).getIn(['params', 'other', 'onlyMedia']) : state.getIn(['settings', 'public', 'other', 'onlyMedia']);
-  const onlyRemote = (columnId && index >= 0) ? columns.get(index).getIn(['params', 'other', 'onlyRemote']) : state.getIn(['settings', 'public', 'other', 'onlyRemote']);
-  const allowLocalOnly = (columnId && index >= 0) ? columns.get(index).getIn(['params', 'other', 'allowLocalOnly']) : state.getIn(['settings', 'public', 'other', 'allowLocalOnly']);
-  const regex = (columnId && index >= 0) ? columns.get(index).getIn(['params', 'regex', 'body']) : state.getIn(['settings', 'public', 'regex', 'body']);
-  const timelineState = state.getIn(['timelines', `public${onlyRemote ? ':remote' : allowLocalOnly ? ':allow_local_only' : ''}${onlyMedia ? ':media' : ''}`]);
+  const columns = state.getIn(["settings", "columns"]);
+  const index = columns.findIndex(c => c.get("uuid") === uuid);
+  const onlyMedia = (columnId && index >= 0) ? columns.get(index).getIn(["params", "other", "onlyMedia"]) : state.getIn(["settings", "public", "other", "onlyMedia"]);
+  const onlyRemote = (columnId && index >= 0) ? columns.get(index).getIn(["params", "other", "onlyRemote"]) : state.getIn(["settings", "public", "other", "onlyRemote"]);
+  const allowLocalOnly = (columnId && index >= 0) ? columns.get(index).getIn(["params", "other", "allowLocalOnly"]) : state.getIn(["settings", "public", "other", "allowLocalOnly"]);
+  const regex = (columnId && index >= 0) ? columns.get(index).getIn(["params", "regex", "body"]) : state.getIn(["settings", "public", "regex", "body"]);
+  const timelineState = state.getIn(["timelines", `public${onlyRemote ? ":remote" : allowLocalOnly ? ":allow_local_only" : ""}${onlyMedia ? ":media" : ""}`]);
 
   return {
-    hasUnread: !!timelineState && timelineState.get('unread') > 0,
+    hasUnread: !!timelineState && timelineState.get("unread") > 0,
     onlyMedia,
     onlyRemote,
     allowLocalOnly,
@@ -70,7 +70,7 @@ class PublicTimeline extends PureComponent {
     if (columnId) {
       dispatch(removeColumn(columnId));
     } else {
-      dispatch(addColumn(onlyRemote ? 'REMOTE' : 'PUBLIC', { other: { onlyMedia, onlyRemote, allowLocalOnly } }));
+      dispatch(addColumn(onlyRemote ? "REMOTE" : "PUBLIC", { other: { onlyMedia, onlyRemote, allowLocalOnly } }));
     }
   };
 
@@ -149,7 +149,7 @@ class PublicTimeline extends PureComponent {
 
         <StatusListContainer
           prepend={<DismissableBanner id='public_timeline'><FormattedMessage id='dismissable_banner.public_timeline' defaultMessage='These are the most recent public posts from people on the social web that people on {domain} follow.' values={{ domain }} /></DismissableBanner>}
-          timelineId={`public${onlyRemote ? ':remote' : (allowLocalOnly ? ':allow_local_only' : '')}${onlyMedia ? ':media' : ''}`}
+          timelineId={`public${onlyRemote ? ":remote" : (allowLocalOnly ? ":allow_local_only" : "")}${onlyMedia ? ":media" : ""}`}
           onLoadMore={this.handleLoadMore}
           trackScroll={!pinned}
           scrollKey={`public_timeline-${columnId}`}

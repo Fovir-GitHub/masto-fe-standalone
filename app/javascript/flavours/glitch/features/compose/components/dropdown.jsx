@@ -1,15 +1,15 @@
 //  Package imports.
-import PropTypes from 'prop-types';
-import { PureComponent } from 'react';
+import PropTypes from "prop-types";
+import { PureComponent } from "react";
 
-import classNames from 'classnames';
+import classNames from "classnames";
 
-import Overlay from 'react-overlays/Overlay';
+import Overlay from "react-overlays/Overlay";
 
 //  Components.
-import { IconButton } from 'flavours/glitch/components/icon_button';
+import { IconButton } from "flavours/glitch/components/icon_button";
 
-import DropdownMenu from './dropdown_menu';
+import DropdownMenu from "./dropdown_menu";
 
 //  The component.
 export default class ComposerOptionsDropdown extends PureComponent {
@@ -41,7 +41,7 @@ export default class ComposerOptionsDropdown extends PureComponent {
   state = {
     open: false,
     openedViaKeyboard: undefined,
-    placement: 'bottom',
+    placement: "bottom",
   };
 
   //  Toggles opening and closing the dropdown.
@@ -62,15 +62,15 @@ export default class ComposerOptionsDropdown extends PureComponent {
       if (open && this.activeElement) {
         this.activeElement.focus({ preventScroll: true });
       }
-      this.setState({ open: !open, openedViaKeyboard: type !== 'click' });
+      this.setState({ open: !open, openedViaKeyboard: type !== "click" });
     }
   };
 
   handleKeyDown = (e) => {
     switch (e.key) {
-    case 'Escape':
-      this.handleClose();
-      break;
+      case "Escape":
+        this.handleClose();
+        break;
     }
   };
 
@@ -82,21 +82,21 @@ export default class ComposerOptionsDropdown extends PureComponent {
 
   handleButtonKeyDown = (e) => {
     switch(e.key) {
-    case ' ':
-    case 'Enter':
-      this.handleMouseDown();
-      break;
+      case " ":
+      case "Enter":
+        this.handleMouseDown();
+        break;
     }
   };
 
   handleKeyPress = (e) => {
     switch(e.key) {
-    case ' ':
-    case 'Enter':
-      this.handleToggle(e);
-      e.stopPropagation();
-      e.preventDefault();
-      break;
+      case " ":
+      case "Enter":
+        this.handleToggle(e);
+        e.stopPropagation();
+        e.preventDefault();
+        break;
     }
   };
 
@@ -115,12 +115,14 @@ export default class ComposerOptionsDropdown extends PureComponent {
       closeOnChange,
     } = this.props;
 
-    const i = Number(e.currentTarget.getAttribute('data-index'));
+    const i = Number(e.currentTarget.getAttribute("data-index"));
 
     const { name } = items[i];
 
     e.preventDefault();  //  Prevents focus from changing
-    if (closeOnChange) onModalClose();
+    if (closeOnChange) {
+      onModalClose();
+    }
     onChange(name);
   };
 
@@ -183,15 +185,15 @@ export default class ComposerOptionsDropdown extends PureComponent {
     } = this.props;
     const { open, placement } = this.state;
 
-    const active = value && items.findIndex(({ name }) => name === value) === (placement === 'bottom' ? 0 : (items.length - 1));
+    const active = value && items.findIndex(({ name }) => name === value) === (placement === "bottom" ? 0 : (items.length - 1));
 
     return (
       <div
-        className={classNames('privacy-dropdown', placement, { active: open })}
+        className={classNames("privacy-dropdown", placement, { active: open })}
         onKeyDown={this.handleKeyDown}
         ref={this.setTargetRef}
       >
-        <div className={classNames('privacy-dropdown__value', { active })}>
+        <div className={classNames("privacy-dropdown__value", { active })}>
           <IconButton
             active={open}
             className='privacy-dropdown__value-icon'
@@ -205,7 +207,7 @@ export default class ComposerOptionsDropdown extends PureComponent {
             size={18}
             style={{
               height: null,
-              lineHeight: '27px',
+              lineHeight: "27px",
             }}
             title={title}
           />
@@ -218,7 +220,7 @@ export default class ComposerOptionsDropdown extends PureComponent {
           flip
           target={this.findTarget}
           container={container}
-          popperConfig={{ strategy: 'fixed', onFirstUpdate: this.handleOverlayEnter }}
+          popperConfig={{ strategy: "fixed", onFirstUpdate: this.handleOverlayEnter }}
         >
           {({ props, placement }) => (
             <div {...props}>

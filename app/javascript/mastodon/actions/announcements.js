@@ -1,35 +1,35 @@
-import api from '../api';
+import api from "../api";
 
-import { normalizeAnnouncement } from './importer/normalizer';
+import { normalizeAnnouncement } from "./importer/normalizer";
 
-export const ANNOUNCEMENTS_FETCH_REQUEST = 'ANNOUNCEMENTS_FETCH_REQUEST';
-export const ANNOUNCEMENTS_FETCH_SUCCESS = 'ANNOUNCEMENTS_FETCH_SUCCESS';
-export const ANNOUNCEMENTS_FETCH_FAIL    = 'ANNOUNCEMENTS_FETCH_FAIL';
-export const ANNOUNCEMENTS_UPDATE        = 'ANNOUNCEMENTS_UPDATE';
-export const ANNOUNCEMENTS_DELETE        = 'ANNOUNCEMENTS_DELETE';
+export const ANNOUNCEMENTS_FETCH_REQUEST = "ANNOUNCEMENTS_FETCH_REQUEST";
+export const ANNOUNCEMENTS_FETCH_SUCCESS = "ANNOUNCEMENTS_FETCH_SUCCESS";
+export const ANNOUNCEMENTS_FETCH_FAIL    = "ANNOUNCEMENTS_FETCH_FAIL";
+export const ANNOUNCEMENTS_UPDATE        = "ANNOUNCEMENTS_UPDATE";
+export const ANNOUNCEMENTS_DELETE        = "ANNOUNCEMENTS_DELETE";
 
-export const ANNOUNCEMENTS_DISMISS_REQUEST = 'ANNOUNCEMENTS_DISMISS_REQUEST';
-export const ANNOUNCEMENTS_DISMISS_SUCCESS = 'ANNOUNCEMENTS_DISMISS_SUCCESS';
-export const ANNOUNCEMENTS_DISMISS_FAIL    = 'ANNOUNCEMENTS_DISMISS_FAIL';
+export const ANNOUNCEMENTS_DISMISS_REQUEST = "ANNOUNCEMENTS_DISMISS_REQUEST";
+export const ANNOUNCEMENTS_DISMISS_SUCCESS = "ANNOUNCEMENTS_DISMISS_SUCCESS";
+export const ANNOUNCEMENTS_DISMISS_FAIL    = "ANNOUNCEMENTS_DISMISS_FAIL";
 
-export const ANNOUNCEMENTS_REACTION_ADD_REQUEST = 'ANNOUNCEMENTS_REACTION_ADD_REQUEST';
-export const ANNOUNCEMENTS_REACTION_ADD_SUCCESS = 'ANNOUNCEMENTS_REACTION_ADD_SUCCESS';
-export const ANNOUNCEMENTS_REACTION_ADD_FAIL    = 'ANNOUNCEMENTS_REACTION_ADD_FAIL';
+export const ANNOUNCEMENTS_REACTION_ADD_REQUEST = "ANNOUNCEMENTS_REACTION_ADD_REQUEST";
+export const ANNOUNCEMENTS_REACTION_ADD_SUCCESS = "ANNOUNCEMENTS_REACTION_ADD_SUCCESS";
+export const ANNOUNCEMENTS_REACTION_ADD_FAIL    = "ANNOUNCEMENTS_REACTION_ADD_FAIL";
 
-export const ANNOUNCEMENTS_REACTION_REMOVE_REQUEST = 'ANNOUNCEMENTS_REACTION_REMOVE_REQUEST';
-export const ANNOUNCEMENTS_REACTION_REMOVE_SUCCESS = 'ANNOUNCEMENTS_REACTION_REMOVE_SUCCESS';
-export const ANNOUNCEMENTS_REACTION_REMOVE_FAIL    = 'ANNOUNCEMENTS_REACTION_REMOVE_FAIL';
+export const ANNOUNCEMENTS_REACTION_REMOVE_REQUEST = "ANNOUNCEMENTS_REACTION_REMOVE_REQUEST";
+export const ANNOUNCEMENTS_REACTION_REMOVE_SUCCESS = "ANNOUNCEMENTS_REACTION_REMOVE_SUCCESS";
+export const ANNOUNCEMENTS_REACTION_REMOVE_FAIL    = "ANNOUNCEMENTS_REACTION_REMOVE_FAIL";
 
-export const ANNOUNCEMENTS_REACTION_UPDATE = 'ANNOUNCEMENTS_REACTION_UPDATE';
+export const ANNOUNCEMENTS_REACTION_UPDATE = "ANNOUNCEMENTS_REACTION_UPDATE";
 
-export const ANNOUNCEMENTS_TOGGLE_SHOW = 'ANNOUNCEMENTS_TOGGLE_SHOW';
+export const ANNOUNCEMENTS_TOGGLE_SHOW = "ANNOUNCEMENTS_TOGGLE_SHOW";
 
 const noOp = () => {};
 
 export const fetchAnnouncements = (done = noOp) => (dispatch, getState) => {
   dispatch(fetchAnnouncementsRequest());
 
-  api(getState).get('/api/v1/announcements').then(response => {
+  api(getState).get("/api/v1/announcements").then(response => {
     dispatch(fetchAnnouncementsSuccess(response.data.map(x => normalizeAnnouncement(x))));
   }).catch(error => {
     dispatch(fetchAnnouncementsFail(error));
@@ -88,13 +88,13 @@ export const dismissAnnouncementFail = (announcementId, error) => ({
 });
 
 export const addReaction = (announcementId, name) => (dispatch, getState) => {
-  const announcement = getState().getIn(['announcements', 'items']).find(x => x.get('id') === announcementId);
+  const announcement = getState().getIn(["announcements", "items"]).find(x => x.get("id") === announcementId);
 
   let alreadyAdded = false;
 
   if (announcement) {
-    const reaction = announcement.get('reactions').find(x => x.get('name') === name);
-    if (reaction && reaction.get('me')) {
+    const reaction = announcement.get("reactions").find(x => x.get("name") === name);
+    if (reaction && reaction.get("me")) {
       alreadyAdded = true;
     }
   }

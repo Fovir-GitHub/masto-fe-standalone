@@ -1,35 +1,35 @@
-import PropTypes from 'prop-types';
-import { PureComponent } from 'react';
+import PropTypes from "prop-types";
+import { PureComponent } from "react";
 
-import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
+import { defineMessages, injectIntl, FormattedMessage } from "react-intl";
 
-import classNames from 'classnames';
+import classNames from "classnames";
 
-import ImmutablePropTypes from 'react-immutable-proptypes';
-import { connect } from 'react-redux';
+import ImmutablePropTypes from "react-immutable-proptypes";
+import { connect } from "react-redux";
 
-import ReactSwipeableViews from 'react-swipeable-views';
+import ReactSwipeableViews from "react-swipeable-views";
 
-import Permalink from 'flavours/glitch/components/permalink';
-import ComposeForm from 'flavours/glitch/features/compose/components/compose_form';
-import DrawerAccount from 'flavours/glitch/features/compose/components/navigation_bar';
-import Search from 'flavours/glitch/features/compose/components/search';
-import { me, source_url } from 'flavours/glitch/initial_state';
+import Permalink from "flavours/glitch/components/permalink";
+import ComposeForm from "flavours/glitch/features/compose/components/compose_form";
+import DrawerAccount from "flavours/glitch/features/compose/components/navigation_bar";
+import Search from "flavours/glitch/features/compose/components/search";
+import { me, source_url } from "flavours/glitch/initial_state";
 
-import ColumnHeader from './column_header';
+import ColumnHeader from "./column_header";
 
 const noop = () => { };
 
 const messages = defineMessages({
-  home_title: { id: 'column.home', defaultMessage: 'Home' },
-  notifications_title: { id: 'column.notifications', defaultMessage: 'Notifications' },
-  local_title: { id: 'column.community', defaultMessage: 'Local timeline' },
-  federated_title: { id: 'column.public', defaultMessage: 'Federated timeline' },
+  home_title: { id: "column.home", defaultMessage: "Home" },
+  notifications_title: { id: "column.notifications", defaultMessage: "Notifications" },
+  local_title: { id: "column.community", defaultMessage: "Local timeline" },
+  federated_title: { id: "column.public", defaultMessage: "Federated timeline" },
 });
 
 const PageOne = ({ acct, domain }) => (
   <div className='onboarding-modal__page onboarding-modal__page-one'>
-    <div style={{ flex: '0 0 auto' }}>
+    <div style={{ flex: "0 0 auto" }}>
       <div className='onboarding-modal__page-one__elephant-friend' />
     </div>
 
@@ -132,12 +132,12 @@ PageFour.propTypes = {
 };
 
 const PageSix = ({ admin, domain }) => {
-  let adminSection = '';
+  let adminSection = "";
 
   if (admin) {
     adminSection = (
       <p>
-        <FormattedMessage id='onboarding.page_six.admin' defaultMessage="Your instance's admin is {admin}." values={{ admin: <Permalink href={admin.get('url')} to={`/@${admin.get('acct')}`}>@{admin.get('acct')}</Permalink> }} />
+        <FormattedMessage id='onboarding.page_six.admin' defaultMessage="Your instance's admin is {admin}." values={{ admin: <Permalink href={admin.get("url")} to={`/@${admin.get("acct")}`}>@{admin.get("acct")}</Permalink> }} />
         <br />
         <FormattedMessage id='onboarding.page_six.read_guidelines' defaultMessage="Please read {domain}'s {guidelines}!" values={{ domain, guidelines: <a href='/about/more' target='_blank'><FormattedMessage id='onboarding.page_six.guidelines' defaultMessage='community guidelines' /></a> }} />
       </p>
@@ -154,13 +154,13 @@ const PageSix = ({ admin, domain }) => {
           defaultMessage='{domain} runs on Glitchsoc. Glitchsoc is a friendly {fork} of {Mastodon}. Glitchsoc is fully compatible with all Mastodon apps and instances. Glitchsoc is free open-source software. You can report bugs, request features, or contribute to the code on {github}.'
           values={{
             domain,
-            fork: <a href='https://en.wikipedia.org/wiki/Fork_(software_development)' target='_blank' rel='noopener'>fork</a>,
-            Mastodon: <a href='https://github.com/mastodon/mastodon' target='_blank' rel='noopener'>Mastodon</a>,
-            github: <a href={source_url} target='_blank' rel='noopener'>GitHub</a>,
+            fork: <a href='https://en.wikipedia.org/wiki/Fork_(software_development)' target='_blank' rel="noopener noreferrer">fork</a>,
+            Mastodon: <a href='https://github.com/mastodon/mastodon' target='_blank' rel="noopener noreferrer">Mastodon</a>,
+            github: <a href={source_url} target='_blank' rel="noopener noreferrer">GitHub</a>,
           }}
         />
       </p>
-      <p><FormattedMessage id='onboarding.page_six.apps_available' defaultMessage='There are {apps} available for iOS, Android and other platforms.' values={{ domain, apps: <a href='https://joinmastodon.org/apps' target='_blank' rel='noopener'><FormattedMessage id='onboarding.page_six.various_app' defaultMessage='mobile apps' /></a> }} /></p>
+      <p><FormattedMessage id='onboarding.page_six.apps_available' defaultMessage='There are {apps} available for iOS, Android and other platforms.' values={{ domain, apps: <a href='https://joinmastodon.org/apps' target='_blank' rel="noopener noreferrer"><FormattedMessage id='onboarding.page_six.various_app' defaultMessage='mobile apps' /></a> }} /></p>
       <p><em><FormattedMessage id='onboarding.page_six.appetoot' defaultMessage='Bon Appetoot!' /></em></p>
     </div>
   );
@@ -172,9 +172,9 @@ PageSix.propTypes = {
 };
 
 const mapStateToProps = state => ({
-  myAccount: state.getIn(['accounts', me]),
-  admin: state.getIn(['accounts', state.getIn(['meta', 'admin'])]),
-  domain: state.getIn(['meta', 'domain']),
+  myAccount: state.getIn(["accounts", me]),
+  admin: state.getIn(["accounts", state.getIn(["meta", "admin"])]),
+  domain: state.getIn(["meta", "domain"]),
 });
 
 class OnboardingModal extends PureComponent {
@@ -194,7 +194,7 @@ class OnboardingModal extends PureComponent {
   UNSAFE_componentWillMount() {
     const { myAccount, admin, domain, intl } = this.props;
     this.pages = [
-      <PageOne key='1' acct={myAccount.get('acct')} domain={domain} />,
+      <PageOne key='1' acct={myAccount.get("acct")} domain={domain} />,
       <PageTwo key='2' myAccount={myAccount} intl={intl} />,
       <PageThree key='3' myAccount={myAccount} intl={intl} />,
       <PageFour key='4' domain={domain} intl={intl} />,
@@ -203,11 +203,11 @@ class OnboardingModal extends PureComponent {
   }
 
   componentDidMount() {
-    window.addEventListener('keyup', this.handleKeyUp);
+    window.addEventListener("keyup", this.handleKeyUp);
   }
 
   componentWillUnmount() {
-    window.addEventListener('keyup', this.handleKeyUp);
+    window.addEventListener("keyup", this.handleKeyUp);
   }
 
   handleSkip = (e) => {
@@ -216,7 +216,7 @@ class OnboardingModal extends PureComponent {
   };
 
   handleDot = (e) => {
-    const i = Number(e.currentTarget.getAttribute('data-index'));
+    const i = Number(e.currentTarget.getAttribute("data-index"));
     e.preventDefault();
     this.setState({ currentIndex: i });
   };
@@ -240,12 +240,12 @@ class OnboardingModal extends PureComponent {
 
   handleKeyUp = ({ key }) => {
     switch (key) {
-    case 'ArrowLeft':
-      this.handlePrev();
-      break;
-    case 'ArrowRight':
-      this.handleNext();
-      break;
+      case "ArrowLeft":
+        this.handlePrev();
+        break;
+      case "ArrowRight":
+        this.handleNext();
+        break;
     }
   };
 
@@ -278,8 +278,8 @@ class OnboardingModal extends PureComponent {
       <div className='modal-root__modal onboarding-modal'>
         <ReactSwipeableViews index={currentIndex} onChangeIndex={this.handleSwipe} className='onboarding-modal__pager'>
           {pages.map((page, i) => {
-            const className = classNames('onboarding-modal__page__wrapper', {
-              'onboarding-modal__page__wrapper--active': i === currentIndex,
+            const className = classNames("onboarding-modal__page__wrapper", {
+              "onboarding-modal__page__wrapper--active": i === currentIndex,
             });
             return (
               <div key={i} className={className}>{page}</div>
@@ -299,7 +299,7 @@ class OnboardingModal extends PureComponent {
 
           <div className='onboarding-modal__dots'>
             {pages.map((_, i) => {
-              const className = classNames('onboarding-modal__dot', {
+              const className = classNames("onboarding-modal__dot", {
                 active: i === currentIndex,
               });
               return (

@@ -1,13 +1,13 @@
 //  Package imports.
-import PropTypes from 'prop-types';
-import { PureComponent } from 'react';
+import PropTypes from "prop-types";
+import { PureComponent } from "react";
 
-import ImmutablePropTypes from 'react-immutable-proptypes';
+import ImmutablePropTypes from "react-immutable-proptypes";
 
 //  Mastodon imports.
-import { Avatar } from './avatar';
-import AvatarOverlay from './avatar_overlay';
-import { DisplayName } from './display_name';
+import { Avatar } from "./avatar";
+import AvatarOverlay from "./avatar_overlay";
+import { DisplayName } from "./display_name";
 
 export default class StatusHeader extends PureComponent {
 
@@ -25,7 +25,7 @@ export default class StatusHeader extends PureComponent {
 
   handleAccountClick = (e) => {
     const { status } = this.props;
-    this.handleClick(status.getIn(['account', 'acct']), e);
+    this.handleClick(status.getIn(["account", "acct"]), e);
   };
 
   //  Rendering.
@@ -35,7 +35,7 @@ export default class StatusHeader extends PureComponent {
       friend,
     } = this.props;
 
-    const account = status.get('account');
+    const account = status.get("account");
 
     let statusAvatar;
     if (friend === undefined || friend === null) {
@@ -47,7 +47,7 @@ export default class StatusHeader extends PureComponent {
     return (
       <div className='status__info__account'>
         <a
-          href={account.get('url')}
+          href={account.get("url")}
           target='_blank'
           className='status__avatar'
           onClick={this.handleAccountClick}
@@ -56,7 +56,7 @@ export default class StatusHeader extends PureComponent {
           {statusAvatar}
         </a>
         <a
-          href={account.get('url')}
+          href={account.get("url")}
           target='_blank'
           className='status__display-name'
           onClick={this.handleAccountClick}

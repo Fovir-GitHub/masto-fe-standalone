@@ -1,15 +1,15 @@
-import PropTypes from 'prop-types';
-import { PureComponent } from 'react';
+import PropTypes from "prop-types";
+import { PureComponent } from "react";
 
-import { injectIntl, FormattedMessage } from 'react-intl';
+import { injectIntl, FormattedMessage } from "react-intl";
 
-import classNames from 'classnames';
-import { Helmet } from 'react-helmet';
-import { Link } from 'react-router-dom';
+import classNames from "classnames";
+import { Helmet } from "react-helmet";
+import { Link } from "react-router-dom";
 
-import Button from 'flavours/glitch/components/button';
-import Column from 'flavours/glitch/components/column';
-import { autoPlayGif } from 'flavours/glitch/initial_state';
+import Button from "flavours/glitch/components/button";
+import Column from "flavours/glitch/components/column";
+import { autoPlayGif } from "flavours/glitch/initial_state";
 
 class GIF extends PureComponent {
 
@@ -81,7 +81,9 @@ class CopyButton extends PureComponent {
   };
 
   componentWillUnmount () {
-    if (this.timeout) clearTimeout(this.timeout);
+    if (this.timeout) {
+      clearTimeout(this.timeout);
+    }
   }
 
   render () {
@@ -89,7 +91,7 @@ class CopyButton extends PureComponent {
     const { copied } = this.state;
 
     return (
-      <Button onClick={this.handleClick} className={copied ? 'copied' : 'copyable'}>{copied ? <FormattedMessage id='copypaste.copied' defaultMessage='Copied' /> : children}</Button>
+      <Button onClick={this.handleClick} className={copied ? "copied" : "copyable"}>{copied ? <FormattedMessage id='copypaste.copied' defaultMessage='Copied' /> : children}</Button>
     );
   }
 
@@ -98,7 +100,7 @@ class CopyButton extends PureComponent {
 class BundleColumnError extends PureComponent {
 
   static propTypes = {
-    errorType: PropTypes.oneOf(['routing', 'network', 'error']),
+    errorType: PropTypes.oneOf(["routing", "network", "error"]),
     onRetry: PropTypes.func,
     intl: PropTypes.object.isRequired,
     multiColumn: PropTypes.bool,
@@ -106,7 +108,7 @@ class BundleColumnError extends PureComponent {
   };
 
   static defaultProps = {
-    errorType: 'routing',
+    errorType: "routing",
   };
 
   handleRetry = () => {
@@ -123,18 +125,18 @@ class BundleColumnError extends PureComponent {
     let title, body;
 
     switch(errorType) {
-    case 'routing':
-      title = <FormattedMessage id='bundle_column_error.routing.title' defaultMessage='404' />;
-      body = <FormattedMessage id='bundle_column_error.routing.body' defaultMessage='The requested page could not be found. Are you sure the URL in the address bar is correct?' />;
-      break;
-    case 'network':
-      title = <FormattedMessage id='bundle_column_error.network.title' defaultMessage='Network error' />;
-      body = <FormattedMessage id='bundle_column_error.network.body' defaultMessage='There was an error when trying to load this page. This could be due to a temporary problem with your internet connection or this server.' />;
-      break;
-    case 'error':
-      title = <FormattedMessage id='bundle_column_error.error.title' defaultMessage='Oh, no!' />;
-      body = <FormattedMessage id='bundle_column_error.error.body' defaultMessage='The requested page could not be rendered. It could be due to a bug in our code, or a browser compatibility issue.' />;
-      break;
+      case "routing":
+        title = <FormattedMessage id='bundle_column_error.routing.title' defaultMessage='404' />;
+        body = <FormattedMessage id='bundle_column_error.routing.body' defaultMessage='The requested page could not be found. Are you sure the URL in the address bar is correct?' />;
+        break;
+      case "network":
+        title = <FormattedMessage id='bundle_column_error.network.title' defaultMessage='Network error' />;
+        body = <FormattedMessage id='bundle_column_error.network.body' defaultMessage='There was an error when trying to load this page. This could be due to a temporary problem with your internet connection or this server.' />;
+        break;
+      case "error":
+        title = <FormattedMessage id='bundle_column_error.error.title' defaultMessage='Oh, no!' />;
+        body = <FormattedMessage id='bundle_column_error.error.body' defaultMessage='The requested page could not be rendered. It could be due to a bug in our code, or a browser compatibility issue.' />;
+        break;
     }
 
     return (
@@ -147,9 +149,9 @@ class BundleColumnError extends PureComponent {
             <p>{body}</p>
 
             <div className='error-column__message__actions'>
-              {errorType === 'network' && <Button onClick={this.handleRetry}><FormattedMessage id='bundle_column_error.retry' defaultMessage='Try again' /></Button>}
-              {errorType === 'error' && <CopyButton value={stacktrace}><FormattedMessage id='bundle_column_error.copy_stacktrace' defaultMessage='Copy error report' /></CopyButton>}
-              <Link to='/' className={classNames('button', { 'button-tertiary': errorType !== 'routing' })}><FormattedMessage id='bundle_column_error.return' defaultMessage='Go back home' /></Link>
+              {errorType === "network" && <Button onClick={this.handleRetry}><FormattedMessage id='bundle_column_error.retry' defaultMessage='Try again' /></Button>}
+              {errorType === "error" && <CopyButton value={stacktrace}><FormattedMessage id='bundle_column_error.copy_stacktrace' defaultMessage='Copy error report' /></CopyButton>}
+              <Link to='/' className={classNames("button", { "button-tertiary": errorType !== "routing" })}><FormattedMessage id='bundle_column_error.return' defaultMessage='Go back home' /></Link>
             </div>
           </div>
         </div>

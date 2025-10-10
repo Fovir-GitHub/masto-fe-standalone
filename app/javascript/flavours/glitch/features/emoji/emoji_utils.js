@@ -1,7 +1,7 @@
 // This code is largely borrowed from:
 // https://github.com/missive/emoji-mart/blob/5f2ffcc/src/utils/index.js
 
-import * as data from './emoji_mart_data_light';
+import * as data from "./emoji_mart_data_light";
 
 const buildSearch = (data) => {
   const search = [];
@@ -27,7 +27,7 @@ const buildSearch = (data) => {
   addToSearch(data.keywords, false);
   addToSearch(data.emoticons, false);
 
-  return search.join(',');
+  return search.join(",");
 };
 
 const _String = String;
@@ -40,9 +40,9 @@ const stringFromCodePoint = _String.fromCodePoint || function () {
   let index = -1;
   let length = arguments.length;
   if (!length) {
-    return '';
+    return "";
   }
-  let result = '';
+  let result = "";
   while (++index < length) {
     let codePoint = Number(arguments[index]);
     if (
@@ -51,7 +51,7 @@ const stringFromCodePoint = _String.fromCodePoint || function () {
       codePoint > 0x10FFFF ||       // not a valid Unicode code point
       Math.floor(codePoint) !== codePoint // not an integer
     ) {
-      throw RangeError('Invalid code point: ' + codePoint);
+      throw RangeError("Invalid code point: " + codePoint);
     }
     if (codePoint <= 0xFFFF) { // BMP code point
       codeUnits.push(codePoint);
@@ -75,12 +75,12 @@ const _JSON = JSON;
 
 const COLONS_REGEX = /^(?::([^:]+):)(?::skin-tone-(\d):)?$/;
 const SKINS = [
-  '1F3FA', '1F3FB', '1F3FC',
-  '1F3FD', '1F3FE', '1F3FF',
+  "1F3FA", "1F3FB", "1F3FC",
+  "1F3FD", "1F3FE", "1F3FF",
 ];
 
 function unifiedToNative(unified) {
-  let unicodes = unified.split('-'),
+  let unicodes = unified.split("-"),
     codePoints = unicodes.map((u) => `0x${u}`);
 
   return stringFromCodePoint.apply(null, codePoints);
@@ -124,7 +124,7 @@ function getSanitizedData() {
 function getData(emoji, skin, set) {
   let emojiData = {};
 
-  if (typeof emoji === 'string') {
+  if (typeof emoji === "string") {
     let matches = emoji.match(COLONS_REGEX);
 
     if (matches) {
@@ -220,7 +220,7 @@ function deepMerge(a, b) {
       value = b[key];
     }
 
-    if (typeof value === 'object') {
+    if (typeof value === "object") {
       value = deepMerge(originalValue, value);
     }
 
@@ -232,13 +232,13 @@ function deepMerge(a, b) {
 
 // https://github.com/sonicdoe/measure-scrollbar
 function measureScrollbar() {
-  const div = document.createElement('div');
+  const div = document.createElement("div");
 
-  div.style.width = '100px';
-  div.style.height = '100px';
-  div.style.overflow = 'scroll';
-  div.style.position = 'absolute';
-  div.style.top = '-9999px';
+  div.style.width = "100px";
+  div.style.height = "100px";
+  div.style.overflow = "scroll";
+  div.style.position = "absolute";
+  div.style.top = "-9999px";
 
   document.body.appendChild(div);
   const scrollbarWidth = div.offsetWidth - div.clientWidth;

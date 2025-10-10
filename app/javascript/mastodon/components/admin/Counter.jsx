@@ -1,14 +1,14 @@
-import PropTypes from 'prop-types';
-import { PureComponent } from 'react';
+import PropTypes from "prop-types";
+import { PureComponent } from "react";
 
-import { FormattedNumber } from 'react-intl';
+import { FormattedNumber } from "react-intl";
 
-import classNames from 'classnames';
+import classNames from "classnames";
 
-import { Sparklines, SparklinesCurve } from 'react-sparklines';
+import { Sparklines, SparklinesCurve } from "react-sparklines";
 
-import api from 'mastodon/api';
-import { Skeleton } from 'mastodon/components/skeleton';
+import api from "mastodon/api";
+import { Skeleton } from "mastodon/components/skeleton";
 
 const percIncrease = (a, b) => {
   let percent;
@@ -48,7 +48,7 @@ export default class Counter extends PureComponent {
   componentDidMount () {
     const { measure, start_at, end_at, params } = this.props;
 
-    api().post('/api/v1/admin/measures', { keys: [measure], start_at, end_at, [measure]: params }).then(res => {
+    api().post("/api/v1/admin/measures", { keys: [measure], start_at, end_at, [measure]: params }).then(res => {
       this.setState({
         loading: false,
         data: res.data,
@@ -78,7 +78,7 @@ export default class Counter extends PureComponent {
       content = (
         <>
           <span className='sparkline__value__total'>{measure.human_value || <FormattedNumber value={measure.total} />}</span>
-          {measure.previous_total && (<span className={classNames('sparkline__value__change', { positive: percentChange > 0, negative: percentChange < 0 })}>{percentChange > 0 && '+'}<FormattedNumber value={percentChange} style='percent' /></span>)}
+          {measure.previous_total && (<span className={classNames("sparkline__value__change", { positive: percentChange > 0, negative: percentChange < 0 })}>{percentChange > 0 && "+"}<FormattedNumber value={percentChange} style='percent' /></span>)}
         </>
       );
     }

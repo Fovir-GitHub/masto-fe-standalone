@@ -1,14 +1,14 @@
-import { useCallback, useState } from 'react';
+import { useCallback, useState } from "react";
 
-import classNames from 'classnames';
+import classNames from "classnames";
 
-import { Blurhash } from './blurhash';
+import { Blurhash } from "./blurhash";
 
 interface Props {
-  src: string;
-  srcSet?: string;
-  blurhash?: string;
-  className?: string;
+  src: string,
+  srcSet?: string,
+  blurhash?: string,
+  className?: string,
 }
 
 export const ServerHeroImage: React.FC<Props> = ({
@@ -25,7 +25,7 @@ export const ServerHeroImage: React.FC<Props> = ({
 
   return (
     <div
-      className={classNames('image', { loaded }, className)}
+      className={classNames("image", { loaded }, className)}
       role='presentation'
     >
       {blurhash && <Blurhash hash={blurhash} className='image__preview' />}

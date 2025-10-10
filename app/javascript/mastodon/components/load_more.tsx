@@ -1,9 +1,9 @@
-import { FormattedMessage } from 'react-intl';
+import { FormattedMessage } from "react-intl";
 
 interface Props {
-  onClick: (event: React.MouseEvent) => void;
-  disabled?: boolean;
-  visible?: boolean;
+  onClick: (event: React.MouseEvent) => void,
+  disabled?: boolean,
+  visible?: boolean,
 }
 export const LoadMore: React.FC<Props> = ({
   onClick,
@@ -15,7 +15,7 @@ export const LoadMore: React.FC<Props> = ({
       type='button'
       className='load-more'
       disabled={disabled || !visible}
-      style={{ visibility: visible ? 'visible' : 'hidden' }}
+      style={{ visibility: visible ? "visible" : "hidden" }}
       onClick={onClick}
     >
       <FormattedMessage id='status.load_more' defaultMessage='Load more' />

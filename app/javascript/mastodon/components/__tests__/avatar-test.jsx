@@ -1,22 +1,22 @@
-import { fromJS } from 'immutable';
+import { fromJS } from "immutable";
 
-import renderer from 'react-test-renderer';
+import renderer from "react-test-renderer";
 
-import { Avatar } from '../avatar';
+import { Avatar } from "../avatar";
 
-describe('<Avatar />', () => {
+describe("<Avatar />", () => {
   const account = fromJS({
-    username: 'alice',
-    acct: 'alice',
-    display_name: 'Alice',
-    avatar: '/animated/alice.gif',
-    avatar_static: '/static/alice.jpg',
+    username: "alice",
+    acct: "alice",
+    display_name: "Alice",
+    avatar: "/animated/alice.gif",
+    avatar_static: "/static/alice.jpg",
   });
 
   const size     = 100;
 
-  describe('Autoplay', () => {
-    it('renders a animated avatar', () => {
+  describe("Autoplay", () => {
+    it("renders a animated avatar", () => {
       const component = renderer.create(<Avatar account={account} animate size={size} />);
       const tree      = component.toJSON();
 
@@ -24,8 +24,8 @@ describe('<Avatar />', () => {
     });
   });
 
-  describe('Still', () => {
-    it('renders a still avatar', () => {
+  describe("Still", () => {
+    it("renders a still avatar", () => {
       const component = renderer.create(<Avatar account={account} size={size} />);
       const tree      = component.toJSON();
 

@@ -1,9 +1,9 @@
-import PropTypes from 'prop-types';
-import { PureComponent } from 'react';
+import PropTypes from "prop-types";
+import { PureComponent } from "react";
 
-import classNames from 'classnames';
+import classNames from "classnames";
 
-import { Check } from 'mastodon/components/check';
+import { Check } from "mastodon/components/check";
 
 export default class Option extends PureComponent {
 
@@ -21,7 +21,7 @@ export default class Option extends PureComponent {
   handleKeyPress = e => {
     const { value, checked, onToggle } = this.props;
 
-    if (e.key === 'Enter' || e.key === ' ') {
+    if (e.key === "Enter" || e.key === " ") {
       e.stopPropagation();
       e.preventDefault();
       onToggle(value, !checked);
@@ -38,10 +38,10 @@ export default class Option extends PureComponent {
 
     return (
       <label className='dialog-option poll__option selectable'>
-        <input type={multiple ? 'checkbox' : 'radio'} name={name} value={value} checked={checked} onChange={this.handleChange} />
+        <input type={multiple ? "checkbox" : "radio"} name={name} value={value} checked={checked} onChange={this.handleChange} />
 
         <span
-          className={classNames('poll__input', { active: checked, checkbox: multiple })}
+          className={classNames("poll__input", { active: checked, checkbox: multiple })}
           tabIndex={0}
           role='radio'
           onKeyPress={this.handleKeyPress}

@@ -1,16 +1,16 @@
-import PropTypes from 'prop-types';
-import { PureComponent } from 'react';
+import PropTypes from "prop-types";
+import { PureComponent } from "react";
 
-import ImmutablePropTypes from 'react-immutable-proptypes';
+import ImmutablePropTypes from "react-immutable-proptypes";
 
-import { Avatar } from 'flavours/glitch/components/avatar';
-import { DisplayName } from 'flavours/glitch/components/display_name';
-import MediaAttachments from 'flavours/glitch/components/media_attachments';
-import { RelativeTimestamp } from 'flavours/glitch/components/relative_timestamp';
-import StatusContent from 'flavours/glitch/components/status_content';
-import VisibilityIcon from 'flavours/glitch/components/status_visibility_icon';
+import { Avatar } from "flavours/glitch/components/avatar";
+import { DisplayName } from "flavours/glitch/components/display_name";
+import MediaAttachments from "flavours/glitch/components/media_attachments";
+import { RelativeTimestamp } from "flavours/glitch/components/relative_timestamp";
+import StatusContent from "flavours/glitch/components/status_content";
+import VisibilityIcon from "flavours/glitch/components/status_visibility_icon";
 
-import Option from './option';
+import Option from "./option";
 
 export default class StatusCheckBox extends PureComponent {
 
@@ -29,7 +29,7 @@ export default class StatusCheckBox extends PureComponent {
   render () {
     const { status, checked } = this.props;
 
-    if (status.get('reblog')) {
+    if (status.get("reblog")) {
       return null;
     }
 
@@ -37,10 +37,10 @@ export default class StatusCheckBox extends PureComponent {
       <div className='status-check-box__status poll__option__text'>
         <div className='detailed-status__display-name'>
           <div className='detailed-status__display-avatar'>
-            <Avatar account={status.get('account')} size={46} />
+            <Avatar account={status.get("account")} size={46} />
           </div>
 
-          <div><DisplayName account={status.get('account')} /> · <VisibilityIcon visibility={status.get('visibility')} /><RelativeTimestamp timestamp={status.get('created_at')} /></div>
+          <div><DisplayName account={status.get("account")} /> · <VisibilityIcon visibility={status.get("visibility")} /><RelativeTimestamp timestamp={status.get("created_at")} /></div>
         </div>
 
         <StatusContent status={status} media={<MediaAttachments status={status} revealed={false} />} />
@@ -50,10 +50,10 @@ export default class StatusCheckBox extends PureComponent {
     return (
       <Option
         name='status_ids'
-        value={status.get('id')}
+        value={status.get("id")}
         checked={checked}
         onToggle={this.handleStatusesToggle}
-        label={status.get('search_index')}
+        label={status.get("search_index")}
         labelComponent={labelComponent}
         multiple
       />

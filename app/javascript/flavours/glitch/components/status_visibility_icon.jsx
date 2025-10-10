@@ -1,17 +1,17 @@
 //  Package imports  //
-import PropTypes from 'prop-types';
+import PropTypes from "prop-types";
 
-import { defineMessages, injectIntl } from 'react-intl';
+import { defineMessages, injectIntl } from "react-intl";
 
-import ImmutablePureComponent from 'react-immutable-pure-component';
+import ImmutablePureComponent from "react-immutable-pure-component";
 
-import { Icon } from 'flavours/glitch/components/icon';
+import { Icon } from "flavours/glitch/components/icon";
 
 const messages = defineMessages({
-  public: { id: 'privacy.public.short', defaultMessage: 'Public' },
-  unlisted: { id: 'privacy.unlisted.short', defaultMessage: 'Unlisted' },
-  private: { id: 'privacy.private.short', defaultMessage: 'Followers only' },
-  direct: { id: 'privacy.direct.short', defaultMessage: 'Mentioned people only' },
+  public: { id: "privacy.public.short", defaultMessage: "Public" },
+  unlisted: { id: "privacy.unlisted.short", defaultMessage: "Unlisted" },
+  private: { id: "privacy.private.short", defaultMessage: "Followers only" },
+  direct: { id: "privacy.direct.short", defaultMessage: "Mentioned people only" },
 });
 
 class VisibilityIcon extends ImmutablePureComponent {
@@ -26,10 +26,10 @@ class VisibilityIcon extends ImmutablePureComponent {
     const { withLabel, visibility, intl } = this.props;
 
     const visibilityIcon = {
-      public: 'globe',
-      unlisted: 'unlock',
-      private: 'lock',
-      direct: 'envelope',
+      public: "globe",
+      unlisted: "unlock",
+      private: "lock",
+      direct: "envelope",
     }[visibility];
 
     const label = intl.formatMessage(messages[visibility]);
@@ -43,7 +43,7 @@ class VisibilityIcon extends ImmutablePureComponent {
     />);
 
     if (withLabel) {
-      return (<span style={{ whiteSpace: 'nowrap' }}>{icon} {label}</span>);
+      return (<span style={{ whiteSpace: "nowrap" }}>{icon} {label}</span>);
     } else {
       return icon;
     }

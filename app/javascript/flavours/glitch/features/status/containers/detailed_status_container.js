@@ -1,15 +1,15 @@
-import { defineMessages, injectIntl } from 'react-intl';
+import { defineMessages, injectIntl } from "react-intl";
 
-import { connect } from 'react-redux';
+import { connect } from "react-redux";
 
-import { showAlertForError } from 'flavours/glitch/actions/alerts';
-import { initBlockModal } from 'flavours/glitch/actions/blocks';
-import { initBoostModal } from 'flavours/glitch/actions/boosts';
+import { showAlertForError } from "flavours/glitch/actions/alerts";
+import { initBlockModal } from "flavours/glitch/actions/blocks";
+import { initBoostModal } from "flavours/glitch/actions/boosts";
 import {
   replyCompose,
   mentionCompose,
   directCompose,
-} from 'flavours/glitch/actions/compose';
+} from "flavours/glitch/actions/compose";
 import {
   reblog,
   favourite,
@@ -17,27 +17,27 @@ import {
   unfavourite,
   pin,
   unpin,
-} from 'flavours/glitch/actions/interactions';
-import { openModal } from 'flavours/glitch/actions/modal';
-import { initMuteModal } from 'flavours/glitch/actions/mutes';
-import { initReport } from 'flavours/glitch/actions/reports';
+} from "flavours/glitch/actions/interactions";
+import { openModal } from "flavours/glitch/actions/modal";
+import { initMuteModal } from "flavours/glitch/actions/mutes";
+import { initReport } from "flavours/glitch/actions/reports";
 import {
   muteStatus,
   unmuteStatus,
   deleteStatus,
-} from 'flavours/glitch/actions/statuses';
-import { boostModal, deleteModal } from 'flavours/glitch/initial_state';
-import { makeGetStatus } from 'flavours/glitch/selectors';
+} from "flavours/glitch/actions/statuses";
+import { boostModal, deleteModal } from "flavours/glitch/initial_state";
+import { makeGetStatus } from "flavours/glitch/selectors";
 
-import DetailedStatus from '../components/detailed_status';
+import DetailedStatus from "../components/detailed_status";
 
 const messages = defineMessages({
-  deleteConfirm: { id: 'confirmations.delete.confirm', defaultMessage: 'Delete' },
-  deleteMessage: { id: 'confirmations.delete.message', defaultMessage: 'Are you sure you want to delete this status?' },
-  redraftConfirm: { id: 'confirmations.redraft.confirm', defaultMessage: 'Delete & redraft' },
-  redraftMessage: { id: 'confirmations.redraft.message', defaultMessage: 'Are you sure you want to delete this status and re-draft it? Favorites and boosts will be lost, and replies to the original post will be orphaned.' },
-  replyConfirm: { id: 'confirmations.reply.confirm', defaultMessage: 'Reply' },
-  replyMessage: { id: 'confirmations.reply.message', defaultMessage: 'Replying now will overwrite the message you are currently composing. Are you sure you want to proceed?' },
+  deleteConfirm: { id: "confirmations.delete.confirm", defaultMessage: "Delete" },
+  deleteMessage: { id: "confirmations.delete.message", defaultMessage: "Are you sure you want to delete this status?" },
+  redraftConfirm: { id: "confirmations.redraft.confirm", defaultMessage: "Delete & redraft" },
+  redraftMessage: { id: "confirmations.redraft.message", defaultMessage: "Are you sure you want to delete this status and re-draft it? Favorites and boosts will be lost, and replies to the original post will be orphaned." },
+  replyConfirm: { id: "confirmations.reply.confirm", defaultMessage: "Reply" },
+  replyMessage: { id: "confirmations.reply.message", defaultMessage: "Replying now will overwrite the message you are currently composing. Are you sure you want to proceed?" },
 });
 
 const makeMapStateToProps = () => {
@@ -45,8 +45,8 @@ const makeMapStateToProps = () => {
 
   const mapStateToProps = (state, props) => ({
     status: getStatus(state, props),
-    domain: state.getIn(['meta', 'domain']),
-    settings: state.get('local_settings'),
+    domain: state.getIn(["meta", "domain"]),
+    settings: state.get("local_settings"),
   });
 
   return mapStateToProps;
@@ -57,9 +57,9 @@ const mapDispatchToProps = (dispatch, { intl }) => ({
   onReply (status, router) {
     dispatch((_, getState) => {
       let state = getState();
-      if (state.getIn(['compose', 'text']).trim().length !== 0) {
+      if (state.getIn(["compose", "text"]).trim().length !== 0) {
         dispatch(openModal({
-          modalType: 'CONFIRM',
+          modalType: "CONFIRM",
           modalProps: {
             message: intl.formatMessage(messages.replyMessage),
             confirm: intl.formatMessage(messages.replyConfirm),
@@ -77,7 +77,7 @@ const mapDispatchToProps = (dispatch, { intl }) => ({
   },
 
   onReblog (status, e) {
-    if (status.get('reblogged')) {
+    if (status.get("reblogged")) {
       dispatch(unreblog(status));
     } else {
       if (e.shiftKey || !boostModal) {
@@ -89,7 +89,7 @@ const mapDispatchToProps = (dispatch, { intl }) => ({
   },
 
   onFavourite (status) {
-    if (status.get('favourited')) {
+    if (status.get("favourited")) {
       dispatch(unfavourite(status));
     } else {
       dispatch(favourite(status));
@@ -97,7 +97,7 @@ const mapDispatchToProps = (dispatch, { intl }) => ({
   },
 
   onPin (status) {
-    if (status.get('pinned')) {
+    if (status.get("pinned")) {
       dispatch(unpin(status));
     } else {
       dispatch(pin(status));
@@ -106,9 +106,9 @@ const mapDispatchToProps = (dispatch, { intl }) => ({
 
   onEmbed (status) {
     dispatch(openModal({
-      modalType: 'EMBED',
+      modalType: "EMBED",
       modalProps: {
-        id: status.get('id'),
+        id: status.get("id"),
         onError: error => dispatch(showAlertForError(error)),
       },
     }));
@@ -116,14 +116,14 @@ const mapDispatchToProps = (dispatch, { intl }) => ({
 
   onDelete (status, history, withRedraft = false) {
     if (!deleteModal) {
-      dispatch(deleteStatus(status.get('id'), history, withRedraft));
+      dispatch(deleteStatus(status.get("id"), history, withRedraft));
     } else {
       dispatch(openModal({
-        modalType: 'CONFIRM',
+        modalType: "CONFIRM",
         modalProps: {
           message: intl.formatMessage(withRedraft ? messages.redraftMessage : messages.deleteMessage),
           confirm: intl.formatMessage(withRedraft ? messages.redraftConfirm : messages.deleteConfirm),
-          onConfirm: () => dispatch(deleteStatus(status.get('id'), history, withRedraft)),
+          onConfirm: () => dispatch(deleteStatus(status.get("id"), history, withRedraft)),
         },
       }));
     }
@@ -139,25 +139,25 @@ const mapDispatchToProps = (dispatch, { intl }) => ({
 
   onOpenMedia (media, index, lang) {
     dispatch(openModal({
-      modalType: 'MEDIA',
+      modalType: "MEDIA",
       modalProps: { media, index, lang },
     }));
   },
 
   onOpenVideo (media, lang, options) {
     dispatch(openModal({
-      modalType: 'VIDEO',
+      modalType: "VIDEO",
       modalProps: { media, lang, options },
     }));
   },
 
   onBlock (status) {
-    const account = status.get('account');
+    const account = status.get("account");
     dispatch(initBlockModal(account));
   },
 
   onReport (status) {
-    dispatch(initReport(status.get('account'), status));
+    dispatch(initReport(status.get("account"), status));
   },
 
   onMute (account) {
@@ -165,10 +165,10 @@ const mapDispatchToProps = (dispatch, { intl }) => ({
   },
 
   onMuteConversation (status) {
-    if (status.get('muted')) {
-      dispatch(unmuteStatus(status.get('id')));
+    if (status.get("muted")) {
+      dispatch(unmuteStatus(status.get("id")));
     } else {
-      dispatch(muteStatus(status.get('id')));
+      dispatch(muteStatus(status.get("id")));
     }
   },
 

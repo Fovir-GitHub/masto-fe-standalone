@@ -1,28 +1,28 @@
-import PropTypes from 'prop-types';
-import { PureComponent } from 'react';
+import PropTypes from "prop-types";
+import { PureComponent } from "react";
 
-import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
+import { defineMessages, injectIntl, FormattedMessage } from "react-intl";
 
-import classNames from 'classnames';
+import classNames from "classnames";
 
-import ImmutablePropTypes from 'react-immutable-proptypes';
-import ImmutablePureComponent from 'react-immutable-pure-component';
+import ImmutablePropTypes from "react-immutable-proptypes";
+import ImmutablePureComponent from "react-immutable-pure-component";
 
-import AutosuggestInput from 'flavours/glitch/components/autosuggest_input';
-import { Icon } from 'flavours/glitch/components/icon';
-import { IconButton } from 'flavours/glitch/components/icon_button';
-import { pollLimits } from 'flavours/glitch/initial_state';
+import AutosuggestInput from "flavours/glitch/components/autosuggest_input";
+import { Icon } from "flavours/glitch/components/icon";
+import { IconButton } from "flavours/glitch/components/icon_button";
+import { pollLimits } from "flavours/glitch/initial_state";
 
 const messages = defineMessages({
-  option_placeholder: { id: 'compose_form.poll.option_placeholder', defaultMessage: 'Choice {number}' },
-  add_option: { id: 'compose_form.poll.add_option', defaultMessage: 'Add a choice' },
-  remove_option: { id: 'compose_form.poll.remove_option', defaultMessage: 'Remove this choice' },
-  poll_duration: { id: 'compose_form.poll.duration', defaultMessage: 'Poll duration' },
-  single_choice: { id: 'compose_form.poll.single_choice', defaultMessage: 'Allow one choice' },
-  multiple_choices: { id: 'compose_form.poll.multiple_choices', defaultMessage: 'Allow multiple choices' },
-  minutes: { id: 'intervals.full.minutes', defaultMessage: '{number, plural, one {# minute} other {# minutes}}' },
-  hours: { id: 'intervals.full.hours', defaultMessage: '{number, plural, one {# hour} other {# hours}}' },
-  days: { id: 'intervals.full.days', defaultMessage: '{number, plural, one {# day} other {# days}}' },
+  option_placeholder: { id: "compose_form.poll.option_placeholder", defaultMessage: "Choice {number}" },
+  add_option: { id: "compose_form.poll.add_option", defaultMessage: "Add a choice" },
+  remove_option: { id: "compose_form.poll.remove_option", defaultMessage: "Remove this choice" },
+  poll_duration: { id: "compose_form.poll.duration", defaultMessage: "Poll duration" },
+  single_choice: { id: "compose_form.poll.single_choice", defaultMessage: "Allow one choice" },
+  multiple_choices: { id: "compose_form.poll.multiple_choices", defaultMessage: "Allow multiple choices" },
+  minutes: { id: "intervals.full.minutes", defaultMessage: "{number, plural, one {# minute} other {# minutes}}" },
+  hours: { id: "intervals.full.hours", defaultMessage: "{number, plural, one {# hour} other {# hours}}" },
+  days: { id: "intervals.full.days", defaultMessage: "{number, plural, one {# day} other {# days}}" },
 });
 
 class OptionIntl extends PureComponent {
@@ -59,7 +59,7 @@ class OptionIntl extends PureComponent {
   };
 
   onSuggestionSelected = (tokenStart, token, value) => {
-    this.props.onSuggestionSelected(tokenStart, token, value, ['poll', 'options', this.props.index]);
+    this.props.onSuggestionSelected(tokenStart, token, value, ["poll", "options", this.props.index]);
   };
 
   render () {
@@ -68,7 +68,7 @@ class OptionIntl extends PureComponent {
     return (
       <li>
         <label className='poll__option editable'>
-          <span className={classNames('poll__input', { checkbox: isPollMultiple })} />
+          <span className={classNames("poll__input", { checkbox: isPollMultiple })} />
 
           <AutosuggestInput
             placeholder={intl.formatMessage(messages.option_placeholder, { number: index + 1 })}
@@ -81,7 +81,7 @@ class OptionIntl extends PureComponent {
             onSuggestionsFetchRequested={this.onSuggestionsFetchRequested}
             onSuggestionsClearRequested={this.onSuggestionsClearRequested}
             onSuggestionSelected={this.onSuggestionSelected}
-            searchTokens={[':']}
+            searchTokens={[":"]}
             autoFocus={autoFocus}
           />
         </label>
@@ -116,7 +116,7 @@ class PollForm extends ImmutablePureComponent {
   };
 
   handleAddOption = () => {
-    this.props.onAddOption('');
+    this.props.onAddOption("");
   };
 
   handleSelectDuration = e => {
@@ -124,7 +124,7 @@ class PollForm extends ImmutablePureComponent {
   };
 
   handleSelectMultiple = e => {
-    this.props.onChangeSettings(this.props.expiresIn, e.target.value === 'true');
+    this.props.onChangeSettings(this.props.expiresIn, e.target.value === "true");
   };
 
   render () {
@@ -134,7 +134,7 @@ class PollForm extends ImmutablePureComponent {
       return null;
     }
 
-    const autoFocusIndex = options.indexOf('');
+    const autoFocusIndex = options.indexOf("");
 
     return (
       <div className='compose-form__poll-wrapper'>
@@ -142,7 +142,7 @@ class PollForm extends ImmutablePureComponent {
           {options.map((title, i) => <Option title={title} lang={lang} key={i} index={i} onChange={onChangeOption} onRemove={onRemoveOption} isPollMultiple={isMultiple} autoFocus={i === autoFocusIndex} {...other} />)}
           {options.size < pollLimits.max_options && (
             <label className='poll__text editable'>
-              <span className={classNames('poll__input')} style={{ opacity: 0 }} />
+              <span className={classNames("poll__input")} style={{ opacity: 0 }} />
               <button className='button button-secondary' onClick={this.handleAddOption}><Icon id='plus' /> <FormattedMessage {...messages.add_option} /></button>
             </label>
           )}
@@ -150,7 +150,7 @@ class PollForm extends ImmutablePureComponent {
 
         <div className='poll__footer'>
           {/* eslint-disable-next-line jsx-a11y/no-onchange */}
-          <select value={isMultiple ? 'true' : 'false'} onChange={this.handleSelectMultiple}>
+          <select value={isMultiple ? "true" : "false"} onChange={this.handleSelectMultiple}>
             <option value='false'>{intl.formatMessage(messages.single_choice)}</option>
             <option value='true'>{intl.formatMessage(messages.multiple_choices)}</option>
           </select>

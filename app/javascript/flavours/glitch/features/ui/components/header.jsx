@@ -1,43 +1,43 @@
-import PropTypes from 'prop-types';
-import { PureComponent } from 'react';
+import PropTypes from "prop-types";
+import { PureComponent } from "react";
 
-import { FormattedMessage, defineMessages, injectIntl } from 'react-intl';
+import { FormattedMessage, defineMessages, injectIntl } from "react-intl";
 
-import { Link, withRouter } from 'react-router-dom';
+import { Link, withRouter } from "react-router-dom";
 
-import { connect } from 'react-redux';
+import { connect } from "react-redux";
 
-import { openModal } from 'flavours/glitch/actions/modal';
-import { fetchServer } from 'flavours/glitch/actions/server';
-import { Avatar } from 'flavours/glitch/components/avatar';
-import { Icon } from 'flavours/glitch/components/icon';
-import { WordmarkLogo, SymbolLogo } from 'flavours/glitch/components/logo';
-import Permalink from 'flavours/glitch/components/permalink';
-import { registrationsOpen, me, sso_redirect } from 'flavours/glitch/initial_state';
+import { openModal } from "flavours/glitch/actions/modal";
+import { fetchServer } from "flavours/glitch/actions/server";
+import { Avatar } from "flavours/glitch/components/avatar";
+import { Icon } from "flavours/glitch/components/icon";
+import { WordmarkLogo, SymbolLogo } from "flavours/glitch/components/logo";
+import Permalink from "flavours/glitch/components/permalink";
+import { registrationsOpen, me, sso_redirect } from "flavours/glitch/initial_state";
 
 const Account = connect(state => ({
-  account: state.getIn(['accounts', me]),
+  account: state.getIn(["accounts", me]),
 }))(({ account }) => (
-  <Permalink href={account.get('url')} to={`/@${account.get('acct')}`} title={account.get('acct')}>
+  <Permalink href={account.get("url")} to={`/@${account.get("acct")}`} title={account.get("acct")}>
     <Avatar account={account} size={35} />
   </Permalink>
 ));
 
 const messages = defineMessages({
-  search: { id: 'navigation_bar.search', defaultMessage: 'Search' },
+  search: { id: "navigation_bar.search", defaultMessage: "Search" },
 });
 
 const mapStateToProps = (state) => ({
-  signupUrl: state.getIn(['server', 'server', 'registrations', 'url'], null) || '/auth/sign_up',
+  signupUrl: state.getIn(["server", "server", "registrations", "url"], null) || "/auth/sign_up",
 });
 
 const mapDispatchToProps = (dispatch) => ({
   openClosedRegistrationsModal() {
-    dispatch(openModal({ modalType: 'CLOSED_REGISTRATIONS' }));
+    dispatch(openModal({ modalType: "CLOSED_REGISTRATIONS" }));
   },
   dispatchServer() {
     dispatch(fetchServer());
-  }
+  },
 });
 
 class Header extends PureComponent {
@@ -68,8 +68,8 @@ class Header extends PureComponent {
     if (signedIn) {
       content = (
         <>
-          {location.pathname !== '/search' && <Link to='/search' className='button button-secondary' aria-label={intl.formatMessage(messages.search)}><Icon id='search' /></Link>}
-          {location.pathname !== '/publish' && <Link to='/publish' className='button button-secondary'><FormattedMessage id='compose_form.publish_form' defaultMessage='New post' /></Link>}
+          {location.pathname !== "/search" && <Link to='/search' className='button button-secondary' aria-label={intl.formatMessage(messages.search)}><Icon id='search' /></Link>}
+          {location.pathname !== "/publish" && <Link to='/publish' className='button button-secondary'><FormattedMessage id='compose_form.publish_form' defaultMessage='New post' /></Link>}
           <Account />
         </>
       );

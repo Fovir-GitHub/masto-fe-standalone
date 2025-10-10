@@ -1,5 +1,4 @@
-/* eslint-disable import/no-commonjs --
-   We need to use CommonJS here due to preval */
+ 
 // @preval
 // http://www.unicode.org/Public/emoji/5.0/emoji-test.txt
 // This file contains the compressed version of the emoji data from
@@ -7,13 +6,13 @@
 // It's designed to be emitted in an array format to take up less space
 // over the wire.
 
-const { emojiIndex } = require('emoji-mart');
-let data = require('emoji-mart/data/all.json');
-const { uncompress: emojiMartUncompress } = require('emoji-mart/dist/utils/data');
+const { emojiIndex } = require("emoji-mart");
+let data = require("emoji-mart/data/all.json");
+const { uncompress: emojiMartUncompress } = require("emoji-mart/dist/utils/data");
 
-const emojiMap = require('./emoji_map.json');
-const { unicodeToFilename } = require('./unicode_to_filename');
-const { unicodeToUnifiedName } = require('./unicode_to_unified_name');
+const emojiMap = require("./emoji_map.json");
+const { unicodeToFilename } = require("./unicode_to_filename");
+const { unicodeToUnifiedName } = require("./unicode_to_unified_name");
 
 
 if(data.compressed) {
@@ -22,8 +21,8 @@ if(data.compressed) {
 
 const emojiMartData = data;
 
-const excluded       = ['®', '©', '™'];
-const skinTones      = ['🏻', '🏼', '🏽', '🏾', '🏿'];
+const excluded       = ["®", "©", "™"];
+const skinTones      = ["🏻", "🏼", "🏽", "🏾", "🏿"];
 const shortcodeMap   = {};
 
 const shortCodesToEmojiData = {};
@@ -33,8 +32,8 @@ Object.keys(emojiIndex.emojis).forEach(key => {
   let emoji = emojiIndex.emojis[key];
 
   // Emojis with skin tone modifiers are stored like this
-  if (Object.prototype.hasOwnProperty.call(emoji, '1')) {
-    emoji = emoji['1'];
+  if (Object.prototype.hasOwnProperty.call(emoji, "1")) {
+    emoji = emoji["1"];
   }
 
   shortcodeMap[emoji.native] = emoji.id;
@@ -42,7 +41,7 @@ Object.keys(emojiIndex.emojis).forEach(key => {
 
 const stripModifiers = unicode => {
   skinTones.forEach(tone => {
-    unicode = unicode.replace(tone, '');
+    unicode = unicode.replace(tone, "");
   });
 
   return unicode;
@@ -58,7 +57,7 @@ Object.keys(emojiMap).forEach(key => {
   let shortcode       = shortcodeMap[normalizedKey];
 
   if (!shortcode) {
-    shortcode = shortcodeMap[normalizedKey + '\uFE0F'];
+    shortcode = shortcodeMap[normalizedKey + "\uFE0F"];
   }
 
   const filename = emojiMap[key];
@@ -70,7 +69,7 @@ Object.keys(emojiMap).forEach(key => {
     filenameData.push(filename);
   }
 
-  if (typeof shortcode === 'undefined') {
+  if (typeof shortcode === "undefined") {
     emojisWithoutShortCodes.push(filenameData);
   } else {
     if (!Array.isArray(shortCodesToEmojiData[shortcode])) {
@@ -85,17 +84,17 @@ Object.keys(emojiIndex.emojis).forEach(key => {
   let emoji = emojiIndex.emojis[key];
 
   // Emojis with skin tone modifiers are stored like this
-  if (Object.prototype.hasOwnProperty.call(emoji, '1')) {
-    emoji = emoji['1'];
+  if (Object.prototype.hasOwnProperty.call(emoji, "1")) {
+    emoji = emoji["1"];
   }
 
   const { native } = emoji;
   let { short_names, search, unified } = emojiMartData.emojis[key];
 
   if (short_names[0] !== key) {
-    throw new Error('The compresser expects the first short_code to be the ' +
-      'key. It may need to be rewritten if the emoji change such that this ' +
-      'is no longer the case.');
+    throw new Error("The compresser expects the first short_code to be the " +
+      "key. It may need to be rewritten if the emoji change such that this " +
+      "is no longer the case.");
   }
 
   short_names = short_names.slice(1); // first short name can be inferred from the key

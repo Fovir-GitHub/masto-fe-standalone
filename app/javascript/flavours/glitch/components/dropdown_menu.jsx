@@ -1,15 +1,15 @@
-import PropTypes from 'prop-types';
-import { PureComponent, cloneElement, Children } from 'react';
+import PropTypes from "prop-types";
+import { PureComponent, cloneElement, Children } from "react";
 
-import classNames from 'classnames';
+import classNames from "classnames";
 
-import ImmutablePropTypes from 'react-immutable-proptypes';
+import ImmutablePropTypes from "react-immutable-proptypes";
 
-import { supportsPassiveEvents } from 'detect-passive-events';
-import Overlay from 'react-overlays/Overlay';
+import { supportsPassiveEvents } from "detect-passive-events";
+import Overlay from "react-overlays/Overlay";
 
 import { CircularProgress } from "./circular_progress";
-import { IconButton } from './icon_button';
+import { IconButton } from "./icon_button";
 
 const listenerOptions = supportsPassiveEvents ? { passive: true, capture: true } : true;
 let id = 0;
@@ -44,9 +44,9 @@ class DropdownMenu extends PureComponent {
   };
 
   componentDidMount () {
-    document.addEventListener('click', this.handleDocumentClick, { capture: true });
-    document.addEventListener('keydown', this.handleKeyDown, { capture: true });
-    document.addEventListener('touchend', this.handleDocumentClick, listenerOptions);
+    document.addEventListener("click", this.handleDocumentClick, { capture: true });
+    document.addEventListener("keydown", this.handleKeyDown, { capture: true });
+    document.addEventListener("touchend", this.handleDocumentClick, listenerOptions);
 
     if (this.focusedItem && this.props.openedViaKeyboard) {
       this.focusedItem.focus({ preventScroll: true });
@@ -54,9 +54,9 @@ class DropdownMenu extends PureComponent {
   }
 
   componentWillUnmount () {
-    document.removeEventListener('click', this.handleDocumentClick, { capture: true });
-    document.removeEventListener('keydown', this.handleKeyDown, { capture: true });
-    document.removeEventListener('touchend', this.handleDocumentClick, listenerOptions);
+    document.removeEventListener("click", this.handleDocumentClick, { capture: true });
+    document.removeEventListener("keydown", this.handleKeyDown, { capture: true });
+    document.removeEventListener("touchend", this.handleDocumentClick, listenerOptions);
   }
 
   setRef = c => {
@@ -68,33 +68,33 @@ class DropdownMenu extends PureComponent {
   };
 
   handleKeyDown = e => {
-    const items = Array.from(this.node.querySelectorAll('a, button'));
+    const items = Array.from(this.node.querySelectorAll("a, button"));
     const index = items.indexOf(document.activeElement);
     let element = null;
 
     switch(e.key) {
-    case 'ArrowDown':
-      element = items[index+1] || items[0];
-      break;
-    case 'ArrowUp':
-      element = items[index-1] || items[items.length-1];
-      break;
-    case 'Tab':
-      if (e.shiftKey) {
-        element = items[index-1] || items[items.length-1];
-      } else {
+      case "ArrowDown":
         element = items[index+1] || items[0];
-      }
-      break;
-    case 'Home':
-      element = items[0];
-      break;
-    case 'End':
-      element = items[items.length-1];
-      break;
-    case 'Escape':
-      this.props.onClose();
-      break;
+        break;
+      case "ArrowUp":
+        element = items[index-1] || items[items.length-1];
+        break;
+      case "Tab":
+        if (e.shiftKey) {
+          element = items[index-1] || items[items.length-1];
+        } else {
+          element = items[index+1] || items[0];
+        }
+        break;
+      case "Home":
+        element = items[0];
+        break;
+      case "End":
+        element = items[items.length-1];
+        break;
+      case "Escape":
+        this.props.onClose();
+        break;
     }
 
     if (element) {
@@ -105,7 +105,7 @@ class DropdownMenu extends PureComponent {
   };
 
   handleItemKeyPress = e => {
-    if (e.key === 'Enter' || e.key === ' ') {
+    if (e.key === "Enter" || e.key === " ") {
       this.handleClick(e);
     }
   };
@@ -120,10 +120,10 @@ class DropdownMenu extends PureComponent {
       return <li key={`sep-${i}`} className='dropdown-menu__separator' />;
     }
 
-    const { text, href = '#', target = '_blank', method, dangerous } = option;
+    const { text, href = "#", target = "_blank", method, dangerous } = option;
 
     return (
-      <li className={classNames('dropdown-menu__item', { 'dropdown-menu__item--dangerous': dangerous })} key={`${text}-${i}`}>
+      <li className={classNames("dropdown-menu__item", { "dropdown-menu__item--dangerous": dangerous })} key={`${text}-${i}`}>
         <a href={href} target={target} data-method={method} rel='noopener noreferrer' role='button' tabIndex={0} ref={i === 0 ? this.setFocusRef : null} onClick={this.handleClick} onKeyPress={this.handleItemKeyPress} data-index={i}>
           {text}
         </a>
@@ -137,7 +137,7 @@ class DropdownMenu extends PureComponent {
     let renderItem = this.props.renderItem || this.renderItem;
 
     return (
-      <div className={classNames('dropdown-menu__container', { 'dropdown-menu__container--loading': loading })} ref={this.setRef}>
+      <div className={classNames("dropdown-menu__container", { "dropdown-menu__container--loading": loading })} ref={this.setRef}>
         {loading && (
           <CircularProgress size={30} strokeWidth={3.5} />
         )}
@@ -149,7 +149,7 @@ class DropdownMenu extends PureComponent {
         )}
 
         {!loading && (
-          <ul className={classNames('dropdown-menu__container__list', { 'dropdown-menu__container__list--scrollable': scrollable })}>
+          <ul className={classNames("dropdown-menu__container__list", { "dropdown-menu__container__list--scrollable": scrollable })}>
             {items.map((option, i) => renderItem(option, i, { onClick: this.handleClick, onKeyPress: this.handleItemKeyPress }))}
           </ul>
         )}
@@ -186,7 +186,7 @@ export default class Dropdown extends PureComponent {
   };
 
   static defaultProps = {
-    title: 'Menu',
+    title: "Menu",
   };
 
   state = {
@@ -197,7 +197,7 @@ export default class Dropdown extends PureComponent {
     if (this.state.id === this.props.openDropdownId) {
       this.handleClose();
     } else {
-      this.props.onOpen(this.state.id, this.handleItemClick, type !== 'click');
+      this.props.onOpen(this.state.id, this.handleItemClick, type !== "click");
     }
   };
 
@@ -217,35 +217,35 @@ export default class Dropdown extends PureComponent {
 
   handleButtonKeyDown = (e) => {
     switch(e.key) {
-    case ' ':
-    case 'Enter':
-      this.handleMouseDown();
-      break;
+      case " ":
+      case "Enter":
+        this.handleMouseDown();
+        break;
     }
   };
 
   handleKeyPress = (e) => {
     switch(e.key) {
-    case ' ':
-    case 'Enter':
-      this.handleClick(e);
-      e.stopPropagation();
-      e.preventDefault();
-      break;
+      case " ":
+      case "Enter":
+        this.handleClick(e);
+        e.stopPropagation();
+        e.preventDefault();
+        break;
     }
   };
 
   handleItemClick = e => {
     const { onItemClick } = this.props;
-    const i = Number(e.currentTarget.getAttribute('data-index'));
+    const i = Number(e.currentTarget.getAttribute("data-index"));
     const item = this.props.items[i];
 
     this.handleClose();
 
-    if (typeof onItemClick === 'function') {
+    if (typeof onItemClick === "function") {
       e.preventDefault();
       onItemClick(item, i);
-    } else if (item && typeof item.action === 'function') {
+    } else if (item && typeof item.action === "function") {
       e.preventDefault();
       item.action();
     } else if (item && item.to) {
@@ -314,7 +314,7 @@ export default class Dropdown extends PureComponent {
         <span ref={this.setTargetRef}>
           {button}
         </span>
-        <Overlay show={open} offset={[5, 5]} placement={'bottom'} flip target={this.findTarget} popperConfig={{ strategy: 'fixed' }}>
+        <Overlay show={open} offset={[5, 5]} placement={"bottom"} flip target={this.findTarget} popperConfig={{ strategy: "fixed" }}>
           {({ props, arrowProps, placement }) => (
             <div {...props}>
               <div className={`dropdown-animation dropdown-menu ${placement}`}>

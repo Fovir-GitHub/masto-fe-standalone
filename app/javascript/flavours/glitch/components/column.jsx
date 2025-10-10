@@ -1,9 +1,9 @@
-import PropTypes from 'prop-types';
-import { PureComponent } from 'react';
+import PropTypes from "prop-types";
+import { PureComponent } from "react";
 
-import { supportsPassiveEvents } from 'detect-passive-events';
+import { supportsPassiveEvents } from "detect-passive-events";
 
-import { scrollTop } from '../scroll';
+import { scrollTop } from "../scroll";
 
 const listenerOptions = supportsPassiveEvents ? { passive: true } : false;
 
@@ -23,12 +23,12 @@ export default class Column extends PureComponent {
     if (this.props.bindToDocument) {
       scrollable = document.scrollingElement;
     } else {
-      scrollable = this.node.querySelector('.scrollable');
+      scrollable = this.node.querySelector(".scrollable");
 
       // Some columns have nested `.scrollable` containers, with the outer one
       // being a wrapper while the actual scrollable content is deeper.
-      if (scrollable.classList.contains('scrollable--flex')) {
-        scrollable = scrollable?.querySelector('.scrollable') || scrollable;
+      if (scrollable.classList.contains("scrollable--flex")) {
+        scrollable = scrollable?.querySelector(".scrollable") || scrollable;
       }
     }
 
@@ -40,7 +40,7 @@ export default class Column extends PureComponent {
   }
 
   handleWheel = () => {
-    if (typeof this._interruptScrollAnimation !== 'function') {
+    if (typeof this._interruptScrollAnimation !== "function") {
       return;
     }
 
@@ -53,17 +53,17 @@ export default class Column extends PureComponent {
 
   componentDidMount () {
     if (this.props.bindToDocument) {
-      document.addEventListener('wheel', this.handleWheel, listenerOptions);
+      document.addEventListener("wheel", this.handleWheel, listenerOptions);
     } else {
-      this.node.addEventListener('wheel', this.handleWheel, listenerOptions);
+      this.node.addEventListener("wheel", this.handleWheel, listenerOptions);
     }
   }
 
   componentWillUnmount () {
     if (this.props.bindToDocument) {
-      document.removeEventListener('wheel', this.handleWheel, listenerOptions);
+      document.removeEventListener("wheel", this.handleWheel, listenerOptions);
     } else {
-      this.node.removeEventListener('wheel', this.handleWheel, listenerOptions);
+      this.node.removeEventListener("wheel", this.handleWheel, listenerOptions);
     }
   }
 
@@ -71,7 +71,7 @@ export default class Column extends PureComponent {
     const { children, extraClasses, name, label } = this.props;
 
     return (
-      <div role='region' aria-label={label} data-column={name} className={`column ${extraClasses || ''}`} ref={this.setRef}>
+      <div role='region' aria-label={label} data-column={name} className={`column ${extraClasses || ""}`} ref={this.setRef}>
         {children}
       </div>
     );

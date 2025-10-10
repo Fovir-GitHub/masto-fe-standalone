@@ -1,13 +1,13 @@
-import { Semaphore } from 'async-mutex';
+import { Semaphore } from "async-mutex";
 
-import type { LocaleData } from './global_locale';
-import { isLocaleLoaded, setLocale } from './global_locale';
+import  { type LocaleData } from "./global_locale";
+import { isLocaleLoaded, setLocale } from "./global_locale";
 
 const localeLoadingSemaphore = new Semaphore(1);
 
 export async function loadLocale() {
-  // eslint-disable-next-line @typescript-eslint/prefer-nullish-coalescing -- we want to match empty strings
-  const locale = document.querySelector<HTMLElement>('html')?.lang || 'en';
+   
+  const locale = document.querySelector<HTMLElement>("html")?.lang || "en";
 
   // We use a Semaphore here so only one thing can try to load the locales at
   // the same time. If one tries to do it while its in progress, it will wait
@@ -15,23 +15,25 @@ export async function loadLocale() {
   // data is already loaded)
   await localeLoadingSemaphore.runExclusive(async () => {
     // if the locale is already set, then do nothing
-    if (isLocaleLoaded()) return;
+    if (isLocaleLoaded()) {
+      return;
+    }
 
     const upstreamLocaleData = await import(
       /* webpackMode: "lazy" */
       /* webpackChunkName: "locales/vanilla/[request]" */
       /* webpackInclude: /\.json$/ */
       /* webpackPreload: true */
-      `mastodon/locales/${locale}.json`
-    ) as LocaleData['messages'];
+      `mastodon/locales/${locale}.json`,
+    ) as LocaleData["messages"];
 
     const localeData = await import(
       /* webpackMode: "lazy" */
       /* webpackChunkName: "locales/glitch/[request]" */
       /* webpackInclude: /\.json$/ */
       /* webpackPreload: true */
-      `flavours/glitch/locales/${locale}.json`
-    ) as LocaleData['messages'];
+      `flavours/glitch/locales/${locale}.json`,
+    ) as LocaleData["messages"];
 
     setLocale({ messages: { ...upstreamLocaleData, ...localeData }, locale });
   });

@@ -1,15 +1,15 @@
-import { Map as ImmutableMap } from 'immutable';
-import { connect } from 'react-redux';
-import { createSelector } from 'reselect';
+import { Map as ImmutableMap } from "immutable";
+import { connect } from "react-redux";
+import { createSelector } from "reselect";
 
-import { addReaction, removeReaction, dismissAnnouncement } from 'mastodon/actions/announcements';
+import { addReaction, removeReaction, dismissAnnouncement } from "mastodon/actions/announcements";
 
-import Announcements from '../components/announcements';
+import Announcements from "../components/announcements";
 
-const customEmojiMap = createSelector([state => state.get('custom_emojis')], items => items.reduce((map, emoji) => map.set(emoji.get('shortcode'), emoji), ImmutableMap()));
+const customEmojiMap = createSelector([state => state.get("custom_emojis")], items => items.reduce((map, emoji) => map.set(emoji.get("shortcode"), emoji), ImmutableMap()));
 
 const mapStateToProps = state => ({
-  announcements: state.getIn(['announcements', 'items']),
+  announcements: state.getIn(["announcements", "items"]),
   emojiMap: customEmojiMap(state),
 });
 

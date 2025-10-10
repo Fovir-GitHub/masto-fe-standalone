@@ -4,7 +4,7 @@ module.exports = {
   issuer: /\.[jt]sx?$/,
   use: [
     {
-      loader: '@svgr/webpack',
+      loader: "@svgr/webpack",
       options: {
         svgo: false,
       },

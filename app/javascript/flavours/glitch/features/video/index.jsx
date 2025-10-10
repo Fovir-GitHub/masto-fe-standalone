@@ -1,30 +1,30 @@
-import PropTypes from 'prop-types';
-import { PureComponent } from 'react';
+import PropTypes from "prop-types";
+import { PureComponent } from "react";
 
-import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
+import { defineMessages, injectIntl, FormattedMessage } from "react-intl";
 
-import classNames from 'classnames';
+import classNames from "classnames";
 
-import { is } from 'immutable';
+import { is } from "immutable";
 
-import { throttle } from 'lodash';
+import { throttle } from "lodash";
 
-import { Blurhash } from 'flavours/glitch/components/blurhash';
-import { Icon } from 'flavours/glitch/components/icon';
-import { displayMedia } from 'flavours/glitch/initial_state';
+import { Blurhash } from "flavours/glitch/components/blurhash";
+import { Icon } from "flavours/glitch/components/icon";
+import { displayMedia } from "flavours/glitch/initial_state";
 
-import { isFullscreen, requestFullscreen, exitFullscreen } from '../ui/util/fullscreen';
+import { isFullscreen, requestFullscreen, exitFullscreen } from "../ui/util/fullscreen";
 
 const messages = defineMessages({
-  play: { id: 'video.play', defaultMessage: 'Play' },
-  pause: { id: 'video.pause', defaultMessage: 'Pause' },
-  mute: { id: 'video.mute', defaultMessage: 'Mute sound' },
-  unmute: { id: 'video.unmute', defaultMessage: 'Unmute sound' },
-  hide: { id: 'video.hide', defaultMessage: 'Hide video' },
-  expand: { id: 'video.expand', defaultMessage: 'Expand video' },
-  close: { id: 'video.close', defaultMessage: 'Close video' },
-  fullscreen: { id: 'video.fullscreen', defaultMessage: 'Full screen' },
-  exit_fullscreen: { id: 'video.exit_fullscreen', defaultMessage: 'Exit full screen' },
+  play: { id: "video.play", defaultMessage: "Play" },
+  pause: { id: "video.pause", defaultMessage: "Pause" },
+  mute: { id: "video.mute", defaultMessage: "Mute sound" },
+  unmute: { id: "video.unmute", defaultMessage: "Unmute sound" },
+  hide: { id: "video.hide", defaultMessage: "Hide video" },
+  expand: { id: "video.expand", defaultMessage: "Expand video" },
+  close: { id: "video.close", defaultMessage: "Close video" },
+  fullscreen: { id: "video.fullscreen", defaultMessage: "Full screen" },
+  exit_fullscreen: { id: "video.exit_fullscreen", defaultMessage: "Exit full screen" },
 });
 
 export const formatTime = secondsNum => {
@@ -32,11 +32,17 @@ export const formatTime = secondsNum => {
   let minutes = Math.floor((secondsNum - (hours * 3600)) / 60);
   let seconds = secondsNum - (hours * 3600) - (minutes * 60);
 
-  if (hours   < 10) hours   = '0' + hours;
-  if (minutes < 10) minutes = '0' + minutes;
-  if (seconds < 10) seconds = '0' + seconds;
+  if (hours   < 10) {
+    hours   = "0" + hours;
+  }
+  if (minutes < 10) {
+    minutes = "0" + minutes;
+  }
+  if (seconds < 10) {
+    seconds = "0" + seconds;
+  }
 
-  return (hours === '00' ? '' : `${hours}:`) + `${minutes}:${seconds}`;
+  return (hours === "00" ? "" : `${hours}:`) + `${minutes}:${seconds}`;
 };
 
 export const findElementPosition = el => {
@@ -95,7 +101,7 @@ export const getPointerPosition = (el, event) => {
 export const fileNameFromURL = str => {
   const url      = new URL(str);
   const pathname = url.pathname;
-  const index    = pathname.lastIndexOf('/');
+  const index    = pathname.lastIndexOf("/");
 
   return pathname.slice(index + 1);
 };
@@ -133,7 +139,7 @@ class Video extends PureComponent {
   };
 
   static defaultProps = {
-    frameRate: '25',
+    frameRate: "25",
   };
 
   state = {
@@ -145,7 +151,7 @@ class Video extends PureComponent {
     fullscreen: false,
     hovered: false,
     muted: false,
-    revealed: this.props.visible !== undefined ? this.props.visible : (displayMedia !== 'hide_all' && !this.props.sensitive || displayMedia === 'show_all'),
+    revealed: this.props.visible !== undefined ? this.props.visible : (displayMedia !== "hide_all" && !this.props.sensitive || displayMedia === "show_all"),
   };
 
   setPlayerRef = c => {
@@ -181,7 +187,9 @@ class Video extends PureComponent {
 
   _updateTime () {
     requestAnimationFrame(() => {
-      if (!this.video) return;
+      if (!this.video) {
+        return;
+      }
 
       this.handleTimeUpdate();
 
@@ -199,10 +207,10 @@ class Video extends PureComponent {
   };
 
   handleVolumeMouseDown = e => {
-    document.addEventListener('mousemove', this.handleMouseVolSlide, true);
-    document.addEventListener('mouseup', this.handleVolumeMouseUp, true);
-    document.addEventListener('touchmove', this.handleMouseVolSlide, true);
-    document.addEventListener('touchend', this.handleVolumeMouseUp, true);
+    document.addEventListener("mousemove", this.handleMouseVolSlide, true);
+    document.addEventListener("mouseup", this.handleVolumeMouseUp, true);
+    document.addEventListener("touchmove", this.handleMouseVolSlide, true);
+    document.addEventListener("touchend", this.handleVolumeMouseUp, true);
 
     this.handleMouseVolSlide(e);
 
@@ -211,10 +219,10 @@ class Video extends PureComponent {
   };
 
   handleVolumeMouseUp = () => {
-    document.removeEventListener('mousemove', this.handleMouseVolSlide, true);
-    document.removeEventListener('mouseup', this.handleVolumeMouseUp, true);
-    document.removeEventListener('touchmove', this.handleMouseVolSlide, true);
-    document.removeEventListener('touchend', this.handleVolumeMouseUp, true);
+    document.removeEventListener("mousemove", this.handleMouseVolSlide, true);
+    document.removeEventListener("mouseup", this.handleVolumeMouseUp, true);
+    document.removeEventListener("touchmove", this.handleMouseVolSlide, true);
+    document.removeEventListener("touchend", this.handleVolumeMouseUp, true);
   };
 
   handleMouseVolSlide = throttle(e => {
@@ -229,10 +237,10 @@ class Video extends PureComponent {
   }, 15);
 
   handleMouseDown = e => {
-    document.addEventListener('mousemove', this.handleMouseMove, true);
-    document.addEventListener('mouseup', this.handleMouseUp, true);
-    document.addEventListener('touchmove', this.handleMouseMove, true);
-    document.addEventListener('touchend', this.handleMouseUp, true);
+    document.addEventListener("mousemove", this.handleMouseMove, true);
+    document.addEventListener("mouseup", this.handleMouseUp, true);
+    document.addEventListener("touchmove", this.handleMouseMove, true);
+    document.addEventListener("touchend", this.handleMouseUp, true);
 
     this.setState({ dragging: true });
     this.video.pause();
@@ -243,10 +251,10 @@ class Video extends PureComponent {
   };
 
   handleMouseUp = () => {
-    document.removeEventListener('mousemove', this.handleMouseMove, true);
-    document.removeEventListener('mouseup', this.handleMouseUp, true);
-    document.removeEventListener('touchmove', this.handleMouseMove, true);
-    document.removeEventListener('touchend', this.handleMouseUp, true);
+    document.removeEventListener("mousemove", this.handleMouseMove, true);
+    document.removeEventListener("mouseup", this.handleMouseUp, true);
+    document.removeEventListener("touchmove", this.handleMouseMove, true);
+    document.removeEventListener("touchend", this.handleMouseUp, true);
 
     this.setState({ dragging: false });
     this.video.play();
@@ -277,7 +285,7 @@ class Video extends PureComponent {
     // On the video element or the seek bar, we can safely use the space bar
     // for playback control because there are no buttons to press
 
-    if (e.key === ' ') {
+    if (e.key === " ") {
       e.preventDefault();
       e.stopPropagation();
       this.togglePlay();
@@ -288,41 +296,41 @@ class Video extends PureComponent {
     const frameTime = 1 / this.getFrameRate();
 
     switch(e.key) {
-    case 'k':
-      e.preventDefault();
-      e.stopPropagation();
-      this.togglePlay();
-      break;
-    case 'm':
-      e.preventDefault();
-      e.stopPropagation();
-      this.toggleMute();
-      break;
-    case 'f':
-      e.preventDefault();
-      e.stopPropagation();
-      this.toggleFullscreen();
-      break;
-    case 'j':
-      e.preventDefault();
-      e.stopPropagation();
-      this.seekBy(-10);
-      break;
-    case 'l':
-      e.preventDefault();
-      e.stopPropagation();
-      this.seekBy(10);
-      break;
-    case ',':
-      e.preventDefault();
-      e.stopPropagation();
-      this.seekBy(-frameTime);
-      break;
-    case '.':
-      e.preventDefault();
-      e.stopPropagation();
-      this.seekBy(frameTime);
-      break;
+      case "k":
+        e.preventDefault();
+        e.stopPropagation();
+        this.togglePlay();
+        break;
+      case "m":
+        e.preventDefault();
+        e.stopPropagation();
+        this.toggleMute();
+        break;
+      case "f":
+        e.preventDefault();
+        e.stopPropagation();
+        this.toggleFullscreen();
+        break;
+      case "j":
+        e.preventDefault();
+        e.stopPropagation();
+        this.seekBy(-10);
+        break;
+      case "l":
+        e.preventDefault();
+        e.stopPropagation();
+        this.seekBy(10);
+        break;
+      case ",":
+        e.preventDefault();
+        e.stopPropagation();
+        this.seekBy(-frameTime);
+        break;
+      case ".":
+        e.preventDefault();
+        e.stopPropagation();
+        this.seekBy(frameTime);
+        break;
     }
 
     // If we are in fullscreen mode, we don't want any hotkeys
@@ -332,7 +340,7 @@ class Video extends PureComponent {
       e.preventDefault();
       e.stopPropagation();
 
-      if (e.key === 'Escape') {
+      if (e.key === "Escape") {
         exitFullscreen();
       }
     }
@@ -355,24 +363,24 @@ class Video extends PureComponent {
   };
 
   componentDidMount () {
-    document.addEventListener('fullscreenchange', this.handleFullscreenChange, true);
-    document.addEventListener('webkitfullscreenchange', this.handleFullscreenChange, true);
-    document.addEventListener('mozfullscreenchange', this.handleFullscreenChange, true);
-    document.addEventListener('MSFullscreenChange', this.handleFullscreenChange, true);
+    document.addEventListener("fullscreenchange", this.handleFullscreenChange, true);
+    document.addEventListener("webkitfullscreenchange", this.handleFullscreenChange, true);
+    document.addEventListener("mozfullscreenchange", this.handleFullscreenChange, true);
+    document.addEventListener("MSFullscreenChange", this.handleFullscreenChange, true);
 
-    window.addEventListener('scroll', this.handleScroll);
+    window.addEventListener("scroll", this.handleScroll);
   }
 
   componentWillUnmount () {
-    window.removeEventListener('scroll', this.handleScroll);
+    window.removeEventListener("scroll", this.handleScroll);
 
-    document.removeEventListener('fullscreenchange', this.handleFullscreenChange, true);
-    document.removeEventListener('webkitfullscreenchange', this.handleFullscreenChange, true);
-    document.removeEventListener('mozfullscreenchange', this.handleFullscreenChange, true);
-    document.removeEventListener('MSFullscreenChange', this.handleFullscreenChange, true);
+    document.removeEventListener("fullscreenchange", this.handleFullscreenChange, true);
+    document.removeEventListener("webkitfullscreenchange", this.handleFullscreenChange, true);
+    document.removeEventListener("mozfullscreenchange", this.handleFullscreenChange, true);
+    document.removeEventListener("MSFullscreenChange", this.handleFullscreenChange, true);
 
     if (!this.state.paused && this.video && this.props.deployPictureInPicture) {
-      this.props.deployPictureInPicture('video', {
+      this.props.deployPictureInPicture("video", {
         src: this.props.src,
         currentTime: this.video.currentTime,
         muted: this.video.muted,
@@ -405,7 +413,7 @@ class Video extends PureComponent {
       this.video.pause();
 
       if (this.props.deployPictureInPicture) {
-        this.props.deployPictureInPicture('video', {
+        this.props.deployPictureInPicture("video", {
           src: this.props.src,
           currentTime: this.video.currentTime,
           muted: this.video.muted,
@@ -503,7 +511,7 @@ class Video extends PureComponent {
       // The frame rate is returned as a fraction string so we
       // need to convert it to a number
 
-      return this.props.frameRate.split('/').reduce((p, c) => p / c);
+      return this.props.frameRate.split("/").reduce((p, c) => p / c);
     }
 
     return this.props.frameRate;
@@ -526,7 +534,7 @@ class Video extends PureComponent {
       editable,
       blurhash,
       autoFocus,
-      useBlurhash
+      useBlurhash,
     } = this.props;
     const {
       currentTime,
@@ -537,7 +545,7 @@ class Video extends PureComponent {
       paused,
       fullscreen,
       hovered,
-      revealed
+      revealed,
     } = this.state;
     const progress = Math.min((currentTime / duration) * 100, 100);
     const muted = this.state.muted || volume === 0;
@@ -545,17 +553,17 @@ class Video extends PureComponent {
     const playerStyle = {};
 
     if (inline) {
-      playerStyle.aspectRatio = '16 / 9';
+      playerStyle.aspectRatio = "16 / 9";
     }
 
     let preload;
 
     if (this.props.currentTime || fullscreen || dragging) {
-      preload = 'auto';
+      preload = "auto";
     } else if (detailed) {
-      preload = 'metadata';
+      preload = "metadata";
     } else {
-      preload = 'none';
+      preload = "none";
     }
 
     let warning;
@@ -569,7 +577,7 @@ class Video extends PureComponent {
     return (
       <div
         role='menuitem'
-        className={classNames('video-player', { inactive: !revealed, detailed, inline: inline && !fullscreen, fullscreen, editable, letterbox, 'full-width': fullwidth })}
+        className={classNames("video-player", { inactive: !revealed, detailed, inline: inline && !fullscreen, fullscreen, editable, letterbox, "full-width": fullwidth })}
         style={playerStyle}
         ref={this.setPlayerRef}
         onMouseEnter={this.handleMouseEnter}
@@ -580,8 +588,8 @@ class Video extends PureComponent {
       >
         <Blurhash
           hash={blurhash}
-          className={classNames('media-gallery__preview', {
-            'media-gallery__preview--hidden': revealed,
+          className={classNames("media-gallery__preview", {
+            "media-gallery__preview--hidden": revealed,
           })}
           dummy={!useBlurhash}
         />
@@ -604,10 +612,10 @@ class Video extends PureComponent {
           onLoadedData={this.handleLoadedData}
           onProgress={this.handleProgress}
           onVolumeChange={this.handleVolumeChange}
-          style={{ ...playerStyle, width: '100%' }}
+          style={{ ...playerStyle, width: "100%" }}
         />}
 
-        <div className={classNames('spoiler-button', { 'spoiler-button--hidden': revealed || editable })}>
+        <div className={classNames("spoiler-button", { "spoiler-button--hidden": revealed || editable })}>
           <button type='button' className='spoiler-button__overlay' onClick={this.toggleReveal}>
             <span className='spoiler-button__overlay__label'>
               {warning}
@@ -616,13 +624,13 @@ class Video extends PureComponent {
           </button>
         </div>
 
-        <div className={classNames('video-player__controls', { active: paused || hovered })}>
+        <div className={classNames("video-player__controls", { active: paused || hovered })}>
           <div className='video-player__seek' onMouseDown={this.handleMouseDown} ref={this.setSeekRef}>
             <div className='video-player__seek__buffer' style={{ width: `${buffer}%` }} />
             <div className='video-player__seek__progress' style={{ width: `${progress}%` }} />
 
             <span
-              className={classNames('video-player__seek__handle', { active: dragging })}
+              className={classNames("video-player__seek__handle", { active: dragging })}
               tabIndex={0}
               style={{ left: `${progress}%` }}
               onKeyDown={this.handleVideoKeyDown}
@@ -631,14 +639,14 @@ class Video extends PureComponent {
 
           <div className='video-player__buttons-bar'>
             <div className='video-player__buttons left'>
-              <button type='button' title={intl.formatMessage(paused ? messages.play : messages.pause)} aria-label={intl.formatMessage(paused ? messages.play : messages.pause)} className='player-button' onClick={this.togglePlay} autoFocus={autoFocus}><Icon id={paused ? 'play' : 'pause'} fixedWidth /></button>
-              <button type='button' title={intl.formatMessage(muted ? messages.unmute : messages.mute)} aria-label={intl.formatMessage(muted ? messages.unmute : messages.mute)} className='player-button' onClick={this.toggleMute}><Icon id={muted ? 'volume-off' : 'volume-up'} fixedWidth /></button>
+              <button type='button' title={intl.formatMessage(paused ? messages.play : messages.pause)} aria-label={intl.formatMessage(paused ? messages.play : messages.pause)} className='player-button' onClick={this.togglePlay} autoFocus={autoFocus}><Icon id={paused ? "play" : "pause"} fixedWidth /></button>
+              <button type='button' title={intl.formatMessage(muted ? messages.unmute : messages.mute)} aria-label={intl.formatMessage(muted ? messages.unmute : messages.mute)} className='player-button' onClick={this.toggleMute}><Icon id={muted ? "volume-off" : "volume-up"} fixedWidth /></button>
 
-              <div className={classNames('video-player__volume', { active: this.state.hovered })} onMouseDown={this.handleVolumeMouseDown} ref={this.setVolumeRef}>
+              <div className={classNames("video-player__volume", { active: this.state.hovered })} onMouseDown={this.handleVolumeMouseDown} ref={this.setVolumeRef}>
                 <div className='video-player__volume__current' style={{ width: `${muted ? 0 : volume * 100}%` }} />
 
                 <span
-                  className={classNames('video-player__volume__handle')}
+                  className={classNames("video-player__volume__handle")}
                   tabIndex={0}
                   style={{ left: `${muted ? 0 : volume * 100}%` }}
                 />
@@ -657,7 +665,7 @@ class Video extends PureComponent {
               {(!onCloseVideo && !editable && !fullscreen && !this.props.alwaysVisible) && <button type='button' title={intl.formatMessage(messages.hide)} aria-label={intl.formatMessage(messages.hide)} className='player-button' onClick={this.toggleReveal}><Icon id='eye-slash' fixedWidth /></button>}
               {(!fullscreen && onOpenVideo) && <button type='button' title={intl.formatMessage(messages.expand)} aria-label={intl.formatMessage(messages.expand)} className='player-button' onClick={this.handleOpenVideo}><Icon id='expand' fixedWidth /></button>}
               {onCloseVideo && <button type='button' title={intl.formatMessage(messages.close)} aria-label={intl.formatMessage(messages.close)} className='player-button' onClick={this.handleCloseVideo}><Icon id='compress' fixedWidth /></button>}
-              <button type='button' title={intl.formatMessage(fullscreen ? messages.exit_fullscreen : messages.fullscreen)} aria-label={intl.formatMessage(fullscreen ? messages.exit_fullscreen : messages.fullscreen)} className='player-button' onClick={this.toggleFullscreen}><Icon id={fullscreen ? 'compress' : 'arrows-alt'} fixedWidth /></button>
+              <button type='button' title={intl.formatMessage(fullscreen ? messages.exit_fullscreen : messages.fullscreen)} aria-label={intl.formatMessage(fullscreen ? messages.exit_fullscreen : messages.fullscreen)} className='player-button' onClick={this.toggleFullscreen}><Icon id={fullscreen ? "compress" : "arrows-alt"} fixedWidth /></button>
             </div>
           </div>
         </div>

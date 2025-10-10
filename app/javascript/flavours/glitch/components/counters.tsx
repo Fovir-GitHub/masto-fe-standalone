@@ -1,6 +1,6 @@
-import React from 'react';
+import React from "react";
 
-import { FormattedMessage } from 'react-intl';
+import { FormattedMessage } from "react-intl";
 
 export const StatusesCounter = (
   displayNumber: React.ReactNode,

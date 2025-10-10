@@ -3,33 +3,33 @@
                   @typescript-eslint/no-unsafe-assignment,
                   @typescript-eslint/no-unsafe-member-access
                   -- the settings store is not yet typed */
-import { useCallback } from 'react';
+import { useCallback } from "react";
 
-import { FormattedMessage, defineMessages, useIntl } from 'react-intl';
+import { FormattedMessage, defineMessages, useIntl } from "react-intl";
 
-import SettingText from 'flavours/glitch/components/setting_text';
-import { useAppSelector, useAppDispatch } from 'flavours/glitch/store';
+import SettingText from "flavours/glitch/components/setting_text";
+import { useAppSelector, useAppDispatch } from "flavours/glitch/store";
 
-import { changeSetting } from '../../../actions/settings';
-import SettingToggle from '../../notifications/components/setting_toggle';
+import { changeSetting } from "../../../actions/settings";
+import SettingToggle from "../../notifications/components/setting_toggle";
 
 const messages = defineMessages({
   filter_regex: {
-    id: 'home.column_settings.filter_regex',
-    defaultMessage: 'Filter out by regular expressions',
+    id: "home.column_settings.filter_regex",
+    defaultMessage: "Filter out by regular expressions",
   },
-  settings: { id: 'home.settings', defaultMessage: 'Column settings' },
+  settings: { id: "home.settings", defaultMessage: "Column settings" },
 });
 
 export const ColumnSettings: React.FC = () => {
-  const settings = useAppSelector((state) => state.settings.get('home'));
+  const settings = useAppSelector((state) => state.settings.get("home"));
 
   const intl = useIntl();
 
   const dispatch = useAppDispatch();
   const onChange = useCallback(
     (key: string, checked: boolean) => {
-      dispatch(changeSetting(['home', ...key], checked));
+      dispatch(changeSetting(["home", key.split("")], checked));
     },
     [dispatch],
   );
@@ -47,7 +47,7 @@ export const ColumnSettings: React.FC = () => {
         <SettingToggle
           prefix='home_timeline'
           settings={settings}
-          settingPath={['shows', 'reblog']}
+          settingPath={["shows", "reblog"]}
           onChange={onChange}
           label={
             <FormattedMessage
@@ -62,7 +62,7 @@ export const ColumnSettings: React.FC = () => {
         <SettingToggle
           prefix='home_timeline'
           settings={settings}
-          settingPath={['shows', 'reply']}
+          settingPath={["shows", "reply"]}
           onChange={onChange}
           label={
             <FormattedMessage
@@ -77,7 +77,7 @@ export const ColumnSettings: React.FC = () => {
         <SettingToggle
           prefix='home_timeline'
           settings={settings}
-          settingPath={['shows', 'direct']}
+          settingPath={["shows", "direct"]}
           onChange={onChange}
           label={
             <FormattedMessage
@@ -99,7 +99,7 @@ export const ColumnSettings: React.FC = () => {
         <SettingText
           prefix='home_timeline'
           settings={settings}
-          settingPath={['regex', 'body']}
+          settingPath={["regex", "body"]}
           onChange={onChange}
           label={intl.formatMessage(messages.filter_regex)}
         />

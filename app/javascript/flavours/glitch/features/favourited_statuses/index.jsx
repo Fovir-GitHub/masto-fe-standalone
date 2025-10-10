@@ -1,30 +1,30 @@
-import PropTypes from 'prop-types';
+import PropTypes from "prop-types";
 
-import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
+import { defineMessages, injectIntl, FormattedMessage } from "react-intl";
 
-import { Helmet } from 'react-helmet';
+import { Helmet } from "react-helmet";
 
-import ImmutablePropTypes from 'react-immutable-proptypes';
-import ImmutablePureComponent from 'react-immutable-pure-component';
-import { connect } from 'react-redux';
+import ImmutablePropTypes from "react-immutable-proptypes";
+import ImmutablePureComponent from "react-immutable-pure-component";
+import { connect } from "react-redux";
 
-import { debounce } from 'lodash';
+import { debounce } from "lodash";
 
-import { addColumn, removeColumn, moveColumn } from 'flavours/glitch/actions/columns';
-import { fetchFavouritedStatuses, expandFavouritedStatuses } from 'flavours/glitch/actions/favourites';
-import ColumnHeader from 'flavours/glitch/components/column_header';
-import StatusList from 'flavours/glitch/components/status_list';
-import Column from 'flavours/glitch/features/ui/components/column';
-import { getStatusList } from 'flavours/glitch/selectors';
+import { addColumn, removeColumn, moveColumn } from "flavours/glitch/actions/columns";
+import { fetchFavouritedStatuses, expandFavouritedStatuses } from "flavours/glitch/actions/favourites";
+import ColumnHeader from "flavours/glitch/components/column_header";
+import StatusList from "flavours/glitch/components/status_list";
+import Column from "flavours/glitch/features/ui/components/column";
+import { getStatusList } from "flavours/glitch/selectors";
 
 const messages = defineMessages({
-  heading: { id: 'column.favourites', defaultMessage: 'Favorites' },
+  heading: { id: "column.favourites", defaultMessage: "Favorites" },
 });
 
 const mapStateToProps = state => ({
-  statusIds: getStatusList(state, 'favourites'),
-  isLoading: state.getIn(['status_lists', 'favourites', 'isLoading'], true),
-  hasMore: !!state.getIn(['status_lists', 'favourites', 'next']),
+  statusIds: getStatusList(state, "favourites"),
+  isLoading: state.getIn(["status_lists", "favourites", "isLoading"], true),
+  hasMore: !!state.getIn(["status_lists", "favourites", "next"]),
 });
 
 class Favourites extends ImmutablePureComponent {
@@ -49,7 +49,7 @@ class Favourites extends ImmutablePureComponent {
     if (columnId) {
       dispatch(removeColumn(columnId));
     } else {
-      dispatch(addColumn('FAVOURITES', {}));
+      dispatch(addColumn("FAVOURITES", {}));
     }
   };
 

@@ -1,42 +1,42 @@
-import PropTypes from 'prop-types';
+import PropTypes from "prop-types";
 
-import { defineMessages, injectIntl } from 'react-intl';
+import { defineMessages, injectIntl } from "react-intl";
 
-import classNames from 'classnames';
+import classNames from "classnames";
 
-import ImmutablePropTypes from 'react-immutable-proptypes';
-import ImmutablePureComponent from 'react-immutable-pure-component';
+import ImmutablePropTypes from "react-immutable-proptypes";
+import ImmutablePureComponent from "react-immutable-pure-component";
 
-import { length } from 'stringz';
+import { length } from "stringz";
 
-import { Icon }  from 'mastodon/components/icon';
+import { Icon }  from "mastodon/components/icon";
 
-import AutosuggestInput from '../../../components/autosuggest_input';
-import AutosuggestTextarea from '../../../components/autosuggest_textarea';
-import Button from '../../../components/button';
-import { maxChars } from '../../../initial_state';
-import EmojiPickerDropdown from '../containers/emoji_picker_dropdown_container';
-import LanguageDropdown from '../containers/language_dropdown_container';
-import PollButtonContainer from '../containers/poll_button_container';
-import PollFormContainer from '../containers/poll_form_container';
-import PrivacyDropdownContainer from '../containers/privacy_dropdown_container';
-import ReplyIndicatorContainer from '../containers/reply_indicator_container';
-import SpoilerButtonContainer from '../containers/spoiler_button_container';
-import UploadButtonContainer from '../containers/upload_button_container';
-import UploadFormContainer from '../containers/upload_form_container';
-import WarningContainer from '../containers/warning_container';
-import { countableText } from '../util/counter';
+import AutosuggestInput from "../../../components/autosuggest_input";
+import AutosuggestTextarea from "../../../components/autosuggest_textarea";
+import Button from "../../../components/button";
+import { maxChars } from "../../../initial_state";
+import EmojiPickerDropdown from "../containers/emoji_picker_dropdown_container";
+import LanguageDropdown from "../containers/language_dropdown_container";
+import PollButtonContainer from "../containers/poll_button_container";
+import PollFormContainer from "../containers/poll_form_container";
+import PrivacyDropdownContainer from "../containers/privacy_dropdown_container";
+import ReplyIndicatorContainer from "../containers/reply_indicator_container";
+import SpoilerButtonContainer from "../containers/spoiler_button_container";
+import UploadButtonContainer from "../containers/upload_button_container";
+import UploadFormContainer from "../containers/upload_form_container";
+import WarningContainer from "../containers/warning_container";
+import { countableText } from "../util/counter";
 
-import CharacterCounter from './character_counter';
+import CharacterCounter from "./character_counter";
 
-const allowedAroundShortCode = '><\u0085\u0020\u00a0\u1680\u2000\u2001\u2002\u2003\u2004\u2005\u2006\u2007\u2008\u2009\u200a\u202f\u205f\u3000\u2028\u2029\u0009\u000a\u000b\u000c\u000d';
+const allowedAroundShortCode = "><\u0085\u0020\u00a0\u1680\u2000\u2001\u2002\u2003\u2004\u2005\u2006\u2007\u2008\u2009\u200a\u202f\u205f\u3000\u2028\u2029\u0009\u000a\u000b\u000c\u000d";
 
 const messages = defineMessages({
-  placeholder: { id: 'compose_form.placeholder', defaultMessage: 'What is on your mind?' },
-  spoiler_placeholder: { id: 'compose_form.spoiler_placeholder', defaultMessage: '(Optional) post title / content warning' },
-  publish: { id: 'compose_form.publish', defaultMessage: 'Promulgate' },
-  publishLoud: { id: 'compose_form.publish_loud', defaultMessage: '{publish}!' },
-  saveChanges: { id: 'compose_form.save_changes', defaultMessage: 'Save changes' },
+  placeholder: { id: "compose_form.placeholder", defaultMessage: "What is on your mind?" },
+  spoiler_placeholder: { id: "compose_form.spoiler_placeholder", defaultMessage: "(Optional) post title / content warning" },
+  publish: { id: "compose_form.publish", defaultMessage: "Promulgate" },
+  publishLoud: { id: "compose_form.publish_loud", defaultMessage: "{publish}!" },
+  saveChanges: { id: "compose_form.save_changes", defaultMessage: "Save changes" },
 });
 
 class ComposeForm extends ImmutablePureComponent {
@@ -93,7 +93,7 @@ class ComposeForm extends ImmutablePureComponent {
   };
 
   getFulltextForCharacterCounting = () => {
-    return [this.props.spoiler? this.props.spoilerText: '', countableText(this.props.text)].join('');
+    return [this.props.spoiler? this.props.spoilerText: "", countableText(this.props.text)].join("");
   };
 
   canSubmit = () => {
@@ -131,11 +131,11 @@ class ComposeForm extends ImmutablePureComponent {
   };
 
   onSuggestionSelected = (tokenStart, token, value) => {
-    this.props.onSuggestionSelected(tokenStart, token, value, ['text']);
+    this.props.onSuggestionSelected(tokenStart, token, value, ["text"]);
   };
 
   onSpoilerSuggestionSelected = (tokenStart, token, value) => {
-    this.props.onSuggestionSelected(tokenStart, token, value, ['spoiler_text']);
+    this.props.onSuggestionSelected(tokenStart, token, value, ["spoiler_text"]);
   };
 
   handleChangeSpoilerText = (e) => {
@@ -156,7 +156,9 @@ class ComposeForm extends ImmutablePureComponent {
   }
 
   componentWillUnmount () {
-    if (this.timeout) clearTimeout(this.timeout);
+    if (this.timeout) {
+      clearTimeout(this.timeout);
+    }
   }
 
   componentDidUpdate (prevProps) {
@@ -175,7 +177,7 @@ class ComposeForm extends ImmutablePureComponent {
       if (this.props.preselectDate !== prevProps.preselectDate && this.props.isInReply) {
         selectionEnd   = this.props.text.length;
         selectionStart = this.props.text.search(/\s/) + 1;
-      } else if (typeof this.props.caretPosition === 'number') {
+      } else if (typeof this.props.caretPosition === "number") {
         selectionStart = this.props.caretPosition;
         selectionEnd   = this.props.caretPosition;
       } else {
@@ -228,14 +230,14 @@ class ComposeForm extends ImmutablePureComponent {
     const { highlighted } = this.state;
     const disabled = this.props.isSubmitting;
 
-    let publishText = '';
+    let publishText = "";
 
     if (this.props.isEditing) {
       publishText = intl.formatMessage(messages.saveChanges);
-    } else if (this.props.privacy === 'private' || this.props.privacy === 'direct') {
+    } else if (this.props.privacy === "private" || this.props.privacy === "direct") {
       publishText = <span className='compose-form__publish-private'><Icon id='lock' /> {intl.formatMessage(messages.publish)}</span>;
     } else {
-      publishText = this.props.privacy !== 'unlisted' ? intl.formatMessage(messages.publishLoud, { publish: intl.formatMessage(messages.publish) }) : intl.formatMessage(messages.publish);
+      publishText = this.props.privacy !== "unlisted" ? intl.formatMessage(messages.publishLoud, { publish: intl.formatMessage(messages.publish) }) : intl.formatMessage(messages.publish);
     }
 
     return (
@@ -244,7 +246,7 @@ class ComposeForm extends ImmutablePureComponent {
 
         <ReplyIndicatorContainer />
 
-        <div className={`spoiler-input ${this.props.spoiler ? 'spoiler-input--visible' : ''}`} ref={this.setRef} aria-hidden={!this.props.spoiler}>
+        <div className={`spoiler-input ${this.props.spoiler ? "spoiler-input--visible" : ""}`} ref={this.setRef} aria-hidden={!this.props.spoiler}>
           <AutosuggestInput
             placeholder={intl.formatMessage(messages.spoiler_placeholder)}
             value={this.props.spoilerText}
@@ -256,7 +258,7 @@ class ComposeForm extends ImmutablePureComponent {
             onSuggestionsFetchRequested={this.onSuggestionsFetchRequested}
             onSuggestionsClearRequested={this.onSuggestionsClearRequested}
             onSuggestionSelected={this.onSpoilerSuggestionSelected}
-            searchTokens={[':']}
+            searchTokens={[":"]}
             id='cw-spoiler-input'
             className='spoiler-input__input'
             lang={this.props.lang}
@@ -264,7 +266,7 @@ class ComposeForm extends ImmutablePureComponent {
           />
         </div>
 
-        <div className={classNames('compose-form__highlightable', { active: highlighted })}>
+        <div className={classNames("compose-form__highlightable", { active: highlighted })}>
           <AutosuggestTextarea
             ref={this.setAutosuggestTextarea}
             placeholder={intl.formatMessage(messages.placeholder)}

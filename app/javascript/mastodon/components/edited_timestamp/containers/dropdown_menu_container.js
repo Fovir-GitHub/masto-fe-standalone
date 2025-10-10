@@ -1,8 +1,8 @@
-import { connect } from 'react-redux';
+import { connect } from "react-redux";
 
-import { openDropdownMenu, closeDropdownMenu } from 'mastodon/actions/dropdown_menu';
-import { fetchHistory } from 'mastodon/actions/history';
-import DropdownMenu from 'mastodon/components/dropdown_menu';
+import { openDropdownMenu, closeDropdownMenu } from "mastodon/actions/dropdown_menu";
+import { fetchHistory } from "mastodon/actions/history";
+import DropdownMenu from "mastodon/components/dropdown_menu";
 
 /**
  *
@@ -12,8 +12,8 @@ import DropdownMenu from 'mastodon/components/dropdown_menu';
 const mapStateToProps = (state, { statusId }) => ({
   openDropdownId: state.dropdownMenu.openId,
   openedViaKeyboard: state.dropdownMenu.keyboard,
-  items: state.getIn(['history', statusId, 'items']),
-  loading: state.getIn(['history', statusId, 'loading']),
+  items: state.getIn(["history", statusId, "items"]),
+  loading: state.getIn(["history", statusId, "loading"]),
 });
 
 const mapDispatchToProps = (dispatch, { statusId }) => ({

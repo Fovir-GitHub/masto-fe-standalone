@@ -1,13 +1,13 @@
-import { me } from 'flavours/glitch/initial_state';
+import { me } from "flavours/glitch/initial_state";
 
-import api from '../api';
+import api from "../api";
 
-import { importFetchedStatuses } from './importer';
+import { importFetchedStatuses } from "./importer";
 
 
-export const PINNED_STATUSES_FETCH_REQUEST = 'PINNED_STATUSES_FETCH_REQUEST';
-export const PINNED_STATUSES_FETCH_SUCCESS = 'PINNED_STATUSES_FETCH_SUCCESS';
-export const PINNED_STATUSES_FETCH_FAIL = 'PINNED_STATUSES_FETCH_FAIL';
+export const PINNED_STATUSES_FETCH_REQUEST = "PINNED_STATUSES_FETCH_REQUEST";
+export const PINNED_STATUSES_FETCH_SUCCESS = "PINNED_STATUSES_FETCH_SUCCESS";
+export const PINNED_STATUSES_FETCH_FAIL = "PINNED_STATUSES_FETCH_FAIL";
 
 export function fetchPinnedStatuses() {
   return (dispatch, getState) => {

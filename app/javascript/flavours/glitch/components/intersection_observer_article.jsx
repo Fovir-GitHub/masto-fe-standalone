@@ -1,10 +1,10 @@
-import PropTypes from 'prop-types';
-import { cloneElement, Component } from 'react';
+import PropTypes from "prop-types";
+import { cloneElement, Component } from "react";
 
-import getRectFromEntry from '../features/ui/util/get_rect_from_entry';
-import scheduleIdleTask from '../features/ui/util/schedule_idle_task';
+import getRectFromEntry from "../features/ui/util/get_rect_from_entry";
+import scheduleIdleTask from "../features/ui/util/schedule_idle_task";
 // Diff these props in the "unrendered" state
-const updateOnPropsForUnrendered = ['id', 'index', 'listLength', 'cachedHeight'];
+const updateOnPropsForUnrendered = ["id", "index", "listLength", "cachedHeight"];
 
 export default class IntersectionObserverArticle extends Component {
 
@@ -111,7 +111,7 @@ export default class IntersectionObserverArticle extends Component {
     if (!isIntersecting && (isHidden || cachedHeight)) {
       style.height = `${this.height || cachedHeight || 150}px`;
       style.opacity = 0;
-      style.overflow = 'hidden';
+      style.overflow = "hidden";
     }
 
     return (

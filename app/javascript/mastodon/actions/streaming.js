@@ -1,17 +1,17 @@
 // @ts-check
 
-import { getLocale } from '../locales';
-import { connectStream } from '../stream';
+import { getLocale } from "../locales";
+import { connectStream } from "../stream";
 
 import {
   fetchAnnouncements,
   updateAnnouncements,
   updateReaction as updateAnnouncementsReaction,
   deleteAnnouncement,
-} from './announcements';
-import { updateConversations } from './conversations';
-import { updateNotifications, expandNotifications } from './notifications';
-import { updateStatus } from './statuses';
+} from "./announcements";
+import { updateConversations } from "./conversations";
+import { updateNotifications, expandNotifications } from "./notifications";
+import { updateStatus } from "./statuses";
 import {
   updateTimeline,
   deleteFromTimelines,
@@ -22,7 +22,7 @@ import {
   fillPublicTimelineGaps,
   fillCommunityTimelineGaps,
   fillListTimelineGaps,
-} from './timelines';
+} from "./timelines";
 
 /**
  * @param {number} max
@@ -45,7 +45,7 @@ export const connectTimelineStream = (timelineId, channelName, params = {}, opti
   const { messages } = getLocale();
 
   return connectStream(channelName, params, (dispatch, getState) => {
-    const locale = getState().getIn(['meta', 'locale']);
+    const locale = getState().getIn(["meta", "locale"]);
 
     // @ts-expect-error
     let pollingId;
@@ -87,36 +87,36 @@ export const connectTimelineStream = (timelineId, channelName, params = {}, opti
 
       onReceive(data) {
         switch (data.event) {
-        case 'update':
+          case "update":
           // @ts-expect-error
-          dispatch(updateTimeline(timelineId, JSON.parse(data.payload), options.accept));
-          break;
-        case 'status.update':
+            dispatch(updateTimeline(timelineId, JSON.parse(data.payload), options.accept));
+            break;
+          case "status.update":
           // @ts-expect-error
-          dispatch(updateStatus(JSON.parse(data.payload)));
-          break;
-        case 'delete':
-          dispatch(deleteFromTimelines(data.payload));
-          break;
-        case 'notification':
+            dispatch(updateStatus(JSON.parse(data.payload)));
+            break;
+          case "delete":
+            dispatch(deleteFromTimelines(data.payload));
+            break;
+          case "notification":
           // @ts-expect-error
-          dispatch(updateNotifications(JSON.parse(data.payload), messages, locale));
-          break;
-        case 'conversation':
+            dispatch(updateNotifications(JSON.parse(data.payload), messages, locale));
+            break;
+          case "conversation":
           // @ts-expect-error
-          dispatch(updateConversations(JSON.parse(data.payload)));
-          break;
-        case 'announcement':
+            dispatch(updateConversations(JSON.parse(data.payload)));
+            break;
+          case "announcement":
           // @ts-expect-error
-          dispatch(updateAnnouncements(JSON.parse(data.payload)));
-          break;
-        case 'announcement.reaction':
+            dispatch(updateAnnouncements(JSON.parse(data.payload)));
+            break;
+          case "announcement.reaction":
           // @ts-expect-error
-          dispatch(updateAnnouncementsReaction(JSON.parse(data.payload)));
-          break;
-        case 'announcement.delete':
-          dispatch(deleteAnnouncement(data.payload));
-          break;
+            dispatch(updateAnnouncementsReaction(JSON.parse(data.payload)));
+            break;
+          case "announcement.delete":
+            dispatch(deleteAnnouncement(data.payload));
+            break;
         }
       },
     };
@@ -128,9 +128,7 @@ export const connectTimelineStream = (timelineId, channelName, params = {}, opti
  * @param {function(): void} done
  */
 const refreshHomeTimelineAndNotification = (dispatch, done) => {
-  // @ts-expect-error
   dispatch(expandHomeTimeline({}, () =>
-    // @ts-expect-error
     dispatch(expandNotifications({}, () =>
       dispatch(fetchAnnouncements(done))))));
 };
@@ -140,7 +138,7 @@ const refreshHomeTimelineAndNotification = (dispatch, done) => {
  */
 export const connectUserStream = () =>
   // @ts-expect-error
-  connectTimelineStream('home', 'user', {}, { fallback: refreshHomeTimelineAndNotification, fillGaps: fillHomeTimelineGaps });
+  connectTimelineStream("home", "user", {}, { fallback: refreshHomeTimelineAndNotification, fillGaps: fillHomeTimelineGaps });
 
 /**
  * @param {Object} options
@@ -148,7 +146,7 @@ export const connectUserStream = () =>
  * @returns {function(): void}
  */
 export const connectCommunityStream = ({ onlyMedia } = {}) =>
-  connectTimelineStream(`community${onlyMedia ? ':media' : ''}`, `public:local${onlyMedia ? ':media' : ''}`, {}, { fillGaps: () => (fillCommunityTimelineGaps({ onlyMedia })) });
+  connectTimelineStream(`community${onlyMedia ? ":media" : ""}`, `public:local${onlyMedia ? ":media" : ""}`, {}, { fillGaps: () => (fillCommunityTimelineGaps({ onlyMedia })) });
 
 /**
  * @param {Object} options
@@ -157,7 +155,7 @@ export const connectCommunityStream = ({ onlyMedia } = {}) =>
  * @returns {function(): void}
  */
 export const connectPublicStream = ({ onlyMedia, onlyRemote } = {}) =>
-  connectTimelineStream(`public${onlyRemote ? ':remote' : ''}${onlyMedia ? ':media' : ''}`, `public${onlyRemote ? ':remote' : ''}${onlyMedia ? ':media' : ''}`, {}, { fillGaps: () => fillPublicTimelineGaps({ onlyMedia, onlyRemote }) });
+  connectTimelineStream(`public${onlyRemote ? ":remote" : ""}${onlyMedia ? ":media" : ""}`, `public${onlyRemote ? ":remote" : ""}${onlyMedia ? ":media" : ""}`, {}, { fillGaps: () => fillPublicTimelineGaps({ onlyMedia, onlyRemote }) });
 
 /**
  * @param {string} columnId
@@ -167,17 +165,17 @@ export const connectPublicStream = ({ onlyMedia, onlyRemote } = {}) =>
  * @returns {function(): void}
  */
 export const connectHashtagStream = (columnId, tagName, onlyLocal, accept) =>
-  connectTimelineStream(`hashtag:${columnId}${onlyLocal ? ':local' : ''}`, `hashtag${onlyLocal ? ':local' : ''}`, { tag: tagName }, { accept });
+  connectTimelineStream(`hashtag:${columnId}${onlyLocal ? ":local" : ""}`, `hashtag${onlyLocal ? ":local" : ""}`, { tag: tagName }, { accept });
 
 /**
  * @returns {function(): void}
  */
 export const connectDirectStream = () =>
-  connectTimelineStream('direct', 'direct');
+  connectTimelineStream("direct", "direct");
 
 /**
  * @param {string} listId
  * @returns {function(): void}
  */
 export const connectListStream = listId =>
-  connectTimelineStream(`list:${listId}`, 'list', { list: listId }, { fillGaps: () => fillListTimelineGaps(listId) });
+  connectTimelineStream(`list:${listId}`, "list", { list: listId }, { fillGaps: () => fillListTimelineGaps(listId) });

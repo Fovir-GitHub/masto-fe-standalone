@@ -1,11 +1,11 @@
-import PropTypes from 'prop-types';
-import { PureComponent } from 'react';
+import PropTypes from "prop-types";
+import { PureComponent } from "react";
 
-import { injectIntl, FormattedMessage } from 'react-intl';
+import { injectIntl, FormattedMessage } from "react-intl";
 
-import ImmutablePropTypes from 'react-immutable-proptypes';
+import ImmutablePropTypes from "react-immutable-proptypes";
 
-import SettingToggle from '../../notifications/components/setting_toggle';
+import SettingToggle from "../../notifications/components/setting_toggle";
 
 class ColumnSettings extends PureComponent {
 
@@ -22,7 +22,7 @@ class ColumnSettings extends PureComponent {
     return (
       <div>
         <div className='column-settings__row'>
-          <SettingToggle settings={settings} settingPath={['other', 'onlyMedia']} onChange={onChange} label={<FormattedMessage id='community.column_settings.media_only' defaultMessage='Media only' />} />
+          <SettingToggle settings={settings} settingPath={["other", "onlyMedia"]} onChange={onChange} label={<FormattedMessage id='community.column_settings.media_only' defaultMessage='Media only' />} />
         </div>
       </div>
     );

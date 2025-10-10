@@ -1,12 +1,12 @@
-import renderer from 'react-test-renderer';
+import renderer from "react-test-renderer";
 
-import AutosuggestEmoji from '../autosuggest_emoji';
+import AutosuggestEmoji from "../autosuggest_emoji";
 
-describe('<AutosuggestEmoji />', () => {
-  it('renders native emoji', () => {
+describe("<AutosuggestEmoji />", () => {
+  it("renders native emoji", () => {
     const emoji = {
-      native: '💙',
-      colons: ':foobar:',
+      native: "💙",
+      colons: ":foobar:",
     };
     const component = renderer.create(<AutosuggestEmoji emoji={emoji} />);
     const tree      = component.toJSON();
@@ -14,12 +14,12 @@ describe('<AutosuggestEmoji />', () => {
     expect(tree).toMatchSnapshot();
   });
 
-  it('renders emoji with custom url', () => {
+  it("renders emoji with custom url", () => {
     const emoji = {
       custom: true,
-      imageUrl: 'http://example.com/emoji.png',
-      native: 'foobar',
-      colons: ':foobar:',
+      imageUrl: "http://example.com/emoji.png",
+      native: "foobar",
+      colons: ":foobar:",
     };
     const component = renderer.create(<AutosuggestEmoji emoji={emoji} />);
     const tree      = component.toJSON();

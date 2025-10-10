@@ -1,11 +1,11 @@
-import api from '../api';
+import api from "../api";
 
-export const FEATURED_TAGS_FETCH_REQUEST = 'FEATURED_TAGS_FETCH_REQUEST';
-export const FEATURED_TAGS_FETCH_SUCCESS = 'FEATURED_TAGS_FETCH_SUCCESS';
-export const FEATURED_TAGS_FETCH_FAIL    = 'FEATURED_TAGS_FETCH_FAIL';
+export const FEATURED_TAGS_FETCH_REQUEST = "FEATURED_TAGS_FETCH_REQUEST";
+export const FEATURED_TAGS_FETCH_SUCCESS = "FEATURED_TAGS_FETCH_SUCCESS";
+export const FEATURED_TAGS_FETCH_FAIL    = "FEATURED_TAGS_FETCH_FAIL";
 
 export const fetchFeaturedTags = (id) => (dispatch, getState) => {
-  if (getState().getIn(['user_lists', 'featured_tags', id, 'items'])) {
+  if (getState().getIn(["user_lists", "featured_tags", id, "items"])) {
     return;
   }
 

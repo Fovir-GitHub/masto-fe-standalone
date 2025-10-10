@@ -1,12 +1,12 @@
-import PropTypes from 'prop-types';
-import { PureComponent } from 'react';
+import PropTypes from "prop-types";
+import { PureComponent } from "react";
 
-import { injectIntl, defineMessages } from 'react-intl';
+import { injectIntl, defineMessages } from "react-intl";
 
-import ColumnHeader from '../../../components/column_header';
+import ColumnHeader from "../../../components/column_header";
 
 const messages = defineMessages({
-  profile: { id: 'column_header.profile', defaultMessage: 'Profile' },
+  profile: { id: "column_header.profile", defaultMessage: "Profile" },
 });
 
 class ProfileColumnHeader extends PureComponent {

@@ -1,11 +1,11 @@
-import { Iterable, fromJS } from 'immutable';
+import { Iterable, fromJS } from "immutable";
 
-import { hydrateCompose } from './compose';
-import { importFetchedAccounts } from './importer';
-import { hydrateSearch } from './search';
+import { hydrateCompose } from "./compose";
+import { importFetchedAccounts } from "./importer";
+import { hydrateSearch } from "./search";
 
-export const STORE_HYDRATE = 'STORE_HYDRATE';
-export const STORE_HYDRATE_LAZY = 'STORE_HYDRATE_LAZY';
+export const STORE_HYDRATE = "STORE_HYDRATE";
+export const STORE_HYDRATE_LAZY = "STORE_HYDRATE_LAZY";
 
 const convertState = rawState =>
   fromJS(rawState, (k, v) =>

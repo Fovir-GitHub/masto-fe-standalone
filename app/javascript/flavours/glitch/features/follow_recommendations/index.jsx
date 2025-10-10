@@ -1,26 +1,26 @@
-import PropTypes from 'prop-types';
+import PropTypes from "prop-types";
 
-import { FormattedMessage } from 'react-intl';
+import { FormattedMessage } from "react-intl";
 
-import { Helmet } from 'react-helmet';
+import { Helmet } from "react-helmet";
 
-import ImmutablePropTypes from 'react-immutable-proptypes';
-import ImmutablePureComponent from 'react-immutable-pure-component';
-import { connect } from 'react-redux';
+import ImmutablePropTypes from "react-immutable-proptypes";
+import ImmutablePureComponent from "react-immutable-pure-component";
+import { connect } from "react-redux";
 
-import { requestBrowserPermission } from 'flavours/glitch/actions/notifications';
-import { changeSetting, saveSettings } from 'flavours/glitch/actions/settings';
-import { fetchSuggestions } from 'flavours/glitch/actions/suggestions';
-import { markAsPartial } from 'flavours/glitch/actions/timelines';
-import Button from 'flavours/glitch/components/button';
-import Column from 'flavours/glitch/features/ui/components/column';
-import imageGreeting from 'mastodon/../images/elephant_ui_greeting.svg';
+import { requestBrowserPermission } from "flavours/glitch/actions/notifications";
+import { changeSetting, saveSettings } from "flavours/glitch/actions/settings";
+import { fetchSuggestions } from "flavours/glitch/actions/suggestions";
+import { markAsPartial } from "flavours/glitch/actions/timelines";
+import Button from "flavours/glitch/components/button";
+import Column from "flavours/glitch/features/ui/components/column";
+import imageGreeting from "mastodon/../images/elephant_ui_greeting.svg";
 
-import Account from './components/account';
+import Account from "./components/account";
 
 const mapStateToProps = state => ({
-  suggestions: state.getIn(['suggestions', 'items']),
-  isLoading: state.getIn(['suggestions', 'isLoading']),
+  suggestions: state.getIn(["suggestions", "items"]),
+  isLoading: state.getIn(["suggestions", "isLoading"]),
 });
 
 class FollowRecommendations extends ImmutablePureComponent {
@@ -52,7 +52,7 @@ class FollowRecommendations extends ImmutablePureComponent {
     // Force the home timeline to be reloaded when the user navigates
     // to it; if the user is new, it would've been empty before
 
-    dispatch(markAsPartial('home'));
+    dispatch(markAsPartial("home"));
   }
 
   handleDone = () => {
@@ -60,18 +60,18 @@ class FollowRecommendations extends ImmutablePureComponent {
     const { router } = this.context;
 
     dispatch(requestBrowserPermission((permission) => {
-      if (permission === 'granted') {
-        dispatch(changeSetting(['notifications', 'alerts', 'follow'], true));
-        dispatch(changeSetting(['notifications', 'alerts', 'favourite'], true));
-        dispatch(changeSetting(['notifications', 'alerts', 'reblog'], true));
-        dispatch(changeSetting(['notifications', 'alerts', 'mention'], true));
-        dispatch(changeSetting(['notifications', 'alerts', 'poll'], true));
-        dispatch(changeSetting(['notifications', 'alerts', 'status'], true));
+      if (permission === "granted") {
+        dispatch(changeSetting(["notifications", "alerts", "follow"], true));
+        dispatch(changeSetting(["notifications", "alerts", "favourite"], true));
+        dispatch(changeSetting(["notifications", "alerts", "reblog"], true));
+        dispatch(changeSetting(["notifications", "alerts", "mention"], true));
+        dispatch(changeSetting(["notifications", "alerts", "poll"], true));
+        dispatch(changeSetting(["notifications", "alerts", "status"], true));
         dispatch(saveSettings());
       }
     }));
 
-    router.history.push('/home');
+    router.history.push("/home");
   };
 
   render () {
@@ -93,7 +93,7 @@ class FollowRecommendations extends ImmutablePureComponent {
             <>
               <div className='column-list'>
                 {suggestions.size > 0 ? suggestions.map(suggestion => (
-                  <Account key={suggestion.get('account')} id={suggestion.get('account')} />
+                  <Account key={suggestion.get("account")} id={suggestion.get("account")} />
                 )) : (
                   <div className='column-list__empty-message'>
                     <FormattedMessage id='empty_column.follow_recommendations' defaultMessage='Looks like no suggestions could be generated for you. You can try using search to look for people you might know or explore trending hashtags.' />

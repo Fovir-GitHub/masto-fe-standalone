@@ -1,7 +1,7 @@
-import PropTypes from 'prop-types';
-import { PureComponent } from 'react';
+import PropTypes from "prop-types";
+import { PureComponent } from "react";
 
-import { length } from 'stringz';
+import { length } from "stringz";
 
 export default class CharacterCounter extends PureComponent {
 

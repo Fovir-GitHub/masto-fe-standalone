@@ -1,22 +1,22 @@
-import PropTypes from 'prop-types';
+import PropTypes from "prop-types";
 
-import { withRouter } from 'react-router-dom';
+import { withRouter } from "react-router-dom";
 
-import ImmutablePropTypes from 'react-immutable-proptypes';
-import ImmutablePureComponent from 'react-immutable-pure-component';
-import { connect } from 'react-redux';
-import { createSelector } from 'reselect';
+import ImmutablePropTypes from "react-immutable-proptypes";
+import ImmutablePureComponent from "react-immutable-pure-component";
+import { connect } from "react-redux";
+import { createSelector } from "reselect";
 
-import { fetchLists } from 'mastodon/actions/lists';
+import { fetchLists } from "mastodon/actions/lists";
 
-import ColumnLink from './column_link';
+import ColumnLink from "./column_link";
 
-const getOrderedLists = createSelector([state => state.get('lists')], lists => {
+const getOrderedLists = createSelector([state => state.get("lists")], lists => {
   if (!lists) {
     return lists;
   }
 
-  return lists.toList().filter(item => !!item).sort((a, b) => a.get('title').localeCompare(b.get('title'))).take(4);
+  return lists.toList().filter(item => !!item).sort((a, b) => a.get("title").localeCompare(b.get("title"))).take(4);
 });
 
 const mapStateToProps = state => ({
@@ -47,7 +47,7 @@ class ListPanel extends ImmutablePureComponent {
         <hr />
 
         {lists.map(list => (
-          <ColumnLink icon='list-ul' key={list.get('id')} strict text={list.get('title')} to={`/lists/${list.get('id')}`} transparent />
+          <ColumnLink icon='list-ul' key={list.get("id")} strict text={list.get("title")} to={`/lists/${list.get("id")}`} transparent />
         ))}
       </div>
     );

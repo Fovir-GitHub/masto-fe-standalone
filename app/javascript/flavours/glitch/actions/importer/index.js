@@ -1,11 +1,11 @@
-import { normalizeAccount, normalizeStatus, normalizePoll } from './normalizer';
+import { normalizeAccount, normalizeStatus, normalizePoll } from "./normalizer";
 
-export const ACCOUNT_IMPORT  = 'ACCOUNT_IMPORT';
-export const ACCOUNTS_IMPORT = 'ACCOUNTS_IMPORT';
-export const STATUS_IMPORT   = 'STATUS_IMPORT';
-export const STATUSES_IMPORT = 'STATUSES_IMPORT';
-export const POLLS_IMPORT    = 'POLLS_IMPORT';
-export const FILTERS_IMPORT  = 'FILTERS_IMPORT';
+export const ACCOUNT_IMPORT  = "ACCOUNT_IMPORT";
+export const ACCOUNTS_IMPORT = "ACCOUNTS_IMPORT";
+export const STATUS_IMPORT   = "STATUS_IMPORT";
+export const STATUSES_IMPORT = "STATUSES_IMPORT";
+export const POLLS_IMPORT    = "POLLS_IMPORT";
+export const FILTERS_IMPORT  = "FILTERS_IMPORT";
 
 function pushUnique(array, object) {
   if (array.every(element => element.id !== object.id)) {
@@ -69,7 +69,7 @@ export function importFetchedStatuses(statuses) {
     const filters = [];
 
     function processStatus(status) {
-      pushUnique(normalStatuses, normalizeStatus(status, getState().getIn(['statuses', status.id]), getState().get('local_settings')));
+      pushUnique(normalStatuses, normalizeStatus(status, getState().getIn(["statuses", status.id]), getState().get("local_settings")));
       pushUnique(accounts, status.account);
 
       if (status.filtered) {
@@ -81,7 +81,7 @@ export function importFetchedStatuses(statuses) {
       }
 
       if (status.poll && status.poll.id) {
-        pushUnique(polls, normalizePoll(status.poll, getState().getIn(['polls', status.poll.id])));
+        pushUnique(polls, normalizePoll(status.poll, getState().getIn(["polls", status.poll.id])));
       }
     }
 
@@ -96,6 +96,6 @@ export function importFetchedStatuses(statuses) {
 
 export function importFetchedPoll(poll) {
   return (dispatch, getState) => {
-    dispatch(importPolls([normalizePoll(poll, getState().getIn(['polls', poll.id]))]));
+    dispatch(importPolls([normalizePoll(poll, getState().getIn(["polls", poll.id]))]));
   };
 }

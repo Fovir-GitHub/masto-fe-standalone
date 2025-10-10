@@ -1,32 +1,32 @@
-import PropTypes from 'prop-types';
-import { PureComponent } from 'react';
+import PropTypes from "prop-types";
+import { PureComponent } from "react";
 
-import { injectIntl, defineMessages, FormattedMessage } from 'react-intl';
+import { injectIntl, defineMessages, FormattedMessage } from "react-intl";
 
-import classNames from 'classnames';
+import classNames from "classnames";
 
-import { connect } from 'react-redux';
+import { connect } from "react-redux";
 
-import { changeComposeSensitivity } from 'flavours/glitch/actions/compose';
+import { changeComposeSensitivity } from "flavours/glitch/actions/compose";
 
 const messages = defineMessages({
   marked: {
-    id: 'compose_form.sensitive.marked',
-    defaultMessage: '{count, plural, one {Media is marked as sensitive} other {Media is marked as sensitive}}',
+    id: "compose_form.sensitive.marked",
+    defaultMessage: "{count, plural, one {Media is marked as sensitive} other {Media is marked as sensitive}}",
   },
   unmarked: {
-    id: 'compose_form.sensitive.unmarked',
-    defaultMessage: '{count, plural, one {Media is not marked as sensitive} other {Media is not marked as sensitive}}',
+    id: "compose_form.sensitive.unmarked",
+    defaultMessage: "{count, plural, one {Media is not marked as sensitive} other {Media is not marked as sensitive}}",
   },
 });
 
 const mapStateToProps = state => {
-  const spoilersAlwaysOn = state.getIn(['local_settings', 'always_show_spoilers_field']);
-  const spoilerText = state.getIn(['compose', 'spoiler_text']);
+  const spoilersAlwaysOn = state.getIn(["local_settings", "always_show_spoilers_field"]);
+  const spoilerText = state.getIn(["compose", "spoiler_text"]);
   return {
-    active: state.getIn(['compose', 'sensitive']) || (spoilersAlwaysOn && spoilerText && spoilerText.length > 0),
-    disabled: state.getIn(['compose', 'spoiler']),
-    mediaCount: state.getIn(['compose', 'media_attachments']).size,
+    active: state.getIn(["compose", "sensitive"]) || (spoilersAlwaysOn && spoilerText && spoilerText.length > 0),
+    disabled: state.getIn(["compose", "spoiler"]),
+    mediaCount: state.getIn(["compose", "media_attachments"]).size,
   };
 };
 
@@ -53,7 +53,7 @@ class SensitiveButton extends PureComponent {
 
     return (
       <div className='compose-form__sensitive-button'>
-        <label className={classNames('icon-button', { active })} title={intl.formatMessage(active ? messages.marked : messages.unmarked, { count: mediaCount })}>
+        <label className={classNames("icon-button", { active })} title={intl.formatMessage(active ? messages.marked : messages.unmarked, { count: mediaCount })}>
           <input
             name='mark-sensitive'
             type='checkbox'
@@ -62,7 +62,7 @@ class SensitiveButton extends PureComponent {
             disabled={disabled}
           />
 
-          <span className={classNames('checkbox', { active })} />
+          <span className={classNames("checkbox", { active })} />
 
           <FormattedMessage
             id='compose_form.sensitive.hide'

@@ -1,18 +1,18 @@
-import PropTypes from 'prop-types';
-import { PureComponent } from 'react';
+import PropTypes from "prop-types";
+import { PureComponent } from "react";
 
-import { defineMessages, injectIntl } from 'react-intl';
+import { defineMessages, injectIntl } from "react-intl";
 
-import { IconButton } from '../../../components/icon_button';
+import { IconButton } from "../../../components/icon_button";
 
 const messages = defineMessages({
-  add_poll: { id: 'poll_button.add_poll', defaultMessage: 'Add a poll' },
-  remove_poll: { id: 'poll_button.remove_poll', defaultMessage: 'Remove poll' },
+  add_poll: { id: "poll_button.add_poll", defaultMessage: "Add a poll" },
+  remove_poll: { id: "poll_button.remove_poll", defaultMessage: "Remove poll" },
 });
 
 const iconStyle = {
   height: null,
-  lineHeight: '27px',
+  lineHeight: "27px",
 };
 
 class PollButton extends PureComponent {
@@ -43,7 +43,7 @@ class PollButton extends PureComponent {
           title={intl.formatMessage(active ? messages.remove_poll : messages.add_poll)}
           disabled={disabled}
           onClick={this.handleClick}
-          className={`compose-form__poll-button-icon ${active ? 'active' : ''}`}
+          className={`compose-form__poll-button-icon ${active ? "active" : ""}`}
           size={18}
           inverted
           style={iconStyle}

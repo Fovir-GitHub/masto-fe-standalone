@@ -1,13 +1,13 @@
-import { useCallback, useState } from 'react';
+import { useCallback, useState } from "react";
 
-import { TransitionMotion, spring } from 'react-motion';
+import { TransitionMotion, spring } from "react-motion";
 
-import { reduceMotion } from '../initial_state';
+import { reduceMotion } from "../initial_state";
 
-import { ShortNumber } from './short_number';
+import { ShortNumber } from "./short_number";
 
 interface Props {
-  value: number;
+  value: number,
 }
 export const AnimatedNumber: React.FC<Props> = ({ value }) => {
   const [previousValue, setPreviousValue] = useState(value);
@@ -48,7 +48,7 @@ export const AnimatedNumber: React.FC<Props> = ({ value }) => {
             <span
               key={key}
               style={{
-                position: direction * style.y > 0 ? 'absolute' : 'static',
+                position: direction * style.y > 0 ? "absolute" : "static",
                 transform: `translateY(${style.y * 100}%)`,
               }}
             >

@@ -6,21 +6,21 @@
 
 
 //  Package imports  //
-import PropTypes from 'prop-types';
+import PropTypes from "prop-types";
 
-import { defineMessages, injectIntl } from 'react-intl';
+import { defineMessages, injectIntl } from "react-intl";
 
-import classNames from 'classnames';
+import classNames from "classnames";
 
-import ImmutablePureComponent from 'react-immutable-pure-component';
+import ImmutablePureComponent from "react-immutable-pure-component";
 
-import { Icon } from 'flavours/glitch/components/icon';
+import { Icon } from "flavours/glitch/components/icon";
 
 const messages = defineMessages({
-  btnAll : { id: 'notification_purge.btn_all', defaultMessage: 'Select\nall' },
-  btnNone : { id: 'notification_purge.btn_none', defaultMessage: 'Select\nnone' },
-  btnInvert : { id: 'notification_purge.btn_invert', defaultMessage: 'Invert\nselection' },
-  btnApply : { id: 'notification_purge.btn_apply', defaultMessage: 'Clear\nselected' },
+  btnAll : { id: "notification_purge.btn_all", defaultMessage: "Select\nall" },
+  btnNone : { id: "notification_purge.btn_none", defaultMessage: "Select\nnone" },
+  btnInvert : { id: "notification_purge.btn_invert", defaultMessage: "Invert\nselection" },
+  btnApply : { id: "notification_purge.btn_apply", defaultMessage: "Clear\nselected" },
 });
 
 class NotificationPurgeButtons extends ImmutablePureComponent {
@@ -40,11 +40,11 @@ class NotificationPurgeButtons extends ImmutablePureComponent {
     //className='active'
     return (
       <div className='column-header__notif-cleaning-buttons'>
-        <button onClick={this.props.onMarkAll} className={classNames('column-header__button', { active: markNewForDelete })}>
+        <button onClick={this.props.onMarkAll} className={classNames("column-header__button", { active: markNewForDelete })}>
           <b>∀</b><br />{intl.formatMessage(messages.btnAll)}
         </button>
 
-        <button onClick={this.props.onMarkNone} className={classNames('column-header__button', { active: !markNewForDelete })}>
+        <button onClick={this.props.onMarkNone} className={classNames("column-header__button", { active: !markNewForDelete })}>
           <b>∅</b><br />{intl.formatMessage(messages.btnNone)}
         </button>
 

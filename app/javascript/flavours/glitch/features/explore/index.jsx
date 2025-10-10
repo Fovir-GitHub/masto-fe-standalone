@@ -1,34 +1,34 @@
-import PropTypes from 'prop-types';
-import { PureComponent } from 'react';
+import PropTypes from "prop-types";
+import { PureComponent } from "react";
 
-import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
+import { defineMessages, injectIntl, FormattedMessage } from "react-intl";
 
-import { Helmet } from 'react-helmet';
-import { NavLink, Switch, Route } from 'react-router-dom';
+import { Helmet } from "react-helmet";
+import { NavLink, Switch, Route } from "react-router-dom";
 
-import { connect } from 'react-redux';
+import { connect } from "react-redux";
 
-import Column from 'flavours/glitch/components/column';
-import ColumnHeader from 'flavours/glitch/components/column_header';
-import Search from 'flavours/glitch/features/compose/containers/search_container';
-import { trendsEnabled } from 'flavours/glitch/initial_state';
+import Column from "flavours/glitch/components/column";
+import ColumnHeader from "flavours/glitch/components/column_header";
+import Search from "flavours/glitch/features/compose/containers/search_container";
+import { trendsEnabled } from "flavours/glitch/initial_state";
 
-import Links from './links';
-import SearchResults from './results';
-import Statuses from './statuses';
-import Suggestions from './suggestions';
-import Tags from './tags';
+import Links from "./links";
+import SearchResults from "./results";
+import Statuses from "./statuses";
+import Suggestions from "./suggestions";
+import Tags from "./tags";
 
 
 
 const messages = defineMessages({
-  title: { id: 'explore.title', defaultMessage: 'Explore' },
-  searchResults: { id: 'explore.search_results', defaultMessage: 'Search results' },
+  title: { id: "explore.title", defaultMessage: "Explore" },
+  searchResults: { id: "explore.search_results", defaultMessage: "Search results" },
 });
 
 const mapStateToProps = state => ({
-  layout: state.getIn(['meta', 'layout']),
-  isSearching: state.getIn(['search', 'submitted']) || !trendsEnabled,
+  layout: state.getIn(["meta", "layout"]),
+  isSearching: state.getIn(["search", "submitted"]) || !trendsEnabled,
 });
 
 class Explore extends PureComponent {
@@ -59,7 +59,7 @@ class Explore extends PureComponent {
     return (
       <Column bindToDocument={!multiColumn} ref={this.setRef} label={intl.formatMessage(messages.title)}>
         <ColumnHeader
-          icon={isSearching ? 'search' : 'hashtag'}
+          icon={isSearching ? "search" : "hashtag"}
           title={intl.formatMessage(isSearching ? messages.searchResults : messages.title)}
           onClick={this.handleHeaderClick}
           multiColumn={multiColumn}
@@ -98,14 +98,14 @@ class Explore extends PureComponent {
                 <Route path='/explore/tags' component={Tags} />
                 <Route path='/explore/links' component={Links} />
                 <Route path='/explore/suggestions' component={Suggestions} />
-                <Route exact path={['/explore', '/explore/posts', '/search']}>
+                <Route exact path={["/explore", "/explore/posts", "/search"]}>
                   <Statuses multiColumn={multiColumn} />
                 </Route>
               </Switch>
 
               <Helmet>
                 <title>{intl.formatMessage(messages.title)}</title>
-                <meta name='robots' content={isSearching ? 'noindex' : 'all'} />
+                <meta name='robots' content={isSearching ? "noindex" : "all"} />
               </Helmet>
             </>
           )}

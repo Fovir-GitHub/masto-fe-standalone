@@ -1,24 +1,24 @@
-import PropTypes from 'prop-types';
+import PropTypes from "prop-types";
 
-import { defineMessages, injectIntl } from 'react-intl';
+import { defineMessages, injectIntl } from "react-intl";
 
-import ImmutablePropTypes from 'react-immutable-proptypes';
-import ImmutablePureComponent from 'react-immutable-pure-component';
-import { connect } from 'react-redux';
+import ImmutablePropTypes from "react-immutable-proptypes";
+import ImmutablePureComponent from "react-immutable-pure-component";
+import { connect } from "react-redux";
 
-import { Icon }  from 'mastodon/components/icon';
+import { Icon }  from "mastodon/components/icon";
 
-import { removeFromListAdder, addToListAdder } from '../../../actions/lists';
-import { IconButton }  from '../../../components/icon_button';
+import { removeFromListAdder, addToListAdder } from "../../../actions/lists";
+import { IconButton }  from "../../../components/icon_button";
 
 const messages = defineMessages({
-  remove: { id: 'lists.account.remove', defaultMessage: 'Remove from list' },
-  add: { id: 'lists.account.add', defaultMessage: 'Add to list' },
+  remove: { id: "lists.account.remove", defaultMessage: "Remove from list" },
+  add: { id: "lists.account.add", defaultMessage: "Add to list" },
 });
 
 const MapStateToProps = (state, { listId, added }) => ({
-  list: state.get('lists').get(listId),
-  added: typeof added === 'undefined' ? state.getIn(['listAdder', 'lists', 'items']).includes(listId) : added,
+  list: state.get("lists").get(listId),
+  added: typeof added === "undefined" ? state.getIn(["listAdder", "lists", "items"]).includes(listId) : added,
 });
 
 const mapDispatchToProps = (dispatch, { listId }) => ({
@@ -56,7 +56,7 @@ class List extends ImmutablePureComponent {
         <div className='list__wrapper'>
           <div className='list__display-name'>
             <Icon id='list-ul' className='column-link__icon' fixedWidth />
-            {list.get('title')}
+            {list.get("title")}
           </div>
 
           <div className='account__relationship'>

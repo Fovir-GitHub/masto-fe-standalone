@@ -1,4 +1,4 @@
-import { ScrollContainer as OriginalScrollContainer } from 'react-router-scroll-4';
+import { ScrollContainer as OriginalScrollContainer } from "react-router-scroll-4";
 
 // ScrollContainer is used to automatically scroll to the top when pushing a
 // new history state and remembering the scroll position when going back.

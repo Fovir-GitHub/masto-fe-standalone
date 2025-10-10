@@ -1,11 +1,11 @@
-import { connect } from 'react-redux';
+import { connect } from "react-redux";
 
-import { fetchTrendingHashtags } from 'mastodon/actions/trends';
+import { fetchTrendingHashtags } from "mastodon/actions/trends";
 
-import Trends from '../components/trends';
+import Trends from "../components/trends";
 
 const mapStateToProps = state => ({
-  trends: state.getIn(['trends', 'tags', 'items']),
+  trends: state.getIn(["trends", "tags", "items"]),
 });
 
 const mapDispatchToProps = dispatch => ({

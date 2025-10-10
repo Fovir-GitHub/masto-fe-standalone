@@ -1,17 +1,17 @@
-import { connect } from 'react-redux';
+import { connect } from "react-redux";
 
-import { submitAccountNote } from 'mastodon/actions/account_notes';
+import { submitAccountNote } from "mastodon/actions/account_notes";
 
-import AccountNote from '../components/account_note';
+import AccountNote from "../components/account_note";
 
 const mapStateToProps = (state, { account }) => ({
-  value: account.getIn(['relationship', 'note']),
+  value: account.getIn(["relationship", "note"]),
 });
 
 const mapDispatchToProps = (dispatch, { account }) => ({
 
   onSave (value) {
-    dispatch(submitAccountNote({ id: account.get('id'), value}));
+    dispatch(submitAccountNote({ id: account.get("id"), value}));
   },
 
 });

@@ -1,19 +1,19 @@
-import PropTypes from 'prop-types';
-import { PureComponent } from 'react';
+import PropTypes from "prop-types";
+import { PureComponent } from "react";
 
-import { FormattedMessage } from 'react-intl';
+import { FormattedMessage } from "react-intl";
 
-import { OrderedSet } from 'immutable';
-import ImmutablePropTypes from 'react-immutable-proptypes';
-import { connect } from 'react-redux';
+import { OrderedSet } from "immutable";
+import ImmutablePropTypes from "react-immutable-proptypes";
+import { connect } from "react-redux";
 
-import Button from 'mastodon/components/button';
-import { LoadingIndicator } from 'mastodon/components/loading_indicator';
-import StatusCheckBox from 'mastodon/features/report/containers/status_check_box_container';
+import Button from "mastodon/components/button";
+import { LoadingIndicator } from "mastodon/components/loading_indicator";
+import StatusCheckBox from "mastodon/features/report/containers/status_check_box_container";
 
 const mapStateToProps = (state, { accountId }) => ({
-  availableStatusIds: OrderedSet(state.getIn(['timelines', `account:${accountId}:with_replies`, 'items'])),
-  isLoading: state.getIn(['timelines', `account:${accountId}:with_replies`, 'isLoading']),
+  availableStatusIds: OrderedSet(state.getIn(["timelines", `account:${accountId}:with_replies`, "items"])),
+  isLoading: state.getIn(["timelines", `account:${accountId}:with_replies`, "isLoading"]),
 });
 
 class Statuses extends PureComponent {
@@ -29,7 +29,7 @@ class Statuses extends PureComponent {
 
   handleNextClick = () => {
     const { onNextStep } = this.props;
-    onNextStep('comment');
+    onNextStep("comment");
   };
 
   render () {

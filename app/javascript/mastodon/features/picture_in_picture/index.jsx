@@ -1,17 +1,17 @@
-import PropTypes from 'prop-types';
-import { Component } from 'react';
+import PropTypes from "prop-types";
+import { Component } from "react";
 
-import { connect } from 'react-redux';
+import { connect } from "react-redux";
 
-import { removePictureInPicture } from 'mastodon/actions/picture_in_picture';
-import Audio from 'mastodon/features/audio';
-import Video from 'mastodon/features/video';
+import { removePictureInPicture } from "mastodon/actions/picture_in_picture";
+import Audio from "mastodon/features/audio";
+import Video from "mastodon/features/video";
 
-import Footer from './components/footer';
-import Header from './components/header';
+import Footer from "./components/footer";
+import Header from "./components/header";
 
 const mapStateToProps = state => ({
-  ...state.get('picture_in_picture'),
+  ...state.get("picture_in_picture"),
 });
 
 class PictureInPicture extends Component {
@@ -45,7 +45,7 @@ class PictureInPicture extends Component {
 
     let player;
 
-    if (type === 'video') {
+    if (type === "video") {
       player = (
         <Video
           src={src}
@@ -57,7 +57,7 @@ class PictureInPicture extends Component {
           alwaysVisible
         />
       );
-    } else if (type === 'audio') {
+    } else if (type === "audio") {
       player = (
         <Audio
           src={src}

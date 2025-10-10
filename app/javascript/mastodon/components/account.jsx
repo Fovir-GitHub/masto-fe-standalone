@@ -1,36 +1,36 @@
-import PropTypes from 'prop-types';
+import PropTypes from "prop-types";
 
-import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
+import { defineMessages, injectIntl, FormattedMessage } from "react-intl";
 
-import classNames from 'classnames';
-import { Link } from 'react-router-dom';
+import classNames from "classnames";
+import { Link } from "react-router-dom";
 
-import ImmutablePropTypes from 'react-immutable-proptypes';
-import ImmutablePureComponent from 'react-immutable-pure-component';
+import ImmutablePropTypes from "react-immutable-proptypes";
+import ImmutablePureComponent from "react-immutable-pure-component";
 
-import { EmptyAccount } from 'mastodon/components/empty_account';
-import { ShortNumber } from 'mastodon/components/short_number';
-import { VerifiedBadge } from 'mastodon/components/verified_badge';
+import { EmptyAccount } from "mastodon/components/empty_account";
+import { ShortNumber } from "mastodon/components/short_number";
+import { VerifiedBadge } from "mastodon/components/verified_badge";
 
-import { me } from '../initial_state';
+import { me } from "../initial_state";
 
-import { Avatar } from './avatar';
-import Button from './button';
-import { FollowersCounter } from './counters';
-import { DisplayName } from './display_name';
-import { IconButton } from './icon_button';
-import { RelativeTimestamp } from './relative_timestamp';
+import { Avatar } from "./avatar";
+import Button from "./button";
+import { FollowersCounter } from "./counters";
+import { DisplayName } from "./display_name";
+import { IconButton } from "./icon_button";
+import { RelativeTimestamp } from "./relative_timestamp";
 
 const messages = defineMessages({
-  follow: { id: 'account.follow', defaultMessage: 'Follow' },
-  unfollow: { id: 'account.unfollow', defaultMessage: 'Unfollow' },
-  cancel_follow_request: { id: 'account.cancel_follow_request', defaultMessage: 'Withdraw follow request' },
-  unblock: { id: 'account.unblock_short', defaultMessage: 'Unblock' },
-  unmute: { id: 'account.unmute_short', defaultMessage: 'Unmute' },
-  mute_notifications: { id: 'account.mute_notifications_short', defaultMessage: 'Mute notifications' },
-  unmute_notifications: { id: 'account.unmute_notifications_short', defaultMessage: 'Unmute notifications' },
-  mute: { id: 'account.mute_short', defaultMessage: 'Mute' },
-  block: { id: 'account.block_short', defaultMessage: 'Block' },
+  follow: { id: "account.follow", defaultMessage: "Follow" },
+  unfollow: { id: "account.unfollow", defaultMessage: "Unfollow" },
+  cancel_follow_request: { id: "account.cancel_follow_request", defaultMessage: "Withdraw follow request" },
+  unblock: { id: "account.unblock_short", defaultMessage: "Unblock" },
+  unmute: { id: "account.unmute_short", defaultMessage: "Unmute" },
+  mute_notifications: { id: "account.mute_notifications_short", defaultMessage: "Mute notifications" },
+  unmute_notifications: { id: "account.unmute_notifications_short", defaultMessage: "Unmute notifications" },
+  mute: { id: "account.mute_short", defaultMessage: "Mute" },
+  block: { id: "account.block_short", defaultMessage: "Block" },
 });
 
 class Account extends ImmutablePureComponent {
@@ -90,8 +90,8 @@ class Account extends ImmutablePureComponent {
     if (hidden) {
       return (
         <>
-          {account.get('display_name')}
-          {account.get('username')}
+          {account.get("display_name")}
+          {account.get("username")}
         </>
       );
     }
@@ -100,11 +100,11 @@ class Account extends ImmutablePureComponent {
 
     if (actionIcon && onActionClick) {
       buttons = <IconButton icon={actionIcon} title={actionTitle} onClick={this.handleAction} />;
-    } else if (!actionIcon && account.get('id') !== me && account.get('relationship', null) !== null) {
-      const following = account.getIn(['relationship', 'following']);
-      const requested = account.getIn(['relationship', 'requested']);
-      const blocking  = account.getIn(['relationship', 'blocking']);
-      const muting  = account.getIn(['relationship', 'muting']);
+    } else if (!actionIcon && account.get("id") !== me && account.get("relationship", null) !== null) {
+      const following = account.getIn(["relationship", "following"]);
+      const requested = account.getIn(["relationship", "requested"]);
+      const blocking  = account.getIn(["relationship", "blocking"]);
+      const muting  = account.getIn(["relationship", "muting"]);
 
       if (requested) {
         buttons = <Button text={intl.formatMessage(messages.cancel_follow_request)} onClick={this.handleFollow} />;
@@ -113,7 +113,7 @@ class Account extends ImmutablePureComponent {
       } else if (muting) {
         let hidingNotificationsButton;
 
-        if (account.getIn(['relationship', 'muting_notifications'])) {
+        if (account.getIn(["relationship", "muting_notifications"])) {
           hidingNotificationsButton = <Button text={intl.formatMessage(messages.unmute_notifications)} onClick={this.handleUnmuteNotifications} />;
         } else {
           hidingNotificationsButton = <Button text={intl.formatMessage(messages.mute_notifications)} onClick={this.handleMuteNotifications} />;
@@ -125,33 +125,33 @@ class Account extends ImmutablePureComponent {
             {hidingNotificationsButton}
           </>
         );
-      } else if (defaultAction === 'mute') {
+      } else if (defaultAction === "mute") {
         buttons = <Button title={intl.formatMessage(messages.mute)} onClick={this.handleMute} />;
-      } else if (defaultAction === 'block') {
+      } else if (defaultAction === "block") {
         buttons = <Button text={intl.formatMessage(messages.block)} onClick={this.handleBlock} />;
-      } else if (!account.get('moved') || following) {
+      } else if (!account.get("moved") || following) {
         buttons = <Button text={intl.formatMessage(following ? messages.unfollow : messages.follow)} onClick={this.handleFollow} />;
       }
     }
 
     let muteTimeRemaining;
 
-    if (account.get('mute_expires_at')) {
-      muteTimeRemaining = <>· <RelativeTimestamp timestamp={account.get('mute_expires_at')} futureDate /></>;
+    if (account.get("mute_expires_at")) {
+      muteTimeRemaining = <>· <RelativeTimestamp timestamp={account.get("mute_expires_at")} futureDate /></>;
     }
 
     let verification;
 
-    const firstVerifiedField = account.get('fields').find(item => !!item.get('verified_at'));
+    const firstVerifiedField = account.get("fields").find(item => !!item.get("verified_at"));
 
     if (firstVerifiedField) {
-      verification = <VerifiedBadge link={firstVerifiedField.get('value')} />;
+      verification = <VerifiedBadge link={firstVerifiedField.get("value")} />;
     }
 
     return (
-      <div className={classNames('account', { 'account--minimal': minimal })}>
+      <div className={classNames("account", { "account--minimal": minimal })}>
         <div className='account__wrapper'>
-          <Link key={account.get('id')} className='account__display-name' title={account.get('acct')} to={`/@${account.get('acct')}`}>
+          <Link key={account.get("id")} className='account__display-name' title={account.get("acct")} to={`/@${account.get("acct")}`}>
             <div className='account__avatar-wrapper'>
               <Avatar account={account} size={size} />
             </div>
@@ -160,7 +160,7 @@ class Account extends ImmutablePureComponent {
               <DisplayName account={account} />
               {!minimal && (
                 <div className='account__details'>
-                  <ShortNumber value={account.get('followers_count')} renderer={FollowersCounter} /> {verification} {muteTimeRemaining}
+                  <ShortNumber value={account.get("followers_count")} renderer={FollowersCounter} /> {verification} {muteTimeRemaining}
                 </div>
               )}
             </div>
@@ -173,10 +173,10 @@ class Account extends ImmutablePureComponent {
           )}
         </div>
 
-        {withBio && (account.get('note').length > 0 ? (
+        {withBio && (account.get("note").length > 0 ? (
           <div
             className='account__note translate'
-            dangerouslySetInnerHTML={{ __html: account.get('note_emojified') }}
+            dangerouslySetInnerHTML={{ __html: account.get("note_emojified") }}
           />
         ) : (
           <div className='account__note account__note--missing'><FormattedMessage id='account.no_bio' defaultMessage='No description provided.' /></div>

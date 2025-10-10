@@ -1,19 +1,19 @@
-import { useCallback } from 'react';
+import { useCallback } from "react";
 
-import { defineMessages, useIntl } from 'react-intl';
+import { defineMessages, useIntl } from "react-intl";
 
-import { IconButton } from './icon_button';
+import { IconButton } from "./icon_button";
 
 const messages = defineMessages({
   unblockDomain: {
-    id: 'account.unblock_domain',
-    defaultMessage: 'Unblock domain {domain}',
+    id: "account.unblock_domain",
+    defaultMessage: "Unblock domain {domain}",
   },
 });
 
 interface Props {
-  domain: string;
-  onUnblockDomain: (domain: string) => void;
+  domain: string,
+  onUnblockDomain: (domain: string) => void,
 }
 
 export const Domain: React.FC<Props> = ({ domain, onUnblockDomain }) => {

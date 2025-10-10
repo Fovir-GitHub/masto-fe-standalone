@@ -1,14 +1,14 @@
-import PropTypes from 'prop-types';
+import PropTypes from "prop-types";
 
-import { defineMessages, FormattedMessage, injectIntl } from 'react-intl';
+import { defineMessages, FormattedMessage, injectIntl } from "react-intl";
 
-import ImmutablePureComponent from 'react-immutable-pure-component';
+import ImmutablePureComponent from "react-immutable-pure-component";
 
-import api from 'flavours/glitch/api';
-import { IconButton } from 'flavours/glitch/components/icon_button';
+import api from "flavours/glitch/api";
+import { IconButton } from "flavours/glitch/components/icon_button";
 
 const messages = defineMessages({
-  close: { id: 'lightbox.close', defaultMessage: 'Close' },
+  close: { id: "lightbox.close", defaultMessage: "Close" },
 });
 
 class EmbedModal extends ImmutablePureComponent {
@@ -66,7 +66,7 @@ class EmbedModal extends ImmutablePureComponent {
           <FormattedMessage id='status.embed' defaultMessage='Embed' />
         </div>
 
-        <div className='report-modal__container embed-modal__container' style={{ display: 'block' }}>
+        <div className='report-modal__container embed-modal__container' style={{ display: "block" }}>
           <p className='hint'>
             <FormattedMessage id='embed.instructions' defaultMessage='Embed this status on your website by copying the code below.' />
           </p>
@@ -75,7 +75,7 @@ class EmbedModal extends ImmutablePureComponent {
             type='text'
             className='embed-modal__html'
             readOnly
-            value={oembed && oembed.html || ''}
+            value={oembed && oembed.html || ""}
             onClick={this.handleTextareaClick}
           />
 

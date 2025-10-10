@@ -1,28 +1,28 @@
-import api, { getLinks } from '../api';
+import api, { getLinks } from "../api";
 
-import { importFetchedStatuses } from './importer';
+import { importFetchedStatuses } from "./importer";
 
-export const TRENDS_TAGS_FETCH_REQUEST = 'TRENDS_TAGS_FETCH_REQUEST';
-export const TRENDS_TAGS_FETCH_SUCCESS = 'TRENDS_TAGS_FETCH_SUCCESS';
-export const TRENDS_TAGS_FETCH_FAIL    = 'TRENDS_TAGS_FETCH_FAIL';
+export const TRENDS_TAGS_FETCH_REQUEST = "TRENDS_TAGS_FETCH_REQUEST";
+export const TRENDS_TAGS_FETCH_SUCCESS = "TRENDS_TAGS_FETCH_SUCCESS";
+export const TRENDS_TAGS_FETCH_FAIL    = "TRENDS_TAGS_FETCH_FAIL";
 
-export const TRENDS_LINKS_FETCH_REQUEST = 'TRENDS_LINKS_FETCH_REQUEST';
-export const TRENDS_LINKS_FETCH_SUCCESS = 'TRENDS_LINKS_FETCH_SUCCESS';
-export const TRENDS_LINKS_FETCH_FAIL    = 'TRENDS_LINKS_FETCH_FAIL';
+export const TRENDS_LINKS_FETCH_REQUEST = "TRENDS_LINKS_FETCH_REQUEST";
+export const TRENDS_LINKS_FETCH_SUCCESS = "TRENDS_LINKS_FETCH_SUCCESS";
+export const TRENDS_LINKS_FETCH_FAIL    = "TRENDS_LINKS_FETCH_FAIL";
 
-export const TRENDS_STATUSES_FETCH_REQUEST = 'TRENDS_STATUSES_FETCH_REQUEST';
-export const TRENDS_STATUSES_FETCH_SUCCESS = 'TRENDS_STATUSES_FETCH_SUCCESS';
-export const TRENDS_STATUSES_FETCH_FAIL    = 'TRENDS_STATUSES_FETCH_FAIL';
+export const TRENDS_STATUSES_FETCH_REQUEST = "TRENDS_STATUSES_FETCH_REQUEST";
+export const TRENDS_STATUSES_FETCH_SUCCESS = "TRENDS_STATUSES_FETCH_SUCCESS";
+export const TRENDS_STATUSES_FETCH_FAIL    = "TRENDS_STATUSES_FETCH_FAIL";
 
-export const TRENDS_STATUSES_EXPAND_REQUEST = 'TRENDS_STATUSES_EXPAND_REQUEST';
-export const TRENDS_STATUSES_EXPAND_SUCCESS = 'TRENDS_STATUSES_EXPAND_SUCCESS';
-export const TRENDS_STATUSES_EXPAND_FAIL    = 'TRENDS_STATUSES_EXPAND_FAIL';
+export const TRENDS_STATUSES_EXPAND_REQUEST = "TRENDS_STATUSES_EXPAND_REQUEST";
+export const TRENDS_STATUSES_EXPAND_SUCCESS = "TRENDS_STATUSES_EXPAND_SUCCESS";
+export const TRENDS_STATUSES_EXPAND_FAIL    = "TRENDS_STATUSES_EXPAND_FAIL";
 
 export const fetchTrendingHashtags = () => (dispatch, getState) => {
   dispatch(fetchTrendingHashtagsRequest());
 
   api(getState)
-    .get('/api/v1/trends/tags')
+    .get("/api/v1/trends/tags")
     .then(({ data }) => dispatch(fetchTrendingHashtagsSuccess(data)))
     .catch(err => dispatch(fetchTrendingHashtagsFail(err)));
 };
@@ -49,7 +49,7 @@ export const fetchTrendingLinks = () => (dispatch, getState) => {
   dispatch(fetchTrendingLinksRequest());
 
   api(getState)
-    .get('/api/v1/trends/links')
+    .get("/api/v1/trends/links")
     .then(({ data }) => dispatch(fetchTrendingLinksSuccess(data)))
     .catch(err => dispatch(fetchTrendingLinksFail(err)));
 };
@@ -73,14 +73,14 @@ export const fetchTrendingLinksFail = error => ({
 });
 
 export const fetchTrendingStatuses = () => (dispatch, getState) => {
-  if (getState().getIn(['status_lists', 'trending', 'isLoading'])) {
+  if (getState().getIn(["status_lists", "trending", "isLoading"])) {
     return;
   }
 
   dispatch(fetchTrendingStatusesRequest());
 
-  api(getState).get('/api/v1/trends/statuses').then(response => {
-    const next = getLinks(response).refs.find(link => link.rel === 'next');
+  api(getState).get("/api/v1/trends/statuses").then(response => {
+    const next = getLinks(response).refs.find(link => link.rel === "next");
     dispatch(importFetchedStatuses(response.data));
     dispatch(fetchTrendingStatusesSuccess(response.data, next ? next.uri : null));
   }).catch(err => dispatch(fetchTrendingStatusesFail(err)));
@@ -107,16 +107,16 @@ export const fetchTrendingStatusesFail = error => ({
 
 
 export const expandTrendingStatuses = () => (dispatch, getState) => {
-  const url = getState().getIn(['status_lists', 'trending', 'next'], null);
+  const url = getState().getIn(["status_lists", "trending", "next"], null);
 
-  if (url === null || getState().getIn(['status_lists', 'trending', 'isLoading'])) {
+  if (url === null || getState().getIn(["status_lists", "trending", "isLoading"])) {
     return;
   }
 
   dispatch(expandTrendingStatusesRequest());
 
   api(getState).get(url).then(response => {
-    const next = getLinks(response).refs.find(link => link.rel === 'next');
+    const next = getLinks(response).refs.find(link => link.rel === "next");
     dispatch(importFetchedStatuses(response.data));
     dispatch(expandTrendingStatusesSuccess(response.data, next ? next.uri : null));
   }).catch(error => {

@@ -1,14 +1,14 @@
-import PropTypes from 'prop-types';
+import PropTypes from "prop-types";
 
-import ImmutablePropTypes from 'react-immutable-proptypes';
-import ImmutablePureComponent from 'react-immutable-pure-component';
+import ImmutablePropTypes from "react-immutable-proptypes";
+import ImmutablePureComponent from "react-immutable-pure-component";
 
-import { Avatar } from 'flavours/glitch/components/avatar';
-import Permalink from 'flavours/glitch/components/permalink';
-// eslint-disable-next-line import/no-restricted-paths
-import initialState from 'mastodon/initial_state';
+import { Avatar } from "flavours/glitch/components/avatar";
+import Permalink from "flavours/glitch/components/permalink";
+ 
+import initialState from "mastodon/initial_state";
 
-import ActionBar from './action_bar';
+import ActionBar from "./action_bar";
 
 export default class NavigationBar extends ImmutablePureComponent {
 
@@ -20,15 +20,15 @@ export default class NavigationBar extends ImmutablePureComponent {
   render () {
     return (
       <div className='navigation-bar'>
-        <Permalink className='avatar' href={this.props.account.get('url')} to={`/@${this.props.account.get('acct')}`}>
-          <span style={{ display: 'none' }}>{this.props.account.get('acct')}</span>
+        <Permalink className='avatar' href={this.props.account.get("url")} to={`/@${this.props.account.get("acct")}`}>
+          <span style={{ display: "none" }}>{this.props.account.get("acct")}</span>
           <Avatar account={this.props.account} size={48} />
         </Permalink>
 
         <div className='navigation-bar__profile'>
-          <div>{this.props.account.get('display_name')}</div>
-          <Permalink className='acct' href={this.props.account.get('url')} to={`/@${this.props.account.get('acct')}`}>
-            <strong>@{this.props.account.get('acct')}</strong>
+          <div>{this.props.account.get("display_name")}</div>
+          <Permalink className='acct' href={this.props.account.get("url")} to={`/@${this.props.account.get("acct")}`}>
+            <strong>@{this.props.account.get("acct")}</strong>
             <span>@{initialState.meta.domain}</span>
           </Permalink>
         </div>

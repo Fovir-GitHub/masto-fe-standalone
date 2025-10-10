@@ -1,10 +1,10 @@
-import { connect } from 'react-redux';
+import { connect } from "react-redux";
 
-import { undoUploadCompose, initMediaEditModal, submitCompose } from '../../../actions/compose';
-import Upload from '../components/upload';
+import { undoUploadCompose, initMediaEditModal, submitCompose } from "../../../actions/compose";
+import Upload from "../components/upload";
 
 const mapStateToProps = (state, { id }) => ({
-  media: state.getIn(['compose', 'media_attachments']).find(item => item.get('id') === id),
+  media: state.getIn(["compose", "media_attachments"]).find(item => item.get("id") === id),
 });
 
 const mapDispatchToProps = dispatch => ({

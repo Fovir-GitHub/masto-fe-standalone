@@ -1,29 +1,29 @@
-import PropTypes from 'prop-types';
-import { PureComponent } from 'react';
+import PropTypes from "prop-types";
+import { PureComponent } from "react";
 
-import { injectIntl, defineMessages, FormattedMessage } from 'react-intl';
+import { injectIntl, defineMessages, FormattedMessage } from "react-intl";
 
-import classNames from 'classnames';
+import classNames from "classnames";
 
-import { connect } from 'react-redux';
+import { connect } from "react-redux";
 
-import { changeComposeSensitivity } from 'mastodon/actions/compose';
+import { changeComposeSensitivity } from "mastodon/actions/compose";
 
 const messages = defineMessages({
   marked: {
-    id: 'compose_form.sensitive.marked',
-    defaultMessage: '{count, plural, one {Media is marked as sensitive} other {Media is marked as sensitive}}',
+    id: "compose_form.sensitive.marked",
+    defaultMessage: "{count, plural, one {Media is marked as sensitive} other {Media is marked as sensitive}}",
   },
   unmarked: {
-    id: 'compose_form.sensitive.unmarked',
-    defaultMessage: '{count, plural, one {Media is not marked as sensitive} other {Media is not marked as sensitive}}',
+    id: "compose_form.sensitive.unmarked",
+    defaultMessage: "{count, plural, one {Media is not marked as sensitive} other {Media is not marked as sensitive}}",
   },
 });
 
 const mapStateToProps = state => ({
-  active: state.getIn(['compose', 'sensitive']),
-  disabled: state.getIn(['compose', 'spoiler']),
-  mediaCount: state.getIn(['compose', 'media_attachments']).size,
+  active: state.getIn(["compose", "sensitive"]),
+  disabled: state.getIn(["compose", "spoiler"]),
+  mediaCount: state.getIn(["compose", "media_attachments"]).size,
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -49,7 +49,7 @@ class SensitiveButton extends PureComponent {
 
     return (
       <div className='compose-form__sensitive-button'>
-        <label className={classNames('icon-button', { active })} title={intl.formatMessage(active ? messages.marked : messages.unmarked, { count: mediaCount })}>
+        <label className={classNames("icon-button", { active })} title={intl.formatMessage(active ? messages.marked : messages.unmarked, { count: mediaCount })}>
           <input
             name='mark-sensitive'
             type='checkbox'

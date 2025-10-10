@@ -1,37 +1,37 @@
-import PropTypes from 'prop-types';
-import { Component } from 'react';
+import PropTypes from "prop-types";
+import { Component } from "react";
 
-import { defineMessages, injectIntl } from 'react-intl';
+import { defineMessages, injectIntl } from "react-intl";
 
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
 
-import { WordmarkLogo } from 'mastodon/components/logo';
-import NavigationPortal from 'mastodon/components/navigation_portal';
-import { timelinePreview, trendsEnabled } from 'mastodon/initial_state';
-import { transientSingleColumn } from 'mastodon/is_mobile';
+import { WordmarkLogo } from "mastodon/components/logo";
+import NavigationPortal from "mastodon/components/navigation_portal";
+import { timelinePreview, trendsEnabled } from "mastodon/initial_state";
+import { transientSingleColumn } from "mastodon/is_mobile";
 
-import ColumnLink from './column_link';
-import DisabledAccountBanner from './disabled_account_banner';
-import FollowRequestsColumnLink from './follow_requests_column_link';
-import ListPanel from './list_panel';
-import NotificationsCounterIcon from './notifications_counter_icon';
-import SignInBanner from './sign_in_banner';
+import ColumnLink from "./column_link";
+import DisabledAccountBanner from "./disabled_account_banner";
+import FollowRequestsColumnLink from "./follow_requests_column_link";
+import ListPanel from "./list_panel";
+import NotificationsCounterIcon from "./notifications_counter_icon";
+import SignInBanner from "./sign_in_banner";
 
 const messages = defineMessages({
-  home: { id: 'tabs_bar.home', defaultMessage: 'Home' },
-  notifications: { id: 'tabs_bar.notifications', defaultMessage: 'Notifications' },
-  explore: { id: 'explore.title', defaultMessage: 'Explore' },
-  firehose: { id: 'column.firehose', defaultMessage: 'Live feeds' },
-  direct: { id: 'navigation_bar.direct', defaultMessage: 'Private mentions' },
-  favourites: { id: 'navigation_bar.favourites', defaultMessage: 'Favorites' },
-  bookmarks: { id: 'navigation_bar.bookmarks', defaultMessage: 'Bookmarks' },
-  lists: { id: 'navigation_bar.lists', defaultMessage: 'Lists' },
-  preferences: { id: 'navigation_bar.preferences', defaultMessage: 'Preferences' },
-  followsAndFollowers: { id: 'navigation_bar.follows_and_followers', defaultMessage: 'Follows and followers' },
-  about: { id: 'navigation_bar.about', defaultMessage: 'About' },
-  search: { id: 'navigation_bar.search', defaultMessage: 'Search' },
-  advancedInterface: { id: 'navigation_bar.advanced_interface', defaultMessage: 'Open in advanced web interface' },
-  openedInClassicInterface: { id: 'navigation_bar.opened_in_classic_interface', defaultMessage: 'Posts, accounts, and other specific pages are opened by default in the classic web interface.' },
+  home: { id: "tabs_bar.home", defaultMessage: "Home" },
+  notifications: { id: "tabs_bar.notifications", defaultMessage: "Notifications" },
+  explore: { id: "explore.title", defaultMessage: "Explore" },
+  firehose: { id: "column.firehose", defaultMessage: "Live feeds" },
+  direct: { id: "navigation_bar.direct", defaultMessage: "Private mentions" },
+  favourites: { id: "navigation_bar.favourites", defaultMessage: "Favorites" },
+  bookmarks: { id: "navigation_bar.bookmarks", defaultMessage: "Bookmarks" },
+  lists: { id: "navigation_bar.lists", defaultMessage: "Lists" },
+  preferences: { id: "navigation_bar.preferences", defaultMessage: "Preferences" },
+  followsAndFollowers: { id: "navigation_bar.follows_and_followers", defaultMessage: "Follows and followers" },
+  about: { id: "navigation_bar.about", defaultMessage: "About" },
+  search: { id: "navigation_bar.search", defaultMessage: "Search" },
+  advancedInterface: { id: "navigation_bar.advanced_interface", defaultMessage: "Open in advanced web interface" },
+  openedInClassicInterface: { id: "navigation_bar.opened_in_classic_interface", defaultMessage: "Posts, accounts, and other specific pages are opened by default in the classic web interface." },
 });
 
 class NavigationPanel extends Component {
@@ -46,7 +46,7 @@ class NavigationPanel extends Component {
   };
 
   isFirehoseActive = (match, location) => {
-    return match || location.pathname.startsWith('/public');
+    return match || location.pathname.startsWith("/public");
   };
 
   render () {
@@ -59,10 +59,10 @@ class NavigationPanel extends Component {
           <Link to='/' className='column-link column-link--logo'><WordmarkLogo /></Link>
 
           {transientSingleColumn ? (
-            <div class='switch-to-advanced'>
+            <div className='switch-to-advanced'>
               {intl.formatMessage(messages.openedInClassicInterface)}
               {" "}
-              <a href={`/deck${location.pathname}`} class='switch-to-advanced__toggle'>
+              <a href={`/deck${location.pathname}`} className='switch-to-advanced__toggle'>
                 {intl.formatMessage(messages.advancedInterface)}
               </a>
             </div>

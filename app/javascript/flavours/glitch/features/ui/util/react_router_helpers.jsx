@@ -1,13 +1,13 @@
-import PropTypes from 'prop-types';
-import { Component, PureComponent, cloneElement, Children } from 'react';
+import PropTypes from "prop-types";
+import { Component, PureComponent, cloneElement, Children } from "react";
 
-import { Switch, Route } from 'react-router-dom';
+import { Switch, Route } from "react-router-dom";
 
-import StackTrace from 'stacktrace-js';
+import StackTrace from "stacktrace-js";
 
-import BundleColumnError from 'flavours/glitch/features/ui/components/bundle_column_error';
-import ColumnLoading from 'flavours/glitch/features/ui/components/column_loading';
-import BundleContainer from 'flavours/glitch/features/ui/containers/bundle_container';
+import BundleColumnError from "flavours/glitch/features/ui/components/bundle_column_error";
+import ColumnLoading from "flavours/glitch/features/ui/components/column_loading";
+import BundleContainer from "flavours/glitch/features/ui/containers/bundle_container";
 
 // Small wrapper to pass multiColumn to the route components
 export class WrappedSwitch extends PureComponent {
@@ -19,7 +19,7 @@ export class WrappedSwitch extends PureComponent {
     const { multiColumn, children } = this.props;
     const { location } = this.context.router.route;
 
-    const decklessLocation = multiColumn && location.pathname.startsWith('/deck')
+    const decklessLocation = multiColumn && location.pathname.startsWith("/deck")
       ? {...location, pathname: location.pathname.slice(5)}
       : location;
 
@@ -61,12 +61,12 @@ export class WrappedRoute extends Component {
 
   state = {
     hasError: false,
-    stacktrace: '',
+    stacktrace: "",
   };
 
   componentDidCatch (error) {
     StackTrace.fromError(error).then(stackframes => {
-      this.setState({ stacktrace: error.toString() + '\n' + stackframes.map(frame => frame.toString()).join('\n') });
+      this.setState({ stacktrace: error.toString() + "\n" + stackframes.map(frame => frame.toString()).join("\n") });
     }).catch(err => {
       console.error(err);
     });

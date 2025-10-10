@@ -1,8 +1,8 @@
-import * as React from 'react';
+import * as React from "react";
 
 interface Props {
-  width?: number | string;
-  height?: number | string;
+  width?: number | string,
+  height?: number | string,
 }
 
 export const Skeleton: React.FC<Props> = ({ width, height }) => (

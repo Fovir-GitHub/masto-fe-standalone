@@ -1,13 +1,13 @@
-import PropTypes from 'prop-types';
-import { PureComponent } from 'react';
+import PropTypes from "prop-types";
+import { PureComponent } from "react";
 
-import { FormattedMessage } from 'react-intl';
+import { FormattedMessage } from "react-intl";
 
-import { Helmet } from 'react-helmet';
+import { Helmet } from "react-helmet";
 
-import StackTrace from 'stacktrace-js';
+import StackTrace from "stacktrace-js";
 
-import { version, source_url } from 'flavours/glitch/initial_state';
+import { version, source_url } from "flavours/glitch/initial_state";
 
 export default class ErrorBoundary extends PureComponent {
 
@@ -34,7 +34,7 @@ export default class ErrorBoundary extends PureComponent {
 
     StackTrace.fromError(error).then((stackframes) => {
       this.setState({
-        mappedStackTrace: stackframes.map((sf) => sf.toString()).join('\n'),
+        mappedStackTrace: stackframes.map((sf) => sf.toString()).join("\n"),
       });
     }).catch(() => {
       this.setState({
@@ -45,23 +45,23 @@ export default class ErrorBoundary extends PureComponent {
 
   handleCopyStackTrace = () => {
     const { errorMessage, stackTrace, mappedStackTrace } = this.state;
-    const textarea = document.createElement('textarea');
+    const textarea = document.createElement("textarea");
 
     let contents = [errorMessage, stackTrace];
     if (mappedStackTrace) {
       contents.push(mappedStackTrace);
     }
 
-    textarea.textContent    = contents.join('\n\n\n');
-    textarea.style.position = 'fixed';
+    textarea.textContent    = contents.join("\n\n\n");
+    textarea.style.position = "fixed";
 
     document.body.appendChild(textarea);
 
     try {
       textarea.select();
-      document.execCommand('copy');
+      document.execCommand("copy");
     } catch (e) {
-
+      console.error(e);
     } finally {
       document.body.removeChild(textarea);
     }
@@ -77,7 +77,7 @@ export default class ErrorBoundary extends PureComponent {
       return this.props.children;
     }
 
-    const likelyBrowserAddonIssue = errorMessage && errorMessage.includes('NotFoundError');
+    const likelyBrowserAddonIssue = errorMessage && errorMessage.includes("NotFoundError");
 
     return (
       <div className='error-boundary'>
@@ -98,7 +98,7 @@ export default class ErrorBoundary extends PureComponent {
             )}
           </p>
 
-          <p className='error-boundary__footer'>Mastodon v{version} · <a href={source_url} rel='noopener noreferrer' target='_blank'><FormattedMessage id='errors.unexpected_crash.report_issue' defaultMessage='Report issue' /></a> · <button onClick={this.handleCopyStackTrace} className={copied ? 'copied' : ''}><FormattedMessage id='errors.unexpected_crash.copy_stacktrace' defaultMessage='Copy stacktrace to clipboard' /></button></p>
+          <p className='error-boundary__footer'>Mastodon v{version} · <a href={source_url} rel='noopener noreferrer' target='_blank'><FormattedMessage id='errors.unexpected_crash.report_issue' defaultMessage='Report issue' /></a> · <button onClick={this.handleCopyStackTrace} className={copied ? "copied" : ""}><FormattedMessage id='errors.unexpected_crash.copy_stacktrace' defaultMessage='Copy stacktrace to clipboard' /></button></p>
         </div>
 
         <Helmet>

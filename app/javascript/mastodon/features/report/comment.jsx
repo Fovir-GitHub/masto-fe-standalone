@@ -1,32 +1,32 @@
-import PropTypes from 'prop-types';
-import { useCallback, useEffect, useRef } from 'react';
+import PropTypes from "prop-types";
+import { useCallback, useEffect, useRef } from "react";
 
-import { useIntl, defineMessages, FormattedMessage } from 'react-intl';
+import { useIntl, defineMessages, FormattedMessage } from "react-intl";
 
-import { OrderedSet, List as ImmutableList } from 'immutable';
-import ImmutablePropTypes from 'react-immutable-proptypes';
-import { shallowEqual } from 'react-redux';
-import { createSelector } from 'reselect';
+import { OrderedSet, List as ImmutableList } from "immutable";
+import ImmutablePropTypes from "react-immutable-proptypes";
+import { shallowEqual } from "react-redux";
+import { createSelector } from "reselect";
 
-import Toggle from 'react-toggle';
+import Toggle from "react-toggle";
 
-import { fetchAccount } from 'mastodon/actions/accounts';
-import Button from 'mastodon/components/button';
-import { useAppDispatch, useAppSelector } from 'mastodon/store';
+import { fetchAccount } from "mastodon/actions/accounts";
+import Button from "mastodon/components/button";
+import { useAppDispatch, useAppSelector } from "mastodon/store";
 
 const messages = defineMessages({
-  placeholder: { id: 'report.placeholder', defaultMessage: 'Type or paste additional comments' },
+  placeholder: { id: "report.placeholder", defaultMessage: "Type or paste additional comments" },
 });
 
 const selectRepliedToAccountIds = createSelector(
   [
-    (state) => state.get('statuses'),
+    (state) => state.get("statuses"),
     (_, statusIds) => statusIds,
   ],
-  (statusesMap, statusIds) => statusIds.map((statusId) => statusesMap.getIn([statusId, 'in_reply_to_account_id'])),
+  (statusesMap, statusIds) => statusIds.map((statusId) => statusesMap.getIn([statusId, "in_reply_to_account_id"])),
   {
     resultEqualityCheck: shallowEqual,
-  }
+  },
 );
 
 const Comment = ({ comment, domain, statusIds, isRemote, isSubmitting, selectedDomains, onSubmit, onChangeComment, onToggleDomain }) => {
@@ -49,8 +49,8 @@ const Comment = ({ comment, domain, statusIds, isRemote, isSubmitting, selectedD
   const accountIds = useAppSelector((state) => domain ? selectRepliedToAccountIds(state, statusIds) : ImmutableList());
 
   // While we could memoize `availableDomains`, it is pretty inexpensive to recompute
-  const accountsMap = useAppSelector((state) => state.get('accounts'));
-  const availableDomains = domain ? OrderedSet([domain]).union(accountIds.map((accountId) => accountsMap.getIn([accountId, 'acct'], '').split('@')[1]).filter(domain => !!domain)) : OrderedSet();
+  const accountsMap = useAppSelector((state) => state.get("accounts"));
+  const availableDomains = domain ? OrderedSet([domain]).union(accountIds.map((accountId) => accountsMap.getIn([accountId, "acct"], "").split("@")[1]).filter(domain => !!domain)) : OrderedSet();
 
   useEffect(() => {
     if (loadedRef.current) {

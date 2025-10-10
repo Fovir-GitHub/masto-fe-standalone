@@ -1,22 +1,22 @@
-import PropTypes from 'prop-types';
+import PropTypes from "prop-types";
 
-import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
+import { defineMessages, injectIntl, FormattedMessage } from "react-intl";
 
-import { Helmet } from 'react-helmet';
+import { Helmet } from "react-helmet";
 
-import ImmutablePureComponent from 'react-immutable-pure-component';
-import { connect } from 'react-redux';
+import ImmutablePureComponent from "react-immutable-pure-component";
+import { connect } from "react-redux";
 
-import Column from 'flavours/glitch/components/column';
-import ColumnHeader from 'flavours/glitch/components/column_header';
+import Column from "flavours/glitch/components/column";
+import ColumnHeader from "flavours/glitch/components/column_header";
 
 
 const messages = defineMessages({
-  heading: { id: 'keyboard_shortcuts.heading', defaultMessage: 'Keyboard Shortcuts' },
+  heading: { id: "keyboard_shortcuts.heading", defaultMessage: "Keyboard Shortcuts" },
 });
 
 const mapStateToProps = state => ({
-  collapseEnabled: state.getIn(['local_settings', 'collapsed', 'enabled']),
+  collapseEnabled: state.getIn(["local_settings", "collapsed", "enabled"]),
 });
 
 class KeyboardShortcuts extends ImmutablePureComponent {

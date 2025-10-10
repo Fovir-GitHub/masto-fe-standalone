@@ -1,10 +1,10 @@
-import { connect } from 'react-redux';
+import { connect } from "react-redux";
 
-import { openDropdownMenu, closeDropdownMenu } from 'flavours/glitch/actions/dropdown_menu';
-import { openModal, closeModal } from 'flavours/glitch/actions/modal';
-import DropdownMenu from 'flavours/glitch/components/dropdown_menu';
+import { openDropdownMenu, closeDropdownMenu } from "flavours/glitch/actions/dropdown_menu";
+import { openModal, closeModal } from "flavours/glitch/actions/modal";
+import DropdownMenu from "flavours/glitch/components/dropdown_menu";
 
-import { isUserTouching } from '../is_mobile';
+import { isUserTouching } from "../is_mobile";
 
 /**
  * @param {import('flavours/glitch/store').RootState} state
@@ -17,7 +17,7 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = (dispatch, { status, items, scrollKey }) => ({
   onOpen(id, onItemClick, keyboard) {
     dispatch(isUserTouching() ? openModal({
-      modalType: 'ACTIONS',
+      modalType: "ACTIONS",
       modalProps: {
         status,
         actions: items,
@@ -28,7 +28,7 @@ const mapDispatchToProps = (dispatch, { status, items, scrollKey }) => ({
 
   onClose(id) {
     dispatch(closeModal({
-      modalType: 'ACTIONS',
+      modalType: "ACTIONS",
       ignoreFocus: false,
     }));
     dispatch(closeDropdownMenu({ id }));

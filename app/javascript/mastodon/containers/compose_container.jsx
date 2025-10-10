@@ -1,13 +1,13 @@
-import { PureComponent } from 'react';
+import { PureComponent } from "react";
 
-import { Provider } from 'react-redux';
+import { Provider } from "react-redux";
 
-import { fetchCustomEmojis } from '../actions/custom_emojis';
-import { hydrateStore } from '../actions/store';
-import Compose from '../features/standalone/compose';
-import initialState from '../initial_state';
-import { IntlProvider } from '../locales';
-import { store } from '../store';
+import { fetchCustomEmojis } from "../actions/custom_emojis";
+import { hydrateStore } from "../actions/store";
+import Compose from "../features/standalone/compose";
+import initialState from "../initial_state";
+import { IntlProvider } from "../locales";
+import { store } from "../store";
 
 
 if (initialState) {

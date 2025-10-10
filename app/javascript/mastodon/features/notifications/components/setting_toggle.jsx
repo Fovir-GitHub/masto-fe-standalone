@@ -1,9 +1,9 @@
-import PropTypes from 'prop-types';
-import { PureComponent } from 'react';
+import PropTypes from "prop-types";
+import { PureComponent } from "react";
 
-import ImmutablePropTypes from 'react-immutable-proptypes';
+import ImmutablePropTypes from "react-immutable-proptypes";
 
-import Toggle from 'react-toggle';
+import Toggle from "react-toggle";
 
 export default class SettingToggle extends PureComponent {
 
@@ -23,7 +23,7 @@ export default class SettingToggle extends PureComponent {
 
   render () {
     const { prefix, settings, settingPath, label, defaultValue, disabled } = this.props;
-    const id = ['setting-toggle', prefix, ...settingPath].filter(Boolean).join('-');
+    const id = ["setting-toggle", prefix, ...settingPath].filter(Boolean).join("-");
 
     return (
       <div className='setting-toggle'>

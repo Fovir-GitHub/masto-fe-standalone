@@ -1,4 +1,4 @@
-import { Map as ImmutableMap, List as ImmutableList, fromJS } from 'immutable';
+import { Map as ImmutableMap, List as ImmutableList, fromJS } from "immutable";
 
 import {
   SERVER_FETCH_REQUEST,
@@ -7,7 +7,7 @@ import {
   SERVER_DOMAIN_BLOCKS_FETCH_REQUEST,
   SERVER_DOMAIN_BLOCKS_FETCH_SUCCESS,
   SERVER_DOMAIN_BLOCKS_FETCH_FAIL,
-} from 'mastodon/actions/server';
+} from "mastodon/actions/server";
 
 const initialState = ImmutableMap({
   server: ImmutableMap({
@@ -23,19 +23,19 @@ const initialState = ImmutableMap({
 
 export default function server(state = initialState, action) {
   switch (action.type) {
-  case SERVER_FETCH_REQUEST:
-    return state.setIn(['server', 'isLoading'], true);
-  case SERVER_FETCH_SUCCESS:
-    return state.set('server', fromJS(action.server)).setIn(['server', 'isLoading'], false);
-  case SERVER_FETCH_FAIL:
-    return state.setIn(['server', 'isLoading'], false);
-  case SERVER_DOMAIN_BLOCKS_FETCH_REQUEST:
-    return state.setIn(['domainBlocks', 'isLoading'], true);
-  case SERVER_DOMAIN_BLOCKS_FETCH_SUCCESS:
-    return state.setIn(['domainBlocks', 'items'], fromJS(action.blocks)).setIn(['domainBlocks', 'isLoading'], false).setIn(['domainBlocks', 'isAvailable'], action.isAvailable);
-  case SERVER_DOMAIN_BLOCKS_FETCH_FAIL:
-    return state.setIn(['domainBlocks', 'isLoading'], false);
-  default:
-    return state;
+    case SERVER_FETCH_REQUEST:
+      return state.setIn(["server", "isLoading"], true);
+    case SERVER_FETCH_SUCCESS:
+      return state.set("server", fromJS(action.server)).setIn(["server", "isLoading"], false);
+    case SERVER_FETCH_FAIL:
+      return state.setIn(["server", "isLoading"], false);
+    case SERVER_DOMAIN_BLOCKS_FETCH_REQUEST:
+      return state.setIn(["domainBlocks", "isLoading"], true);
+    case SERVER_DOMAIN_BLOCKS_FETCH_SUCCESS:
+      return state.setIn(["domainBlocks", "items"], fromJS(action.blocks)).setIn(["domainBlocks", "isLoading"], false).setIn(["domainBlocks", "isAvailable"], action.isAvailable);
+    case SERVER_DOMAIN_BLOCKS_FETCH_FAIL:
+      return state.setIn(["domainBlocks", "isLoading"], false);
+    default:
+      return state;
   }
 }

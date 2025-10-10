@@ -1,22 +1,22 @@
-import PropTypes from 'prop-types';
+import PropTypes from "prop-types";
 
-import { injectIntl, FormattedMessage } from 'react-intl';
+import { injectIntl, FormattedMessage } from "react-intl";
 
-import ImmutablePropTypes from 'react-immutable-proptypes';
-import ImmutablePureComponent from 'react-immutable-pure-component';
-import { connect } from 'react-redux';
+import ImmutablePropTypes from "react-immutable-proptypes";
+import ImmutablePureComponent from "react-immutable-pure-component";
+import { connect } from "react-redux";
 
-import spring from 'react-motion/lib/spring';
+import spring from "react-motion/lib/spring";
 
-import { fetchPinnedAccounts, clearPinnedAccountsSuggestions, resetPinnedAccountsEditor } from 'flavours/glitch/actions/accounts';
-import Motion from 'flavours/glitch/features/ui/util/optional_motion';
+import { fetchPinnedAccounts, clearPinnedAccountsSuggestions, resetPinnedAccountsEditor } from "flavours/glitch/actions/accounts";
+import Motion from "flavours/glitch/features/ui/util/optional_motion";
 
-import AccountContainer from './containers/account_container';
-import SearchContainer from './containers/search_container';
+import AccountContainer from "./containers/account_container";
+import SearchContainer from "./containers/search_container";
 
 const mapStateToProps = state => ({
-  accountIds: state.getIn(['pinnedAccountsEditor', 'accounts', 'items']),
-  searchAccountIds: state.getIn(['pinnedAccountsEditor', 'suggestions', 'items']),
+  accountIds: state.getIn(["pinnedAccountsEditor", "accounts", "items"]),
+  searchAccountIds: state.getIn(["pinnedAccountsEditor", "suggestions", "items"]),
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -67,7 +67,7 @@ class PinnedAccountsEditor extends ImmutablePureComponent {
 
           <Motion defaultStyle={{ x: -100 }} style={{ x: spring(showSearch ? 0 : -100, { stiffness: 210, damping: 20 }) }}>
             {({ x }) =>
-              (<div className='drawer__inner backdrop' style={{ transform: x === 0 ? null : `translateX(${x}%)`, visibility: x === -100 ? 'hidden' : 'visible' }}>
+              (<div className='drawer__inner backdrop' style={{ transform: x === 0 ? null : `translateX(${x}%)`, visibility: x === -100 ? "hidden" : "visible" }}>
                 {searchAccountIds.map(accountId => <AccountContainer key={accountId} accountId={accountId} />)}
               </div>)
             }

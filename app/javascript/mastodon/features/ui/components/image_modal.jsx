@@ -1,16 +1,16 @@
-import PropTypes from 'prop-types';
-import { PureComponent } from 'react';
+import PropTypes from "prop-types";
+import { PureComponent } from "react";
 
-import { defineMessages, injectIntl } from 'react-intl';
+import { defineMessages, injectIntl } from "react-intl";
 
-import classNames from 'classnames';
+import classNames from "classnames";
 
-import { IconButton } from 'mastodon/components/icon_button';
+import { IconButton } from "mastodon/components/icon_button";
 
-import ImageLoader from './image_loader';
+import ImageLoader from "./image_loader";
 
 const messages = defineMessages({
-  close: { id: 'lightbox.close', defaultMessage: 'Close' },
+  close: { id: "lightbox.close", defaultMessage: "Close" },
 });
 
 class ImageModal extends PureComponent {
@@ -36,8 +36,8 @@ class ImageModal extends PureComponent {
     const { intl, src, alt, onClose } = this.props;
     const { navigationHidden } = this.state;
 
-    const navigationClassName = classNames('media-modal__navigation', {
-      'media-modal__navigation--hidden': navigationHidden,
+    const navigationClassName = classNames("media-modal__navigation", {
+      "media-modal__navigation--hidden": navigationHidden,
     });
 
     return (

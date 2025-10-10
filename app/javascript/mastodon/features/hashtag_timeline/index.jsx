@@ -1,30 +1,30 @@
-import PropTypes from 'prop-types';
-import { PureComponent } from 'react';
+import PropTypes from "prop-types";
+import { PureComponent } from "react";
 
-import { FormattedMessage } from 'react-intl';
+import { FormattedMessage } from "react-intl";
 
-import { Helmet } from 'react-helmet';
+import { Helmet } from "react-helmet";
 
-import ImmutablePropTypes from 'react-immutable-proptypes';
-import { connect } from 'react-redux';
+import ImmutablePropTypes from "react-immutable-proptypes";
+import { connect } from "react-redux";
 
-import { isEqual } from 'lodash';
+import { isEqual } from "lodash";
 
-import { addColumn, removeColumn, moveColumn } from 'mastodon/actions/columns';
-import { connectHashtagStream } from 'mastodon/actions/streaming';
-import { fetchHashtag, followHashtag, unfollowHashtag } from 'mastodon/actions/tags';
-import { expandHashtagTimeline, clearTimeline } from 'mastodon/actions/timelines';
-import Column from 'mastodon/components/column';
-import ColumnHeader from 'mastodon/components/column_header';
+import { addColumn, removeColumn, moveColumn } from "mastodon/actions/columns";
+import { connectHashtagStream } from "mastodon/actions/streaming";
+import { fetchHashtag, followHashtag, unfollowHashtag } from "mastodon/actions/tags";
+import { expandHashtagTimeline, clearTimeline } from "mastodon/actions/timelines";
+import Column from "mastodon/components/column";
+import ColumnHeader from "mastodon/components/column_header";
 
-import StatusListContainer from '../ui/containers/status_list_container';
+import StatusListContainer from "../ui/containers/status_list_container";
 
-import { HashtagHeader } from './components/hashtag_header';
-import ColumnSettingsContainer from './containers/column_settings_container';
+import { HashtagHeader } from "./components/hashtag_header";
+import ColumnSettingsContainer from "./containers/column_settings_container";
 
 const mapStateToProps = (state, props) => ({
-  hasUnread: state.getIn(['timelines', `hashtag:${props.params.id}${props.params.local ? ':local' : ''}`, 'unread']) > 0,
-  tag: state.getIn(['tags', props.params.id]),
+  hasUnread: state.getIn(["timelines", `hashtag:${props.params.id}${props.params.local ? ":local" : ""}`, "unread"]) > 0,
+  tag: state.getIn(["tags", props.params.id]),
 });
 
 class HashtagTimeline extends PureComponent {
@@ -50,7 +50,7 @@ class HashtagTimeline extends PureComponent {
     if (columnId) {
       dispatch(removeColumn(columnId));
     } else {
-      dispatch(addColumn('HASHTAG', { id: this.props.params.id }));
+      dispatch(addColumn("HASHTAG", { id: this.props.params.id }));
     }
   };
 
@@ -58,16 +58,16 @@ class HashtagTimeline extends PureComponent {
     const { id } = this.props.params;
     const title  = [id];
 
-    if (this.additionalFor('any')) {
-      title.push(' ', <FormattedMessage key='any' id='hashtag.column_header.tag_mode.any'  values={{ additional: this.additionalFor('any') }} defaultMessage='or {additional}' />);
+    if (this.additionalFor("any")) {
+      title.push(" ", <FormattedMessage key='any' id='hashtag.column_header.tag_mode.any'  values={{ additional: this.additionalFor("any") }} defaultMessage='or {additional}' />);
     }
 
-    if (this.additionalFor('all')) {
-      title.push(' ', <FormattedMessage key='all' id='hashtag.column_header.tag_mode.all'  values={{ additional: this.additionalFor('all') }} defaultMessage='and {additional}' />);
+    if (this.additionalFor("all")) {
+      title.push(" ", <FormattedMessage key='all' id='hashtag.column_header.tag_mode.all'  values={{ additional: this.additionalFor("all") }} defaultMessage='and {additional}' />);
     }
 
-    if (this.additionalFor('none')) {
-      title.push(' ', <FormattedMessage key='none' id='hashtag.column_header.tag_mode.none' values={{ additional: this.additionalFor('none') }} defaultMessage='without {additional}' />);
+    if (this.additionalFor("none")) {
+      title.push(" ", <FormattedMessage key='none' id='hashtag.column_header.tag_mode.none' values={{ additional: this.additionalFor("none") }} defaultMessage='without {additional}' />);
     }
 
     return title;
@@ -77,9 +77,9 @@ class HashtagTimeline extends PureComponent {
     const { tags } = this.props.params;
 
     if (tags && (tags[mode] || []).length > 0) {
-      return tags[mode].map(tag => tag.value).join('/');
+      return tags[mode].map(tag => tag.value).join("/");
     } else {
-      return '';
+      return "";
     }
   };
 
@@ -103,7 +103,7 @@ class HashtagTimeline extends PureComponent {
     let all  = (tags.all || []).map(tag => tag.value);
     let none = (tags.none || []).map(tag => tag.value);
 
-    [id, ...any].map(tag => {
+    [id, ...any].forEach(tag => {
       this.disconnects.push(dispatch(connectHashtagStream(id, tag, local, status => {
         let tags = status.tags.map(tag => tag.name);
 
@@ -123,7 +123,7 @@ class HashtagTimeline extends PureComponent {
     const { id, local } = this.props.params;
 
     this._unsubscribe();
-    dispatch(clearTimeline(`hashtag:${id}${local ? ':local' : ''}`));
+    dispatch(clearTimeline(`hashtag:${id}${local ? ":local" : ""}`));
   }
 
   _load() {
@@ -173,7 +173,7 @@ class HashtagTimeline extends PureComponent {
       return;
     }
 
-    if (tag.get('following')) {
+    if (tag.get("following")) {
       dispatch(unfollowHashtag(id));
     } else {
       dispatch(followHashtag(id));
@@ -207,7 +207,7 @@ class HashtagTimeline extends PureComponent {
           alwaysPrepend
           trackScroll={!pinned}
           scrollKey={`hashtag_timeline-${columnId}`}
-          timelineId={`hashtag:${id}${local ? ':local' : ''}`}
+          timelineId={`hashtag:${id}${local ? ":local" : ""}`}
           onLoadMore={this.handleLoadMore}
           emptyMessage={<FormattedMessage id='empty_column.hashtag' defaultMessage='There is nothing in this hashtag yet.' />}
           bindToDocument={!multiColumn}

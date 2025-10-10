@@ -1,10 +1,10 @@
-import * as React from 'react';
+import React from "react";
 
-import { FormattedMessage } from 'react-intl';
+import { FormattedMessage } from "react-intl";
 
 interface Props {
-  resource: JSX.Element;
-  url: string;
+  resource: React.JSX.Element,
+  url: string,
 }
 
 export const TimelineHint: React.FC<Props> = ({ resource, url }) => (

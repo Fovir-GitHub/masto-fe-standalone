@@ -1,17 +1,17 @@
-import PropTypes from 'prop-types';
-import { PureComponent } from 'react';
+import PropTypes from "prop-types";
+import { PureComponent } from "react";
 
-import { FormattedMessage, injectIntl } from 'react-intl';
+import { FormattedMessage, injectIntl } from "react-intl";
 
-import classnames from 'classnames';
-import { Link } from 'react-router-dom';
+import classnames from "classnames";
+import { Link } from "react-router-dom";
 
-import ImmutablePropTypes from 'react-immutable-proptypes';
-import { connect } from 'react-redux';
+import ImmutablePropTypes from "react-immutable-proptypes";
+import { connect } from "react-redux";
 
-import { Icon }  from 'mastodon/components/icon';
-import PollContainer from 'mastodon/containers/poll_container';
-import { autoPlayGif } from 'mastodon/initial_state';
+import { Icon }  from "mastodon/components/icon";
+import PollContainer from "mastodon/containers/poll_container";
+import { autoPlayGif } from "mastodon/initial_state";
 
 const MAX_HEIGHT = 706; // 22px * 32 (+ 2px padding at the top)
 
@@ -21,7 +21,7 @@ const MAX_HEIGHT = 706; // 22px * 32 (+ 2px padding at the top)
  * @returns {string}
  */
 export function getStatusContent(status) {
-  return status.getIn(['translation', 'contentHtml']) || status.get('contentHtml');
+  return status.getIn(["translation", "contentHtml"]) || status.get("contentHtml");
 }
 
 class StatusContent extends PureComponent {
@@ -54,42 +54,42 @@ class StatusContent extends PureComponent {
     }
 
     const { status, onCollapsedToggle } = this.props;
-    const links = node.querySelectorAll('a');
+    const links = node.querySelectorAll("a");
 
     let link, mention;
 
     for (var i = 0; i < links.length; ++i) {
       link = links[i];
 
-      if (link.classList.contains('status-link')) {
+      if (link.classList.contains("status-link")) {
         continue;
       }
 
-      link.classList.add('status-link');
+      link.classList.add("status-link");
 
-      mention = this.props.status.get('mentions').find(item => link.href === item.get('url'));
+      mention = this.props.status.get("mentions").find(item => link.href === item.get("url"));
 
       if (mention) {
-        link.addEventListener('click', this.onMentionClick.bind(this, mention), false);
-        link.setAttribute('title', `@${mention.get('acct')}`);
-        link.setAttribute('href', `/@${mention.get('acct')}`);
-      } else if (link.textContent[0] === '#' || (link.previousSibling && link.previousSibling.textContent && link.previousSibling.textContent[link.previousSibling.textContent.length - 1] === '#')) {
-        link.addEventListener('click', this.onHashtagClick.bind(this, link.text), false);
-        link.setAttribute('href', `/tags/${link.text.replace(/^#/, '')}`);
+        link.addEventListener("click", this.onMentionClick.bind(this, mention), false);
+        link.setAttribute("title", `@${mention.get("acct")}`);
+        link.setAttribute("href", `/@${mention.get("acct")}`);
+      } else if (link.textContent[0] === "#" || (link.previousSibling && link.previousSibling.textContent && link.previousSibling.textContent[link.previousSibling.textContent.length - 1] === "#")) {
+        link.addEventListener("click", this.onHashtagClick.bind(this, link.text), false);
+        link.setAttribute("href", `/tags/${link.text.replace(/^#/, "")}`);
       } else {
-        link.setAttribute('title', link.href);
-        link.classList.add('unhandled-link');
+        link.setAttribute("title", link.href);
+        link.classList.add("unhandled-link");
       }
     }
 
-    if (status.get('collapsed', null) === null && onCollapsedToggle) {
+    if (status.get("collapsed", null) === null && onCollapsedToggle) {
       const { collapsible, onClick } = this.props;
 
       const collapsed =
           collapsible
           && onClick
           && node.clientHeight > MAX_HEIGHT
-          && status.get('spoiler_text').length === 0;
+          && status.get("spoiler_text").length === 0;
 
       onCollapsedToggle(collapsed);
     }
@@ -100,11 +100,11 @@ class StatusContent extends PureComponent {
       return;
     }
 
-    const emojis = currentTarget.querySelectorAll('.custom-emoji');
+    const emojis = currentTarget.querySelectorAll(".custom-emoji");
 
     for (var i = 0; i < emojis.length; i++) {
       let emoji = emojis[i];
-      emoji.src = emoji.getAttribute('data-original');
+      emoji.src = emoji.getAttribute("data-original");
     }
   };
 
@@ -113,11 +113,11 @@ class StatusContent extends PureComponent {
       return;
     }
 
-    const emojis = currentTarget.querySelectorAll('.custom-emoji');
+    const emojis = currentTarget.querySelectorAll(".custom-emoji");
 
     for (var i = 0; i < emojis.length; i++) {
       let emoji = emojis[i];
-      emoji.src = emoji.getAttribute('data-static');
+      emoji.src = emoji.getAttribute("data-static");
     }
   };
 
@@ -132,12 +132,12 @@ class StatusContent extends PureComponent {
   onMentionClick = (mention, e) => {
     if (this.context.router && e.button === 0 && !(e.ctrlKey || e.metaKey)) {
       e.preventDefault();
-      this.context.router.history.push(`/@${mention.get('acct')}`);
+      this.context.router.history.push(`/@${mention.get("acct")}`);
     }
   };
 
   onHashtagClick = (hashtag, e) => {
-    hashtag = hashtag.replace(/^#/, '');
+    hashtag = hashtag.replace(/^#/, "");
 
     if (this.context.router && e.button === 0 && !(e.ctrlKey || e.metaKey)) {
       e.preventDefault();
@@ -159,7 +159,7 @@ class StatusContent extends PureComponent {
 
     let element = e.target;
     while (element) {
-      if (element.localName === 'button' || element.localName === 'a' || element.localName === 'label') {
+      if (element.localName === "button" || element.localName === "a" || element.localName === "label") {
         return;
       }
       element = element.parentNode;
@@ -195,15 +195,15 @@ class StatusContent extends PureComponent {
     const { status, statusContent } = this.props;
 
     const hidden = this.props.onExpandedToggle ? !this.props.expanded : this.state.hidden;
-    const renderReadMore = this.props.onClick && status.get('collapsed');
+    const renderReadMore = this.props.onClick && status.get("collapsed");
 
     const content = { __html: statusContent ?? getStatusContent(status) };
-    const spoilerContent = { __html: status.getIn(['translation', 'spoilerHtml']) || status.get('spoilerHtml') };
-    const language = status.getIn(['translation', 'language']) || status.get('language');
-    const classNames = classnames('status__content', {
-      'status__content--with-action': this.props.onClick && this.context.router,
-      'status__content--with-spoiler': status.get('spoiler_text').length > 0,
-      'status__content--collapsed': renderReadMore,
+    const spoilerContent = { __html: status.getIn(["translation", "spoilerHtml"]) || status.get("spoilerHtml") };
+    const language = status.getIn(["translation", "language"]) || status.get("language");
+    const classNames = classnames("status__content", {
+      "status__content--with-action": this.props.onClick && this.context.router,
+      "status__content--with-spoiler": status.get("spoiler_text").length > 0,
+      "status__content--collapsed": renderReadMore,
     });
 
     const readMoreButton = renderReadMore && (
@@ -212,18 +212,18 @@ class StatusContent extends PureComponent {
       </button>
     );
 
-    const poll = !!status.get('poll') && (
-      <PollContainer pollId={status.get('poll')} lang={language} />
+    const poll = !!status.get("poll") && (
+      <PollContainer pollId={status.get("poll")} lang={language} />
     );
 
-    if (status.get('spoiler_text').length > 0) {
-      let mentionsPlaceholder = '';
+    if (status.get("spoiler_text").length > 0) {
+      let mentionsPlaceholder = "";
 
-      const mentionLinks = status.get('mentions').map(item => (
-        <Link to={`/@${item.get('acct')}`} key={item.get('id')} className='status-link mention'>
-          @<span>{item.get('username')}</span>
+      const mentionLinks = status.get("mentions").map(item => (
+        <Link to={`/@${item.get("acct")}`} key={item.get("id")} className='status-link mention'>
+          @<span>{item.get("username")}</span>
         </Link>
-      )).reduce((aggregate, item) => [...aggregate, item, ' '], []);
+      )).reduce((aggregate, item) => [...aggregate, item, " "], []);
 
       const toggleText = hidden ? <FormattedMessage id='status.show_more' defaultMessage='Show more' /> : <FormattedMessage id='status.show_less' defaultMessage='Show less' />;
 
@@ -233,15 +233,15 @@ class StatusContent extends PureComponent {
 
       return (
         <div className={classNames} ref={this.setRef} tabIndex={0} onMouseDown={this.handleMouseDown} onMouseUp={this.handleMouseUp} onMouseEnter={this.handleMouseEnter} onMouseLeave={this.handleMouseLeave}>
-          <p style={{ marginBottom: hidden && status.get('mentions').isEmpty() ? '0px' : null }}>
+          <p style={{ marginBottom: hidden && status.get("mentions").isEmpty() ? "0px" : null }}>
             <span dangerouslySetInnerHTML={spoilerContent} className='translate' lang={language} />
-            {' '}
-            <button type='button' className={`status__content__spoiler-link ${hidden ? 'status__content__spoiler-link--show-more' : 'status__content__spoiler-link--show-less'}`} onClick={this.handleSpoilerClick} aria-expanded={!hidden}>{toggleText}</button>
+            {" "}
+            <button type='button' className={`status__content__spoiler-link ${hidden ? "status__content__spoiler-link--show-more" : "status__content__spoiler-link--show-less"}`} onClick={this.handleSpoilerClick} aria-expanded={!hidden}>{toggleText}</button>
           </p>
 
           {mentionsPlaceholder}
 
-          <div tabIndex={!hidden ? 0 : null} className={`status__content__text ${!hidden ? 'status__content__text--visible' : ''} translate`} lang={language} dangerouslySetInnerHTML={content} />
+          <div tabIndex={!hidden ? 0 : null} className={`status__content__text ${!hidden ? "status__content__text--visible" : ""} translate`} lang={language} dangerouslySetInnerHTML={content} />
 
           {!hidden && poll}
         </div>

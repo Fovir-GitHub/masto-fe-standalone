@@ -1,20 +1,20 @@
-import PropTypes from 'prop-types';
+import PropTypes from "prop-types";
 
-import { defineMessages, injectIntl } from 'react-intl';
+import { defineMessages, injectIntl } from "react-intl";
 
-import ImmutablePropTypes from 'react-immutable-proptypes';
-import ImmutablePureComponent from 'react-immutable-pure-component';
-import { connect } from 'react-redux';
+import ImmutablePropTypes from "react-immutable-proptypes";
+import ImmutablePureComponent from "react-immutable-pure-component";
+import { connect } from "react-redux";
 
-import { IconButton } from '../../../components/icon_button';
+import { IconButton } from "../../../components/icon_button";
 
 const messages = defineMessages({
-  upload: { id: 'upload_button.label', defaultMessage: 'Add images, a video or an audio file' },
+  upload: { id: "upload_button.label", defaultMessage: "Add images, a video or an audio file" },
 });
 
 const makeMapStateToProps = () => {
   const mapStateToProps = state => ({
-    acceptContentTypes: state.getIn(['media_attachments', 'accept_content_types']),
+    acceptContentTypes: state.getIn(["media_attachments", "accept_content_types"]),
   });
 
   return mapStateToProps;
@@ -22,7 +22,7 @@ const makeMapStateToProps = () => {
 
 const iconStyle = {
   height: null,
-  lineHeight: '27px',
+  lineHeight: "27px",
 };
 
 class UploadButton extends ImmutablePureComponent {
@@ -64,16 +64,16 @@ class UploadButton extends ImmutablePureComponent {
       <div className='compose-form__upload-button'>
         <IconButton icon='paperclip' title={message} disabled={disabled} onClick={this.handleClick} className='compose-form__upload-button-icon' size={18} inverted style={iconStyle} />
         <label>
-          <span style={{ display: 'none' }}>{message}</span>
+          <span style={{ display: "none" }}>{message}</span>
           <input
             key={resetFileKey}
             ref={this.setRef}
             type='file'
             multiple
-            accept={acceptContentTypes.toArray().join(',')}
+            accept={acceptContentTypes.toArray().join(",")}
             onChange={this.handleChange}
             disabled={disabled}
-            style={{ display: 'none' }}
+            style={{ display: "none" }}
           />
         </label>
       </div>

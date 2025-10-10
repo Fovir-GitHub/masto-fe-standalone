@@ -1,13 +1,13 @@
-import React from 'react';
+import React from "react";
 
-import classNames from 'classnames';
+import classNames from "classnames";
 
-import { DisplayName } from 'mastodon/components/display_name';
-import { Skeleton } from 'mastodon/components/skeleton';
+import { DisplayName } from "mastodon/components/display_name";
+import { Skeleton } from "mastodon/components/skeleton";
 
 interface Props {
-  size?: number;
-  minimal?: boolean;
+  size?: number,
+  minimal?: boolean,
 }
 
 export const EmptyAccount: React.FC<Props> = ({
@@ -15,7 +15,7 @@ export const EmptyAccount: React.FC<Props> = ({
   minimal = false,
 }) => {
   return (
-    <div className={classNames('account', { 'account--minimal': minimal })}>
+    <div className={classNames("account", { "account--minimal": minimal })}>
       <div className='account__wrapper'>
         <div className='account__display-name'>
           <div className='account__avatar-wrapper'>

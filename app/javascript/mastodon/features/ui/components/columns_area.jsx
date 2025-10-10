@@ -1,13 +1,13 @@
-import PropTypes from 'prop-types';
-import { Children, cloneElement } from 'react';
+import PropTypes from "prop-types";
+import { Children, cloneElement } from "react";
 
-import ImmutablePropTypes from 'react-immutable-proptypes';
-import ImmutablePureComponent from 'react-immutable-pure-component';
+import ImmutablePropTypes from "react-immutable-proptypes";
+import ImmutablePureComponent from "react-immutable-pure-component";
 
-import { supportsPassiveEvents } from 'detect-passive-events';
+import { supportsPassiveEvents } from "detect-passive-events";
 
-import { scrollRight } from '../../../scroll';
-import BundleContainer from '../containers/bundle_container';
+import { scrollRight } from "../../../scroll";
+import BundleContainer from "../containers/bundle_container";
 import {
   Compose,
   Notifications,
@@ -20,27 +20,27 @@ import {
   BookmarkedStatuses,
   ListTimeline,
   Directory,
-} from '../util/async-components';
+} from "../util/async-components";
 
-import BundleColumnError from './bundle_column_error';
-import ColumnLoading from './column_loading';
-import ComposePanel from './compose_panel';
-import DrawerLoading from './drawer_loading';
-import NavigationPanel from './navigation_panel';
+import BundleColumnError from "./bundle_column_error";
+import ColumnLoading from "./column_loading";
+import ComposePanel from "./compose_panel";
+import DrawerLoading from "./drawer_loading";
+import NavigationPanel from "./navigation_panel";
 
 const componentMap = {
-  'COMPOSE': Compose,
-  'HOME': HomeTimeline,
-  'NOTIFICATIONS': Notifications,
-  'PUBLIC': PublicTimeline,
-  'REMOTE': PublicTimeline,
-  'COMMUNITY': CommunityTimeline,
-  'HASHTAG': HashtagTimeline,
-  'DIRECT': DirectTimeline,
-  'FAVOURITES': FavouritedStatuses,
-  'BOOKMARKS': BookmarkedStatuses,
-  'LIST': ListTimeline,
-  'DIRECTORY': Directory,
+  "COMPOSE": Compose,
+  "HOME": HomeTimeline,
+  "NOTIFICATIONS": Notifications,
+  "PUBLIC": PublicTimeline,
+  "REMOTE": PublicTimeline,
+  "COMMUNITY": CommunityTimeline,
+  "HASHTAG": HashtagTimeline,
+  "DIRECT": DirectTimeline,
+  "FAVOURITES": FavouritedStatuses,
+  "BOOKMARKS": BookmarkedStatuses,
+  "LIST": ListTimeline,
+  "DIRECTORY": Directory,
 };
 
 export default class ColumnsArea extends ImmutablePureComponent {
@@ -57,7 +57,7 @@ export default class ColumnsArea extends ImmutablePureComponent {
   };
 
   // Corresponds to (max-width: $no-gap-breakpoint + 285px - 1px) in SCSS
-  mediaQuery = 'matchMedia' in window && window.matchMedia('(max-width: 1174px)');
+  mediaQuery = "matchMedia" in window && window.matchMedia("(max-width: 1174px)");
 
   state = {
     renderComposePanel: !(this.mediaQuery && this.mediaQuery.matches),
@@ -65,41 +65,41 @@ export default class ColumnsArea extends ImmutablePureComponent {
 
   componentDidMount() {
     if (!this.props.singleColumn) {
-      this.node.addEventListener('wheel', this.handleWheel, supportsPassiveEvents ? { passive: true } : false);
+      this.node.addEventListener("wheel", this.handleWheel, supportsPassiveEvents ? { passive: true } : false);
     }
 
     if (this.mediaQuery) {
       if (this.mediaQuery.addEventListener) {
-        this.mediaQuery.addEventListener('change', this.handleLayoutChange);
+        this.mediaQuery.addEventListener("change", this.handleLayoutChange);
       } else {
         this.mediaQuery.addListener(this.handleLayoutChange);
       }
       this.setState({ renderComposePanel: !this.mediaQuery.matches });
     }
 
-    this.isRtlLayout = document.getElementsByTagName('body')[0].classList.contains('rtl');
+    this.isRtlLayout = document.getElementsByTagName("body")[0].classList.contains("rtl");
   }
 
   UNSAFE_componentWillUpdate(nextProps) {
     if (this.props.singleColumn !== nextProps.singleColumn && nextProps.singleColumn) {
-      this.node.removeEventListener('wheel', this.handleWheel);
+      this.node.removeEventListener("wheel", this.handleWheel);
     }
   }
 
   componentDidUpdate(prevProps) {
     if (this.props.singleColumn !== prevProps.singleColumn && !this.props.singleColumn) {
-      this.node.addEventListener('wheel', this.handleWheel, supportsPassiveEvents ? { passive: true } : false);
+      this.node.addEventListener("wheel", this.handleWheel, supportsPassiveEvents ? { passive: true } : false);
     }
   }
 
   componentWillUnmount () {
     if (!this.props.singleColumn) {
-      this.node.removeEventListener('wheel', this.handleWheel);
+      this.node.removeEventListener("wheel", this.handleWheel);
     }
 
     if (this.mediaQuery) {
       if (this.mediaQuery.removeEventListener) {
-        this.mediaQuery.removeEventListener('change', this.handleLayoutChange);
+        this.mediaQuery.removeEventListener("change", this.handleLayoutChange);
       } else {
         this.mediaQuery.removeListener(this.handleLayoutChange);
       }
@@ -118,7 +118,7 @@ export default class ColumnsArea extends ImmutablePureComponent {
   };
 
   handleWheel = () => {
-    if (typeof this._interruptScrollAnimation !== 'function') {
+    if (typeof this._interruptScrollAnimation !== "function") {
       return;
     }
 
@@ -130,7 +130,7 @@ export default class ColumnsArea extends ImmutablePureComponent {
   };
 
   renderLoading = columnId => () => {
-    return columnId === 'COMPOSE' ? <DrawerLoading /> : <ColumnLoading multiColumn />;
+    return columnId === "COMPOSE" ? <DrawerLoading /> : <ColumnLoading multiColumn />;
   };
 
   renderError = (props) => {
@@ -165,14 +165,14 @@ export default class ColumnsArea extends ImmutablePureComponent {
     }
 
     return (
-      <div className={`columns-area ${ isModalOpen ? 'unscrollable' : '' }`} ref={this.setRef}>
+      <div className={`columns-area ${ isModalOpen ? "unscrollable" : "" }`} ref={this.setRef}>
         {columns.map(column => {
-          const params = column.get('params', null) === null ? null : column.get('params').toJS();
+          const params = column.get("params", null) === null ? null : column.get("params").toJS();
           const other  = params && params.other ? params.other : {};
 
           return (
-            <BundleContainer key={column.get('uuid')} fetchComponent={componentMap[column.get('id')]} loading={this.renderLoading(column.get('id'))} error={this.renderError}>
-              {SpecificComponent => <SpecificComponent columnId={column.get('uuid')} params={params} multiColumn {...other} />}
+            <BundleContainer key={column.get("uuid")} fetchComponent={componentMap[column.get("id")]} loading={this.renderLoading(column.get("id"))} error={this.renderError}>
+              {SpecificComponent => <SpecificComponent columnId={column.get("uuid")} params={params} multiColumn {...other} />}
             </BundleContainer>
           );
         })}

@@ -1,15 +1,15 @@
-import PropTypes from 'prop-types';
-import { PureComponent } from 'react';
+import PropTypes from "prop-types";
+import { PureComponent } from "react";
 
-import { connect } from 'react-redux';
+import { connect } from "react-redux";
 
-import { mountCompose, unmountCompose } from 'flavours/glitch/actions/compose';
-import ServerBanner from 'flavours/glitch/components/server_banner';
-import ComposeFormContainer from 'flavours/glitch/features/compose/containers/compose_form_container';
-import NavigationContainer from 'flavours/glitch/features/compose/containers/navigation_container';
-import SearchContainer from 'flavours/glitch/features/compose/containers/search_container';
+import { mountCompose, unmountCompose } from "flavours/glitch/actions/compose";
+import ServerBanner from "flavours/glitch/components/server_banner";
+import ComposeFormContainer from "flavours/glitch/features/compose/containers/compose_form_container";
+import NavigationContainer from "flavours/glitch/features/compose/containers/navigation_container";
+import SearchContainer from "flavours/glitch/features/compose/containers/search_container";
 
-import LinkFooter from './link_footer';
+import LinkFooter from "./link_footer";
 
 
 class ComposePanel extends PureComponent {

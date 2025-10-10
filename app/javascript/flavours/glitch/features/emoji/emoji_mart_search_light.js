@@ -1,8 +1,8 @@
 // This code is largely borrowed from:
 // https://github.com/missive/emoji-mart/blob/5f2ffcc/src/utils/emoji-index.js
 
-import * as data from './emoji_mart_data_light';
-import { getData, getSanitizedData, uniq, intersect } from './emoji_utils';
+import * as data from "./emoji_mart_data_light";
+import { getData, getSanitizedData, uniq, intersect } from "./emoji_utils";
 
 let originalPool = {};
 let index = {};
@@ -39,7 +39,9 @@ function clearCustomEmojis(pool) {
 }
 
 function addCustomToPool(custom, pool) {
-  if (customEmojisList.length) clearCustomEmojis(pool);
+  if (customEmojisList.length) {
+    clearCustomEmojis(pool);
+  }
 
   custom.forEach((emoji) => {
     let emojiId = emoji.id || emoji.short_names[0];
@@ -56,8 +58,9 @@ function addCustomToPool(custom, pool) {
 
 function search(value, { emojisToShowFilter, maxResults, include, exclude, custom } = {}) {
   if (custom !== undefined) {
-    if (customEmojisList !== custom)
+    if (customEmojisList !== custom) {
       addCustomToPool(custom, originalPool);
+    }
   } else {
     custom = [];
   }
@@ -70,8 +73,8 @@ function search(value, { emojisToShowFilter, maxResults, include, exclude, custo
     pool = originalPool;
 
   if (value.length) {
-    if (value === '-' || value === '-1') {
-      return [emojisList['-1']];
+    if (value === "-" || value === "-1") {
+      return [emojisList["-1"]];
     }
 
     let values = value.toLowerCase().split(/[\s|,\-_]+/),
@@ -95,8 +98,8 @@ function search(value, { emojisToShowFilter, maxResults, include, exclude, custo
       });
 
       if (custom.length) {
-        let customIsIncluded = include && include.length ? include.indexOf('custom') > -1 : true;
-        let customIsExcluded = exclude && exclude.length ? exclude.indexOf('custom') > -1 : false;
+        let customIsIncluded = include && include.length ? include.indexOf("custom") > -1 : true;
+        let customIsExcluded = exclude && exclude.length ? exclude.indexOf("custom") > -1 : false;
         if (customIsIncluded && !customIsExcluded) {
           addCustomToPool(custom, pool);
         }
@@ -129,7 +132,9 @@ function search(value, { emojisToShowFilter, maxResults, include, exclude, custo
 
             if (subIndex !== -1) {
               let score = subIndex + 1;
-              if (sub === id) score = 0;
+              if (sub === id) {
+                score = 0;
+              }
 
               aIndex.results.push(emojisList[id]);
               aIndex.pool[id] = emoji;

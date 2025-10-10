@@ -1,69 +1,69 @@
-import { Component } from 'react';
+import { Component } from "react";
 
-import type { IntlShape } from 'react-intl';
-import { injectIntl, defineMessages } from 'react-intl';
+import  { type IntlShape } from "react-intl";
+import { injectIntl, defineMessages } from "react-intl";
 
 const messages = defineMessages({
-  today: { id: 'relative_time.today', defaultMessage: 'today' },
-  just_now: { id: 'relative_time.just_now', defaultMessage: 'now' },
+  today: { id: "relative_time.today", defaultMessage: "today" },
+  just_now: { id: "relative_time.just_now", defaultMessage: "now" },
   just_now_full: {
-    id: 'relative_time.full.just_now',
-    defaultMessage: 'just now',
+    id: "relative_time.full.just_now",
+    defaultMessage: "just now",
   },
-  seconds: { id: 'relative_time.seconds', defaultMessage: '{number}s' },
+  seconds: { id: "relative_time.seconds", defaultMessage: "{number}s" },
   seconds_full: {
-    id: 'relative_time.full.seconds',
-    defaultMessage: '{number, plural, one {# second} other {# seconds}} ago',
+    id: "relative_time.full.seconds",
+    defaultMessage: "{number, plural, one {# second} other {# seconds}} ago",
   },
-  minutes: { id: 'relative_time.minutes', defaultMessage: '{number}m' },
+  minutes: { id: "relative_time.minutes", defaultMessage: "{number}m" },
   minutes_full: {
-    id: 'relative_time.full.minutes',
-    defaultMessage: '{number, plural, one {# minute} other {# minutes}} ago',
+    id: "relative_time.full.minutes",
+    defaultMessage: "{number, plural, one {# minute} other {# minutes}} ago",
   },
-  hours: { id: 'relative_time.hours', defaultMessage: '{number}h' },
+  hours: { id: "relative_time.hours", defaultMessage: "{number}h" },
   hours_full: {
-    id: 'relative_time.full.hours',
-    defaultMessage: '{number, plural, one {# hour} other {# hours}} ago',
+    id: "relative_time.full.hours",
+    defaultMessage: "{number, plural, one {# hour} other {# hours}} ago",
   },
-  days: { id: 'relative_time.days', defaultMessage: '{number}d' },
+  days: { id: "relative_time.days", defaultMessage: "{number}d" },
   days_full: {
-    id: 'relative_time.full.days',
-    defaultMessage: '{number, plural, one {# day} other {# days}} ago',
+    id: "relative_time.full.days",
+    defaultMessage: "{number, plural, one {# day} other {# days}} ago",
   },
   moments_remaining: {
-    id: 'time_remaining.moments',
-    defaultMessage: 'Moments remaining',
+    id: "time_remaining.moments",
+    defaultMessage: "Moments remaining",
   },
   seconds_remaining: {
-    id: 'time_remaining.seconds',
-    defaultMessage: '{number, plural, one {# second} other {# seconds}} left',
+    id: "time_remaining.seconds",
+    defaultMessage: "{number, plural, one {# second} other {# seconds}} left",
   },
   minutes_remaining: {
-    id: 'time_remaining.minutes',
-    defaultMessage: '{number, plural, one {# minute} other {# minutes}} left',
+    id: "time_remaining.minutes",
+    defaultMessage: "{number, plural, one {# minute} other {# minutes}} left",
   },
   hours_remaining: {
-    id: 'time_remaining.hours',
-    defaultMessage: '{number, plural, one {# hour} other {# hours}} left',
+    id: "time_remaining.hours",
+    defaultMessage: "{number, plural, one {# hour} other {# hours}} left",
   },
   days_remaining: {
-    id: 'time_remaining.days',
-    defaultMessage: '{number, plural, one {# day} other {# days}} left',
+    id: "time_remaining.days",
+    defaultMessage: "{number, plural, one {# day} other {# days}} left",
   },
 });
 
 const dateFormatOptions = {
   hour12: false,
-  year: 'numeric',
-  month: 'short',
-  day: '2-digit',
-  hour: '2-digit',
-  minute: '2-digit',
+  year: "numeric",
+  month: "short",
+  day: "2-digit",
+  hour: "2-digit",
+  minute: "2-digit",
 } as const;
 
 const shortDateFormatOptions = {
-  month: 'short',
-  day: 'numeric',
+  month: "short",
+  day: "numeric",
 } as const;
 
 const SECOND = 1000;
@@ -77,25 +77,25 @@ const selectUnits = (delta: number) => {
   const absDelta = Math.abs(delta);
 
   if (absDelta < MINUTE) {
-    return 'second';
+    return "second";
   } else if (absDelta < HOUR) {
-    return 'minute';
+    return "minute";
   } else if (absDelta < DAY) {
-    return 'hour';
+    return "hour";
   }
 
-  return 'day';
+  return "day";
 };
 
 const getUnitDelay = (units: string) => {
   switch (units) {
-    case 'second':
+    case "second":
       return SECOND;
-    case 'minute':
+    case "minute":
       return MINUTE;
-    case 'hour':
+    case "hour":
       return HOUR;
-    case 'day':
+    case "day":
       return DAY;
     default:
       return MAX_DELAY;
@@ -147,7 +147,7 @@ export const timeAgoString = (
   } else {
     relativeTime = intl.formatDate(date, {
       ...shortDateFormatOptions,
-      year: 'numeric',
+      year: "numeric",
     });
   }
 
@@ -190,14 +190,14 @@ const timeRemainingString = (
 };
 
 interface Props {
-  intl: IntlShape;
-  timestamp: string;
-  year: number;
-  futureDate?: boolean;
-  short?: boolean;
+  intl: IntlShape,
+  timestamp: string,
+  year: number,
+  futureDate?: boolean,
+  short?: boolean,
 }
 interface States {
-  now: number;
+  now: number,
 }
 class RelativeTimestamp extends Component<Props, States> {
   state = {
@@ -260,7 +260,7 @@ class RelativeTimestamp extends Component<Props, States> {
   render() {
     const { timestamp, intl, year, futureDate, short } = this.props;
 
-    const timeGiven = timestamp.includes('T');
+    const timeGiven = timestamp.includes("T");
     const date = new Date(timestamp);
     const relativeTime = futureDate
       ? timeRemainingString(intl, date, this.state.now, timeGiven)

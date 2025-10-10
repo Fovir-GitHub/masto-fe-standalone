@@ -1,29 +1,29 @@
-import PropTypes from 'prop-types';
-import { PureComponent } from 'react';
+import PropTypes from "prop-types";
+import { PureComponent } from "react";
 
-import { defineMessages, FormattedMessage, injectIntl } from 'react-intl';
+import { defineMessages, FormattedMessage, injectIntl } from "react-intl";
 
-import classNames from 'classnames';
+import classNames from "classnames";
 
-import { is } from 'immutable';
+import { is } from "immutable";
 
-import { throttle, debounce } from 'lodash';
+import { throttle, debounce } from "lodash";
 
-import { Icon }  from 'mastodon/components/icon';
-import { formatTime, getPointerPosition, fileNameFromURL } from 'mastodon/features/video';
+import { Icon }  from "mastodon/components/icon";
+import { formatTime, getPointerPosition, fileNameFromURL } from "mastodon/features/video";
 
-import { Blurhash } from '../../components/blurhash';
-import { displayMedia, useBlurhash } from '../../initial_state';
+import { Blurhash } from "../../components/blurhash";
+import { displayMedia, useBlurhash } from "../../initial_state";
 
-import Visualizer from './visualizer';
+import Visualizer from "./visualizer";
 
 const messages = defineMessages({
-  play: { id: 'video.play', defaultMessage: 'Play' },
-  pause: { id: 'video.pause', defaultMessage: 'Pause' },
-  mute: { id: 'video.mute', defaultMessage: 'Mute sound' },
-  unmute: { id: 'video.unmute', defaultMessage: 'Unmute sound' },
-  download: { id: 'video.download', defaultMessage: 'Download file' },
-  hide: { id: 'audio.hide', defaultMessage: 'Hide audio' },
+  play: { id: "video.play", defaultMessage: "Play" },
+  pause: { id: "video.pause", defaultMessage: "Pause" },
+  mute: { id: "video.mute", defaultMessage: "Mute sound" },
+  unmute: { id: "video.unmute", defaultMessage: "Unmute sound" },
+  download: { id: "video.download", defaultMessage: "Download file" },
+  hide: { id: "audio.hide", defaultMessage: "Hide audio" },
 });
 
 const TICK_SIZE = 10;
@@ -66,7 +66,7 @@ class Audio extends PureComponent {
     muted: false,
     volume: 1,
     dragging: false,
-    revealed: this.props.visible !== undefined ? this.props.visible : (displayMedia !== 'hide_all' && !this.props.sensitive || displayMedia === 'show_all'),
+    revealed: this.props.visible !== undefined ? this.props.visible : (displayMedia !== "hide_all" && !this.props.sensitive || displayMedia === "show_all"),
   };
 
   constructor (props) {
@@ -132,8 +132,8 @@ class Audio extends PureComponent {
   };
 
   componentDidMount () {
-    window.addEventListener('scroll', this.handleScroll);
-    window.addEventListener('resize', this.handleResize, { passive: true });
+    window.addEventListener("scroll", this.handleScroll);
+    window.addEventListener("resize", this.handleResize, { passive: true });
   }
 
   componentDidUpdate (prevProps, prevState) {
@@ -150,11 +150,11 @@ class Audio extends PureComponent {
   }
 
   componentWillUnmount () {
-    window.removeEventListener('scroll', this.handleScroll);
-    window.removeEventListener('resize', this.handleResize);
+    window.removeEventListener("scroll", this.handleScroll);
+    window.removeEventListener("resize", this.handleResize);
 
     if (!this.state.paused && this.audio && this.props.deployPictureInPicture) {
-      this.props.deployPictureInPicture('audio', this._pack());
+      this.props.deployPictureInPicture("audio", this._pack());
     }
   }
 
@@ -181,7 +181,7 @@ class Audio extends PureComponent {
   handlePlay = () => {
     this.setState({ paused: false });
 
-    if (this.audioContext && this.audioContext.state === 'suspended') {
+    if (this.audioContext && this.audioContext.state === "suspended") {
       this.audioContext.resume();
     }
 
@@ -223,10 +223,10 @@ class Audio extends PureComponent {
   };
 
   handleVolumeMouseDown = e => {
-    document.addEventListener('mousemove', this.handleMouseVolSlide, true);
-    document.addEventListener('mouseup', this.handleVolumeMouseUp, true);
-    document.addEventListener('touchmove', this.handleMouseVolSlide, true);
-    document.addEventListener('touchend', this.handleVolumeMouseUp, true);
+    document.addEventListener("mousemove", this.handleMouseVolSlide, true);
+    document.addEventListener("mouseup", this.handleVolumeMouseUp, true);
+    document.addEventListener("touchmove", this.handleMouseVolSlide, true);
+    document.addEventListener("touchend", this.handleVolumeMouseUp, true);
 
     this.handleMouseVolSlide(e);
 
@@ -235,17 +235,17 @@ class Audio extends PureComponent {
   };
 
   handleVolumeMouseUp = () => {
-    document.removeEventListener('mousemove', this.handleMouseVolSlide, true);
-    document.removeEventListener('mouseup', this.handleVolumeMouseUp, true);
-    document.removeEventListener('touchmove', this.handleMouseVolSlide, true);
-    document.removeEventListener('touchend', this.handleVolumeMouseUp, true);
+    document.removeEventListener("mousemove", this.handleMouseVolSlide, true);
+    document.removeEventListener("mouseup", this.handleVolumeMouseUp, true);
+    document.removeEventListener("touchmove", this.handleMouseVolSlide, true);
+    document.removeEventListener("touchend", this.handleVolumeMouseUp, true);
   };
 
   handleMouseDown = e => {
-    document.addEventListener('mousemove', this.handleMouseMove, true);
-    document.addEventListener('mouseup', this.handleMouseUp, true);
-    document.addEventListener('touchmove', this.handleMouseMove, true);
-    document.addEventListener('touchend', this.handleMouseUp, true);
+    document.addEventListener("mousemove", this.handleMouseMove, true);
+    document.addEventListener("mouseup", this.handleMouseUp, true);
+    document.addEventListener("touchmove", this.handleMouseMove, true);
+    document.addEventListener("touchend", this.handleMouseUp, true);
 
     this.setState({ dragging: true });
     this.audio.pause();
@@ -256,10 +256,10 @@ class Audio extends PureComponent {
   };
 
   handleMouseUp = () => {
-    document.removeEventListener('mousemove', this.handleMouseMove, true);
-    document.removeEventListener('mouseup', this.handleMouseUp, true);
-    document.removeEventListener('touchmove', this.handleMouseMove, true);
-    document.removeEventListener('touchend', this.handleMouseUp, true);
+    document.removeEventListener("mousemove", this.handleMouseMove, true);
+    document.removeEventListener("mouseup", this.handleMouseUp, true);
+    document.removeEventListener("touchmove", this.handleMouseMove, true);
+    document.removeEventListener("touchend", this.handleMouseUp, true);
 
     this.setState({ dragging: false });
     this.audio.play();
@@ -307,7 +307,7 @@ class Audio extends PureComponent {
       this.audio.pause();
 
       if (this.props.deployPictureInPicture) {
-        this.props.deployPictureInPicture('audio', this._pack());
+        this.props.deployPictureInPicture("audio", this._pack());
       }
 
       this.setState({ paused: true });
@@ -352,11 +352,11 @@ class Audio extends PureComponent {
 
   handleDownload = () => {
     fetch(this.props.src).then(res => res.blob()).then(blob => {
-      const element   = document.createElement('a');
+      const element   = document.createElement("a");
       const objectURL = URL.createObjectURL(blob);
 
-      element.setAttribute('href', objectURL);
-      element.setAttribute('download', fileNameFromURL(this.props.src));
+      element.setAttribute("href", objectURL);
+      element.setAttribute("download", fileNameFromURL(this.props.src));
 
       document.body.appendChild(element);
       element.click();
@@ -370,7 +370,9 @@ class Audio extends PureComponent {
 
   _renderCanvas () {
     requestAnimationFrame(() => {
-      if (!this.audio) return;
+      if (!this.audio) {
+        return;
+      }
 
       this.handleTimeUpdate();
       this._clear();
@@ -407,15 +409,15 @@ class Audio extends PureComponent {
   }
 
   _getAccentColor () {
-    return this.props.accentColor || '#ffffff';
+    return this.props.accentColor || "#ffffff";
   }
 
   _getBackgroundColor () {
-    return this.props.backgroundColor || '#000000';
+    return this.props.backgroundColor || "#000000";
   }
 
   _getForegroundColor () {
-    return this.props.foregroundColor || '#ffffff';
+    return this.props.foregroundColor || "#ffffff";
   }
 
   seekBy (time) {
@@ -432,7 +434,7 @@ class Audio extends PureComponent {
     // On the audio element or the seek bar, we can safely use the space bar
     // for playback control because there are no buttons to press
 
-    if (e.key === ' ') {
+    if (e.key === " ") {
       e.preventDefault();
       e.stopPropagation();
       this.togglePlay();
@@ -441,26 +443,26 @@ class Audio extends PureComponent {
 
   handleKeyDown = e => {
     switch(e.key) {
-    case 'k':
-      e.preventDefault();
-      e.stopPropagation();
-      this.togglePlay();
-      break;
-    case 'm':
-      e.preventDefault();
-      e.stopPropagation();
-      this.toggleMute();
-      break;
-    case 'j':
-      e.preventDefault();
-      e.stopPropagation();
-      this.seekBy(-10);
-      break;
-    case 'l':
-      e.preventDefault();
-      e.stopPropagation();
-      this.seekBy(10);
-      break;
+      case "k":
+        e.preventDefault();
+        e.stopPropagation();
+        this.togglePlay();
+        break;
+      case "m":
+        e.preventDefault();
+        e.stopPropagation();
+        this.toggleMute();
+        break;
+      case "j":
+        e.preventDefault();
+        e.stopPropagation();
+        this.seekBy(-10);
+        break;
+      case "l":
+        e.preventDefault();
+        e.stopPropagation();
+        this.seekBy(10);
+        break;
     }
   };
 
@@ -479,12 +481,12 @@ class Audio extends PureComponent {
     }
 
     return (
-      <div className={classNames('audio-player', { editable, inactive: !revealed })} ref={this.setPlayerRef} style={{ backgroundColor: this._getBackgroundColor(), color: this._getForegroundColor(), aspectRatio: '16 / 9' }} onMouseEnter={this.handleMouseEnter} onMouseLeave={this.handleMouseLeave} tabIndex={0} onKeyDown={this.handleKeyDown}>
+      <div className={classNames("audio-player", { editable, inactive: !revealed })} ref={this.setPlayerRef} style={{ backgroundColor: this._getBackgroundColor(), color: this._getForegroundColor(), aspectRatio: "16 / 9" }} onMouseEnter={this.handleMouseEnter} onMouseLeave={this.handleMouseLeave} tabIndex={0} onKeyDown={this.handleKeyDown}>
 
         <Blurhash
           hash={blurhash}
-          className={classNames('media-gallery__preview', {
-            'media-gallery__preview--hidden': revealed,
+          className={classNames("media-gallery__preview", {
+            "media-gallery__preview--hidden": revealed,
           })}
           dummy={!useBlurhash}
         />
@@ -492,7 +494,7 @@ class Audio extends PureComponent {
         {(revealed || editable) && <audio
           src={src}
           ref={this.setAudioRef}
-          preload={autoPlay ? 'auto' : 'none'}
+          preload={autoPlay ? "auto" : "none"}
           onPlay={this.handlePlay}
           onPause={this.handlePause}
           onProgress={this.handleProgress}
@@ -506,7 +508,7 @@ class Audio extends PureComponent {
           className='audio-player__canvas'
           width={this.state.width}
           height={this.state.height}
-          style={{ width: '100%', position: 'absolute', top: 0, left: 0 }}
+          style={{ width: "100%", position: "absolute", top: 0, left: 0 }}
           ref={this.setCanvasRef}
           onClick={this.togglePlay}
           onKeyDown={this.handleAudioKeyDown}
@@ -515,7 +517,7 @@ class Audio extends PureComponent {
           lang={lang}
         />
 
-        <div className={classNames('spoiler-button', { 'spoiler-button--hidden': revealed || editable })}>
+        <div className={classNames("spoiler-button", { "spoiler-button--hidden": revealed || editable })}>
           <button type='button' className='spoiler-button__overlay' onClick={this.toggleReveal}>
             <span className='spoiler-button__overlay__label'>
               {warning}
@@ -528,14 +530,14 @@ class Audio extends PureComponent {
           src={this.props.poster}
           alt=''
           style={{
-            position: 'absolute',
-            left: '50%',
-            top: '50%',
+            position: "absolute",
+            left: "50%",
+            top: "50%",
             height: `calc(${(100 - 2 * 100 * PADDING / 982)}% - ${TICK_SIZE * 2}px)`,
-            aspectRatio: '1',
-            transform: 'translate(-50%, -50%)',
-            borderRadius: '50%',
-            pointerEvents: 'none',
+            aspectRatio: "1",
+            transform: "translate(-50%, -50%)",
+            borderRadius: "50%",
+            pointerEvents: "none",
           }}
         />}
 
@@ -544,7 +546,7 @@ class Audio extends PureComponent {
           <div className='video-player__seek__progress' style={{ width: `${progress}%`, backgroundColor: this._getAccentColor() }} />
 
           <span
-            className={classNames('video-player__seek__handle', { active: dragging })}
+            className={classNames("video-player__seek__handle", { active: dragging })}
             tabIndex={0}
             style={{ left: `${progress}%`, backgroundColor: this._getAccentColor() }}
             onKeyDown={this.handleAudioKeyDown}
@@ -554,10 +556,10 @@ class Audio extends PureComponent {
         <div className='video-player__controls active'>
           <div className='video-player__buttons-bar'>
             <div className='video-player__buttons left'>
-              <button type='button' title={intl.formatMessage(paused ? messages.play : messages.pause)} aria-label={intl.formatMessage(paused ? messages.play : messages.pause)} className='player-button' onClick={this.togglePlay}><Icon id={paused ? 'play' : 'pause'} fixedWidth /></button>
-              <button type='button' title={intl.formatMessage(muted ? messages.unmute : messages.mute)} aria-label={intl.formatMessage(muted ? messages.unmute : messages.mute)} className='player-button' onClick={this.toggleMute}><Icon id={muted ? 'volume-off' : 'volume-up'} fixedWidth /></button>
+              <button type='button' title={intl.formatMessage(paused ? messages.play : messages.pause)} aria-label={intl.formatMessage(paused ? messages.play : messages.pause)} className='player-button' onClick={this.togglePlay}><Icon id={paused ? "play" : "pause"} fixedWidth /></button>
+              <button type='button' title={intl.formatMessage(muted ? messages.unmute : messages.mute)} aria-label={intl.formatMessage(muted ? messages.unmute : messages.mute)} className='player-button' onClick={this.toggleMute}><Icon id={muted ? "volume-off" : "volume-up"} fixedWidth /></button>
 
-              <div className={classNames('video-player__volume', { active: this.state.hovered })} ref={this.setVolumeRef} onMouseDown={this.handleVolumeMouseDown}>
+              <div className={classNames("video-player__volume", { active: this.state.hovered })} ref={this.setVolumeRef} onMouseDown={this.handleVolumeMouseDown}>
                 <div className='video-player__volume__current' style={{ width: `${muted ? 0 : volume * 100}%`, backgroundColor: this._getAccentColor() }} />
 
                 <span
@@ -577,7 +579,7 @@ class Audio extends PureComponent {
             <div className='video-player__buttons right'>
               {!editable && <button type='button' title={intl.formatMessage(messages.hide)} aria-label={intl.formatMessage(messages.hide)} className='player-button' onClick={this.toggleReveal}><Icon id='eye-slash' fixedWidth /></button>}
               <a title={intl.formatMessage(messages.download)} aria-label={intl.formatMessage(messages.download)} className='video-player__download__icon player-button' href={this.props.src} download>
-                <Icon id={'download'} fixedWidth />
+                <Icon id={"download"} fixedWidth />
               </a>
             </div>
           </div>

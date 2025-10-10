@@ -5,7 +5,7 @@
 let hasBoundingRectBug;
 
 function getRectFromEntry(entry) {
-  if (typeof hasBoundingRectBug !== 'boolean') {
+  if (typeof hasBoundingRectBug !== "boolean") {
     const boundingRect = entry.target.getBoundingClientRect();
     const observerRect = entry.boundingClientRect;
     hasBoundingRectBug = boundingRect.height !== observerRect.height ||

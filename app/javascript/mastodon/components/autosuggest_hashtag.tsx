@@ -1,19 +1,19 @@
-import { FormattedMessage } from 'react-intl';
+import { FormattedMessage } from "react-intl";
 
-import { ShortNumber } from 'mastodon/components/short_number';
+import { ShortNumber } from "mastodon/components/short_number";
 
 interface Props {
   tag: {
-    name: string;
-    url?: string;
+    name: string,
+    url?: string,
     history?: {
-      uses: number;
-      accounts: string;
-      day: string;
-    }[];
-    following?: boolean;
-    type: 'hashtag';
-  };
+      uses: number,
+      accounts: string,
+      day: string,
+    }[],
+    following?: boolean,
+    type: "hashtag",
+  },
 }
 
 export const AutosuggestHashtag: React.FC<Props> = ({ tag }) => {
