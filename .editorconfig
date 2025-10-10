@@ -3,5 +3,5 @@ root = true
 [*.scss]
 indent_size = 2
 
-[{login.scss,**/tangerine/**/*.scss,**/gts/**/*.scss}]
+[{**/login.scss,**/tangerine/**/*.scss,**/gts/**/*.scss}]
 indent_size = 4
