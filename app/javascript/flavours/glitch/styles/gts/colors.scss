@@ -2,18 +2,23 @@
 :root {
     color-scheme: dark;
 
+    /* Base */
+    --color-fg: #d6d2e0;
+
+    /* Accent */
     --color-accent: #8c8dff;
     --color-accent-hover: #a3a3ff;
     --color-accent-focus: var(--color-accent-hover);
     --color-accent-fg: #9baec8;
     --color-accent-muted-fg: #666f7a;
 
-    --color-fg: #d6d2e0;
+    /* Secondary */
     --color-secondary-fg: #9c9ba6;
     --color-secondary-bg: #13111f;
     --color-content-fg: var(--color-fg);
     --color-content-secondary-bg: var(--color-secondary-bg);
 
+    /* Status */
     --color-status-fg: ;
     --color-status-bg: #282c37;
 }

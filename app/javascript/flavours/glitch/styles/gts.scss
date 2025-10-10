@@ -5,10 +5,12 @@
   --drawer-border-radius: 8px;
   --button-border-radius: 6px;
 
+  /* Base */
   --color-bg: #261f3c;
   --color-fg: #d6d2e0;
   --color-lines: #3d4455;
 
+  /* Accent */
   --color-accent-bg: #1f232b;
   --color-accent-fg: #ffffff;
   --color-accent-lines: rgba(172, 172, 249, 0.3);
@@ -34,6 +36,7 @@
 
   &__badge {
     --size: 20px;
+
     position: absolute;
     top: -10px;
     right: -10px;
@@ -102,6 +105,7 @@
 .notification__filter-bar svg,
 .status__info__icons svg {
   --size: 18px;
+
   width: var(--size);
   height: var(--size);
 }
@@ -126,12 +130,14 @@
 
 .detailed-status__meta svg {
   --size: 14px;
+
   width: var(--size);
   height: var(--size);
 }
 
 .notification__favourite-icon-wrapper svg {
   --size: 16px;
+
   width: var(--size);
   height: var(--size);
   color: $highlight-text-color;
