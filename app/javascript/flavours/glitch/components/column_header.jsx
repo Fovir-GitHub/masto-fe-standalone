@@ -118,7 +118,7 @@ class ColumnHeader extends PureComponent {
     }
 
     if (multiColumn && pinned) {
-      pinButton = (<IconSVGButton key='pin-button' onClick={this.handlePin} className='column-header__footer-button' label='Unpin' icon='push-pin-slash'/>)
+      pinButton = (<IconSVGButton key='pin-button' onClick={this.handlePin} className='column-header__footer-button' label='Unpin' icon='push-pin-slash' />);
 
       moveButtons = (
         <div key='move-buttons' className='column-header__footer-arrows'>
@@ -127,7 +127,7 @@ class ColumnHeader extends PureComponent {
         </div>
       );
     } else if (multiColumn && this.props.onPin) {
-      pinButton = (<IconSVGButton key='pin-button' onClick={this.handlePin} className='column-header__footer-button' label='Pin' icon='push-pin'/>)
+      pinButton = (<IconSVGButton key='pin-button' onClick={this.handlePin} className='column-header__footer-button' label='Pin' icon='push-pin' />);
     }
 
     if (!pinned && ((multiColumn && router.history.location?.state?.fromMastodon) || showBackButton)) {
@@ -143,7 +143,7 @@ class ColumnHeader extends PureComponent {
       <div className='column-header__footer'>
         {pinButton} {moveButtons}
       </div>
-    )
+    );
 
     const collapsedContent = [
       extraContent,
