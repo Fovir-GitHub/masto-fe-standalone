@@ -11,7 +11,7 @@ html {
 
 ::-webkit-scrollbar-thumb {
   background: lighten($ui-base-color, 4%);
-  border: 0px none $base-border-color;
+  border: 0 none $base-border-color;
   border-radius: 50px;
 }
 
@@ -24,7 +24,7 @@ html {
 }
 
 ::-webkit-scrollbar-track {
-  border: 0px none $base-border-color;
+  border: 0 none $base-border-color;
   border-radius: 0;
   background: rgba($base-overlay-background, 0.1);
 }
