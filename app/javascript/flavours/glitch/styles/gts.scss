@@ -37,6 +37,7 @@
   &__badge {
     position: absolute;
     border: 2px solid lighten($ui-base-color, 8%);
+    border-radius: 50%;
     color: $primary-text-color;
     background: $ui-highlight-color;
   }
@@ -44,6 +45,10 @@
   &__issue-badge {
     position: absolute;
     background: $error-red;
+  }
+
+  .gts-icon {
+    display: block;
   }
 }
 
