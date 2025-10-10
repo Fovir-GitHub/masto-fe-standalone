@@ -32,7 +32,7 @@
     text-decoration-color: var(--color-accent-muted-fg);
 
     &:hover {
-        color: var(--color-accent-hover);
+        color: inherit;
         text-decoration-thickness: 2px;
     }
 

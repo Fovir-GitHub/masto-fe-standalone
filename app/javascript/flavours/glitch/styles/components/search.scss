@@ -20,12 +20,17 @@
   line-height: 20px;
 
   &::placeholder {
-    color: lighten($darker-text-color, 4%);
+    color: var(--color-search-placeholder);
     font-weight: 500;
   }
 
   &:focus {
-    background: darken($ui-base-color, 4%);
+    color: var(--color-search-fg--focus);
+    background: var(--color-search-bg--focus);
+  }
+
+  &:focus::placeholder {
+    color: var(--color-search-placeholder--focus);
   }
 }
 
