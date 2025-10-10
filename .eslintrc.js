@@ -182,6 +182,7 @@ module.exports = {
         js: 'never',
         jsx: 'never',
         mjs: 'never',
+        mts: 'never',
         ts: 'never',
         tsx: 'never',
       },
