@@ -147,6 +147,20 @@
   height: 18px;
   padding: 10px;
   white-space: nowrap;
+
+  button.icon-button {
+    padding: 6px;
+  }
+
+  button.destructive:hover {
+    color: var(--color-button-fg-destructive);
+  }
+
+  .gts-icon {
+    --size: 20px;
+
+    display: block;
+  }
 }
 
 .account__header__wrapper {
@@ -178,6 +192,13 @@
     &:active {
       text-decoration: none;
     }
+  }
+
+  .gts-icon {
+    --size: 16px;
+
+    margin-inline-end: 5px;
+    vertical-align: text-bottom;
   }
 }
 
@@ -604,7 +625,9 @@
         text-overflow: ellipsis;
 
         small {
-          display: block;
+          display: flex;
+          gap: 5px;
+          align-items: center;
           font-size: 14px;
           color: $darker-text-color;
           font-weight: 400;
