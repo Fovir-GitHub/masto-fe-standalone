@@ -95,8 +95,8 @@ module.exports = {
         },
       },
     },
-    chunkIds: 'total-size',
-    moduleIds: 'size'
+    chunkIds: "total-size",
+    moduleIds: "size",
   },
 
   module: {
