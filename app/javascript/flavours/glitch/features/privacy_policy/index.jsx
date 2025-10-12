@@ -1,16 +1,16 @@
-import PropTypes from 'prop-types';
-import { PureComponent } from 'react';
+import PropTypes from "prop-types";
+import { PureComponent } from "react";
 
-import { FormattedMessage, FormattedDate, injectIntl, defineMessages } from 'react-intl';
+import { FormattedMessage, FormattedDate, injectIntl, defineMessages } from "react-intl";
 
-import { Helmet } from 'react-helmet';
+import { Helmet } from "react-helmet";
 
-import api from 'flavours/glitch/api';
-import Column from 'flavours/glitch/components/column';
-import { Skeleton } from 'flavours/glitch/components/skeleton';
+import api from "flavours/glitch/api";
+import Column from "flavours/glitch/components/column";
+import { Skeleton } from "flavours/glitch/components/skeleton";
 
 const messages = defineMessages({
-  title: { id: 'privacy_policy.title', defaultMessage: 'Privacy Policy' },
+  title: { id: "privacy_policy.title", defaultMessage: "Privacy Policy" },
 });
 
 class PrivacyPolicy extends PureComponent {
@@ -27,7 +27,7 @@ class PrivacyPolicy extends PureComponent {
   };
 
   componentDidMount () {
-    api().get('/api/v1/instance/privacy_policy').then(({ data }) => {
+    api().get("/api/v1/instance/privacy_policy").then(({ data }) => {
       this.setState({ content: data.content, lastUpdated: data.updated_at, isLoading: false });
     }).catch(() => {
       this.setState({ isLoading: false });

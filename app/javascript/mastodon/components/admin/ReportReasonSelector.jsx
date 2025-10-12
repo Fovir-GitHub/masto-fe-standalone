@@ -1,17 +1,17 @@
-import PropTypes from 'prop-types';
-import { PureComponent } from 'react';
+import PropTypes from "prop-types";
+import { PureComponent } from "react";
 
-import { injectIntl, defineMessages } from 'react-intl';
+import { injectIntl, defineMessages } from "react-intl";
 
-import classNames from 'classnames';
+import classNames from "classnames";
 
-import api from 'mastodon/api';
+import api from "mastodon/api";
 
 const messages = defineMessages({
-  legal: { id: 'report.categories.legal', defaultMessage: 'Legal' },
-  other: { id: 'report.categories.other', defaultMessage: 'Other' },
-  spam: { id: 'report.categories.spam', defaultMessage: 'Spam' },
-  violation: { id: 'report.categories.violation', defaultMessage: 'Content violates one or more server rules' },
+  legal: { id: "report.categories.legal", defaultMessage: "Legal" },
+  other: { id: "report.categories.other", defaultMessage: "Other" },
+  spam: { id: "report.categories.spam", defaultMessage: "Spam" },
+  violation: { id: "report.categories.violation", defaultMessage: "Content violates one or more server rules" },
 });
 
 class Category extends PureComponent {
@@ -37,11 +37,11 @@ class Category extends PureComponent {
     const { id, text, disabled, selected, children } = this.props;
 
     return (
-      <div tabIndex={0} role='button' className={classNames('report-reason-selector__category', { selected, disabled })} onClick={this.handleClick}>
+      <div tabIndex={0} role='button' className={classNames("report-reason-selector__category", { selected, disabled })} onClick={this.handleClick}>
         {selected && <input type='hidden' name='report[category]' value={id} />}
 
         <div className='report-reason-selector__category__label'>
-          <span className={classNames('poll__input', { active: selected, disabled })} />
+          <span className={classNames("poll__input", { active: selected, disabled })} />
           {text}
         </div>
 
@@ -78,8 +78,8 @@ class Rule extends PureComponent {
     const { id, text, disabled, selected } = this.props;
 
     return (
-      <div tabIndex={0} role='button' className={classNames('report-reason-selector__rule', { selected, disabled })} onClick={this.handleClick}>
-        <span className={classNames('poll__input', { checkbox: true, active: selected, disabled })} />
+      <div tabIndex={0} role='button' className={classNames("report-reason-selector__rule", { selected, disabled })} onClick={this.handleClick}>
+        <span className={classNames("poll__input", { checkbox: true, active: selected, disabled })} />
         {selected && <input type='hidden' name='report[rule_ids][]' value={id} />}
         {text}
       </div>
@@ -105,7 +105,7 @@ class ReportReasonSelector extends PureComponent {
   };
 
   componentDidMount() {
-    api().get('/api/v1/instance').then(res => {
+    api().get("/api/v1/instance").then(res => {
       this.setState({
         rules: res.data.rules,
       });
@@ -150,10 +150,10 @@ class ReportReasonSelector extends PureComponent {
 
     return (
       <div className='report-reason-selector'>
-        <Category id='other' text={intl.formatMessage(messages.other)} selected={category === 'other'} onSelect={this.handleSelect} disabled={disabled} />
-        <Category id='legal' text={intl.formatMessage(messages.legal)} selected={category === 'legal'} onSelect={this.handleSelect} disabled={disabled} />
-        <Category id='spam' text={intl.formatMessage(messages.spam)} selected={category === 'spam'} onSelect={this.handleSelect} disabled={disabled} />
-        <Category id='violation' text={intl.formatMessage(messages.violation)} selected={category === 'violation'} onSelect={this.handleSelect} disabled={disabled}>
+        <Category id='other' text={intl.formatMessage(messages.other)} selected={category === "other"} onSelect={this.handleSelect} disabled={disabled} />
+        <Category id='legal' text={intl.formatMessage(messages.legal)} selected={category === "legal"} onSelect={this.handleSelect} disabled={disabled} />
+        <Category id='spam' text={intl.formatMessage(messages.spam)} selected={category === "spam"} onSelect={this.handleSelect} disabled={disabled} />
+        <Category id='violation' text={intl.formatMessage(messages.violation)} selected={category === "violation"} onSelect={this.handleSelect} disabled={disabled}>
           {rules.map(rule => <Rule key={rule.id} id={rule.id} text={rule.text} selected={rule_ids.includes(rule.id)} onToggle={this.handleToggle} disabled={disabled} />)}
         </Category>
       </div>

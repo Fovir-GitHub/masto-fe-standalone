@@ -1,12 +1,12 @@
-import PropTypes from 'prop-types';
-import { PureComponent } from 'react';
+import PropTypes from "prop-types";
+import { PureComponent } from "react";
 
-import { debounce } from 'lodash';
+import { debounce } from "lodash";
 
-import { isMobile } from 'flavours/glitch/is_mobile';
-import { scrollTop } from 'flavours/glitch/scroll';
+import { isMobile } from "flavours/glitch/is_mobile";
+import { scrollTop } from "flavours/glitch/scroll";
 
-import ColumnHeader from './column_header';
+import ColumnHeader from "./column_header";
 
 export default class Column extends PureComponent {
 
@@ -21,7 +21,7 @@ export default class Column extends PureComponent {
   };
 
   handleHeaderClick = () => {
-    const scrollable = this.props.bindToDocument ? document.scrollingElement : this.node.querySelector('.scrollable');
+    const scrollable = this.props.bindToDocument ? document.scrollingElement : this.node.querySelector(".scrollable");
 
     if (!scrollable) {
       return;
@@ -31,7 +31,7 @@ export default class Column extends PureComponent {
   };
 
   scrollTop () {
-    const scrollable = this.props.bindToDocument ? document.scrollingElement : this.node.querySelector('.scrollable');
+    const scrollable = this.props.bindToDocument ? document.scrollingElement : this.node.querySelector(".scrollable");
 
     if (!scrollable) {
       return;
@@ -42,7 +42,7 @@ export default class Column extends PureComponent {
 
 
   handleScroll = debounce(() => {
-    if (typeof this._interruptScrollAnimation !== 'undefined') {
+    if (typeof this._interruptScrollAnimation !== "undefined") {
       this._interruptScrollAnimation();
     }
   }, 200);
@@ -56,7 +56,7 @@ export default class Column extends PureComponent {
 
     const showHeading = heading && (!hideHeadingOnMobile || (hideHeadingOnMobile && !isMobile(window.innerWidth)));
 
-    const columnHeaderId = showHeading && heading.replace(/ /g, '-');
+    const columnHeaderId = showHeading && heading.replace(/ /g, "-");
     const header = showHeading && (
       <ColumnHeader icon={icon} active={active} type={heading} onClick={this.handleHeaderClick} columnHeaderId={columnHeaderId} />
     );

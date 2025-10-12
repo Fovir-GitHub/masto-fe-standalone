@@ -1,15 +1,15 @@
 //  Package imports.
-import { Map as ImmutableMap } from 'immutable';
+import { Map as ImmutableMap } from "immutable";
 
 //  Our imports.
-import { LOCAL_SETTING_CHANGE, LOCAL_SETTING_DELETE } from 'flavours/glitch/actions/local_settings';
-import { STORE_HYDRATE } from 'flavours/glitch/actions/store';
+import { LOCAL_SETTING_CHANGE, LOCAL_SETTING_DELETE } from "flavours/glitch/actions/local_settings";
+import { STORE_HYDRATE } from "flavours/glitch/actions/store";
 
 const initialState = ImmutableMap({
-  layout    : 'mobile',
+  layout    : "mobile",
   stretch   : true,
-  side_arm  : 'none',
-  side_arm_reply_mode : 'keep',
+  side_arm  : "none",
+  side_arm_reply_mode : "keep",
   show_reply_count : false,
   always_show_spoilers_field: true,
   confirm_missing_media_description: false,
@@ -21,7 +21,7 @@ const initialState = ImmutableMap({
   hicolor_privacy_icons: false,
   show_content_type_choice: true,
   tag_misleading_links: true,
-  rewrite_mentions: 'no',
+  rewrite_mentions: "no",
   content_warnings : ImmutableMap({
     auto_unfold  : false,
     filter       : null,
@@ -51,7 +51,7 @@ const initialState = ImmutableMap({
     fullwidth        : true,
     reveal_behind_cw : false,
     pop_in_player    : true,
-    pop_in_position  : 'right',
+    pop_in_position  : "right",
   }),
   notifications : ImmutableMap({
     favicon_badge : false,
@@ -64,20 +64,20 @@ const initialState = ImmutableMap({
     media:      true,
     visibility: true,
   }),
-  theme: 'mastodon-light',
+  theme: "mastodon-light",
 });
 
 const hydrate = (state, localSettings) => state.mergeDeep(localSettings);
 
 export default function localSettings(state = initialState, action) {
   switch(action.type) {
-  case STORE_HYDRATE:
-    return hydrate(state, action.state.get('local_settings'));
-  case LOCAL_SETTING_CHANGE:
-    return state.setIn(action.key, action.value);
-  case LOCAL_SETTING_DELETE:
-    return state.deleteIn(action.key);
-  default:
-    return state;
+    case STORE_HYDRATE:
+      return hydrate(state, action.state.get("local_settings"));
+    case LOCAL_SETTING_CHANGE:
+      return state.setIn(action.key, action.value);
+    case LOCAL_SETTING_DELETE:
+      return state.deleteIn(action.key);
+    default:
+      return state;
   }
 }

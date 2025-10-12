@@ -1,14 +1,14 @@
-import api from '../api';
+import api from "../api";
 
-import { importFetchedPoll } from './importer';
+import { importFetchedPoll } from "./importer";
 
-export const POLL_VOTE_REQUEST = 'POLL_VOTE_REQUEST';
-export const POLL_VOTE_SUCCESS = 'POLL_VOTE_SUCCESS';
-export const POLL_VOTE_FAIL    = 'POLL_VOTE_FAIL';
+export const POLL_VOTE_REQUEST = "POLL_VOTE_REQUEST";
+export const POLL_VOTE_SUCCESS = "POLL_VOTE_SUCCESS";
+export const POLL_VOTE_FAIL    = "POLL_VOTE_FAIL";
 
-export const POLL_FETCH_REQUEST = 'POLL_FETCH_REQUEST';
-export const POLL_FETCH_SUCCESS = 'POLL_FETCH_SUCCESS';
-export const POLL_FETCH_FAIL    = 'POLL_FETCH_FAIL';
+export const POLL_FETCH_REQUEST = "POLL_FETCH_REQUEST";
+export const POLL_FETCH_SUCCESS = "POLL_FETCH_SUCCESS";
+export const POLL_FETCH_FAIL    = "POLL_FETCH_FAIL";
 
 export const vote = (pollId, choices) => (dispatch, getState) => {
   dispatch(voteRequest());

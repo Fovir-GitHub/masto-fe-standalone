@@ -1,12 +1,12 @@
-import PropTypes from 'prop-types';
-import { PureComponent } from 'react';
+import PropTypes from "prop-types";
+import { PureComponent } from "react";
 
-import { FormattedNumber, FormattedMessage } from 'react-intl';
+import { FormattedNumber, FormattedMessage } from "react-intl";
 
-import classNames from 'classnames';
+import classNames from "classnames";
 
-import api from 'flavours/glitch/api';
-import { Skeleton } from 'flavours/glitch/components/skeleton';
+import api from "flavours/glitch/api";
+import { Skeleton } from "flavours/glitch/components/skeleton";
 
 export default class ImpactReport extends PureComponent {
 
@@ -27,8 +27,8 @@ export default class ImpactReport extends PureComponent {
       include_subdomains: true,
     };
 
-    api().post('/api/v1/admin/measures', {
-      keys: ['instance_accounts', 'instance_follows', 'instance_followers'],
+    api().post("/api/v1/admin/measures", {
+      keys: ["instance_accounts", "instance_follows", "instance_followers"],
       start_at: null,
       end_at: null,
       instance_accounts: params,
@@ -63,7 +63,7 @@ export default class ImpactReport extends PureComponent {
               </td>
             </tr>
 
-            <tr className={classNames('dimension__item', { negative: !loading && data[1].total > 0 })}>
+            <tr className={classNames("dimension__item", { negative: !loading && data[1].total > 0 })}>
               <td className='dimension__item__key'>
                 <FormattedMessage id='admin.impact_report.instance_follows' defaultMessage='Followers their users would lose' />
               </td>
@@ -73,7 +73,7 @@ export default class ImpactReport extends PureComponent {
               </td>
             </tr>
 
-            <tr className={classNames('dimension__item', { negative: !loading && data[2].total > 0 })}>
+            <tr className={classNames("dimension__item", { negative: !loading && data[2].total > 0 })}>
               <td className='dimension__item__key'>
                 <FormattedMessage id='admin.impact_report.instance_followers' defaultMessage='Followers our users would lose' />
               </td>

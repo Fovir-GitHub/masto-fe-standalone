@@ -1,17 +1,17 @@
-import { connect } from 'react-redux';
+import { connect } from "react-redux";
 
-import { changeColumnParams } from 'flavours/glitch/actions/columns';
-import { changeSetting } from 'flavours/glitch/actions/settings';
+import { changeColumnParams } from "flavours/glitch/actions/columns";
+import { changeSetting } from "flavours/glitch/actions/settings";
 
-import ColumnSettings from '../components/column_settings';
+import ColumnSettings from "../components/column_settings";
 
 const mapStateToProps = (state, { columnId }) => {
   const uuid = columnId;
-  const columns = state.getIn(['settings', 'columns']);
-  const index = columns.findIndex(c => c.get('uuid') === uuid);
+  const columns = state.getIn(["settings", "columns"]);
+  const index = columns.findIndex(c => c.get("uuid") === uuid);
 
   return {
-    settings: (uuid && index >= 0) ? columns.get(index).get('params') : state.getIn(['settings', 'public']),
+    settings: (uuid && index >= 0) ? columns.get(index).get("params") : state.getIn(["settings", "public"]),
   };
 };
 
@@ -21,7 +21,7 @@ const mapDispatchToProps = (dispatch, { columnId }) => {
       if (columnId) {
         dispatch(changeColumnParams(columnId, key, checked));
       } else {
-        dispatch(changeSetting(['public', ...key], checked));
+        dispatch(changeSetting(["public", ...key], checked));
       }
     },
   };

@@ -1,17 +1,17 @@
-import PropTypes from 'prop-types';
-import { PureComponent } from 'react';
+import PropTypes from "prop-types";
+import { PureComponent } from "react";
 
-import { FormattedMessage } from 'react-intl';
+import { FormattedMessage } from "react-intl";
 
-import ImmutablePropTypes from 'react-immutable-proptypes';
-import { connect } from 'react-redux';
+import ImmutablePropTypes from "react-immutable-proptypes";
+import { connect } from "react-redux";
 
-import Button from 'mastodon/components/button';
+import Button from "mastodon/components/button";
 
-import Option from './components/option';
+import Option from "./components/option";
 
 const mapStateToProps = state => ({
-  rules: state.getIn(['server', 'server', 'rules']),
+  rules: state.getIn(["server", "server", "rules"]),
 });
 
 class Rules extends PureComponent {
@@ -25,7 +25,7 @@ class Rules extends PureComponent {
 
   handleNextClick = () => {
     const { onNextStep } = this.props;
-    onNextStep('statuses');
+    onNextStep("statuses");
   };
 
   handleRulesToggle = (value, checked) => {
@@ -44,12 +44,12 @@ class Rules extends PureComponent {
         <div>
           {rules.map(item => (
             <Option
-              key={item.get('id')}
+              key={item.get("id")}
               name='rule_ids'
-              value={item.get('id')}
-              checked={selectedRuleIds.includes(item.get('id'))}
+              value={item.get("id")}
+              checked={selectedRuleIds.includes(item.get("id"))}
               onToggle={this.handleRulesToggle}
-              label={item.get('text')}
+              label={item.get("text")}
               multiple
             />
           ))}

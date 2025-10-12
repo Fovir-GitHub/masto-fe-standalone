@@ -1,23 +1,23 @@
-import { useCallback } from 'react';
+import { useCallback } from "react";
 
-import { FormattedMessage } from 'react-intl';
+import { FormattedMessage } from "react-intl";
 
 
-import { openModal } from 'mastodon/actions/modal';
-import { registrationsOpen, sso_redirect } from 'mastodon/initial_state';
-import { useAppDispatch, useAppSelector } from 'mastodon/store';
+import { openModal } from "mastodon/actions/modal";
+import { registrationsOpen, sso_redirect } from "mastodon/initial_state";
+import { useAppDispatch, useAppSelector } from "mastodon/store";
 
 const SignInBanner = () => {
   const dispatch = useAppDispatch();
 
   const openClosedRegistrationsModal = useCallback(
-    () => dispatch(openModal({ modalType: 'CLOSED_REGISTRATIONS' })),
+    () => dispatch(openModal({ modalType: "CLOSED_REGISTRATIONS" })),
     [dispatch],
   );
 
   let signupButton;
 
-  const signupUrl = useAppSelector((state) => state.getIn(['server', 'server', 'registrations', 'url'], null) || '/auth/sign_up');
+  const signupUrl = useAppSelector((state) => state.getIn(["server", "server", "registrations", "url"], null) || "/auth/sign_up");
 
   if (sso_redirect) {
     return (

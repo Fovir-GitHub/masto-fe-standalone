@@ -1,21 +1,21 @@
-import PropTypes from 'prop-types';
-import { PureComponent } from 'react';
+import PropTypes from "prop-types";
+import { PureComponent } from "react";
 
-import { FormattedMessage } from 'react-intl';
+import { FormattedMessage } from "react-intl";
 
-import ImmutablePropTypes from 'react-immutable-proptypes';
-import { connect } from 'react-redux';
+import ImmutablePropTypes from "react-immutable-proptypes";
+import { connect } from "react-redux";
 
-import { fetchSuggestions } from 'mastodon/actions/suggestions';
-import { markAsPartial } from 'mastodon/actions/timelines';
-import Column from 'mastodon/components/column';
-import ColumnBackButton from 'mastodon/components/column_back_button';
-import { EmptyAccount } from 'mastodon/components/empty_account';
-import Account from 'mastodon/containers/account_container';
+import { fetchSuggestions } from "mastodon/actions/suggestions";
+import { markAsPartial } from "mastodon/actions/timelines";
+import Column from "mastodon/components/column";
+import ColumnBackButton from "mastodon/components/column_back_button";
+import { EmptyAccount } from "mastodon/components/empty_account";
+import Account from "mastodon/containers/account_container";
 
 const mapStateToProps = state => ({
-  suggestions: state.getIn(['suggestions', 'items']),
-  isLoading: state.getIn(['suggestions', 'isLoading']),
+  suggestions: state.getIn(["suggestions", "items"]),
+  isLoading: state.getIn(["suggestions", "isLoading"]),
 });
 
 class Follows extends PureComponent {
@@ -35,7 +35,7 @@ class Follows extends PureComponent {
 
   componentWillUnmount () {
     const { dispatch } = this.props;
-    dispatch(markAsPartial('home'));
+    dispatch(markAsPartial("home"));
   }
 
   render () {
@@ -48,7 +48,7 @@ class Follows extends PureComponent {
     } else if (suggestions.isEmpty()) {
       loadedContent = <div className='follow-recommendations__empty'><FormattedMessage id='onboarding.follows.empty' defaultMessage='Unfortunately, no results can be shown right now. You can try using search or browsing the explore page to find people to follow, or try again later.' /></div>;
     } else {
-      loadedContent = suggestions.map(suggestion => <Account id={suggestion.get('account')} key={suggestion.get('account')} withBio />);
+      loadedContent = suggestions.map(suggestion => <Account id={suggestion.get("account")} key={suggestion.get("account")} withBio />);
     }
 
     return (

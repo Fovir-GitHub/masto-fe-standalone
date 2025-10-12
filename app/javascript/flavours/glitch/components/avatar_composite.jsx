@@ -1,9 +1,9 @@
-import PropTypes from 'prop-types';
-import { PureComponent } from 'react';
+import PropTypes from "prop-types";
+import { PureComponent } from "react";
 
-import ImmutablePropTypes from 'react-immutable-proptypes';
+import ImmutablePropTypes from "react-immutable-proptypes";
 
-import { autoPlayGif } from 'flavours/glitch/initial_state';
+import { autoPlayGif } from "flavours/glitch/initial_state";
 
 export default class AvatarComposite extends PureComponent {
 
@@ -22,10 +22,10 @@ export default class AvatarComposite extends PureComponent {
 
     let width  = 50;
     let height = 100;
-    let top    = 'auto';
-    let left   = 'auto';
-    let bottom = 'auto';
-    let right  = 'auto';
+    let top    = "auto";
+    let left   = "auto";
+    let bottom = "auto";
+    let right  = "auto";
 
     if (size === 1) {
       width = 100;
@@ -37,35 +37,35 @@ export default class AvatarComposite extends PureComponent {
 
     if (size === 2) {
       if (index === 0) {
-        right = '1px';
+        right = "1px";
       } else {
-        left = '1px';
+        left = "1px";
       }
     } else if (size === 3) {
       if (index === 0) {
-        right = '1px';
+        right = "1px";
       } else if (index > 0) {
-        left = '1px';
+        left = "1px";
       }
 
       if (index === 1) {
-        bottom = '1px';
+        bottom = "1px";
       } else if (index > 1) {
-        top = '1px';
+        top = "1px";
       }
     } else if (size === 4) {
       if (index === 0 || index === 2) {
-        right = '1px';
+        right = "1px";
       }
 
       if (index === 1 || index === 3) {
-        left = '1px';
+        left = "1px";
       }
 
       if (index < 2) {
-        bottom = '1px';
+        bottom = "1px";
       } else {
-        top = '1px';
+        top = "1px";
       }
     }
 
@@ -76,12 +76,12 @@ export default class AvatarComposite extends PureComponent {
       bottom: bottom,
       width: `${width}%`,
       height: `${height}%`,
-      backgroundSize: 'cover',
-      backgroundImage: `url(${account.get(animate ? 'avatar' : 'avatar_static')})`,
+      backgroundSize: "cover",
+      backgroundImage: `url(${account.get(animate ? "avatar" : "avatar_static")})`,
     };
 
     return (
-      <div key={account.get('id')} style={style} data-avatar-of={`@${account.get('acct')}`} />
+      <div key={account.get("id")} style={style} data-avatar-of={`@${account.get("acct")}`} />
     );
   }
 

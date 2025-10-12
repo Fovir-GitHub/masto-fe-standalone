@@ -1,9 +1,9 @@
-import PropTypes from 'prop-types';
-import { PureComponent } from 'react';
+import PropTypes from "prop-types";
+import { PureComponent } from "react";
 
-import { FormattedMessage } from 'react-intl';
+import { FormattedMessage } from "react-intl";
 
-import { Icon }  from 'mastodon/components/icon';
+import { Icon }  from "mastodon/components/icon";
 
 export default class ClearColumnButton extends PureComponent {
 

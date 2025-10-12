@@ -6,9 +6,9 @@ module.exports = {
     /tesseract\.js-core\/tesseract-core\.wasm.js$/,
   ],
   use: {
-    loader: 'file-loader',
+    loader: "file-loader",
     options: {
-      name: 'ocr/[name]-[hash].[ext]',
+      name: "ocr/[name]-[hash].[ext]",
     },
   },
 };

@@ -1,19 +1,19 @@
-import PropTypes from 'prop-types';
+import PropTypes from "prop-types";
 
-import { defineMessages, injectIntl } from 'react-intl';
+import { defineMessages, injectIntl } from "react-intl";
 
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
 
-import ImmutablePropTypes from 'react-immutable-proptypes';
-import ImmutablePureComponent from 'react-immutable-pure-component';
+import ImmutablePropTypes from "react-immutable-proptypes";
+import ImmutablePureComponent from "react-immutable-pure-component";
 
-import { Avatar } from '../../../components/avatar';
-import { DisplayName } from '../../../components/display_name';
-import { IconButton } from '../../../components/icon_button';
+import { Avatar } from "../../../components/avatar";
+import { DisplayName } from "../../../components/display_name";
+import { IconButton } from "../../../components/icon_button";
 
 const messages = defineMessages({
-  authorize: { id: 'follow_request.authorize', defaultMessage: 'Authorize' },
-  reject: { id: 'follow_request.reject', defaultMessage: 'Reject' },
+  authorize: { id: "follow_request.authorize", defaultMessage: "Authorize" },
+  reject: { id: "follow_request.reject", defaultMessage: "Reject" },
 });
 
 class AccountAuthorize extends ImmutablePureComponent {
@@ -27,12 +27,12 @@ class AccountAuthorize extends ImmutablePureComponent {
 
   render () {
     const { intl, account, onAuthorize, onReject } = this.props;
-    const content = { __html: account.get('note_emojified') };
+    const content = { __html: account.get("note_emojified") };
 
     return (
       <div className='account-authorize__wrapper'>
         <div className='account-authorize'>
-          <Link to={`/@${account.get('acct')}`} className='detailed-status__display-name'>
+          <Link to={`/@${account.get("acct")}`} className='detailed-status__display-name'>
             <div className='account-authorize__avatar'><Avatar account={account} size={48} /></div>
             <DisplayName account={account} />
           </Link>

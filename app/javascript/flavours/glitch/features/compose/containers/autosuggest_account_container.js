@@ -1,8 +1,8 @@
-import { connect } from 'react-redux';
+import { connect } from "react-redux";
 
-import { makeGetAccount } from 'flavours/glitch/selectors';
+import { makeGetAccount } from "flavours/glitch/selectors";
 
-import AutosuggestAccount from '../components/autosuggest_account';
+import AutosuggestAccount from "../components/autosuggest_account";
 
 const makeMapStateToProps = () => {
   const getAccount = makeGetAccount();

@@ -1,20 +1,20 @@
 //  Package imports.
-import { defineMessages, injectIntl } from 'react-intl';
+import { defineMessages, injectIntl } from "react-intl";
 
-import { connect } from 'react-redux';
+import { connect } from "react-redux";
 
 //  Our imports.
-import { openModal } from 'flavours/glitch/actions/modal';
+import { openModal } from "flavours/glitch/actions/modal";
 import {
   deleteMarkedNotifications,
   enterNotificationClearingMode,
   markAllNotifications,
-} from 'flavours/glitch/actions/notifications';
-import NotificationPurgeButtons from 'flavours/glitch/components/notification_purge_buttons';
+} from "flavours/glitch/actions/notifications";
+import NotificationPurgeButtons from "flavours/glitch/components/notification_purge_buttons";
 
 const messages = defineMessages({
-  clearMessage: { id: 'notifications.marked_clear_confirmation', defaultMessage: 'Are you sure you want to permanently clear all selected notifications?' },
-  clearConfirm: { id: 'notifications.marked_clear', defaultMessage: 'Clear selected notifications' },
+  clearMessage: { id: "notifications.marked_clear_confirmation", defaultMessage: "Are you sure you want to permanently clear all selected notifications?" },
+  clearConfirm: { id: "notifications.marked_clear", defaultMessage: "Clear selected notifications" },
 });
 
 const mapDispatchToProps = (dispatch, { intl }) => ({
@@ -24,7 +24,7 @@ const mapDispatchToProps = (dispatch, { intl }) => ({
 
   onDeleteMarked() {
     dispatch(openModal({
-      modalType: 'CONFIRM',
+      modalType: "CONFIRM",
       modalProps: {
         message: intl.formatMessage(messages.clearMessage),
         confirm: intl.formatMessage(messages.clearConfirm),
@@ -47,7 +47,7 @@ const mapDispatchToProps = (dispatch, { intl }) => ({
 });
 
 const mapStateToProps = state => ({
-  markNewForDelete: state.getIn(['notifications', 'markNewForDelete']),
+  markNewForDelete: state.getIn(["notifications", "markNewForDelete"]),
 });
 
 export default injectIntl(connect(mapStateToProps, mapDispatchToProps)(NotificationPurgeButtons));

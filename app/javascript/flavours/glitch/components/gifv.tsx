@@ -1,14 +1,14 @@
-import { useCallback, useState } from 'react';
-import * as React from 'react';
+import { useCallback, useState } from "react";
+import * as React from "react";
 
 interface Props {
-  src: string;
-  key: string;
-  alt?: string;
-  lang?: string;
-  width: number;
-  height: number;
-  onClick?: () => void;
+  src: string,
+  key: string,
+  alt?: string,
+  lang?: string,
+  width: number,
+  height: number,
+  onClick?: () => void,
 }
 
 export const GIFV: React.FC<Props> = ({
@@ -37,7 +37,7 @@ export const GIFV: React.FC<Props> = ({
   );
 
   return (
-    <div className='gifv' style={{ position: 'relative' }}>
+    <div className='gifv' style={{ position: "relative" }}>
       {loading && (
         <canvas
           width={width}
@@ -64,7 +64,7 @@ export const GIFV: React.FC<Props> = ({
         playsInline
         onClick={handleClick}
         onLoadedData={handleLoadedData}
-        style={{ position: loading ? 'absolute' : 'static', top: 0, left: 0 }}
+        style={{ position: loading ? "absolute" : "static", top: 0, left: 0 }}
       />
     </div>
   );

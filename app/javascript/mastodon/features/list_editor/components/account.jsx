@@ -1,20 +1,20 @@
-import PropTypes from 'prop-types';
+import PropTypes from "prop-types";
 
-import { defineMessages, injectIntl } from 'react-intl';
+import { defineMessages, injectIntl } from "react-intl";
 
-import ImmutablePropTypes from 'react-immutable-proptypes';
-import ImmutablePureComponent from 'react-immutable-pure-component';
-import { connect } from 'react-redux';
+import ImmutablePropTypes from "react-immutable-proptypes";
+import ImmutablePureComponent from "react-immutable-pure-component";
+import { connect } from "react-redux";
 
-import { removeFromListEditor, addToListEditor } from '../../../actions/lists';
-import { Avatar } from '../../../components/avatar';
-import { DisplayName } from '../../../components/display_name';
-import { IconButton } from '../../../components/icon_button';
-import { makeGetAccount } from '../../../selectors';
+import { removeFromListEditor, addToListEditor } from "../../../actions/lists";
+import { Avatar } from "../../../components/avatar";
+import { DisplayName } from "../../../components/display_name";
+import { IconButton } from "../../../components/icon_button";
+import { makeGetAccount } from "../../../selectors";
 
 const messages = defineMessages({
-  remove: { id: 'lists.account.remove', defaultMessage: 'Remove from list' },
-  add: { id: 'lists.account.add', defaultMessage: 'Add to list' },
+  remove: { id: "lists.account.remove", defaultMessage: "Remove from list" },
+  add: { id: "lists.account.add", defaultMessage: "Add to list" },
 });
 
 const makeMapStateToProps = () => {
@@ -22,7 +22,7 @@ const makeMapStateToProps = () => {
 
   const mapStateToProps = (state, { accountId, added }) => ({
     account: getAccount(state, accountId),
-    added: typeof added === 'undefined' ? state.getIn(['listEditor', 'accounts', 'items']).includes(accountId) : added,
+    added: typeof added === "undefined" ? state.getIn(["listEditor", "accounts", "items"]).includes(accountId) : added,
   });
 
   return mapStateToProps;

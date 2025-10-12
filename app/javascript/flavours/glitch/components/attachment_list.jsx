@@ -1,15 +1,15 @@
-import PropTypes from 'prop-types';
+import PropTypes from "prop-types";
 
-import { FormattedMessage } from 'react-intl';
+import { FormattedMessage } from "react-intl";
 
-import classNames from 'classnames';
+import classNames from "classnames";
 
-import ImmutablePropTypes from 'react-immutable-proptypes';
-import ImmutablePureComponent from 'react-immutable-pure-component';
+import ImmutablePropTypes from "react-immutable-proptypes";
+import ImmutablePureComponent from "react-immutable-pure-component";
 
-import { Icon } from 'flavours/glitch/components/icon';
+import { Icon } from "flavours/glitch/components/icon";
 
-const filename = url => url.split('/').pop().split('#')[0].split('?')[0];
+const filename = url => url.split("/").pop().split("#")[0].split("?")[0];
 
 export default class AttachmentList extends ImmutablePureComponent {
 
@@ -22,7 +22,7 @@ export default class AttachmentList extends ImmutablePureComponent {
     const { media, compact } = this.props;
 
     return (
-      <div className={classNames('attachment-list', { compact })}>
+      <div className={classNames("attachment-list", { compact })}>
         {!compact && (
           <div className='attachment-list__icon'>
             <Icon id='link' />
@@ -31,13 +31,13 @@ export default class AttachmentList extends ImmutablePureComponent {
 
         <ul className='attachment-list__list'>
           {media.map(attachment => {
-            const displayUrl = attachment.get('remote_url') || attachment.get('url');
+            const displayUrl = attachment.get("remote_url") || attachment.get("url");
 
             return (
-              <li key={attachment.get('id')}>
+              <li key={attachment.get("id")}>
                 <a href={displayUrl} target='_blank' rel='noopener noreferrer'>
                   {compact && <Icon id='link' />}
-                  {compact && ' ' }
+                  {compact && " " }
                   {displayUrl ? filename(displayUrl) : <FormattedMessage id='attachments_list.unprocessed' defaultMessage='(unprocessed)' />}
                 </a>
               </li>

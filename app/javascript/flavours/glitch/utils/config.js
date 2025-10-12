@@ -1,10 +1,10 @@
-import ready from '../ready';
+import ready from "../ready";
 
-export let assetHost = '';
+export let assetHost = "";
 
 ready(() => {
-  const cdnHost = document.querySelector('meta[name=cdn-host]');
+  const cdnHost = document.querySelector("meta[name=cdn-host]");
   if (cdnHost) {
-    assetHost = cdnHost.content || '';
+    assetHost = cdnHost.content || "";
   }
 });

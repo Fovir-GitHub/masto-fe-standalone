@@ -1,5 +1,5 @@
-import { saveSettings } from './registerer';
-import { setAlerts } from './setter';
+import { saveSettings } from "./registerer";
+import { setAlerts } from "./setter";
 
 export function changeAlerts(path, value) {
   return dispatch => {
@@ -13,5 +13,5 @@ export {
   SET_BROWSER_SUPPORT,
   SET_SUBSCRIPTION,
   SET_ALERTS,
-} from './setter';
-export { register } from './registerer';
+} from "./setter";
+export { register } from "./registerer";

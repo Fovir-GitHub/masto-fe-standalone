@@ -1,12 +1,12 @@
-import { injectIntl } from 'react-intl';
+import { injectIntl } from "react-intl";
 
-import ImmutablePropTypes from 'react-immutable-proptypes';
-import ImmutablePureComponent from 'react-immutable-pure-component';
-import { connect } from 'react-redux';
+import ImmutablePropTypes from "react-immutable-proptypes";
+import ImmutablePureComponent from "react-immutable-pure-component";
+import { connect } from "react-redux";
 
-import { Avatar } from '../../../components/avatar';
-import { DisplayName } from '../../../components/display_name';
-import { makeGetAccount } from '../../../selectors';
+import { Avatar } from "../../../components/avatar";
+import { DisplayName } from "../../../components/display_name";
+import { makeGetAccount } from "../../../selectors";
 
 
 const makeMapStateToProps = () => {

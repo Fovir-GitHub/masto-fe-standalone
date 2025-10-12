@@ -14,7 +14,7 @@ const checkNotificationPromise = () => {
 
 const handlePermission = (permission, callback) => {
   // Whatever the user answers, we make sure Chrome stores the information
-  if(!('permission' in Notification)) {
+  if(!("permission" in Notification)) {
     Notification.permission = permission;
   }
 

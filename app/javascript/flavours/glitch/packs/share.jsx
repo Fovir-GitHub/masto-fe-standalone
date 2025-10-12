@@ -1,16 +1,18 @@
-import 'packs/public-path';
-import { createRoot } from 'react-dom/client';
+import "packs/public-path";
+import { createRoot } from "react-dom/client";
 
-import ComposeContainer from 'flavours/glitch/containers/compose_container';
-import { loadPolyfills } from 'flavours/glitch/polyfills';
-import ready from 'flavours/glitch/ready';
+import ComposeContainer from "flavours/glitch/containers/compose_container";
+import { loadPolyfills } from "flavours/glitch/polyfills";
+import ready from "flavours/glitch/ready";
 
 function loaded() {
-  const mountNode = document.getElementById('mastodon-compose');
+  const mountNode = document.getElementById("mastodon-compose");
 
   if (mountNode) {
-    const attr = mountNode.getAttribute('data-props');
-    if(!attr) return;
+    const attr = mountNode.getAttribute("data-props");
+    if(!attr) {
+      return;
+    }
 
     const props = JSON.parse(attr);
     const root = createRoot(mountNode);

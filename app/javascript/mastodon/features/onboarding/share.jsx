@@ -1,29 +1,29 @@
-import PropTypes from 'prop-types';
-import { PureComponent } from 'react';
+import PropTypes from "prop-types";
+import { PureComponent } from "react";
 
-import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
+import { defineMessages, injectIntl, FormattedMessage } from "react-intl";
 
-import classNames from 'classnames';
-import { Link } from 'react-router-dom';
+import classNames from "classnames";
+import { Link } from "react-router-dom";
 
-import ImmutablePropTypes from 'react-immutable-proptypes';
-import { connect } from 'react-redux';
+import ImmutablePropTypes from "react-immutable-proptypes";
+import { connect } from "react-redux";
 
-import SwipeableViews from 'react-swipeable-views';
+import SwipeableViews from "react-swipeable-views";
 
-import Column from 'mastodon/components/column';
-import ColumnBackButton from 'mastodon/components/column_back_button';
-import { Icon }  from 'mastodon/components/icon';
-import { me, domain } from 'mastodon/initial_state';
+import Column from "mastodon/components/column";
+import ColumnBackButton from "mastodon/components/column_back_button";
+import { Icon }  from "mastodon/components/icon";
+import { me, domain } from "mastodon/initial_state";
 
-import ArrowSmallRight from './components/arrow_small_right';
+import ArrowSmallRight from "./components/arrow_small_right";
 
 const messages = defineMessages({
-  shareableMessage: { id: 'onboarding.share.message', defaultMessage: 'I\'m {username} on #Mastodon! Come follow me at {url}' },
+  shareableMessage: { id: "onboarding.share.message", defaultMessage: "I'm {username} on #Mastodon! Come follow me at {url}" },
 });
 
 const mapStateToProps = state => ({
-  account: state.getIn(['accounts', me]),
+  account: state.getIn(["accounts", me]),
 });
 
 class CopyPasteText extends PureComponent {
@@ -67,7 +67,9 @@ class CopyPasteText extends PureComponent {
   };
 
   componentWillUnmount () {
-    if (this.timeout) clearTimeout(this.timeout);
+    if (this.timeout) {
+      clearTimeout(this.timeout);
+    }
   }
 
   render () {
@@ -75,7 +77,7 @@ class CopyPasteText extends PureComponent {
     const { copied, focused } = this.state;
 
     return (
-      <div className={classNames('copy-paste-text', { copied, focused })} tabIndex='0' role='button' onClick={this.handleInputClick}>
+      <div className={classNames("copy-paste-text", { copied, focused })} tabIndex='0' role='button' onClick={this.handleInputClick}>
         <textarea readOnly value={value} ref={this.setRef} onClick={this.handleInputClick} onFocus={this.handleFocus} onBlur={this.handleBlur} />
 
         <button className='button' onClick={this.handleButtonClick}>
@@ -102,19 +104,19 @@ class TipCarousel extends PureComponent {
   };
 
   handleChangeIndex = e => {
-    this.setState({ index: Number(e.currentTarget.getAttribute('data-index')) });
+    this.setState({ index: Number(e.currentTarget.getAttribute("data-index")) });
   };
 
   handleKeyDown = e => {
     switch(e.key) {
-    case 'ArrowLeft':
-      e.preventDefault();
-      this.setState(({ index }, { children }) => ({ index: Math.abs(index - 1) % children.length }));
-      break;
-    case 'ArrowRight':
-      e.preventDefault();
-      this.setState(({ index }, { children }) => ({ index: (index + 1) % children.length }));
-      break;
+      case "ArrowLeft":
+        e.preventDefault();
+        this.setState(({ index }, { children }) => ({ index: Math.abs(index - 1) % children.length }));
+        break;
+      case "ArrowRight":
+        e.preventDefault();
+        this.setState(({ index }, { children }) => ({ index: (index + 1) % children.length }));
+        break;
     }
   };
 
@@ -130,7 +132,7 @@ class TipCarousel extends PureComponent {
 
         <div className='media-modal__pagination'>
           {children.map((_, i) => (
-            <button key={i} className={classNames('media-modal__page-dot', { active: i === index })} data-index={i} onClick={this.handleChangeIndex}>
+            <button key={i} className={classNames("media-modal__page-dot", { active: i === index })} data-index={i} onClick={this.handleChangeIndex}>
               {i + 1}
             </button>
           ))}
@@ -153,7 +155,7 @@ class Share extends PureComponent {
   render () {
     const { onBack, account, multiColumn, intl } = this.props;
 
-    const url = (new URL(`/@${account.get('username')}`, document.baseURI)).href;
+    const url = (new URL(`/@${account.get("username")}`, document.baseURI)).href;
 
     return (
       <Column>
@@ -165,7 +167,7 @@ class Share extends PureComponent {
             <p><FormattedMessage id='onboarding.share.lead' defaultMessage='Let people know how they can find you on Mastodon!' /></p>
           </div>
 
-          <CopyPasteText value={intl.formatMessage(messages.shareableMessage, { username: `@${account.get('username')}@${domain}`, url })} />
+          <CopyPasteText value={intl.formatMessage(messages.shareableMessage, { username: `@${account.get("username")}@${domain}`, url })} />
 
           <TipCarousel>
             <div><p className='onboarding__lead'><FormattedMessage id='onboarding.tips.verification' defaultMessage='<strong>Did you know?</strong> You can verify your account by putting a link to your Mastodon profile on your own website and adding the website to your profile. No fees or documents necessary!'  values={{ strong: chunks => <strong>{chunks}</strong> }}  /></p></div>

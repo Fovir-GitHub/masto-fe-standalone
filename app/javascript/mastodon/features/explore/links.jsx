@@ -1,20 +1,20 @@
-import PropTypes from 'prop-types';
-import { PureComponent } from 'react';
+import PropTypes from "prop-types";
+import { PureComponent } from "react";
 
-import { FormattedMessage } from 'react-intl';
+import { FormattedMessage } from "react-intl";
 
-import ImmutablePropTypes from 'react-immutable-proptypes';
-import { connect } from 'react-redux';
+import ImmutablePropTypes from "react-immutable-proptypes";
+import { connect } from "react-redux";
 
-import { fetchTrendingLinks } from 'mastodon/actions/trends';
-import { DismissableBanner } from 'mastodon/components/dismissable_banner';
-import { LoadingIndicator } from 'mastodon/components/loading_indicator';
+import { fetchTrendingLinks } from "mastodon/actions/trends";
+import { DismissableBanner } from "mastodon/components/dismissable_banner";
+import { LoadingIndicator } from "mastodon/components/loading_indicator";
 
-import Story from './components/story';
+import Story from "./components/story";
 
 const mapStateToProps = state => ({
-  links: state.getIn(['trends', 'links', 'items']),
-  isLoading: state.getIn(['trends', 'links', 'isLoading']),
+  links: state.getIn(["trends", "links", "items"]),
+  isLoading: state.getIn(["trends", "links", "isLoading"]),
 });
 
 class Links extends PureComponent {
@@ -57,18 +57,18 @@ class Links extends PureComponent {
 
         {isLoading ? (<LoadingIndicator />) : links.map((link, i) => (
           <Story
-            key={link.get('id')}
+            key={link.get("id")}
             expanded={i === 0}
-            lang={link.get('language')}
-            url={link.get('url')}
-            title={link.get('title')}
-            publisher={link.get('provider_name')}
-            publishedAt={link.get('published_at')}
-            author={link.get('author_name')}
-            sharedTimes={link.getIn(['history', 0, 'accounts']) * 1 + link.getIn(['history', 1, 'accounts']) * 1}
-            thumbnail={link.get('image')}
-            thumbnailDescription={link.get('image_description')}
-            blurhash={link.get('blurhash')}
+            lang={link.get("language")}
+            url={link.get("url")}
+            title={link.get("title")}
+            publisher={link.get("provider_name")}
+            publishedAt={link.get("published_at")}
+            author={link.get("author_name")}
+            sharedTimes={link.getIn(["history", 0, "accounts"]) * 1 + link.getIn(["history", 1, "accounts"]) * 1}
+            thumbnail={link.get("image")}
+            thumbnailDescription={link.get("image_description")}
+            blurhash={link.get("blurhash")}
           />
         ))}
       </div>

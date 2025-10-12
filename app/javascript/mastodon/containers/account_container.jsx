@@ -1,6 +1,6 @@
-import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
+import { defineMessages, injectIntl, FormattedMessage } from "react-intl";
 
-import { connect } from 'react-redux';
+import { connect } from "react-redux";
 
 import {
   followAccount,
@@ -9,15 +9,15 @@ import {
   unblockAccount,
   muteAccount,
   unmuteAccount,
-} from '../actions/accounts';
-import { openModal } from '../actions/modal';
-import { initMuteModal } from '../actions/mutes';
-import Account from '../components/account';
-import { unfollowModal } from '../initial_state';
-import { makeGetAccount } from '../selectors';
+} from "../actions/accounts";
+import { openModal } from "../actions/modal";
+import { initMuteModal } from "../actions/mutes";
+import Account from "../components/account";
+import { unfollowModal } from "../initial_state";
+import { makeGetAccount } from "../selectors";
 
 const messages = defineMessages({
-  unfollowConfirm: { id: 'confirmations.unfollow.confirm', defaultMessage: 'Unfollow' },
+  unfollowConfirm: { id: "confirmations.unfollow.confirm", defaultMessage: "Unfollow" },
 });
 
 const makeMapStateToProps = () => {
@@ -33,35 +33,35 @@ const makeMapStateToProps = () => {
 const mapDispatchToProps = (dispatch, { intl }) => ({
 
   onFollow (account) {
-    if (account.getIn(['relationship', 'following']) || account.getIn(['relationship', 'requested'])) {
+    if (account.getIn(["relationship", "following"]) || account.getIn(["relationship", "requested"])) {
       if (unfollowModal) {
         dispatch(openModal({
-          modalType: 'CONFIRM',
+          modalType: "CONFIRM",
           modalProps: {
-            message: <FormattedMessage id='confirmations.unfollow.message' defaultMessage='Are you sure you want to unfollow {name}?' values={{ name: <strong>@{account.get('acct')}</strong> }} />,
+            message: <FormattedMessage id='confirmations.unfollow.message' defaultMessage='Are you sure you want to unfollow {name}?' values={{ name: <strong>@{account.get("acct")}</strong> }} />,
             confirm: intl.formatMessage(messages.unfollowConfirm),
-            onConfirm: () => dispatch(unfollowAccount(account.get('id'))),
+            onConfirm: () => dispatch(unfollowAccount(account.get("id"))),
           },
         }));
       } else {
-        dispatch(unfollowAccount(account.get('id')));
+        dispatch(unfollowAccount(account.get("id")));
       }
     } else {
-      dispatch(followAccount(account.get('id')));
+      dispatch(followAccount(account.get("id")));
     }
   },
 
   onBlock (account) {
-    if (account.getIn(['relationship', 'blocking'])) {
-      dispatch(unblockAccount(account.get('id')));
+    if (account.getIn(["relationship", "blocking"])) {
+      dispatch(unblockAccount(account.get("id")));
     } else {
-      dispatch(blockAccount(account.get('id')));
+      dispatch(blockAccount(account.get("id")));
     }
   },
 
   onMute (account) {
-    if (account.getIn(['relationship', 'muting'])) {
-      dispatch(unmuteAccount(account.get('id')));
+    if (account.getIn(["relationship", "muting"])) {
+      dispatch(unmuteAccount(account.get("id")));
     } else {
       dispatch(initMuteModal(account));
     }
@@ -69,7 +69,7 @@ const mapDispatchToProps = (dispatch, { intl }) => ({
 
 
   onMuteNotifications (account, notifications) {
-    dispatch(muteAccount(account.get('id'), notifications));
+    dispatch(muteAccount(account.get("id"), notifications));
   },
 });
 

@@ -1,23 +1,23 @@
-import PropTypes from 'prop-types';
-import { PureComponent } from 'react';
+import PropTypes from "prop-types";
+import { PureComponent } from "react";
 
-import { injectIntl, defineMessages } from 'react-intl';
+import { injectIntl, defineMessages } from "react-intl";
 
-import classNames from 'classnames';
+import classNames from "classnames";
 
-import { supportsPassiveEvents } from 'detect-passive-events';
-import fuzzysort from 'fuzzysort';
-import Overlay from 'react-overlays/Overlay';
+import { supportsPassiveEvents } from "detect-passive-events";
+import fuzzysort from "fuzzysort";
+import Overlay from "react-overlays/Overlay";
 
-import { languages as preloadedLanguages } from 'flavours/glitch/initial_state';
-import { loupeIcon, deleteIcon } from 'flavours/glitch/utils/icons';
+import { languages as preloadedLanguages } from "flavours/glitch/initial_state";
+import { loupeIcon, deleteIcon } from "flavours/glitch/utils/icons";
 
-import TextIconButton from './text_icon_button';
+import TextIconButton from "./text_icon_button";
 
 const messages = defineMessages({
-  changeLanguage: { id: 'compose.language.change', defaultMessage: 'Change language' },
-  search: { id: 'compose.language.search', defaultMessage: 'Search languages...' },
-  clear: { id: 'emoji_button.clear', defaultMessage: 'Clear' },
+  changeLanguage: { id: "compose.language.change", defaultMessage: "Change language" },
+  search: { id: "compose.language.search", defaultMessage: "Search languages..." },
+  clear: { id: "emoji_button.clear", defaultMessage: "Clear" },
 });
 
 const listenerOptions = supportsPassiveEvents ? { passive: true, capture: true } : true;
@@ -38,7 +38,7 @@ class LanguageDropdownMenu extends PureComponent {
   };
 
   state = {
-    searchValue: '',
+    searchValue: "",
   };
 
   handleDocumentClick = e => {
@@ -49,22 +49,24 @@ class LanguageDropdownMenu extends PureComponent {
   };
 
   componentDidMount () {
-    document.addEventListener('click', this.handleDocumentClick, { capture: true });
-    document.addEventListener('touchend', this.handleDocumentClick, listenerOptions);
+    document.addEventListener("click", this.handleDocumentClick, { capture: true });
+    document.addEventListener("touchend", this.handleDocumentClick, listenerOptions);
 
     // Because of https://github.com/react-bootstrap/react-bootstrap/issues/2614 we need
     // to wait for a frame before focusing
     requestAnimationFrame(() => {
       if (this.node) {
-        const element = this.node.querySelector('input[type="search"]');
-        if (element) element.focus();
+        const element = this.node.querySelector("input[type=\"search\"]");
+        if (element) {
+          element.focus();
+        }
       }
     });
   }
 
   componentWillUnmount () {
-    document.removeEventListener('click', this.handleDocumentClick, { capture: true });
-    document.removeEventListener('touchend', this.handleDocumentClick, listenerOptions);
+    document.removeEventListener("click", this.handleDocumentClick, { capture: true });
+    document.removeEventListener("touchend", this.handleDocumentClick, listenerOptions);
   }
 
   setRef = c => {
@@ -83,7 +85,7 @@ class LanguageDropdownMenu extends PureComponent {
     const { languages, value, frequentlyUsedLanguages } = this.props;
     const { searchValue } = this.state;
 
-    if (searchValue === '') {
+    if (searchValue === "") {
       return [...languages].sort((a, b) => {
         // Push current selection to the top of the list
 
@@ -103,7 +105,7 @@ class LanguageDropdownMenu extends PureComponent {
     }
 
     return fuzzysort.go(searchValue, languages, {
-      keys: ['0', '1', '2'],
+      keys: ["0", "1", "2"],
       limit: 5,
       threshold: -10000,
     }).map(result => result.obj);
@@ -122,7 +124,7 @@ class LanguageDropdownMenu extends PureComponent {
   }
 
   handleClick = e => {
-    const value = e.currentTarget.getAttribute('data-index');
+    const value = e.currentTarget.getAttribute("data-index");
 
     e.preventDefault();
 
@@ -137,31 +139,31 @@ class LanguageDropdownMenu extends PureComponent {
     let element = null;
 
     switch(e.key) {
-    case 'Escape':
-      onClose();
-      break;
-    case 'Enter':
-      this.handleClick(e);
-      break;
-    case 'ArrowDown':
-      element = this.listNode.childNodes[index + 1] || this.listNode.firstChild;
-      break;
-    case 'ArrowUp':
-      element = this.listNode.childNodes[index - 1] || this.listNode.lastChild;
-      break;
-    case 'Tab':
-      if (e.shiftKey) {
-        element = this.listNode.childNodes[index - 1] || this.listNode.lastChild;
-      } else {
+      case "Escape":
+        onClose();
+        break;
+      case "Enter":
+        this.handleClick(e);
+        break;
+      case "ArrowDown":
         element = this.listNode.childNodes[index + 1] || this.listNode.firstChild;
-      }
-      break;
-    case 'Home':
-      element = this.listNode.firstChild;
-      break;
-    case 'End':
-      element = this.listNode.lastChild;
-      break;
+        break;
+      case "ArrowUp":
+        element = this.listNode.childNodes[index - 1] || this.listNode.lastChild;
+        break;
+      case "Tab":
+        if (e.shiftKey) {
+          element = this.listNode.childNodes[index - 1] || this.listNode.lastChild;
+        } else {
+          element = this.listNode.childNodes[index + 1] || this.listNode.firstChild;
+        }
+        break;
+      case "Home":
+        element = this.listNode.firstChild;
+        break;
+      case "End":
+        element = this.listNode.lastChild;
+        break;
     }
 
     if (element) {
@@ -178,44 +180,44 @@ class LanguageDropdownMenu extends PureComponent {
     let element = null;
 
     switch(e.key) {
-    case 'Tab':
-    case 'ArrowDown':
-      element = this.listNode.firstChild;
+      case "Tab":
+      case "ArrowDown":
+        element = this.listNode.firstChild;
 
-      if (element) {
-        element.focus();
-        e.preventDefault();
-        e.stopPropagation();
-      }
+        if (element) {
+          element.focus();
+          e.preventDefault();
+          e.stopPropagation();
+        }
 
-      break;
-    case 'Enter':
-      element = this.listNode.firstChild;
+        break;
+      case "Enter":
+        element = this.listNode.firstChild;
 
-      if (element) {
-        onChange(element.getAttribute('data-index'));
-        onClose();
-      }
-      break;
-    case 'Escape':
-      if (searchValue !== '') {
-        e.preventDefault();
-        this.handleClear();
-      }
+        if (element) {
+          onChange(element.getAttribute("data-index"));
+          onClose();
+        }
+        break;
+      case "Escape":
+        if (searchValue !== "") {
+          e.preventDefault();
+          this.handleClear();
+        }
 
-      break;
+        break;
     }
   };
 
   handleClear = () => {
-    this.setState({ searchValue: '' });
+    this.setState({ searchValue: "" });
   };
 
   renderItem = lang => {
     const { value } = this.props;
 
     return (
-      <div key={lang[0]} role='option' tabIndex={0} data-index={lang[0]} className={classNames('language-dropdown__dropdown__results__item', { active: lang[0] === value })} aria-selected={lang[0] === value} onClick={this.handleClick} onKeyDown={this.handleKeyDown}>
+      <div key={lang[0]} role='option' tabIndex={0} data-index={lang[0]} className={classNames("language-dropdown__dropdown__results__item", { active: lang[0] === value })} aria-selected={lang[0] === value} onClick={this.handleClick} onKeyDown={this.handleKeyDown}>
         <span className='language-dropdown__dropdown__results__item__native-name' lang={lang[0]}>{lang[2]}</span> <span className='language-dropdown__dropdown__results__item__common-name'>({lang[1]})</span>
       </div>
     );
@@ -224,7 +226,7 @@ class LanguageDropdownMenu extends PureComponent {
   render () {
     const { intl } = this.props;
     const { searchValue } = this.state;
-    const isSearching = searchValue !== '';
+    const isSearching = searchValue !== "";
     const results = this.search();
 
     return (
@@ -255,7 +257,7 @@ class LanguageDropdown extends PureComponent {
 
   state = {
     open: false,
-    placement: 'bottom',
+    placement: "bottom",
   };
 
   handleToggle = () => {
@@ -299,7 +301,7 @@ class LanguageDropdown extends PureComponent {
     const { open, placement } = this.state;
 
     return (
-      <div className={classNames('privacy-dropdown', placement, { active: open })}>
+      <div className={classNames("privacy-dropdown", placement, { active: open })}>
         <div className='privacy-dropdown__value' ref={this.setTargetRef} >
           <TextIconButton
             className='privacy-dropdown__value-icon'
@@ -310,7 +312,7 @@ class LanguageDropdown extends PureComponent {
           />
         </div>
 
-        <Overlay show={open} placement={'bottom'} flip target={this.findTarget} popperConfig={{ strategy: 'fixed', onFirstUpdate: this.handleOverlayEnter }}>
+        <Overlay show={open} placement={"bottom"} flip target={this.findTarget} popperConfig={{ strategy: "fixed", onFirstUpdate: this.handleOverlayEnter }}>
           {({ props, placement }) => (
             <div {...props}>
               <div className={`dropdown-animation language-dropdown__dropdown ${placement}`} >

@@ -1,23 +1,23 @@
-import { IntlMessageFormat } from 'intl-messageformat';
+import { IntlMessageFormat } from "intl-messageformat";
 
-import { unescape } from 'lodash';
+import { unescape } from "lodash";
 
-import locales from './web_push_locales';
+import locales from "./web_push_locales";
 
 const MAX_NOTIFICATIONS = 5;
-const GROUP_TAG = 'tag';
+const GROUP_TAG = "tag";
 
 const notify = options =>
   self.registration.getNotifications().then(notifications => {
     if (notifications.length >= MAX_NOTIFICATIONS) { // Reached the maximum number of notifications, proceed with grouping
       const group = {
-        title: formatMessage('notifications.group', options.data.preferred_locale, { count: notifications.length + 1 }),
-        body: notifications.sort((n1, n2) => n1.timestamp < n2.timestamp).map(notification => notification.title).join('\n'),
-        badge: '/badge.png',
-        icon: '/android-chrome-192x192.png',
+        title: formatMessage("notifications.group", options.data.preferred_locale, { count: notifications.length + 1 }),
+        body: notifications.sort((n1, n2) => n1.timestamp < n2.timestamp).map(notification => notification.title).join("\n"),
+        badge: "/badge.png",
+        icon: "/android-chrome-192x192.png",
         tag: GROUP_TAG,
         data: {
-          url: (new URL('/notifications', self.location)).href,
+          url: (new URL("/notifications", self.location)).href,
           count: notifications.length + 1,
           preferred_locale: options.data.preferred_locale,
         },
@@ -29,7 +29,7 @@ const notify = options =>
     } else if (notifications.length === 1 && notifications[0].tag === GROUP_TAG) { // Already grouped, proceed with appending the notification to the group
       const group = cloneNotification(notifications[0]);
 
-      group.title = formatMessage('notifications.group', options.data.preferred_locale, { count: group.data.count + 1 });
+      group.title = formatMessage("notifications.group", options.data.preferred_locale, { count: group.data.count + 1 });
       group.body  = `${options.title}\n${group.body}`;
       group.data  = { ...group.data, count: group.data.count + 1 };
 
@@ -44,12 +44,12 @@ const fetchFromApi = (path, method, accessToken) => {
 
   return fetch(url, {
     headers: {
-      'Authorization': `Bearer ${accessToken}`,
-      'Content-Type': 'application/json',
+      "Authorization": `Bearer ${accessToken}`,
+      "Content-Type": "application/json",
     },
 
     method: method,
-    credentials: 'include',
+    credentials: "include",
   }).then(res => {
     if (res.ok) {
       return res;
@@ -75,14 +75,14 @@ const formatMessage = (messageId, locale, values = {}) =>
   (new IntlMessageFormat(locales[locale][messageId], locale)).format(values);
 
 const htmlToPlainText = html =>
-  unescape(html.replace(/<br\s*\/?>/g, '\n').replace(/<\/p><p>/g, '\n\n').replace(/<[^>]*>/g, ''));
+  unescape(html.replace(/<br\s*\/?>/g, "\n").replace(/<\/p><p>/g, "\n\n").replace(/<[^>]*>/g, ""));
 
 export const handlePush = (event) => {
   const { access_token, notification_id, preferred_locale, title, body, icon } = event.data.json();
 
   // Placeholder until more information can be loaded
   event.waitUntil(
-    fetchFromApi(`/api/v1/notifications/${notification_id}`, 'get', access_token).then(notification => {
+    fetchFromApi(`/api/v1/notifications/${notification_id}`, "get", access_token).then(notification => {
       const options = {};
 
       options.title     = formatMessage(`notification.${notification.type}`, preferred_locale, { name: notification.account.display_name.length > 0 ? notification.account.display_name : notification.account.username });
@@ -90,7 +90,7 @@ export const handlePush = (event) => {
       options.icon      = notification.account.avatar_static;
       options.timestamp = notification.created_at && new Date(notification.created_at);
       options.tag       = notification.id;
-      options.badge     = '/badge.png';
+      options.badge     = "/badge.png";
       options.image     = notification.status && notification.status.media_attachments.length > 0 && notification.status.media_attachments[0].preview_url || undefined;
       options.data      = { access_token, preferred_locale, id: notification.status ? notification.status.id : notification.account.id };
 
@@ -110,7 +110,7 @@ export const handlePush = (event) => {
 
         options.image   = undefined;
         options.actions = [actionExpand(preferred_locale)];
-      } else if (['mention', 'status'].includes(notification.type)) {
+      } else if (["mention", "status"].includes(notification.type)) {
         options.actions = [actionReblog(preferred_locale), actionFavourite(preferred_locale)];
       }
 
@@ -122,34 +122,34 @@ export const handlePush = (event) => {
         icon,
         tag: notification_id,
         timestamp: new Date(),
-        badge: '/badge.png',
-        data: { access_token, preferred_locale, url: '/notifications' },
+        badge: "/badge.png",
+        data: { access_token, preferred_locale, url: "/notifications" },
       });
     }),
   );
 };
 
 const actionExpand = preferred_locale => ({
-  action: 'expand',
-  icon: '/web-push-icon_expand.png',
-  title: formatMessage('status.show_more', preferred_locale),
+  action: "expand",
+  icon: "/web-push-icon_expand.png",
+  title: formatMessage("status.show_more", preferred_locale),
 });
 
 const actionReblog = preferred_locale => ({
-  action: 'reblog',
-  icon: '/web-push-icon_reblog.png',
-  title: formatMessage('status.reblog', preferred_locale),
+  action: "reblog",
+  icon: "/web-push-icon_reblog.png",
+  title: formatMessage("status.reblog", preferred_locale),
 });
 
 const actionFavourite = preferred_locale => ({
-  action: 'favourite',
-  icon: '/web-push-icon_favourite.png',
-  title: formatMessage('status.favourite', preferred_locale),
+  action: "favourite",
+  icon: "/web-push-icon_favourite.png",
+  title: formatMessage("status.favourite", preferred_locale),
 });
 
 const findBestClient = clients => {
   const focusedClient = clients.find(client => client.focused);
-  const visibleClient = clients.find(client => client.visibilityState === 'visible');
+  const visibleClient = clients.find(client => client.visibilityState === "visible");
 
   return focusedClient || visibleClient || clients[0];
 };
@@ -173,8 +173,8 @@ const removeActionFromNotification = (notification, action) => {
 };
 
 const openUrl = url =>
-  self.clients.matchAll({ type: 'window' }).then(clientList => {
-    if (clientList.length !== 0 && 'navigate' in clientList[0]) { // Chrome 42-48 does not support navigate
+  self.clients.matchAll({ type: "window" }).then(clientList => {
+    if (clientList.length !== 0 && "navigate" in clientList[0]) { // Chrome 42-48 does not support navigate
       const client = findBestClient(clientList);
 
       return client.navigate(url).then(client => client.focus());
@@ -186,14 +186,14 @@ const openUrl = url =>
 export const handleNotificationClick = (event) => {
   const reactToNotificationClick = new Promise((resolve, reject) => {
     if (event.action) {
-      if (event.action === 'expand') {
+      if (event.action === "expand") {
         resolve(expandNotification(event.notification));
-      } else if (event.action === 'reblog') {
+      } else if (event.action === "reblog") {
         const { data } = event.notification;
-        resolve(fetchFromApi(`/api/v1/statuses/${data.id}/reblog`, 'post', data.access_token).then(() => removeActionFromNotification(event.notification, 'reblog')));
-      } else if (event.action === 'favourite') {
+        resolve(fetchFromApi(`/api/v1/statuses/${data.id}/reblog`, "post", data.access_token).then(() => removeActionFromNotification(event.notification, "reblog")));
+      } else if (event.action === "favourite") {
         const { data } = event.notification;
-        resolve(fetchFromApi(`/api/v1/statuses/${data.id}/favourite`, 'post', data.access_token).then(() => removeActionFromNotification(event.notification, 'favourite')));
+        resolve(fetchFromApi(`/api/v1/statuses/${data.id}/favourite`, "post", data.access_token).then(() => removeActionFromNotification(event.notification, "favourite")));
       } else {
         reject(`Unknown action: ${event.action}`);
       }

@@ -1,4 +1,4 @@
-import { connect } from 'react-redux';
+import { connect } from "react-redux";
 
 import {
   addPollOption,
@@ -8,15 +8,15 @@ import {
   clearComposeSuggestions,
   fetchComposeSuggestions,
   selectComposeSuggestion,
-} from '../../../actions/compose';
-import PollForm from '../components/poll_form';
+} from "../../../actions/compose";
+import PollForm from "../components/poll_form";
 
 const mapStateToProps = state => ({
-  suggestions: state.getIn(['compose', 'suggestions']),
-  options: state.getIn(['compose', 'poll', 'options']),
-  lang: state.getIn(['compose', 'language']),
-  expiresIn: state.getIn(['compose', 'poll', 'expires_in']),
-  isMultiple: state.getIn(['compose', 'poll', 'multiple']),
+  suggestions: state.getIn(["compose", "suggestions"]),
+  options: state.getIn(["compose", "poll", "options"]),
+  lang: state.getIn(["compose", "language"]),
+  expiresIn: state.getIn(["compose", "poll", "expires_in"]),
+  isMultiple: state.getIn(["compose", "poll", "multiple"]),
 });
 
 const mapDispatchToProps = dispatch => ({

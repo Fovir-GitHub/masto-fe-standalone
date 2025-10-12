@@ -1,27 +1,27 @@
-import PropTypes from 'prop-types';
-import { PureComponent } from 'react';
+import PropTypes from "prop-types";
+import { PureComponent } from "react";
 
-import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
+import { defineMessages, injectIntl, FormattedMessage } from "react-intl";
 
-import classNames from 'classnames';
+import classNames from "classnames";
 
-import ImmutablePropTypes from 'react-immutable-proptypes';
-import ImmutablePureComponent from 'react-immutable-pure-component';
+import ImmutablePropTypes from "react-immutable-proptypes";
+import ImmutablePureComponent from "react-immutable-pure-component";
 
-import AutosuggestInput from 'mastodon/components/autosuggest_input';
-import { Icon }  from 'mastodon/components/icon';
-import { IconButton } from 'mastodon/components/icon_button';
+import AutosuggestInput from "mastodon/components/autosuggest_input";
+import { Icon }  from "mastodon/components/icon";
+import { IconButton } from "mastodon/components/icon_button";
 
 const messages = defineMessages({
-  option_placeholder: { id: 'compose_form.poll.option_placeholder', defaultMessage: 'Choice {number}' },
-  add_option: { id: 'compose_form.poll.add_option', defaultMessage: 'Add a choice' },
-  remove_option: { id: 'compose_form.poll.remove_option', defaultMessage: 'Remove this choice' },
-  poll_duration: { id: 'compose_form.poll.duration', defaultMessage: 'Poll duration' },
-  switchToMultiple: { id: 'compose_form.poll.switch_to_multiple', defaultMessage: 'Change poll to allow multiple choices' },
-  switchToSingle: { id: 'compose_form.poll.switch_to_single', defaultMessage: 'Change poll to allow for a single choice' },
-  minutes: { id: 'intervals.full.minutes', defaultMessage: '{number, plural, one {# minute} other {# minutes}}' },
-  hours: { id: 'intervals.full.hours', defaultMessage: '{number, plural, one {# hour} other {# hours}}' },
-  days: { id: 'intervals.full.days', defaultMessage: '{number, plural, one {# day} other {# days}}' },
+  option_placeholder: { id: "compose_form.poll.option_placeholder", defaultMessage: "Choice {number}" },
+  add_option: { id: "compose_form.poll.add_option", defaultMessage: "Add a choice" },
+  remove_option: { id: "compose_form.poll.remove_option", defaultMessage: "Remove this choice" },
+  poll_duration: { id: "compose_form.poll.duration", defaultMessage: "Poll duration" },
+  switchToMultiple: { id: "compose_form.poll.switch_to_multiple", defaultMessage: "Change poll to allow multiple choices" },
+  switchToSingle: { id: "compose_form.poll.switch_to_single", defaultMessage: "Change poll to allow for a single choice" },
+  minutes: { id: "intervals.full.minutes", defaultMessage: "{number, plural, one {# minute} other {# minutes}}" },
+  hours: { id: "intervals.full.hours", defaultMessage: "{number, plural, one {# hour} other {# hours}}" },
+  days: { id: "intervals.full.days", defaultMessage: "{number, plural, one {# day} other {# days}}" },
 });
 
 class OptionIntl extends PureComponent {
@@ -58,7 +58,7 @@ class OptionIntl extends PureComponent {
   };
 
   handleCheckboxKeypress = e => {
-    if (e.key === 'Enter' || e.key === ' ') {
+    if (e.key === "Enter" || e.key === " ") {
       this.handleToggleMultiple(e);
     }
   };
@@ -72,7 +72,7 @@ class OptionIntl extends PureComponent {
   };
 
   onSuggestionSelected = (tokenStart, token, value) => {
-    this.props.onSuggestionSelected(tokenStart, token, value, ['poll', 'options', this.props.index]);
+    this.props.onSuggestionSelected(tokenStart, token, value, ["poll", "options", this.props.index]);
   };
 
   render () {
@@ -82,7 +82,7 @@ class OptionIntl extends PureComponent {
       <li>
         <label className='poll__option editable'>
           <span
-            className={classNames('poll__input', { checkbox: isPollMultiple })}
+            className={classNames("poll__input", { checkbox: isPollMultiple })}
             onClick={this.handleToggleMultiple}
             onKeyPress={this.handleCheckboxKeypress}
             role='button'
@@ -102,7 +102,7 @@ class OptionIntl extends PureComponent {
             onSuggestionsFetchRequested={this.onSuggestionsFetchRequested}
             onSuggestionsClearRequested={this.onSuggestionsClearRequested}
             onSuggestionSelected={this.onSuggestionSelected}
-            searchTokens={[':']}
+            searchTokens={[":"]}
             autoFocus={autoFocus}
           />
         </label>
@@ -137,7 +137,7 @@ class PollForm extends ImmutablePureComponent {
   };
 
   handleAddOption = () => {
-    this.props.onAddOption('');
+    this.props.onAddOption("");
   };
 
   handleSelectDuration = e => {
@@ -155,7 +155,7 @@ class PollForm extends ImmutablePureComponent {
       return null;
     }
 
-    const autoFocusIndex = options.indexOf('');
+    const autoFocusIndex = options.indexOf("");
 
     return (
       <div className='compose-form__poll-wrapper'>

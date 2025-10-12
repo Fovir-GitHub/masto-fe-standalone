@@ -1,4 +1,4 @@
-import { FormattedMessage } from 'react-intl';
+import { FormattedMessage } from "react-intl";
 
 export const CriticalUpdateBanner = () => (
   <div className='warning-banner'>
@@ -13,7 +13,7 @@ export const CriticalUpdateBanner = () => (
         <FormattedMessage
           id='home.pending_critical_update.body'
           defaultMessage='Please update your Mastodon server as soon as possible!'
-        />{' '}
+        />{" "}
         <a href='/admin/software_updates'>
           <FormattedMessage
             id='home.pending_critical_update.link'

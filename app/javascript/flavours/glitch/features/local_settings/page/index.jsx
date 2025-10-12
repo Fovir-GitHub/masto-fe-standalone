@@ -1,38 +1,38 @@
 //  Package imports
-import PropTypes from 'prop-types';
-import { PureComponent } from 'react';
+import PropTypes from "prop-types";
+import { PureComponent } from "react";
 
-import { defineMessages, FormattedMessage, injectIntl } from 'react-intl';
+import { defineMessages, FormattedMessage, injectIntl } from "react-intl";
 
-import ImmutablePropTypes from 'react-immutable-proptypes';
+import ImmutablePropTypes from "react-immutable-proptypes";
 
 
 //  Our imports
-import LocalSettingsPageItem from './item';
+import LocalSettingsPageItem from "./item";
 
 //  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 
 const messages = defineMessages({
-  layout_auto: {  id: 'layout.auto', defaultMessage: 'Auto' },
-  layout_auto_hint: {  id: 'layout.hint.auto', defaultMessage: 'Automatically chose layout based on “Enable advanced web interface” setting and screen size.' },
-  layout_desktop: { id: 'layout.desktop', defaultMessage: 'Desktop' },
-  layout_desktop_hint: { id: 'layout.hint.desktop', defaultMessage: 'Use multiple-column layout regardless of the “Enable advanced web interface” setting or screen size.' },
-  layout_mobile: { id: 'layout.single', defaultMessage: 'Mobile' },
-  layout_mobile_hint: { id: 'layout.hint.single', defaultMessage: 'Use single-column layout regardless of the “Enable advanced web interface” setting or screen size.' },
-  side_arm_none: { id: 'settings.side_arm.none', defaultMessage: 'None' },
-  side_arm_keep: { id: 'settings.side_arm_reply_mode.keep', defaultMessage: 'Keep its set privacy' },
-  side_arm_copy: { id: 'settings.side_arm_reply_mode.copy', defaultMessage: 'Copy privacy setting of the toot being replied to' },
-  side_arm_restrict: { id: 'settings.side_arm_reply_mode.restrict', defaultMessage: 'Restrict privacy setting to that of the toot being replied to' },
-  regexp: { id: 'settings.content_warnings.regexp', defaultMessage: 'Regular expression' },
-  rewrite_mentions_no: { id: 'settings.rewrite_mentions_no', defaultMessage: 'Do not rewrite mentions' },
-  rewrite_mentions_acct: { id: 'settings.rewrite_mentions_acct', defaultMessage: 'Rewrite with username and domain (when the account is remote)' },
-  rewrite_mentions_username: { id: 'settings.rewrite_mentions_username', defaultMessage:  'Rewrite with username' },
-  pop_in_left: { id: 'settings.pop_in_left', defaultMessage: 'Left' },
-  pop_in_right: { id: 'settings.pop_in_right', defaultMessage:  'Right' },
-  public: { id: 'privacy.public.short', defaultMessage: 'Public' },
-  unlisted: { id: 'privacy.unlisted.short', defaultMessage: 'Unlisted' },
-  private: { id: 'privacy.private.short', defaultMessage: 'Followers only' },
-  direct: { id: 'privacy.direct.short', defaultMessage: 'Mentioned people only' },
+  layout_auto: {  id: "layout.auto", defaultMessage: "Auto" },
+  layout_auto_hint: {  id: "layout.hint.auto", defaultMessage: "Automatically chose layout based on “Enable advanced web interface” setting and screen size." },
+  layout_desktop: { id: "layout.desktop", defaultMessage: "Desktop" },
+  layout_desktop_hint: { id: "layout.hint.desktop", defaultMessage: "Use multiple-column layout regardless of the “Enable advanced web interface” setting or screen size." },
+  layout_mobile: { id: "layout.single", defaultMessage: "Mobile" },
+  layout_mobile_hint: { id: "layout.hint.single", defaultMessage: "Use single-column layout regardless of the “Enable advanced web interface” setting or screen size." },
+  side_arm_none: { id: "settings.side_arm.none", defaultMessage: "None" },
+  side_arm_keep: { id: "settings.side_arm_reply_mode.keep", defaultMessage: "Keep its set privacy" },
+  side_arm_copy: { id: "settings.side_arm_reply_mode.copy", defaultMessage: "Copy privacy setting of the toot being replied to" },
+  side_arm_restrict: { id: "settings.side_arm_reply_mode.restrict", defaultMessage: "Restrict privacy setting to that of the toot being replied to" },
+  regexp: { id: "settings.content_warnings.regexp", defaultMessage: "Regular expression" },
+  rewrite_mentions_no: { id: "settings.rewrite_mentions_no", defaultMessage: "Do not rewrite mentions" },
+  rewrite_mentions_acct: { id: "settings.rewrite_mentions_acct", defaultMessage: "Rewrite with username and domain (when the account is remote)" },
+  rewrite_mentions_username: { id: "settings.rewrite_mentions_username", defaultMessage:  "Rewrite with username" },
+  pop_in_left: { id: "settings.pop_in_left", defaultMessage: "Left" },
+  pop_in_right: { id: "settings.pop_in_right", defaultMessage:  "Right" },
+  public: { id: "privacy.public.short", defaultMessage: "Public" },
+  unlisted: { id: "privacy.unlisted.short", defaultMessage: "Unlisted" },
+  private: { id: "privacy.private.short", defaultMessage: "Followers only" },
+  direct: { id: "privacy.direct.short", defaultMessage: "Mentioned people only" },
 });
 
 class LocalSettingsPage extends PureComponent {
@@ -50,12 +50,12 @@ class LocalSettingsPage extends PureComponent {
         <h1><FormattedMessage id='settings.general' defaultMessage='General' /></h1>
         <LocalSettingsPageItem
           settings={settings}
-          item={['theme']}
+          item={["theme"]}
           id='mastodon-settings--theme'
           options={[
-            { value: 'mastodon-light', message: 'Light' },
-            { value: 'mastodon', message: 'Dark' },
-            { value: 'contrast', message: 'High contrast' },
+            { value: "mastodon-light", message: "Light" },
+            { value: "mastodon", message: "Dark" },
+            { value: "contrast", message: "High contrast" },
           ]}
           onChange={onChange}
         >
@@ -63,7 +63,7 @@ class LocalSettingsPage extends PureComponent {
         </LocalSettingsPageItem>
         <LocalSettingsPageItem
           settings={settings}
-          item={['show_reply_count']}
+          item={["show_reply_count"]}
           id='mastodon-settings--reply-count'
           onChange={onChange}
         >
@@ -71,7 +71,7 @@ class LocalSettingsPage extends PureComponent {
         </LocalSettingsPageItem>
         <LocalSettingsPageItem
           settings={settings}
-          item={['hicolor_privacy_icons']}
+          item={["hicolor_privacy_icons"]}
           id='mastodon-settings--hicolor_privacy_icons'
           onChange={onChange}
         >
@@ -80,7 +80,7 @@ class LocalSettingsPage extends PureComponent {
         </LocalSettingsPageItem>
         <LocalSettingsPageItem
           settings={settings}
-          item={['confirm_boost_missing_media_description']}
+          item={["confirm_boost_missing_media_description"]}
           id='mastodon-settings--confirm_boost_missing_media_description'
           onChange={onChange}
         >
@@ -88,7 +88,7 @@ class LocalSettingsPage extends PureComponent {
         </LocalSettingsPageItem>
         <LocalSettingsPageItem
           settings={settings}
-          item={['tag_misleading_links']}
+          item={["tag_misleading_links"]}
           id='mastodon-settings--tag_misleading_links'
           onChange={onChange}
         >
@@ -97,12 +97,12 @@ class LocalSettingsPage extends PureComponent {
         </LocalSettingsPageItem>
         <LocalSettingsPageItem
           settings={settings}
-          item={['rewrite_mentions']}
+          item={["rewrite_mentions"]}
           id='mastodon-settings--rewrite_mentions'
           options={[
-            { value: 'no', message: intl.formatMessage(messages.rewrite_mentions_no) },
-            { value: 'acct', message: intl.formatMessage(messages.rewrite_mentions_acct) },
-            { value: 'username', message: intl.formatMessage(messages.rewrite_mentions_username) },
+            { value: "no", message: intl.formatMessage(messages.rewrite_mentions_no) },
+            { value: "acct", message: intl.formatMessage(messages.rewrite_mentions_acct) },
+            { value: "username", message: intl.formatMessage(messages.rewrite_mentions_username) },
           ]}
           onChange={onChange}
         >
@@ -112,7 +112,7 @@ class LocalSettingsPage extends PureComponent {
           <h2><FormattedMessage id='settings.notifications_opts' defaultMessage='Notifications options' /></h2>
           <LocalSettingsPageItem
             settings={settings}
-            item={['notifications', 'tab_badge']}
+            item={["notifications", "tab_badge"]}
             id='mastodon-settings--notifications-tab_badge'
             onChange={onChange}
           >
@@ -121,7 +121,7 @@ class LocalSettingsPage extends PureComponent {
           </LocalSettingsPageItem>
           <LocalSettingsPageItem
             settings={settings}
-            item={['notifications', 'favicon_badge']}
+            item={["notifications", "favicon_badge"]}
             id='mastodon-settings--notifications-favicon_badge'
             onChange={onChange}
           >
@@ -134,7 +134,7 @@ class LocalSettingsPage extends PureComponent {
           <h2><FormattedMessage id='settings.status_icons' defaultMessage='Toot icons' /></h2>
           <LocalSettingsPageItem
             settings={settings}
-            item={['status_icons', 'language']}
+            item={["status_icons", "language"]}
             id='mastodon-settings--status-icons-language'
             onChange={onChange}
           >
@@ -142,7 +142,7 @@ class LocalSettingsPage extends PureComponent {
           </LocalSettingsPageItem>
           <LocalSettingsPageItem
             settings={settings}
-            item={['status_icons', 'reply']}
+            item={["status_icons", "reply"]}
             id='mastodon-settings--status-icons-reply'
             onChange={onChange}
           >
@@ -150,7 +150,7 @@ class LocalSettingsPage extends PureComponent {
           </LocalSettingsPageItem>
           <LocalSettingsPageItem
             settings={settings}
-            item={['status_icons', 'local_only']}
+            item={["status_icons", "local_only"]}
             id='mastodon-settings--status-icons-local_only'
             onChange={onChange}
           >
@@ -158,7 +158,7 @@ class LocalSettingsPage extends PureComponent {
           </LocalSettingsPageItem>
           <LocalSettingsPageItem
             settings={settings}
-            item={['status_icons', 'media']}
+            item={["status_icons", "media"]}
             id='mastodon-settings--status-icons-media'
             onChange={onChange}
           >
@@ -166,7 +166,7 @@ class LocalSettingsPage extends PureComponent {
           </LocalSettingsPageItem>
           <LocalSettingsPageItem
             settings={settings}
-            item={['status_icons', 'visibility']}
+            item={["status_icons", "visibility"]}
             id='mastodon-settings--status-icons-visibility'
             onChange={onChange}
           >
@@ -177,12 +177,12 @@ class LocalSettingsPage extends PureComponent {
           <h2><FormattedMessage id='settings.layout_opts' defaultMessage='Layout options' /></h2>
           <LocalSettingsPageItem
             settings={settings}
-            item={['layout']}
+            item={["layout"]}
             id='mastodon-settings--layout'
             options={[
-              { value: 'auto', message: intl.formatMessage(messages.layout_auto), hint: intl.formatMessage(messages.layout_auto_hint) },
-              { value: 'multiple', message: intl.formatMessage(messages.layout_desktop), hint: intl.formatMessage(messages.layout_desktop_hint) },
-              { value: 'single', message: intl.formatMessage(messages.layout_mobile), hint: intl.formatMessage(messages.layout_mobile_hint) },
+              { value: "auto", message: intl.formatMessage(messages.layout_auto), hint: intl.formatMessage(messages.layout_auto_hint) },
+              { value: "multiple", message: intl.formatMessage(messages.layout_desktop), hint: intl.formatMessage(messages.layout_desktop_hint) },
+              { value: "single", message: intl.formatMessage(messages.layout_mobile), hint: intl.formatMessage(messages.layout_mobile_hint) },
             ]}
             onChange={onChange}
           >
@@ -190,7 +190,7 @@ class LocalSettingsPage extends PureComponent {
           </LocalSettingsPageItem>
           <LocalSettingsPageItem
             settings={settings}
-            item={['stretch']}
+            item={["stretch"]}
             id='mastodon-settings--stretch'
             onChange={onChange}
           >
@@ -205,7 +205,7 @@ class LocalSettingsPage extends PureComponent {
         <h1><FormattedMessage id='settings.compose_box_opts' defaultMessage='Compose box' /></h1>
         <LocalSettingsPageItem
           settings={settings}
-          item={['always_show_spoilers_field']}
+          item={["always_show_spoilers_field"]}
           id='mastodon-settings--always_show_spoilers_field'
           onChange={onChange}
         >
@@ -213,7 +213,7 @@ class LocalSettingsPage extends PureComponent {
         </LocalSettingsPageItem>
         <LocalSettingsPageItem
           settings={settings}
-          item={['prepend_cw_re']}
+          item={["prepend_cw_re"]}
           id='mastodon-settings--prepend_cw_re'
           onChange={onChange}
         >
@@ -221,7 +221,7 @@ class LocalSettingsPage extends PureComponent {
         </LocalSettingsPageItem>
         <LocalSettingsPageItem
           settings={settings}
-          item={['preselect_on_reply']}
+          item={["preselect_on_reply"]}
           id='mastodon-settings--preselect_on_reply'
           onChange={onChange}
         >
@@ -230,7 +230,7 @@ class LocalSettingsPage extends PureComponent {
         </LocalSettingsPageItem>
         <LocalSettingsPageItem
           settings={settings}
-          item={['confirm_missing_media_description']}
+          item={["confirm_missing_media_description"]}
           id='mastodon-settings--confirm_missing_media_description'
           onChange={onChange}
         >
@@ -238,7 +238,7 @@ class LocalSettingsPage extends PureComponent {
         </LocalSettingsPageItem>
         <LocalSettingsPageItem
           settings={settings}
-          item={['confirm_before_clearing_draft']}
+          item={["confirm_before_clearing_draft"]}
           id='mastodon-settings--confirm_before_clearing_draft'
           onChange={onChange}
         >
@@ -246,7 +246,7 @@ class LocalSettingsPage extends PureComponent {
         </LocalSettingsPageItem>
         <LocalSettingsPageItem
           settings={settings}
-          item={['show_content_type_choice']}
+          item={["show_content_type_choice"]}
           id='mastodon-settings--show_content_type_choice'
           onChange={onChange}
         >
@@ -254,14 +254,14 @@ class LocalSettingsPage extends PureComponent {
         </LocalSettingsPageItem>
         <LocalSettingsPageItem
           settings={settings}
-          item={['side_arm']}
+          item={["side_arm"]}
           id='mastodon-settings--side_arm'
           options={[
-            { value: 'none', message: intl.formatMessage(messages.side_arm_none) },
-            { value: 'direct', message: intl.formatMessage(messages.direct) },
-            { value: 'private', message: intl.formatMessage(messages.private) },
-            { value: 'unlisted', message: intl.formatMessage(messages.unlisted) },
-            { value: 'public', message: intl.formatMessage(messages.public) },
+            { value: "none", message: intl.formatMessage(messages.side_arm_none) },
+            { value: "direct", message: intl.formatMessage(messages.direct) },
+            { value: "private", message: intl.formatMessage(messages.private) },
+            { value: "unlisted", message: intl.formatMessage(messages.unlisted) },
+            { value: "public", message: intl.formatMessage(messages.public) },
           ]}
           onChange={onChange}
         >
@@ -269,12 +269,12 @@ class LocalSettingsPage extends PureComponent {
         </LocalSettingsPageItem>
         <LocalSettingsPageItem
           settings={settings}
-          item={['side_arm_reply_mode']}
+          item={["side_arm_reply_mode"]}
           id='mastodon-settings--side_arm_reply_mode'
           options={[
-            { value: 'keep', message: intl.formatMessage(messages.side_arm_keep) },
-            { value: 'copy', message: intl.formatMessage(messages.side_arm_copy) },
-            { value: 'restrict', message: intl.formatMessage(messages.side_arm_restrict) },
+            { value: "keep", message: intl.formatMessage(messages.side_arm_keep) },
+            { value: "copy", message: intl.formatMessage(messages.side_arm_copy) },
+            { value: "restrict", message: intl.formatMessage(messages.side_arm_restrict) },
           ]}
           onChange={onChange}
         >
@@ -287,7 +287,7 @@ class LocalSettingsPage extends PureComponent {
         <h1><FormattedMessage id='settings.content_warnings' defaultMessage='Content Warnings' /></h1>
         <LocalSettingsPageItem
           settings={settings}
-          item={['content_warnings', 'shared_state']}
+          item={["content_warnings", "shared_state"]}
           id='mastodon-settings--content_warnings-shared_state'
           onChange={onChange}
         >
@@ -296,7 +296,7 @@ class LocalSettingsPage extends PureComponent {
         </LocalSettingsPageItem>
         <LocalSettingsPageItem
           settings={settings}
-          item={['content_warnings', 'media_outside']}
+          item={["content_warnings", "media_outside"]}
           id='mastodon-settings--content_warnings-media_outside'
           onChange={onChange}
         >
@@ -307,7 +307,7 @@ class LocalSettingsPage extends PureComponent {
           <h2><FormattedMessage id='settings.content_warnings_unfold_opts' defaultMessage='Auto-unfolding options' /></h2>
           <LocalSettingsPageItem
             settings={settings}
-            item={['content_warnings', 'auto_unfold']}
+            item={["content_warnings", "auto_unfold"]}
             onChange={onChange}
             id='mastodon-settings--content_warnings-auto_unfold'
           >
@@ -315,10 +315,10 @@ class LocalSettingsPage extends PureComponent {
           </LocalSettingsPageItem>
           <LocalSettingsPageItem
             settings={settings}
-            item={['content_warnings', 'filter']}
+            item={["content_warnings", "filter"]}
             id='mastodon-settings--content_warnings-auto_unfold'
             onChange={onChange}
-            dependsOn={[['content_warnings', 'auto_unfold']]}
+            dependsOn={[["content_warnings", "auto_unfold"]]}
             placeholder={intl.formatMessage(messages.regexp)}
           >
             <FormattedMessage id='settings.content_warnings_filter' defaultMessage='Content warnings to not automatically unfold:' />
@@ -331,7 +331,7 @@ class LocalSettingsPage extends PureComponent {
         <h1><FormattedMessage id='settings.collapsed_statuses' defaultMessage='Collapsed toots' /></h1>
         <LocalSettingsPageItem
           settings={settings}
-          item={['collapsed', 'enabled']}
+          item={["collapsed", "enabled"]}
           id='mastodon-settings--collapsed-enabled'
           onChange={onChange}
         >
@@ -340,10 +340,10 @@ class LocalSettingsPage extends PureComponent {
         </LocalSettingsPageItem>
         <LocalSettingsPageItem
           settings={settings}
-          item={['collapsed', 'show_action_bar']}
+          item={["collapsed", "show_action_bar"]}
           id='mastodon-settings--collapsed-show-action-bar'
           onChange={onChange}
-          dependsOn={[['collapsed', 'enabled']]}
+          dependsOn={[["collapsed", "enabled"]]}
         >
           <FormattedMessage id='settings.show_action_bar' defaultMessage='Show action buttons in collapsed toots' />
         </LocalSettingsPageItem>
@@ -351,72 +351,72 @@ class LocalSettingsPage extends PureComponent {
           <h2><FormattedMessage id='settings.auto_collapse' defaultMessage='Automatic collapsing' /></h2>
           <LocalSettingsPageItem
             settings={settings}
-            item={['collapsed', 'auto', 'all']}
+            item={["collapsed", "auto", "all"]}
             id='mastodon-settings--collapsed-auto-all'
             onChange={onChange}
-            dependsOn={[['collapsed', 'enabled']]}
+            dependsOn={[["collapsed", "enabled"]]}
           >
             <FormattedMessage id='settings.auto_collapse_all' defaultMessage='Everything' />
           </LocalSettingsPageItem>
           <LocalSettingsPageItem
             settings={settings}
-            item={['collapsed', 'auto', 'notifications']}
+            item={["collapsed", "auto", "notifications"]}
             id='mastodon-settings--collapsed-auto-notifications'
             onChange={onChange}
-            dependsOn={[['collapsed', 'enabled']]}
-            dependsOnNot={[['collapsed', 'auto', 'all']]}
+            dependsOn={[["collapsed", "enabled"]]}
+            dependsOnNot={[["collapsed", "auto", "all"]]}
           >
             <FormattedMessage id='settings.auto_collapse_notifications' defaultMessage='Notifications' />
           </LocalSettingsPageItem>
           <LocalSettingsPageItem
             settings={settings}
-            item={['collapsed', 'auto', 'lengthy']}
+            item={["collapsed", "auto", "lengthy"]}
             id='mastodon-settings--collapsed-auto-lengthy'
             onChange={onChange}
-            dependsOn={[['collapsed', 'enabled']]}
-            dependsOnNot={[['collapsed', 'auto', 'all']]}
+            dependsOn={[["collapsed", "enabled"]]}
+            dependsOnNot={[["collapsed", "auto", "all"]]}
           >
             <FormattedMessage id='settings.auto_collapse_lengthy' defaultMessage='Lengthy toots' />
           </LocalSettingsPageItem>
           <LocalSettingsPageItem
             settings={settings}
-            item={['collapsed', 'auto', 'reblogs']}
+            item={["collapsed", "auto", "reblogs"]}
             id='mastodon-settings--collapsed-auto-reblogs'
             onChange={onChange}
-            dependsOn={[['collapsed', 'enabled']]}
-            dependsOnNot={[['collapsed', 'auto', 'all']]}
+            dependsOn={[["collapsed", "enabled"]]}
+            dependsOnNot={[["collapsed", "auto", "all"]]}
           >
             <FormattedMessage id='settings.auto_collapse_reblogs' defaultMessage='Boosts' />
           </LocalSettingsPageItem>
           <LocalSettingsPageItem
             settings={settings}
-            item={['collapsed', 'auto', 'replies']}
+            item={["collapsed", "auto", "replies"]}
             id='mastodon-settings--collapsed-auto-replies'
             onChange={onChange}
-            dependsOn={[['collapsed', 'enabled']]}
-            dependsOnNot={[['collapsed', 'auto', 'all']]}
+            dependsOn={[["collapsed", "enabled"]]}
+            dependsOnNot={[["collapsed", "auto", "all"]]}
           >
             <FormattedMessage id='settings.auto_collapse_replies' defaultMessage='Replies' />
           </LocalSettingsPageItem>
           <LocalSettingsPageItem
             settings={settings}
-            item={['collapsed', 'auto', 'media']}
+            item={["collapsed", "auto", "media"]}
             id='mastodon-settings--collapsed-auto-media'
             onChange={onChange}
-            dependsOn={[['collapsed', 'enabled']]}
-            dependsOnNot={[['collapsed', 'auto', 'all']]}
+            dependsOn={[["collapsed", "enabled"]]}
+            dependsOnNot={[["collapsed", "auto", "all"]]}
           >
             <FormattedMessage id='settings.auto_collapse_media' defaultMessage='Toots with media' />
           </LocalSettingsPageItem>
           <LocalSettingsPageItem
             settings={settings}
-            item={['collapsed', 'auto', 'height']}
+            item={["collapsed", "auto", "height"]}
             id='mastodon-settings--collapsed-auto-height'
             placeholder='400'
             onChange={onChange}
-            dependsOn={[['collapsed', 'enabled']]}
-            dependsOnNot={[['collapsed', 'auto', 'all']]}
-            inputProps={{ type: 'number', min: '200', max: '999' }}
+            dependsOn={[["collapsed", "enabled"]]}
+            dependsOnNot={[["collapsed", "auto", "all"]]}
+            inputProps={{ type: "number", min: "200", max: "999" }}
           >
             <FormattedMessage id='settings.auto_collapse_height' defaultMessage='Height (in pixels) for a toot to be considered lengthy' />
           </LocalSettingsPageItem>
@@ -425,19 +425,19 @@ class LocalSettingsPage extends PureComponent {
           <h2><FormattedMessage id='settings.image_backgrounds' defaultMessage='Image backgrounds' /></h2>
           <LocalSettingsPageItem
             settings={settings}
-            item={['collapsed', 'backgrounds', 'user_backgrounds']}
+            item={["collapsed", "backgrounds", "user_backgrounds"]}
             id='mastodon-settings--collapsed-user-backgrouns'
             onChange={onChange}
-            dependsOn={[['collapsed', 'enabled']]}
+            dependsOn={[["collapsed", "enabled"]]}
           >
             <FormattedMessage id='settings.image_backgrounds_users' defaultMessage='Give collapsed toots an image background' />
           </LocalSettingsPageItem>
           <LocalSettingsPageItem
             settings={settings}
-            item={['collapsed', 'backgrounds', 'preview_images']}
+            item={["collapsed", "backgrounds", "preview_images"]}
             id='mastodon-settings--collapsed-preview-images'
             onChange={onChange}
-            dependsOn={[['collapsed', 'enabled']]}
+            dependsOn={[["collapsed", "enabled"]]}
           >
             <FormattedMessage id='settings.image_backgrounds_media' defaultMessage='Preview collapsed toot media' />
             <span className='hint'><FormattedMessage id='settings.image_backgrounds_media_hint' defaultMessage='If the post has any media attachment, use the first one as a background' /></span>
@@ -450,7 +450,7 @@ class LocalSettingsPage extends PureComponent {
         <h1><FormattedMessage id='settings.media' defaultMessage='Media' /></h1>
         <LocalSettingsPageItem
           settings={settings}
-          item={['media', 'use_blurhash']}
+          item={["media", "use_blurhash"]}
           id='mastodon-settings--media-use-blurhash'
           onChange={onChange}
         >
@@ -458,7 +458,7 @@ class LocalSettingsPage extends PureComponent {
         </LocalSettingsPageItem>
         <LocalSettingsPageItem
           settings={settings}
-          item={['media', 'letterbox']}
+          item={["media", "letterbox"]}
           id='mastodon-settings--media-letterbox'
           onChange={onChange}
         >
@@ -467,7 +467,7 @@ class LocalSettingsPage extends PureComponent {
         </LocalSettingsPageItem>
         <LocalSettingsPageItem
           settings={settings}
-          item={['media', 'fullwidth']}
+          item={["media", "fullwidth"]}
           id='mastodon-settings--media-fullwidth'
           onChange={onChange}
         >
@@ -475,7 +475,7 @@ class LocalSettingsPage extends PureComponent {
         </LocalSettingsPageItem>
         <LocalSettingsPageItem
           settings={settings}
-          item={['inline_preview_cards']}
+          item={["inline_preview_cards"]}
           id='mastodon-settings--inline-preview-cards'
           onChange={onChange}
         >
@@ -483,7 +483,7 @@ class LocalSettingsPage extends PureComponent {
         </LocalSettingsPageItem>
         <LocalSettingsPageItem
           settings={settings}
-          item={['media', 'reveal_behind_cw']}
+          item={["media", "reveal_behind_cw"]}
           id='mastodon-settings--reveal-behind-cw'
           onChange={onChange}
         >
@@ -491,7 +491,7 @@ class LocalSettingsPage extends PureComponent {
         </LocalSettingsPageItem>
         <LocalSettingsPageItem
           settings={settings}
-          item={['media', 'pop_in_player']}
+          item={["media", "pop_in_player"]}
           id='mastodon-settings--pop-in-player'
           onChange={onChange}
         >
@@ -499,14 +499,14 @@ class LocalSettingsPage extends PureComponent {
         </LocalSettingsPageItem>
         <LocalSettingsPageItem
           settings={settings}
-          item={['media', 'pop_in_position']}
+          item={["media", "pop_in_position"]}
           id='mastodon-settings--pop-in-position'
           options={[
-            { value: 'left', message: intl.formatMessage(messages.pop_in_left) },
-            { value: 'right', message: intl.formatMessage(messages.pop_in_right) },
+            { value: "left", message: intl.formatMessage(messages.pop_in_left) },
+            { value: "right", message: intl.formatMessage(messages.pop_in_right) },
           ]}
           onChange={onChange}
-          dependsOn={[['media', 'pop_in_player']]}
+          dependsOn={[["media", "pop_in_player"]]}
         >
           <FormattedMessage id='settings.pop_in_position' defaultMessage='Pop-in player position:' />
         </LocalSettingsPageItem>

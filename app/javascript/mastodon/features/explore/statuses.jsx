@@ -1,22 +1,22 @@
-import PropTypes from 'prop-types';
-import { PureComponent } from 'react';
+import PropTypes from "prop-types";
+import { PureComponent } from "react";
 
-import { FormattedMessage } from 'react-intl';
+import { FormattedMessage } from "react-intl";
 
-import ImmutablePropTypes from 'react-immutable-proptypes';
-import { connect } from 'react-redux';
+import ImmutablePropTypes from "react-immutable-proptypes";
+import { connect } from "react-redux";
 
-import { debounce } from 'lodash';
+import { debounce } from "lodash";
 
-import { fetchTrendingStatuses, expandTrendingStatuses } from 'mastodon/actions/trends';
-import { DismissableBanner } from 'mastodon/components/dismissable_banner';
-import StatusList from 'mastodon/components/status_list';
-import { getStatusList } from 'mastodon/selectors';
+import { fetchTrendingStatuses, expandTrendingStatuses } from "mastodon/actions/trends";
+import { DismissableBanner } from "mastodon/components/dismissable_banner";
+import StatusList from "mastodon/components/status_list";
+import { getStatusList } from "mastodon/selectors";
 
 const mapStateToProps = state => ({
-  statusIds: getStatusList(state, 'trending'),
-  isLoading: state.getIn(['status_lists', 'trending', 'isLoading'], true),
-  hasMore: !!state.getIn(['status_lists', 'trending', 'next']),
+  statusIds: getStatusList(state, "trending"),
+  isLoading: state.getIn(["status_lists", "trending", "isLoading"], true),
+  hasMore: !!state.getIn(["status_lists", "trending", "next"]),
 });
 
 class Statuses extends PureComponent {

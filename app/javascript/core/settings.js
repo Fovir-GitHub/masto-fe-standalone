@@ -1,24 +1,24 @@
 //  This file will be loaded on settings pages, regardless of theme.
 
-import 'packs/public-path';
-import Rails from '@rails/ujs';
+import "packs/public-path";
+import Rails from "@rails/ujs";
 
-Rails.delegate(document, '#edit_profile input[type=file]', 'change', ({ target }) => {
-  const avatar = document.getElementById(target.id + '-preview');
+Rails.delegate(document, "#edit_profile input[type=file]", "change", ({ target }) => {
+  const avatar = document.getElementById(target.id + "-preview");
   const [file] = target.files || [];
   const url = file ? URL.createObjectURL(file) : avatar.dataset.originalSrc;
 
   avatar.src = url;
 });
 
-Rails.delegate(document, '.input-copy input', 'click', ({ target }) => {
+Rails.delegate(document, ".input-copy input", "click", ({ target }) => {
   target.focus();
   target.select();
   target.setSelectionRange(0, target.value.length);
 });
 
-Rails.delegate(document, '.input-copy button', 'click', ({ target }) => {
-  const input = target.parentNode.querySelector('.input-copy__wrapper input');
+Rails.delegate(document, ".input-copy button", "click", ({ target }) => {
+  const input = target.parentNode.querySelector(".input-copy__wrapper input");
 
   const oldReadOnly = input.readonly;
 
@@ -28,12 +28,12 @@ Rails.delegate(document, '.input-copy button', 'click', ({ target }) => {
   input.setSelectionRange(0, input.value.length);
 
   try {
-    if (document.execCommand('copy')) {
+    if (document.execCommand("copy")) {
       input.blur();
-      target.parentNode.classList.add('copied');
+      target.parentNode.classList.add("copied");
 
       setTimeout(() => {
-        target.parentNode.classList.remove('copied');
+        target.parentNode.classList.remove("copied");
       }, 700);
     }
   } catch (err) {

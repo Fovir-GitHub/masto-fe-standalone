@@ -1,29 +1,29 @@
-import PropTypes from 'prop-types';
+import PropTypes from "prop-types";
 
-import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
+import { defineMessages, injectIntl, FormattedMessage } from "react-intl";
 
-import { Helmet } from 'react-helmet';
+import { Helmet } from "react-helmet";
 
-import ImmutablePropTypes from 'react-immutable-proptypes';
-import ImmutablePureComponent from 'react-immutable-pure-component';
-import { connect } from 'react-redux';
+import ImmutablePropTypes from "react-immutable-proptypes";
+import ImmutablePureComponent from "react-immutable-pure-component";
+import { connect } from "react-redux";
 
-import { debounce } from 'lodash';
+import { debounce } from "lodash";
 
-import { expandFollowedHashtags, fetchFollowedHashtags } from 'flavours/glitch/actions/tags';
-import ColumnHeader from 'flavours/glitch/components/column_header';
-import Hashtag from 'flavours/glitch/components/hashtag';
-import ScrollableList from 'flavours/glitch/components/scrollable_list';
-import Column from 'flavours/glitch/features/ui/components/column';
+import { expandFollowedHashtags, fetchFollowedHashtags } from "flavours/glitch/actions/tags";
+import ColumnHeader from "flavours/glitch/components/column_header";
+import Hashtag from "flavours/glitch/components/hashtag";
+import ScrollableList from "flavours/glitch/components/scrollable_list";
+import Column from "flavours/glitch/features/ui/components/column";
 
 const messages = defineMessages({
-  heading: { id: 'followed_tags', defaultMessage: 'Followed hashtags' },
+  heading: { id: "followed_tags", defaultMessage: "Followed hashtags" },
 });
 
 const mapStateToProps = state => ({
-  hashtags: state.getIn(['followed_tags', 'items']),
-  isLoading: state.getIn(['followed_tags', 'isLoading'], true),
-  hasMore: !!state.getIn(['followed_tags', 'next']),
+  hashtags: state.getIn(["followed_tags", "items"]),
+  isLoading: state.getIn(["followed_tags", "isLoading"], true),
+  hasMore: !!state.getIn(["followed_tags", "next"]),
 });
 
 class FollowedTags extends ImmutablePureComponent {
@@ -70,13 +70,13 @@ class FollowedTags extends ImmutablePureComponent {
         >
           {hashtags.map((hashtag) => (
             <Hashtag
-              key={hashtag.get('name')}
-              name={hashtag.get('name')}
-              to={`/tags/${hashtag.get('name')}`}
+              key={hashtag.get("name")}
+              name={hashtag.get("name")}
+              to={`/tags/${hashtag.get("name")}`}
               withGraph={false}
               // Taken from ImmutableHashtag. Should maybe refactor ImmutableHashtag to accept more options?
-              people={hashtag.getIn(['history', 0, 'accounts']) * 1 + hashtag.getIn(['history', 1, 'accounts']) * 1}
-              history={hashtag.get('history').reverse().map((day) => day.get('uses')).toArray()}
+              people={hashtag.getIn(["history", 0, "accounts"]) * 1 + hashtag.getIn(["history", 1, "accounts"]) * 1}
+              history={hashtag.get("history").reverse().map((day) => day.get("uses")).toArray()}
             />
           ))}
         </ScrollableList>

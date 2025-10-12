@@ -1,16 +1,16 @@
-import React from 'react';
+import React from "react";
 
-import type { List } from 'immutable';
+import  { type List } from "immutable";
 
-import type { Account } from '../../types/resources';
-import { autoPlayGif } from '../initial_state';
+import  { type Account } from "../../types/resources";
+import { autoPlayGif } from "../initial_state";
 
-import { Skeleton } from './skeleton';
+import { Skeleton } from "./skeleton";
 
 interface Props {
-  account?: Account;
-  others?: List<Account>;
-  localDomain?: string;
+  account?: Account,
+  others?: List<Account>,
+  localDomain?: string,
 }
 
 export class DisplayName extends React.PureComponent<Props> {
@@ -22,11 +22,13 @@ export class DisplayName extends React.PureComponent<Props> {
     }
 
     const emojis =
-      currentTarget.querySelectorAll<HTMLImageElement>('img.custom-emoji');
+      currentTarget.querySelectorAll<HTMLImageElement>("img.custom-emoji");
 
     emojis.forEach((emoji) => {
-      const originalSrc = emoji.getAttribute('data-original');
-      if (originalSrc != null) emoji.src = originalSrc;
+      const originalSrc = emoji.getAttribute("data-original");
+      if (originalSrc != null) {
+        emoji.src = originalSrc;
+      }
     });
   };
 
@@ -38,11 +40,13 @@ export class DisplayName extends React.PureComponent<Props> {
     }
 
     const emojis =
-      currentTarget.querySelectorAll<HTMLImageElement>('img.custom-emoji');
+      currentTarget.querySelectorAll<HTMLImageElement>("img.custom-emoji");
 
     emojis.forEach((emoji) => {
-      const staticSrc = emoji.getAttribute('data-static');
-      if (staticSrc != null) emoji.src = staticSrc;
+      const staticSrc = emoji.getAttribute("data-static");
+      if (staticSrc != null) {
+        emoji.src = staticSrc;
+      }
     });
   };
 
@@ -63,22 +67,22 @@ export class DisplayName extends React.PureComponent<Props> {
       displayName = others
         .take(2)
         .map((a) => (
-          <bdi key={a.get('id')}>
+          <bdi key={a.get("id")}>
             <strong
               className='display-name__html'
-              dangerouslySetInnerHTML={{ __html: a.get('display_name_html') }}
+              dangerouslySetInnerHTML={{ __html: a.get("display_name_html") }}
             />
           </bdi>
         ))
-        .reduce((prev, cur) => [prev, ', ', cur]);
+        .reduce((prev, cur) => [prev, ", ", cur]);
 
       if (others.size - 2 > 0) {
         suffix = `+${others.size - 2}`;
       }
     } else if (account) {
-      let acct = account.get('acct');
+      let acct = account.get("acct");
 
-      if (!acct.includes('@') && localDomain) {
+      if (!acct.includes("@") && localDomain) {
         acct = `${acct}@${localDomain}`;
       }
 
@@ -87,7 +91,7 @@ export class DisplayName extends React.PureComponent<Props> {
           <strong
             className='display-name__html'
             dangerouslySetInnerHTML={{
-              __html: account.get('display_name_html'),
+              __html: account.get("display_name_html"),
             }}
           />
         </bdi>

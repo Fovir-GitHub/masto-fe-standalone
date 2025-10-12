@@ -1,25 +1,25 @@
-import { fromJS } from 'immutable';
+import { fromJS } from "immutable";
 
-import { searchHistory } from 'flavours/glitch/settings';
+import { searchHistory } from "flavours/glitch/settings";
 
-import api from '../api';
+import api from "../api";
 
-import { fetchRelationships } from './accounts';
-import { importFetchedAccounts, importFetchedStatuses } from './importer';
+import { fetchRelationships } from "./accounts";
+import { importFetchedAccounts, importFetchedStatuses } from "./importer";
 
-export const SEARCH_CHANGE = 'SEARCH_CHANGE';
-export const SEARCH_CLEAR  = 'SEARCH_CLEAR';
-export const SEARCH_SHOW   = 'SEARCH_SHOW';
+export const SEARCH_CHANGE = "SEARCH_CHANGE";
+export const SEARCH_CLEAR  = "SEARCH_CLEAR";
+export const SEARCH_SHOW   = "SEARCH_SHOW";
 
-export const SEARCH_FETCH_REQUEST = 'SEARCH_FETCH_REQUEST';
-export const SEARCH_FETCH_SUCCESS = 'SEARCH_FETCH_SUCCESS';
-export const SEARCH_FETCH_FAIL    = 'SEARCH_FETCH_FAIL';
+export const SEARCH_FETCH_REQUEST = "SEARCH_FETCH_REQUEST";
+export const SEARCH_FETCH_SUCCESS = "SEARCH_FETCH_SUCCESS";
+export const SEARCH_FETCH_FAIL    = "SEARCH_FETCH_FAIL";
 
-export const SEARCH_EXPAND_REQUEST = 'SEARCH_EXPAND_REQUEST';
-export const SEARCH_EXPAND_SUCCESS = 'SEARCH_EXPAND_SUCCESS';
-export const SEARCH_EXPAND_FAIL    = 'SEARCH_EXPAND_FAIL';
+export const SEARCH_EXPAND_REQUEST = "SEARCH_EXPAND_REQUEST";
+export const SEARCH_EXPAND_SUCCESS = "SEARCH_EXPAND_SUCCESS";
+export const SEARCH_EXPAND_FAIL    = "SEARCH_EXPAND_FAIL";
 
-export const SEARCH_HISTORY_UPDATE  = 'SEARCH_HISTORY_UPDATE';
+export const SEARCH_HISTORY_UPDATE  = "SEARCH_HISTORY_UPDATE";
 
 export function changeSearch(value) {
   return {
@@ -36,17 +36,17 @@ export function clearSearch() {
 
 export function submitSearch(type) {
   return (dispatch, getState) => {
-    const value    = getState().getIn(['search', 'value']);
-    const signedIn = !!getState().getIn(['meta', 'me']);
+    const value    = getState().getIn(["search", "value"]);
+    const signedIn = !!getState().getIn(["meta", "me"]);
 
     if (value.length === 0) {
-      dispatch(fetchSearchSuccess({ accounts: [], statuses: [], hashtags: [] }, '', type));
+      dispatch(fetchSearchSuccess({ accounts: [], statuses: [], hashtags: [] }, "", type));
       return;
     }
 
     dispatch(fetchSearchRequest(type));
 
-    api(getState).get('/api/v2/search', {
+    api(getState).get("/api/v2/search", {
       params: {
         q: value,
         resolve: signedIn,
@@ -94,12 +94,12 @@ export function fetchSearchFail(error) {
 }
 
 export const expandSearch = type => (dispatch, getState) => {
-  const value  = getState().getIn(['search', 'value']);
-  const offset = getState().getIn(['search', 'results', type]).size - 1;
+  const value  = getState().getIn(["search", "value"]);
+  const offset = getState().getIn(["search", "results", type]).size - 1;
 
   dispatch(expandSearchRequest(type));
 
-  api(getState).get('/api/v2/search', {
+  api(getState).get("/api/v2/search", {
     params: {
       q: value,
       type,
@@ -144,8 +144,8 @@ export const showSearch = () => ({
 });
 
 export const openURL = routerHistory => (dispatch, getState) => {
-  const value = getState().getIn(['search', 'value']);
-  const signedIn = !!getState().getIn(['meta', 'me']);
+  const value = getState().getIn(["search", "value"]);
+  const signedIn = !!getState().getIn(["meta", "me"]);
 
   if (!signedIn) {
     return;
@@ -153,7 +153,7 @@ export const openURL = routerHistory => (dispatch, getState) => {
 
   dispatch(fetchSearchRequest());
 
-  api(getState).get('/api/v2/search', { params: { q: value, resolve: true } }).then(response => {
+  api(getState).get("/api/v2/search", { params: { q: value, resolve: true } }).then(response => {
     if (response.data.accounts?.length > 0) {
       dispatch(importFetchedAccounts(response.data.accounts));
       routerHistory.push(`/@${response.data.accounts[0].acct}`);
@@ -169,8 +169,8 @@ export const openURL = routerHistory => (dispatch, getState) => {
 };
 
 export const clickSearchResult = (q, type) => (dispatch, getState) => {
-  const previous = getState().getIn(['search', 'recent']);
-  const me = getState().getIn(['meta', 'me']);
+  const previous = getState().getIn(["search", "recent"]);
+  const me = getState().getIn(["meta", "me"]);
   const current = previous.add(fromJS({ type, q })).takeLast(4);
 
   searchHistory.set(me, current.toJS());
@@ -178,9 +178,9 @@ export const clickSearchResult = (q, type) => (dispatch, getState) => {
 };
 
 export const forgetSearchResult = q => (dispatch, getState) => {
-  const previous = getState().getIn(['search', 'recent']);
-  const me = getState().getIn(['meta', 'me']);
-  const current = previous.filterNot(result => result.get('q') === q);
+  const previous = getState().getIn(["search", "recent"]);
+  const me = getState().getIn(["meta", "me"]);
+  const current = previous.filterNot(result => result.get("q") === q);
 
   searchHistory.set(me, current.toJS());
   dispatch(updateSearchHistory(current));
@@ -192,7 +192,7 @@ export const updateSearchHistory = recent => ({
 });
 
 export const hydrateSearch = () => (dispatch, getState) => {
-  const me = getState().getIn(['meta', 'me']);
+  const me = getState().getIn(["meta", "me"]);
   const history = searchHistory.get(me);
 
   if (history !== null) {

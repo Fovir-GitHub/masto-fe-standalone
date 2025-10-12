@@ -1,20 +1,20 @@
-import PropTypes from 'prop-types';
-import { PureComponent } from 'react';
+import PropTypes from "prop-types";
+import { PureComponent } from "react";
 
-import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
+import { defineMessages, injectIntl, FormattedMessage } from "react-intl";
 
-import classNames from 'classnames';
-import { Helmet } from 'react-helmet';
+import classNames from "classnames";
+import { Helmet } from "react-helmet";
 
-import { List as ImmutableList } from 'immutable';
-import ImmutablePropTypes from 'react-immutable-proptypes';
-import { connect } from 'react-redux';
-import { createSelector } from 'reselect';
+import { List as ImmutableList } from "immutable";
+import ImmutablePropTypes from "react-immutable-proptypes";
+import { connect } from "react-redux";
+import { createSelector } from "reselect";
 
-import { debounce } from 'lodash';
+import { debounce } from "lodash";
 
-import { addColumn, removeColumn, moveColumn } from 'flavours/glitch/actions/columns';
-import { submitMarkers } from 'flavours/glitch/actions/markers';
+import { addColumn, removeColumn, moveColumn } from "flavours/glitch/actions/columns";
+import { submitMarkers } from "flavours/glitch/actions/markers";
 import {
   enterNotificationClearingMode,
   expandNotifications,
@@ -23,20 +23,20 @@ import {
   mountNotifications,
   unmountNotifications,
   markNotificationsAsRead,
-} from 'flavours/glitch/actions/notifications';
-import { compareId } from 'flavours/glitch/compare_id';
-import Column from 'flavours/glitch/components/column';
-import ColumnHeader from 'flavours/glitch/components/column_header';
-import { Icon } from 'flavours/glitch/components/icon';
-import { LoadGap } from 'flavours/glitch/components/load_gap';
-import { NotSignedInIndicator } from 'flavours/glitch/components/not_signed_in_indicator';
-import ScrollableList from 'flavours/glitch/components/scrollable_list';
-import NotificationPurgeButtonsContainer from 'flavours/glitch/containers/notification_purge_buttons_container';
+} from "flavours/glitch/actions/notifications";
+import { compareId } from "flavours/glitch/compare_id";
+import Column from "flavours/glitch/components/column";
+import ColumnHeader from "flavours/glitch/components/column_header";
+import { Icon } from "flavours/glitch/components/icon";
+import { LoadGap } from "flavours/glitch/components/load_gap";
+import { NotSignedInIndicator } from "flavours/glitch/components/not_signed_in_indicator";
+import ScrollableList from "flavours/glitch/components/scrollable_list";
+import NotificationPurgeButtonsContainer from "flavours/glitch/containers/notification_purge_buttons_container";
 
-import NotificationsPermissionBanner from './components/notifications_permission_banner';
-import ColumnSettingsContainer from './containers/column_settings_container';
-import FilterBarContainer from './containers/filter_bar_container';
-import NotificationContainer from './containers/notification_container';
+import NotificationsPermissionBanner from "./components/notifications_permission_banner";
+import ColumnSettingsContainer from "./containers/column_settings_container";
+import FilterBarContainer from "./containers/filter_bar_container";
+import NotificationContainer from "./containers/notification_container";
 
 
 
@@ -44,44 +44,44 @@ import NotificationContainer from './containers/notification_container';
 
 
 const messages = defineMessages({
-  title: { id: 'column.notifications', defaultMessage: 'Notifications' },
-  enterNotifCleaning : { id: 'notification_purge.start', defaultMessage: 'Enter notification cleaning mode' },
-  markAsRead : { id: 'notifications.mark_as_read', defaultMessage: 'Mark every notification as read' },
+  title: { id: "column.notifications", defaultMessage: "Notifications" },
+  enterNotifCleaning : { id: "notification_purge.start", defaultMessage: "Enter notification cleaning mode" },
+  markAsRead : { id: "notifications.mark_as_read", defaultMessage: "Mark every notification as read" },
 });
 
 const getExcludedTypes = createSelector([
-  state => state.getIn(['settings', 'notifications', 'shows']),
+  state => state.getIn(["settings", "notifications", "shows"]),
 ], (shows) => {
   return ImmutableList(shows.filter(item => !item).keys());
 });
 
 const getNotifications = createSelector([
-  state => state.getIn(['settings', 'notifications', 'quickFilter', 'show']),
-  state => state.getIn(['settings', 'notifications', 'quickFilter', 'active']),
+  state => state.getIn(["settings", "notifications", "quickFilter", "show"]),
+  state => state.getIn(["settings", "notifications", "quickFilter", "active"]),
   getExcludedTypes,
-  state => state.getIn(['notifications', 'items']),
+  state => state.getIn(["notifications", "items"]),
 ], (showFilterBar, allowedType, excludedTypes, notifications) => {
-  if (!showFilterBar || allowedType === 'all') {
+  if (!showFilterBar || allowedType === "all") {
     // used if user changed the notification settings after loading the notifications from the server
     // otherwise a list of notifications will come pre-filtered from the backend
     // we need to turn it off for FilterBar in order not to block ourselves from seeing a specific category
-    return notifications.filterNot(item => item !== null && excludedTypes.includes(item.get('type')));
+    return notifications.filterNot(item => item !== null && excludedTypes.includes(item.get("type")));
   }
-  return notifications.filter(item => item === null || allowedType === item.get('type'));
+  return notifications.filter(item => item === null || allowedType === item.get("type"));
 });
 
 const mapStateToProps = state => ({
-  showFilterBar: state.getIn(['settings', 'notifications', 'quickFilter', 'show']),
+  showFilterBar: state.getIn(["settings", "notifications", "quickFilter", "show"]),
   notifications: getNotifications(state),
-  localSettings:  state.get('local_settings'),
-  isLoading: state.getIn(['notifications', 'isLoading'], 0) > 0,
-  isUnread: state.getIn(['notifications', 'unread']) > 0 || state.getIn(['notifications', 'pendingItems']).size > 0,
-  hasMore: state.getIn(['notifications', 'hasMore']),
-  numPending: state.getIn(['notifications', 'pendingItems'], ImmutableList()).size,
-  notifCleaningActive: state.getIn(['notifications', 'cleaningMode']),
-  lastReadId: state.getIn(['settings', 'notifications', 'showUnread']) ? state.getIn(['notifications', 'readMarkerId']) : '0',
-  canMarkAsRead: state.getIn(['settings', 'notifications', 'showUnread']) && state.getIn(['notifications', 'readMarkerId']) !== '0' && getNotifications(state).some(item => item !== null && compareId(item.get('id'), state.getIn(['notifications', 'readMarkerId'])) > 0),
-  needsNotificationPermission: state.getIn(['settings', 'notifications', 'alerts']).includes(true) && state.getIn(['notifications', 'browserSupport']) && state.getIn(['notifications', 'browserPermission']) === 'default' && !state.getIn(['settings', 'notifications', 'dismissPermissionBanner']),
+  localSettings:  state.get("local_settings"),
+  isLoading: state.getIn(["notifications", "isLoading"], 0) > 0,
+  isUnread: state.getIn(["notifications", "unread"]) > 0 || state.getIn(["notifications", "pendingItems"]).size > 0,
+  hasMore: state.getIn(["notifications", "hasMore"]),
+  numPending: state.getIn(["notifications", "pendingItems"], ImmutableList()).size,
+  notifCleaningActive: state.getIn(["notifications", "cleaningMode"]),
+  lastReadId: state.getIn(["settings", "notifications", "showUnread"]) ? state.getIn(["notifications", "readMarkerId"]) : "0",
+  canMarkAsRead: state.getIn(["settings", "notifications", "showUnread"]) && state.getIn(["notifications", "readMarkerId"]) !== "0" && getNotifications(state).some(item => item !== null && compareId(item.get("id"), state.getIn(["notifications", "readMarkerId"])) > 0),
+  needsNotificationPermission: state.getIn(["settings", "notifications", "alerts"]).includes(true) && state.getIn(["notifications", "browserSupport"]) && state.getIn(["notifications", "browserPermission"]) === "default" && !state.getIn(["settings", "notifications", "dismissPermissionBanner"]),
 });
 
 /* glitch */
@@ -143,7 +143,7 @@ class Notifications extends PureComponent {
 
   handleLoadOlder = debounce(() => {
     const last = this.props.notifications.last();
-    this.props.dispatch(expandNotifications({ maxId: last && last.get('id') }));
+    this.props.dispatch(expandNotifications({ maxId: last && last.get("id") }));
   }, 300, { leading: true });
 
   handleLoadPending = () => {
@@ -164,7 +164,7 @@ class Notifications extends PureComponent {
     if (columnId) {
       dispatch(removeColumn(columnId));
     } else {
-      dispatch(addColumn('NOTIFICATIONS', {}));
+      dispatch(addColumn("NOTIFICATIONS", {}));
     }
   };
 
@@ -182,12 +182,12 @@ class Notifications extends PureComponent {
   };
 
   handleMoveUp = id => {
-    const elementIndex = this.props.notifications.findIndex(item => item !== null && item.get('id') === id) - 1;
+    const elementIndex = this.props.notifications.findIndex(item => item !== null && item.get("id") === id) - 1;
     this._selectChild(elementIndex, true);
   };
 
   handleMoveDown = id => {
-    const elementIndex = this.props.notifications.findIndex(item => item !== null && item.get('id') === id) + 1;
+    const elementIndex = this.props.notifications.findIndex(item => item !== null && item.get("id") === id) + 1;
     this._selectChild(elementIndex, false);
   };
 
@@ -238,19 +238,19 @@ class Notifications extends PureComponent {
     } else if (notifications.size > 0 || hasMore) {
       scrollableContent = notifications.map((item, index) => item === null ? (
         <LoadGap
-          key={'gap:' + notifications.getIn([index + 1, 'id'])}
+          key={"gap:" + notifications.getIn([index + 1, "id"])}
           disabled={isLoading}
-          maxId={index > 0 ? notifications.getIn([index - 1, 'id']) : null}
+          maxId={index > 0 ? notifications.getIn([index - 1, "id"]) : null}
           onClick={this.handleLoadGap}
         />
       ) : (
         <NotificationContainer
-          key={item.get('id')}
+          key={item.get("id")}
           notification={item}
-          accountId={item.get('account')}
+          accountId={item.get("account")}
           onMoveUp={this.handleMoveUp}
           onMoveDown={this.handleMoveDown}
-          unread={lastReadId !== '0' && compareId(item.get('id'), lastReadId) > 0}
+          unread={lastReadId !== "0" && compareId(item.get("id"), lastReadId) > 0}
         />
       ));
     } else {
@@ -302,13 +302,13 @@ class Notifications extends PureComponent {
       );
     }
 
-    const notifCleaningButtonClassName = classNames('column-header__button', {
-      'active': notifCleaningActive,
+    const notifCleaningButtonClassName = classNames("column-header__button", {
+      "active": notifCleaningActive,
     });
 
-    const notifCleaningDrawerClassName = classNames('ncd column-header__collapsible', {
-      'collapsed': !notifCleaningActive,
-      'animating': animatingNCD,
+    const notifCleaningDrawerClassName = classNames("ncd column-header__collapsible", {
+      "collapsed": !notifCleaningActive,
+      "animating": animatingNCD,
     });
 
     const msgEnterNotifCleaning = intl.formatMessage(messages.enterNotifCleaning);
@@ -338,7 +338,7 @@ class Notifications extends PureComponent {
         bindToDocument={!multiColumn}
         ref={this.setColumnRef}
         name='notifications'
-        extraClasses={this.props.notifCleaningActive ? 'notif-cleaning' : null}
+        extraClasses={this.props.notifCleaningActive ? "notif-cleaning" : null}
         label={intl.formatMessage(messages.title)}
       >
         <ColumnHeader

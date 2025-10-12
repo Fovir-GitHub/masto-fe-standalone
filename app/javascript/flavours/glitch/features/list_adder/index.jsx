@@ -1,29 +1,29 @@
-import PropTypes from 'prop-types';
+import PropTypes from "prop-types";
 
-import { injectIntl } from 'react-intl';
+import { injectIntl } from "react-intl";
 
-import ImmutablePropTypes from 'react-immutable-proptypes';
-import ImmutablePureComponent from 'react-immutable-pure-component';
-import { connect } from 'react-redux';
-import { createSelector } from 'reselect';
+import ImmutablePropTypes from "react-immutable-proptypes";
+import ImmutablePureComponent from "react-immutable-pure-component";
+import { connect } from "react-redux";
+import { createSelector } from "reselect";
 
-import { setupListAdder, resetListAdder } from '../../actions/lists';
-import NewListForm from '../lists/components/new_list_form';
+import { setupListAdder, resetListAdder } from "../../actions/lists";
+import NewListForm from "../lists/components/new_list_form";
 
-import Account from './components/account';
-import List from './components/list';
+import Account from "./components/account";
+import List from "./components/list";
 // hack
 
-const getOrderedLists = createSelector([state => state.get('lists')], lists => {
+const getOrderedLists = createSelector([state => state.get("lists")], lists => {
   if (!lists) {
     return lists;
   }
 
-  return lists.toList().filter(item => !!item).sort((a, b) => a.get('title').localeCompare(b.get('title')));
+  return lists.toList().filter(item => !!item).sort((a, b) => a.get("title").localeCompare(b.get("title")));
 });
 
 const mapStateToProps = state => ({
-  listIds: getOrderedLists(state).map(list=>list.get('id')),
+  listIds: getOrderedLists(state).map(list=>list.get("id")),
 });
 
 const mapDispatchToProps = dispatch => ({

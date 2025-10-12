@@ -1,18 +1,18 @@
-import PropTypes from 'prop-types';
-import { PureComponent } from 'react';
-import { createPortal } from 'react-dom';
+import PropTypes from "prop-types";
+import { PureComponent } from "react";
+import { createPortal } from "react-dom";
 
-import { FormattedMessage, injectIntl, defineMessages } from 'react-intl';
+import { FormattedMessage, injectIntl, defineMessages } from "react-intl";
 
-import classNames from 'classnames';
+import classNames from "classnames";
 
-import { Icon }  from 'mastodon/components/icon';
+import { Icon }  from "mastodon/components/icon";
 
 const messages = defineMessages({
-  show: { id: 'column_header.show_settings', defaultMessage: 'Show settings' },
-  hide: { id: 'column_header.hide_settings', defaultMessage: 'Hide settings' },
-  moveLeft: { id: 'column_header.moveLeft_settings', defaultMessage: 'Move column to the left' },
-  moveRight: { id: 'column_header.moveRight_settings', defaultMessage: 'Move column to the right' },
+  show: { id: "column_header.show_settings", defaultMessage: "Show settings" },
+  hide: { id: "column_header.hide_settings", defaultMessage: "Hide settings" },
+  moveLeft: { id: "column_header.moveLeft_settings", defaultMessage: "Move column to the left" },
+  moveRight: { id: "column_header.moveRight_settings", defaultMessage: "Move column to the right" },
 });
 
 class ColumnHeader extends PureComponent {
@@ -68,7 +68,7 @@ class ColumnHeader extends PureComponent {
     if (router.history.location?.state?.fromMastodon) {
       router.history.goBack();
     } else {
-      router.history.push('/');
+      router.history.push("/");
     }
   };
 
@@ -78,7 +78,7 @@ class ColumnHeader extends PureComponent {
 
   handlePin = () => {
     if (!this.props.pinned) {
-      this.context.router.history.replace('/');
+      this.context.router.history.replace("/");
     }
 
     this.props.onPin();
@@ -89,21 +89,21 @@ class ColumnHeader extends PureComponent {
     const { title, icon, active, children, pinned, multiColumn, extraButton, showBackButton, intl: { formatMessage }, placeholder, appendContent, collapseIssues } = this.props;
     const { collapsed, animating } = this.state;
 
-    const wrapperClassName = classNames('column-header__wrapper', {
-      'active': active,
+    const wrapperClassName = classNames("column-header__wrapper", {
+      "active": active,
     });
 
-    const buttonClassName = classNames('column-header', {
-      'active': active,
+    const buttonClassName = classNames("column-header", {
+      "active": active,
     });
 
-    const collapsibleClassName = classNames('column-header__collapsible', {
-      'collapsed': collapsed,
-      'animating': animating,
+    const collapsibleClassName = classNames("column-header__collapsible", {
+      "collapsed": collapsed,
+      "animating": animating,
     });
 
-    const collapsibleButtonClassName = classNames('column-header__button', {
-      'active': !collapsed,
+    const collapsibleButtonClassName = classNames("column-header__button", {
+      "active": !collapsed,
     });
 
     let extraContent, pinButton, moveButtons, backButton, collapseButton;
@@ -200,7 +200,7 @@ class ColumnHeader extends PureComponent {
       // The portal container and the component may be rendered to the DOM in
       // the same React render pass, so the container might not be available at
       // the time `render()` is called.
-      const container = document.getElementById('tabs-bar__portal');
+      const container = document.getElementById("tabs-bar__portal");
       if (container === null) {
         // The container wasn't available, force a re-render so that the
         // component can eventually be inserted in the container and not scroll

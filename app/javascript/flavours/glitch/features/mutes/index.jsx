@@ -1,33 +1,33 @@
-import PropTypes from 'prop-types';
+import PropTypes from "prop-types";
 
-import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
+import { defineMessages, injectIntl, FormattedMessage } from "react-intl";
 
-import { Helmet } from 'react-helmet';
+import { Helmet } from "react-helmet";
 
-import ImmutablePropTypes from 'react-immutable-proptypes';
-import ImmutablePureComponent from 'react-immutable-pure-component';
-import { connect } from 'react-redux';
+import ImmutablePropTypes from "react-immutable-proptypes";
+import ImmutablePureComponent from "react-immutable-pure-component";
+import { connect } from "react-redux";
 
-import { debounce } from 'lodash';
+import { debounce } from "lodash";
 
-import { fetchMutes, expandMutes } from 'flavours/glitch/actions/mutes';
-import ColumnBackButtonSlim from 'flavours/glitch/components/column_back_button_slim';
-import { LoadingIndicator } from 'flavours/glitch/components/loading_indicator';
-import ScrollableList from 'flavours/glitch/components/scrollable_list';
-import AccountContainer from 'flavours/glitch/containers/account_container';
-import Column from 'flavours/glitch/features/ui/components/column';
+import { fetchMutes, expandMutes } from "flavours/glitch/actions/mutes";
+import ColumnBackButtonSlim from "flavours/glitch/components/column_back_button_slim";
+import { LoadingIndicator } from "flavours/glitch/components/loading_indicator";
+import ScrollableList from "flavours/glitch/components/scrollable_list";
+import AccountContainer from "flavours/glitch/containers/account_container";
+import Column from "flavours/glitch/features/ui/components/column";
 
 
 
 
 const messages = defineMessages({
-  heading: { id: 'column.mutes', defaultMessage: 'Muted users' },
+  heading: { id: "column.mutes", defaultMessage: "Muted users" },
 });
 
 const mapStateToProps = state => ({
-  accountIds: state.getIn(['user_lists', 'mutes', 'items']),
-  hasMore: !!state.getIn(['user_lists', 'mutes', 'next']),
-  isLoading: state.getIn(['user_lists', 'mutes', 'isLoading'], true),
+  accountIds: state.getIn(["user_lists", "mutes", "items"]),
+  hasMore: !!state.getIn(["user_lists", "mutes", "next"]),
+  isLoading: state.getIn(["user_lists", "mutes", "isLoading"], true),
 });
 
 class Mutes extends ImmutablePureComponent {

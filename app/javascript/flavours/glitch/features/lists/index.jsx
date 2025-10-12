@@ -1,35 +1,35 @@
-import PropTypes from 'prop-types';
+import PropTypes from "prop-types";
 
-import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
+import { defineMessages, injectIntl, FormattedMessage } from "react-intl";
 
-import { Helmet } from 'react-helmet';
+import { Helmet } from "react-helmet";
 
-import ImmutablePropTypes from 'react-immutable-proptypes';
-import ImmutablePureComponent from 'react-immutable-pure-component';
-import { connect } from 'react-redux';
-import { createSelector } from 'reselect';
+import ImmutablePropTypes from "react-immutable-proptypes";
+import ImmutablePureComponent from "react-immutable-pure-component";
+import { connect } from "react-redux";
+import { createSelector } from "reselect";
 
-import { fetchLists } from 'flavours/glitch/actions/lists';
-import ColumnBackButtonSlim from 'flavours/glitch/components/column_back_button_slim';
-import { LoadingIndicator } from 'flavours/glitch/components/loading_indicator';
-import ScrollableList from 'flavours/glitch/components/scrollable_list';
-import Column from 'flavours/glitch/features/ui/components/column';
-import ColumnLink from 'flavours/glitch/features/ui/components/column_link';
-import ColumnSubheading from 'flavours/glitch/features/ui/components/column_subheading';
+import { fetchLists } from "flavours/glitch/actions/lists";
+import ColumnBackButtonSlim from "flavours/glitch/components/column_back_button_slim";
+import { LoadingIndicator } from "flavours/glitch/components/loading_indicator";
+import ScrollableList from "flavours/glitch/components/scrollable_list";
+import Column from "flavours/glitch/features/ui/components/column";
+import ColumnLink from "flavours/glitch/features/ui/components/column_link";
+import ColumnSubheading from "flavours/glitch/features/ui/components/column_subheading";
 
-import NewListForm from './components/new_list_form';
+import NewListForm from "./components/new_list_form";
 
 const messages = defineMessages({
-  heading: { id: 'column.lists', defaultMessage: 'Lists' },
-  subheading: { id: 'lists.subheading', defaultMessage: 'Your lists' },
+  heading: { id: "column.lists", defaultMessage: "Lists" },
+  subheading: { id: "lists.subheading", defaultMessage: "Your lists" },
 });
 
-const getOrderedLists = createSelector([state => state.get('lists')], lists => {
+const getOrderedLists = createSelector([state => state.get("lists")], lists => {
   if (!lists) {
     return lists;
   }
 
-  return lists.toList().filter(item => !!item).sort((a, b) => a.get('title').localeCompare(b.get('title')));
+  return lists.toList().filter(item => !!item).sort((a, b) => a.get("title").localeCompare(b.get("title")));
 });
 
 const mapStateToProps = state => ({
@@ -76,7 +76,7 @@ class Lists extends ImmutablePureComponent {
           bindToDocument={!multiColumn}
         >
           {lists.map(list =>
-            <ColumnLink key={list.get('id')} to={`/lists/${list.get('id')}`} icon='list-ul' text={list.get('title')} />,
+            <ColumnLink key={list.get("id")} to={`/lists/${list.get("id")}`} icon='list-ul' text={list.get("title")} />,
           )}
         </ScrollableList>
 

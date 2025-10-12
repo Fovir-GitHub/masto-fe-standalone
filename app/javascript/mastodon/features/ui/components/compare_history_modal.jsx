@@ -1,23 +1,23 @@
-import PropTypes from 'prop-types';
-import { PureComponent } from 'react';
+import PropTypes from "prop-types";
+import { PureComponent } from "react";
 
-import { FormattedMessage } from 'react-intl';
+import { FormattedMessage } from "react-intl";
 
-import ImmutablePropTypes from 'react-immutable-proptypes';
-import { connect } from 'react-redux';
+import ImmutablePropTypes from "react-immutable-proptypes";
+import { connect } from "react-redux";
 
-import escapeTextContentForBrowser from 'escape-html';
+import escapeTextContentForBrowser from "escape-html";
 
-import { closeModal } from 'mastodon/actions/modal';
-import { IconButton } from 'mastodon/components/icon_button';
-import InlineAccount from 'mastodon/components/inline_account';
-import MediaAttachments from 'mastodon/components/media_attachments';
-import { RelativeTimestamp } from 'mastodon/components/relative_timestamp';
-import emojify from 'mastodon/features/emoji/emoji';
+import { closeModal } from "mastodon/actions/modal";
+import { IconButton } from "mastodon/components/icon_button";
+import InlineAccount from "mastodon/components/inline_account";
+import MediaAttachments from "mastodon/components/media_attachments";
+import { RelativeTimestamp } from "mastodon/components/relative_timestamp";
+import emojify from "mastodon/features/emoji/emoji";
 
 const mapStateToProps = (state, { statusId }) => ({
-  language: state.getIn(['statuses', statusId, 'language']),
-  versions: state.getIn(['history', statusId, 'items']),
+  language: state.getIn(["statuses", statusId, "language"]),
+  versions: state.getIn(["history", statusId, "items"]),
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -45,18 +45,18 @@ class CompareHistoryModal extends PureComponent {
     const { index, versions, language, onClose } = this.props;
     const currentVersion = versions.get(index);
 
-    const emojiMap = currentVersion.get('emojis').reduce((obj, emoji) => {
-      obj[`:${emoji.get('shortcode')}:`] = emoji.toJS();
+    const emojiMap = currentVersion.get("emojis").reduce((obj, emoji) => {
+      obj[`:${emoji.get("shortcode")}:`] = emoji.toJS();
       return obj;
     }, {});
 
-    const content = { __html: emojify(currentVersion.get('content'), emojiMap) };
-    const spoilerContent = { __html: emojify(escapeTextContentForBrowser(currentVersion.get('spoiler_text')), emojiMap) };
+    const content = { __html: emojify(currentVersion.get("content"), emojiMap) };
+    const spoilerContent = { __html: emojify(escapeTextContentForBrowser(currentVersion.get("spoiler_text")), emojiMap) };
 
-    const formattedDate = <RelativeTimestamp timestamp={currentVersion.get('created_at')} short={false} />;
-    const formattedName = <InlineAccount accountId={currentVersion.get('account')} />;
+    const formattedDate = <RelativeTimestamp timestamp={currentVersion.get("created_at")} short={false} />;
+    const formattedName = <InlineAccount accountId={currentVersion.get("account")} />;
 
-    const label = currentVersion.get('original') ? (
+    const label = currentVersion.get("original") ? (
       <FormattedMessage id='status.history.created' defaultMessage='{name} created {date}' values={{ name: formattedName, date: formattedDate }} />
     ) : (
       <FormattedMessage id='status.history.edited' defaultMessage='{name} edited {date}' values={{ name: formattedName, date: formattedDate }} />
@@ -71,7 +71,7 @@ class CompareHistoryModal extends PureComponent {
 
         <div className='compare-history-modal__container'>
           <div className='status__content'>
-            {currentVersion.get('spoiler_text').length > 0 && (
+            {currentVersion.get("spoiler_text").length > 0 && (
               <>
                 <div className='translate' dangerouslySetInnerHTML={spoilerContent} lang={language} />
                 <hr />
@@ -80,16 +80,16 @@ class CompareHistoryModal extends PureComponent {
 
             <div className='status__content__text status__content__text--visible translate' dangerouslySetInnerHTML={content} lang={language} />
 
-            {!!currentVersion.get('poll') && (
+            {!!currentVersion.get("poll") && (
               <div className='poll'>
                 <ul>
-                  {currentVersion.getIn(['poll', 'options']).map(option => (
-                    <li key={option.get('title')}>
+                  {currentVersion.getIn(["poll", "options"]).map(option => (
+                    <li key={option.get("title")}>
                       <span className='poll__input disabled' />
 
                       <span
                         className='poll__option__text translate'
-                        dangerouslySetInnerHTML={{ __html: emojify(escapeTextContentForBrowser(option.get('title')), emojiMap) }}
+                        dangerouslySetInnerHTML={{ __html: emojify(escapeTextContentForBrowser(option.get("title")), emojiMap) }}
                         lang={language}
                       />
                     </li>

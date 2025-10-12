@@ -1,36 +1,36 @@
-import PropTypes from 'prop-types';
-import { PureComponent } from 'react';
+import PropTypes from "prop-types";
+import { PureComponent } from "react";
 
-import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
+import { defineMessages, injectIntl, FormattedMessage } from "react-intl";
 
-import { connect } from 'react-redux';
+import { connect } from "react-redux";
 
-import Toggle from 'react-toggle';
+import Toggle from "react-toggle";
 
-import { muteAccount } from 'flavours/glitch/actions/accounts';
-import { closeModal } from 'flavours/glitch/actions/modal';
-import { toggleHideNotifications, changeMuteDuration } from 'flavours/glitch/actions/mutes';
-import Button from 'flavours/glitch/components/button';
+import { muteAccount } from "flavours/glitch/actions/accounts";
+import { closeModal } from "flavours/glitch/actions/modal";
+import { toggleHideNotifications, changeMuteDuration } from "flavours/glitch/actions/mutes";
+import Button from "flavours/glitch/components/button";
 
 const messages = defineMessages({
-  minutes: { id: 'intervals.full.minutes', defaultMessage: '{number, plural, one {# minute} other {# minutes}}' },
-  hours: { id: 'intervals.full.hours', defaultMessage: '{number, plural, one {# hour} other {# hours}}' },
-  days: { id: 'intervals.full.days', defaultMessage: '{number, plural, one {# day} other {# days}}' },
-  indefinite: { id: 'mute_modal.indefinite', defaultMessage: 'Indefinite' },
+  minutes: { id: "intervals.full.minutes", defaultMessage: "{number, plural, one {# minute} other {# minutes}}" },
+  hours: { id: "intervals.full.hours", defaultMessage: "{number, plural, one {# hour} other {# hours}}" },
+  days: { id: "intervals.full.days", defaultMessage: "{number, plural, one {# day} other {# days}}" },
+  indefinite: { id: "mute_modal.indefinite", defaultMessage: "Indefinite" },
 });
 
 const mapStateToProps = state => {
   return {
-    account: state.getIn(['mutes', 'new', 'account']),
-    notifications: state.getIn(['mutes', 'new', 'notifications']),
-    muteDuration: state.getIn(['mutes', 'new', 'duration']),
+    account: state.getIn(["mutes", "new", "account"]),
+    notifications: state.getIn(["mutes", "new", "notifications"]),
+    muteDuration: state.getIn(["mutes", "new", "duration"]),
   };
 };
 
 const mapDispatchToProps = dispatch => {
   return {
     onConfirm(account, notifications, muteDuration) {
-      dispatch(muteAccount(account.get('id'), notifications, muteDuration));
+      dispatch(muteAccount(account.get("id"), notifications, muteDuration));
     },
 
     onClose() {
@@ -98,7 +98,7 @@ class MuteModal extends PureComponent {
             <FormattedMessage
               id='confirmations.mute.message'
               defaultMessage='Are you sure you want to mute {name}?'
-              values={{ name: <strong>@{account.get('acct')}</strong> }}
+              values={{ name: <strong>@{account.get("acct")}</strong> }}
             />
           </p>
           <p className='mute-modal__explanation'>

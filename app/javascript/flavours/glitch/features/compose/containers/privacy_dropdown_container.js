@@ -1,13 +1,13 @@
-import { connect } from 'react-redux';
+import { connect } from "react-redux";
 
-import { changeComposeVisibility } from 'flavours/glitch/actions/compose';
-import { openModal, closeModal } from 'flavours/glitch/actions/modal';
-import { isUserTouching } from 'flavours/glitch/is_mobile';
+import { changeComposeVisibility } from "flavours/glitch/actions/compose";
+import { openModal, closeModal } from "flavours/glitch/actions/modal";
+import { isUserTouching } from "flavours/glitch/is_mobile";
 
-import PrivacyDropdown from '../components/privacy_dropdown';
+import PrivacyDropdown from "../components/privacy_dropdown";
 
 const mapStateToProps = state => ({
-  value: state.getIn(['compose', 'privacy']),
+  value: state.getIn(["compose", "privacy"]),
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -18,7 +18,7 @@ const mapDispatchToProps = dispatch => ({
 
   isUserTouching,
   onModalOpen: props => dispatch(openModal({
-    modalType: 'ACTIONS',
+    modalType: "ACTIONS",
     modalProps: props,
   })),
   onModalClose: () => dispatch(closeModal({

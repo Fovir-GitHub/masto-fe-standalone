@@ -1,16 +1,16 @@
-import PropTypes from 'prop-types';
-import { PureComponent } from 'react';
+import PropTypes from "prop-types";
+import { PureComponent } from "react";
 
-import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
+import { defineMessages, injectIntl, FormattedMessage } from "react-intl";
 
-import { is } from 'immutable';
-import ImmutablePropTypes from 'react-immutable-proptypes';
-import ImmutablePureComponent from 'react-immutable-pure-component';
+import { is } from "immutable";
+import ImmutablePropTypes from "react-immutable-proptypes";
+import ImmutablePureComponent from "react-immutable-pure-component";
 
-import Textarea from 'react-textarea-autosize';
+import Textarea from "react-textarea-autosize";
 
 const messages = defineMessages({
-  placeholder: { id: 'account_note.placeholder', defaultMessage: 'Click to add a note' },
+  placeholder: { id: "account_note.placeholder", defaultMessage: "Click to add a note" },
 });
 
 class InlineAlert extends PureComponent {
@@ -150,16 +150,16 @@ class AccountNote extends ImmutablePureComponent {
 
     return (
       <div className='account__header__account-note'>
-        <label htmlFor={`account-note-${account.get('id')}`}>
+        <label htmlFor={`account-note-${account.get("id")}`}>
           <FormattedMessage id='account.account_note_header' defaultMessage='Note' /> <InlineAlert show={saved} />
         </label>
 
         <Textarea
-          id={`account-note-${account.get('id')}`}
+          id={`account-note-${account.get("id")}`}
           className='account__header__account-note__content'
           disabled={this.props.value === null || value === null}
           placeholder={intl.formatMessage(messages.placeholder)}
-          value={value || ''}
+          value={value || ""}
           onChange={this.handleChange}
           onKeyDown={this.handleKeyDown}
           onBlur={this.handleBlur}

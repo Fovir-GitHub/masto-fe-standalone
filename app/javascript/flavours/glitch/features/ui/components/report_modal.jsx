@@ -1,26 +1,26 @@
-import PropTypes from 'prop-types';
+import PropTypes from "prop-types";
 
-import { defineMessages, FormattedMessage, injectIntl } from 'react-intl';
+import { defineMessages, FormattedMessage, injectIntl } from "react-intl";
 
-import { OrderedSet } from 'immutable';
-import ImmutablePropTypes from 'react-immutable-proptypes';
-import ImmutablePureComponent from 'react-immutable-pure-component';
-import { connect } from 'react-redux';
+import { OrderedSet } from "immutable";
+import ImmutablePropTypes from "react-immutable-proptypes";
+import ImmutablePureComponent from "react-immutable-pure-component";
+import { connect } from "react-redux";
 
-import { fetchRelationships } from 'flavours/glitch/actions/accounts';
-import { submitReport } from 'flavours/glitch/actions/reports';
-import { fetchServer } from 'flavours/glitch/actions/server';
-import { expandAccountTimeline } from 'flavours/glitch/actions/timelines';
-import { IconButton } from 'flavours/glitch/components/icon_button';
-import Category from 'flavours/glitch/features/report/category';
-import Comment from 'flavours/glitch/features/report/comment';
-import Rules from 'flavours/glitch/features/report/rules';
-import Statuses from 'flavours/glitch/features/report/statuses';
-import Thanks from 'flavours/glitch/features/report/thanks';
-import { makeGetAccount } from 'flavours/glitch/selectors';
+import { fetchRelationships } from "flavours/glitch/actions/accounts";
+import { submitReport } from "flavours/glitch/actions/reports";
+import { fetchServer } from "flavours/glitch/actions/server";
+import { expandAccountTimeline } from "flavours/glitch/actions/timelines";
+import { IconButton } from "flavours/glitch/components/icon_button";
+import Category from "flavours/glitch/features/report/category";
+import Comment from "flavours/glitch/features/report/comment";
+import Rules from "flavours/glitch/features/report/rules";
+import Statuses from "flavours/glitch/features/report/statuses";
+import Thanks from "flavours/glitch/features/report/thanks";
+import { makeGetAccount } from "flavours/glitch/selectors";
 
 const messages = defineMessages({
-  close: { id: 'lightbox.close', defaultMessage: 'Close' },
+  close: { id: "lightbox.close", defaultMessage: "Close" },
 });
 
 const makeMapStateToProps = () => {
@@ -44,10 +44,10 @@ class ReportModal extends ImmutablePureComponent {
   };
 
   state = {
-    step: 'category',
+    step: "category",
     selectedStatusIds: OrderedSet(this.props.statusId ? [this.props.statusId] : []),
     selectedDomains: OrderedSet(),
-    comment: '',
+    comment: "",
     category: null,
     selectedRuleIds: OrderedSet(),
     isSubmitting: false,
@@ -72,7 +72,7 @@ class ReportModal extends ImmutablePureComponent {
   };
 
   handleSuccess = () => {
-    this.setState({ isSubmitting: false, isSubmitted: true, step: 'thanks' });
+    this.setState({ isSubmitting: false, isSubmitted: true, step: "thanks" });
   };
 
   handleFail = () => {
@@ -148,71 +148,71 @@ class ReportModal extends ImmutablePureComponent {
       isSubmitted,
     } = this.state;
 
-    const domain   = account.get('acct').split('@')[1];
+    const domain   = account.get("acct").split("@")[1];
     const isRemote = !!domain;
 
     let stepComponent;
 
     switch(step) {
-    case 'category':
-      stepComponent = (
-        <Category
-          onNextStep={this.handleNextStep}
-          startedFrom={this.props.statusId ? 'status' : 'account'}
-          category={category}
-          onChangeCategory={this.handleChangeCategory}
-        />
-      );
-      break;
-    case 'rules':
-      stepComponent = (
-        <Rules
-          onNextStep={this.handleNextStep}
-          selectedRuleIds={selectedRuleIds}
-          onToggle={this.handleRuleToggle}
-        />
-      );
-      break;
-    case 'statuses':
-      stepComponent = (
-        <Statuses
-          onNextStep={this.handleNextStep}
-          accountId={accountId}
-          selectedStatusIds={selectedStatusIds}
-          onToggle={this.handleStatusToggle}
-        />
-      );
-      break;
-    case 'comment':
-      stepComponent = (
-        <Comment
-          onSubmit={this.handleSubmit}
-          isSubmitting={isSubmitting}
-          isRemote={isRemote}
-          comment={comment}
-          domain={domain}
-          onChangeComment={this.handleChangeComment}
-          statusIds={selectedStatusIds}
-          selectedDomains={selectedDomains}
-          onToggleDomain={this.handleDomainToggle}
-        />
-      );
-      break;
-    case 'thanks':
-      stepComponent = (
-        <Thanks
-          submitted={isSubmitted}
-          account={account}
-          onClose={onClose}
-        />
-      );
+      case "category":
+        stepComponent = (
+          <Category
+            onNextStep={this.handleNextStep}
+            startedFrom={this.props.statusId ? "status" : "account"}
+            category={category}
+            onChangeCategory={this.handleChangeCategory}
+          />
+        );
+        break;
+      case "rules":
+        stepComponent = (
+          <Rules
+            onNextStep={this.handleNextStep}
+            selectedRuleIds={selectedRuleIds}
+            onToggle={this.handleRuleToggle}
+          />
+        );
+        break;
+      case "statuses":
+        stepComponent = (
+          <Statuses
+            onNextStep={this.handleNextStep}
+            accountId={accountId}
+            selectedStatusIds={selectedStatusIds}
+            onToggle={this.handleStatusToggle}
+          />
+        );
+        break;
+      case "comment":
+        stepComponent = (
+          <Comment
+            onSubmit={this.handleSubmit}
+            isSubmitting={isSubmitting}
+            isRemote={isRemote}
+            comment={comment}
+            domain={domain}
+            onChangeComment={this.handleChangeComment}
+            statusIds={selectedStatusIds}
+            selectedDomains={selectedDomains}
+            onToggleDomain={this.handleDomainToggle}
+          />
+        );
+        break;
+      case "thanks":
+        stepComponent = (
+          <Thanks
+            submitted={isSubmitted}
+            account={account}
+            onClose={onClose}
+          />
+        );
     }
 
     return (
       <div className='modal-root__modal report-dialog-modal'>
         <div className='report-modal__target'>
           <IconButton className='report-modal__close' title={intl.formatMessage(messages.close)} icon='times' onClick={onClose} size={20} />
-          <FormattedMessage id='report.target' defaultMessage='Report {target}' values={{ target: <strong>{account.get('acct')}</strong> }} />
+          <FormattedMessage id='report.target' defaultMessage='Report {target}' values={{ target: <strong>{account.get("acct")}</strong> }} />
         </div>
 
         <div className='report-dialog-modal__container'>

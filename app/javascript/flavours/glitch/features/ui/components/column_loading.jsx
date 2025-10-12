@@ -1,9 +1,9 @@
-import PropTypes from 'prop-types';
+import PropTypes from "prop-types";
 
-import ImmutablePureComponent from 'react-immutable-pure-component';
+import ImmutablePureComponent from "react-immutable-pure-component";
 
-import Column from 'flavours/glitch/components/column';
-import ColumnHeader from 'flavours/glitch/components/column_header';
+import Column from "flavours/glitch/components/column";
+import ColumnHeader from "flavours/glitch/components/column_header";
 
 export default class ColumnLoading extends ImmutablePureComponent {
 
@@ -14,8 +14,8 @@ export default class ColumnLoading extends ImmutablePureComponent {
   };
 
   static defaultProps = {
-    title: '',
-    icon: '',
+    title: "",
+    icon: "",
   };
 
   render() {

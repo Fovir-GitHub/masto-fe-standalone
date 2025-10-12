@@ -1,13 +1,13 @@
-import PropTypes from 'prop-types';
-import { PureComponent } from 'react';
+import PropTypes from "prop-types";
+import { PureComponent } from "react";
 
-import { connect } from 'react-redux';
+import { connect } from "react-redux";
 
-import FeaturedTags from 'mastodon/features/account/containers/featured_tags_container';
-import { normalizeForLookup } from 'mastodon/reducers/accounts_map';
+import FeaturedTags from "mastodon/features/account/containers/featured_tags_container";
+import { normalizeForLookup } from "mastodon/reducers/accounts_map";
 
 const mapStateToProps = (state, { match: { params: { acct } } }) => {
-  const accountId = state.getIn(['accounts_map', normalizeForLookup(acct)]);
+  const accountId = state.getIn(["accounts_map", normalizeForLookup(acct)]);
 
   if (!accountId) {
     return {

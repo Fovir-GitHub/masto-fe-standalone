@@ -1,18 +1,18 @@
-import PropTypes from 'prop-types';
-import { PureComponent } from 'react';
+import PropTypes from "prop-types";
+import { PureComponent } from "react";
 
-import { FormattedMessage } from 'react-intl';
+import { FormattedMessage } from "react-intl";
 
-import ImmutablePropTypes from 'react-immutable-proptypes';
-import { connect } from 'react-redux';
+import ImmutablePropTypes from "react-immutable-proptypes";
+import { connect } from "react-redux";
 
-import { fetchSuggestions, dismissSuggestion } from 'flavours/glitch/actions/suggestions';
-import { LoadingIndicator } from 'flavours/glitch/components/loading_indicator';
-import AccountCard from 'flavours/glitch/features/directory/components/account_card';
+import { fetchSuggestions, dismissSuggestion } from "flavours/glitch/actions/suggestions";
+import { LoadingIndicator } from "flavours/glitch/components/loading_indicator";
+import AccountCard from "flavours/glitch/features/directory/components/account_card";
 
 const mapStateToProps = state => ({
-  suggestions: state.getIn(['suggestions', 'items']),
-  isLoading: state.getIn(['suggestions', 'isLoading']),
+  suggestions: state.getIn(["suggestions", "items"]),
+  isLoading: state.getIn(["suggestions", "isLoading"]),
 });
 
 class Suggestions extends PureComponent {
@@ -49,7 +49,7 @@ class Suggestions extends PureComponent {
     return (
       <div className='explore__suggestions'>
         {isLoading ? <LoadingIndicator /> : suggestions.map(suggestion => (
-          <AccountCard key={suggestion.get('account')} id={suggestion.get('account')} onDismiss={suggestion.get('source') === 'past_interactions' ? this.handleDismiss : null} />
+          <AccountCard key={suggestion.get("account")} id={suggestion.get("account")} onDismiss={suggestion.get("source") === "past_interactions" ? this.handleDismiss : null} />
         ))}
       </div>
     );

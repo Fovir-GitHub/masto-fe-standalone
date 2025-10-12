@@ -1,16 +1,16 @@
-import PropTypes from 'prop-types';
+import PropTypes from "prop-types";
 
-import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
+import { defineMessages, injectIntl, FormattedMessage } from "react-intl";
 
-import ImmutablePropTypes from 'react-immutable-proptypes';
-import ImmutablePureComponent from 'react-immutable-pure-component';
+import ImmutablePropTypes from "react-immutable-proptypes";
+import ImmutablePureComponent from "react-immutable-pure-component";
 
-import Textarea from 'react-textarea-autosize';
+import Textarea from "react-textarea-autosize";
 
-import { Icon } from 'flavours/glitch/components/icon';
+import { Icon } from "flavours/glitch/components/icon";
 
 const messages = defineMessages({
-  placeholder: { id: 'account_note.glitch_placeholder', defaultMessage: 'No comment provided' },
+  placeholder: { id: "account_note.glitch_placeholder", defaultMessage: "No comment provided" },
 });
 
 class Header extends ImmutablePureComponent {

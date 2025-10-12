@@ -1,7 +1,7 @@
-import PropTypes from 'prop-types';
-import { PureComponent } from 'react';
+import PropTypes from "prop-types";
+import { PureComponent } from "react";
 
-import classNames from 'classnames';
+import classNames from "classnames";
 
 export default class Button extends PureComponent {
 
@@ -32,16 +32,18 @@ export default class Button extends PureComponent {
 
   render () {
     let attrs = {
-      className: classNames('button', this.props.className, {
-        'button-secondary': this.props.secondary,
-        'button--block': this.props.block,
+      className: classNames("button", this.props.className, {
+        "button-secondary": this.props.secondary,
+        "button--block": this.props.block,
       }),
       disabled: this.props.disabled,
       onClick: this.handleClick,
       ref: this.setRef,
     };
 
-    if (this.props.title) attrs.title = this.props.title;
+    if (this.props.title) {
+      attrs.title = this.props.title;
+    }
 
     return (
       <button {...attrs}>

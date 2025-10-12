@@ -1,19 +1,19 @@
-import PropTypes from 'prop-types';
+import PropTypes from "prop-types";
 
-import { defineMessages, injectIntl } from 'react-intl';
+import { defineMessages, injectIntl } from "react-intl";
 
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
 
-import ImmutablePropTypes from 'react-immutable-proptypes';
-import ImmutablePureComponent from 'react-immutable-pure-component';
+import ImmutablePropTypes from "react-immutable-proptypes";
+import ImmutablePureComponent from "react-immutable-pure-component";
 
-import { Avatar } from 'mastodon/components/avatar';
-import { DisplayName } from 'mastodon/components/display_name';
-import { IconButton } from 'mastodon/components/icon_button';
+import { Avatar } from "mastodon/components/avatar";
+import { DisplayName } from "mastodon/components/display_name";
+import { IconButton } from "mastodon/components/icon_button";
 
 const messages = defineMessages({
-  authorize: { id: 'follow_request.authorize', defaultMessage: 'Authorize' },
-  reject: { id: 'follow_request.reject', defaultMessage: 'Reject' },
+  authorize: { id: "follow_request.authorize", defaultMessage: "Authorize" },
+  reject: { id: "follow_request.reject", defaultMessage: "Reject" },
 });
 
 class FollowRequest extends ImmutablePureComponent {
@@ -35,8 +35,8 @@ class FollowRequest extends ImmutablePureComponent {
     if (hidden) {
       return (
         <>
-          {account.get('display_name')}
-          {account.get('username')}
+          {account.get("display_name")}
+          {account.get("username")}
         </>
       );
     }
@@ -44,7 +44,7 @@ class FollowRequest extends ImmutablePureComponent {
     return (
       <div className='account'>
         <div className='account__wrapper'>
-          <Link key={account.get('id')} className='account__display-name' title={account.get('acct')} to={`/@${account.get('acct')}`}>
+          <Link key={account.get("id")} className='account__display-name' title={account.get("acct")} to={`/@${account.get("acct")}`}>
             <div className='account__avatar-wrapper'><Avatar account={account} size={36} /></div>
             <DisplayName account={account} />
           </Link>

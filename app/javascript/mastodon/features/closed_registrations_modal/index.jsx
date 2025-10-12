@@ -1,13 +1,13 @@
-import { FormattedMessage } from 'react-intl';
+import { FormattedMessage } from "react-intl";
 
-import ImmutablePureComponent from 'react-immutable-pure-component';
-import { connect } from 'react-redux';
+import ImmutablePureComponent from "react-immutable-pure-component";
+import { connect } from "react-redux";
 
-import { fetchServer } from 'mastodon/actions/server';
-import { domain } from 'mastodon/initial_state';
+import { fetchServer } from "mastodon/actions/server";
+import { domain } from "mastodon/initial_state";
 
 const mapStateToProps = state => ({
-  message: state.getIn(['server', 'server', 'registrations', 'message']),
+  message: state.getIn(["server", "server", "registrations", "message"]),
 });
 
 class ClosedRegistrationsModal extends ImmutablePureComponent {

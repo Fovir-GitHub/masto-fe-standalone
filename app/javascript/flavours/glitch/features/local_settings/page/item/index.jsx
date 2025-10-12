@@ -1,8 +1,8 @@
 //  Package imports
-import PropTypes from 'prop-types';
-import { PureComponent } from 'react';
+import PropTypes from "prop-types";
+import { PureComponent } from "react";
 
-import ImmutablePropTypes from 'react-immutable-proptypes';
+import ImmutablePropTypes from "react-immutable-proptypes";
 //  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 
 export default class LocalSettingsPageItem extends PureComponent {
@@ -28,9 +28,13 @@ export default class LocalSettingsPageItem extends PureComponent {
   handleChange = e => {
     const { target } = e;
     const { item, onChange, options, placeholder } = this.props;
-    if (options && options.length > 0) onChange(item, target.value);
-    else if (placeholder) onChange(item, target.value);
-    else onChange(item, target.checked);
+    if (options && options.length > 0) {
+      onChange(item, target.value);
+    } else if (placeholder) {
+      onChange(item, target.value);
+    } else {
+      onChange(item, target.checked);
+    }
   };
 
   render () {
@@ -98,21 +102,23 @@ export default class LocalSettingsPageItem extends PureComponent {
           </label>
         </div>
       );
-    } else return (
-      <div className='glitch local-settings__page__item boolean'>
-        <label htmlFor={id}>
-          <input
-            id={id}
-            type='checkbox'
-            checked={settings.getIn(item)}
-            onChange={handleChange}
-            disabled={!enabled}
-            {...inputProps}
-          />
-          {children}
-        </label>
-      </div>
-    );
+    } else {
+      return (
+        <div className='glitch local-settings__page__item boolean'>
+          <label htmlFor={id}>
+            <input
+              id={id}
+              type='checkbox'
+              checked={settings.getIn(item)}
+              onChange={handleChange}
+              disabled={!enabled}
+              {...inputProps}
+            />
+            {children}
+          </label>
+        </div>
+      );
+    }
   }
 
 }

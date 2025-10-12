@@ -1,20 +1,20 @@
-import PropTypes from 'prop-types';
-import { Component } from 'react';
+import PropTypes from "prop-types";
+import { Component } from "react";
 
-import classNames from 'classnames';
+import classNames from "classnames";
 
-import { connect } from 'react-redux';
+import { connect } from "react-redux";
 
-import { removePictureInPicture } from 'flavours/glitch/actions/picture_in_picture';
-import Audio from 'flavours/glitch/features/audio';
-import Video from 'flavours/glitch/features/video';
+import { removePictureInPicture } from "flavours/glitch/actions/picture_in_picture";
+import Audio from "flavours/glitch/features/audio";
+import Video from "flavours/glitch/features/video";
 
-import Footer from './components/footer';
-import Header from './components/header';
+import Footer from "./components/footer";
+import Header from "./components/header";
 
 const mapStateToProps = state => ({
-  ...state.get('picture_in_picture'),
-  left: state.getIn(['local_settings', 'media', 'pop_in_position']) === 'left',
+  ...state.get("picture_in_picture"),
+  left: state.getIn(["local_settings", "media", "pop_in_position"]) === "left",
 });
 
 class PictureInPicture extends Component {
@@ -49,7 +49,7 @@ class PictureInPicture extends Component {
 
     let player;
 
-    if (type === 'video') {
+    if (type === "video") {
       player = (
         <Video
           src={src}
@@ -61,7 +61,7 @@ class PictureInPicture extends Component {
           alwaysVisible
         />
       );
-    } else if (type === 'audio') {
+    } else if (type === "audio") {
       player = (
         <Audio
           src={src}
@@ -78,7 +78,7 @@ class PictureInPicture extends Component {
     }
 
     return (
-      <div className={classNames('picture-in-picture', { left })}>
+      <div className={classNames("picture-in-picture", { left })}>
         <Header accountId={accountId} statusId={statusId} onClose={this.handleClose} />
 
         {player}

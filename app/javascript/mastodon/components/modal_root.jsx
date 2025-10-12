@@ -1,9 +1,9 @@
-import PropTypes from 'prop-types';
-import { PureComponent } from 'react';
+import PropTypes from "prop-types";
+import { PureComponent } from "react";
 
-import 'wicg-inert';
-import { multiply } from 'color-blend';
-import { createBrowserHistory } from 'history';
+import "wicg-inert";
+import { multiply } from "color-blend";
+import { createBrowserHistory } from "history";
 
 export default class ModalRoot extends PureComponent {
 
@@ -25,15 +25,15 @@ export default class ModalRoot extends PureComponent {
   activeElement = this.props.children ? document.activeElement : null;
 
   handleKeyUp = (e) => {
-    if ((e.key === 'Escape' || e.key === 'Esc' || e.keyCode === 27)
+    if ((e.key === "Escape" || e.key === "Esc" || e.keyCode === 27)
          && !!this.props.children) {
       this.props.onClose();
     }
   };
 
   handleKeyDown = (e) => {
-    if (e.key === 'Tab') {
-      const focusable = Array.from(this.node.querySelectorAll('button:not([disabled]), [href], input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])')).filter((x) => window.getComputedStyle(x).display !== 'none');
+    if (e.key === "Tab") {
+      const focusable = Array.from(this.node.querySelectorAll("button:not([disabled]), [href], input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex=\"-1\"])")).filter((x) => window.getComputedStyle(x).display !== "none");
       const index = focusable.indexOf(e.target);
 
       let element;
@@ -53,8 +53,8 @@ export default class ModalRoot extends PureComponent {
   };
 
   componentDidMount () {
-    window.addEventListener('keyup', this.handleKeyUp, false);
-    window.addEventListener('keydown', this.handleKeyDown, false);
+    window.addEventListener("keyup", this.handleKeyUp, false);
+    window.addEventListener("keydown", this.handleKeyDown, false);
     this.history = this.context.router ? this.context.router.history : createBrowserHistory();
   }
 
@@ -62,13 +62,13 @@ export default class ModalRoot extends PureComponent {
     if (!!nextProps.children && !this.props.children) {
       this.activeElement = document.activeElement;
 
-      this.getSiblings().forEach(sibling => sibling.setAttribute('inert', true));
+      this.getSiblings().forEach(sibling => sibling.setAttribute("inert", true));
     }
   }
 
   componentDidUpdate (prevProps) {
     if (!this.props.children && !!prevProps.children) {
-      this.getSiblings().forEach(sibling => sibling.removeAttribute('inert'));
+      this.getSiblings().forEach(sibling => sibling.removeAttribute("inert"));
 
       // Because of the wicg-inert polyfill, the activeElement may not be
       // immediately selectable, we have to wait for observers to run, as
@@ -91,14 +91,14 @@ export default class ModalRoot extends PureComponent {
   }
 
   componentWillUnmount () {
-    window.removeEventListener('keyup', this.handleKeyUp);
-    window.removeEventListener('keydown', this.handleKeyDown);
+    window.removeEventListener("keyup", this.handleKeyUp);
+    window.removeEventListener("keydown", this.handleKeyDown);
   }
 
   _handleModalOpen () {
     this._modalHistoryKey = Date.now();
     this.unlistenHistory = this.history.listen((_, action) => {
-      if (action === 'POP') {
+      if (action === "POP") {
         this.props.onClose();
       }
     });
@@ -147,7 +147,7 @@ export default class ModalRoot extends PureComponent {
 
     return (
       <div className='modal-root' ref={this.setRef}>
-        <div style={{ pointerEvents: visible ? 'auto' : 'none' }}>
+        <div style={{ pointerEvents: visible ? "auto" : "none" }}>
           <div role='presentation' className='modal-root__overlay' onClick={onClose} style={{ backgroundColor: backgroundColor ? `rgba(${backgroundColor.r}, ${backgroundColor.g}, ${backgroundColor.b}, 0.7)` : null }} />
           <div role='dialog' className='modal-root__container'>{children}</div>
         </div>

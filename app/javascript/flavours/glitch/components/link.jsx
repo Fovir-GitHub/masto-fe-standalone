@@ -2,13 +2,13 @@
 //  ~ 😘 kibi!
 
 //  Package imports.
-import PropTypes from 'prop-types';
-import { PureComponent } from 'react';
+import PropTypes from "prop-types";
+import { PureComponent } from "react";
 
-import classNames from 'classnames';
+import classNames from "classnames";
 
 //  Utils.
-import { assignHandlers } from 'flavours/glitch/utils/react_helpers';
+import { assignHandlers } from "flavours/glitch/utils/react_helpers";
 //  Handlers.
 const handlers = {
 
@@ -45,7 +45,7 @@ export default class Link extends PureComponent {
       title,
       ...rest
     } = this.props;
-    const computedClass = classNames('link', className, `role-${role}`);
+    const computedClass = classNames("link", className, `role-${role}`);
 
     //  We assume that our `onClick` is a routing function and give it
     //  the qualities of a link even if no `href` is provided. However,
@@ -57,10 +57,10 @@ export default class Link extends PureComponent {
       conditionalProps.onClick = click;
     } else if (onClick) {
       conditionalProps.onClick = click;
-      conditionalProps.role = 'link';
+      conditionalProps.role = "link";
       conditionalProps.tabIndex = 0;
     } else {
-      conditionalProps.role = 'presentation';
+      conditionalProps.role = "presentation";
     }
 
     //  If we were provided a `role` it overwrites any that we may have

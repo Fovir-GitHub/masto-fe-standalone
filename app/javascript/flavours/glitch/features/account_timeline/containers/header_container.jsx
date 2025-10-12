@@ -1,8 +1,8 @@
-import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
+import { defineMessages, injectIntl, FormattedMessage } from "react-intl";
 
-import { connect } from 'react-redux';
+import { connect } from "react-redux";
 
-import { initEditAccountNote } from 'flavours/glitch/actions/account_notes';
+import { initEditAccountNote } from "flavours/glitch/actions/account_notes";
 import {
   followAccount,
   unfollowAccount,
@@ -10,25 +10,25 @@ import {
   unmuteAccount,
   pinAccount,
   unpinAccount,
-} from 'flavours/glitch/actions/accounts';
-import { initBlockModal } from 'flavours/glitch/actions/blocks';
+} from "flavours/glitch/actions/accounts";
+import { initBlockModal } from "flavours/glitch/actions/blocks";
 import {
   mentionCompose,
   directCompose,
-} from 'flavours/glitch/actions/compose';
-import { blockDomain, unblockDomain } from 'flavours/glitch/actions/domain_blocks';
-import { openModal } from 'flavours/glitch/actions/modal';
-import { initMuteModal } from 'flavours/glitch/actions/mutes';
-import { initReport } from 'flavours/glitch/actions/reports';
-import { unfollowModal } from 'flavours/glitch/initial_state';
-import { makeGetAccount, getAccountHidden } from 'flavours/glitch/selectors';
+} from "flavours/glitch/actions/compose";
+import { blockDomain, unblockDomain } from "flavours/glitch/actions/domain_blocks";
+import { openModal } from "flavours/glitch/actions/modal";
+import { initMuteModal } from "flavours/glitch/actions/mutes";
+import { initReport } from "flavours/glitch/actions/reports";
+import { unfollowModal } from "flavours/glitch/initial_state";
+import { makeGetAccount, getAccountHidden } from "flavours/glitch/selectors";
 
-import Header from '../components/header';
+import Header from "../components/header";
 
 const messages = defineMessages({
-  cancelFollowRequestConfirm: { id: 'confirmations.cancel_follow_request.confirm', defaultMessage: 'Withdraw request' },
-  unfollowConfirm: { id: 'confirmations.unfollow.confirm', defaultMessage: 'Unfollow' },
-  blockDomainConfirm: { id: 'confirmations.domain_block.confirm', defaultMessage: 'Block entire domain' },
+  cancelFollowRequestConfirm: { id: "confirmations.cancel_follow_request.confirm", defaultMessage: "Withdraw request" },
+  unfollowConfirm: { id: "confirmations.unfollow.confirm", defaultMessage: "Unfollow" },
+  blockDomainConfirm: { id: "confirmations.domain_block.confirm", defaultMessage: "Block entire domain" },
 });
 
 const makeMapStateToProps = () => {
@@ -36,7 +36,7 @@ const makeMapStateToProps = () => {
 
   const mapStateToProps = (state, { accountId }) => ({
     account: getAccount(state, accountId),
-    domain: state.getIn(['meta', 'domain']),
+    domain: state.getIn(["meta", "domain"]),
     hidden: getAccountHidden(state, accountId),
   });
 
@@ -46,51 +46,51 @@ const makeMapStateToProps = () => {
 const mapDispatchToProps = (dispatch, { intl }) => ({
 
   onFollow (account) {
-    if (account.getIn(['relationship', 'following'])) {
+    if (account.getIn(["relationship", "following"])) {
       if (unfollowModal) {
         dispatch(openModal({
-          modalType: 'CONFIRM',
+          modalType: "CONFIRM",
           modalProps: {
-            message: <FormattedMessage id='confirmations.unfollow.message' defaultMessage='Are you sure you want to unfollow {name}?' values={{ name: <strong>@{account.get('acct')}</strong> }} />,
+            message: <FormattedMessage id='confirmations.unfollow.message' defaultMessage='Are you sure you want to unfollow {name}?' values={{ name: <strong>@{account.get("acct")}</strong> }} />,
             confirm: intl.formatMessage(messages.unfollowConfirm),
-            onConfirm: () => dispatch(unfollowAccount(account.get('id'))),
+            onConfirm: () => dispatch(unfollowAccount(account.get("id"))),
           },
         }));
       } else {
-        dispatch(unfollowAccount(account.get('id')));
+        dispatch(unfollowAccount(account.get("id")));
       }
-    } else if (account.getIn(['relationship', 'requested'])) {
+    } else if (account.getIn(["relationship", "requested"])) {
       if (unfollowModal) {
         dispatch(openModal({
-          modalType: 'CONFIRM',
+          modalType: "CONFIRM",
           modalProps: {
-            message: <FormattedMessage id='confirmations.cancel_follow_request.message' defaultMessage='Are you sure you want to withdraw your request to follow {name}?' values={{ name: <strong>@{account.get('acct')}</strong> }} />,
+            message: <FormattedMessage id='confirmations.cancel_follow_request.message' defaultMessage='Are you sure you want to withdraw your request to follow {name}?' values={{ name: <strong>@{account.get("acct")}</strong> }} />,
             confirm: intl.formatMessage(messages.cancelFollowRequestConfirm),
-            onConfirm: () => dispatch(unfollowAccount(account.get('id'))),
+            onConfirm: () => dispatch(unfollowAccount(account.get("id"))),
           },
         }));
       } else {
-        dispatch(unfollowAccount(account.get('id')));
+        dispatch(unfollowAccount(account.get("id")));
       }
     } else {
-      dispatch(followAccount(account.get('id')));
+      dispatch(followAccount(account.get("id")));
     }
   },
 
   onInteractionModal (account) {
     dispatch(openModal({
-      modalType: 'INTERACTION',
+      modalType: "INTERACTION",
       modalProps: {
-        type: 'follow',
-        accountId: account.get('id'),
-        url: account.get('uri'),
+        type: "follow",
+        accountId: account.get("id"),
+        url: account.get("uri"),
       },
     }));
   },
 
   onBlock (account) {
-    if (account.getIn(['relationship', 'blocking'])) {
-      dispatch(unblockAccount(account.get('id')));
+    if (account.getIn(["relationship", "blocking"])) {
+      dispatch(unblockAccount(account.get("id")));
     } else {
       dispatch(initBlockModal(account));
     }
@@ -105,26 +105,26 @@ const mapDispatchToProps = (dispatch, { intl }) => ({
   },
 
   onReblogToggle (account) {
-    if (account.getIn(['relationship', 'showing_reblogs'])) {
-      dispatch(followAccount(account.get('id'), { reblogs: false }));
+    if (account.getIn(["relationship", "showing_reblogs"])) {
+      dispatch(followAccount(account.get("id"), { reblogs: false }));
     } else {
-      dispatch(followAccount(account.get('id'), { reblogs: true }));
+      dispatch(followAccount(account.get("id"), { reblogs: true }));
     }
   },
 
   onEndorseToggle (account) {
-    if (account.getIn(['relationship', 'endorsed'])) {
-      dispatch(unpinAccount(account.get('id')));
+    if (account.getIn(["relationship", "endorsed"])) {
+      dispatch(unpinAccount(account.get("id")));
     } else {
-      dispatch(pinAccount(account.get('id')));
+      dispatch(pinAccount(account.get("id")));
     }
   },
 
   onNotifyToggle (account) {
-    if (account.getIn(['relationship', 'notifying'])) {
-      dispatch(followAccount(account.get('id'), { notify: false }));
+    if (account.getIn(["relationship", "notifying"])) {
+      dispatch(followAccount(account.get("id"), { notify: false }));
     } else {
-      dispatch(followAccount(account.get('id'), { notify: true }));
+      dispatch(followAccount(account.get("id"), { notify: true }));
     }
   },
 
@@ -133,8 +133,8 @@ const mapDispatchToProps = (dispatch, { intl }) => ({
   },
 
   onMute (account) {
-    if (account.getIn(['relationship', 'muting'])) {
-      dispatch(unmuteAccount(account.get('id')));
+    if (account.getIn(["relationship", "muting"])) {
+      dispatch(unmuteAccount(account.get("id")));
     } else {
       dispatch(initMuteModal(account));
     }
@@ -146,7 +146,7 @@ const mapDispatchToProps = (dispatch, { intl }) => ({
 
   onBlockDomain (domain) {
     dispatch(openModal({
-      modalType: 'CONFIRM',
+      modalType: "CONFIRM",
       modalProps: {
         message: <FormattedMessage id='confirmations.domain_block.message' defaultMessage='Are you really, really sure you want to block the entire {domain}? In most cases a few targeted blocks or mutes are sufficient and preferable. You will not see content from that domain in any public timelines or your notifications. Your followers from that domain will be removed.' values={{ domain: <strong>{domain}</strong> }} />,
         confirm: intl.formatMessage(messages.blockDomainConfirm),
@@ -161,28 +161,28 @@ const mapDispatchToProps = (dispatch, { intl }) => ({
 
   onAddToList (account) {
     dispatch(openModal({
-      modalType: 'LIST_ADDER',
+      modalType: "LIST_ADDER",
       modalProps: {
-        accountId: account.get('id'),
+        accountId: account.get("id"),
       },
     }));
   },
 
   onChangeLanguages (account) {
     dispatch(openModal({
-      modalType: 'SUBSCRIBED_LANGUAGES',
+      modalType: "SUBSCRIBED_LANGUAGES",
       modalProps: {
-        accountId: account.get('id'),
+        accountId: account.get("id"),
       },
     }));
   },
 
   onOpenAvatar (account) {
     dispatch(openModal({
-      modalType: 'IMAGE',
+      modalType: "IMAGE",
       modalProps: {
-        src: account.get('avatar'),
-        alt: account.get('acct'),
+        src: account.get("avatar"),
+        alt: account.get("acct"),
       },
     }));
   },

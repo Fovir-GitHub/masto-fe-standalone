@@ -1,17 +1,17 @@
-import * as React from 'react';
+import * as React from "react";
 
-import classNames from 'classnames';
+import classNames from "classnames";
 
-import { useHovering } from 'flavours/glitch/hooks/useHovering';
-import { autoPlayGif } from 'flavours/glitch/initial_state';
-import type { Account } from 'flavours/glitch/types/resources';
+import { useHovering } from "flavours/glitch/hooks/useHovering";
+import { autoPlayGif } from "flavours/glitch/initial_state";
+import  { type Account } from "flavours/glitch/types/resources";
 
 interface Props {
-  account: Account | undefined;
-  className?: string;
-  size: number;
-  style?: React.CSSProperties;
-  inline?: boolean;
+  account: Account | undefined,
+  className?: string,
+  size: number,
+  style?: React.CSSProperties,
+  inline?: boolean,
 }
 
 export const Avatar: React.FC<Props> = ({
@@ -33,23 +33,23 @@ export const Avatar: React.FC<Props> = ({
 
   if (account) {
     style.backgroundImage = `url(${account.get(
-      hovering ? 'avatar' : 'avatar_static',
+      hovering ? "avatar" : "avatar_static",
     )})`;
   }
 
   return (
     <div
       className={classNames(
-        'account__avatar',
-        { 'account__avatar-inline': inline },
+        "account__avatar",
+        { "account__avatar-inline": inline },
         className,
       )}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
       style={style}
-      data-avatar-of={account && `@${account.get('acct')}`}
+      data-avatar-of={account && `@${account.get("acct")}`}
       role='img'
-      aria-label={account?.get('acct')}
+      aria-label={account?.get("acct")}
     />
   );
 };

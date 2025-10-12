@@ -1,52 +1,52 @@
-import PropTypes from 'prop-types';
+import PropTypes from "prop-types";
 
-import { defineMessages, injectIntl } from 'react-intl';
+import { defineMessages, injectIntl } from "react-intl";
 
-import { Helmet } from 'react-helmet';
+import { Helmet } from "react-helmet";
 
-import { List as ImmutableList } from 'immutable';
-import ImmutablePropTypes from 'react-immutable-proptypes';
-import ImmutablePureComponent from 'react-immutable-pure-component';
-import { connect } from 'react-redux';
+import { List as ImmutableList } from "immutable";
+import ImmutablePropTypes from "react-immutable-proptypes";
+import ImmutablePureComponent from "react-immutable-pure-component";
+import { connect } from "react-redux";
 
-import { fetchFollowRequests } from 'mastodon/actions/accounts';
-import Column from 'mastodon/components/column';
-import ColumnHeader from 'mastodon/components/column_header';
-import LinkFooter from 'mastodon/features/ui/components/link_footer';
+import { fetchFollowRequests } from "mastodon/actions/accounts";
+import Column from "mastodon/components/column";
+import ColumnHeader from "mastodon/components/column_header";
+import LinkFooter from "mastodon/features/ui/components/link_footer";
 
-import { me, showTrends } from '../../initial_state';
-import NavigationContainer from '../compose/containers/navigation_container';
-import ColumnLink from '../ui/components/column_link';
-import ColumnSubheading from '../ui/components/column_subheading';
+import { me, showTrends } from "../../initial_state";
+import NavigationContainer from "../compose/containers/navigation_container";
+import ColumnLink from "../ui/components/column_link";
+import ColumnSubheading from "../ui/components/column_subheading";
 
-import TrendsContainer from './containers/trends_container';
+import TrendsContainer from "./containers/trends_container";
 
 const messages = defineMessages({
-  home_timeline: { id: 'tabs_bar.home', defaultMessage: 'Home' },
-  notifications: { id: 'tabs_bar.notifications', defaultMessage: 'Notifications' },
-  public_timeline: { id: 'navigation_bar.public_timeline', defaultMessage: 'Federated timeline' },
-  settings_subheading: { id: 'column_subheading.settings', defaultMessage: 'Settings' },
-  community_timeline: { id: 'navigation_bar.community_timeline', defaultMessage: 'Local timeline' },
-  explore: { id: 'navigation_bar.explore', defaultMessage: 'Explore' },
-  direct: { id: 'navigation_bar.direct', defaultMessage: 'Private mentions' },
-  bookmarks: { id: 'navigation_bar.bookmarks', defaultMessage: 'Bookmarks' },
-  preferences: { id: 'navigation_bar.preferences', defaultMessage: 'Preferences' },
-  follow_requests: { id: 'navigation_bar.follow_requests', defaultMessage: 'Follow requests' },
-  favourites: { id: 'navigation_bar.favourites', defaultMessage: 'Favorites' },
-  blocks: { id: 'navigation_bar.blocks', defaultMessage: 'Blocked users' },
-  domain_blocks: { id: 'navigation_bar.domain_blocks', defaultMessage: 'Blocked domains' },
-  mutes: { id: 'navigation_bar.mutes', defaultMessage: 'Muted users' },
-  pins: { id: 'navigation_bar.pins', defaultMessage: 'Pinned posts' },
-  lists: { id: 'navigation_bar.lists', defaultMessage: 'Lists' },
-  discover: { id: 'navigation_bar.discover', defaultMessage: 'Discover' },
-  personal: { id: 'navigation_bar.personal', defaultMessage: 'Personal' },
-  security: { id: 'navigation_bar.security', defaultMessage: 'Security' },
-  menu: { id: 'getting_started.heading', defaultMessage: 'Getting started' },
+  home_timeline: { id: "tabs_bar.home", defaultMessage: "Home" },
+  notifications: { id: "tabs_bar.notifications", defaultMessage: "Notifications" },
+  public_timeline: { id: "navigation_bar.public_timeline", defaultMessage: "Federated timeline" },
+  settings_subheading: { id: "column_subheading.settings", defaultMessage: "Settings" },
+  community_timeline: { id: "navigation_bar.community_timeline", defaultMessage: "Local timeline" },
+  explore: { id: "navigation_bar.explore", defaultMessage: "Explore" },
+  direct: { id: "navigation_bar.direct", defaultMessage: "Private mentions" },
+  bookmarks: { id: "navigation_bar.bookmarks", defaultMessage: "Bookmarks" },
+  preferences: { id: "navigation_bar.preferences", defaultMessage: "Preferences" },
+  follow_requests: { id: "navigation_bar.follow_requests", defaultMessage: "Follow requests" },
+  favourites: { id: "navigation_bar.favourites", defaultMessage: "Favorites" },
+  blocks: { id: "navigation_bar.blocks", defaultMessage: "Blocked users" },
+  domain_blocks: { id: "navigation_bar.domain_blocks", defaultMessage: "Blocked domains" },
+  mutes: { id: "navigation_bar.mutes", defaultMessage: "Muted users" },
+  pins: { id: "navigation_bar.pins", defaultMessage: "Pinned posts" },
+  lists: { id: "navigation_bar.lists", defaultMessage: "Lists" },
+  discover: { id: "navigation_bar.discover", defaultMessage: "Discover" },
+  personal: { id: "navigation_bar.personal", defaultMessage: "Personal" },
+  security: { id: "navigation_bar.security", defaultMessage: "Security" },
+  menu: { id: "getting_started.heading", defaultMessage: "Getting started" },
 });
 
 const mapStateToProps = state => ({
-  myAccount: state.getIn(['accounts', me]),
-  unreadFollowRequests: state.getIn(['user_lists', 'follow_requests', 'items'], ImmutableList()).size,
+  myAccount: state.getIn(["accounts", me]),
+  unreadFollowRequests: state.getIn(["user_lists", "follow_requests", "items"], ImmutableList()).size,
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -121,7 +121,7 @@ class GettingStarted extends ImmutablePureComponent {
         <ColumnLink key='lists' icon='list-ul' text={intl.formatMessage(messages.lists)} to='/lists' />,
       );
 
-      if (myAccount.get('locked') || unreadFollowRequests > 0) {
+      if (myAccount.get("locked") || unreadFollowRequests > 0) {
         navItems.push(<ColumnLink key='follow_requests' icon='user-plus' text={intl.formatMessage(messages.follow_requests)} badge={badgeDisplay(unreadFollowRequests, 40)} to='/follow_requests' />);
       }
 

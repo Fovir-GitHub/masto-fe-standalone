@@ -1,8 +1,8 @@
-import PropTypes from 'prop-types';
-import { PureComponent } from 'react';
+import PropTypes from "prop-types";
+import { PureComponent } from "react";
 
-import unicodeMapping from 'flavours/glitch/features/emoji/emoji_unicode_mapping_light';
-import { assetHost } from 'flavours/glitch/utils/config';
+import unicodeMapping from "flavours/glitch/features/emoji/emoji_unicode_mapping_light";
+import { assetHost } from "flavours/glitch/utils/config";
 
 export default class AutosuggestEmoji extends PureComponent {
 
@@ -17,7 +17,7 @@ export default class AutosuggestEmoji extends PureComponent {
     if (emoji.custom) {
       url = emoji.imageUrl;
     } else {
-      const mapping = unicodeMapping[emoji.native] || unicodeMapping[emoji.native.replace(/\uFE0F$/, '')];
+      const mapping = unicodeMapping[emoji.native] || unicodeMapping[emoji.native.replace(/\uFE0F$/, "")];
 
       if (!mapping) {
         return null;

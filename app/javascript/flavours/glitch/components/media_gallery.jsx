@@ -1,40 +1,40 @@
-import PropTypes from 'prop-types';
-import { PureComponent } from 'react';
+import PropTypes from "prop-types";
+import { PureComponent } from "react";
 
-import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
+import { defineMessages, injectIntl, FormattedMessage } from "react-intl";
 
-import classNames from 'classnames';
+import classNames from "classnames";
 
-import { is } from 'immutable';
-import ImmutablePropTypes from 'react-immutable-proptypes';
+import { is } from "immutable";
+import ImmutablePropTypes from "react-immutable-proptypes";
 
-import { debounce } from 'lodash';
+import { debounce } from "lodash";
 
-import { Blurhash } from 'flavours/glitch/components/blurhash';
-import { autoPlayGif, displayMedia } from 'flavours/glitch/initial_state';
+import { Blurhash } from "flavours/glitch/components/blurhash";
+import { autoPlayGif, displayMedia } from "flavours/glitch/initial_state";
 
-import { IconButton } from './icon_button';
+import { IconButton } from "./icon_button";
 
 const messages = defineMessages({
   hidden: {
-    defaultMessage: 'Media hidden',
-    id: 'status.media_hidden',
+    defaultMessage: "Media hidden",
+    id: "status.media_hidden",
   },
   sensitive: {
-    defaultMessage: 'Sensitive',
-    id: 'media_gallery.sensitive',
+    defaultMessage: "Sensitive",
+    id: "media_gallery.sensitive",
   },
   toggle: {
-    defaultMessage: 'Click to view',
-    id: 'status.sensitive_toggle',
+    defaultMessage: "Click to view",
+    id: "status.sensitive_toggle",
   },
   toggle_visible: {
-    defaultMessage: '{number, plural, one {Hide image} other {Hide images}}',
-    id: 'media_gallery.toggle_visible',
+    defaultMessage: "{number, plural, one {Hide image} other {Hide images}}",
+    id: "media_gallery.toggle_visible",
   },
   warning: {
-    defaultMessage: 'Sensitive content',
-    id: 'status.sensitive_warning',
+    defaultMessage: "Sensitive content",
+    id: "status.sensitive_warning",
   },
 });
 
@@ -84,7 +84,7 @@ class Item extends PureComponent {
 
   hoverToPlay () {
     const { attachment } = this.props;
-    return !this.getAutoPlay() && attachment.get('type') === 'gifv';
+    return !this.getAutoPlay() && attachment.get("type") === "gifv";
   }
 
   handleClick = (e) => {
@@ -117,7 +117,7 @@ class Item extends PureComponent {
       displayWidth,
       visible,
       useBlurhash,
-      contentStyles
+      contentStyles,
     } = this.props;
 
     let badges = [], thumbnail;
@@ -133,51 +133,51 @@ class Item extends PureComponent {
       height = 50;
     }
 
-    if (attachment.get('description')?.length > 0) {
+    if (attachment.get("description")?.length > 0) {
       badges.push(<span key='alt' className='media-gallery__gifv__label'>ALT</span>);
     }
 
-    const description = attachment.getIn(['translation', 'description']) || attachment.get('description');
+    const description = attachment.getIn(["translation", "description"]) || attachment.get("description");
 
-    if (attachment.get('type') === 'unknown') {
+    if (attachment.get("type") === "unknown") {
       return (
-        <div className={classNames('media-gallery__item', { standalone, 'media-gallery__item--tall': height === 100, 'media-gallery__item--wide': width === 100 })} key={attachment.get('id')}>
-          <a className='media-gallery__item-thumbnail' href={attachment.get('remote_url') || attachment.get('url')} style={{ cursor: 'pointer' }} title={description} lang={lang} target='_blank' rel='noopener noreferrer'>
+        <div className={classNames("media-gallery__item", { standalone, "media-gallery__item--tall": height === 100, "media-gallery__item--wide": width === 100 })} key={attachment.get("id")}>
+          <a className='media-gallery__item-thumbnail' href={attachment.get("remote_url") || attachment.get("url")} style={{ cursor: "pointer" }} title={description} lang={lang} target='_blank' rel='noopener noreferrer'>
             <Blurhash
-              hash={attachment.get('blurhash')}
+              hash={attachment.get("blurhash")}
               className='media-gallery__preview'
               dummy={!useBlurhash}
             />
           </a>
         </div>
       );
-    } else if (attachment.get('type') === 'image') {
-      const previewUrl   = attachment.get('preview_url');
-      const previewWidth = attachment.getIn(['meta', 'small', 'width']);
+    } else if (attachment.get("type") === "image") {
+      const previewUrl   = attachment.get("preview_url");
+      const previewWidth = attachment.getIn(["meta", "small", "width"]);
 
-      const originalUrl   = attachment.get('url');
-      const originalWidth = attachment.getIn(['meta', 'original', 'width']);
+      const originalUrl   = attachment.get("url");
+      const originalWidth = attachment.getIn(["meta", "original", "width"]);
 
-      const hasSize = typeof originalWidth === 'number' && typeof previewWidth === 'number';
+      const hasSize = typeof originalWidth === "number" && typeof previewWidth === "number";
 
       const srcSet = hasSize ? `${originalUrl} ${originalWidth}w, ${previewUrl} ${previewWidth}w` : null;
       const sizes  = hasSize && (displayWidth > 0) ? `${displayWidth * (width / 100)}px` : null;
 
-      const focusX = attachment.getIn(['meta', 'focus', 'x']) || 0;
-      const focusY = attachment.getIn(['meta', 'focus', 'y']) || 0;
+      const focusX = attachment.getIn(["meta", "focus", "x"]) || 0;
+      const focusY = attachment.getIn(["meta", "focus", "y"]) || 0;
       const x      = ((focusX /  2) + .5) * 100;
       const y      = ((focusY / -2) + .5) * 100;
 
       thumbnail = (
         <a
           className='media-gallery__item-thumbnail'
-          href={attachment.get('remote_url') || originalUrl}
+          href={attachment.get("remote_url") || originalUrl}
           onClick={this.handleClick}
           target='_blank'
           rel='noopener noreferrer'
         >
           <img
-            className={letterbox ? 'letterbox' : null}
+            className={letterbox ? "letterbox" : null}
             src={previewUrl}
             srcSet={srcSet}
             sizes={sizes}
@@ -189,20 +189,20 @@ class Item extends PureComponent {
           />
         </a>
       );
-    } else if (attachment.get('type') === 'gifv') {
+    } else if (attachment.get("type") === "gifv") {
       const autoPlay = this.getAutoPlay();
 
       badges.push(<span key='gif' className='media-gallery__gifv__label'>GIF</span>);
 
       thumbnail = (
-        <div className={classNames('media-gallery__gifv', { autoplay: autoPlay })}>
+        <div className={classNames("media-gallery__gifv", { autoplay: autoPlay })}>
           <video
-            className={`media-gallery__item-gifv-thumbnail${letterbox ? ' letterbox' : ''}`}
+            className={`media-gallery__item-gifv-thumbnail${letterbox ? " letterbox" : ""}`}
             aria-label={description}
             title={description}
             lang={lang}
             role='application'
-            src={attachment.get('url')}
+            src={attachment.get("url")}
             onClick={this.handleClick}
             onMouseEnter={this.handleMouseEnter}
             onMouseLeave={this.handleMouseLeave}
@@ -216,12 +216,12 @@ class Item extends PureComponent {
     }
 
     return (
-      <div className={classNames('media-gallery__item', { standalone, letterbox, 'media-gallery__item--tall': height === 100, 'media-gallery__item--wide': width === 100 })} key={attachment.get('id')} style={contentStyles}>
+      <div className={classNames("media-gallery__item", { standalone, letterbox, "media-gallery__item--tall": height === 100, "media-gallery__item--wide": width === 100 })} key={attachment.get("id")} style={contentStyles}>
         <Blurhash
-          hash={attachment.get('blurhash')}
+          hash={attachment.get("blurhash")}
           dummy={!useBlurhash}
-          className={classNames('media-gallery__preview', {
-            'media-gallery__preview--hidden': visible && this.state.loaded,
+          className={classNames("media-gallery__preview", {
+            "media-gallery__preview--hidden": visible && this.state.loaded,
           })}
         />
 
@@ -264,21 +264,21 @@ class MediaGallery extends PureComponent {
   };
 
   state = {
-    visible: this.props.visible !== undefined ? this.props.visible : (displayMedia !== 'hide_all' && !this.props.sensitive || displayMedia === 'show_all'),
+    visible: this.props.visible !== undefined ? this.props.visible : (displayMedia !== "hide_all" && !this.props.sensitive || displayMedia === "show_all"),
     width: this.props.defaultWidth,
   };
 
   componentDidMount () {
-    window.addEventListener('resize', this.handleResize, { passive: true });
+    window.addEventListener("resize", this.handleResize, { passive: true });
   }
 
   componentWillUnmount () {
-    window.removeEventListener('resize', this.handleResize);
+    window.removeEventListener("resize", this.handleResize);
   }
 
   UNSAFE_componentWillReceiveProps (nextProps) {
     if (!is(nextProps.media, this.props.media) && nextProps.visible === undefined) {
-      this.setState({ visible: displayMedia !== 'hide_all' && !nextProps.sensitive || displayMedia === 'show_all' });
+      this.setState({ visible: displayMedia !== "hide_all" && !nextProps.sensitive || displayMedia === "show_all" });
     } else if (!is(nextProps.visible, this.props.visible) && nextProps.visible !== undefined) {
       this.setState({ visible: nextProps.visible });
     }
@@ -336,14 +336,14 @@ class MediaGallery extends PureComponent {
 
   isStandaloneEligible() {
     const { media, standalone } = this.props;
-    return standalone && media.size === 1 && media.getIn([0, 'meta', 'small', 'aspect']);
+    return standalone && media.size === 1 && media.getIn([0, "meta", "small", "aspect"]);
   }
 
   render () {
     const { media, lang, intl, sensitive, letterbox, fullwidth, defaultWidth, autoplay, useBlurhash } = this.props;
     const { visible } = this.state;
     const size     = media.take(4).size;
-    const uncached = media.every(attachment => attachment.get('type') === 'unknown');
+    const uncached = media.every(attachment => attachment.get("type") === "unknown");
 
     const width = this.state.width || defaultWidth;
 
@@ -351,10 +351,10 @@ class MediaGallery extends PureComponent {
 
     const style = {};
 
-    const computedClass = classNames('media-gallery', { 'full-width': fullwidth });
+    const computedClass = classNames("media-gallery", { "full-width": fullwidth });
 
     if (this.isStandaloneEligible()) { // TODO: cropImages setting
-      style.aspectRatio = `${this.props.media.getIn([0, 'meta', 'small', 'aspect'])}`;
+      style.aspectRatio = `${this.props.media.getIn([0, "meta", "small", "aspect"])}`;
     }
 
     if (this.isStandaloneEligible()) {
@@ -373,7 +373,7 @@ class MediaGallery extends PureComponent {
     } else {
       children = media.map((attachment, i) => (
         <Item
-          key={attachment.get('id')}
+          key={attachment.get("id")}
           autoplay={autoplay}
           onClick={this.handleClick}
           attachment={attachment}
@@ -384,7 +384,7 @@ class MediaGallery extends PureComponent {
           displayWidth={width}
           visible={visible || uncached}
           useBlurhash={useBlurhash}
-          contentStyles={{ aspectRatio: '16 / 9' }}
+          contentStyles={{ aspectRatio: "16 / 9" }}
         />
       ));
     }
@@ -413,7 +413,7 @@ class MediaGallery extends PureComponent {
 
     return (
       <div className={computedClass} style={style} ref={this.handleRef}>
-        <div className={classNames('spoiler-button', { 'spoiler-button--minified': visible && !uncached, 'spoiler-button--click-thru': uncached })}>
+        <div className={classNames("spoiler-button", { "spoiler-button--minified": visible && !uncached, "spoiler-button--click-thru": uncached })}>
           {spoilerButton}
           {visible && sensitive && (
             <span className='sensitive-marker'>

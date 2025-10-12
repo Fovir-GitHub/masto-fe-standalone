@@ -1,9 +1,9 @@
-import PropTypes from 'prop-types';
-import { PureComponent } from 'react';
+import PropTypes from "prop-types";
+import { PureComponent } from "react";
 
-import { injectIntl, FormattedMessage } from 'react-intl';
+import { injectIntl, FormattedMessage } from "react-intl";
 
-import Button from 'flavours/glitch/components/button';
+import Button from "flavours/glitch/components/button";
 
 class ConfirmationModal extends PureComponent {
 
@@ -67,7 +67,7 @@ class ConfirmationModal extends PureComponent {
           { onDoNotAsk && (
             <div className='confirmation-modal__do_not_ask_again'>
               <input type='checkbox' id='confirmation-modal__do_not_ask_again-checkbox' ref={this.setDoNotAskRef} />
-              <label for='confirmation-modal__do_not_ask_again-checkbox'>
+              <label htmlFor='confirmation-modal__do_not_ask_again-checkbox'>
                 <FormattedMessage id='confirmation_modal.do_not_ask_again' defaultMessage='Do not ask for confirmation again' />
               </label>
             </div>

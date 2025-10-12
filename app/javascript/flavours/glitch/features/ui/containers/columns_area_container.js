@@ -1,19 +1,19 @@
-import { defineMessages, injectIntl } from 'react-intl';
+import { defineMessages, injectIntl } from "react-intl";
 
-import { connect } from 'react-redux';
+import { connect } from "react-redux";
 
-import { openModal } from 'flavours/glitch/actions/modal';
-import { logOut } from 'flavours/glitch/utils/log_out';
+import { openModal } from "flavours/glitch/actions/modal";
+import { logOut } from "flavours/glitch/utils/log_out";
 
-import ColumnsArea from '../components/columns_area';
+import ColumnsArea from "../components/columns_area";
 
 const messages = defineMessages({
-  logoutMessage: { id: 'confirmations.logout.message', defaultMessage: 'Are you sure you want to log out?' },
-  logoutConfirm: { id: 'confirmations.logout.confirm', defaultMessage: 'Log out' },
+  logoutMessage: { id: "confirmations.logout.message", defaultMessage: "Are you sure you want to log out?" },
+  logoutConfirm: { id: "confirmations.logout.confirm", defaultMessage: "Log out" },
 });
 
 const mapStateToProps = state => ({
-  columns: state.getIn(['settings', 'columns']),
+  columns: state.getIn(["settings", "columns"]),
 });
 
 const mapDispatchToProps = (dispatch, { intl }) => ({
@@ -21,13 +21,13 @@ const mapDispatchToProps = (dispatch, { intl }) => ({
     e.preventDefault();
     e.stopPropagation();
     dispatch(openModal({
-      modalType: 'SETTINGS',
+      modalType: "SETTINGS",
       modalProps: {},
     }));
   },
   onLogout () {
     dispatch(openModal({
-      modalType: 'CONFIRM',
+      modalType: "CONFIRM",
       modalProps: {
         message: intl.formatMessage(messages.logoutMessage),
         confirm: intl.formatMessage(messages.logoutConfirm),

@@ -1,7 +1,7 @@
-import PropTypes from 'prop-types';
-import { PureComponent } from 'react';
+import PropTypes from "prop-types";
+import { PureComponent } from "react";
 
-import classNames from 'classnames';
+import classNames from "classnames";
 
 export default class Button extends PureComponent {
 
@@ -18,7 +18,7 @@ export default class Button extends PureComponent {
   };
 
   static defaultProps = {
-    type: 'button',
+    type: "button",
   };
 
   handleClick = (e) => {
@@ -36,9 +36,9 @@ export default class Button extends PureComponent {
   }
 
   render () {
-    const className = classNames('button', this.props.className, {
-      'button-secondary': this.props.secondary,
-      'button--block': this.props.block,
+    const className = classNames("button", this.props.className, {
+      "button-secondary": this.props.secondary,
+      "button--block": this.props.block,
     });
 
     return (

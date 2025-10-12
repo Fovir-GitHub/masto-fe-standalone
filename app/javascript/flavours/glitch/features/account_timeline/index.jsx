@@ -1,27 +1,27 @@
-import PropTypes from 'prop-types';
+import PropTypes from "prop-types";
 
-import { FormattedMessage } from 'react-intl';
+import { FormattedMessage } from "react-intl";
 
-import { List as ImmutableList } from 'immutable';
-import ImmutablePropTypes from 'react-immutable-proptypes';
-import ImmutablePureComponent from 'react-immutable-pure-component';
-import { connect } from 'react-redux';
+import { List as ImmutableList } from "immutable";
+import ImmutablePropTypes from "react-immutable-proptypes";
+import ImmutablePureComponent from "react-immutable-pure-component";
+import { connect } from "react-redux";
 
-import { lookupAccount, fetchAccount } from 'flavours/glitch/actions/accounts';
-import { TimelineHint } from 'flavours/glitch/components/timeline_hint';
-import ProfileColumnHeader from 'flavours/glitch/features/account/components/profile_column_header';
-import BundleColumnError from 'flavours/glitch/features/ui/components/bundle_column_error';
-import { normalizeForLookup } from 'flavours/glitch/reducers/accounts_map';
-import { getAccountHidden } from 'flavours/glitch/selectors';
+import { lookupAccount, fetchAccount } from "flavours/glitch/actions/accounts";
+import { TimelineHint } from "flavours/glitch/components/timeline_hint";
+import ProfileColumnHeader from "flavours/glitch/features/account/components/profile_column_header";
+import BundleColumnError from "flavours/glitch/features/ui/components/bundle_column_error";
+import { normalizeForLookup } from "flavours/glitch/reducers/accounts_map";
+import { getAccountHidden } from "flavours/glitch/selectors";
 
-import { fetchFeaturedTags } from '../../actions/featured_tags';
-import { expandAccountFeaturedTimeline, expandAccountTimeline } from '../../actions/timelines';
-import { LoadingIndicator } from '../../components/loading_indicator';
-import StatusList from '../../components/status_list';
-import Column from '../ui/components/column';
+import { fetchFeaturedTags } from "../../actions/featured_tags";
+import { expandAccountFeaturedTimeline, expandAccountTimeline } from "../../actions/timelines";
+import { LoadingIndicator } from "../../components/loading_indicator";
+import StatusList from "../../components/status_list";
+import Column from "../ui/components/column";
 
-import LimitedAccountHint from './components/limited_account_hint';
-import HeaderContainer from './containers/header_container';
+import LimitedAccountHint from "./components/limited_account_hint";
+import HeaderContainer from "./containers/header_container";
 
 
 
@@ -33,7 +33,7 @@ import HeaderContainer from './containers/header_container';
 const emptyList = ImmutableList();
 
 const mapStateToProps = (state, { params: { acct, id, tagged }, withReplies = false }) => {
-  const accountId = id || state.getIn(['accounts_map', normalizeForLookup(acct)]);
+  const accountId = id || state.getIn(["accounts_map", normalizeForLookup(acct)]);
 
   if (accountId === null) {
     return {
@@ -48,18 +48,18 @@ const mapStateToProps = (state, { params: { acct, id, tagged }, withReplies = fa
     };
   }
 
-  const path = withReplies ? `${accountId}:with_replies` : `${accountId}${tagged ? `:${tagged}` : ''}`;
+  const path = withReplies ? `${accountId}:with_replies` : `${accountId}${tagged ? `:${tagged}` : ""}`;
 
   return {
     accountId,
-    remote: !!(state.getIn(['accounts', accountId, 'acct']) !== state.getIn(['accounts', accountId, 'username'])),
-    remoteUrl: state.getIn(['accounts', accountId, 'url']),
-    isAccount: !!state.getIn(['accounts', accountId]),
-    statusIds: state.getIn(['timelines', `account:${path}`, 'items'], ImmutableList()),
-    featuredStatusIds: withReplies ? ImmutableList() : state.getIn(['timelines', `account:${accountId}:pinned${tagged ? `:${tagged}` : ''}`, 'items'], ImmutableList()),
-    isLoading: state.getIn(['timelines', `account:${path}`, 'isLoading']),
-    hasMore:   state.getIn(['timelines', `account:${path}`, 'hasMore']),
-    suspended: state.getIn(['accounts', accountId, 'suspended'], false),
+    remote: !!(state.getIn(["accounts", accountId, "acct"]) !== state.getIn(["accounts", accountId, "username"])),
+    remoteUrl: state.getIn(["accounts", accountId, "url"]),
+    isAccount: !!state.getIn(["accounts", accountId]),
+    statusIds: state.getIn(["timelines", `account:${path}`, "items"], ImmutableList()),
+    featuredStatusIds: withReplies ? ImmutableList() : state.getIn(["timelines", `account:${accountId}:pinned${tagged ? `:${tagged}` : ""}`, "items"], ImmutableList()),
+    isLoading: state.getIn(["timelines", `account:${path}`, "isLoading"]),
+    hasMore:   state.getIn(["timelines", `account:${path}`, "hasMore"]),
+    suspended: state.getIn(["accounts", accountId, "suspended"], false),
     hidden: getAccountHidden(state, accountId),
   };
 };

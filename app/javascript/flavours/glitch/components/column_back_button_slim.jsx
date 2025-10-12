@@ -1,9 +1,9 @@
-import PropTypes from 'prop-types';
-import { PureComponent } from 'react';
+import PropTypes from "prop-types";
+import { PureComponent } from "react";
 
-import { FormattedMessage } from 'react-intl';
+import { FormattedMessage } from "react-intl";
 
-import { Icon } from 'flavours/glitch/components/icon';
+import { Icon } from "flavours/glitch/components/icon";
 
 export default class ColumnBackButtonSlim extends PureComponent {
 
@@ -19,7 +19,7 @@ export default class ColumnBackButtonSlim extends PureComponent {
     if (router.route.location.key) {
       router.history.goBack();
     } else {
-      router.history.push('/');
+      router.history.push("/");
     }
   };
 

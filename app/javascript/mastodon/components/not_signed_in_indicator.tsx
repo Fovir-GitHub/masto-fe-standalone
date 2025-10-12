@@ -1,4 +1,4 @@
-import { FormattedMessage } from 'react-intl';
+import { FormattedMessage } from "react-intl";
 
 export const NotSignedInIndicator: React.FC = () => (
   <div className='scrollable scrollable--flex'>

@@ -1,14 +1,14 @@
-import PropTypes from 'prop-types';
-import { PureComponent } from 'react';
+import PropTypes from "prop-types";
+import { PureComponent } from "react";
 
-import { defineMessages } from 'react-intl';
+import { defineMessages } from "react-intl";
 
-import classNames from 'classnames';
+import classNames from "classnames";
 
-import { Icon } from 'flavours/glitch/components/icon';
+import { Icon } from "flavours/glitch/components/icon";
 
 const messages = defineMessages({
-  search: { id: 'lists.search', defaultMessage: 'Search among people you follow' },
+  search: { id: "lists.search", defaultMessage: "Search among people you follow" },
 });
 
 export default class Search extends PureComponent {
@@ -42,7 +42,7 @@ export default class Search extends PureComponent {
     return (
       <div className='list-editor__search search'>
         <label>
-          <span style={{ display: 'none' }}>{intl.formatMessage(messages.search)}</span>
+          <span style={{ display: "none" }}>{intl.formatMessage(messages.search)}</span>
 
           <input
             className='search__input'

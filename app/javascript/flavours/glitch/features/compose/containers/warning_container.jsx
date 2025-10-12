@@ -1,20 +1,20 @@
-import PropTypes from 'prop-types';
+import PropTypes from "prop-types";
 
-import { FormattedMessage } from 'react-intl';
+import { FormattedMessage } from "react-intl";
 
-import { connect } from 'react-redux';
+import { connect } from "react-redux";
 
-import { me } from 'flavours/glitch/initial_state';
-import { privacyPolicyLink } from 'flavours/glitch/utils/backend_links';
-import { HASHTAG_PATTERN_REGEX } from 'flavours/glitch/utils/hashtags';
+import { me } from "flavours/glitch/initial_state";
+import { privacyPolicyLink } from "flavours/glitch/utils/backend_links";
+import { HASHTAG_PATTERN_REGEX } from "flavours/glitch/utils/hashtags";
 
-import Warning from '../components/warning';
+import Warning from "../components/warning";
 
 
 const mapStateToProps = state => ({
-  needsLockWarning: state.getIn(['compose', 'privacy']) === 'private' && !state.getIn(['accounts', me, 'locked']),
-  hashtagWarning: state.getIn(['compose', 'privacy']) !== 'public' && HASHTAG_PATTERN_REGEX.test(state.getIn(['compose', 'text'])),
-  directMessageWarning: state.getIn(['compose', 'privacy']) === 'direct',
+  needsLockWarning: state.getIn(["compose", "privacy"]) === "private" && !state.getIn(["accounts", me, "locked"]),
+  hashtagWarning: state.getIn(["compose", "privacy"]) !== "public" && HASHTAG_PATTERN_REGEX.test(state.getIn(["compose", "text"])),
+  directMessageWarning: state.getIn(["compose", "privacy"]) === "direct",
 });
 
 const WarningWrapper = ({ needsLockWarning, hashtagWarning, directMessageWarning }) => {
@@ -29,7 +29,7 @@ const WarningWrapper = ({ needsLockWarning, hashtagWarning, directMessageWarning
   if (directMessageWarning) {
     const message = (
       <span>
-        <FormattedMessage id='compose_form.encryption_warning' defaultMessage='Posts on Mastodon are not end-to-end encrypted. Do not share any dangerous information over Mastodon.' /> {!!privacyPolicyLink && <a href={privacyPolicyLink} target='_blank'><FormattedMessage id='compose_form.direct_message_warning_learn_more' defaultMessage='Learn more' /></a>}
+        <FormattedMessage id='compose_form.encryption_warning' defaultMessage='Posts on Mastodon are not end-to-end encrypted. Do not share any dangerous information over Mastodon.' /> {!!privacyPolicyLink && <a href={privacyPolicyLink} target='_blank' rel="noreferrer"><FormattedMessage id='compose_form.direct_message_warning_learn_more' defaultMessage='Learn more' /></a>}
       </span>
     );
 

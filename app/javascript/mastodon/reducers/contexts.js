@@ -1,12 +1,12 @@
-import { Map as ImmutableMap, List as ImmutableList } from 'immutable';
+import { Map as ImmutableMap, List as ImmutableList } from "immutable";
 
 import {
   ACCOUNT_BLOCK_SUCCESS,
   ACCOUNT_MUTE_SUCCESS,
-} from '../actions/accounts';
-import { CONTEXT_FETCH_SUCCESS } from '../actions/statuses';
-import { TIMELINE_DELETE, TIMELINE_UPDATE } from '../actions/timelines';
-import { compareId } from '../compare_id';
+} from "../actions/accounts";
+import { CONTEXT_FETCH_SUCCESS } from "../actions/statuses";
+import { TIMELINE_DELETE, TIMELINE_UPDATE } from "../actions/timelines";
+import { compareId } from "../compare_id";
 
 const initialState = ImmutableMap({
   inReplyTos: ImmutableMap(),
@@ -14,8 +14,8 @@ const initialState = ImmutableMap({
 });
 
 const normalizeContext = (immutableState, id, ancestors, descendants) => immutableState.withMutations(state => {
-  state.update('inReplyTos', immutableAncestors => immutableAncestors.withMutations(inReplyTos => {
-    state.update('replies', immutableDescendants => immutableDescendants.withMutations(replies => {
+  state.update("inReplyTos", immutableAncestors => immutableAncestors.withMutations(inReplyTos => {
+    state.update("replies", immutableDescendants => immutableDescendants.withMutations(replies => {
       function addReply({ id, in_reply_to_id }) {
         if (in_reply_to_id && !inReplyTos.has(id)) {
 
@@ -43,8 +43,8 @@ const normalizeContext = (immutableState, id, ancestors, descendants) => immutab
 });
 
 const deleteFromContexts = (immutableState, ids) => immutableState.withMutations(state => {
-  state.update('inReplyTos', immutableAncestors => immutableAncestors.withMutations(inReplyTos => {
-    state.update('replies', immutableDescendants => immutableDescendants.withMutations(replies => {
+  state.update("inReplyTos", immutableAncestors => immutableAncestors.withMutations(inReplyTos => {
+    state.update("replies", immutableDescendants => immutableDescendants.withMutations(replies => {
       ids.forEach(id => {
         const inReplyToIdOfId = inReplyTos.get(id);
         const repliesOfId = replies.get(id);
@@ -68,8 +68,8 @@ const deleteFromContexts = (immutableState, ids) => immutableState.withMutations
 
 const filterContexts = (state, relationship, statuses) => {
   const ownedStatusIds = statuses
-    .filter(status => status.get('account') === relationship.id)
-    .map(status => status.get('id'));
+    .filter(status => status.get("account") === relationship.id)
+    .map(status => status.get("id"));
 
   return deleteFromContexts(state, ownedStatusIds);
 };
@@ -77,12 +77,12 @@ const filterContexts = (state, relationship, statuses) => {
 const updateContext = (state, status) => {
   if (status.in_reply_to_id) {
     return state.withMutations(mutable => {
-      const replies = mutable.getIn(['replies', status.in_reply_to_id], ImmutableList());
+      const replies = mutable.getIn(["replies", status.in_reply_to_id], ImmutableList());
 
-      mutable.setIn(['inReplyTos', status.id], status.in_reply_to_id);
+      mutable.setIn(["inReplyTos", status.id], status.in_reply_to_id);
 
       if (!replies.includes(status.id)) {
-        mutable.setIn(['replies', status.in_reply_to_id], replies.push(status.id));
+        mutable.setIn(["replies", status.in_reply_to_id], replies.push(status.id));
       }
     });
   }
@@ -92,16 +92,16 @@ const updateContext = (state, status) => {
 
 export default function replies(state = initialState, action) {
   switch(action.type) {
-  case ACCOUNT_BLOCK_SUCCESS:
-  case ACCOUNT_MUTE_SUCCESS:
-    return filterContexts(state, action.relationship, action.statuses);
-  case CONTEXT_FETCH_SUCCESS:
-    return normalizeContext(state, action.id, action.ancestors, action.descendants);
-  case TIMELINE_DELETE:
-    return deleteFromContexts(state, [action.id]);
-  case TIMELINE_UPDATE:
-    return updateContext(state, action.status);
-  default:
-    return state;
+    case ACCOUNT_BLOCK_SUCCESS:
+    case ACCOUNT_MUTE_SUCCESS:
+      return filterContexts(state, action.relationship, action.statuses);
+    case CONTEXT_FETCH_SUCCESS:
+      return normalizeContext(state, action.id, action.ancestors, action.descendants);
+    case TIMELINE_DELETE:
+      return deleteFromContexts(state, [action.id]);
+    case TIMELINE_UPDATE:
+      return updateContext(state, action.status);
+    default:
+      return state;
   }
 }

@@ -1,84 +1,84 @@
-import api, { getLinks } from '../api';
+import api, { getLinks } from "../api";
 
-import { importFetchedAccount, importFetchedAccounts } from './importer';
+import { importFetchedAccount, importFetchedAccounts } from "./importer";
 
-export const ACCOUNT_FETCH_REQUEST = 'ACCOUNT_FETCH_REQUEST';
-export const ACCOUNT_FETCH_SUCCESS = 'ACCOUNT_FETCH_SUCCESS';
-export const ACCOUNT_FETCH_FAIL    = 'ACCOUNT_FETCH_FAIL';
+export const ACCOUNT_FETCH_REQUEST = "ACCOUNT_FETCH_REQUEST";
+export const ACCOUNT_FETCH_SUCCESS = "ACCOUNT_FETCH_SUCCESS";
+export const ACCOUNT_FETCH_FAIL    = "ACCOUNT_FETCH_FAIL";
 
-export const ACCOUNT_LOOKUP_REQUEST = 'ACCOUNT_LOOKUP_REQUEST';
-export const ACCOUNT_LOOKUP_SUCCESS = 'ACCOUNT_LOOKUP_SUCCESS';
-export const ACCOUNT_LOOKUP_FAIL    = 'ACCOUNT_LOOKUP_FAIL';
+export const ACCOUNT_LOOKUP_REQUEST = "ACCOUNT_LOOKUP_REQUEST";
+export const ACCOUNT_LOOKUP_SUCCESS = "ACCOUNT_LOOKUP_SUCCESS";
+export const ACCOUNT_LOOKUP_FAIL    = "ACCOUNT_LOOKUP_FAIL";
 
-export const ACCOUNT_FOLLOW_REQUEST = 'ACCOUNT_FOLLOW_REQUEST';
-export const ACCOUNT_FOLLOW_SUCCESS = 'ACCOUNT_FOLLOW_SUCCESS';
-export const ACCOUNT_FOLLOW_FAIL    = 'ACCOUNT_FOLLOW_FAIL';
+export const ACCOUNT_FOLLOW_REQUEST = "ACCOUNT_FOLLOW_REQUEST";
+export const ACCOUNT_FOLLOW_SUCCESS = "ACCOUNT_FOLLOW_SUCCESS";
+export const ACCOUNT_FOLLOW_FAIL    = "ACCOUNT_FOLLOW_FAIL";
 
-export const ACCOUNT_UNFOLLOW_REQUEST = 'ACCOUNT_UNFOLLOW_REQUEST';
-export const ACCOUNT_UNFOLLOW_SUCCESS = 'ACCOUNT_UNFOLLOW_SUCCESS';
-export const ACCOUNT_UNFOLLOW_FAIL    = 'ACCOUNT_UNFOLLOW_FAIL';
+export const ACCOUNT_UNFOLLOW_REQUEST = "ACCOUNT_UNFOLLOW_REQUEST";
+export const ACCOUNT_UNFOLLOW_SUCCESS = "ACCOUNT_UNFOLLOW_SUCCESS";
+export const ACCOUNT_UNFOLLOW_FAIL    = "ACCOUNT_UNFOLLOW_FAIL";
 
-export const ACCOUNT_BLOCK_REQUEST = 'ACCOUNT_BLOCK_REQUEST';
-export const ACCOUNT_BLOCK_SUCCESS = 'ACCOUNT_BLOCK_SUCCESS';
-export const ACCOUNT_BLOCK_FAIL    = 'ACCOUNT_BLOCK_FAIL';
+export const ACCOUNT_BLOCK_REQUEST = "ACCOUNT_BLOCK_REQUEST";
+export const ACCOUNT_BLOCK_SUCCESS = "ACCOUNT_BLOCK_SUCCESS";
+export const ACCOUNT_BLOCK_FAIL    = "ACCOUNT_BLOCK_FAIL";
 
-export const ACCOUNT_UNBLOCK_REQUEST = 'ACCOUNT_UNBLOCK_REQUEST';
-export const ACCOUNT_UNBLOCK_SUCCESS = 'ACCOUNT_UNBLOCK_SUCCESS';
-export const ACCOUNT_UNBLOCK_FAIL    = 'ACCOUNT_UNBLOCK_FAIL';
+export const ACCOUNT_UNBLOCK_REQUEST = "ACCOUNT_UNBLOCK_REQUEST";
+export const ACCOUNT_UNBLOCK_SUCCESS = "ACCOUNT_UNBLOCK_SUCCESS";
+export const ACCOUNT_UNBLOCK_FAIL    = "ACCOUNT_UNBLOCK_FAIL";
 
-export const ACCOUNT_MUTE_REQUEST = 'ACCOUNT_MUTE_REQUEST';
-export const ACCOUNT_MUTE_SUCCESS = 'ACCOUNT_MUTE_SUCCESS';
-export const ACCOUNT_MUTE_FAIL    = 'ACCOUNT_MUTE_FAIL';
+export const ACCOUNT_MUTE_REQUEST = "ACCOUNT_MUTE_REQUEST";
+export const ACCOUNT_MUTE_SUCCESS = "ACCOUNT_MUTE_SUCCESS";
+export const ACCOUNT_MUTE_FAIL    = "ACCOUNT_MUTE_FAIL";
 
-export const ACCOUNT_UNMUTE_REQUEST = 'ACCOUNT_UNMUTE_REQUEST';
-export const ACCOUNT_UNMUTE_SUCCESS = 'ACCOUNT_UNMUTE_SUCCESS';
-export const ACCOUNT_UNMUTE_FAIL    = 'ACCOUNT_UNMUTE_FAIL';
+export const ACCOUNT_UNMUTE_REQUEST = "ACCOUNT_UNMUTE_REQUEST";
+export const ACCOUNT_UNMUTE_SUCCESS = "ACCOUNT_UNMUTE_SUCCESS";
+export const ACCOUNT_UNMUTE_FAIL    = "ACCOUNT_UNMUTE_FAIL";
 
-export const ACCOUNT_PIN_REQUEST = 'ACCOUNT_PIN_REQUEST';
-export const ACCOUNT_PIN_SUCCESS = 'ACCOUNT_PIN_SUCCESS';
-export const ACCOUNT_PIN_FAIL    = 'ACCOUNT_PIN_FAIL';
+export const ACCOUNT_PIN_REQUEST = "ACCOUNT_PIN_REQUEST";
+export const ACCOUNT_PIN_SUCCESS = "ACCOUNT_PIN_SUCCESS";
+export const ACCOUNT_PIN_FAIL    = "ACCOUNT_PIN_FAIL";
 
-export const ACCOUNT_UNPIN_REQUEST = 'ACCOUNT_UNPIN_REQUEST';
-export const ACCOUNT_UNPIN_SUCCESS = 'ACCOUNT_UNPIN_SUCCESS';
-export const ACCOUNT_UNPIN_FAIL    = 'ACCOUNT_UNPIN_FAIL';
+export const ACCOUNT_UNPIN_REQUEST = "ACCOUNT_UNPIN_REQUEST";
+export const ACCOUNT_UNPIN_SUCCESS = "ACCOUNT_UNPIN_SUCCESS";
+export const ACCOUNT_UNPIN_FAIL    = "ACCOUNT_UNPIN_FAIL";
 
-export const FOLLOWERS_FETCH_REQUEST = 'FOLLOWERS_FETCH_REQUEST';
-export const FOLLOWERS_FETCH_SUCCESS = 'FOLLOWERS_FETCH_SUCCESS';
-export const FOLLOWERS_FETCH_FAIL    = 'FOLLOWERS_FETCH_FAIL';
+export const FOLLOWERS_FETCH_REQUEST = "FOLLOWERS_FETCH_REQUEST";
+export const FOLLOWERS_FETCH_SUCCESS = "FOLLOWERS_FETCH_SUCCESS";
+export const FOLLOWERS_FETCH_FAIL    = "FOLLOWERS_FETCH_FAIL";
 
-export const FOLLOWERS_EXPAND_REQUEST = 'FOLLOWERS_EXPAND_REQUEST';
-export const FOLLOWERS_EXPAND_SUCCESS = 'FOLLOWERS_EXPAND_SUCCESS';
-export const FOLLOWERS_EXPAND_FAIL    = 'FOLLOWERS_EXPAND_FAIL';
+export const FOLLOWERS_EXPAND_REQUEST = "FOLLOWERS_EXPAND_REQUEST";
+export const FOLLOWERS_EXPAND_SUCCESS = "FOLLOWERS_EXPAND_SUCCESS";
+export const FOLLOWERS_EXPAND_FAIL    = "FOLLOWERS_EXPAND_FAIL";
 
-export const FOLLOWING_FETCH_REQUEST = 'FOLLOWING_FETCH_REQUEST';
-export const FOLLOWING_FETCH_SUCCESS = 'FOLLOWING_FETCH_SUCCESS';
-export const FOLLOWING_FETCH_FAIL    = 'FOLLOWING_FETCH_FAIL';
+export const FOLLOWING_FETCH_REQUEST = "FOLLOWING_FETCH_REQUEST";
+export const FOLLOWING_FETCH_SUCCESS = "FOLLOWING_FETCH_SUCCESS";
+export const FOLLOWING_FETCH_FAIL    = "FOLLOWING_FETCH_FAIL";
 
-export const FOLLOWING_EXPAND_REQUEST = 'FOLLOWING_EXPAND_REQUEST';
-export const FOLLOWING_EXPAND_SUCCESS = 'FOLLOWING_EXPAND_SUCCESS';
-export const FOLLOWING_EXPAND_FAIL    = 'FOLLOWING_EXPAND_FAIL';
+export const FOLLOWING_EXPAND_REQUEST = "FOLLOWING_EXPAND_REQUEST";
+export const FOLLOWING_EXPAND_SUCCESS = "FOLLOWING_EXPAND_SUCCESS";
+export const FOLLOWING_EXPAND_FAIL    = "FOLLOWING_EXPAND_FAIL";
 
-export const RELATIONSHIPS_FETCH_REQUEST = 'RELATIONSHIPS_FETCH_REQUEST';
-export const RELATIONSHIPS_FETCH_SUCCESS = 'RELATIONSHIPS_FETCH_SUCCESS';
-export const RELATIONSHIPS_FETCH_FAIL    = 'RELATIONSHIPS_FETCH_FAIL';
+export const RELATIONSHIPS_FETCH_REQUEST = "RELATIONSHIPS_FETCH_REQUEST";
+export const RELATIONSHIPS_FETCH_SUCCESS = "RELATIONSHIPS_FETCH_SUCCESS";
+export const RELATIONSHIPS_FETCH_FAIL    = "RELATIONSHIPS_FETCH_FAIL";
 
-export const FOLLOW_REQUESTS_FETCH_REQUEST = 'FOLLOW_REQUESTS_FETCH_REQUEST';
-export const FOLLOW_REQUESTS_FETCH_SUCCESS = 'FOLLOW_REQUESTS_FETCH_SUCCESS';
-export const FOLLOW_REQUESTS_FETCH_FAIL    = 'FOLLOW_REQUESTS_FETCH_FAIL';
+export const FOLLOW_REQUESTS_FETCH_REQUEST = "FOLLOW_REQUESTS_FETCH_REQUEST";
+export const FOLLOW_REQUESTS_FETCH_SUCCESS = "FOLLOW_REQUESTS_FETCH_SUCCESS";
+export const FOLLOW_REQUESTS_FETCH_FAIL    = "FOLLOW_REQUESTS_FETCH_FAIL";
 
-export const FOLLOW_REQUESTS_EXPAND_REQUEST = 'FOLLOW_REQUESTS_EXPAND_REQUEST';
-export const FOLLOW_REQUESTS_EXPAND_SUCCESS = 'FOLLOW_REQUESTS_EXPAND_SUCCESS';
-export const FOLLOW_REQUESTS_EXPAND_FAIL    = 'FOLLOW_REQUESTS_EXPAND_FAIL';
+export const FOLLOW_REQUESTS_EXPAND_REQUEST = "FOLLOW_REQUESTS_EXPAND_REQUEST";
+export const FOLLOW_REQUESTS_EXPAND_SUCCESS = "FOLLOW_REQUESTS_EXPAND_SUCCESS";
+export const FOLLOW_REQUESTS_EXPAND_FAIL    = "FOLLOW_REQUESTS_EXPAND_FAIL";
 
-export const FOLLOW_REQUEST_AUTHORIZE_REQUEST = 'FOLLOW_REQUEST_AUTHORIZE_REQUEST';
-export const FOLLOW_REQUEST_AUTHORIZE_SUCCESS = 'FOLLOW_REQUEST_AUTHORIZE_SUCCESS';
-export const FOLLOW_REQUEST_AUTHORIZE_FAIL    = 'FOLLOW_REQUEST_AUTHORIZE_FAIL';
+export const FOLLOW_REQUEST_AUTHORIZE_REQUEST = "FOLLOW_REQUEST_AUTHORIZE_REQUEST";
+export const FOLLOW_REQUEST_AUTHORIZE_SUCCESS = "FOLLOW_REQUEST_AUTHORIZE_SUCCESS";
+export const FOLLOW_REQUEST_AUTHORIZE_FAIL    = "FOLLOW_REQUEST_AUTHORIZE_FAIL";
 
-export const FOLLOW_REQUEST_REJECT_REQUEST = 'FOLLOW_REQUEST_REJECT_REQUEST';
-export const FOLLOW_REQUEST_REJECT_SUCCESS = 'FOLLOW_REQUEST_REJECT_SUCCESS';
-export const FOLLOW_REQUEST_REJECT_FAIL    = 'FOLLOW_REQUEST_REJECT_FAIL';
+export const FOLLOW_REQUEST_REJECT_REQUEST = "FOLLOW_REQUEST_REJECT_REQUEST";
+export const FOLLOW_REQUEST_REJECT_SUCCESS = "FOLLOW_REQUEST_REJECT_SUCCESS";
+export const FOLLOW_REQUEST_REJECT_FAIL    = "FOLLOW_REQUEST_REJECT_FAIL";
 
-export const ACCOUNT_REVEAL = 'ACCOUNT_REVEAL';
+export const ACCOUNT_REVEAL = "ACCOUNT_REVEAL";
 
 export function fetchAccount(id) {
   return (dispatch, getState) => {
@@ -97,7 +97,7 @@ export function fetchAccount(id) {
 export const lookupAccount = acct => (dispatch, getState) => {
   dispatch(lookupAccountRequest(acct));
 
-  api(getState).get('/api/v1/accounts/lookup', { params: { acct } }).then(response => {
+  api(getState).get("/api/v1/accounts/lookup", { params: { acct } }).then(response => {
     dispatch(fetchRelationships([response.data.id]));
     dispatch(importFetchedAccount(response.data));
     dispatch(lookupAccountSuccess());
@@ -146,8 +146,8 @@ export function fetchAccountFail(id, error) {
 
 export function followAccount(id, options = { reblogs: true }) {
   return (dispatch, getState) => {
-    const alreadyFollowing = getState().getIn(['relationships', id, 'following']);
-    const locked = getState().getIn(['accounts', id, 'locked'], false);
+    const alreadyFollowing = getState().getIn(["relationships", id, "following"]);
+    const locked = getState().getIn(["accounts", id, "locked"], false);
 
     dispatch(followAccountRequest(id, locked));
 
@@ -164,7 +164,7 @@ export function unfollowAccount(id) {
     dispatch(unfollowAccountRequest(id));
 
     api(getState).post(`/api/v1/accounts/${id}/unfollow`).then(response => {
-      dispatch(unfollowAccountSuccess(response.data, getState().get('statuses')));
+      dispatch(unfollowAccountSuccess(response.data, getState().get("statuses")));
     }).catch(error => {
       dispatch(unfollowAccountFail(error));
     });
@@ -229,7 +229,7 @@ export function blockAccount(id) {
 
     api(getState).post(`/api/v1/accounts/${id}/block`).then(response => {
       // Pass in entire statuses map so we can use it to filter stuff in different parts of the reducers
-      dispatch(blockAccountSuccess(response.data, getState().get('statuses')));
+      dispatch(blockAccountSuccess(response.data, getState().get("statuses")));
     }).catch(error => {
       dispatch(blockAccountFail(id, error));
     });
@@ -298,7 +298,7 @@ export function muteAccount(id, notifications, duration=0) {
 
     api(getState).post(`/api/v1/accounts/${id}/mute`, { notifications, duration }).then(response => {
       // Pass in entire statuses map so we can use it to filter stuff in different parts of the reducers
-      dispatch(muteAccountSuccess(response.data, getState().get('statuses')));
+      dispatch(muteAccountSuccess(response.data, getState().get("statuses")));
     }).catch(error => {
       dispatch(muteAccountFail(id, error));
     });
@@ -366,7 +366,7 @@ export function fetchFollowers(id) {
     dispatch(fetchFollowersRequest(id));
 
     api(getState).get(`/api/v1/accounts/${id}/followers`).then(response => {
-      const next = getLinks(response).refs.find(link => link.rel === 'next');
+      const next = getLinks(response).refs.find(link => link.rel === "next");
 
       dispatch(importFetchedAccounts(response.data));
       dispatch(fetchFollowersSuccess(id, response.data, next ? next.uri : null));
@@ -404,7 +404,7 @@ export function fetchFollowersFail(id, error) {
 
 export function expandFollowers(id) {
   return (dispatch, getState) => {
-    const url = getState().getIn(['user_lists', 'followers', id, 'next']);
+    const url = getState().getIn(["user_lists", "followers", id, "next"]);
 
     if (url === null) {
       return;
@@ -413,7 +413,7 @@ export function expandFollowers(id) {
     dispatch(expandFollowersRequest(id));
 
     api(getState).get(url).then(response => {
-      const next = getLinks(response).refs.find(link => link.rel === 'next');
+      const next = getLinks(response).refs.find(link => link.rel === "next");
 
       dispatch(importFetchedAccounts(response.data));
       dispatch(expandFollowersSuccess(id, response.data, next ? next.uri : null));
@@ -453,7 +453,7 @@ export function fetchFollowing(id) {
     dispatch(fetchFollowingRequest(id));
 
     api(getState).get(`/api/v1/accounts/${id}/following`).then(response => {
-      const next = getLinks(response).refs.find(link => link.rel === 'next');
+      const next = getLinks(response).refs.find(link => link.rel === "next");
 
       dispatch(importFetchedAccounts(response.data));
       dispatch(fetchFollowingSuccess(id, response.data, next ? next.uri : null));
@@ -491,7 +491,7 @@ export function fetchFollowingFail(id, error) {
 
 export function expandFollowing(id) {
   return (dispatch, getState) => {
-    const url = getState().getIn(['user_lists', 'following', id, 'next']);
+    const url = getState().getIn(["user_lists", "following", id, "next"]);
 
     if (url === null) {
       return;
@@ -500,7 +500,7 @@ export function expandFollowing(id) {
     dispatch(expandFollowingRequest(id));
 
     api(getState).get(url).then(response => {
-      const next = getLinks(response).refs.find(link => link.rel === 'next');
+      const next = getLinks(response).refs.find(link => link.rel === "next");
 
       dispatch(importFetchedAccounts(response.data));
       dispatch(expandFollowingSuccess(id, response.data, next ? next.uri : null));
@@ -538,9 +538,9 @@ export function expandFollowingFail(id, error) {
 export function fetchRelationships(accountIds) {
   return (dispatch, getState) => {
     const state = getState();
-    const loadedRelationships = state.get('relationships');
+    const loadedRelationships = state.get("relationships");
     const newAccountIds = accountIds.filter(id => loadedRelationships.get(id, null) === null);
-    const signedIn = !!state.getIn(['meta', 'me']);
+    const signedIn = !!state.getIn(["meta", "me"]);
 
     if (!signedIn || newAccountIds.length === 0) {
       return;
@@ -548,7 +548,7 @@ export function fetchRelationships(accountIds) {
 
     dispatch(fetchRelationshipsRequest(newAccountIds));
 
-    api(getState).get(`/api/v1/accounts/relationships?${newAccountIds.map(id => `id[]=${id}`).join('&')}`).then(response => {
+    api(getState).get(`/api/v1/accounts/relationships?${newAccountIds.map(id => `id[]=${id}`).join("&")}`).then(response => {
       dispatch(fetchRelationshipsSuccess(response.data));
     }).catch(error => {
       dispatch(fetchRelationshipsFail(error));
@@ -585,8 +585,8 @@ export function fetchFollowRequests() {
   return (dispatch, getState) => {
     dispatch(fetchFollowRequestsRequest());
 
-    api(getState).get('/api/v1/follow_requests').then(response => {
-      const next = getLinks(response).refs.find(link => link.rel === 'next');
+    api(getState).get("/api/v1/follow_requests").then(response => {
+      const next = getLinks(response).refs.find(link => link.rel === "next");
       dispatch(importFetchedAccounts(response.data));
       dispatch(fetchFollowRequestsSuccess(response.data, next ? next.uri : null));
     }).catch(error => dispatch(fetchFollowRequestsFail(error)));
@@ -616,7 +616,7 @@ export function fetchFollowRequestsFail(error) {
 
 export function expandFollowRequests() {
   return (dispatch, getState) => {
-    const url = getState().getIn(['user_lists', 'follow_requests', 'next']);
+    const url = getState().getIn(["user_lists", "follow_requests", "next"]);
 
     if (url === null) {
       return;
@@ -625,7 +625,7 @@ export function expandFollowRequests() {
     dispatch(expandFollowRequestsRequest());
 
     api(getState).get(url).then(response => {
-      const next = getLinks(response).refs.find(link => link.rel === 'next');
+      const next = getLinks(response).refs.find(link => link.rel === "next");
       dispatch(importFetchedAccounts(response.data));
       dispatch(expandFollowRequestsSuccess(response.data, next ? next.uri : null));
     }).catch(error => dispatch(expandFollowRequestsFail(error)));

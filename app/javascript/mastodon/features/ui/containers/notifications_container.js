@@ -1,14 +1,14 @@
-import { injectIntl } from 'react-intl';
+import { injectIntl } from "react-intl";
 
-import { connect } from 'react-redux';
+import { connect } from "react-redux";
 
-import { NotificationStack } from 'react-notification';
+import { NotificationStack } from "react-notification";
 
-import { dismissAlert } from '../../../actions/alerts';
-import { getAlerts } from '../../../selectors';
+import { dismissAlert } from "../../../actions/alerts";
+import { getAlerts } from "../../../selectors";
 
 const formatIfNeeded = (intl, message, values) => {
-  if (typeof message === 'object') {
+  if (typeof message === "object") {
     return intl.formatMessage(message, values);
   }
 

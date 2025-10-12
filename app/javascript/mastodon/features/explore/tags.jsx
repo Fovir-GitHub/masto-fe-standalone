@@ -1,19 +1,19 @@
-import PropTypes from 'prop-types';
-import { PureComponent } from 'react';
+import PropTypes from "prop-types";
+import { PureComponent } from "react";
 
-import { FormattedMessage } from 'react-intl';
+import { FormattedMessage } from "react-intl";
 
-import ImmutablePropTypes from 'react-immutable-proptypes';
-import { connect } from 'react-redux';
+import ImmutablePropTypes from "react-immutable-proptypes";
+import { connect } from "react-redux";
 
-import { fetchTrendingHashtags } from 'mastodon/actions/trends';
-import { DismissableBanner } from 'mastodon/components/dismissable_banner';
-import { ImmutableHashtag as Hashtag } from 'mastodon/components/hashtag';
-import { LoadingIndicator } from 'mastodon/components/loading_indicator';
+import { fetchTrendingHashtags } from "mastodon/actions/trends";
+import { DismissableBanner } from "mastodon/components/dismissable_banner";
+import { ImmutableHashtag as Hashtag } from "mastodon/components/hashtag";
+import { LoadingIndicator } from "mastodon/components/loading_indicator";
 
 const mapStateToProps = state => ({
-  hashtags: state.getIn(['trends', 'tags', 'items']),
-  isLoadingHashtags: state.getIn(['trends', 'tags', 'isLoading']),
+  hashtags: state.getIn(["trends", "tags", "items"]),
+  isLoadingHashtags: state.getIn(["trends", "tags", "isLoading"]),
 });
 
 class Tags extends PureComponent {
@@ -55,7 +55,7 @@ class Tags extends PureComponent {
         {banner}
 
         {isLoading ? (<LoadingIndicator />) : hashtags.map(hashtag => (
-          <Hashtag key={hashtag.get('name')} hashtag={hashtag} />
+          <Hashtag key={hashtag.get("name")} hashtag={hashtag} />
         ))}
       </div>
     );

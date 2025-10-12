@@ -1,34 +1,34 @@
-import PropTypes from 'prop-types';
-import { PureComponent } from 'react';
+import PropTypes from "prop-types";
+import { PureComponent } from "react";
 
-import { injectIntl, defineMessages } from 'react-intl';
+import { injectIntl, defineMessages } from "react-intl";
 
-import classNames from 'classnames';
-import { Helmet } from 'react-helmet';
+import classNames from "classnames";
+import { Helmet } from "react-helmet";
 
-import { connect } from 'react-redux';
+import { connect } from "react-redux";
 
-import spring from 'react-motion/lib/spring';
+import spring from "react-motion/lib/spring";
 
-import { mountCompose, unmountCompose, cycleElefriendCompose } from 'flavours/glitch/actions/compose';
-import Column from 'flavours/glitch/components/column';
-import { mascot } from 'flavours/glitch/initial_state';
+import { mountCompose, unmountCompose, cycleElefriendCompose } from "flavours/glitch/actions/compose";
+import Column from "flavours/glitch/components/column";
+import { mascot } from "flavours/glitch/initial_state";
 
-import Motion from '../ui/util/optional_motion';
+import Motion from "../ui/util/optional_motion";
 
-import ComposeFormContainer from './containers/compose_form_container';
-import HeaderContainer from './containers/header_container';
-import NavigationContainer from './containers/navigation_container';
-import SearchContainer from './containers/search_container';
-import SearchResultsContainer from './containers/search_results_container';
+import ComposeFormContainer from "./containers/compose_form_container";
+import HeaderContainer from "./containers/header_container";
+import NavigationContainer from "./containers/navigation_container";
+import SearchContainer from "./containers/search_container";
+import SearchResultsContainer from "./containers/search_results_container";
 
 const messages = defineMessages({
-  compose: { id: 'navigation_bar.compose', defaultMessage: 'Compose new post' },
+  compose: { id: "navigation_bar.compose", defaultMessage: "Compose new post" },
 });
 
 const mapStateToProps = (state, ownProps) => ({
-  elefriend: state.getIn(['compose', 'elefriend']),
-  showSearch: ownProps.multiColumn ? state.getIn(['search', 'submitted']) && !state.getIn(['search', 'hidden']) : false,
+  elefriend: state.getIn(["compose", "elefriend"]),
+  showSearch: ownProps.multiColumn ? state.getIn(["search", "submitted"]) && !state.getIn(["search", "hidden"]) : false,
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -73,7 +73,7 @@ class Compose extends PureComponent {
       onClickElefriend,
       showSearch,
     } = this.props;
-    const computedClass = classNames('drawer', `mbstobon-${elefriend}`);
+    const computedClass = classNames("drawer", `mbstobon-${elefriend}`);
 
     if (multiColumn) {
       return (
@@ -95,7 +95,7 @@ class Compose extends PureComponent {
 
             <Motion defaultStyle={{ x: -100 }} style={{ x: spring(showSearch ? 0 : -100, { stiffness: 210, damping: 20 }) }}>
               {({ x }) => (
-                <div className='drawer__inner darker' style={{ transform: `translateX(${x}%)`, visibility: x === -100 ? 'hidden' : 'visible' }}>
+                <div className='drawer__inner darker' style={{ transform: `translateX(${x}%)`, visibility: x === -100 ? "hidden" : "visible" }}>
                   <SearchResultsContainer />
                 </div>
               )}

@@ -1,18 +1,18 @@
-import PropTypes from 'prop-types';
+import PropTypes from "prop-types";
 
-import { defineMessages, FormattedMessage, injectIntl } from 'react-intl';
+import { defineMessages, FormattedMessage, injectIntl } from "react-intl";
 
-import ImmutablePureComponent from 'react-immutable-pure-component';
-import { connect } from 'react-redux';
+import ImmutablePureComponent from "react-immutable-pure-component";
+import { connect } from "react-redux";
 
-import { fetchFilters, createFilter, createFilterStatus } from 'mastodon/actions/filters';
-import { fetchStatus } from 'mastodon/actions/statuses';
-import { IconButton } from 'mastodon/components/icon_button';
-import AddedToFilter from 'mastodon/features/filters/added_to_filter';
-import SelectFilter from 'mastodon/features/filters/select_filter';
+import { fetchFilters, createFilter, createFilterStatus } from "mastodon/actions/filters";
+import { fetchStatus } from "mastodon/actions/statuses";
+import { IconButton } from "mastodon/components/icon_button";
+import AddedToFilter from "mastodon/features/filters/added_to_filter";
+import SelectFilter from "mastodon/features/filters/select_filter";
 
 const messages = defineMessages({
-  close: { id: 'lightbox.close', defaultMessage: 'Close' },
+  close: { id: "lightbox.close", defaultMessage: "Close" },
 });
 
 class FilterModal extends ImmutablePureComponent {
@@ -25,7 +25,7 @@ class FilterModal extends ImmutablePureComponent {
   };
 
   state = {
-    step: 'select',
+    step: "select",
     filterId: null,
     isSubmitting: false,
     isSubmitted: false,
@@ -38,7 +38,7 @@ class FilterModal extends ImmutablePureComponent {
   handleSuccess = () => {
     const { dispatch, statusId } = this.props;
     dispatch(fetchStatus(statusId, true));
-    this.setState({ isSubmitting: false, isSubmitted: true, step: 'submitted' });
+    this.setState({ isSubmitting: false, isSubmitted: true, step: "submitted" });
   };
 
   handleFail = () => {
@@ -67,8 +67,8 @@ class FilterModal extends ImmutablePureComponent {
 
     dispatch(createFilter({
       title,
-      context: ['home', 'notifications', 'public', 'thread', 'account'],
-      action: 'warn',
+      context: ["home", "notifications", "public", "thread", "account"],
+      action: "warn",
     }, this.handleNewFilterSuccess, this.handleFail));
   };
 
@@ -94,27 +94,27 @@ class FilterModal extends ImmutablePureComponent {
     let stepComponent;
 
     switch(step) {
-    case 'select':
-      stepComponent = (
-        <SelectFilter
-          contextType={contextType}
-          onSelectFilter={this.handleSelectFilter}
-          onNewFilter={this.handleNewFilter}
-        />
-      );
-      break;
-    case 'create':
-      stepComponent = null;
-      break;
-    case 'submitted':
-      stepComponent = (
-        <AddedToFilter
-          contextType={contextType}
-          filterId={filterId}
-          statusId={statusId}
-          onClose={onClose}
-        />
-      );
+      case "select":
+        stepComponent = (
+          <SelectFilter
+            contextType={contextType}
+            onSelectFilter={this.handleSelectFilter}
+            onNewFilter={this.handleNewFilter}
+          />
+        );
+        break;
+      case "create":
+        stepComponent = null;
+        break;
+      case "submitted":
+        stepComponent = (
+          <AddedToFilter
+            contextType={contextType}
+            filterId={filterId}
+            statusId={statusId}
+            onClose={onClose}
+          />
+        );
     }
 
     return (

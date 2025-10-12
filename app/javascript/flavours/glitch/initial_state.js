@@ -89,11 +89,11 @@
  */
 
 /** @type {string} */
-const initialPath = document.querySelector("head meta[name=initialPath]")?.getAttribute("content") ?? '';
+const initialPath = document.querySelector("head meta[name=initialPath]")?.getAttribute("content") ?? "";
 /** @type {boolean} */
-export const hasMultiColumnPath = initialPath === '/'
-  || initialPath === '/getting-started'
-  || initialPath.startsWith('/deck');
+export const hasMultiColumnPath = initialPath === "/"
+  || initialPath === "/getting-started"
+  || initialPath.startsWith("/deck");
 
 /**
  * @typedef InitialState
@@ -108,7 +108,7 @@ export const hasMultiColumnPath = initialPath === '/'
  * @property {number} poll_limits
  */
 
-const element = document.getElementById('initial-state');
+const element = document.getElementById("initial-state");
 /** @type {InitialState | undefined} */
 const initialState = element?.textContent && JSON.parse(element.textContent);
 
@@ -116,7 +116,7 @@ const initialState = element?.textContent && JSON.parse(element.textContent);
 if (initialState) {
   try {
     // @ts-expect-error
-    initialState.local_settings = JSON.parse(localStorage.getItem('mastodon-settings'));
+    initialState.local_settings = JSON.parse(localStorage.getItem("mastodon-settings"));
   } catch (e) {
     initialState.local_settings = {};
   }
@@ -129,49 +129,49 @@ if (initialState) {
  */
 const getMeta = (prop) => initialState?.meta && initialState.meta[prop];
 
-export const activityApiEnabled = getMeta('activity_api_enabled');
-export const autoPlayGif = getMeta('auto_play_gif');
-export const boostModal = getMeta('boost_modal');
-export const cropImages = getMeta('crop_images');
-export const deleteModal = getMeta('delete_modal');
-export const disableSwiping = getMeta('disable_swiping');
-export const disabledAccountId = getMeta('disabled_account_id');
-export const displayMedia = getMeta('display_media');
-export const domain = getMeta('domain');
-export const expandSpoilers = getMeta('expand_spoilers');
-export const forceSingleColumn = !getMeta('advanced_layout');
-export const limitedFederationMode = getMeta('limited_federation_mode');
-export const mascot = getMeta('mascot');
-export const me = getMeta('me');
-export const movedToAccountId = getMeta('moved_to_account_id');
-export const owner = getMeta('owner');
-export const profile_directory = getMeta('profile_directory');
-export const reduceMotion = getMeta('reduce_motion');
-export const registrationsOpen = getMeta('registrations_open');
-export const repository = getMeta('repository');
-export const searchEnabled = getMeta('search_enabled');
-export const trendsEnabled = getMeta('trends_enabled');
-export const showTrends = getMeta('show_trends');
-export const singleUserMode = getMeta('single_user_mode');
-export const source_url = getMeta('source_url');
-export const timelinePreview = getMeta('timeline_preview');
-export const title = getMeta('title');
-export const trendsAsLanding = getMeta('trends_as_landing_page');
-export const unfollowModal = getMeta('unfollow_modal');
-export const usePendingItems = getMeta('use_pending_items');
-export const version = getMeta('version');
+export const activityApiEnabled = getMeta("activity_api_enabled");
+export const autoPlayGif = getMeta("auto_play_gif");
+export const boostModal = getMeta("boost_modal");
+export const cropImages = getMeta("crop_images");
+export const deleteModal = getMeta("delete_modal");
+export const disableSwiping = getMeta("disable_swiping");
+export const disabledAccountId = getMeta("disabled_account_id");
+export const displayMedia = getMeta("display_media");
+export const domain = getMeta("domain");
+export const expandSpoilers = getMeta("expand_spoilers");
+export const forceSingleColumn = !getMeta("advanced_layout");
+export const limitedFederationMode = getMeta("limited_federation_mode");
+export const mascot = getMeta("mascot");
+export const me = getMeta("me");
+export const movedToAccountId = getMeta("moved_to_account_id");
+export const owner = getMeta("owner");
+export const profile_directory = getMeta("profile_directory");
+export const reduceMotion = getMeta("reduce_motion");
+export const registrationsOpen = getMeta("registrations_open");
+export const repository = getMeta("repository");
+export const searchEnabled = getMeta("search_enabled");
+export const trendsEnabled = getMeta("trends_enabled");
+export const showTrends = getMeta("show_trends");
+export const singleUserMode = getMeta("single_user_mode");
+export const source_url = getMeta("source_url");
+export const timelinePreview = getMeta("timeline_preview");
+export const title = getMeta("title");
+export const trendsAsLanding = getMeta("trends_as_landing_page");
+export const unfollowModal = getMeta("unfollow_modal");
+export const usePendingItems = getMeta("use_pending_items");
+export const version = getMeta("version");
 export const languages = initialState?.languages;
 export const criticalUpdatesPending = initialState?.critical_updates_pending;
-export const statusPageUrl = getMeta('status_page_url');
-export const sso_redirect = getMeta('sso_redirect');
+export const statusPageUrl = getMeta("status_page_url");
+export const sso_redirect = getMeta("sso_redirect");
 
 // Glitch-soc-specific settings
 export const maxChars = (initialState && initialState.max_toot_chars) || 500;
 export const maxMediaAttachments = (initialState && initialState.max_media_attachments) || 4;
 export const maxMediaDescChars = (initialState && initialState.max_media_desc_chars) || 1500;
-export const favouriteModal = getMeta('favourite_modal');
+export const favouriteModal = getMeta("favourite_modal");
 export const pollLimits = (initialState && initialState.poll_limits);
-export const defaultContentType = getMeta('default_content_type');
-export const useSystemEmojiFont = getMeta('system_emoji_font');
+export const defaultContentType = getMeta("default_content_type");
+export const useSystemEmojiFont = getMeta("system_emoji_font");
 
 export default initialState;

@@ -1,14 +1,14 @@
-import type { PropsWithChildren } from 'react';
-import React from 'react';
+import  { type PropsWithChildren } from "react";
+import React from "react";
 
-import { createBrowserHistory } from 'history';
-import { Router as OriginalRouter } from 'react-router';
+import { createBrowserHistory } from "history";
+import { Router as OriginalRouter } from "react-router";
 
-import { layoutFromWindow } from 'mastodon/is_mobile';
+import { layoutFromWindow } from "mastodon/is_mobile";
 
 interface MastodonLocationState {
-  fromMastodon?: boolean;
-  mastodonModalKey?: string;
+  fromMastodon?: boolean,
+  mastodonModalKey?: string,
 }
 
 const browserHistory = createBrowserHistory<
@@ -21,7 +21,7 @@ browserHistory.push = (path: string, state?: MastodonLocationState) => {
   state = state ?? {};
   state.fromMastodon = true;
 
-  if (layoutFromWindow() === 'multi-column' && !path.startsWith('/deck')) {
+  if (layoutFromWindow() === "multi-column" && !path.startsWith("/deck")) {
     originalPush(`/deck${path}`, state);
   } else {
     originalPush(path, state);
@@ -34,7 +34,7 @@ browserHistory.replace = (path: string, state?: MastodonLocationState) => {
     state.fromMastodon = true;
   }
 
-  if (layoutFromWindow() === 'multi-column' && !path.startsWith('/deck')) {
+  if (layoutFromWindow() === "multi-column" && !path.startsWith("/deck")) {
     originalReplace(`/deck${path}`, state);
   } else {
     originalReplace(path, state);

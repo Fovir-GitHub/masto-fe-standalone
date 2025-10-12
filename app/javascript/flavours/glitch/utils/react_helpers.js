@@ -18,4 +18,4 @@ export function conditionalRender (test, data, component) {
 }
 
 //  This object provides props to make the component not visible.
-export const hiddenComponent = { style: { display: 'none' } };
+export const hiddenComponent = { style: { display: "none" } };

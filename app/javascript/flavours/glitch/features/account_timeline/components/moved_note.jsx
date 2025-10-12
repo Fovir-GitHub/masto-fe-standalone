@@ -1,14 +1,14 @@
-import PropTypes from 'prop-types';
+import PropTypes from "prop-types";
 
-import { FormattedMessage } from 'react-intl';
+import { FormattedMessage } from "react-intl";
 
-import ImmutablePropTypes from 'react-immutable-proptypes';
-import ImmutablePureComponent from 'react-immutable-pure-component';
+import ImmutablePropTypes from "react-immutable-proptypes";
+import ImmutablePureComponent from "react-immutable-pure-component";
 
-import { Icon } from 'flavours/glitch/components/icon';
+import { Icon } from "flavours/glitch/components/icon";
 
-import AvatarOverlay from '../../../components/avatar_overlay';
-import { DisplayName } from '../../../components/display_name';
+import AvatarOverlay from "../../../components/avatar_overlay";
+import { DisplayName } from "../../../components/display_name";
 
 export default class MovedNote extends ImmutablePureComponent {
 
@@ -24,7 +24,7 @@ export default class MovedNote extends ImmutablePureComponent {
   handleAccountClick = e => {
     if (e.button === 0) {
       e.preventDefault();
-      this.context.router.history.push(`/@${this.props.to.get('acct')}`);
+      this.context.router.history.push(`/@${this.props.to.get("acct")}`);
     }
 
     e.stopPropagation();
@@ -32,7 +32,7 @@ export default class MovedNote extends ImmutablePureComponent {
 
   render () {
     const { from, to } = this.props;
-    const displayNameHtml = { __html: from.get('display_name_html') };
+    const displayNameHtml = { __html: from.get("display_name_html") };
 
     return (
       <div className='account__moved-note'>
@@ -41,7 +41,7 @@ export default class MovedNote extends ImmutablePureComponent {
           <FormattedMessage id='account.moved_to' defaultMessage='{name} has indicated that their new account is now:' values={{ name: <bdi><strong dangerouslySetInnerHTML={displayNameHtml} /></bdi> }} />
         </div>
 
-        <a href={to.get('url')} onClick={this.handleAccountClick} className='detailed-status__display-name'>
+        <a href={to.get("url")} onClick={this.handleAccountClick} className='detailed-status__display-name'>
           <div className='detailed-status__display-avatar'><AvatarOverlay account={to} friend={from} /></div>
           <DisplayName account={to} />
         </a>

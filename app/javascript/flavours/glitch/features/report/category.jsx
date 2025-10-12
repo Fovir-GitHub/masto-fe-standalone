@@ -1,31 +1,31 @@
-import PropTypes from 'prop-types';
-import { PureComponent } from 'react';
+import PropTypes from "prop-types";
+import { PureComponent } from "react";
 
-import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
+import { defineMessages, injectIntl, FormattedMessage } from "react-intl";
 
-import { List as ImmutableList } from 'immutable';
-import ImmutablePropTypes from 'react-immutable-proptypes';
-import { connect } from 'react-redux';
+import { List as ImmutableList } from "immutable";
+import ImmutablePropTypes from "react-immutable-proptypes";
+import { connect } from "react-redux";
 
-import Button from 'flavours/glitch/components/button';
+import Button from "flavours/glitch/components/button";
 
-import Option from './components/option';
+import Option from "./components/option";
 
 const messages = defineMessages({
-  dislike: { id: 'report.reasons.dislike', defaultMessage: 'I don\'t like it' },
-  dislike_description: { id: 'report.reasons.dislike_description', defaultMessage: 'It is not something you want to see' },
-  spam: { id: 'report.reasons.spam', defaultMessage: 'It\'s spam' },
-  spam_description: { id: 'report.reasons.spam_description', defaultMessage: 'Malicious links, fake engagement, or repetitive replies' },
-  violation: { id: 'report.reasons.violation', defaultMessage: 'It violates server rules' },
-  violation_description: { id: 'report.reasons.violation_description', defaultMessage: 'You are aware that it breaks specific rules' },
-  other: { id: 'report.reasons.other', defaultMessage: 'It\'s something else' },
-  other_description: { id: 'report.reasons.other_description', defaultMessage: 'The issue does not fit into other categories' },
-  status: { id: 'report.category.title_status', defaultMessage: 'post' },
-  account: { id: 'report.category.title_account', defaultMessage: 'profile' },
+  dislike: { id: "report.reasons.dislike", defaultMessage: "I don't like it" },
+  dislike_description: { id: "report.reasons.dislike_description", defaultMessage: "It is not something you want to see" },
+  spam: { id: "report.reasons.spam", defaultMessage: "It's spam" },
+  spam_description: { id: "report.reasons.spam_description", defaultMessage: "Malicious links, fake engagement, or repetitive replies" },
+  violation: { id: "report.reasons.violation", defaultMessage: "It violates server rules" },
+  violation_description: { id: "report.reasons.violation_description", defaultMessage: "You are aware that it breaks specific rules" },
+  other: { id: "report.reasons.other", defaultMessage: "It's something else" },
+  other_description: { id: "report.reasons.other_description", defaultMessage: "The issue does not fit into other categories" },
+  status: { id: "report.category.title_status", defaultMessage: "post" },
+  account: { id: "report.category.title_account", defaultMessage: "profile" },
 });
 
 const mapStateToProps = state => ({
-  rules: state.getIn(['server', 'server', 'rules'], ImmutableList()),
+  rules: state.getIn(["server", "server", "rules"], ImmutableList()),
 });
 
 class Category extends PureComponent {
@@ -35,7 +35,7 @@ class Category extends PureComponent {
     rules: ImmutablePropTypes.list,
     category: PropTypes.string,
     onChangeCategory: PropTypes.func.isRequired,
-    startedFrom: PropTypes.oneOf(['status', 'account']),
+    startedFrom: PropTypes.oneOf(["status", "account"]),
     intl: PropTypes.object.isRequired,
   };
 
@@ -43,15 +43,15 @@ class Category extends PureComponent {
     const { onNextStep, category } = this.props;
 
     switch(category) {
-    case 'dislike':
-      onNextStep('thanks');
-      break;
-    case 'violation':
-      onNextStep('rules');
-      break;
-    default:
-      onNextStep('statuses');
-      break;
+      case "dislike":
+        onNextStep("thanks");
+        break;
+      case "violation":
+        onNextStep("rules");
+        break;
+      default:
+        onNextStep("statuses");
+        break;
     }
   };
 
@@ -67,12 +67,12 @@ class Category extends PureComponent {
     const { category, startedFrom, rules, intl } = this.props;
 
     const options = rules.size > 0 ? [
-      'spam',
-      'violation',
-      'other',
+      "spam",
+      "violation",
+      "other",
     ] : [
-      'spam',
-      'other',
+      "spam",
+      "other",
     ];
 
     return (

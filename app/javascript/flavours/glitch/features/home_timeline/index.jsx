@@ -1,43 +1,43 @@
-import PropTypes from 'prop-types';
-import { PureComponent } from 'react';
+import PropTypes from "prop-types";
+import { PureComponent } from "react";
 
-import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
+import { defineMessages, injectIntl, FormattedMessage } from "react-intl";
 
-import classNames from 'classnames';
-import { Helmet } from 'react-helmet';
+import classNames from "classnames";
+import { Helmet } from "react-helmet";
 
-import { List as ImmutableList } from 'immutable';
-import { connect } from 'react-redux';
-import { createSelector } from 'reselect';
+import { List as ImmutableList } from "immutable";
+import { connect } from "react-redux";
+import { createSelector } from "reselect";
 
-import { fetchAnnouncements, toggleShowAnnouncements } from 'flavours/glitch/actions/announcements';
-import { IconWithBadge } from 'flavours/glitch/components/icon_with_badge';
-import { NotSignedInIndicator } from 'flavours/glitch/components/not_signed_in_indicator';
-import AnnouncementsContainer from 'flavours/glitch/features/getting_started/containers/announcements_container';
-import { me, criticalUpdatesPending } from 'flavours/glitch/initial_state';
+import { fetchAnnouncements, toggleShowAnnouncements } from "flavours/glitch/actions/announcements";
+import { IconWithBadge } from "flavours/glitch/components/icon_with_badge";
+import { NotSignedInIndicator } from "flavours/glitch/components/not_signed_in_indicator";
+import AnnouncementsContainer from "flavours/glitch/features/getting_started/containers/announcements_container";
+import { me, criticalUpdatesPending } from "flavours/glitch/initial_state";
 
-import { addColumn, removeColumn, moveColumn } from '../../actions/columns';
-import { expandHomeTimeline } from '../../actions/timelines';
-import Column from '../../components/column';
-import ColumnHeader from '../../components/column_header';
-import StatusListContainer from '../ui/containers/status_list_container';
+import { addColumn, removeColumn, moveColumn } from "../../actions/columns";
+import { expandHomeTimeline } from "../../actions/timelines";
+import Column from "../../components/column";
+import ColumnHeader from "../../components/column_header";
+import StatusListContainer from "../ui/containers/status_list_container";
 
-import { ColumnSettings } from './components/column_settings';
-import { CriticalUpdateBanner } from './components/critical_update_banner';
+import { ColumnSettings } from "./components/column_settings";
+import { CriticalUpdateBanner } from "./components/critical_update_banner";
 
 const messages = defineMessages({
-  title: { id: 'column.home', defaultMessage: 'Home' },
-  show_announcements: { id: 'home.show_announcements', defaultMessage: 'Show announcements' },
-  hide_announcements: { id: 'home.hide_announcements', defaultMessage: 'Hide announcements' },
+  title: { id: "column.home", defaultMessage: "Home" },
+  show_announcements: { id: "home.show_announcements", defaultMessage: "Show announcements" },
+  hide_announcements: { id: "home.hide_announcements", defaultMessage: "Hide announcements" },
 });
 
 const getHomeFeedSpeed = createSelector([
-  state => state.getIn(['timelines', 'home', 'items'], ImmutableList()),
-  state => state.getIn(['timelines', 'home', 'pendingItems'], ImmutableList()),
-  state => state.get('statuses'),
+  state => state.getIn(["timelines", "home", "items"], ImmutableList()),
+  state => state.getIn(["timelines", "home", "pendingItems"], ImmutableList()),
+  state => state.get("statuses"),
 ], (statusIds, pendingStatusIds, statusMap) => {
   const recentStatusIds = pendingStatusIds.size > 0 ? pendingStatusIds : statusIds;
-  const statuses = recentStatusIds.filter(id => id !== null).map(id => statusMap.get(id)).filter(status => status?.get('account') !== me).take(20);
+  const statuses = recentStatusIds.filter(id => id !== null).map(id => statusMap.get(id)).filter(status => status?.get("account") !== me).take(20);
 
   if (statuses.isEmpty()) {
     return {
@@ -46,7 +46,7 @@ const getHomeFeedSpeed = createSelector([
     };
   }
 
-  const datetimes = statuses.map(status => status.get('created_at', 0));
+  const datetimes = statuses.map(status => status.get("created_at", 0));
   const oldest = new Date(datetimes.min());
   const newest = new Date(datetimes.max());
   const averageGap = (newest - oldest) / (1000 * (statuses.size + 1)); // Average gap between posts on first page in seconds
@@ -58,25 +58,25 @@ const getHomeFeedSpeed = createSelector([
 });
 
 const homeTooSlow = createSelector([
-  state => state.getIn(['timelines', 'home', 'isLoading']),
-  state => state.getIn(['timelines', 'home', 'isPartial']),
+  state => state.getIn(["timelines", "home", "isLoading"]),
+  state => state.getIn(["timelines", "home", "isPartial"]),
   getHomeFeedSpeed,
 ], (isLoading, isPartial, speed) =>
   !isLoading && !isPartial // Only if the home feed has finished loading
   && (
     (speed.gap > (30 * 60) // If the average gap between posts is more than 30 minutes
     || (Date.now() - speed.newest) > (1000 * 3600)) // If the most recent post is from over an hour ago
-  )
+  ),
 );
 
 const mapStateToProps = state => ({
-  hasUnread: state.getIn(['timelines', 'home', 'unread']) > 0,
-  isPartial: state.getIn(['timelines', 'home', 'isPartial']),
-  hasAnnouncements: !state.getIn(['announcements', 'items']).isEmpty(),
-  unreadAnnouncements: state.getIn(['announcements', 'items']).count(item => !item.get('read')),
-  showAnnouncements: state.getIn(['announcements', 'show']),
+  hasUnread: state.getIn(["timelines", "home", "unread"]) > 0,
+  isPartial: state.getIn(["timelines", "home", "isPartial"]),
+  hasAnnouncements: !state.getIn(["announcements", "items"]).isEmpty(),
+  unreadAnnouncements: state.getIn(["announcements", "items"]).count(item => !item.get("read")),
+  showAnnouncements: state.getIn(["announcements", "show"]),
   tooSlow: homeTooSlow(state),
-  regex: state.getIn(['settings', 'home', 'regex', 'body']),
+  regex: state.getIn(["settings", "home", "regex", "body"]),
 });
 
 class HomeTimeline extends PureComponent {
@@ -105,7 +105,7 @@ class HomeTimeline extends PureComponent {
     if (columnId) {
       dispatch(removeColumn(columnId));
     } else {
-      dispatch(addColumn('HOME', {}));
+      dispatch(addColumn("HOME", {}));
     }
   };
 
@@ -176,7 +176,7 @@ class HomeTimeline extends PureComponent {
     if (hasAnnouncements) {
       announcementsButton = (
         <button
-          className={classNames('column-header__button', { 'active': showAnnouncements })}
+          className={classNames("column-header__button", { "active": showAnnouncements })}
           title={intl.formatMessage(showAnnouncements ? messages.hide_announcements : messages.show_announcements)}
           aria-label={intl.formatMessage(showAnnouncements ? messages.hide_announcements : messages.show_announcements)}
           onClick={this.handleToggleAnnouncementsClick}

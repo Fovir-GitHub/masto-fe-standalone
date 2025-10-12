@@ -1,11 +1,11 @@
-import { useCallback, useState } from 'react';
-import * as React from 'react';
+import { useCallback, useState } from "react";
+import * as React from "react";
 
-import { TransitionMotion, spring } from 'react-motion';
+import { TransitionMotion, spring } from "react-motion";
 
-import { reduceMotion } from '../initial_state';
+import { reduceMotion } from "../initial_state";
 
-import { ShortNumber } from './short_number';
+import { ShortNumber } from "./short_number";
 
 const obfuscatedCount = (count: number) => {
   if (count < 0) {
@@ -13,13 +13,13 @@ const obfuscatedCount = (count: number) => {
   } else if (count <= 1) {
     return count;
   } else {
-    return '1+';
+    return "1+";
   }
 };
 
 interface Props {
-  value: number;
-  obfuscate?: boolean;
+  value: number,
+  obfuscate?: boolean,
 }
 export const AnimatedNumber: React.FC<Props> = ({ value, obfuscate }) => {
   const [previousValue, setPreviousValue] = useState(value);
@@ -64,7 +64,7 @@ export const AnimatedNumber: React.FC<Props> = ({ value, obfuscate }) => {
             <span
               key={key}
               style={{
-                position: direction * style.y > 0 ? 'absolute' : 'static',
+                position: direction * style.y > 0 ? "absolute" : "static",
                 transform: `translateY(${style.y * 100}%)`,
               }}
             >

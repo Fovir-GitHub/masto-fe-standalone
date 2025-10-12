@@ -1,21 +1,21 @@
 //  Package imports
-import PropTypes from 'prop-types';
-import { PureComponent } from 'react';
+import PropTypes from "prop-types";
+import { PureComponent } from "react";
 
-import { injectIntl, defineMessages } from 'react-intl';
+import { injectIntl, defineMessages } from "react-intl";
 
-import LocalSettingsNavigationItem from './item';
+import LocalSettingsNavigationItem from "./item";
 
 //  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 
 const messages = defineMessages({
-  general: {  id: 'settings.general', defaultMessage: 'General' },
-  compose: {  id: 'settings.compose_box_opts', defaultMessage: 'Compose box' },
-  content_warnings: { id: 'settings.content_warnings', defaultMessage: 'Content Warnings' },
-  collapsed: { id: 'settings.collapsed_statuses', defaultMessage: 'Collapsed toots' },
-  media: { id: 'settings.media', defaultMessage: 'Media' },
-  preferences: { id: 'settings.preferences', defaultMessage: 'Preferences' },
-  close: { id: 'settings.close', defaultMessage: 'Close' },
+  general: {  id: "settings.general", defaultMessage: "General" },
+  compose: {  id: "settings.compose_box_opts", defaultMessage: "Compose box" },
+  content_warnings: { id: "settings.content_warnings", defaultMessage: "Content Warnings" },
+  collapsed: { id: "settings.collapsed_statuses", defaultMessage: "Collapsed toots" },
+  media: { id: "settings.media", defaultMessage: "Media" },
+  preferences: { id: "settings.preferences", defaultMessage: "Preferences" },
+  close: { id: "settings.close", defaultMessage: "Close" },
 });
 
 class LocalSettingsNavigation extends PureComponent {

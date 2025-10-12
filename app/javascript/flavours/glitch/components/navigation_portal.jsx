@@ -1,10 +1,10 @@
-import { PureComponent } from 'react';
+import { PureComponent } from "react";
 
-import { Switch, Route, withRouter } from 'react-router-dom';
+import { Switch, Route, withRouter } from "react-router-dom";
 
-import AccountNavigation from 'flavours/glitch/features/account/navigation';
-import Trends from 'flavours/glitch/features/getting_started/containers/trends_container';
-import { showTrends } from 'flavours/glitch/initial_state';
+import AccountNavigation from "flavours/glitch/features/account/navigation";
+import Trends from "flavours/glitch/features/getting_started/containers/trends_container";
+import { showTrends } from "flavours/glitch/initial_state";
 
 const DefaultNavigation = () => (
   showTrends ? (

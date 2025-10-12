@@ -1,9 +1,9 @@
-import PropTypes from 'prop-types';
-import { PureComponent } from 'react';
+import PropTypes from "prop-types";
+import { PureComponent } from "react";
 
-import classNames from 'classnames';
+import classNames from "classnames";
 
-import { Icon }  from 'mastodon/components/icon';
+import { Icon }  from "mastodon/components/icon";
 
 export default class ColumnHeader extends PureComponent {
 
@@ -21,14 +21,14 @@ export default class ColumnHeader extends PureComponent {
 
   render () {
     const { icon, type, active, columnHeaderId } = this.props;
-    let iconElement = '';
+    let iconElement = "";
 
     if (icon) {
       iconElement = <Icon id={icon} fixedWidth className='column-header__icon' />;
     }
 
     return (
-      <h1 className={classNames('column-header', { active })} id={columnHeaderId || null}>
+      <h1 className={classNames("column-header", { active })} id={columnHeaderId || null}>
         <button onClick={this.handleClick}>
           {iconElement}
           {type}

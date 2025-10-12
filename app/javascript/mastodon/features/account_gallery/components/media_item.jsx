@@ -1,13 +1,13 @@
-import PropTypes from 'prop-types';
+import PropTypes from "prop-types";
 
-import classNames from 'classnames';
+import classNames from "classnames";
 
-import ImmutablePropTypes from 'react-immutable-proptypes';
-import ImmutablePureComponent from 'react-immutable-pure-component';
+import ImmutablePropTypes from "react-immutable-proptypes";
+import ImmutablePureComponent from "react-immutable-pure-component";
 
-import { Blurhash } from 'mastodon/components/blurhash';
-import { Icon }  from 'mastodon/components/icon';
-import { autoPlayGif, displayMedia, useBlurhash } from 'mastodon/initial_state';
+import { Blurhash } from "mastodon/components/blurhash";
+import { Icon }  from "mastodon/components/icon";
+import { autoPlayGif, displayMedia, useBlurhash } from "mastodon/initial_state";
 
 export default class MediaItem extends ImmutablePureComponent {
 
@@ -18,7 +18,7 @@ export default class MediaItem extends ImmutablePureComponent {
   };
 
   state = {
-    visible: displayMedia !== 'hide_all' && !this.props.attachment.getIn(['status', 'sensitive']) || displayMedia === 'show_all',
+    visible: displayMedia !== "hide_all" && !this.props.attachment.getIn(["status", "sensitive"]) || displayMedia === "show_all",
     loaded: false,
   };
 
@@ -40,7 +40,7 @@ export default class MediaItem extends ImmutablePureComponent {
   };
 
   hoverToPlay () {
-    return !autoPlayGif && ['gifv', 'video'].indexOf(this.props.attachment.get('type')) !== -1;
+    return !autoPlayGif && ["gifv", "video"].indexOf(this.props.attachment.get("type")) !== -1;
   }
 
   handleClick = e => {
@@ -61,8 +61,8 @@ export default class MediaItem extends ImmutablePureComponent {
 
     const width  = `${Math.floor((displayWidth - 4) / 3) - 4}px`;
     const height = width;
-    const status = attachment.get('status');
-    const title  = status.get('spoiler_text') || attachment.get('description');
+    const status = attachment.get("status");
+    const title  = status.get("spoiler_text") || attachment.get("description");
 
     let thumbnail, label, icon, content;
 
@@ -73,45 +73,45 @@ export default class MediaItem extends ImmutablePureComponent {
         </span>
       );
     } else {
-      if (['audio', 'video'].includes(attachment.get('type'))) {
+      if (["audio", "video"].includes(attachment.get("type"))) {
         content = (
           <img
-            src={attachment.get('preview_url') || status.getIn(['account', 'avatar_static'])}
-            alt={attachment.get('description')}
-            lang={status.get('language')}
+            src={attachment.get("preview_url") || status.getIn(["account", "avatar_static"])}
+            alt={attachment.get("description")}
+            lang={status.get("language")}
             onLoad={this.handleImageLoad}
           />
         );
 
-        if (attachment.get('type') === 'audio') {
+        if (attachment.get("type") === "audio") {
           label = <Icon id='music' />;
         } else {
           label = <Icon id='play' />;
         }
-      } else if (attachment.get('type') === 'image') {
-        const focusX = attachment.getIn(['meta', 'focus', 'x']) || 0;
-        const focusY = attachment.getIn(['meta', 'focus', 'y']) || 0;
+      } else if (attachment.get("type") === "image") {
+        const focusX = attachment.getIn(["meta", "focus", "x"]) || 0;
+        const focusY = attachment.getIn(["meta", "focus", "y"]) || 0;
         const x      = ((focusX /  2) + .5) * 100;
         const y      = ((focusY / -2) + .5) * 100;
 
         content = (
           <img
-            src={attachment.get('preview_url')}
-            alt={attachment.get('description')}
-            lang={status.get('language')}
+            src={attachment.get("preview_url")}
+            alt={attachment.get("description")}
+            lang={status.get("language")}
             style={{ objectPosition: `${x}% ${y}%` }}
             onLoad={this.handleImageLoad}
           />
         );
-      } else if (attachment.get('type') === 'gifv') {
+      } else if (attachment.get("type") === "gifv") {
         content = (
           <video
             className='media-gallery__item-gifv-thumbnail'
-            aria-label={attachment.get('description')}
-            title={attachment.get('description')}
-            lang={status.get('language')}
+            aria-label={attachment.get("description")}
+            title={attachment.get("description")}
+            lang={status.get("language")}
             role='application'
-            src={attachment.get('url')}
+            src={attachment.get("url")}
             onMouseEnter={this.handleMouseEnter}
             onMouseLeave={this.handleMouseLeave}
             autoPlay={autoPlayGif}
@@ -121,7 +121,7 @@ export default class MediaItem extends ImmutablePureComponent {
           />
         );
 
-        label = 'GIF';
+        label = "GIF";
       }
 
       thumbnail = (
@@ -139,10 +139,10 @@ export default class MediaItem extends ImmutablePureComponent {
 
     return (
       <div className='account-gallery__item' style={{ width, height }}>
-        <a className='media-gallery__item-thumbnail' href={`/@${status.getIn(['account', 'acct'])}/${status.get('id')}`} onClick={this.handleClick} title={title} target='_blank' rel='noopener noreferrer'>
+        <a className='media-gallery__item-thumbnail' href={`/@${status.getIn(["account", "acct"])}/${status.get("id")}`} onClick={this.handleClick} title={title} target='_blank' rel='noopener noreferrer'>
           <Blurhash
-            hash={attachment.get('blurhash')}
-            className={classNames('media-gallery__preview', { 'media-gallery__preview--hidden': visible && loaded })}
+            hash={attachment.get("blurhash")}
+            className={classNames("media-gallery__preview", { "media-gallery__preview--hidden": visible && loaded })}
             dummy={!useBlurhash}
           />
 

@@ -1,22 +1,22 @@
-import PropTypes from 'prop-types';
-import { PureComponent } from 'react';
+import PropTypes from "prop-types";
+import { PureComponent } from "react";
 
-import { defineMessages, injectIntl } from 'react-intl';
+import { defineMessages, injectIntl } from "react-intl";
 
-import classNames from 'classnames';
+import classNames from "classnames";
 
-import { connect } from 'react-redux';
+import { connect } from "react-redux";
 
-import { Icon }  from 'mastodon/components/icon';
+import { Icon }  from "mastodon/components/icon";
 
-import { fetchListSuggestions, clearListSuggestions, changeListSuggestions } from '../../../actions/lists';
+import { fetchListSuggestions, clearListSuggestions, changeListSuggestions } from "../../../actions/lists";
 
 const messages = defineMessages({
-  search: { id: 'lists.search', defaultMessage: 'Search among people you follow' },
+  search: { id: "lists.search", defaultMessage: "Search among people you follow" },
 });
 
 const mapStateToProps = state => ({
-  value: state.getIn(['listEditor', 'suggestions', 'value']),
+  value: state.getIn(["listEditor", "suggestions", "value"]),
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -56,7 +56,7 @@ class Search extends PureComponent {
     return (
       <div className='list-editor__search search'>
         <label>
-          <span style={{ display: 'none' }}>{intl.formatMessage(messages.search)}</span>
+          <span style={{ display: "none" }}>{intl.formatMessage(messages.search)}</span>
 
           <input
             className='search__input'

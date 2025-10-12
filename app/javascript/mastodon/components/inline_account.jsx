@@ -1,10 +1,10 @@
-import { PureComponent } from 'react';
+import { PureComponent } from "react";
 
-import ImmutablePropTypes from 'react-immutable-proptypes';
-import { connect } from 'react-redux';
+import ImmutablePropTypes from "react-immutable-proptypes";
+import { connect } from "react-redux";
 
-import { Avatar } from 'mastodon/components/avatar';
-import { makeGetAccount } from 'mastodon/selectors';
+import { Avatar } from "mastodon/components/avatar";
+import { makeGetAccount } from "mastodon/selectors";
 
 const makeMapStateToProps = () => {
   const getAccount = makeGetAccount();
@@ -27,7 +27,7 @@ class InlineAccount extends PureComponent {
 
     return (
       <span className='inline-account'>
-        <Avatar size={13} account={account} /> <strong>{account.get('username')}</strong>
+        <Avatar size={13} account={account} /> <strong>{account.get("username")}</strong>
       </span>
     );
   }

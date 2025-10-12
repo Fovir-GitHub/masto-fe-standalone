@@ -1,28 +1,28 @@
-import PropTypes from 'prop-types';
-import { useRef, useCallback, useEffect } from 'react';
+import PropTypes from "prop-types";
+import { useRef, useCallback, useEffect } from "react";
 
-import { useIntl, defineMessages, FormattedMessage } from 'react-intl';
+import { useIntl, defineMessages, FormattedMessage } from "react-intl";
 
-import { Helmet } from 'react-helmet';
-import { NavLink } from 'react-router-dom';
+import { Helmet } from "react-helmet";
+import { NavLink } from "react-router-dom";
 
-import { addColumn } from 'flavours/glitch/actions/columns';
-import { changeSetting } from 'flavours/glitch/actions/settings';
-import { connectPublicStream, connectCommunityStream } from 'flavours/glitch/actions/streaming';
-import { expandPublicTimeline, expandCommunityTimeline } from 'flavours/glitch/actions/timelines';
-import { DismissableBanner } from 'flavours/glitch/components/dismissable_banner';
-import SettingText from 'flavours/glitch/components/setting_text';
-import initialState, { domain } from 'flavours/glitch/initial_state';
-import { useAppDispatch, useAppSelector } from 'flavours/glitch/store';
+import { addColumn } from "flavours/glitch/actions/columns";
+import { changeSetting } from "flavours/glitch/actions/settings";
+import { connectPublicStream, connectCommunityStream } from "flavours/glitch/actions/streaming";
+import { expandPublicTimeline, expandCommunityTimeline } from "flavours/glitch/actions/timelines";
+import { DismissableBanner } from "flavours/glitch/components/dismissable_banner";
+import SettingText from "flavours/glitch/components/setting_text";
+import initialState, { domain } from "flavours/glitch/initial_state";
+import { useAppDispatch, useAppSelector } from "flavours/glitch/store";
 
-import Column from '../../components/column';
-import ColumnHeader from '../../components/column_header';
-import SettingToggle from '../notifications/components/setting_toggle';
-import StatusListContainer from '../ui/containers/status_list_container';
+import Column from "../../components/column";
+import ColumnHeader from "../../components/column_header";
+import SettingToggle from "../notifications/components/setting_toggle";
+import StatusListContainer from "../ui/containers/status_list_container";
 
 const messages = defineMessages({
-  title: { id: 'column.firehose', defaultMessage: 'Live feeds' },
-  filter_regex: { id: 'home.column_settings.filter_regex', defaultMessage: 'Filter out by regular expressions' },
+  title: { id: "column.firehose", defaultMessage: "Live feeds" },
+  filter_regex: { id: "home.column_settings.filter_regex", defaultMessage: "Filter out by regular expressions" },
 });
 
 // TODO: use a proper React context later on
@@ -37,9 +37,9 @@ const useIdentity = () => ({
 const ColumnSettings = () => {
   const intl = useIntl();
   const dispatch = useAppDispatch();
-  const settings = useAppSelector((state) => state.getIn(['settings', 'firehose']));
+  const settings = useAppSelector((state) => state.getIn(["settings", "firehose"]));
   const onChange = useCallback(
-    (key, checked) => dispatch(changeSetting(['firehose', ...key], checked)),
+    (key, checked) => dispatch(changeSetting(["firehose", ...key], checked)),
     [dispatch],
   );
 
@@ -48,20 +48,20 @@ const ColumnSettings = () => {
       <div className='column-settings__row'>
         <SettingToggle
           settings={settings}
-          settingPath={['onlyMedia']}
+          settingPath={["onlyMedia"]}
           onChange={onChange}
           label={<FormattedMessage id='community.column_settings.media_only' defaultMessage='Media only' />}
         />
         <SettingToggle
           settings={settings}
-          settingPath={['allowLocalOnly']}
+          settingPath={["allowLocalOnly"]}
           onChange={onChange}
           label={<FormattedMessage id='firehose.column_settings.allow_local_only' defaultMessage='Show local-only posts in "All"' />}
         />
         <span className='column-settings__section'><FormattedMessage id='home.column_settings.advanced' defaultMessage='Advanced' /></span>
         <SettingText
           settings={settings}
-          settingPath={['regex', 'body']}
+          settingPath={["regex", "body"]}
           onChange={onChange}
           label={intl.formatMessage(messages.filter_regex)}
         />
@@ -76,24 +76,24 @@ const Firehose = ({ feedType, multiColumn }) => {
   const { signedIn } = useIdentity();
   const columnRef = useRef(null);
 
-  const allowLocalOnly = useAppSelector((state) => state.getIn(['settings', 'firehose', 'allowLocalOnly']));
-  const regex = useAppSelector((state) => state.getIn(['settings', 'firehose', 'regex', 'body']));
+  const allowLocalOnly = useAppSelector((state) => state.getIn(["settings", "firehose", "allowLocalOnly"]));
+  const regex = useAppSelector((state) => state.getIn(["settings", "firehose", "regex", "body"]));
 
-  const onlyMedia = useAppSelector((state) => state.getIn(['settings', 'firehose', 'onlyMedia'], false));
-  const hasUnread = useAppSelector((state) => state.getIn(['timelines', `${feedType}${feedType === 'public' && allowLocalOnly ? ':allow_local_only' : ''}${onlyMedia ? ':media' : ''}`, 'unread'], 0) > 0);
+  const onlyMedia = useAppSelector((state) => state.getIn(["settings", "firehose", "onlyMedia"], false));
+  const hasUnread = useAppSelector((state) => state.getIn(["timelines", `${feedType}${feedType === "public" && allowLocalOnly ? ":allow_local_only" : ""}${onlyMedia ? ":media" : ""}`, "unread"], 0) > 0);
 
   const handlePin = useCallback(
     () => {
       switch(feedType) {
-      case 'community':
-        dispatch(addColumn('COMMUNITY', { other: { onlyMedia }, regex: { body: regex } }));
-        break;
-      case 'public':
-        dispatch(addColumn('PUBLIC', { other: { onlyMedia, allowLocalOnly }, regex: { body: regex }  }));
-        break;
-      case 'public:remote':
-        dispatch(addColumn('REMOTE', { other: { onlyMedia, onlyRemote: true }, regex: { body: regex }  }));
-        break;
+        case "community":
+          dispatch(addColumn("COMMUNITY", { other: { onlyMedia }, regex: { body: regex } }));
+          break;
+        case "public":
+          dispatch(addColumn("PUBLIC", { other: { onlyMedia, allowLocalOnly }, regex: { body: regex }  }));
+          break;
+        case "public:remote":
+          dispatch(addColumn("REMOTE", { other: { onlyMedia, onlyRemote: true }, regex: { body: regex }  }));
+          break;
       }
     },
     [dispatch, onlyMedia, feedType, allowLocalOnly, regex],
@@ -102,15 +102,15 @@ const Firehose = ({ feedType, multiColumn }) => {
   const handleLoadMore = useCallback(
     (maxId) => {
       switch(feedType) {
-      case 'community':
-        dispatch(expandCommunityTimeline({ maxId, onlyMedia }));
-        break;
-      case 'public':
-        dispatch(expandPublicTimeline({ maxId, onlyMedia, allowLocalOnly }));
-        break;
-      case 'public:remote':
-        dispatch(expandPublicTimeline({ maxId, onlyMedia, onlyRemote: true }));
-        break;
+        case "community":
+          dispatch(expandCommunityTimeline({ maxId, onlyMedia }));
+          break;
+        case "public":
+          dispatch(expandPublicTimeline({ maxId, onlyMedia, allowLocalOnly }));
+          break;
+        case "public:remote":
+          dispatch(expandPublicTimeline({ maxId, onlyMedia, onlyRemote: true }));
+          break;
       }
     },
     [dispatch, onlyMedia, allowLocalOnly, feedType],
@@ -122,30 +122,30 @@ const Firehose = ({ feedType, multiColumn }) => {
     let disconnect;
 
     switch(feedType) {
-    case 'community':
-      dispatch(expandCommunityTimeline({ onlyMedia }));
-      if (signedIn) {
-        disconnect = dispatch(connectCommunityStream({ onlyMedia }));
-      }
-      break;
-    case 'public':
-      dispatch(expandPublicTimeline({ onlyMedia, allowLocalOnly }));
-      if (signedIn) {
-        disconnect = dispatch(connectPublicStream({ onlyMedia, allowLocalOnly }));
-      }
-      break;
-    case 'public:remote':
-      dispatch(expandPublicTimeline({ onlyMedia, onlyRemote: true }));
-      if (signedIn) {
-        disconnect = dispatch(connectPublicStream({ onlyMedia, onlyRemote: true }));
-      }
-      break;
+      case "community":
+        dispatch(expandCommunityTimeline({ onlyMedia }));
+        if (signedIn) {
+          disconnect = dispatch(connectCommunityStream({ onlyMedia }));
+        }
+        break;
+      case "public":
+        dispatch(expandPublicTimeline({ onlyMedia, allowLocalOnly }));
+        if (signedIn) {
+          disconnect = dispatch(connectPublicStream({ onlyMedia, allowLocalOnly }));
+        }
+        break;
+      case "public:remote":
+        dispatch(expandPublicTimeline({ onlyMedia, onlyRemote: true }));
+        if (signedIn) {
+          disconnect = dispatch(connectPublicStream({ onlyMedia, onlyRemote: true }));
+        }
+        break;
     }
 
     return () => disconnect?.();
   }, [dispatch, signedIn, feedType, onlyMedia, allowLocalOnly]);
 
-  const prependBanner = feedType === 'community' ? (
+  const prependBanner = feedType === "community" ? (
     <DismissableBanner id='community_timeline'>
       <FormattedMessage
         id='dismissable_banner.community_timeline'
@@ -163,7 +163,7 @@ const Firehose = ({ feedType, multiColumn }) => {
     </DismissableBanner>
   );
 
-  const emptyMessage = feedType === 'community' ? (
+  const emptyMessage = feedType === "community" ? (
     <FormattedMessage
       id='empty_column.community'
       defaultMessage='The local timeline is empty. Write something publicly to get the ball rolling!'
@@ -205,7 +205,7 @@ const Firehose = ({ feedType, multiColumn }) => {
 
         <StatusListContainer
           prepend={prependBanner}
-          timelineId={`${feedType}${feedType === 'public' && allowLocalOnly ? ':allow_local_only' : ''}${onlyMedia ? ':media' : ''}`}
+          timelineId={`${feedType}${feedType === "public" && allowLocalOnly ? ":allow_local_only" : ""}${onlyMedia ? ":media" : ""}`}
           onLoadMore={handleLoadMore}
           trackScroll
           scrollKey='firehose'

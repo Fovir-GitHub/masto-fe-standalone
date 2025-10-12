@@ -1,30 +1,30 @@
-import PropTypes from 'prop-types';
-import { PureComponent } from 'react';
+import PropTypes from "prop-types";
+import { PureComponent } from "react";
 
-import { FormattedMessage, defineMessages, injectIntl } from 'react-intl';
+import { FormattedMessage, defineMessages, injectIntl } from "react-intl";
 
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
 
-import { connect } from 'react-redux';
+import { connect } from "react-redux";
 
-import { openModal } from 'flavours/glitch/actions/modal';
-import { disabledAccountId, movedToAccountId, domain } from 'flavours/glitch/initial_state';
-import { logOut } from 'flavours/glitch/utils/log_out';
+import { openModal } from "flavours/glitch/actions/modal";
+import { disabledAccountId, movedToAccountId, domain } from "flavours/glitch/initial_state";
+import { logOut } from "flavours/glitch/utils/log_out";
 
 const messages = defineMessages({
-  logoutMessage: { id: 'confirmations.logout.message', defaultMessage: 'Are you sure you want to log out?' },
-  logoutConfirm: { id: 'confirmations.logout.confirm', defaultMessage: 'Log out' },
+  logoutMessage: { id: "confirmations.logout.message", defaultMessage: "Are you sure you want to log out?" },
+  logoutConfirm: { id: "confirmations.logout.confirm", defaultMessage: "Log out" },
 });
 
 const mapStateToProps = (state) => ({
-  disabledAcct: state.getIn(['accounts', disabledAccountId, 'acct']),
-  movedToAcct: movedToAccountId ? state.getIn(['accounts', movedToAccountId, 'acct']) : undefined,
+  disabledAcct: state.getIn(["accounts", disabledAccountId, "acct"]),
+  movedToAcct: movedToAccountId ? state.getIn(["accounts", movedToAccountId, "acct"]) : undefined,
 });
 
 const mapDispatchToProps = (dispatch, { intl }) => ({
   onLogout () {
     dispatch(openModal({
-      modalType: 'CONFIRM',
+      modalType: "CONFIRM",
       modalProps: {
         message: intl.formatMessage(messages.logoutMessage),
         confirm: intl.formatMessage(messages.logoutConfirm),
@@ -71,7 +71,7 @@ class DisabledAccountBanner extends PureComponent {
               defaultMessage='Your account {disabledAccount} is currently disabled because you moved to {movedToAccount}.'
               values={{
                 disabledAccount: disabledAccountLink,
-                movedToAccount: <Link to={`/@${movedToAcct}`}>{movedToAcct.includes('@') ? movedToAcct : `${movedToAcct}@${domain}`}</Link>,
+                movedToAccount: <Link to={`/@${movedToAcct}`}>{movedToAcct.includes("@") ? movedToAcct : `${movedToAcct}@${domain}`}</Link>,
               }}
             />
           ) : (

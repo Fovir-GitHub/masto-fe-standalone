@@ -1,26 +1,26 @@
-import { disableSwiping } from 'flavours/glitch/initial_state';
+import { disableSwiping } from "flavours/glitch/initial_state";
 
-import { openModal } from './modal';
+import { openModal } from "./modal";
 
-export const LOCAL_SETTING_CHANGE = 'LOCAL_SETTING_CHANGE';
-export const LOCAL_SETTING_DELETE = 'LOCAL_SETTING_DELETE';
+export const LOCAL_SETTING_CHANGE = "LOCAL_SETTING_CHANGE";
+export const LOCAL_SETTING_DELETE = "LOCAL_SETTING_DELETE";
 
 export function checkDeprecatedLocalSettings() {
   return (dispatch, getState) => {
-    const local_swipe_to_change_columns = getState().getIn(['local_settings', 'swipe_to_change_columns']);
+    const local_swipe_to_change_columns = getState().getIn(["local_settings", "swipe_to_change_columns"]);
     let changed_settings = [];
 
     if (local_swipe_to_change_columns !== null && local_swipe_to_change_columns !== undefined) {
       if (local_swipe_to_change_columns === !disableSwiping) {
-        dispatch(deleteLocalSetting(['swipe_to_change_columns']));
+        dispatch(deleteLocalSetting(["swipe_to_change_columns"]));
       } else {
-        changed_settings.push('user_setting_disable_swiping');
+        changed_settings.push("user_setting_disable_swiping");
       }
     }
 
     if (changed_settings.length > 0) {
       dispatch(openModal({
-        modalType: 'DEPRECATED_SETTINGS',
+        modalType: "DEPRECATED_SETTINGS",
         modalProps: {
           settings: changed_settings,
           onConfirm: () => dispatch(clearDeprecatedLocalSettings()),
@@ -32,8 +32,8 @@ export function checkDeprecatedLocalSettings() {
 
 export function clearDeprecatedLocalSettings() {
   return (dispatch) => {
-    dispatch(deleteLocalSetting(['content_warnings', 'auto_unfold']));
-    dispatch(deleteLocalSetting(['swipe_to_change_columns']));
+    dispatch(deleteLocalSetting(["content_warnings", "auto_unfold"]));
+    dispatch(deleteLocalSetting(["swipe_to_change_columns"]));
   };
 }
 
@@ -66,7 +66,7 @@ export function deleteLocalSetting(key) {
 //  their *own* local settings.
 export function saveLocalSettings() {
   return (_, getState) => {
-    const localSettings = getState().get('local_settings').toJS();
-    localStorage.setItem('mastodon-settings', JSON.stringify(localSettings));
+    const localSettings = getState().get("local_settings").toJS();
+    localStorage.setItem("mastodon-settings", JSON.stringify(localSettings));
   };
 }

@@ -1,9 +1,9 @@
-import PropTypes from 'prop-types';
-import { PureComponent } from 'react';
+import PropTypes from "prop-types";
+import { PureComponent } from "react";
 
-import spring from 'react-motion/lib/spring';
+import spring from "react-motion/lib/spring";
 
-import Motion from '../../ui/util/optional_motion';
+import Motion from "../../ui/util/optional_motion";
 
 export default class Warning extends PureComponent {
 

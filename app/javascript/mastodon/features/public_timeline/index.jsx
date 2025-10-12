@@ -1,38 +1,38 @@
-import PropTypes from 'prop-types';
-import { PureComponent } from 'react';
+import PropTypes from "prop-types";
+import { PureComponent } from "react";
 
-import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
+import { defineMessages, injectIntl, FormattedMessage } from "react-intl";
 
-import { Helmet } from 'react-helmet';
+import { Helmet } from "react-helmet";
 
-import { connect } from 'react-redux';
+import { connect } from "react-redux";
 
-import { DismissableBanner } from 'mastodon/components/dismissable_banner';
-import { domain } from 'mastodon/initial_state';
+import { DismissableBanner } from "mastodon/components/dismissable_banner";
+import { domain } from "mastodon/initial_state";
 
-import { addColumn, removeColumn, moveColumn } from '../../actions/columns';
-import { connectPublicStream } from '../../actions/streaming';
-import { expandPublicTimeline } from '../../actions/timelines';
-import Column from '../../components/column';
-import ColumnHeader from '../../components/column_header';
-import StatusListContainer from '../ui/containers/status_list_container';
+import { addColumn, removeColumn, moveColumn } from "../../actions/columns";
+import { connectPublicStream } from "../../actions/streaming";
+import { expandPublicTimeline } from "../../actions/timelines";
+import Column from "../../components/column";
+import ColumnHeader from "../../components/column_header";
+import StatusListContainer from "../ui/containers/status_list_container";
 
-import ColumnSettingsContainer from './containers/column_settings_container';
+import ColumnSettingsContainer from "./containers/column_settings_container";
 
 const messages = defineMessages({
-  title: { id: 'column.public', defaultMessage: 'Federated timeline' },
+  title: { id: "column.public", defaultMessage: "Federated timeline" },
 });
 
 const mapStateToProps = (state, { columnId }) => {
   const uuid = columnId;
-  const columns = state.getIn(['settings', 'columns']);
-  const index = columns.findIndex(c => c.get('uuid') === uuid);
-  const onlyMedia = (columnId && index >= 0) ? columns.get(index).getIn(['params', 'other', 'onlyMedia']) : state.getIn(['settings', 'public', 'other', 'onlyMedia']);
-  const onlyRemote = (columnId && index >= 0) ? columns.get(index).getIn(['params', 'other', 'onlyRemote']) : state.getIn(['settings', 'public', 'other', 'onlyRemote']);
-  const timelineState = state.getIn(['timelines', `public${onlyRemote ? ':remote' : ''}${onlyMedia ? ':media' : ''}`]);
+  const columns = state.getIn(["settings", "columns"]);
+  const index = columns.findIndex(c => c.get("uuid") === uuid);
+  const onlyMedia = (columnId && index >= 0) ? columns.get(index).getIn(["params", "other", "onlyMedia"]) : state.getIn(["settings", "public", "other", "onlyMedia"]);
+  const onlyRemote = (columnId && index >= 0) ? columns.get(index).getIn(["params", "other", "onlyRemote"]) : state.getIn(["settings", "public", "other", "onlyRemote"]);
+  const timelineState = state.getIn(["timelines", `public${onlyRemote ? ":remote" : ""}${onlyMedia ? ":media" : ""}`]);
 
   return {
-    hasUnread: !!timelineState && timelineState.get('unread') > 0,
+    hasUnread: !!timelineState && timelineState.get("unread") > 0,
     onlyMedia,
     onlyRemote,
   };
@@ -65,7 +65,7 @@ class PublicTimeline extends PureComponent {
     if (columnId) {
       dispatch(removeColumn(columnId));
     } else {
-      dispatch(addColumn(onlyRemote ? 'REMOTE' : 'PUBLIC', { other: { onlyMedia, onlyRemote } }));
+      dispatch(addColumn(onlyRemote ? "REMOTE" : "PUBLIC", { other: { onlyMedia, onlyRemote } }));
     }
   };
 
@@ -145,7 +145,7 @@ class PublicTimeline extends PureComponent {
 
         <StatusListContainer
           prepend={<DismissableBanner id='public_timeline'><FormattedMessage id='dismissable_banner.public_timeline' defaultMessage='These are the most recent public posts from people on the social web that people on {domain} follow.' values={{ domain }} /></DismissableBanner>}
-          timelineId={`public${onlyRemote ? ':remote' : ''}${onlyMedia ? ':media' : ''}`}
+          timelineId={`public${onlyRemote ? ":remote" : ""}${onlyMedia ? ":media" : ""}`}
           onLoadMore={this.handleLoadMore}
           trackScroll={!pinned}
           scrollKey={`public_timeline-${columnId}`}

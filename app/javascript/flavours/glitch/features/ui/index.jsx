@@ -1,37 +1,37 @@
-import PropTypes from 'prop-types';
-import { PureComponent, Component } from 'react';
+import PropTypes from "prop-types";
+import { PureComponent, Component } from "react";
 
-import { defineMessages, FormattedMessage, injectIntl } from 'react-intl';
+import { defineMessages, FormattedMessage, injectIntl } from "react-intl";
 
-import classNames from 'classnames';
-import { Redirect, Route, withRouter } from 'react-router-dom';
+import classNames from "classnames";
+import { Redirect, Route, withRouter } from "react-router-dom";
 
-import { connect } from 'react-redux';
+import { connect } from "react-redux";
 
-import Favico from 'favico.js';
-import { debounce } from 'lodash';
-import { HotKeys } from 'react-hotkeys';
+import Favico from "favico.js";
+import { debounce } from "lodash";
+import { HotKeys } from "react-hotkeys";
 
-import { changeLayout } from 'flavours/glitch/actions/app';
-import { uploadCompose, resetCompose, changeComposeSpoilerness } from 'flavours/glitch/actions/compose';
-import { clearHeight } from 'flavours/glitch/actions/height_cache';
-import { synchronouslySubmitMarkers, submitMarkers, fetchMarkers } from 'flavours/glitch/actions/markers';
-import { expandNotifications, notificationsSetVisibility } from 'flavours/glitch/actions/notifications';
-import { fetchServer } from 'flavours/glitch/actions/server';
-import { expandHomeTimeline } from 'flavours/glitch/actions/timelines';
-import PermaLink from 'flavours/glitch/components/permalink';
-import PictureInPicture from 'flavours/glitch/features/picture_in_picture';
-import { layoutFromWindow } from 'flavours/glitch/is_mobile';
+import { changeLayout } from "flavours/glitch/actions/app";
+import { uploadCompose, resetCompose, changeComposeSpoilerness } from "flavours/glitch/actions/compose";
+import { clearHeight } from "flavours/glitch/actions/height_cache";
+import { synchronouslySubmitMarkers, submitMarkers, fetchMarkers } from "flavours/glitch/actions/markers";
+import { expandNotifications, notificationsSetVisibility } from "flavours/glitch/actions/notifications";
+import { fetchServer } from "flavours/glitch/actions/server";
+import { expandHomeTimeline } from "flavours/glitch/actions/timelines";
+import PermaLink from "flavours/glitch/components/permalink";
+import PictureInPicture from "flavours/glitch/features/picture_in_picture";
+import { layoutFromWindow } from "flavours/glitch/is_mobile";
 
-import initialState, { me, owner, singleUserMode, trendsEnabled, trendsAsLanding } from '../../initial_state';
+import initialState, { me, owner, singleUserMode, trendsEnabled, trendsAsLanding } from "../../initial_state";
 
-import BundleColumnError from './components/bundle_column_error';
-import Header from './components/header';
-import UploadArea from './components/upload_area';
-import ColumnsAreaContainer from './containers/columns_area_container';
-import LoadingBarContainer from './containers/loading_bar_container';
-import ModalContainer from './containers/modal_container';
-import NotificationsContainer from './containers/notifications_container';
+import BundleColumnError from "./components/bundle_column_error";
+import Header from "./components/header";
+import UploadArea from "./components/upload_area";
+import ColumnsAreaContainer from "./containers/columns_area_container";
+import LoadingBarContainer from "./containers/loading_bar_container";
+import ModalContainer from "./containers/modal_container";
+import NotificationsContainer from "./containers/notifications_container";
 import {
   Compose,
   Status,
@@ -64,65 +64,65 @@ import {
   FollowRecommendations,
   About,
   PrivacyPolicy,
-} from './util/async-components';
-import { WrappedSwitch, WrappedRoute } from './util/react_router_helpers';
+} from "./util/async-components";
+import { WrappedSwitch, WrappedRoute } from "./util/react_router_helpers";
 // Dummy import, to make sure that <Status /> ends up in the application bundle.
 // Without this it ends up in ~8 very commonly used bundles.
 import "../../components/status";
 
 const messages = defineMessages({
-  beforeUnload: { id: 'ui.beforeunload', defaultMessage: 'Your draft will be lost if you leave Mastodon.' },
+  beforeUnload: { id: "ui.beforeunload", defaultMessage: "Your draft will be lost if you leave Mastodon." },
 });
 
 const mapStateToProps = state => ({
-  layout: state.getIn(['meta', 'layout']),
-  hasComposingText: state.getIn(['compose', 'text']).trim().length !== 0,
-  hasMediaAttachments: state.getIn(['compose', 'media_attachments']).size > 0,
-  canUploadMore: !state.getIn(['compose', 'media_attachments']).some(x => ['audio', 'video'].includes(x.get('type'))) && state.getIn(['compose', 'media_attachments']).size < 4,
-  layout_local_setting: state.getIn(['local_settings', 'layout']),
-  isWide: state.getIn(['local_settings', 'stretch']),
+  layout: state.getIn(["meta", "layout"]),
+  hasComposingText: state.getIn(["compose", "text"]).trim().length !== 0,
+  hasMediaAttachments: state.getIn(["compose", "media_attachments"]).size > 0,
+  canUploadMore: !state.getIn(["compose", "media_attachments"]).some(x => ["audio", "video"].includes(x.get("type"))) && state.getIn(["compose", "media_attachments"]).size < 4,
+  layout_local_setting: state.getIn(["local_settings", "layout"]),
+  isWide: state.getIn(["local_settings", "stretch"]),
   dropdownMenuIsOpen: state.dropdownMenu.openId !== null,
-  unreadNotifications: state.getIn(['notifications', 'unread']),
-  showFaviconBadge: state.getIn(['local_settings', 'notifications', 'favicon_badge']),
-  hicolorPrivacyIcons: state.getIn(['local_settings', 'hicolor_privacy_icons']),
-  moved: state.getIn(['accounts', me, 'moved']) && state.getIn(['accounts', state.getIn(['accounts', me, 'moved'])]),
+  unreadNotifications: state.getIn(["notifications", "unread"]),
+  showFaviconBadge: state.getIn(["local_settings", "notifications", "favicon_badge"]),
+  hicolorPrivacyIcons: state.getIn(["local_settings", "hicolor_privacy_icons"]),
+  moved: state.getIn(["accounts", me, "moved"]) && state.getIn(["accounts", state.getIn(["accounts", me, "moved"])]),
   firstLaunch: false, // TODO: state.getIn(['settings', 'introductionVersion'], 0) < INTRODUCTION_VERSION,
-  username: state.getIn(['accounts', me, 'username']),
+  username: state.getIn(["accounts", me, "username"]),
 });
 
 const keyMap = {
-  help: '?',
-  new: 'n',
-  search: 's',
-  forceNew: 'option+n',
-  toggleComposeSpoilers: 'option+x',
-  focusColumn: ['1', '2', '3', '4', '5', '6', '7', '8', '9'],
-  reply: 'r',
-  favourite: 'f',
-  boost: 'b',
-  mention: 'm',
-  open: ['enter', 'o'],
-  openProfile: 'p',
-  moveDown: ['down', 'j'],
-  moveUp: ['up', 'k'],
-  back: 'backspace',
-  goToHome: 'g h',
-  goToNotifications: 'g n',
-  goToLocal: 'g l',
-  goToFederated: 'g t',
-  goToDirect: 'g d',
-  goToStart: 'g s',
-  goToFavourites: 'g f',
-  goToPinned: 'g p',
-  goToProfile: 'g u',
-  goToBlocked: 'g b',
-  goToMuted: 'g m',
-  goToRequests: 'g r',
-  toggleSpoiler: 'x',
-  bookmark: 'd',
-  toggleCollapse: 'shift+x',
-  toggleSensitive: 'h',
-  openMedia: 'e',
+  help: "?",
+  new: "n",
+  search: "s",
+  forceNew: "option+n",
+  toggleComposeSpoilers: "option+x",
+  focusColumn: ["1", "2", "3", "4", "5", "6", "7", "8", "9"],
+  reply: "r",
+  favourite: "f",
+  boost: "b",
+  mention: "m",
+  open: ["enter", "o"],
+  openProfile: "p",
+  moveDown: ["down", "j"],
+  moveUp: ["up", "k"],
+  back: "backspace",
+  goToHome: "g h",
+  goToNotifications: "g n",
+  goToLocal: "g l",
+  goToFederated: "g t",
+  goToDirect: "g d",
+  goToStart: "g s",
+  goToFavourites: "g f",
+  goToPinned: "g p",
+  goToProfile: "g u",
+  goToBlocked: "g b",
+  goToMuted: "g m",
+  goToRequests: "g r",
+  toggleSpoiler: "x",
+  bookmark: "d",
+  toggleCollapse: "shift+x",
+  toggleSensitive: "h",
+  openMedia: "e",
 };
 
 class SwitchingColumnsArea extends PureComponent {
@@ -139,24 +139,24 @@ class SwitchingColumnsArea extends PureComponent {
 
   UNSAFE_componentWillMount () {
     if (this.props.singleColumn) {
-      document.body.classList.toggle('layout-single-column', true);
-      document.body.classList.toggle('layout-multiple-columns', false);
+      document.body.classList.toggle("layout-single-column", true);
+      document.body.classList.toggle("layout-multiple-columns", false);
     } else {
-      document.body.classList.toggle('layout-single-column', false);
-      document.body.classList.toggle('layout-multiple-columns', true);
+      document.body.classList.toggle("layout-single-column", false);
+      document.body.classList.toggle("layout-multiple-columns", true);
     }
   }
 
   componentDidUpdate (prevProps) {
-    if (![this.props.location.pathname, '/'].includes(prevProps.location.pathname)) {
-      if (this.node && this.node.handleChildrenContentChange === 'function') {
+    if (![this.props.location.pathname, "/"].includes(prevProps.location.pathname)) {
+      if (this.node && this.node.handleChildrenContentChange === "function") {
         this.node.handleChildrenContentChange();
       }
     }
 
     if (prevProps.singleColumn !== this.props.singleColumn) {
-      document.body.classList.toggle('layout-single-column', this.props.singleColumn);
-      document.body.classList.toggle('layout-multiple-columns', !this.props.singleColumn);
+      document.body.classList.toggle("layout-single-column", this.props.singleColumn);
+      document.body.classList.toggle("layout-multiple-columns", !this.props.singleColumn);
     }
   }
 
@@ -193,20 +193,20 @@ class SwitchingColumnsArea extends PureComponent {
           {redirect}
 
           {singleColumn ? <Redirect from='/getting-started' to='/home' exact /> : null}
-          {pathName.startsWith('/deck/') ? <Redirect from={pathName} to={pathName.slice(5)} /> : null}
+          {pathName.startsWith("/deck/") ? <Redirect from={pathName} to={pathName.slice(5)} /> : null}
 
           <WrappedRoute path='/getting-started' component={GettingStarted} content={children} />
           <WrappedRoute path='/keyboard-shortcuts' component={KeyboardShortcuts} content={children} />
           <WrappedRoute path='/about' component={About} content={children} />
           <WrappedRoute path='/privacy-policy' component={PrivacyPolicy} content={children} />
 
-          <WrappedRoute path={['/home', '/timelines/home']} component={HomeTimeline} content={children} />
+          <WrappedRoute path={["/home", "/timelines/home"]} component={HomeTimeline} content={children} />
           <Redirect from='/timelines/public' to='/public' exact />
           <Redirect from='/timelines/public/local' to='/public/local' exact />
-          <WrappedRoute path='/public' exact component={Firehose} componentParams={{ feedType: 'public' }} content={children} />
-          <WrappedRoute path='/public/local' exact component={Firehose} componentParams={{ feedType: 'community' }} content={children} />
-          <WrappedRoute path='/public/remote' exact component={Firehose} componentParams={{ feedType: 'public:remote' }} content={children} />
-          <WrappedRoute path={['/conversations', '/timelines/direct']} component={DirectTimeline} content={children} />
+          <WrappedRoute path='/public' exact component={Firehose} componentParams={{ feedType: "public" }} content={children} />
+          <WrappedRoute path='/public/local' exact component={Firehose} componentParams={{ feedType: "community" }} content={children} />
+          <WrappedRoute path='/public/remote' exact component={Firehose} componentParams={{ feedType: "public:remote" }} content={children} />
+          <WrappedRoute path={["/conversations", "/timelines/direct"]} component={DirectTimeline} content={children} />
           <WrappedRoute path='/tags/:id' component={HashtagTimeline} content={children} />
           <WrappedRoute path='/lists/:id' component={ListTimeline} content={children} />
           <WrappedRoute path='/notifications' component={Notifications} content={children} />
@@ -217,15 +217,15 @@ class SwitchingColumnsArea extends PureComponent {
 
           <WrappedRoute path='/start' component={FollowRecommendations} content={children} />
           <WrappedRoute path='/directory' component={Directory} content={children} />
-          <WrappedRoute path={['/explore', '/search']} component={Explore} content={children} />
-          <WrappedRoute path={['/publish', '/statuses/new']} component={Compose} content={children} />
+          <WrappedRoute path={["/explore", "/search"]} component={Explore} content={children} />
+          <WrappedRoute path={["/publish", "/statuses/new"]} component={Compose} content={children} />
 
-          <WrappedRoute path={['/@:acct', '/accounts/:id']} exact component={AccountTimeline} content={children} />
+          <WrappedRoute path={["/@:acct", "/accounts/:id"]} exact component={AccountTimeline} content={children} />
           <WrappedRoute path='/@:acct/tagged/:tagged?' exact component={AccountTimeline} content={children} />
-          <WrappedRoute path={['/@:acct/with_replies', '/accounts/:id/with_replies']} component={AccountTimeline} content={children} componentParams={{ withReplies: true }} />
-          <WrappedRoute path={['/accounts/:id/followers', '/users/:acct/followers', '/@:acct/followers']} component={Followers} content={children} />
-          <WrappedRoute path={['/accounts/:id/following', '/users/:acct/following', '/@:acct/following']} component={Following} content={children} />
-          <WrappedRoute path={['/@:acct/media', '/accounts/:id/media']} component={AccountGallery} content={children} />
+          <WrappedRoute path={["/@:acct/with_replies", "/accounts/:id/with_replies"]} component={AccountTimeline} content={children} componentParams={{ withReplies: true }} />
+          <WrappedRoute path={["/accounts/:id/followers", "/users/:acct/followers", "/@:acct/followers"]} component={Followers} content={children} />
+          <WrappedRoute path={["/accounts/:id/following", "/users/:acct/following", "/@:acct/following"]} component={Following} content={children} />
+          <WrappedRoute path={["/@:acct/media", "/accounts/:id/media"]} component={AccountGallery} content={children} />
           <WrappedRoute path='/@:acct/:statusId' exact component={Status} content={children} />
           <WrappedRoute path='/@:acct/:statusId/reblogs' component={Reblogs} content={children} />
           <WrappedRoute path='/@:acct/:statusId/favourites' component={Favourites} content={children} />
@@ -311,27 +311,31 @@ class UI extends Component {
       this.dragTargets.push(e.target);
     }
 
-    if (e.dataTransfer && e.dataTransfer.types.includes('Files') && this.props.canUploadMore && this.context.identity.signedIn) {
+    if (e.dataTransfer && e.dataTransfer.types.includes("Files") && this.props.canUploadMore && this.context.identity.signedIn) {
       this.setState({ draggingOver: true });
     }
   };
 
   handleDragOver = (e) => {
-    if (this.dataTransferIsText(e.dataTransfer)) return false;
+    if (this.dataTransferIsText(e.dataTransfer)) {
+      return false;
+    }
     e.preventDefault();
     e.stopPropagation();
 
     try {
-      e.dataTransfer.dropEffect = 'copy';
+      e.dataTransfer.dropEffect = "copy";
     } catch (err) {
-
+      console.error(err);
     }
 
     return false;
   };
 
   handleDrop = (e) => {
-    if (this.dataTransferIsText(e.dataTransfer)) return;
+    if (this.dataTransferIsText(e.dataTransfer)) {
+      return;
+    }
 
     e.preventDefault();
 
@@ -357,7 +361,7 @@ class UI extends Component {
   };
 
   dataTransferIsText = (dataTransfer) => {
-    return (dataTransfer && Array.from(dataTransfer.types).filter((type) => type === 'text/plain').length === 1);
+    return (dataTransfer && Array.from(dataTransfer.types).filter((type) => type === "text/plain").length === 1);
   };
 
   closeUploadModal = () => {
@@ -365,10 +369,10 @@ class UI extends Component {
   };
 
   handleServiceWorkerPostMessage = ({ data }) => {
-    if (data.type === 'navigate') {
+    if (data.type === "navigate") {
       this.props.history.push(data.path);
     } else {
-      console.warn('Unknown message type:', data.type);
+      console.warn("Unknown message type:", data.type);
     }
   };
 
@@ -400,24 +404,24 @@ class UI extends Component {
   componentDidMount () {
     const { signedIn } = this.context.identity;
 
-    window.addEventListener('beforeunload', this.handleBeforeUnload, false);
-    window.addEventListener('resize', this.handleResize, { passive: true });
+    window.addEventListener("beforeunload", this.handleBeforeUnload, false);
+    window.addEventListener("resize", this.handleResize, { passive: true });
 
-    document.addEventListener('dragenter', this.handleDragEnter, false);
-    document.addEventListener('dragover', this.handleDragOver, false);
-    document.addEventListener('drop', this.handleDrop, false);
-    document.addEventListener('dragleave', this.handleDragLeave, false);
-    document.addEventListener('dragend', this.handleDragEnd, false);
+    document.addEventListener("dragenter", this.handleDragEnter, false);
+    document.addEventListener("dragover", this.handleDragOver, false);
+    document.addEventListener("drop", this.handleDrop, false);
+    document.addEventListener("dragleave", this.handleDragLeave, false);
+    document.addEventListener("dragend", this.handleDragEnd, false);
 
-    if ('serviceWorker' in  navigator) {
-      navigator.serviceWorker.addEventListener('message', this.handleServiceWorkerPostMessage);
+    if ("serviceWorker" in  navigator) {
+      navigator.serviceWorker.addEventListener("message", this.handleServiceWorkerPostMessage);
     }
 
-    this.favicon = new Favico({ animation:'none' });
+    this.favicon = new Favico({ animation:"none" });
 
     // On first launch, redirect to the follow recommendations page
     if (signedIn && this.props.firstLaunch) {
-      this.context.router.history.replace('/start');
+      this.context.router.history.replace("/start");
       // TODO: this.props.dispatch(closeOnboarding());
     }
 
@@ -430,18 +434,18 @@ class UI extends Component {
     }
 
     this.hotkeys.__mousetrap__.stopCallback = (e, element) => {
-      return ['TEXTAREA', 'SELECT', 'INPUT'].includes(element.tagName);
+      return ["TEXTAREA", "SELECT", "INPUT"].includes(element.tagName);
     };
 
-    if (typeof document.hidden !== 'undefined') { // Opera 12.10 and Firefox 18 and later support
-      this.visibilityHiddenProp = 'hidden';
-      this.visibilityChange = 'visibilitychange';
-    } else if (typeof document.msHidden !== 'undefined') {
-      this.visibilityHiddenProp = 'msHidden';
-      this.visibilityChange = 'msvisibilitychange';
-    } else if (typeof document.webkitHidden !== 'undefined') {
-      this.visibilityHiddenProp = 'webkitHidden';
-      this.visibilityChange = 'webkitvisibilitychange';
+    if (typeof document.hidden !== "undefined") { // Opera 12.10 and Firefox 18 and later support
+      this.visibilityHiddenProp = "hidden";
+      this.visibilityChange = "visibilitychange";
+    } else if (typeof document.msHidden !== "undefined") {
+      this.visibilityHiddenProp = "msHidden";
+      this.visibilityChange = "msvisibilitychange";
+    } else if (typeof document.webkitHidden !== "undefined") {
+      this.visibilityHiddenProp = "webkitHidden";
+      this.visibilityChange = "webkitvisibilitychange";
     }
 
     if (this.visibilityChange !== undefined) {
@@ -481,14 +485,14 @@ class UI extends Component {
       document.removeEventListener(this.visibilityChange, this.handleVisibilityChange);
     }
 
-    window.removeEventListener('beforeunload', this.handleBeforeUnload);
-    window.removeEventListener('resize', this.handleResize);
+    window.removeEventListener("beforeunload", this.handleBeforeUnload);
+    window.removeEventListener("resize", this.handleResize);
 
-    document.removeEventListener('dragenter', this.handleDragEnter);
-    document.removeEventListener('dragover', this.handleDragOver);
-    document.removeEventListener('drop', this.handleDrop);
-    document.removeEventListener('dragleave', this.handleDragLeave);
-    document.removeEventListener('dragend', this.handleDragEnd);
+    document.removeEventListener("dragenter", this.handleDragEnter);
+    document.removeEventListener("dragover", this.handleDragOver);
+    document.removeEventListener("drop", this.handleDrop);
+    document.removeEventListener("dragleave", this.handleDragLeave);
+    document.removeEventListener("dragend", this.handleDragEnd);
   }
 
   setRef = c => {
@@ -498,7 +502,7 @@ class UI extends Component {
   handleHotkeyNew = e => {
     e.preventDefault();
 
-    const element = this.node.querySelector('.compose-form__autosuggest-wrapper textarea');
+    const element = this.node.querySelector(".compose-form__autosuggest-wrapper textarea");
 
     if (element) {
       element.focus();
@@ -508,7 +512,7 @@ class UI extends Component {
   handleHotkeySearch = e => {
     e.preventDefault();
 
-    const element = this.node.querySelector('.search__input');
+    const element = this.node.querySelector(".search__input");
 
     if (element) {
       element.focus();
@@ -528,11 +532,13 @@ class UI extends Component {
   handleHotkeyFocusColumn = e => {
     const index  = (e.key * 1) + 1; // First child is drawer, skip that
     const column = this.node.querySelector(`.column:nth-child(${index})`);
-    if (!column) return;
-    const container = column.querySelector('.scrollable');
+    if (!column) {
+      return;
+    }
+    const container = column.querySelector(".scrollable");
 
     if (container) {
-      const status = container.querySelector('.focusable');
+      const status = container.querySelector(".focusable");
 
       if (status) {
         if (container.scrollTop > status.offsetTop) {
@@ -549,7 +555,7 @@ class UI extends Component {
     if (history.location?.state?.fromMastodon) {
       history.goBack();
     } else {
-      history.push('/');
+      history.push("/");
     }
   };
 
@@ -558,43 +564,43 @@ class UI extends Component {
   };
 
   handleHotkeyToggleHelp = () => {
-    if (this.props.location.pathname === '/keyboard-shortcuts') {
+    if (this.props.location.pathname === "/keyboard-shortcuts") {
       this.props.history.goBack();
     } else {
-      this.props.history.push('/keyboard-shortcuts');
+      this.props.history.push("/keyboard-shortcuts");
     }
   };
 
   handleHotkeyGoToHome = () => {
-    this.props.history.push('/home');
+    this.props.history.push("/home");
   };
 
   handleHotkeyGoToNotifications = () => {
-    this.props.history.push('/notifications');
+    this.props.history.push("/notifications");
   };
 
   handleHotkeyGoToLocal = () => {
-    this.props.history.push('/public/local');
+    this.props.history.push("/public/local");
   };
 
   handleHotkeyGoToFederated = () => {
-    this.props.history.push('/public');
+    this.props.history.push("/public");
   };
 
   handleHotkeyGoToDirect = () => {
-    this.props.history.push('/conversations');
+    this.props.history.push("/conversations");
   };
 
   handleHotkeyGoToStart = () => {
-    this.props.history.push('/getting-started');
+    this.props.history.push("/getting-started");
   };
 
   handleHotkeyGoToFavourites = () => {
-    this.props.history.push('/favourites');
+    this.props.history.push("/favourites");
   };
 
   handleHotkeyGoToPinned = () => {
-    this.props.history.push('/pinned');
+    this.props.history.push("/pinned");
   };
 
   handleHotkeyGoToProfile = () => {
@@ -602,15 +608,15 @@ class UI extends Component {
   };
 
   handleHotkeyGoToBlocked = () => {
-    this.props.history.push('/blocks');
+    this.props.history.push("/blocks");
   };
 
   handleHotkeyGoToMuted = () => {
-    this.props.history.push('/mutes');
+    this.props.history.push("/mutes");
   };
 
   handleHotkeyGoToRequests = () => {
-    this.props.history.push('/follow_requests');
+    this.props.history.push("/follow_requests");
   };
 
   render () {
@@ -619,19 +625,19 @@ class UI extends Component {
 
     const columnsClass = layout => {
       switch (layout) {
-      case 'single':
-        return 'single-column';
-      case 'multiple':
-        return 'multi-columns';
-      default:
-        return 'auto-columns';
+        case "single":
+          return "single-column";
+        case "multiple":
+          return "multi-columns";
+        default:
+          return "auto-columns";
       }
     };
 
-    const className = classNames('ui', columnsClass(layout), {
-      'wide': isWide,
-      'system-font': this.props.systemFontUi,
-      'hicolor-privacy-icons': this.props.hicolorPrivacyIcons,
+    const className = classNames("ui", columnsClass(layout), {
+      "wide": isWide,
+      "system-font": this.props.systemFontUi,
+      "hicolor-privacy-icons": this.props.hicolorPrivacyIcons,
     });
 
     const handlers = {
@@ -658,14 +664,14 @@ class UI extends Component {
 
     return (
       <HotKeys keyMap={keyMap} handlers={handlers} ref={this.setHotkeysRef} attach={window} focused>
-        <div className={className} ref={this.setRef} style={{ pointerEvents: dropdownMenuIsOpen ? 'none' : null }}>
+        <div className={className} ref={this.setRef} style={{ pointerEvents: dropdownMenuIsOpen ? "none" : null }}>
           {moved && (<div className='flash-message alert'>
             <FormattedMessage
               id='moved_to_warning'
               defaultMessage='This account is marked as moved to {moved_to_link}, and may thus not accept new follows.'
               values={{ moved_to_link: (
-                <PermaLink href={moved.get('url')} to={`/@${moved.get('acct')}`}>
-                  @{moved.get('acct')}
+                <PermaLink href={moved.get("url")} to={`/@${moved.get("acct")}`}>
+                  @{moved.get("acct")}
                 </PermaLink>
               ) }}
             />
@@ -673,11 +679,11 @@ class UI extends Component {
 
           <Header />
 
-          <SwitchingColumnsArea location={location} singleColumn={layout === 'mobile' || layout === 'single-column'}>
+          <SwitchingColumnsArea location={location} singleColumn={layout === "mobile" || layout === "single-column"}>
             {children}
           </SwitchingColumnsArea>
 
-          {layout !== 'mobile' && <PictureInPicture />}
+          {layout !== "mobile" && <PictureInPicture />}
           <NotificationsContainer />
           <LoadingBarContainer className='loading-bar' />
           <ModalContainer />

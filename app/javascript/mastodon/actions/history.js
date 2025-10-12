@@ -1,13 +1,13 @@
-import api from '../api';
+import api from "../api";
 
-import { importFetchedAccounts } from './importer';
+import { importFetchedAccounts } from "./importer";
 
-export const HISTORY_FETCH_REQUEST = 'HISTORY_FETCH_REQUEST';
-export const HISTORY_FETCH_SUCCESS = 'HISTORY_FETCH_SUCCESS';
-export const HISTORY_FETCH_FAIL    = 'HISTORY_FETCH_FAIL';
+export const HISTORY_FETCH_REQUEST = "HISTORY_FETCH_REQUEST";
+export const HISTORY_FETCH_SUCCESS = "HISTORY_FETCH_SUCCESS";
+export const HISTORY_FETCH_FAIL    = "HISTORY_FETCH_FAIL";
 
 export const fetchHistory = statusId => (dispatch, getState) => {
-  const loading = getState().getIn(['history', statusId, 'loading']);
+  const loading = getState().getIn(["history", statusId, "loading"]);
 
   if (loading) {
     return;

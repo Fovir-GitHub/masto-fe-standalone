@@ -1,42 +1,42 @@
-import PropTypes from 'prop-types';
-import { PureComponent } from 'react';
+import PropTypes from "prop-types";
+import { PureComponent } from "react";
 
-import { FormattedMessage, defineMessages, injectIntl } from 'react-intl';
+import { FormattedMessage, defineMessages, injectIntl } from "react-intl";
 
-import { Link, withRouter } from 'react-router-dom';
+import { Link, withRouter } from "react-router-dom";
 
-import { connect } from 'react-redux';
+import { connect } from "react-redux";
 
-import { openModal } from 'mastodon/actions/modal';
-import { fetchServer } from 'mastodon/actions/server';
-import { Avatar } from 'mastodon/components/avatar';
-import { Icon } from 'mastodon/components/icon';
-import { WordmarkLogo, SymbolLogo } from 'mastodon/components/logo';
-import { registrationsOpen, me, sso_redirect } from 'mastodon/initial_state';
+import { openModal } from "mastodon/actions/modal";
+import { fetchServer } from "mastodon/actions/server";
+import { Avatar } from "mastodon/components/avatar";
+import { Icon } from "mastodon/components/icon";
+import { WordmarkLogo, SymbolLogo } from "mastodon/components/logo";
+import { registrationsOpen, me, sso_redirect } from "mastodon/initial_state";
 
 const Account = connect(state => ({
-  account: state.getIn(['accounts', me]),
+  account: state.getIn(["accounts", me]),
 }))(({ account }) => (
-  <Link to={`/@${account.get('acct')}`} title={account.get('acct')}>
+  <Link to={`/@${account.get("acct")}`} title={account.get("acct")}>
     <Avatar account={account} size={35} />
   </Link>
 ));
 
 const messages = defineMessages({
-  search: { id: 'navigation_bar.search', defaultMessage: 'Search' },
+  search: { id: "navigation_bar.search", defaultMessage: "Search" },
 });
 
 const mapStateToProps = (state) => ({
-  signupUrl: state.getIn(['server', 'server', 'registrations', 'url'], null) || '/auth/sign_up',
+  signupUrl: state.getIn(["server", "server", "registrations", "url"], null) || "/auth/sign_up",
 });
 
 const mapDispatchToProps = (dispatch) => ({
   openClosedRegistrationsModal() {
-    dispatch(openModal({ modalType: 'CLOSED_REGISTRATIONS' }));
+    dispatch(openModal({ modalType: "CLOSED_REGISTRATIONS" }));
   },
   dispatchServer() {
     dispatch(fetchServer());
-  }
+  },
 });
 
 class Header extends PureComponent {
@@ -67,8 +67,8 @@ class Header extends PureComponent {
     if (signedIn) {
       content = (
         <>
-          {location.pathname !== '/search' && <Link to='/search' className='button button-secondary' aria-label={intl.formatMessage(messages.search)}><Icon id='search' /></Link>}
-          {location.pathname !== '/publish' && <Link to='/publish' className='button button-secondary'><FormattedMessage id='compose_form.publish_form' defaultMessage='New post' /></Link>}
+          {location.pathname !== "/search" && <Link to='/search' className='button button-secondary' aria-label={intl.formatMessage(messages.search)}><Icon id='search' /></Link>}
+          {location.pathname !== "/publish" && <Link to='/publish' className='button button-secondary'><FormattedMessage id='compose_form.publish_form' defaultMessage='New post' /></Link>}
           <Account />
         </>
       );

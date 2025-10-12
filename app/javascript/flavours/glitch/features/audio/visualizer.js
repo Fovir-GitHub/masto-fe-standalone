@@ -22,7 +22,7 @@ export default class Visualizer {
   setCanvas(canvas) {
     this.canvas = canvas;
     if (canvas) {
-      this.context = canvas.getContext('2d');
+      this.context = canvas.getContext("2d");
     }
   }
 

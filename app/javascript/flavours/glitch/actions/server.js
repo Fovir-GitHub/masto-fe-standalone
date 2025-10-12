@@ -1,21 +1,21 @@
-import api from '../api';
+import api from "../api";
 
-import { importFetchedAccount } from './importer';
+import { importFetchedAccount } from "./importer";
 
-export const SERVER_FETCH_REQUEST = 'Server_FETCH_REQUEST';
-export const SERVER_FETCH_SUCCESS = 'Server_FETCH_SUCCESS';
-export const SERVER_FETCH_FAIL    = 'Server_FETCH_FAIL';
+export const SERVER_FETCH_REQUEST = "Server_FETCH_REQUEST";
+export const SERVER_FETCH_SUCCESS = "Server_FETCH_SUCCESS";
+export const SERVER_FETCH_FAIL    = "Server_FETCH_FAIL";
 
-export const EXTENDED_DESCRIPTION_REQUEST = 'EXTENDED_DESCRIPTION_REQUEST';
-export const EXTENDED_DESCRIPTION_SUCCESS = 'EXTENDED_DESCRIPTION_SUCCESS';
-export const EXTENDED_DESCRIPTION_FAIL    = 'EXTENDED_DESCRIPTION_FAIL';
+export const EXTENDED_DESCRIPTION_REQUEST = "EXTENDED_DESCRIPTION_REQUEST";
+export const EXTENDED_DESCRIPTION_SUCCESS = "EXTENDED_DESCRIPTION_SUCCESS";
+export const EXTENDED_DESCRIPTION_FAIL    = "EXTENDED_DESCRIPTION_FAIL";
 
-export const SERVER_DOMAIN_BLOCKS_FETCH_REQUEST = 'SERVER_DOMAIN_BLOCKS_FETCH_REQUEST';
-export const SERVER_DOMAIN_BLOCKS_FETCH_SUCCESS = 'SERVER_DOMAIN_BLOCKS_FETCH_SUCCESS';
-export const SERVER_DOMAIN_BLOCKS_FETCH_FAIL    = 'SERVER_DOMAIN_BLOCKS_FETCH_FAIL';
+export const SERVER_DOMAIN_BLOCKS_FETCH_REQUEST = "SERVER_DOMAIN_BLOCKS_FETCH_REQUEST";
+export const SERVER_DOMAIN_BLOCKS_FETCH_SUCCESS = "SERVER_DOMAIN_BLOCKS_FETCH_SUCCESS";
+export const SERVER_DOMAIN_BLOCKS_FETCH_FAIL    = "SERVER_DOMAIN_BLOCKS_FETCH_FAIL";
 
 export const fetchServer = () => (dispatch, getState) => {
-  if (getState().getIn(['server', 'server', 'isLoading'])) {
+  if (getState().getIn(["server", "server", "isLoading"])) {
     return;
   }
 
@@ -24,15 +24,19 @@ export const fetchServer = () => (dispatch, getState) => {
   /* global data */
   try {
     api(getState)
-      .get('/api/v2/instance').then({ data }).catch(error => {
+      .get("/api/v2/instance").then({ data }).catch(error => {
         console.error(error);
       });
-    if (data.contact.account) dispatch(importFetchedAccount(data.contact.account));
+    if (data.contact.account) {
+      dispatch(importFetchedAccount(data.contact.account));
+    }
     dispatch(fetchServerSuccess(data));
   } catch (e) {
     api(getState)
-      .get('/api/v1/instance').then(({ data }) => {
-        if (data.contact_account) dispatch(importFetchedAccount(data.contact_account));
+      .get("/api/v1/instance").then(({ data }) => {
+        if (data.contact_account) {
+          dispatch(importFetchedAccount(data.contact_account));
+        }
         dispatch(fetchServerSuccess(data));
       }).catch(err => dispatch(fetchServerFail(err)));
   }
@@ -53,14 +57,14 @@ const fetchServerFail = error => ({
 });
 
 export const fetchDomainBlocks = () => (dispatch, getState) => {
-  if (getState().getIn(['server', 'domainBlocks', 'isLoading'])) {
+  if (getState().getIn(["server", "domainBlocks", "isLoading"])) {
     return;
   }
 
   dispatch(fetchDomainBlocksRequest());
 
   api(getState)
-    .get('/api/v1/instance/domain_blocks')
+    .get("/api/v1/instance/domain_blocks")
     .then(({ data }) => dispatch(fetchDomainBlocksSuccess(true, data)))
     .catch(err => {
       if (err.response.status === 404) {

@@ -1,30 +1,30 @@
-import PropTypes from 'prop-types';
-import { PureComponent } from 'react';
+import PropTypes from "prop-types";
+import { PureComponent } from "react";
 
-import { defineMessages, injectIntl, FormattedMessage, FormattedDate } from 'react-intl';
+import { defineMessages, injectIntl, FormattedMessage, FormattedDate } from "react-intl";
 
-import classNames from 'classnames';
+import classNames from "classnames";
 
-import ImmutablePropTypes from 'react-immutable-proptypes';
-import ImmutablePureComponent from 'react-immutable-pure-component';
+import ImmutablePropTypes from "react-immutable-proptypes";
+import ImmutablePureComponent from "react-immutable-pure-component";
 
-import TransitionMotion from 'react-motion/lib/TransitionMotion';
-import spring from 'react-motion/lib/spring';
-import ReactSwipeableViews from 'react-swipeable-views';
+import TransitionMotion from "react-motion/lib/TransitionMotion";
+import spring from "react-motion/lib/spring";
+import ReactSwipeableViews from "react-swipeable-views";
 
-import elephantUIPlane from 'mastodon/../images/elephant_ui_plane.svg';
-import { AnimatedNumber } from 'mastodon/components/animated_number';
-import { Icon }  from 'mastodon/components/icon';
-import { IconButton } from 'mastodon/components/icon_button';
-import EmojiPickerDropdown from 'mastodon/features/compose/containers/emoji_picker_dropdown_container';
-import unicodeMapping from 'mastodon/features/emoji/emoji_unicode_mapping_light';
-import { autoPlayGif, reduceMotion, disableSwiping, mascot } from 'mastodon/initial_state';
-import { assetHost } from 'mastodon/utils/config';
+import elephantUIPlane from "mastodon/../images/elephant_ui_plane.svg";
+import { AnimatedNumber } from "mastodon/components/animated_number";
+import { Icon }  from "mastodon/components/icon";
+import { IconButton } from "mastodon/components/icon_button";
+import EmojiPickerDropdown from "mastodon/features/compose/containers/emoji_picker_dropdown_container";
+import unicodeMapping from "mastodon/features/emoji/emoji_unicode_mapping_light";
+import { autoPlayGif, reduceMotion, disableSwiping, mascot } from "mastodon/initial_state";
+import { assetHost } from "mastodon/utils/config";
 
 const messages = defineMessages({
-  close: { id: 'lightbox.close', defaultMessage: 'Close' },
-  previous: { id: 'lightbox.previous', defaultMessage: 'Previous' },
-  next: { id: 'lightbox.next', defaultMessage: 'Next' },
+  close: { id: "lightbox.close", defaultMessage: "Close" },
+  previous: { id: "lightbox.previous", defaultMessage: "Previous" },
+  next: { id: "lightbox.next", defaultMessage: "Next" },
 });
 
 class Content extends ImmutablePureComponent {
@@ -56,47 +56,47 @@ class Content extends ImmutablePureComponent {
       return;
     }
 
-    const links = node.querySelectorAll('a');
+    const links = node.querySelectorAll("a");
 
     for (var i = 0; i < links.length; ++i) {
       let link = links[i];
 
-      if (link.classList.contains('status-link')) {
+      if (link.classList.contains("status-link")) {
         continue;
       }
 
-      link.classList.add('status-link');
+      link.classList.add("status-link");
 
-      let mention = this.props.announcement.get('mentions').find(item => link.href === item.get('url'));
+      let mention = this.props.announcement.get("mentions").find(item => link.href === item.get("url"));
 
       if (mention) {
-        link.addEventListener('click', this.onMentionClick.bind(this, mention), false);
-        link.setAttribute('title', mention.get('acct'));
-      } else if (link.textContent[0] === '#' || (link.previousSibling && link.previousSibling.textContent && link.previousSibling.textContent[link.previousSibling.textContent.length - 1] === '#')) {
-        link.addEventListener('click', this.onHashtagClick.bind(this, link.text), false);
+        link.addEventListener("click", this.onMentionClick.bind(this, mention), false);
+        link.setAttribute("title", mention.get("acct"));
+      } else if (link.textContent[0] === "#" || (link.previousSibling && link.previousSibling.textContent && link.previousSibling.textContent[link.previousSibling.textContent.length - 1] === "#")) {
+        link.addEventListener("click", this.onHashtagClick.bind(this, link.text), false);
       } else {
-        let status = this.props.announcement.get('statuses').find(item => link.href === item.get('url'));
+        let status = this.props.announcement.get("statuses").find(item => link.href === item.get("url"));
         if (status) {
-          link.addEventListener('click', this.onStatusClick.bind(this, status), false);
+          link.addEventListener("click", this.onStatusClick.bind(this, status), false);
         }
-        link.setAttribute('title', link.href);
-        link.classList.add('unhandled-link');
+        link.setAttribute("title", link.href);
+        link.classList.add("unhandled-link");
       }
 
-      link.setAttribute('target', '_blank');
-      link.setAttribute('rel', 'noopener noreferrer');
+      link.setAttribute("target", "_blank");
+      link.setAttribute("rel", "noopener noreferrer");
     }
   }
 
   onMentionClick = (mention, e) => {
     if (this.context.router && e.button === 0 && !(e.ctrlKey || e.metaKey)) {
       e.preventDefault();
-      this.context.router.history.push(`/@${mention.get('acct')}`);
+      this.context.router.history.push(`/@${mention.get("acct")}`);
     }
   };
 
   onHashtagClick = (hashtag, e) => {
-    hashtag = hashtag.replace(/^#/, '');
+    hashtag = hashtag.replace(/^#/, "");
 
     if (this.context.router && e.button === 0 && !(e.ctrlKey || e.metaKey)) {
       e.preventDefault();
@@ -107,7 +107,7 @@ class Content extends ImmutablePureComponent {
   onStatusClick = (status, e) => {
     if (this.context.router && e.button === 0 && !(e.ctrlKey || e.metaKey)) {
       e.preventDefault();
-      this.context.router.history.push(`/@${status.getIn(['account', 'acct'])}/${status.get('id')}`);
+      this.context.router.history.push(`/@${status.getIn(["account", "acct"])}/${status.get("id")}`);
     }
   };
 
@@ -116,11 +116,11 @@ class Content extends ImmutablePureComponent {
       return;
     }
 
-    const emojis = currentTarget.querySelectorAll('.custom-emoji');
+    const emojis = currentTarget.querySelectorAll(".custom-emoji");
 
     for (var i = 0; i < emojis.length; i++) {
       let emoji = emojis[i];
-      emoji.src = emoji.getAttribute('data-original');
+      emoji.src = emoji.getAttribute("data-original");
     }
   };
 
@@ -129,11 +129,11 @@ class Content extends ImmutablePureComponent {
       return;
     }
 
-    const emojis = currentTarget.querySelectorAll('.custom-emoji');
+    const emojis = currentTarget.querySelectorAll(".custom-emoji");
 
     for (var i = 0; i < emojis.length; i++) {
       let emoji = emojis[i];
-      emoji.src = emoji.getAttribute('data-static');
+      emoji.src = emoji.getAttribute("data-static");
     }
   };
 
@@ -144,7 +144,7 @@ class Content extends ImmutablePureComponent {
       <div
         className='announcements__item__content translate'
         ref={this.setRef}
-        dangerouslySetInnerHTML={{ __html: announcement.get('contentHtml') }}
+        dangerouslySetInnerHTML={{ __html: announcement.get("contentHtml") }}
         onMouseEnter={this.handleMouseEnter}
         onMouseLeave={this.handleMouseLeave}
       />
@@ -166,7 +166,7 @@ class Emoji extends PureComponent {
 
     if (unicodeMapping[emoji]) {
       const { filename, shortCode } = unicodeMapping[this.props.emoji];
-      const title = shortCode ? `:${shortCode}:` : '';
+      const title = shortCode ? `:${shortCode}:` : "";
 
       return (
         <img
@@ -178,7 +178,7 @@ class Emoji extends PureComponent {
         />
       );
     } else if (emojiMap.get(emoji)) {
-      const filename  = (autoPlayGif || hovered) ? emojiMap.getIn([emoji, 'url']) : emojiMap.getIn([emoji, 'static_url']);
+      const filename  = (autoPlayGif || hovered) ? emojiMap.getIn([emoji, "url"]) : emojiMap.getIn([emoji, "static_url"]);
       const shortCode = `:${emoji}:`;
 
       return (
@@ -215,10 +215,10 @@ class Reaction extends ImmutablePureComponent {
   handleClick = () => {
     const { reaction, announcementId, addReaction, removeReaction } = this.props;
 
-    if (reaction.get('me')) {
-      removeReaction(announcementId, reaction.get('name'));
+    if (reaction.get("me")) {
+      removeReaction(announcementId, reaction.get("name"));
     } else {
-      addReaction(announcementId, reaction.get('name'));
+      addReaction(announcementId, reaction.get("name"));
     }
   };
 
@@ -229,16 +229,16 @@ class Reaction extends ImmutablePureComponent {
   render () {
     const { reaction } = this.props;
 
-    let shortCode = reaction.get('name');
+    let shortCode = reaction.get("name");
 
     if (unicodeMapping[shortCode]) {
       shortCode = unicodeMapping[shortCode].shortCode;
     }
 
     return (
-      <button className={classNames('reactions-bar__item', { active: reaction.get('me') })} onClick={this.handleClick} onMouseEnter={this.handleMouseEnter} onMouseLeave={this.handleMouseLeave} title={`:${shortCode}:`} style={this.props.style}>
-        <span className='reactions-bar__item__emoji'><Emoji hovered={this.state.hovered} emoji={reaction.get('name')} emojiMap={this.props.emojiMap} /></span>
-        <span className='reactions-bar__item__count'><AnimatedNumber value={reaction.get('count')} /></span>
+      <button className={classNames("reactions-bar__item", { active: reaction.get("me") })} onClick={this.handleClick} onMouseEnter={this.handleMouseEnter} onMouseLeave={this.handleMouseLeave} title={`:${shortCode}:`} style={this.props.style}>
+        <span className='reactions-bar__item__emoji'><Emoji hovered={this.state.hovered} emoji={reaction.get("name")} emojiMap={this.props.emojiMap} /></span>
+        <span className='reactions-bar__item__count'><AnimatedNumber value={reaction.get("count")} /></span>
       </button>
     );
   }
@@ -257,7 +257,7 @@ class ReactionsBar extends ImmutablePureComponent {
 
   handleEmojiPick = data => {
     const { addReaction, announcementId } = this.props;
-    addReaction(announcementId, data.native.replace(/:/g, ''));
+    addReaction(announcementId, data.native.replace(/:/g, ""));
   };
 
   willEnter () {
@@ -270,10 +270,10 @@ class ReactionsBar extends ImmutablePureComponent {
 
   render () {
     const { reactions } = this.props;
-    const visibleReactions = reactions.filter(x => x.get('count') > 0);
+    const visibleReactions = reactions.filter(x => x.get("count") > 0);
 
     const styles = visibleReactions.map(reaction => ({
-      key: reaction.get('name'),
+      key: reaction.get("name"),
       data: reaction,
       style: { scale: reduceMotion ? 1 : spring(1, { stiffness: 150, damping: 13 }) },
     })).toArray();
@@ -281,12 +281,12 @@ class ReactionsBar extends ImmutablePureComponent {
     return (
       <TransitionMotion styles={styles} willEnter={this.willEnter} willLeave={this.willLeave}>
         {items => (
-          <div className={classNames('reactions-bar', { 'reactions-bar--empty': visibleReactions.isEmpty() })}>
+          <div className={classNames("reactions-bar", { "reactions-bar--empty": visibleReactions.isEmpty() })}>
             {items.map(({ key, data, style }) => (
               <Reaction
                 key={key}
                 reaction={data}
-                style={{ transform: `scale(${style.scale})`, position: style.scale < 0.5 ? 'absolute' : 'static' }}
+                style={{ transform: `scale(${style.scale})`, position: style.scale < 0.5 ? "absolute" : "static" }}
                 announcementId={this.props.announcementId}
                 addReaction={this.props.addReaction}
                 removeReaction={this.props.removeReaction}
@@ -315,39 +315,39 @@ class Announcement extends ImmutablePureComponent {
   };
 
   state = {
-    unread: !this.props.announcement.get('read'),
+    unread: !this.props.announcement.get("read"),
   };
 
   componentDidUpdate () {
     const { selected, announcement } = this.props;
-    if (!selected && this.state.unread !== !announcement.get('read')) {
-      this.setState({ unread: !announcement.get('read') });
+    if (!selected && this.state.unread !== !announcement.get("read")) {
+      this.setState({ unread: !announcement.get("read") });
     }
   }
 
   render () {
     const { announcement } = this.props;
     const { unread } = this.state;
-    const startsAt = announcement.get('starts_at') && new Date(announcement.get('starts_at'));
-    const endsAt = announcement.get('ends_at') && new Date(announcement.get('ends_at'));
+    const startsAt = announcement.get("starts_at") && new Date(announcement.get("starts_at"));
+    const endsAt = announcement.get("ends_at") && new Date(announcement.get("ends_at"));
     const now = new Date();
     const hasTimeRange = startsAt && endsAt;
     const skipYear = hasTimeRange && startsAt.getFullYear() === endsAt.getFullYear() && endsAt.getFullYear() === now.getFullYear();
     const skipEndDate = hasTimeRange && startsAt.getDate() === endsAt.getDate() && startsAt.getMonth() === endsAt.getMonth() && startsAt.getFullYear() === endsAt.getFullYear();
-    const skipTime = announcement.get('all_day');
+    const skipTime = announcement.get("all_day");
 
     return (
       <div className='announcements__item'>
         <strong className='announcements__item__range'>
           <FormattedMessage id='announcement.announcement' defaultMessage='Announcement' />
-          {hasTimeRange && <span> · <FormattedDate value={startsAt} hour12={false} year={(skipYear || startsAt.getFullYear() === now.getFullYear()) ? undefined : 'numeric'} month='short' day='2-digit' hour={skipTime ? undefined : '2-digit'} minute={skipTime ? undefined : '2-digit'} /> - <FormattedDate value={endsAt} hour12={false} year={(skipYear || endsAt.getFullYear() === now.getFullYear()) ? undefined : 'numeric'} month={skipEndDate ? undefined : 'short'} day={skipEndDate ? undefined : '2-digit'} hour={skipTime ? undefined : '2-digit'} minute={skipTime ? undefined : '2-digit'} /></span>}
+          {hasTimeRange && <span> · <FormattedDate value={startsAt} hour12={false} year={(skipYear || startsAt.getFullYear() === now.getFullYear()) ? undefined : "numeric"} month='short' day='2-digit' hour={skipTime ? undefined : "2-digit"} minute={skipTime ? undefined : "2-digit"} /> - <FormattedDate value={endsAt} hour12={false} year={(skipYear || endsAt.getFullYear() === now.getFullYear()) ? undefined : "numeric"} month={skipEndDate ? undefined : "short"} day={skipEndDate ? undefined : "2-digit"} hour={skipTime ? undefined : "2-digit"} minute={skipTime ? undefined : "2-digit"} /></span>}
         </strong>
 
         <Content announcement={announcement} />
 
         <ReactionsBar
-          reactions={announcement.get('reactions')}
-          announcementId={announcement.get('id')}
+          reactions={announcement.get("reactions")}
+          announcementId={announcement.get("id")}
           addReaction={this.props.addReaction}
           removeReaction={this.props.removeReaction}
           emojiMap={this.props.emojiMap}
@@ -395,7 +395,9 @@ class Announcements extends ImmutablePureComponent {
     const { dismissAnnouncement, announcements } = this.props;
     const { index } = this.state;
     const announcement = announcements.get(announcements.size - 1 - index);
-    if (!announcement.get('read')) dismissAnnouncement(announcement.get('id'));
+    if (!announcement.get("read")) {
+      dismissAnnouncement(announcement.get("id"));
+    }
   }
 
   handleChangeIndex = index => {
@@ -426,7 +428,7 @@ class Announcements extends ImmutablePureComponent {
           <ReactSwipeableViews animateHeight animateTransitions={!reduceMotion} index={index} onChangeIndex={this.handleChangeIndex}>
             {announcements.map((announcement, idx) => (
               <Announcement
-                key={announcement.get('id')}
+                key={announcement.get("id")}
                 announcement={announcement}
                 emojiMap={this.props.emojiMap}
                 addReaction={this.props.addReaction}

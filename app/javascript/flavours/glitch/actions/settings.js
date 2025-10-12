@@ -1,7 +1,7 @@
-import { debounce } from 'lodash';
+import { debounce } from "lodash";
 
-export const SETTING_CHANGE = 'SETTING_CHANGE';
-export const SETTING_SAVE   = 'SETTING_SAVE';
+export const SETTING_CHANGE = "SETTING_CHANGE";
+export const SETTING_SAVE   = "SETTING_SAVE";
 
 export function changeSetting(path, value) {
   return dispatch => {
@@ -16,13 +16,13 @@ export function changeSetting(path, value) {
 }
 
 const debouncedSave = debounce((dispatch, getState) => {
-  if (getState().getIn(['settings', 'saved'])) {
+  if (getState().getIn(["settings", "saved"])) {
     return;
   }
 
-  const data = getState().get('settings').filter((_, path) => path !== 'saved').toJS();
+  const data = getState().get("settings").filter((_, path) => path !== "saved").toJS();
 
-  localStorage.setItem('web_settings', JSON.stringify(data));
+  localStorage.setItem("web_settings", JSON.stringify(data));
   dispatch({ type: SETTING_SAVE });
 }, 5000, { trailing: true });
 

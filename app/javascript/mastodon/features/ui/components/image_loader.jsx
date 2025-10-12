@@ -1,11 +1,11 @@
-import PropTypes from 'prop-types';
-import { PureComponent } from 'react';
+import PropTypes from "prop-types";
+import { PureComponent } from "react";
 
-import classNames from 'classnames';
+import classNames from "classnames";
 
-import { LoadingBar } from 'react-redux-loading-bar';
+import { LoadingBar } from "react-redux-loading-bar";
 
-import ZoomableImage from './zoomable_image';
+import ZoomableImage from "./zoomable_image";
 
 export default class ImageLoader extends PureComponent {
 
@@ -21,8 +21,8 @@ export default class ImageLoader extends PureComponent {
   };
 
   static defaultProps = {
-    alt: '',
-    lang: '',
+    alt: "",
+    lang: "",
     width: null,
     height: null,
   };
@@ -40,7 +40,7 @@ export default class ImageLoader extends PureComponent {
     if (!this.canvas) {
       return null;
     }
-    this._canvasContext = this._canvasContext || this.canvas.getContext('2d');
+    this._canvasContext = this._canvasContext || this.canvas.getContext("2d");
     return this._canvasContext;
   }
 
@@ -75,8 +75,8 @@ export default class ImageLoader extends PureComponent {
   loadPreviewCanvas = ({ previewSrc, width, height }) => new Promise((resolve, reject) => {
     const image = new Image();
     const removeEventListeners = () => {
-      image.removeEventListener('error', handleError);
-      image.removeEventListener('load', handleLoad);
+      image.removeEventListener("error", handleError);
+      image.removeEventListener("load", handleLoad);
     };
     const handleError = () => {
       removeEventListeners();
@@ -87,8 +87,8 @@ export default class ImageLoader extends PureComponent {
       this.canvasContext.drawImage(image, 0, 0, width, height);
       resolve();
     };
-    image.addEventListener('error', handleError);
-    image.addEventListener('load', handleLoad);
+    image.addEventListener("error", handleError);
+    image.addEventListener("load", handleLoad);
     image.src = previewSrc;
     this.removers.push(removeEventListeners);
   });
@@ -101,8 +101,8 @@ export default class ImageLoader extends PureComponent {
   loadOriginalImage = ({ src }) => new Promise((resolve, reject) => {
     const image = new Image();
     const removeEventListeners = () => {
-      image.removeEventListener('error', handleError);
-      image.removeEventListener('load', handleLoad);
+      image.removeEventListener("error", handleError);
+      image.removeEventListener("load", handleLoad);
     };
     const handleError = () => {
       removeEventListeners();
@@ -112,8 +112,8 @@ export default class ImageLoader extends PureComponent {
       removeEventListeners();
       resolve();
     };
-    image.addEventListener('error', handleError);
-    image.addEventListener('load', handleLoad);
+    image.addEventListener("error", handleError);
+    image.addEventListener("load", handleLoad);
     image.src = src;
     this.removers.push(removeEventListeners);
   });
@@ -125,21 +125,23 @@ export default class ImageLoader extends PureComponent {
 
   hasSize () {
     const { width, height } = this.props;
-    return typeof width === 'number' && typeof height === 'number';
+    return typeof width === "number" && typeof height === "number";
   }
 
   setCanvasRef = c => {
     this.canvas = c;
-    if (c) this.setState({ width: c.offsetWidth });
+    if (c) {
+      this.setState({ width: c.offsetWidth });
+    }
   };
 
   render () {
     const { alt, lang, src, width, height, onClick } = this.props;
     const { loading } = this.state;
 
-    const className = classNames('image-loader', {
-      'image-loader--loading': loading,
-      'image-loader--amorphous': !this.hasSize(),
+    const className = classNames("image-loader", {
+      "image-loader--loading": loading,
+      "image-loader--amorphous": !this.hasSize(),
     });
 
     return (

@@ -1,9 +1,9 @@
 // @ts-check
 
-import axios from 'axios';
-import LinkHeader from 'http-link-header';
+import axios from "axios";
+import LinkHeader from "http-link-header";
 
-import ready from './ready';
+import ready from "./ready";
 /**
  * @param {import('axios').AxiosResponse} response
  * @returns {LinkHeader}
@@ -26,10 +26,10 @@ const csrfHeader = {};
  */
 const setCSRFHeader = () => {
   /** @type {HTMLMetaElement | null} */
-  const csrfToken = document.querySelector('meta[name=csrf-token]');
+  const csrfToken = document.querySelector("meta[name=csrf-token]");
 
   if (csrfToken) {
-    csrfHeader['X-CSRF-Token'] = csrfToken.content;
+    csrfHeader["X-CSRF-Token"] = csrfToken.content;
   }
 };
 
@@ -40,14 +40,14 @@ ready(setCSRFHeader);
  * @returns {import('axios').RawAxiosRequestHeaders}
  */
 const authorizationHeaderFromState = getState => {
-  const accessToken = getState && getState().getIn(['meta', 'access_token'], '');
+  const accessToken = getState && getState().getIn(["meta", "access_token"], "");
 
   if (!accessToken) {
     return {};
   }
 
   return {
-    'Authorization': `Bearer ${accessToken}`,
+    "Authorization": `Bearer ${accessToken}`,
   };
 };
 
@@ -56,7 +56,7 @@ const authorizationHeaderFromState = getState => {
  * @returns {string}
  */
 const baseUrlFromState = getState => {
-  const baseUrl = getState && getState().getIn(['meta', 'base_url'], '');
+  const baseUrl = getState && getState().getIn(["meta", "base_url"], "");
   return `${baseUrl}`;
 };
 

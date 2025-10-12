@@ -1,9 +1,9 @@
-import PropTypes from 'prop-types';
-import { PureComponent } from 'react';
+import PropTypes from "prop-types";
+import { PureComponent } from "react";
 
 const iconStyle = {
   height: null,
-  lineHeight: '27px',
+  lineHeight: "27px",
   minWidth: `${18 * 1.28571429}px`,
 };
 
@@ -25,7 +25,7 @@ export default class TextIconButton extends PureComponent {
         type='button'
         title={title}
         aria-label={title}
-        className={`text-icon-button ${active ? 'active' : ''}`}
+        className={`text-icon-button ${active ? "active" : ""}`}
         aria-expanded={active}
         onClick={this.props.onClick}
         aria-controls={ariaControls} style={iconStyle}

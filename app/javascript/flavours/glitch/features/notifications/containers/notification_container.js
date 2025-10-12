@@ -1,18 +1,18 @@
 //  Package imports.
-import { connect } from 'react-redux';
+import { connect } from "react-redux";
 
 //  Our imports.
-import { mentionCompose } from 'flavours/glitch/actions/compose';
-import { makeGetNotification } from 'flavours/glitch/selectors';
+import { mentionCompose } from "flavours/glitch/actions/compose";
+import { makeGetNotification } from "flavours/glitch/selectors";
 
-import Notification from '../components/notification';
+import Notification from "../components/notification";
 
 const makeMapStateToProps = () => {
   const getNotification = makeGetNotification();
 
   const mapStateToProps = (state, props) => ({
     notification: getNotification(state, props.notification, props.accountId),
-    notifCleaning: state.getIn(['notifications', 'cleaningMode']),
+    notifCleaning: state.getIn(["notifications", "cleaningMode"]),
   });
 
   return mapStateToProps;

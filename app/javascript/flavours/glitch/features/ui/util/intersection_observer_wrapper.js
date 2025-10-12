@@ -14,7 +14,7 @@ class IntersectionObserverWrapper {
   connect (options) {
     const onIntersection = (entries) => {
       entries.forEach(entry => {
-        const id = entry.target.getAttribute('data-id');
+        const id = entry.target.getAttribute("data-id");
         if (this.callbacks[id]) {
           this.callbacks[id](entry);
         }

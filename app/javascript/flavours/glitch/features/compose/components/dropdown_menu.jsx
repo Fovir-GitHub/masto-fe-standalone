@@ -1,13 +1,13 @@
 //  Package imports.
-import PropTypes from 'prop-types';
-import { PureComponent } from 'react';
+import PropTypes from "prop-types";
+import { PureComponent } from "react";
 
-import classNames from 'classnames';
+import classNames from "classnames";
 
-import { supportsPassiveEvents } from 'detect-passive-events';
+import { supportsPassiveEvents } from "detect-passive-events";
 
 //  Components.
-import { Icon } from 'flavours/glitch/components/icon';
+import { Icon } from "flavours/glitch/components/icon";
 
 const listenerOptions = supportsPassiveEvents ? { passive: true, capture: true } : true;
 
@@ -54,8 +54,8 @@ export default class ComposerOptionsDropdownContent extends PureComponent {
 
   //  On mounting, we add our listeners.
   componentDidMount () {
-    document.addEventListener('click', this.handleDocumentClick, { capture: true });
-    document.addEventListener('touchend', this.handleDocumentClick, listenerOptions);
+    document.addEventListener("click", this.handleDocumentClick, { capture: true });
+    document.addEventListener("touchend", this.handleDocumentClick, listenerOptions);
     if (this.focusedItem) {
       this.focusedItem.focus({ preventScroll: true });
     } else {
@@ -65,12 +65,12 @@ export default class ComposerOptionsDropdownContent extends PureComponent {
 
   //  On unmounting, we remove our listeners.
   componentWillUnmount () {
-    document.removeEventListener('click', this.handleDocumentClick, { capture: true });
-    document.removeEventListener('touchend', this.handleDocumentClick, listenerOptions);
+    document.removeEventListener("click", this.handleDocumentClick, { capture: true });
+    document.removeEventListener("touchend", this.handleDocumentClick, listenerOptions);
   }
 
   handleClick = (e) => {
-    const i = Number(e.currentTarget.getAttribute('data-index'));
+    const i = Number(e.currentTarget.getAttribute("data-index"));
 
     const {
       onChange,
@@ -98,42 +98,42 @@ export default class ComposerOptionsDropdownContent extends PureComponent {
   };
 
   handleKeyDown = (e) => {
-    const index = Number(e.currentTarget.getAttribute('data-index'));
+    const index = Number(e.currentTarget.getAttribute("data-index"));
     const { items } = this.props;
     let element = null;
 
     switch(e.key) {
-    case 'Escape':
-      this.props.onClose();
-      break;
-    case 'Enter':
-    case ' ':
-      this.handleClick(e);
-      break;
-    case 'ArrowDown':
-      element = this.node.childNodes[index + 1] || this.node.firstChild;
-      break;
-    case 'ArrowUp':
-      element = this.node.childNodes[index - 1] || this.node.lastChild;
-      break;
-    case 'Tab':
-      if (e.shiftKey) {
-        element = this.node.childNodes[index - 1] || this.node.lastChild;
-      } else {
+      case "Escape":
+        this.props.onClose();
+        break;
+      case "Enter":
+      case " ":
+        this.handleClick(e);
+        break;
+      case "ArrowDown":
         element = this.node.childNodes[index + 1] || this.node.firstChild;
-      }
-      break;
-    case 'Home':
-      element = this.node.firstChild;
-      break;
-    case 'End':
-      element = this.node.lastChild;
-      break;
+        break;
+      case "ArrowUp":
+        element = this.node.childNodes[index - 1] || this.node.lastChild;
+        break;
+      case "Tab":
+        if (e.shiftKey) {
+          element = this.node.childNodes[index - 1] || this.node.lastChild;
+        } else {
+          element = this.node.childNodes[index + 1] || this.node.firstChild;
+        }
+        break;
+      case "Home":
+        element = this.node.firstChild;
+        break;
+      case "End":
+        element = this.node.lastChild;
+        break;
     }
 
     if (element) {
       element.focus();
-      this.handleChange(items[Number(element.getAttribute('data-index'))].name);
+      this.handleChange(items[Number(element.getAttribute("data-index"))].name);
       e.preventDefault();
       e.stopPropagation();
     }
@@ -148,7 +148,7 @@ export default class ComposerOptionsDropdownContent extends PureComponent {
 
     const active = (name === (this.props.value || this.state.value));
 
-    const computedClass = classNames('privacy-dropdown__option', { active });
+    const computedClass = classNames("privacy-dropdown__option", { active });
 
     let contents = this.props.renderItemContents && this.props.renderItemContents(item, i);
 

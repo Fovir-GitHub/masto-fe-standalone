@@ -1,12 +1,12 @@
-import type { PropsWithChildren } from 'react';
-import React from 'react';
+import  { type PropsWithChildren } from "react";
+import React from "react";
 
-import { createBrowserHistory } from 'history';
-import { Router as OriginalRouter } from 'react-router';
+import { createBrowserHistory } from "history";
+import { Router as OriginalRouter } from "react-router";
 
 interface MastodonLocationState {
-  fromMastodon?: boolean;
-  mastodonModalKey?: string;
+  fromMastodon?: boolean,
+  mastodonModalKey?: string,
 }
 
 const browserHistory = createBrowserHistory<

@@ -1,33 +1,33 @@
-import PropTypes from 'prop-types';
+import PropTypes from "prop-types";
 
-import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
+import { defineMessages, injectIntl, FormattedMessage } from "react-intl";
 
-import { Helmet } from 'react-helmet';
+import { Helmet } from "react-helmet";
 
-import ImmutablePropTypes from 'react-immutable-proptypes';
-import ImmutablePureComponent from 'react-immutable-pure-component';
-import { connect } from 'react-redux';
+import ImmutablePropTypes from "react-immutable-proptypes";
+import ImmutablePureComponent from "react-immutable-pure-component";
+import { connect } from "react-redux";
 
-import { debounce } from 'lodash';
+import { debounce } from "lodash";
 
-import { fetchFollowRequests, expandFollowRequests } from '../../actions/accounts';
-import ColumnBackButtonSlim from '../../components/column_back_button_slim';
-import ScrollableList from '../../components/scrollable_list';
-import { me } from '../../initial_state';
-import Column from '../ui/components/column';
+import { fetchFollowRequests, expandFollowRequests } from "../../actions/accounts";
+import ColumnBackButtonSlim from "../../components/column_back_button_slim";
+import ScrollableList from "../../components/scrollable_list";
+import { me } from "../../initial_state";
+import Column from "../ui/components/column";
 
-import AccountAuthorizeContainer from './containers/account_authorize_container';
+import AccountAuthorizeContainer from "./containers/account_authorize_container";
 
 const messages = defineMessages({
-  heading: { id: 'column.follow_requests', defaultMessage: 'Follow requests' },
+  heading: { id: "column.follow_requests", defaultMessage: "Follow requests" },
 });
 
 const mapStateToProps = state => ({
-  accountIds: state.getIn(['user_lists', 'follow_requests', 'items']),
-  isLoading: state.getIn(['user_lists', 'follow_requests', 'isLoading'], true),
-  hasMore: !!state.getIn(['user_lists', 'follow_requests', 'next']),
-  locked: !!state.getIn(['accounts', me, 'locked']),
-  domain: state.getIn(['meta', 'domain']),
+  accountIds: state.getIn(["user_lists", "follow_requests", "items"]),
+  isLoading: state.getIn(["user_lists", "follow_requests", "isLoading"], true),
+  hasMore: !!state.getIn(["user_lists", "follow_requests", "next"]),
+  locked: !!state.getIn(["accounts", me, "locked"]),
+  domain: state.getIn(["meta", "domain"]),
 });
 
 class FollowRequests extends ImmutablePureComponent {

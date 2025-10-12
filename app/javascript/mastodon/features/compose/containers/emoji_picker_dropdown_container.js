@@ -1,35 +1,35 @@
-import { Map as ImmutableMap } from 'immutable';
-import { connect } from 'react-redux';
-import { createSelector } from 'reselect';
+import { Map as ImmutableMap } from "immutable";
+import { connect } from "react-redux";
+import { createSelector } from "reselect";
 
-import { useEmoji } from '../../../actions/emojis';
-import { changeSetting } from '../../../actions/settings';
-import EmojiPickerDropdown from '../components/emoji_picker_dropdown';
+import { useEmoji } from "../../../actions/emojis";
+import { changeSetting } from "../../../actions/settings";
+import EmojiPickerDropdown from "../components/emoji_picker_dropdown";
 
 const perLine = 8;
 const lines   = 2;
 
 const DEFAULTS = [
-  '+1',
-  'grinning',
-  'kissing_heart',
-  'heart_eyes',
-  'laughing',
-  'stuck_out_tongue_winking_eye',
-  'sweat_smile',
-  'joy',
-  'yum',
-  'disappointed',
-  'thinking_face',
-  'weary',
-  'sob',
-  'sunglasses',
-  'heart',
-  'ok_hand',
+  "+1",
+  "grinning",
+  "kissing_heart",
+  "heart_eyes",
+  "laughing",
+  "stuck_out_tongue_winking_eye",
+  "sweat_smile",
+  "joy",
+  "yum",
+  "disappointed",
+  "thinking_face",
+  "weary",
+  "sob",
+  "sunglasses",
+  "heart",
+  "ok_hand",
 ];
 
 const getFrequentlyUsedEmojis = createSelector([
-  state => state.getIn(['settings', 'frequentlyUsedEmojis'], ImmutableMap()),
+  state => state.getIn(["settings", "frequentlyUsedEmojis"], ImmutableMap()),
 ], emojiCounters => {
   let emojis = emojiCounters
     .keySeq()
@@ -47,10 +47,10 @@ const getFrequentlyUsedEmojis = createSelector([
 });
 
 const getCustomEmojis = createSelector([
-  state => state.get('custom_emojis'),
-], emojis => emojis.filter(e => e.get('visible_in_picker')).sort((a, b) => {
-  const aShort = a.get('shortcode').toLowerCase();
-  const bShort = b.get('shortcode').toLowerCase();
+  state => state.get("custom_emojis"),
+], emojis => emojis.filter(e => e.get("visible_in_picker")).sort((a, b) => {
+  const aShort = a.get("shortcode").toLowerCase();
+  const bShort = b.get("shortcode").toLowerCase();
 
   if (aShort < bShort) {
     return -1;
@@ -63,17 +63,17 @@ const getCustomEmojis = createSelector([
 
 const mapStateToProps = state => ({
   custom_emojis: getCustomEmojis(state),
-  skinTone: state.getIn(['settings', 'skinTone']),
+  skinTone: state.getIn(["settings", "skinTone"]),
   frequentlyUsedEmojis: getFrequentlyUsedEmojis(state),
 });
 
 const mapDispatchToProps = (dispatch, { onPickEmoji }) => ({
   onSkinTone: skinTone => {
-    dispatch(changeSetting(['skinTone'], skinTone));
+    dispatch(changeSetting(["skinTone"], skinTone));
   },
 
   onPickEmoji: emoji => {
-    // eslint-disable-next-line react-hooks/rules-of-hooks -- this is not a react hook
+    // eslint-disable-next-line react-hooks/rules-of-hooks
     dispatch(useEmoji(emoji));
 
     if (onPickEmoji) {

@@ -1,18 +1,18 @@
-import type { PropsWithChildren } from 'react';
-import { useCallback, useState } from 'react';
+import  { type PropsWithChildren } from "react";
+import { useCallback, useState } from "react";
 
-import { defineMessages, useIntl } from 'react-intl';
+import { defineMessages, useIntl } from "react-intl";
 
-import { bannerSettings } from 'mastodon/settings';
+import { bannerSettings } from "mastodon/settings";
 
-import { IconButton } from './icon_button';
+import { IconButton } from "./icon_button";
 
 const messages = defineMessages({
-  dismiss: { id: 'dismissable_banner.dismiss', defaultMessage: 'Dismiss' },
+  dismiss: { id: "dismissable_banner.dismiss", defaultMessage: "Dismiss" },
 });
 
 interface Props {
-  id: string;
+  id: string,
 }
 
 export const DismissableBanner: React.FC<PropsWithChildren<Props>> = ({

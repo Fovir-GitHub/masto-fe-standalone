@@ -1,21 +1,21 @@
-import PropTypes from 'prop-types';
-import { PureComponent } from 'react';
+import PropTypes from "prop-types";
+import { PureComponent } from "react";
 
-import { defineMessages, injectIntl } from 'react-intl';
+import { defineMessages, injectIntl } from "react-intl";
 
-import { connect } from 'react-redux';
+import { connect } from "react-redux";
 
-import { changeListEditorTitle, submitListEditor } from 'flavours/glitch/actions/lists';
-import { IconButton } from 'flavours/glitch/components/icon_button';
+import { changeListEditorTitle, submitListEditor } from "flavours/glitch/actions/lists";
+import { IconButton } from "flavours/glitch/components/icon_button";
 
 const messages = defineMessages({
-  label: { id: 'lists.new.title_placeholder', defaultMessage: 'New list title' },
-  title: { id: 'lists.new.create', defaultMessage: 'Add list' },
+  label: { id: "lists.new.title_placeholder", defaultMessage: "New list title" },
+  title: { id: "lists.new.create", defaultMessage: "Add list" },
 });
 
 const mapStateToProps = state => ({
-  value: state.getIn(['listEditor', 'title']),
-  disabled: state.getIn(['listEditor', 'isSubmitting']),
+  value: state.getIn(["listEditor", "title"]),
+  disabled: state.getIn(["listEditor", "isSubmitting"]),
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -55,7 +55,7 @@ class NewListForm extends PureComponent {
     return (
       <form className='column-inline-form' onSubmit={this.handleSubmit}>
         <label>
-          <span style={{ display: 'none' }}>{label}</span>
+          <span style={{ display: "none" }}>{label}</span>
 
           <input
             className='setting-text'

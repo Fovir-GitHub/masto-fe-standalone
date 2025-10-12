@@ -1,37 +1,37 @@
-import PropTypes from 'prop-types';
-import { PureComponent } from 'react';
+import PropTypes from "prop-types";
+import { PureComponent } from "react";
 
-import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
+import { defineMessages, injectIntl, FormattedMessage } from "react-intl";
 
-import { Helmet } from 'react-helmet';
+import { Helmet } from "react-helmet";
 
-import { connect } from 'react-redux';
+import { connect } from "react-redux";
 
-import { DismissableBanner } from 'mastodon/components/dismissable_banner';
-import { domain } from 'mastodon/initial_state';
+import { DismissableBanner } from "mastodon/components/dismissable_banner";
+import { domain } from "mastodon/initial_state";
 
-import { addColumn, removeColumn, moveColumn } from '../../actions/columns';
-import { connectCommunityStream } from '../../actions/streaming';
-import { expandCommunityTimeline } from '../../actions/timelines';
-import Column from '../../components/column';
-import ColumnHeader from '../../components/column_header';
-import StatusListContainer from '../ui/containers/status_list_container';
+import { addColumn, removeColumn, moveColumn } from "../../actions/columns";
+import { connectCommunityStream } from "../../actions/streaming";
+import { expandCommunityTimeline } from "../../actions/timelines";
+import Column from "../../components/column";
+import ColumnHeader from "../../components/column_header";
+import StatusListContainer from "../ui/containers/status_list_container";
 
-import ColumnSettingsContainer from './containers/column_settings_container';
+import ColumnSettingsContainer from "./containers/column_settings_container";
 
 const messages = defineMessages({
-  title: { id: 'column.community', defaultMessage: 'Local timeline' },
+  title: { id: "column.community", defaultMessage: "Local timeline" },
 });
 
 const mapStateToProps = (state, { columnId }) => {
   const uuid = columnId;
-  const columns = state.getIn(['settings', 'columns']);
-  const index = columns.findIndex(c => c.get('uuid') === uuid);
-  const onlyMedia = (columnId && index >= 0) ? columns.get(index).getIn(['params', 'other', 'onlyMedia']) : state.getIn(['settings', 'community', 'other', 'onlyMedia']);
-  const timelineState = state.getIn(['timelines', `community${onlyMedia ? ':media' : ''}`]);
+  const columns = state.getIn(["settings", "columns"]);
+  const index = columns.findIndex(c => c.get("uuid") === uuid);
+  const onlyMedia = (columnId && index >= 0) ? columns.get(index).getIn(["params", "other", "onlyMedia"]) : state.getIn(["settings", "community", "other", "onlyMedia"]);
+  const timelineState = state.getIn(["timelines", `community${onlyMedia ? ":media" : ""}`]);
 
   return {
-    hasUnread: !!timelineState && timelineState.get('unread') > 0,
+    hasUnread: !!timelineState && timelineState.get("unread") > 0,
     onlyMedia,
   };
 };
@@ -62,7 +62,7 @@ class CommunityTimeline extends PureComponent {
     if (columnId) {
       dispatch(removeColumn(columnId));
     } else {
-      dispatch(addColumn('COMMUNITY', { other: { onlyMedia } }));
+      dispatch(addColumn("COMMUNITY", { other: { onlyMedia } }));
     }
   };
 
@@ -144,7 +144,7 @@ class CommunityTimeline extends PureComponent {
           prepend={<DismissableBanner id='community_timeline'><FormattedMessage id='dismissable_banner.community_timeline' defaultMessage='These are the most recent public posts from people whose accounts are hosted by {domain}.' values={{ domain }} /></DismissableBanner>}
           trackScroll={!pinned}
           scrollKey={`community_timeline-${columnId}`}
-          timelineId={`community${onlyMedia ? ':media' : ''}`}
+          timelineId={`community${onlyMedia ? ":media" : ""}`}
           onLoadMore={this.handleLoadMore}
           emptyMessage={<FormattedMessage id='empty_column.community' defaultMessage='The local timeline is empty. Write something publicly to get the ball rolling!' />}
           bindToDocument={!multiColumn}

@@ -1,5 +1,5 @@
-import type { BaseEmoji, EmojiData, NimbleEmojiIndex } from 'emoji-mart';
-import type { Category, Data, Emoji } from 'emoji-mart/dist-es/utils/data';
+import  { type BaseEmoji, type EmojiData, type NimbleEmojiIndex } from "emoji-mart";
+import  { type Category, type Data, type Emoji } from "emoji-mart/dist-es/utils/data";
 
 /*
  * The 'search' property, although not defined in the [`Emoji`]{@link node_modules/@types/emoji-mart/dist-es/utils/data.d.ts#Emoji} type,
@@ -17,15 +17,15 @@ export type Skins = null;
 
 export type FilenameData = string[] | string[][];
 export type ShortCodesToEmojiDataKey =
-  | EmojiData['id']
-  | BaseEmoji['native']
-  | keyof NimbleEmojiIndex['emojis'];
+  | EmojiData["id"]
+  | BaseEmoji["native"]
+  | keyof NimbleEmojiIndex["emojis"];
 
 export type SearchData = [
-  BaseEmoji['native'],
-  Emoji['short_names'],
+  BaseEmoji["native"],
+  Emoji["short_names"],
   Search,
-  Emoji['unified'],
+  Emoji["unified"],
 ];
 
 export type ShortCodesToEmojiData = Record<
@@ -38,7 +38,7 @@ export type EmojiCompressed = [
   ShortCodesToEmojiData,
   Skins,
   Category[],
-  Data['aliases'],
+  Data["aliases"],
   EmojisWithoutShortCodes,
 ];
 
@@ -49,4 +49,4 @@ export type EmojiCompressed = [
  */
 declare const emojiCompressed: EmojiCompressed;
 
-export default emojiCompressed; // eslint-disable-line import/no-default-export
+export default emojiCompressed;

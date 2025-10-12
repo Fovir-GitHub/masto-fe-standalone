@@ -1,8 +1,8 @@
-import ImmutablePropTypes from 'react-immutable-proptypes';
-import ImmutablePureComponent from 'react-immutable-pure-component';
+import ImmutablePropTypes from "react-immutable-proptypes";
+import ImmutablePureComponent from "react-immutable-pure-component";
 
-import { Avatar } from '../../../components/avatar';
-import { DisplayName } from '../../../components/display_name';
+import { Avatar } from "../../../components/avatar";
+import { DisplayName } from "../../../components/display_name";
 
 export default class AutosuggestAccount extends ImmutablePureComponent {
 
@@ -14,7 +14,7 @@ export default class AutosuggestAccount extends ImmutablePureComponent {
     const { account } = this.props;
 
     return (
-      <div className='autosuggest-account' title={account.get('acct')}>
+      <div className='autosuggest-account' title={account.get("acct")}>
         <div className='autosuggest-account-icon'><Avatar account={account} size={18} /></div>
         <DisplayName account={account} />
       </div>

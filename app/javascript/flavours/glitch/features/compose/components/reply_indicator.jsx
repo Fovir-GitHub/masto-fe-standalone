@@ -1,20 +1,20 @@
 //  Package imports.
-import PropTypes from 'prop-types';
+import PropTypes from "prop-types";
 
-import { defineMessages, injectIntl } from 'react-intl';
+import { defineMessages, injectIntl } from "react-intl";
 
-import ImmutablePropTypes from 'react-immutable-proptypes';
-import ImmutablePureComponent from 'react-immutable-pure-component';
+import ImmutablePropTypes from "react-immutable-proptypes";
+import ImmutablePureComponent from "react-immutable-pure-component";
 
 //  Components.
-import AttachmentList from 'flavours/glitch/components/attachment_list';
-import { IconButton } from 'flavours/glitch/components/icon_button';
-import AccountContainer from 'flavours/glitch/containers/account_container';
+import AttachmentList from "flavours/glitch/components/attachment_list";
+import { IconButton } from "flavours/glitch/components/icon_button";
+import AccountContainer from "flavours/glitch/containers/account_container";
 //  Messages.
 const messages = defineMessages({
   cancel: {
-    defaultMessage: 'Cancel',
-    id: 'reply_indicator.cancel',
+    defaultMessage: "Cancel",
+    id: "reply_indicator.cancel",
   },
 });
 
@@ -42,9 +42,9 @@ class ReplyIndicator extends ImmutablePureComponent {
       return null;
     }
 
-    const account     = status.get('account');
-    const content     = status.get('content');
-    const attachments = status.get('media_attachments');
+    const account     = status.get("account");
+    const content     = status.get("content");
+    const attachments = status.get("media_attachments");
 
     //  The result.
     return (
@@ -66,7 +66,7 @@ class ReplyIndicator extends ImmutablePureComponent {
         </header>
         <div
           className='reply-indicator__content translate'
-          dangerouslySetInnerHTML={{ __html: content || '' }}
+          dangerouslySetInnerHTML={{ __html: content || "" }}
         />
         {attachments.size > 0 && (
           <AttachmentList

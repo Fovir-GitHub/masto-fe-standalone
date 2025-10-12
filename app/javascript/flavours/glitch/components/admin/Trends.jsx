@@ -1,12 +1,12 @@
-import PropTypes from 'prop-types';
-import { PureComponent } from 'react';
+import PropTypes from "prop-types";
+import { PureComponent } from "react";
 
-import { FormattedMessage } from 'react-intl';
+import { FormattedMessage } from "react-intl";
 
-import classNames from 'classnames';
+import classNames from "classnames";
 
-import api from 'flavours/glitch/api';
-import Hashtag from 'flavours/glitch/components/hashtag';
+import api from "flavours/glitch/api";
+import Hashtag from "flavours/glitch/components/hashtag";
 
 export default class Trends extends PureComponent {
 
@@ -22,7 +22,7 @@ export default class Trends extends PureComponent {
   componentDidMount () {
     const { limit } = this.props;
 
-    api().get('/api/v1/admin/trends/tags', { params: { limit } }).then(res => {
+    api().get("/api/v1/admin/trends/tags", { params: { limit } }).then(res => {
       this.setState({
         loading: false,
         data: res.data,
@@ -57,7 +57,7 @@ export default class Trends extends PureComponent {
               people={hashtag.history[0].accounts * 1 + hashtag.history[1].accounts * 1}
               uses={hashtag.history[0].uses * 1 + hashtag.history[1].uses * 1}
               history={hashtag.history.reverse().map(day => day.uses)}
-              className={classNames(hashtag.requires_review && 'trends__item--requires-review', !hashtag.trendable && !hashtag.requires_review && 'trends__item--disabled')}
+              className={classNames(hashtag.requires_review && "trends__item--requires-review", !hashtag.trendable && !hashtag.requires_review && "trends__item--disabled")}
             />
           ))}
         </div>

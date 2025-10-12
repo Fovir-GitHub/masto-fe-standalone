@@ -1,15 +1,15 @@
-import PropTypes from 'prop-types';
+import PropTypes from "prop-types";
 
-import { FormattedMessage } from 'react-intl';
+import { FormattedMessage } from "react-intl";
 
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
 
-import ImmutablePropTypes from 'react-immutable-proptypes';
-import ImmutablePureComponent from 'react-immutable-pure-component';
+import ImmutablePropTypes from "react-immutable-proptypes";
+import ImmutablePureComponent from "react-immutable-pure-component";
 
-import { Avatar } from '../../../components/avatar';
+import { Avatar } from "../../../components/avatar";
 
-import ActionBar from './action_bar';
+import ActionBar from "./action_bar";
 
 export default class NavigationBar extends ImmutablePureComponent {
 
@@ -20,11 +20,11 @@ export default class NavigationBar extends ImmutablePureComponent {
   };
 
   render () {
-    const username = this.props.account.get('acct');
+    const username = this.props.account.get("acct");
     return (
       <div className='navigation-bar'>
         <Link to={`/@${username}`}>
-          <span style={{ display: 'none' }}>{username}</span>
+          <span style={{ display: "none" }}>{username}</span>
           <Avatar account={this.props.account} size={46} />
         </Link>
 

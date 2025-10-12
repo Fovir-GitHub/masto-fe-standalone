@@ -1,37 +1,37 @@
-import * as React from 'react';
+import * as React from "react";
 
-import classNames from 'classnames';
+import classNames from "classnames";
 
-import { AnimatedNumber } from './animated_number';
-import { Icon } from './icon';
+import { AnimatedNumber } from "./animated_number";
+import { Icon } from "./icon";
 
 interface Props {
-  className?: string;
-  title: string;
-  icon: string;
-  onClick?: React.MouseEventHandler<HTMLButtonElement>;
-  onMouseDown?: React.MouseEventHandler<HTMLButtonElement>;
-  onKeyDown?: React.KeyboardEventHandler<HTMLButtonElement>;
-  onKeyPress?: React.KeyboardEventHandler<HTMLButtonElement>;
-  size: number;
-  active: boolean;
-  expanded?: boolean;
-  style?: React.CSSProperties;
-  activeStyle?: React.CSSProperties;
-  disabled: boolean;
-  inverted?: boolean;
-  animate: boolean;
-  overlay: boolean;
-  tabIndex: number;
-  label?: string;
-  counter?: number;
-  obfuscateCount?: boolean;
-  href?: string;
-  ariaHidden: boolean;
+  className?: string,
+  title: string,
+  icon: string,
+  onClick?: React.MouseEventHandler<HTMLButtonElement>,
+  onMouseDown?: React.MouseEventHandler<HTMLButtonElement>,
+  onKeyDown?: React.KeyboardEventHandler<HTMLButtonElement>,
+  onKeyPress?: React.KeyboardEventHandler<HTMLButtonElement>,
+  size: number,
+  active: boolean,
+  expanded?: boolean,
+  style?: React.CSSProperties,
+  activeStyle?: React.CSSProperties,
+  disabled: boolean,
+  inverted?: boolean,
+  animate: boolean,
+  overlay: boolean,
+  tabIndex: number,
+  label?: string,
+  counter?: number,
+  obfuscateCount?: boolean,
+  href?: string,
+  ariaHidden: boolean,
 }
 interface States {
-  activate: boolean;
-  deactivate: boolean;
+  activate: boolean,
+  deactivate: boolean,
 }
 export class IconButton extends React.PureComponent<Props, States> {
   static defaultProps = {
@@ -50,7 +50,9 @@ export class IconButton extends React.PureComponent<Props, States> {
   };
 
   UNSAFE_componentWillReceiveProps(nextProps: Props) {
-    if (!nextProps.animate) return;
+    if (!nextProps.animate) {
+      return;
+    }
 
     if (this.props.active && !nextProps.active) {
       this.setState({ activate: false, deactivate: true });
@@ -64,12 +66,6 @@ export class IconButton extends React.PureComponent<Props, States> {
 
     if (!this.props.disabled && this.props.onClick != null) {
       this.props.onClick(e);
-    }
-  };
-
-  handleKeyPress: React.KeyboardEventHandler<HTMLButtonElement> = (e) => {
-    if (this.props.onKeyPress && !this.props.disabled) {
-      this.props.onKeyPress(e);
     }
   };
 
@@ -87,7 +83,7 @@ export class IconButton extends React.PureComponent<Props, States> {
 
   render() {
     // Hack required for some icons which have an overriden size
-    let containerSize = '1.28571429em';
+    let containerSize = "1.28571429em";
     if (this.props.style?.fontSize) {
       containerSize = `${this.props.size * 1.28571429}px`;
     }
@@ -102,7 +98,7 @@ export class IconButton extends React.PureComponent<Props, States> {
     if (!this.props.label) {
       style.width = containerSize;
     } else {
-      style.textAlign = 'left';
+      style.textAlign = "left";
     }
 
     const {
@@ -123,24 +119,24 @@ export class IconButton extends React.PureComponent<Props, States> {
 
     const { activate, deactivate } = this.state;
 
-    const classes = classNames(className, 'icon-button', {
+    const classes = classNames(className, "icon-button", {
       active,
       disabled,
       inverted,
       activate,
       deactivate,
       overlayed: overlay,
-      'icon-button--with-counter': typeof counter !== 'undefined',
+      "icon-button--with-counter": typeof counter !== "undefined",
     });
 
-    if (typeof counter !== 'undefined') {
-      style.width = 'auto';
+    if (typeof counter !== "undefined") {
+      style.width = "auto";
     }
 
     let contents = (
       <>
-        <Icon id={icon} fixedWidth aria-hidden='true' />{' '}
-        {typeof counter !== 'undefined' && (
+        <Icon id={icon} fixedWidth aria-hidden='true' />{" "}
+        {typeof counter !== "undefined" && (
           <span className='icon-button__counter'>
             <AnimatedNumber value={counter} obfuscate={obfuscateCount} />
           </span>
@@ -168,7 +164,6 @@ export class IconButton extends React.PureComponent<Props, States> {
         onClick={this.handleClick}
         onMouseDown={this.handleMouseDown}
         onKeyDown={this.handleKeyDown}
-        onKeyPress={this.handleKeyPress}
         style={style}
         tabIndex={tabIndex}
         disabled={disabled}

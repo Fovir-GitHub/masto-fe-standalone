@@ -1,15 +1,15 @@
-import PropTypes from 'prop-types';
+import PropTypes from "prop-types";
 
-import ImmutablePropTypes from 'react-immutable-proptypes';
-import ImmutablePureComponent from 'react-immutable-pure-component';
-import { connect } from 'react-redux';
+import ImmutablePropTypes from "react-immutable-proptypes";
+import ImmutablePureComponent from "react-immutable-pure-component";
+import { connect } from "react-redux";
 
-import { getAverageFromBlurhash } from 'flavours/glitch/blurhash';
-import Footer from 'flavours/glitch/features/picture_in_picture/components/footer';
-import Video from 'flavours/glitch/features/video';
+import { getAverageFromBlurhash } from "flavours/glitch/blurhash";
+import Footer from "flavours/glitch/features/picture_in_picture/components/footer";
+import Video from "flavours/glitch/features/video";
 
 const mapStateToProps = (state, { statusId }) => ({
-  status: state.getIn(['statuses', statusId]),
+  status: state.getIn(["statuses", statusId]),
 });
 
 class VideoModal extends ImmutablePureComponent {
@@ -30,7 +30,7 @@ class VideoModal extends ImmutablePureComponent {
   componentDidMount () {
     const { media, onChangeBackgroundColor } = this.props;
 
-    const backgroundColor = getAverageFromBlurhash(media.get('blurhash'));
+    const backgroundColor = getAverageFromBlurhash(media.get("blurhash"));
 
     if (backgroundColor) {
       onChangeBackgroundColor(backgroundColor);
@@ -40,17 +40,17 @@ class VideoModal extends ImmutablePureComponent {
   render () {
     const { media, status, onClose } = this.props;
     const options = this.props.options || {};
-    const language = status.getIn(['translation', 'language']) || status.get('language');
-    const description = media.getIn(['translation', 'description']) || media.get('description');
+    const language = status.getIn(["translation", "language"]) || status.get("language");
+    const description = media.getIn(["translation", "description"]) || media.get("description");
 
     return (
       <div className='modal-root__modal video-modal'>
         <div className='video-modal__container'>
           <Video
-            preview={media.get('preview_url')}
-            frameRate={media.getIn(['meta', 'original', 'frame_rate'])}
-            blurhash={media.get('blurhash')}
-            src={media.get('url')}
+            preview={media.get("preview_url")}
+            frameRate={media.getIn(["meta", "original", "frame_rate"])}
+            blurhash={media.get("blurhash")}
+            src={media.get("url")}
             currentTime={options.startTime}
             autoPlay={options.autoPlay}
             volume={options.defaultVolume}
@@ -63,7 +63,7 @@ class VideoModal extends ImmutablePureComponent {
         </div>
 
         <div className='media-modal__overlay'>
-          {status && <Footer statusId={status.get('id')} withOpenButton onClose={onClose} />}
+          {status && <Footer statusId={status.get("id")} withOpenButton onClose={onClose} />}
         </div>
       </div>
     );

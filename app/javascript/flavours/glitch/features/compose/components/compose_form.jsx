@@ -1,40 +1,40 @@
-import PropTypes from 'prop-types';
+import PropTypes from "prop-types";
 
-import { defineMessages, injectIntl } from 'react-intl';
+import { defineMessages, injectIntl } from "react-intl";
 
-import ImmutablePropTypes from 'react-immutable-proptypes';
-import ImmutablePureComponent from 'react-immutable-pure-component';
+import ImmutablePropTypes from "react-immutable-proptypes";
+import ImmutablePureComponent from "react-immutable-pure-component";
 
-import { length } from 'stringz';
+import { length } from "stringz";
 
-import { maxChars } from 'flavours/glitch/initial_state';
-import { isMobile } from 'flavours/glitch/is_mobile';
+import { maxChars } from "flavours/glitch/initial_state";
+import { isMobile } from "flavours/glitch/is_mobile";
 
-import AutosuggestInput from '../../../components/autosuggest_input';
-import AutosuggestTextarea from '../../../components/autosuggest_textarea';
-import EmojiPickerDropdown from '../containers/emoji_picker_dropdown_container';
-import OptionsContainer from '../containers/options_container';
-import PollFormContainer from '../containers/poll_form_container';
-import ReplyIndicatorContainer from '../containers/reply_indicator_container';
-import UploadFormContainer from '../containers/upload_form_container';
-import WarningContainer from '../containers/warning_container';
-import { countableText } from '../util/counter';
+import AutosuggestInput from "../../../components/autosuggest_input";
+import AutosuggestTextarea from "../../../components/autosuggest_textarea";
+import EmojiPickerDropdown from "../containers/emoji_picker_dropdown_container";
+import OptionsContainer from "../containers/options_container";
+import PollFormContainer from "../containers/poll_form_container";
+import ReplyIndicatorContainer from "../containers/reply_indicator_container";
+import UploadFormContainer from "../containers/upload_form_container";
+import WarningContainer from "../containers/warning_container";
+import { countableText } from "../util/counter";
 
-import CharacterCounter from './character_counter';
-import Publisher from './publisher';
-import TextareaIcons from './textarea_icons';
+import CharacterCounter from "./character_counter";
+import Publisher from "./publisher";
+import TextareaIcons from "./textarea_icons";
 
 const messages = defineMessages({
-  placeholder: { id: 'compose_form.placeholder', defaultMessage: 'What is on your mind?' },
+  placeholder: { id: "compose_form.placeholder", defaultMessage: "What is on your mind?" },
   missingDescriptionMessage: {
-    id: 'confirmations.missing_media_description.message',
-    defaultMessage: 'At least one media attachment is lacking a description. Consider describing all media attachments for the visually impaired before sending your toot.',
+    id: "confirmations.missing_media_description.message",
+    defaultMessage: "At least one media attachment is lacking a description. Consider describing all media attachments for the visually impaired before sending your toot.",
   },
   missingDescriptionConfirm: {
-    id: 'confirmations.missing_media_description.confirm',
-    defaultMessage: 'Send anyway',
+    id: "confirmations.missing_media_description.confirm",
+    defaultMessage: "Send anyway",
   },
-  spoiler_placeholder: { id: 'compose_form.spoiler_placeholder', defaultMessage: '(Optional) post title / content warning' },
+  spoiler_placeholder: { id: "compose_form.spoiler_placeholder", defaultMessage: "(Optional) post title / content warning" },
 });
 
 class ComposeForm extends ImmutablePureComponent {
@@ -94,9 +94,9 @@ class ComposeForm extends ImmutablePureComponent {
 
   getFulltextForCharacterCounting = () => {
     return [
-      this.props.spoiler? this.props.spoilerText: '',
+      this.props.spoiler? this.props.spoilerText: "",
       countableText(this.props.text),
-    ].join('');
+    ].join("");
   };
 
   canSubmit = () => {
@@ -126,9 +126,9 @@ class ComposeForm extends ImmutablePureComponent {
     }
 
     // Submit unless there are media with missing descriptions
-    if (mediaDescriptionConfirmation && onMediaDescriptionConfirm && media && media.some(item => !item.get('description'))) {
-      const firstWithoutDescription = media.find(item => !item.get('description'));
-      onMediaDescriptionConfirm(this.context.router ? this.context.router.history : null, firstWithoutDescription.get('id'), overriddenVisibility);
+    if (mediaDescriptionConfirmation && onMediaDescriptionConfirm && media && media.some(item => !item.get("description"))) {
+      const firstWithoutDescription = media.find(item => !item.get("description"));
+      onMediaDescriptionConfirm(this.context.router ? this.context.router.history : null, firstWithoutDescription.get("id"), overriddenVisibility);
     } else if (onSubmit) {
       if (onChangeVisibility && overriddenVisibility) {
         onChangeVisibility(overriddenVisibility);
@@ -163,16 +163,16 @@ class ComposeForm extends ImmutablePureComponent {
     const {
       sideArm,
     } = this.props;
-    this.handleSubmit(sideArm === 'none' ? null : sideArm);
+    this.handleSubmit(sideArm === "none" ? null : sideArm);
   };
 
   //  Selects a suggestion from the autofill.
   handleSuggestionSelected = (tokenStart, token, value) => {
-    this.props.onSuggestionSelected(tokenStart, token, value, ['text']);
+    this.props.onSuggestionSelected(tokenStart, token, value, ["text"]);
   };
 
   handleSpoilerSuggestionSelected = (tokenStart, token, value) => {
-    this.props.onSuggestionSelected(tokenStart, token, value, ['spoiler_text']);
+    this.props.onSuggestionSelected(tokenStart, token, value, ["spoiler_text"]);
   };
 
   handleKeyDown = (e) => {
@@ -242,15 +242,15 @@ class ComposeForm extends ImmutablePureComponent {
     //  Caret/selection handling.
     if (focusDate !== prevProps.focusDate) {
       switch (true) {
-      case preselectDate !== prevProps.preselectDate && this.props.isInReply && preselectOnReply:
-        selectionStart = text.search(/\s/) + 1;
-        selectionEnd = text.length;
-        break;
-      case !isNaN(caretPosition) && caretPosition !== null:
-        selectionStart = selectionEnd = caretPosition;
-        break;
-      default:
-        selectionStart = selectionEnd = text.length;
+        case preselectDate !== prevProps.preselectDate && this.props.isInReply && preselectOnReply:
+          selectionStart = text.search(/\s/) + 1;
+          selectionEnd = text.length;
+          break;
+        case !isNaN(caretPosition) && caretPosition !== null:
+          selectionStart = selectionEnd = caretPosition;
+          break;
+        default:
+          selectionStart = selectionEnd = text.length;
       }
       if (textarea) {
         // Because of the wicg-inert polyfill, the activeElement may not be
@@ -259,7 +259,9 @@ class ComposeForm extends ImmutablePureComponent {
         Promise.resolve().then(() => {
           textarea.setSelectionRange(selectionStart, selectionEnd);
           textarea.focus();
-          if (!singleColumn) textarea.scrollIntoView();
+          if (!singleColumn) {
+            textarea.scrollIntoView();
+          }
         }).catch(console.error);
       }
 
@@ -314,7 +316,7 @@ class ComposeForm extends ImmutablePureComponent {
 
         <ReplyIndicatorContainer />
 
-        <div className={`spoiler-input ${spoiler ? 'spoiler-input--visible' : ''}`} ref={this.setRef} aria-hidden={!this.props.spoiler}>
+        <div className={`spoiler-input ${spoiler ? "spoiler-input--visible" : ""}`} ref={this.setRef} aria-hidden={!this.props.spoiler}>
           <AutosuggestInput
             placeholder={intl.formatMessage(messages.spoiler_placeholder)}
             value={spoilerText}
@@ -326,7 +328,7 @@ class ComposeForm extends ImmutablePureComponent {
             onSuggestionsFetchRequested={onFetchSuggestions}
             onSuggestionsClearRequested={onClearSuggestions}
             onSuggestionSelected={this.handleSpoilerSuggestionSelected}
-            searchTokens={[':']}
+            searchTokens={[":"]}
             id='glitch.composer.spoiler.input'
             className='spoiler-input__input'
             lang={this.props.lang}

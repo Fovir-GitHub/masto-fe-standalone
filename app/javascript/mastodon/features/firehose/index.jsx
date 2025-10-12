@@ -1,26 +1,26 @@
-import PropTypes from 'prop-types';
-import { useRef, useCallback, useEffect } from 'react';
+import PropTypes from "prop-types";
+import { useRef, useCallback, useEffect } from "react";
 
-import { useIntl, defineMessages, FormattedMessage } from 'react-intl';
+import { useIntl, defineMessages, FormattedMessage } from "react-intl";
 
-import { Helmet } from 'react-helmet';
-import { NavLink } from 'react-router-dom';
+import { Helmet } from "react-helmet";
+import { NavLink } from "react-router-dom";
 
-import { addColumn } from 'mastodon/actions/columns';
-import { changeSetting } from 'mastodon/actions/settings';
-import { connectPublicStream, connectCommunityStream } from 'mastodon/actions/streaming';
-import { expandPublicTimeline, expandCommunityTimeline } from 'mastodon/actions/timelines';
-import { DismissableBanner } from 'mastodon/components/dismissable_banner';
-import initialState, { domain } from 'mastodon/initial_state';
-import { useAppDispatch, useAppSelector } from 'mastodon/store';
+import { addColumn } from "mastodon/actions/columns";
+import { changeSetting } from "mastodon/actions/settings";
+import { connectPublicStream, connectCommunityStream } from "mastodon/actions/streaming";
+import { expandPublicTimeline, expandCommunityTimeline } from "mastodon/actions/timelines";
+import { DismissableBanner } from "mastodon/components/dismissable_banner";
+import initialState, { domain } from "mastodon/initial_state";
+import { useAppDispatch, useAppSelector } from "mastodon/store";
 
-import Column from '../../components/column';
-import ColumnHeader from '../../components/column_header';
-import SettingToggle from '../notifications/components/setting_toggle';
-import StatusListContainer from '../ui/containers/status_list_container';
+import Column from "../../components/column";
+import ColumnHeader from "../../components/column_header";
+import SettingToggle from "../notifications/components/setting_toggle";
+import StatusListContainer from "../ui/containers/status_list_container";
 
 const messages = defineMessages({
-  title: { id: 'column.firehose', defaultMessage: 'Live feeds' },
+  title: { id: "column.firehose", defaultMessage: "Live feeds" },
 });
 
 // TODO: use a proper React context later on
@@ -34,9 +34,9 @@ const useIdentity = () => ({
 
 const ColumnSettings = () => {
   const dispatch = useAppDispatch();
-  const settings = useAppSelector((state) => state.getIn(['settings', 'firehose']));
+  const settings = useAppSelector((state) => state.getIn(["settings", "firehose"]));
   const onChange = useCallback(
-    (key, checked) => dispatch(changeSetting(['firehose', ...key], checked)),
+    (key, checked) => dispatch(changeSetting(["firehose", ...key], checked)),
     [dispatch],
   );
 
@@ -45,7 +45,7 @@ const ColumnSettings = () => {
       <div className='column-settings__row'>
         <SettingToggle
           settings={settings}
-          settingPath={['onlyMedia']}
+          settingPath={["onlyMedia"]}
           onChange={onChange}
           label={<FormattedMessage id='community.column_settings.media_only' defaultMessage='Media only' />}
         />
@@ -60,21 +60,21 @@ const Firehose = ({ feedType, multiColumn }) => {
   const { signedIn } = useIdentity();
   const columnRef = useRef(null);
 
-  const onlyMedia = useAppSelector((state) => state.getIn(['settings', 'firehose', 'onlyMedia'], false));
-  const hasUnread = useAppSelector((state) => state.getIn(['timelines', `${feedType}${onlyMedia ? ':media' : ''}`, 'unread'], 0) > 0);
+  const onlyMedia = useAppSelector((state) => state.getIn(["settings", "firehose", "onlyMedia"], false));
+  const hasUnread = useAppSelector((state) => state.getIn(["timelines", `${feedType}${onlyMedia ? ":media" : ""}`, "unread"], 0) > 0);
 
   const handlePin = useCallback(
     () => {
       switch(feedType) {
-      case 'community':
-        dispatch(addColumn('COMMUNITY', { other: { onlyMedia } }));
-        break;
-      case 'public':
-        dispatch(addColumn('PUBLIC', { other: { onlyMedia } }));
-        break;
-      case 'public:remote':
-        dispatch(addColumn('REMOTE', { other: { onlyMedia, onlyRemote: true } }));
-        break;
+        case "community":
+          dispatch(addColumn("COMMUNITY", { other: { onlyMedia } }));
+          break;
+        case "public":
+          dispatch(addColumn("PUBLIC", { other: { onlyMedia } }));
+          break;
+        case "public:remote":
+          dispatch(addColumn("REMOTE", { other: { onlyMedia, onlyRemote: true } }));
+          break;
       }
     },
     [dispatch, onlyMedia, feedType],
@@ -83,15 +83,15 @@ const Firehose = ({ feedType, multiColumn }) => {
   const handleLoadMore = useCallback(
     (maxId) => {
       switch(feedType) {
-      case 'community':
-        dispatch(expandCommunityTimeline({ maxId, onlyMedia }));
-        break;
-      case 'public':
-        dispatch(expandPublicTimeline({ maxId, onlyMedia }));
-        break;
-      case 'public:remote':
-        dispatch(expandPublicTimeline({ maxId, onlyMedia, onlyRemote: true }));
-        break;
+        case "community":
+          dispatch(expandCommunityTimeline({ maxId, onlyMedia }));
+          break;
+        case "public":
+          dispatch(expandPublicTimeline({ maxId, onlyMedia }));
+          break;
+        case "public:remote":
+          dispatch(expandPublicTimeline({ maxId, onlyMedia, onlyRemote: true }));
+          break;
       }
     },
     [dispatch, onlyMedia, feedType],
@@ -103,30 +103,30 @@ const Firehose = ({ feedType, multiColumn }) => {
     let disconnect;
 
     switch(feedType) {
-    case 'community':
-      dispatch(expandCommunityTimeline({ onlyMedia }));
-      if (signedIn) {
-        disconnect = dispatch(connectCommunityStream({ onlyMedia }));
-      }
-      break;
-    case 'public':
-      dispatch(expandPublicTimeline({ onlyMedia }));
-      if (signedIn) {
-        disconnect = dispatch(connectPublicStream({ onlyMedia }));
-      }
-      break;
-    case 'public:remote':
-      dispatch(expandPublicTimeline({ onlyMedia, onlyRemote: true }));
-      if (signedIn) {
-        disconnect = dispatch(connectPublicStream({ onlyMedia, onlyRemote: true }));
-      }
-      break;
+      case "community":
+        dispatch(expandCommunityTimeline({ onlyMedia }));
+        if (signedIn) {
+          disconnect = dispatch(connectCommunityStream({ onlyMedia }));
+        }
+        break;
+      case "public":
+        dispatch(expandPublicTimeline({ onlyMedia }));
+        if (signedIn) {
+          disconnect = dispatch(connectPublicStream({ onlyMedia }));
+        }
+        break;
+      case "public:remote":
+        dispatch(expandPublicTimeline({ onlyMedia, onlyRemote: true }));
+        if (signedIn) {
+          disconnect = dispatch(connectPublicStream({ onlyMedia, onlyRemote: true }));
+        }
+        break;
     }
 
     return () => disconnect?.();
   }, [dispatch, signedIn, feedType, onlyMedia]);
 
-  const prependBanner = feedType === 'community' ? (
+  const prependBanner = feedType === "community" ? (
     <DismissableBanner id='community_timeline'>
       <FormattedMessage
         id='dismissable_banner.community_timeline'
@@ -144,7 +144,7 @@ const Firehose = ({ feedType, multiColumn }) => {
     </DismissableBanner>
   );
 
-  const emptyMessage = feedType === 'community' ? (
+  const emptyMessage = feedType === "community" ? (
     <FormattedMessage
       id='empty_column.community'
       defaultMessage='The local timeline is empty. Write something publicly to get the ball rolling!'
@@ -185,7 +185,7 @@ const Firehose = ({ feedType, multiColumn }) => {
 
       <StatusListContainer
         prepend={prependBanner}
-        timelineId={`${feedType}${onlyMedia ? ':media' : ''}`}
+        timelineId={`${feedType}${onlyMedia ? ":media" : ""}`}
         onLoadMore={handleLoadMore}
         trackScroll
         scrollKey='firehose'

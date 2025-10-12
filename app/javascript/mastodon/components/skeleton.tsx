@@ -1,6 +1,6 @@
 interface Props {
-  width?: number | string;
-  height?: number | string;
+  width?: number | string,
+  height?: number | string,
 }
 
 export const Skeleton: React.FC<Props> = ({ width, height }) => (

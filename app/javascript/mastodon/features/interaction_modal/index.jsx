@@ -1,27 +1,27 @@
-import PropTypes from 'prop-types';
-import React from 'react';
+import PropTypes from "prop-types";
+import React from "react";
 
-import { FormattedMessage, defineMessages, injectIntl } from 'react-intl';
+import { FormattedMessage, defineMessages, injectIntl } from "react-intl";
 
-import classNames from 'classnames';
+import classNames from "classnames";
 
-import { connect } from 'react-redux';
+import { connect } from "react-redux";
 
-import { throttle, escapeRegExp } from 'lodash';
+import { throttle, escapeRegExp } from "lodash";
 
-import { openModal, closeModal } from 'mastodon/actions/modal';
-import api from 'mastodon/api';
-import Button from 'mastodon/components/button';
-import { Icon }  from 'mastodon/components/icon';
-import { registrationsOpen, sso_redirect } from 'mastodon/initial_state';
+import { openModal, closeModal } from "mastodon/actions/modal";
+import api from "mastodon/api";
+import Button from "mastodon/components/button";
+import { Icon }  from "mastodon/components/icon";
+import { registrationsOpen, sso_redirect } from "mastodon/initial_state";
 
 const messages = defineMessages({
-  loginPrompt: { id: 'interaction_modal.login.prompt', defaultMessage: 'Domain of your home server, e.g. mastodon.social' },
+  loginPrompt: { id: "interaction_modal.login.prompt", defaultMessage: "Domain of your home server, e.g. mastodon.social" },
 });
 
 const mapStateToProps = (state, { accountId }) => ({
-  displayNameHtml: state.getIn(['accounts', accountId, 'display_name_html']),
-  signupUrl: state.getIn(['server', 'server', 'registrations', 'url'], null) || '/auth/sign_up',
+  displayNameHtml: state.getIn(["accounts", accountId, "display_name_html"]),
+  signupUrl: state.getIn(["server", "server", "registrations", "url"], null) || "/auth/sign_up",
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -30,14 +30,14 @@ const mapDispatchToProps = (dispatch) => ({
       modalType: undefined,
       ignoreFocus: false,
     }));
-    dispatch(openModal({ modalType: 'CLOSED_REGISTRATIONS' }));
+    dispatch(openModal({ modalType: "CLOSED_REGISTRATIONS" }));
   },
 });
 
-const PERSISTENCE_KEY = 'mastodon_home';
+const PERSISTENCE_KEY = "mastodon_home";
 
 const isValidDomain = value => {
-  const url = new URL('https:///path');
+  const url = new URL("https:///path");
   url.hostname = value;
   return url.hostname === value;
 };
@@ -50,7 +50,7 @@ const valueToDomain = value => {
 
       // Consider that if there is a path, the URL is more meaningful than a bare domain
       if (url.pathname.length > 1) {
-        return '';
+        return "";
       }
 
       return url.host;
@@ -58,11 +58,11 @@ const valueToDomain = value => {
       return undefined;
     }
   // If the user writes their full handle including username
-  } else if (value.includes('@')) {
-    if (value.replace(/^@/, '').split('@').length > 2) {
+  } else if (value.includes("@")) {
+    if (value.replace(/^@/, "").split("@").length > 2) {
       return undefined;
     }
-    return '';
+    return "";
   }
 
   return value;
@@ -71,7 +71,7 @@ const valueToDomain = value => {
 const addInputToOptions = (value, options) => {
   value = value.trim();
 
-  if (value.includes('.') && isValidDomain(value)) {
+  if (value.includes(".") && isValidDomain(value)) {
     return [value].concat(options.filter((x) => x !== value));
   }
 
@@ -86,7 +86,7 @@ class LoginForm extends React.PureComponent {
   };
 
   state = {
-    value: localStorage ? (localStorage.getItem(PERSISTENCE_KEY) || '') : '',
+    value: localStorage ? (localStorage.getItem(PERSISTENCE_KEY) || "") : "",
     expanded: false,
     selectedOption: -1,
     isLoading: false,
@@ -102,19 +102,19 @@ class LoginForm extends React.PureComponent {
 
   isValueValid = (value) => {
     let likelyAcct = false;
-    let url = null;
+    let url;
 
-    if (value.startsWith('/')) {
+    if (value.startsWith("/")) {
       return false;
     }
 
-    if (value.startsWith('@')) {
+    if (value.startsWith("@")) {
       value = value.slice(1);
       likelyAcct = true;
     }
 
     // The user is in the middle of typing something, do not error out
-    if (value === '') {
+    if (value === "") {
       return true;
     }
 
@@ -144,12 +144,12 @@ class LoginForm extends React.PureComponent {
       return;
     }
 
-    if (event.data?.type === 'fetchInteractionURL-failure') {
+    if (event.data?.type === "fetchInteractionURL-failure") {
       this.setState({ isSubmitting: false, error: true });
-    } else if (event.data?.type === 'fetchInteractionURL-success') {
+    } else if (event.data?.type === "fetchInteractionURL-success") {
       if (/^https?:\/\//.test(event.data.template)) {
         try {
-          const url = new URL(event.data.template.replace('{uri}', encodeURIComponent(resourceUrl)));
+          const url = new URL(event.data.template.replace("{uri}", encodeURIComponent(resourceUrl)));
 
           if (localStorage) {
             localStorage.setItem(PERSISTENCE_KEY, event.data.uri_or_domain);
@@ -167,11 +167,11 @@ class LoginForm extends React.PureComponent {
   };
 
   componentDidMount () {
-    window.addEventListener('message', this.handleMessage);
+    window.addEventListener("message", this.handleMessage);
   }
 
   componentWillUnmount () {
-    window.removeEventListener('message', this.handleMessage);
+    window.removeEventListener("message", this.handleMessage);
   }
 
   handleSubmit = () => {
@@ -180,7 +180,7 @@ class LoginForm extends React.PureComponent {
     this.setState({ isSubmitting: true });
 
     this.iframeRef.contentWindow.postMessage({
-      type: 'fetchInteractionURL',
+      type: "fetchInteractionURL",
       uri_or_domain: value.trim(),
     }, window.origin);
   };
@@ -201,37 +201,37 @@ class LoginForm extends React.PureComponent {
     const { options, selectedOption } = this.state;
 
     switch(e.key) {
-    case 'ArrowDown':
-      e.preventDefault();
+      case "ArrowDown":
+        e.preventDefault();
 
-      if (options.length > 0) {
-        this.setState({ selectedOption: Math.min(selectedOption + 1, options.length - 1) });
-      }
+        if (options.length > 0) {
+          this.setState({ selectedOption: Math.min(selectedOption + 1, options.length - 1) });
+        }
 
-      break;
-    case 'ArrowUp':
-      e.preventDefault();
+        break;
+      case "ArrowUp":
+        e.preventDefault();
 
-      if (options.length > 0) {
-        this.setState({ selectedOption: Math.max(selectedOption - 1, -1) });
-      }
+        if (options.length > 0) {
+          this.setState({ selectedOption: Math.max(selectedOption - 1, -1) });
+        }
 
-      break;
-    case 'Enter':
-      e.preventDefault();
+        break;
+      case "Enter":
+        e.preventDefault();
 
-      if (selectedOption === -1) {
-        this.handleSubmit();
-      } else if (options.length > 0) {
-        this.setState({ value: options[selectedOption], error: false }, () => this.handleSubmit());
-      }
+        if (selectedOption === -1) {
+          this.handleSubmit();
+        } else if (options.length > 0) {
+          this.setState({ value: options[selectedOption], error: false }, () => this.handleSubmit());
+        }
 
-      break;
+        break;
     }
   };
 
   handleOptionClick = e => {
-    const index  = Number(e.currentTarget.getAttribute('data-index'));
+    const index  = Number(e.currentTarget.getAttribute("data-index"));
     const option = this.state.options[index];
 
     e.preventDefault();
@@ -243,7 +243,7 @@ class LoginForm extends React.PureComponent {
 
     const domain = valueToDomain(value.trim());
 
-    if (typeof domain === 'undefined') {
+    if (typeof domain === "undefined") {
       this.setState({ options: [], networkOptions: [], isLoading: false, error: true });
       return;
     }
@@ -253,7 +253,7 @@ class LoginForm extends React.PureComponent {
       return;
     }
 
-    api().get('/api/v1/peers/search', { params: { q: domain } }).then(({ data }) => {
+    api().get("/api/v1/peers/search", { params: { q: domain } }).then(({ data }) => {
       if (!data) {
         data = [];
       }
@@ -267,16 +267,16 @@ class LoginForm extends React.PureComponent {
   render () {
     const { intl } = this.props;
     const { value, expanded, options, selectedOption, error, isSubmitting } = this.state;
-    const domain = (valueToDomain(value) || '').trim();
-    const domainRegExp = new RegExp(`(${escapeRegExp(domain)})`, 'gi');
+    const domain = (valueToDomain(value) || "").trim();
+    const domainRegExp = new RegExp(`(${escapeRegExp(domain)})`, "gi");
     const hasPopOut = domain.length > 0 && options.length > 0;
 
     return (
-      <div className={classNames('interaction-modal__login', { focused: expanded, expanded: hasPopOut, invalid: error })}>
+      <div className={classNames("interaction-modal__login", { focused: expanded, expanded: hasPopOut, invalid: error })}>
 
         <iframe
           ref={this.setIFrameRef}
-          style={{display: 'none'}}
+          style={{display: "none"}}
           src='/remote_interaction_helper'
           sandbox='allow-scripts allow-same-origin'
           title='remote interaction helper'
@@ -294,9 +294,9 @@ class LoginForm extends React.PureComponent {
             onFocus={this.handleFocus}
             onBlur={this.handleBlur}
             onKeyDown={this.handleKeyDown}
-            autocomplete='off'
-            autocapitalize='off'
-            spellcheck='false'
+            autoComplete='off'
+            autoCapitalize='off'
+            spellCheck='false'
           />
 
           <Button onClick={this.handleSubmit} disabled={isSubmitting || error}><FormattedMessage id='interaction_modal.login.action' defaultMessage='Take me home' /></Button>
@@ -306,7 +306,7 @@ class LoginForm extends React.PureComponent {
           <div className='search__popout'>
             <div className='search__popout__menu'>
               {options.map((option, i) => (
-                <button key={option} onMouseDown={this.handleOptionClick} data-index={i} className={classNames('search__popout__menu__item', { selected: selectedOption === i })}>
+                <button key={option} onMouseDown={this.handleOptionClick} data-index={i} className={classNames("search__popout__menu__item", { selected: selectedOption === i })}>
                   {option.split(domainRegExp).map((part, i) => (
                     part.toLowerCase() === domain.toLowerCase() ? (
                       <mark key={i}>
@@ -336,7 +336,7 @@ class InteractionModal extends React.PureComponent {
   static propTypes = {
     displayNameHtml: PropTypes.string,
     url: PropTypes.string,
-    type: PropTypes.oneOf(['reply', 'reblog', 'favourite', 'follow']),
+    type: PropTypes.oneOf(["reply", "reblog", "favourite", "follow"]),
     onSignupClick: PropTypes.func.isRequired,
     signupUrl: PropTypes.string.isRequired,
   };
@@ -353,26 +353,26 @@ class InteractionModal extends React.PureComponent {
     let title, actionDescription, icon;
 
     switch(type) {
-    case 'reply':
-      icon = <Icon id='reply' />;
-      title = <FormattedMessage id='interaction_modal.title.reply' defaultMessage="Reply to {name}'s post" values={{ name }} />;
-      actionDescription = <FormattedMessage id='interaction_modal.description.reply' defaultMessage='With an account on Mastodon, you can respond to this post.' />;
-      break;
-    case 'reblog':
-      icon = <Icon id='retweet' />;
-      title = <FormattedMessage id='interaction_modal.title.reblog' defaultMessage="Boost {name}'s post" values={{ name }} />;
-      actionDescription = <FormattedMessage id='interaction_modal.description.reblog' defaultMessage='With an account on Mastodon, you can boost this post to share it with your own followers.' />;
-      break;
-    case 'favourite':
-      icon = <Icon id='star' />;
-      title = <FormattedMessage id='interaction_modal.title.favourite' defaultMessage="Favorite {name}'s post" values={{ name }} />;
-      actionDescription = <FormattedMessage id='interaction_modal.description.favourite' defaultMessage='With an account on Mastodon, you can favorite this post to let the author know you appreciate it and save it for later.' />;
-      break;
-    case 'follow':
-      icon = <Icon id='user-plus' />;
-      title = <FormattedMessage id='interaction_modal.title.follow' defaultMessage='Follow {name}' values={{ name }} />;
-      actionDescription = <FormattedMessage id='interaction_modal.description.follow' defaultMessage='With an account on Mastodon, you can follow {name} to receive their posts in your home feed.' values={{ name }} />;
-      break;
+      case "reply":
+        icon = <Icon id='reply' />;
+        title = <FormattedMessage id='interaction_modal.title.reply' defaultMessage="Reply to {name}'s post" values={{ name }} />;
+        actionDescription = <FormattedMessage id='interaction_modal.description.reply' defaultMessage='With an account on Mastodon, you can respond to this post.' />;
+        break;
+      case "reblog":
+        icon = <Icon id='retweet' />;
+        title = <FormattedMessage id='interaction_modal.title.reblog' defaultMessage="Boost {name}'s post" values={{ name }} />;
+        actionDescription = <FormattedMessage id='interaction_modal.description.reblog' defaultMessage='With an account on Mastodon, you can boost this post to share it with your own followers.' />;
+        break;
+      case "favourite":
+        icon = <Icon id='star' />;
+        title = <FormattedMessage id='interaction_modal.title.favourite' defaultMessage="Favorite {name}'s post" values={{ name }} />;
+        actionDescription = <FormattedMessage id='interaction_modal.description.favourite' defaultMessage='With an account on Mastodon, you can favorite this post to let the author know you appreciate it and save it for later.' />;
+        break;
+      case "follow":
+        icon = <Icon id='user-plus' />;
+        title = <FormattedMessage id='interaction_modal.title.follow' defaultMessage='Follow {name}' values={{ name }} />;
+        actionDescription = <FormattedMessage id='interaction_modal.description.follow' defaultMessage='With an account on Mastodon, you can follow {name} to receive their posts in your home feed.' values={{ name }} />;
+        break;
     }
 
     let signupButton;

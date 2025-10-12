@@ -1,29 +1,29 @@
-import PropTypes from 'prop-types';
-import { PureComponent } from 'react';
+import PropTypes from "prop-types";
+import { PureComponent } from "react";
 
-import { defineMessages, injectIntl, FormattedMessage, FormattedList } from 'react-intl';
+import { defineMessages, injectIntl, FormattedMessage, FormattedList } from "react-intl";
 
-import classNames from 'classnames';
+import classNames from "classnames";
 
-import ImmutablePropTypes from 'react-immutable-proptypes';
+import ImmutablePropTypes from "react-immutable-proptypes";
 
-import { Icon }  from 'mastodon/components/icon';
-import { domain, searchEnabled } from 'mastodon/initial_state';
-import { HASHTAG_REGEX } from 'mastodon/utils/hashtags';
+import { Icon }  from "mastodon/components/icon";
+import { domain, searchEnabled } from "mastodon/initial_state";
+import { HASHTAG_REGEX } from "mastodon/utils/hashtags";
 
 const messages = defineMessages({
-  placeholder: { id: 'search.placeholder', defaultMessage: 'Search' },
-  placeholderSignedIn: { id: 'search.search_or_paste', defaultMessage: 'Search or paste URL' },
+  placeholder: { id: "search.placeholder", defaultMessage: "Search" },
+  placeholderSignedIn: { id: "search.search_or_paste", defaultMessage: "Search or paste URL" },
 });
 
 const labelForRecentSearch = search => {
-  switch(search.get('type')) {
-  case 'account':
-    return `@${search.get('q')}`;
-  case 'hashtag':
-    return `#${search.get('q')}`;
-  default:
-    return search.get('q');
+  switch(search.get("type")) {
+    case "account":
+      return `@${search.get("q")}`;
+    case "hashtag":
+      return `#${search.get("q")}`;
+    default:
+      return search.get("q");
   }
 };
 
@@ -57,14 +57,30 @@ class Search extends PureComponent {
   };
 
   defaultOptions = [
-    { label: <><mark>has:</mark> <FormattedList type='disjunction' value={['media', 'poll', 'embed']} /></>, action: e => { e.preventDefault(); this._insertText('has:'); } },
-    { label: <><mark>is:</mark> <FormattedList type='disjunction' value={['reply', 'sensitive']} /></>, action: e => { e.preventDefault(); this._insertText('is:'); } },
-    { label: <><mark>language:</mark> <FormattedMessage id='search_popout.language_code' defaultMessage='ISO language code' /></>, action: e => { e.preventDefault(); this._insertText('language:'); } },
-    { label: <><mark>from:</mark> <FormattedMessage id='search_popout.user' defaultMessage='user' /></>, action: e => { e.preventDefault(); this._insertText('from:'); } },
-    { label: <><mark>before:</mark> <FormattedMessage id='search_popout.specific_date' defaultMessage='specific date' /></>, action: e => { e.preventDefault(); this._insertText('before:'); } },
-    { label: <><mark>during:</mark> <FormattedMessage id='search_popout.specific_date' defaultMessage='specific date' /></>, action: e => { e.preventDefault(); this._insertText('during:'); } },
-    { label: <><mark>after:</mark> <FormattedMessage id='search_popout.specific_date' defaultMessage='specific date' /></>, action: e => { e.preventDefault(); this._insertText('after:'); } },
-    { label: <><mark>in:</mark> <FormattedList type='disjunction' value={['all', 'library']} /></>, action: e => { e.preventDefault(); this._insertText('in:'); } }
+    { label: <><mark>has:</mark> <FormattedList type='disjunction' value={["media", "poll", "embed"]} /></>, action: e => {
+      e.preventDefault(); this._insertText("has:"); 
+    } },
+    { label: <><mark>is:</mark> <FormattedList type='disjunction' value={["reply", "sensitive"]} /></>, action: e => {
+      e.preventDefault(); this._insertText("is:"); 
+    } },
+    { label: <><mark>language:</mark> <FormattedMessage id='search_popout.language_code' defaultMessage='ISO language code' /></>, action: e => {
+      e.preventDefault(); this._insertText("language:"); 
+    } },
+    { label: <><mark>from:</mark> <FormattedMessage id='search_popout.user' defaultMessage='user' /></>, action: e => {
+      e.preventDefault(); this._insertText("from:"); 
+    } },
+    { label: <><mark>before:</mark> <FormattedMessage id='search_popout.specific_date' defaultMessage='specific date' /></>, action: e => {
+      e.preventDefault(); this._insertText("before:"); 
+    } },
+    { label: <><mark>during:</mark> <FormattedMessage id='search_popout.specific_date' defaultMessage='specific date' /></>, action: e => {
+      e.preventDefault(); this._insertText("during:"); 
+    } },
+    { label: <><mark>after:</mark> <FormattedMessage id='search_popout.specific_date' defaultMessage='specific date' /></>, action: e => {
+      e.preventDefault(); this._insertText("after:"); 
+    } },
+    { label: <><mark>in:</mark> <FormattedList type='disjunction' value={["all", "library"]} /></>, action: e => {
+      e.preventDefault(); this._insertText("in:"); 
+    } },
   ];
 
   setRef = c => {
@@ -95,48 +111,48 @@ class Search extends PureComponent {
     const options = searchEnabled ? this._getOptions().concat(this.defaultOptions) : this._getOptions();
 
     switch(e.key) {
-    case 'Escape':
-      e.preventDefault();
-      this._unfocus();
+      case "Escape":
+        e.preventDefault();
+        this._unfocus();
 
-      break;
-    case 'ArrowDown':
-      e.preventDefault();
+        break;
+      case "ArrowDown":
+        e.preventDefault();
 
-      if (options.length > 0) {
-        this.setState({ selectedOption: Math.min(selectedOption + 1, options.length - 1) });
-      }
-
-      break;
-    case 'ArrowUp':
-      e.preventDefault();
-
-      if (options.length > 0) {
-        this.setState({ selectedOption: Math.max(selectedOption - 1, -1) });
-      }
-
-      break;
-    case 'Enter':
-      e.preventDefault();
-
-      if (selectedOption === -1) {
-        this._submit();
-      } else if (options.length > 0) {
-        options[selectedOption].action(e);
-      }
-
-      break;
-    case 'Delete':
-      if (selectedOption > -1 && options.length > 0) {
-        const search = options[selectedOption];
-
-        if (typeof search.forget === 'function') {
-          e.preventDefault();
-          search.forget(e);
+        if (options.length > 0) {
+          this.setState({ selectedOption: Math.min(selectedOption + 1, options.length - 1) });
         }
-      }
 
-      break;
+        break;
+      case "ArrowUp":
+        e.preventDefault();
+
+        if (options.length > 0) {
+          this.setState({ selectedOption: Math.max(selectedOption - 1, -1) });
+        }
+
+        break;
+      case "Enter":
+        e.preventDefault();
+
+        if (selectedOption === -1) {
+          this._submit();
+        } else if (options.length > 0) {
+          options[selectedOption].action(e);
+        }
+
+        break;
+      case "Delete":
+        if (selectedOption > -1 && options.length > 0) {
+          const search = options[selectedOption];
+
+          if (typeof search.forget === "function") {
+            e.preventDefault();
+            search.forget(e);
+          }
+        }
+
+        break;
     }
   };
 
@@ -163,10 +179,10 @@ class Search extends PureComponent {
     const { router } = this.context;
     const { value, onClickSearchResult } = this.props;
 
-    const query = value.trim().replace(/^#/, '');
+    const query = value.trim().replace(/^#/, "");
 
     router.history.push(`/tags/${query}`);
-    onClickSearchResult(query, 'hashtag');
+    onClickSearchResult(query, "hashtag");
     this._unfocus();
   };
 
@@ -174,10 +190,10 @@ class Search extends PureComponent {
     const { router } = this.context;
     const { value, onClickSearchResult } = this.props;
 
-    const query = value.trim().replace(/^@/, '');
+    const query = value.trim().replace(/^@/, "");
 
     router.history.push(`/@${query}`);
-    onClickSearchResult(query, 'account');
+    onClickSearchResult(query, "account");
     this._unfocus();
   };
 
@@ -190,24 +206,24 @@ class Search extends PureComponent {
   };
 
   handleStatusSearch = () => {
-    this._submit('statuses');
+    this._submit("statuses");
   };
 
   handleAccountSearch = () => {
-    this._submit('accounts');
+    this._submit("accounts");
   };
 
   handleRecentSearchClick = search => {
     const { onChange } = this.props;
     const { router } = this.context;
 
-    if (search.get('type') === 'account') {
-      router.history.push(`/@${search.get('q')}`);
-    } else if (search.get('type') === 'hashtag') {
-      router.history.push(`/tags/${search.get('q')}`);
+    if (search.get("type") === "account") {
+      router.history.push(`/@${search.get("q")}`);
+    } else if (search.get("type") === "hashtag") {
+      router.history.push(`/tags/${search.get("q")}`);
     } else {
-      onChange(search.get('q'));
-      this._submit(search.get('type'));
+      onChange(search.get("q"));
+      this._submit(search.get("type"));
     }
 
     this._unfocus();
@@ -216,19 +232,19 @@ class Search extends PureComponent {
   handleForgetRecentSearchClick = search => {
     const { onForgetSearchResult } = this.props;
 
-    onForgetSearchResult(search.get('q'));
+    onForgetSearchResult(search.get("q"));
   };
 
   _unfocus () {
-    document.querySelector('.ui').parentElement.focus();
+    document.querySelector(".ui").parentElement.focus();
   }
 
   _insertText (text) {
     const { value, onChange } = this.props;
 
-    if (value === '') {
+    if (value === "") {
       onChange(text);
-    } else if (value[value.length - 1] === ' ') {
+    } else if (value[value.length - 1] === " ") {
       onChange(`${value}${text}`);
     } else {
       onChange(`${value} ${text}`);
@@ -246,7 +262,7 @@ class Search extends PureComponent {
     }
 
     if (openInRoute) {
-      router.history.push('/search');
+      router.history.push("/search");
     }
 
     this._unfocus();
@@ -278,34 +294,34 @@ class Search extends PureComponent {
     const options = [];
 
     if (trimmedValue.length > 0) {
-      const couldBeURL = trimmedValue.startsWith('https://') && !trimmedValue.includes(' ');
+      const couldBeURL = trimmedValue.startsWith("https://") && !trimmedValue.includes(" ");
 
       if (couldBeURL) {
-        options.push({ key: 'open-url', label: <FormattedMessage id='search.quick_action.open_url' defaultMessage='Open URL in Mastodon' />, action: this.handleURLClick });
+        options.push({ key: "open-url", label: <FormattedMessage id='search.quick_action.open_url' defaultMessage='Open URL in Mastodon' />, action: this.handleURLClick });
       }
 
-      const couldBeHashtag = (trimmedValue.startsWith('#') && trimmedValue.length > 1) || trimmedValue.match(HASHTAG_REGEX);
+      const couldBeHashtag = (trimmedValue.startsWith("#") && trimmedValue.length > 1) || trimmedValue.match(HASHTAG_REGEX);
 
       if (couldBeHashtag) {
-        options.push({ key: 'go-to-hashtag', label: <FormattedMessage id='search.quick_action.go_to_hashtag' defaultMessage='Go to hashtag {x}' values={{ x: <mark>#{trimmedValue.replace(/^#/, '')}</mark> }} />, action: this.handleHashtagClick });
+        options.push({ key: "go-to-hashtag", label: <FormattedMessage id='search.quick_action.go_to_hashtag' defaultMessage='Go to hashtag {x}' values={{ x: <mark>#{trimmedValue.replace(/^#/, "")}</mark> }} />, action: this.handleHashtagClick });
       }
 
       const couldBeUsername = trimmedValue.match(/^@?[a-z0-9_-]+(@[^\s]+)?$/i);
 
       if (couldBeUsername) {
-        options.push({ key: 'go-to-account', label: <FormattedMessage id='search.quick_action.go_to_account' defaultMessage='Go to profile {x}' values={{ x: <mark>@{trimmedValue.replace(/^@/, '')}</mark> }} />, action: this.handleAccountClick });
+        options.push({ key: "go-to-account", label: <FormattedMessage id='search.quick_action.go_to_account' defaultMessage='Go to profile {x}' values={{ x: <mark>@{trimmedValue.replace(/^@/, "")}</mark> }} />, action: this.handleAccountClick });
       }
 
       const couldBeStatusSearch = searchEnabled;
 
       if (couldBeStatusSearch) {
-        options.push({ key: 'status-search', label: <FormattedMessage id='search.quick_action.status_search' defaultMessage='Posts matching {x}' values={{ x: <mark>{trimmedValue}</mark> }} />, action: this.handleStatusSearch });
+        options.push({ key: "status-search", label: <FormattedMessage id='search.quick_action.status_search' defaultMessage='Posts matching {x}' values={{ x: <mark>{trimmedValue}</mark> }} />, action: this.handleStatusSearch });
       }
 
       const couldBeUserSearch = true;
 
       if (couldBeUserSearch) {
-        options.push({ key: 'account-search', label: <FormattedMessage id='search.quick_action.account_search' defaultMessage='Profiles matching {x}' values={{ x: <mark>{trimmedValue}</mark> }} />, action: this.handleAccountSearch });
+        options.push({ key: "account-search", label: <FormattedMessage id='search.quick_action.account_search' defaultMessage='Profiles matching {x}' values={{ x: <mark>{trimmedValue}</mark> }} />, action: this.handleAccountSearch });
       }
     }
 
@@ -320,7 +336,7 @@ class Search extends PureComponent {
     const hasValue = value.length > 0 || submitted;
 
     return (
-      <div className={classNames('search', { active: expanded })}>
+      <div className={classNames("search", { active: expanded })}>
         <input
           ref={this.setRef}
           className='search__input'
@@ -335,8 +351,8 @@ class Search extends PureComponent {
         />
 
         <div role='button' tabIndex={0} className='search__icon' onClick={this.handleClear}>
-          <Icon id='search' className={hasValue ? '' : 'active'} />
-          <Icon id='times-circle' className={hasValue ? 'active' : ''} aria-label={intl.formatMessage(messages.placeholder)} />
+          <Icon id='search' className={hasValue ? "" : "active"} />
+          <Icon id='times-circle' className={hasValue ? "active" : ""} aria-label={intl.formatMessage(messages.placeholder)} />
         </div>
 
         <div className='search__popout'>
@@ -346,7 +362,7 @@ class Search extends PureComponent {
 
               <div className='search__popout__menu'>
                 {recent.size > 0 ? this._getOptions().map(({ label, action, forget }, i) => (
-                  <button key={label} onMouseDown={action} className={classNames('search__popout__menu__item search__popout__menu__item--flex', { selected: selectedOption === i })}>
+                  <button key={label} onMouseDown={action} className={classNames("search__popout__menu__item search__popout__menu__item--flex", { selected: selectedOption === i })}>
                     <span>{label}</span>
                     <button className='icon-button' onMouseDown={forget}><Icon id='times' /></button>
                   </button>
@@ -365,7 +381,7 @@ class Search extends PureComponent {
 
               <div className='search__popout__menu'>
                 {options.map(({ key, label, action }, i) => (
-                  <button key={key} onMouseDown={action} className={classNames('search__popout__menu__item', { selected: selectedOption === i })}>
+                  <button key={key} onMouseDown={action} className={classNames("search__popout__menu__item", { selected: selectedOption === i })}>
                     {label}
                   </button>
                 ))}
@@ -378,7 +394,7 @@ class Search extends PureComponent {
           {searchEnabled ? (
             <div className='search__popout__menu'>
               {this.defaultOptions.map(({ key, label, action }, i) => (
-                <button key={key} onMouseDown={action} className={classNames('search__popout__menu__item', { selected: selectedOption === ((options.length || recent.size) + i) })}>
+                <button key={key} onMouseDown={action} className={classNames("search__popout__menu__item", { selected: selectedOption === ((options.length || recent.size) + i) })}>
                   {label}
                 </button>
               ))}

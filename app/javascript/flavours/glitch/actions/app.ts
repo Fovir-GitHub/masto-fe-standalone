@@ -1,9 +1,9 @@
-import { createAction } from '@reduxjs/toolkit';
+import { createAction } from "@reduxjs/toolkit";
 
-import type { LayoutType } from '../is_mobile';
+import  { type LayoutType } from "../is_mobile";
 
 interface ChangeLayoutPayload {
-  layout: LayoutType;
+  layout: LayoutType,
 }
 export const changeLayout =
-  createAction<ChangeLayoutPayload>('APP_LAYOUT_CHANGE');
+  createAction<ChangeLayoutPayload>("APP_LAYOUT_CHANGE");

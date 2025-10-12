@@ -1,13 +1,13 @@
-import type { TypedUseSelectorHook } from 'react-redux';
-import { useDispatch, useSelector } from 'react-redux';
+import  { type TypedUseSelectorHook } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
-import { configureStore } from '@reduxjs/toolkit';
+import { configureStore } from "@reduxjs/toolkit";
 
-import { rootReducer } from '../reducers';
+import { rootReducer } from "../reducers";
 
-import { errorsMiddleware } from './middlewares/errors';
-import { loadingBarMiddleware } from './middlewares/loading_bar';
-import { soundsMiddleware } from './middlewares/sounds';
+import { errorsMiddleware } from "./middlewares/errors";
+import { loadingBarMiddleware } from "./middlewares/loading_bar";
+import { soundsMiddleware } from "./middlewares/sounds";
 
 export const store = configureStore({
   reducer: rootReducer,
@@ -29,7 +29,7 @@ export const store = configureStore({
     })
       .concat(
         loadingBarMiddleware({
-          promiseTypeSuffixes: ['REQUEST', 'SUCCESS', 'FAIL'],
+          promiseTypeSuffixes: ["REQUEST", "SUCCESS", "FAIL"],
         }),
       )
       .concat(errorsMiddleware)

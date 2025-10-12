@@ -1,37 +1,37 @@
-import PropTypes from 'prop-types';
-import { PureComponent } from 'react';
+import PropTypes from "prop-types";
+import { PureComponent } from "react";
 
-import { defineMessages, injectIntl } from 'react-intl';
+import { defineMessages, injectIntl } from "react-intl";
 
-import { Helmet } from 'react-helmet';
+import { Helmet } from "react-helmet";
 
-import { List as ImmutableList } from 'immutable';
-import ImmutablePropTypes from 'react-immutable-proptypes';
-import { connect } from 'react-redux';
+import { List as ImmutableList } from "immutable";
+import ImmutablePropTypes from "react-immutable-proptypes";
+import { connect } from "react-redux";
 
-import { addColumn, removeColumn, moveColumn, changeColumnParams } from 'flavours/glitch/actions/columns';
-import { fetchDirectory, expandDirectory } from 'flavours/glitch/actions/directory';
-import Column from 'flavours/glitch/components/column';
-import ColumnHeader from 'flavours/glitch/components/column_header';
-import { LoadMore } from 'flavours/glitch/components/load_more';
-import { LoadingIndicator } from 'flavours/glitch/components/loading_indicator';
-import { RadioButton } from 'flavours/glitch/components/radio_button';
-import ScrollContainer from 'flavours/glitch/containers/scroll_container';
+import { addColumn, removeColumn, moveColumn, changeColumnParams } from "flavours/glitch/actions/columns";
+import { fetchDirectory, expandDirectory } from "flavours/glitch/actions/directory";
+import Column from "flavours/glitch/components/column";
+import ColumnHeader from "flavours/glitch/components/column_header";
+import { LoadMore } from "flavours/glitch/components/load_more";
+import { LoadingIndicator } from "flavours/glitch/components/loading_indicator";
+import { RadioButton } from "flavours/glitch/components/radio_button";
+import ScrollContainer from "flavours/glitch/containers/scroll_container";
 
-import AccountCard from './components/account_card';
+import AccountCard from "./components/account_card";
 
 const messages = defineMessages({
-  title: { id: 'column.directory', defaultMessage: 'Browse profiles' },
-  recentlyActive: { id: 'directory.recently_active', defaultMessage: 'Recently active' },
-  newArrivals: { id: 'directory.new_arrivals', defaultMessage: 'New arrivals' },
-  local: { id: 'directory.local', defaultMessage: 'From {domain} only' },
-  federated: { id: 'directory.federated', defaultMessage: 'From known fediverse' },
+  title: { id: "column.directory", defaultMessage: "Browse profiles" },
+  recentlyActive: { id: "directory.recently_active", defaultMessage: "Recently active" },
+  newArrivals: { id: "directory.new_arrivals", defaultMessage: "New arrivals" },
+  local: { id: "directory.local", defaultMessage: "From {domain} only" },
+  federated: { id: "directory.federated", defaultMessage: "From known fediverse" },
 });
 
 const mapStateToProps = state => ({
-  accountIds: state.getIn(['user_lists', 'directory', 'items'], ImmutableList()),
-  isLoading: state.getIn(['user_lists', 'directory', 'isLoading'], true),
-  domain: state.getIn(['meta', 'domain']),
+  accountIds: state.getIn(["user_lists", "directory", "items"], ImmutableList()),
+  isLoading: state.getIn(["user_lists", "directory", "isLoading"], true),
+  domain: state.getIn(["meta", "domain"]),
 });
 
 class Directory extends PureComponent {
@@ -65,12 +65,12 @@ class Directory extends PureComponent {
     if (columnId) {
       dispatch(removeColumn(columnId));
     } else {
-      dispatch(addColumn('DIRECTORY', this.getParams(this.props, this.state)));
+      dispatch(addColumn("DIRECTORY", this.getParams(this.props, this.state)));
     }
   };
 
   getParams = (props, state) => ({
-    order: state.order === null ? (props.params.order || 'active') : state.order,
+    order: state.order === null ? (props.params.order || "active") : state.order,
     local: state.local === null ? (props.params.local || false) : state.local,
   });
 
@@ -106,7 +106,7 @@ class Directory extends PureComponent {
     const { dispatch, columnId } = this.props;
 
     if (columnId) {
-      dispatch(changeColumnParams(columnId, ['order'], e.target.value));
+      dispatch(changeColumnParams(columnId, ["order"], e.target.value));
     } else {
       this.setState({ order: e.target.value });
     }
@@ -116,9 +116,9 @@ class Directory extends PureComponent {
     const { dispatch, columnId } = this.props;
 
     if (columnId) {
-      dispatch(changeColumnParams(columnId, ['local'], e.target.value === '1'));
+      dispatch(changeColumnParams(columnId, ["local"], e.target.value === "1"));
     } else {
-      this.setState({ local: e.target.value === '1' });
+      this.setState({ local: e.target.value === "1" });
     }
   };
 
@@ -136,8 +136,8 @@ class Directory extends PureComponent {
       <div className='scrollable'>
         <div className='filter-form'>
           <div className='filter-form__column' role='group'>
-            <RadioButton name='order' value='active' label={intl.formatMessage(messages.recentlyActive)} checked={order === 'active'} onChange={this.handleChangeOrder} />
-            <RadioButton name='order' value='new' label={intl.formatMessage(messages.newArrivals)} checked={order === 'new'} onChange={this.handleChangeOrder} />
+            <RadioButton name='order' value='active' label={intl.formatMessage(messages.recentlyActive)} checked={order === "active"} onChange={this.handleChangeOrder} />
+            <RadioButton name='order' value='new' label={intl.formatMessage(messages.newArrivals)} checked={order === "new"} onChange={this.handleChangeOrder} />
           </div>
 
           <div className='filter-form__column' role='group'>

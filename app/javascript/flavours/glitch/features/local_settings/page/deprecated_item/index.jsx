@@ -1,6 +1,6 @@
 //  Package imports
-import PropTypes from 'prop-types';
-import { PureComponent } from 'react';
+import PropTypes from "prop-types";
+import { PureComponent } from "react";
 
 //  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 
@@ -65,19 +65,21 @@ export default class LocalSettingsPageItem extends PureComponent {
           </label>
         </div>
       );
-    } else return (
-      <div className='glitch local-settings__page__item boolean'>
-        <label htmlFor={id}>
-          <input
-            id={id}
-            type='checkbox'
-            checked={value}
-            disabled
-          />
-          {children}
-        </label>
-      </div>
-    );
+    } else {
+      return (
+        <div className='glitch local-settings__page__item boolean'>
+          <label htmlFor={id}>
+            <input
+              id={id}
+              type='checkbox'
+              checked={value}
+              disabled
+            />
+            {children}
+          </label>
+        </div>
+      );
+    }
   }
 
 }

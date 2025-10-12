@@ -1,44 +1,44 @@
-import PropTypes from 'prop-types';
+import PropTypes from "prop-types";
 
-import { injectIntl, defineMessages } from 'react-intl';
+import { injectIntl, defineMessages } from "react-intl";
 
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
 
-import ImmutablePropTypes from 'react-immutable-proptypes';
-import ImmutablePureComponent from 'react-immutable-pure-component';
+import ImmutablePropTypes from "react-immutable-proptypes";
+import ImmutablePureComponent from "react-immutable-pure-component";
 
-import { Icon } from 'flavours/glitch/components/icon';
-import { signOutLink } from 'flavours/glitch/utils/backend_links';
-import { conditionalRender } from 'flavours/glitch/utils/react_helpers';
+import { Icon } from "flavours/glitch/components/icon";
+import { signOutLink } from "flavours/glitch/utils/backend_links";
+import { conditionalRender } from "flavours/glitch/utils/react_helpers";
 
 const messages = defineMessages({
   community: {
-    defaultMessage: 'Local timeline',
-    id: 'navigation_bar.community_timeline',
+    defaultMessage: "Local timeline",
+    id: "navigation_bar.community_timeline",
   },
   home_timeline: {
-    defaultMessage: 'Home',
-    id: 'tabs_bar.home',
+    defaultMessage: "Home",
+    id: "tabs_bar.home",
   },
   logout: {
-    defaultMessage: 'Logout',
-    id: 'navigation_bar.logout',
+    defaultMessage: "Logout",
+    id: "navigation_bar.logout",
   },
   notifications: {
-    defaultMessage: 'Notifications',
-    id: 'tabs_bar.notifications',
+    defaultMessage: "Notifications",
+    id: "tabs_bar.notifications",
   },
   public: {
-    defaultMessage: 'Federated timeline',
-    id: 'navigation_bar.public_timeline',
+    defaultMessage: "Federated timeline",
+    id: "navigation_bar.public_timeline",
   },
   settings: {
-    defaultMessage: 'App settings',
-    id: 'navigation_bar.app_settings',
+    defaultMessage: "App settings",
+    id: "navigation_bar.app_settings",
   },
   start: {
-    defaultMessage: 'Getting started',
-    id: 'getting_started.heading',
+    defaultMessage: "Getting started",
+    id: "getting_started.heading",
   },
 });
 
@@ -68,7 +68,7 @@ class Header extends ImmutablePureComponent {
     //  Only renders the component if the column isn't being shown.
     const renderForColumn = conditionalRender.bind(null,
       columnId => !columns || !columns.some(
-        column => column.get('id') === columnId,
+        column => column.get("id") === columnId,
       ),
     );
 
@@ -80,14 +80,14 @@ class Header extends ImmutablePureComponent {
           title={intl.formatMessage(messages.start)}
           to='/getting-started'
         ><Icon id='asterisk' /></Link>
-        {renderForColumn('HOME', (
+        {renderForColumn("HOME", (
           <Link
             aria-label={intl.formatMessage(messages.home_timeline)}
             title={intl.formatMessage(messages.home_timeline)}
             to='/home'
           ><Icon id='home' /></Link>
         ))}
-        {renderForColumn('NOTIFICATIONS', (
+        {renderForColumn("NOTIFICATIONS", (
           <Link
             aria-label={intl.formatMessage(messages.notifications)}
             title={intl.formatMessage(messages.notifications)}
@@ -99,14 +99,14 @@ class Header extends ImmutablePureComponent {
             </span>
           </Link>
         ))}
-        {renderForColumn('COMMUNITY', (
+        {renderForColumn("COMMUNITY", (
           <Link
             aria-label={intl.formatMessage(messages.community)}
             title={intl.formatMessage(messages.community)}
             to='/public/local'
           ><Icon id='users' /></Link>
         ))}
-        {renderForColumn('PUBLIC', (
+        {renderForColumn("PUBLIC", (
           <Link
             aria-label={intl.formatMessage(messages.public)}
             title={intl.formatMessage(messages.public)}

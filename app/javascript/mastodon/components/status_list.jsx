@@ -1,16 +1,16 @@
-import PropTypes from 'prop-types';
+import PropTypes from "prop-types";
 
-import ImmutablePropTypes from 'react-immutable-proptypes';
-import ImmutablePureComponent from 'react-immutable-pure-component';
+import ImmutablePropTypes from "react-immutable-proptypes";
+import ImmutablePureComponent from "react-immutable-pure-component";
 
-import { debounce } from 'lodash';
+import { debounce } from "lodash";
 
-import RegenerationIndicator from 'mastodon/components/regeneration_indicator';
+import RegenerationIndicator from "mastodon/components/regeneration_indicator";
 
-import StatusContainer from '../containers/status_container';
+import StatusContainer from "../containers/status_container";
 
-import { LoadGap } from './load_gap';
-import ScrollableList from './scrollable_list';
+import { LoadGap } from "./load_gap";
+import ScrollableList from "./scrollable_list";
 
 export default class StatusList extends ImmutablePureComponent {
 
@@ -93,7 +93,7 @@ export default class StatusList extends ImmutablePureComponent {
     let scrollableContent = (isLoading || statusIds.size > 0) ? (
       statusIds.map((statusId, index) => statusId === null ? (
         <LoadGap
-          key={'gap:' + statusIds.get(index + 1)}
+          key={"gap:" + statusIds.get(index + 1)}
           disabled={isLoading}
           maxId={index > 0 ? statusIds.get(index - 1) : null}
           onClick={onLoadMore}

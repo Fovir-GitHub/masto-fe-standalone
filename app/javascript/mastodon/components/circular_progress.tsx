@@ -1,6 +1,6 @@
 interface Props {
-  size: number;
-  strokeWidth: number;
+  size: number,
+  strokeWidth: number,
 }
 
 export const CircularProgress: React.FC<Props> = ({ size, strokeWidth }) => {

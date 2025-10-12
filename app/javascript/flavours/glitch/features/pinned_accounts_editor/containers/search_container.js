@@ -1,18 +1,18 @@
-import { injectIntl } from 'react-intl';
+import { injectIntl } from "react-intl";
 
-import { connect } from 'react-redux';
+import { connect } from "react-redux";
 
-import Search from 'flavours/glitch/features/list_editor/components/search';
+import Search from "flavours/glitch/features/list_editor/components/search";
 
 import {
   fetchPinnedAccountsSuggestions,
   clearPinnedAccountsSuggestions,
   changePinnedAccountsSuggestions,
-} from '../../../actions/accounts';
+} from "../../../actions/accounts";
 
 
 const mapStateToProps = state => ({
-  value: state.getIn(['pinnedAccountsEditor', 'suggestions', 'value']),
+  value: state.getIn(["pinnedAccountsEditor", "suggestions", "value"]),
 });
 
 const mapDispatchToProps = dispatch => ({
