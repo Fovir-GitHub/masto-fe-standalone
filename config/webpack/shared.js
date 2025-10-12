@@ -83,7 +83,7 @@ module.exports = {
     splitChunks: {
       cacheGroups: {
         default: false,
-        vendors: false,
+        vendorsVendors: false,
         common: {
           name: "common",
           chunks (chunk) {
@@ -95,7 +95,8 @@ module.exports = {
         },
       },
     },
-    occurrenceOrder: true,
+    chunkIds: 'total-size',
+    moduleIds: 'size'
   },
 
   module: {
@@ -137,11 +138,5 @@ module.exports = {
 
   resolveLoader: {
     modules: ["node_modules"],
-  },
-
-  node: {
-    // Called by http-link-header in an API we never use, increases
-    // bundle size unnecessarily
-    Buffer: false,
   },
 };
