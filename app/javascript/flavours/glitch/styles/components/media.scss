@@ -577,6 +577,12 @@
     padding-bottom: 8px;
     margin: 0 -5px;
 
+    .gts-icon {
+      --size: 20px;
+
+      display: block;
+    }
+
     .video-player__download__icon {
       color: inherit;
 
