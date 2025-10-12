@@ -27,7 +27,7 @@ class VisibilityIcon extends ImmutablePureComponent {
 
     const visibilityIcon = {
       public: 'planet',
-      unlisted: 'moon',
+      unlisted: 'lock-open-simple',
       private: 'lock-simple',
       direct: 'at',
     }[visibility];
