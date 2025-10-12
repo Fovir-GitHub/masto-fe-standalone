@@ -4,10 +4,10 @@ FROM docker.io/superseriousbusiness/masto-fe-standalone-woodpecker-build:0.1.0 A
 # Prepare the build directory, copy
 # relevant source + config files over.
 WORKDIR /build
-COPY app /build/app
-COPY config /build/config
-COPY public /build/public
-COPY \
+COPY --chown=node:node app /build/app
+COPY --chown=node:node config /build/config
+COPY --chown=node:node public /build/public
+COPY --chown=node:node \
     .browserslistrc \
     babel.config.js \
     jsconfig.json \

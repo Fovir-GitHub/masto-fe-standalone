@@ -2579,6 +2579,7 @@ __metadata:
     substring-trie: "npm:^1.0.2"
     terser-webpack-plugin: "npm:^5.0.0"
     tesseract.js: "npm:^2.1.5"
+    tesseract.js-core: "npm:^6.0.0"
     tiny-queue: "npm:^0.2.1"
     twitter-text: "npm:3.1.0"
     typescript: "npm:^5.0.4"
@@ -15034,6 +15035,13 @@ __metadata:
   version: 2.2.0
   resolution: "tesseract.js-core@npm:2.2.0"
   checksum: 10c0/9ef569529f1ee96f8bf18388ef086d4940d3f02d28b4252df133a9bd36f6a9d140085e77a12ff1963cf9b4cd85bd1c644b61eca266ecfc51bb83adb30a1f11e3
+  languageName: node
+  linkType: hard
+
+"tesseract.js-core@npm:^6.0.0":
+  version: 6.0.0
+  resolution: "tesseract.js-core@npm:6.0.0"
+  checksum: 10c0/c04be8bbaa296be658664496754f21e857bdffff84113f08adf02f03a1f84596d68b3542ed2fda4a6dc138abb84b09b30ab07c04ee5950879e780876d343955f
   languageName: node
   linkType: hard
 
