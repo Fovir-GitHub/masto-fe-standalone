@@ -17,10 +17,10 @@ import ImmutablePureComponent from "react-immutable-pure-component";
 import { Icon } from "flavours/glitch/components/icon";
 
 const messages = defineMessages({
-  btnAll : { id: 'notification_purge.btn_all', defaultMessage: 'All' },
-  btnNone : { id: 'notification_purge.btn_none', defaultMessage: 'None' },
-  btnInvert : { id: 'notification_purge.btn_invert', defaultMessage: 'Invert' },
-  btnApply : { id: 'notification_purge.btn_apply', defaultMessage: 'Remove' },
+  btnAll : { id: "notification_purge.btn_all", defaultMessage: "All" },
+  btnNone : { id: "notification_purge.btn_none", defaultMessage: "None" },
+  btnInvert : { id: "notification_purge.btn_invert", defaultMessage: "Invert" },
+  btnApply : { id: "notification_purge.btn_apply", defaultMessage: "Remove" },
 });
 
 class NotificationPurgeButtons extends ImmutablePureComponent {
@@ -39,11 +39,11 @@ class NotificationPurgeButtons extends ImmutablePureComponent {
 
     return (
       <div className='column-header__notif-cleaning-buttons'>
-        <button onClick={this.props.onMarkAll} className={classNames('column-header__button')}>
+        <button onClick={this.props.onMarkAll} className={classNames("column-header__button")}>
           {intl.formatMessage(messages.btnAll)}
         </button>
 
-        <button onClick={this.props.onMarkNone} className={classNames('column-header__button')}>
+        <button onClick={this.props.onMarkNone} className={classNames("column-header__button")}>
           {intl.formatMessage(messages.btnNone)}
         </button>
 

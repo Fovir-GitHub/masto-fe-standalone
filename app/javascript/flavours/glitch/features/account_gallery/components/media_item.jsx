@@ -84,7 +84,7 @@ export default class MediaItem extends ImmutablePureComponent {
           />
         );
 
-        if (attachment.get('type') === 'audio') {
+        if (attachment.get("type") === "audio") {
           label = <Icon id='music-note' />;
         } else {
           label = <Icon id='play' />;

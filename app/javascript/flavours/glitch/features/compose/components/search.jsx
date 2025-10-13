@@ -346,7 +346,7 @@ class Search extends PureComponent {
     const hasValue = value.length > 0 || submitted;
 
     return (
-      <div className={classNames('search', { active: expanded })}>
+      <div className={classNames("search", { active: expanded })}>
         <Icon id='magnifying-glass'  className='search__icon' />
         <input
           ref={this.setRef}
@@ -360,7 +360,7 @@ class Search extends PureComponent {
           onFocus={this.handleFocus}
           onBlur={this.handleBlur}
         />
-        <button type='button' className={hasValue ? 'search__button active' : 'search__button'} onClick={this.handleClear}>
+        <button type='button' className={hasValue ? "search__button active" : "search__button"} onClick={this.handleClear}>
           <Icon id='x' />
         </button>
         <div className='search__popout'>

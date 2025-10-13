@@ -38,25 +38,25 @@ class PrivacyDropdown extends PureComponent {
     //  dropdown icon later.
     const privacyItems = {
       direct: {
-        icon: 'at',
+        icon: "at",
         meta: formatMessage(messages.direct_long),
         name: "direct",
         text: formatMessage(messages.direct_short),
       },
       private: {
-        icon: 'lock-simple',
+        icon: "lock-simple",
         meta: formatMessage(messages.private_long),
         name: "private",
         text: formatMessage(messages.private_short),
       },
       public: {
-        icon: 'planet',
+        icon: "planet",
         meta: formatMessage(messages.public_long),
         name: "public",
         text: formatMessage(messages.public_short),
       },
       unlisted: {
-        icon: 'lock-open-simple',
+        icon: "lock-open-simple",
         meta: formatMessage(messages.unlisted_long),
         name: "unlisted",
         text: formatMessage(messages.unlisted_short),

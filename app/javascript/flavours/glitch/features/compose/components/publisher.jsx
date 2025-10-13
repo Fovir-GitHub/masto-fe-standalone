@@ -54,7 +54,7 @@ class Publisher extends ImmutablePureComponent {
       over: diff < 0,
     });
 
-    const privacyIcons = { direct: 'at', private: 'lock-simple', public: 'planet', unlisted: 'lock-open-simple' };
+    const privacyIcons = { direct: "at", private: "lock-simple", public: "planet", unlisted: "lock-open-simple" };
 
     let publishText;
     if (isEditing) {

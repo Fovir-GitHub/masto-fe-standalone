@@ -174,11 +174,11 @@ class Footer extends ImmutablePureComponent {
 
     let replyIcon, replyTitle;
 
-    if (status.get('in_reply_to_id', null) === null) {
-      replyIcon = 'arrow-bend-up-left';
+    if (status.get("in_reply_to_id", null) === null) {
+      replyIcon = "arrow-bend-up-left";
       replyTitle = intl.formatMessage(messages.reply);
     } else {
-      replyIcon = 'arrow-bend-double-up-left';
+      replyIcon = "arrow-bend-double-up-left";
       replyTitle = intl.formatMessage(messages.replyAll);
     }
 
@@ -220,9 +220,9 @@ class Footer extends ImmutablePureComponent {
     return (
       <div className='picture-in-picture__footer'>
         {replyButton}
-        <IconButton className={classNames('status__action-bar-button', { reblogPrivate })} disabled={!publicStatus && !reblogPrivate}  active={status.get('reblogged')} title={reblogTitle} icon='rocket-launch' onClick={this.handleReblogClick} counter={status.get('reblogs_count')} />
-        <IconButton className='status__action-bar-button star-icon' animate active={status.get('favourited')} title={intl.formatMessage(messages.favourite)} icon='star' onClick={this.handleFavouriteClick} counter={status.get('favourites_count')} />
-        {withOpenButton && <IconButton className='status__action-bar-button' title={intl.formatMessage(messages.open)} icon='arrow-square-out' onClick={this.handleOpenClick} href={status.get('url')} />}
+        <IconButton className={classNames("status__action-bar-button", { reblogPrivate })} disabled={!publicStatus && !reblogPrivate}  active={status.get("reblogged")} title={reblogTitle} icon='rocket-launch' onClick={this.handleReblogClick} counter={status.get("reblogs_count")} />
+        <IconButton className='status__action-bar-button star-icon' animate active={status.get("favourited")} title={intl.formatMessage(messages.favourite)} icon='star' onClick={this.handleFavouriteClick} counter={status.get("favourites_count")} />
+        {withOpenButton && <IconButton className='status__action-bar-button' title={intl.formatMessage(messages.open)} icon='arrow-square-out' onClick={this.handleOpenClick} href={status.get("url")} />}
       </div>
     );
   }

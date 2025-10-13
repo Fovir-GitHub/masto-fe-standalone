@@ -648,7 +648,7 @@ class Status extends ImmutablePureComponent {
 
     if (pictureInPicture.get("inUse")) {
       media.push(<PictureInPicturePlaceholder />);
-      mediaIcons.push('film-strip');
+      mediaIcons.push("film-strip");
     } else if (attachments.size > 0) {
       const language = status.getIn(["translation", "language"]) || status.get("language");
 
@@ -688,10 +688,10 @@ class Status extends ImmutablePureComponent {
             )}
           </Bundle>,
         );
-        mediaIcons.push('music-note');
-      } else if (attachments.getIn([0, 'type']) === 'video') {
-        const attachment = status.getIn(['media_attachments', 0]);
-        const description = attachment.getIn(['translation', 'description']) || attachment.get('description');
+        mediaIcons.push("music-note");
+      } else if (attachments.getIn([0, "type"]) === "video") {
+        const attachment = status.getIn(["media_attachments", 0]);
+        const description = attachment.getIn(["translation", "description"]) || attachment.get("description");
 
         media.push(
           <Bundle fetchComponent={Video} loading={this.renderLoadingVideoPlayer} >
@@ -715,7 +715,7 @@ class Status extends ImmutablePureComponent {
             />)}
           </Bundle>,
         );
-        mediaIcons.push('film-strip');
+        mediaIcons.push("film-strip");
       } else {  //  Media type is 'image' or 'gifv'
         media.push(
           <Bundle fetchComponent={MediaGallery} loading={this.renderLoadingMediaGallery}>
@@ -737,7 +737,7 @@ class Status extends ImmutablePureComponent {
             )}
           </Bundle>,
         );
-        mediaIcons.push('image');
+        mediaIcons.push("image");
       }
 
       if (!status.get("sensitive") && !(status.get("spoiler_text").length > 0) && settings.getIn(["collapsed", "backgrounds", "preview_images"])) {
@@ -756,10 +756,10 @@ class Status extends ImmutablePureComponent {
       mediaIcons.push("link");
     }
 
-    if (status.get('poll')) {
-      const language = status.getIn(['translation', 'language']) || status.get('language');
-      contentMedia.push(<PollContainer pollId={status.get('poll')} lang={language} />);
-      contentMediaIcons.push('chart-bar-horizontal');
+    if (status.get("poll")) {
+      const language = status.getIn(["translation", "language"]) || status.get("language");
+      contentMedia.push(<PollContainer pollId={status.get("poll")} lang={language} />);
+      contentMediaIcons.push("chart-bar-horizontal");
     }
 
     //  Here we prepare extra data-* attributes for CSS selectors.

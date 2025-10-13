@@ -640,11 +640,11 @@ class Video extends PureComponent {
           <div className='video-player__buttons-bar'>
             <div className='video-player__buttons left'>
               <button type='button' title={intl.formatMessage(paused ? messages.play : messages.pause)} aria-label={intl.formatMessage(paused ? messages.play : messages.pause)} className='player-button' onClick={this.togglePlay} autoFocus={autoFocus}>
-                <Icon id={paused ? 'play' : 'pause'} fixedWidth />
+                <Icon id={paused ? "play" : "pause"} fixedWidth />
               </button>
               
               <button type='button' title={intl.formatMessage(muted ? messages.unmute : messages.mute)} aria-label={intl.formatMessage(muted ? messages.unmute : messages.mute)} className='player-button' onClick={this.toggleMute}>
-                <Icon id={muted ? 'speaker-slash' : 'speaker-high'} fixedWidth />
+                <Icon id={muted ? "speaker-slash" : "speaker-high"} fixedWidth />
               </button>
 
               <div className={classNames("video-player__volume", { active: this.state.hovered })} onMouseDown={this.handleVolumeMouseDown} ref={this.setVolumeRef}>
@@ -670,7 +670,7 @@ class Video extends PureComponent {
               {(!onCloseVideo && !editable && !fullscreen && !this.props.alwaysVisible) && <button type='button' title={intl.formatMessage(messages.hide)} aria-label={intl.formatMessage(messages.hide)} className='player-button' onClick={this.toggleReveal}><Icon id='eye-slash-filled' fixedWidth /></button>}
               {(!fullscreen && onOpenVideo) && <button type='button' title={intl.formatMessage(messages.expand)} aria-label={intl.formatMessage(messages.expand)} className='player-button' onClick={this.handleOpenVideo}><Icon id='arrows-out-simple' fixedWidth /></button>}
               {onCloseVideo && <button type='button' title={intl.formatMessage(messages.close)} aria-label={intl.formatMessage(messages.close)} className='player-button' onClick={this.handleCloseVideo}><Icon id='arrows-in-simple' fixedWidth /></button>}
-              <button type='button' title={intl.formatMessage(fullscreen ? messages.exit_fullscreen : messages.fullscreen)} aria-label={intl.formatMessage(fullscreen ? messages.exit_fullscreen : messages.fullscreen)} className='player-button' onClick={this.toggleFullscreen}><Icon id={fullscreen ? 'arrows-in-simple' : 'frame-corners'} fixedWidth /></button>
+              <button type='button' title={intl.formatMessage(fullscreen ? messages.exit_fullscreen : messages.fullscreen)} aria-label={intl.formatMessage(fullscreen ? messages.exit_fullscreen : messages.fullscreen)} className='player-button' onClick={this.toggleFullscreen}><Icon id={fullscreen ? "arrows-in-simple" : "frame-corners"} fixedWidth /></button>
             </div>
           </div>
         </div>

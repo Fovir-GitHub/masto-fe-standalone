@@ -214,8 +214,8 @@ class ComposerOptions extends ImmutablePureComponent {
         text: formatMessage(messages.plain),
       },
       markdown: {
-        icon: 'markdown-logo',
-        name: 'text/markdown',
+        icon: "markdown-logo",
+        name: "text/markdown",
         text: formatMessage(messages.markdown),
       },
     };
@@ -238,8 +238,8 @@ class ComposerOptions extends ImmutablePureComponent {
           icon='paperclip'
           items={[
             {
-              icon: 'file-arrow-up',
-              name: 'upload',
+              icon: "file-arrow-up",
+              name: "upload",
               text: formatMessage(messages.upload),
             },
             {

@@ -81,7 +81,7 @@ class Header extends ImmutablePureComponent {
           to='/getting-started'
           className='drawer__tab'
         ><Icon id='asterisk' /></Link>
-        {renderForColumn('HOME', (
+        {renderForColumn("HOME", (
           <Link
             aria-label={intl.formatMessage(messages.home_timeline)}
             title={intl.formatMessage(messages.home_timeline)}

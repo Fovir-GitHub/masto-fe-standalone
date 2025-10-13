@@ -394,7 +394,7 @@ class EmojiPickerDropdown extends PureComponent {
             fixedWidth
             id='smiley'
             aria-hidden='true'
-            className={classNames('emojione', { 'pulse-loading': active && loading })}
+            className={classNames("emojione", { "pulse-loading": active && loading })}
           />}
         </button>
 

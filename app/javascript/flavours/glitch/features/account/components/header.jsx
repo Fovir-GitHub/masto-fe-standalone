@@ -190,8 +190,8 @@ class Header extends ImmutablePureComponent {
       info.push(<span className='relationship-tag'><FormattedMessage id='account.domain_blocked' defaultMessage='Domain blocked' /></span>);
     }
 
-    if (account.getIn(['relationship', 'requested']) || account.getIn(['relationship', 'following'])) {
-      bellBtn = <IconButton icon={account.getIn(['relationship', 'notifying']) ? 'bell-ringing' : 'bell'} size={24} active={account.getIn(['relationship', 'notifying'])} title={intl.formatMessage(account.getIn(['relationship', 'notifying']) ? messages.disableNotifications : messages.enableNotifications, { name: account.get('username') })} onClick={this.props.onNotifyToggle} />;
+    if (account.getIn(["relationship", "requested"]) || account.getIn(["relationship", "following"])) {
+      bellBtn = <IconButton icon={account.getIn(["relationship", "notifying"]) ? "bell-ringing" : "bell"} size={24} active={account.getIn(["relationship", "notifying"])} title={intl.formatMessage(account.getIn(["relationship", "notifying"]) ? messages.disableNotifications : messages.enableNotifications, { name: account.get("username") })} onClick={this.props.onNotifyToggle} />;
     }
 
     if (me !== account.get("id")) {
@@ -216,7 +216,7 @@ class Header extends ImmutablePureComponent {
       actionBtn = "";
     }
 
-    if (account.get('locked')) {
+    if (account.get("locked")) {
       lockedIcon = <Icon id='lock-simple' title={intl.formatMessage(messages.account_locked)} />;
     }
 
@@ -385,8 +385,8 @@ class Header extends ImmutablePureComponent {
                       <dl key={i}>
                         <dt dangerouslySetInnerHTML={{ __html: pair.get("name_emojified") }} title={pair.get("name")} />
 
-                        <dd className={pair.get('verified_at') && 'verified'} title={pair.get('value_plain')}>
-                          {pair.get('verified_at') && <span title={intl.formatMessage(messages.linkVerifiedOn, { date: intl.formatDate(pair.get('verified_at'), dateFormatOptions) })}><Icon id='check' className='verified__mark' /></span>} <span dangerouslySetInnerHTML={{ __html: pair.get('value_emojified') }} className='translate' />
+                        <dd className={pair.get("verified_at") && "verified"} title={pair.get("value_plain")}>
+                          {pair.get("verified_at") && <span title={intl.formatMessage(messages.linkVerifiedOn, { date: intl.formatDate(pair.get("verified_at"), dateFormatOptions) })}><Icon id='check' className='verified__mark' /></span>} <span dangerouslySetInnerHTML={{ __html: pair.get("value_emojified") }} className='translate' />
                         </dd>
                       </dl>
                     ))}

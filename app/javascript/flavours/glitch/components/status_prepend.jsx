@@ -28,7 +28,7 @@ export default class StatusPrepend extends PureComponent {
     let link = (
       <a
         onClick={this.handleClick}
-        href={account.get('url')}
+        href={account.get("url")}
         className='status__prepend-display-name'
       >
         <span
@@ -110,32 +110,32 @@ export default class StatusPrepend extends PureComponent {
     let iconId;
 
     switch(type) {
-    case 'favourite':
-      iconId = 'star';
-      break;
-    case 'featured':
-      iconId = 'push-pin';
-      break;
-    case 'poll':
-      iconId = 'chart-bar-horizontal';
-      break;
-    case 'reblog':
-    case 'reblogged_by':
-      iconId = 'rocket-launch';
-      break;
-    case 'status':
-      iconId = 'bell';
-      break;
-    case 'update':
-      iconId = 'pencil-simple-line';
-      break;
+      case "favourite":
+        iconId = "star";
+        break;
+      case "featured":
+        iconId = "push-pin";
+        break;
+      case "poll":
+        iconId = "chart-bar-horizontal";
+        break;
+      case "reblog":
+      case "reblogged_by":
+        iconId = "rocket-launch";
+        break;
+      case "status":
+        iconId = "bell";
+        break;
+      case "update":
+        iconId = "pencil-simple-line";
+        break;
     }
 
     return !type ? null : (
-      <aside className={type === 'reblogged_by' || type === 'featured' ? 'status__prepend' : 'notification__message'}>
-        <div className={type === 'reblogged_by' || type === 'featured' ? 'status__prepend-icon-wrapper' : 'notification__favourite-icon-wrapper'}>
+      <aside className={type === "reblogged_by" || type === "featured" ? "status__prepend" : "notification__message"}>
+        <div className={type === "reblogged_by" || type === "featured" ? "status__prepend-icon-wrapper" : "notification__favourite-icon-wrapper"}>
           <Icon
-            className={`status__prepend-icon ${type === 'favourite' ? 'star-icon' : ''}`}
+            className={`status__prepend-icon ${type === "favourite" ? "star-icon" : ""}`}
             id={iconId}
           />
         </div>

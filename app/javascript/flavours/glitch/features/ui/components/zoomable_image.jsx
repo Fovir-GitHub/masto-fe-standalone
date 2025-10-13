@@ -420,7 +420,7 @@ class ZoomableImage extends PureComponent {
     const zoomButtonShouldHide = this.state.navigationHidden || this.props.zoomButtonHidden || this.state.zoomMatrix.rate <= MIN_SCALE ? "media-modal__zoom-button--hidden" : "";
     const zoomButtonTitle = this.state.zoomState === "compress" ? intl.formatMessage(messages.compress) : intl.formatMessage(messages.expand);
 
-    const zoomButtonIcon = this.state.zoomState === 'compress' ? 'arrows-in-simple' : 'arrows-out-simple';
+    const zoomButtonIcon = this.state.zoomState === "compress" ? "arrows-in-simple" : "arrows-out-simple";
 
     return (
       <>

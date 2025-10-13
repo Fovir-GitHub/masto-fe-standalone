@@ -133,11 +133,11 @@ class DetailedStatus extends ImmutablePureComponent {
       return null;
     }
 
-    let applicationLink = '';
-    let reblogLink = '';
-    let reblogIcon = 'rocket-launch';
-    let favouriteLink = '';
-    let edited = '';
+    let applicationLink = "";
+    let reblogLink = "";
+    let reblogIcon = "rocket-launch";
+    let favouriteLink = "";
+    let edited = "";
 
     //  Depending on user settings, some media are considered as parts of the
     //  contents (affected by CW) while other will be displayed outside of the
@@ -254,10 +254,10 @@ class DetailedStatus extends ImmutablePureComponent {
 
     const visibilityLink = <> · <VisibilityIcon visibility={status.get("visibility")} /></>;
 
-    if (status.get('visibility') === 'direct') {
-      reblogIcon = 'at';
-    } else if (status.get('visibility') === 'private') {
-      reblogIcon = 'lock-simple';
+    if (status.get("visibility") === "direct") {
+      reblogIcon = "at";
+    } else if (status.get("visibility") === "private") {
+      reblogIcon = "lock-simple";
     }
 
     if (!["unlisted", "public"].includes(status.get("visibility"))) {
@@ -265,8 +265,8 @@ class DetailedStatus extends ImmutablePureComponent {
     } else if (this.context.router) {
       reblogLink = (
         <>
-          {' · '}
-          <Link to={`/@${status.getIn(['account', 'acct'])}/${status.get('id')}/reblogs`} className='detailed-status__link'>
+          {" · "}
+          <Link to={`/@${status.getIn(["account", "acct"])}/${status.get("id")}/reblogs`} className='detailed-status__link'>
             <Icon id={reblogIcon} />
             <span className='detailed-status__reblogs'>
               <AnimatedNumber value={status.get("reblogs_count")} />
@@ -277,8 +277,8 @@ class DetailedStatus extends ImmutablePureComponent {
     } else {
       reblogLink = (
         <>
-          {' · '}
-          <a href={`/interact/${status.get('id')}?type=reblog`} className='detailed-status__link' onClick={this.handleModalLink}>
+          {" · "}
+          <a href={`/interact/${status.get("id")}?type=reblog`} className='detailed-status__link' onClick={this.handleModalLink}>
             <Icon id={reblogIcon} />
             <span className='detailed-status__reblogs'>
               <AnimatedNumber value={status.get("reblogs_count")} />
@@ -290,7 +290,7 @@ class DetailedStatus extends ImmutablePureComponent {
 
     if (this.context.router) {
       favouriteLink = (
-        <Link to={`/@${status.getIn(['account', 'acct'])}/${status.get('id')}/favourites`} className='detailed-status__link'>
+        <Link to={`/@${status.getIn(["account", "acct"])}/${status.get("id")}/favourites`} className='detailed-status__link'>
           <Icon id='star' />
           <span className='detailed-status__favorites'>
             <AnimatedNumber value={status.get("favourites_count")} />
@@ -299,7 +299,7 @@ class DetailedStatus extends ImmutablePureComponent {
       );
     } else {
       favouriteLink = (
-        <a href={`/interact/${status.get('id')}?type=favourite`} className='detailed-status__link' onClick={this.handleModalLink}>
+        <a href={`/interact/${status.get("id")}?type=favourite`} className='detailed-status__link' onClick={this.handleModalLink}>
           <Icon id='star' />
           <span className='detailed-status__favorites'>
             <AnimatedNumber value={status.get("favourites_count")} />

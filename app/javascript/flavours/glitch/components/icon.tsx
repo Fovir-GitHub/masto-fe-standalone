@@ -15,7 +15,7 @@ export const Icon: React.FC<Props> = ({
   fixedWidth,
   ...other
 }) => (
-  <svg className={classNames('gts-icon', className)} {...other}>
+  <svg className={classNames("gts-icon", className)} {...other}>
     <use href={`/icons.svg#${id}`} />
   </svg>
 );

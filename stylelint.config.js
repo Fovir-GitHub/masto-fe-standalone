@@ -23,10 +23,10 @@ module.exports = {
       "except": [
         "after-custom-property",
         "first-nested",
-        "after-comment"
-      ]
+        "after-comment",
+      ],
     }],
-    'custom-property-pattern': '(([a-z]+)(-[a-z]+)*([-]{2}[a-z]+(-[a-z]+)?)?)', // allows kebab-case and kebab-case--state
+    "custom-property-pattern": "(([a-z]+)(-[a-z]+)*([-]{2}[a-z]+(-[a-z]+)?)?)", // allows kebab-case and kebab-case--state
     "declaration-block-no-redundant-longhand-properties": null,
     "no-descending-specificity": null,
     "no-duplicate-selectors": null,

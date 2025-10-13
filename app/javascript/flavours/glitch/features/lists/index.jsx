@@ -76,7 +76,7 @@ class Lists extends ImmutablePureComponent {
           bindToDocument={!multiColumn}
         >
           {lists.map(list =>
-            <ColumnLink key={list.get('id')} to={`/lists/${list.get('id')}`} icon='dot' text={list.get('title')} />,
+            <ColumnLink key={list.get("id")} to={`/lists/${list.get("id")}`} icon='dot' text={list.get("title")} />,
           )}
         </ScrollableList>
 

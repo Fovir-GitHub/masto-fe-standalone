@@ -109,8 +109,8 @@ class StatusIcons extends PureComponent {
 
     return (
       <div className='status__info__icons'>
-        {settings.get('language') && status.get('language') && <LanguageIcon language={status.get('language')} />}
-        {settings.get('reply') && status.get('in_reply_to_id', null) !== null ? (
+        {settings.get("language") && status.get("language") && <LanguageIcon language={status.get("language")} />}
+        {settings.get("reply") && status.get("in_reply_to_id", null) !== null ? (
           <Icon
             className='status__reply-icon'
             fixedWidth
@@ -119,7 +119,7 @@ class StatusIcons extends PureComponent {
             title={intl.formatMessage(messages.inReplyTo)}
           />
         ) : null}
-        {settings.get('local_only') && status.get('local_only') &&
+        {settings.get("local_only") && status.get("local_only") &&
           <Icon
             fixedWidth
             id='house-line'

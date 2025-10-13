@@ -140,7 +140,7 @@ class GettingStarted extends ImmutablePureComponent {
         navItems.push(<ColumnLink key='community_timeline' icon='users' text={intl.formatMessage(messages.community_timeline)} to='/public/local' />);
       }
 
-      if (!columns.find(item => item.get('id') === 'PUBLIC')) {
+      if (!columns.find(item => item.get("id") === "PUBLIC")) {
         navItems.push(<ColumnLink key='public_timeline' icon='planet' text={intl.formatMessage(messages.public_timeline)} to='/public' />);
       }
     }
@@ -150,11 +150,11 @@ class GettingStarted extends ImmutablePureComponent {
     }
 
     if (signedIn) {
-      if (!multiColumn || !columns.find(item => item.get('id') === 'DIRECT')) {
+      if (!multiColumn || !columns.find(item => item.get("id") === "DIRECT")) {
         navItems.push(<ColumnLink key='conversations' icon='at' text={intl.formatMessage(messages.direct)} to='/conversations' />);
       }
 
-      if (!multiColumn || !columns.find(item => item.get('id') === 'BOOKMARKS')) {
+      if (!multiColumn || !columns.find(item => item.get("id") === "BOOKMARKS")) {
         navItems.push(<ColumnLink key='bookmarks' icon='bookmarks' text={intl.formatMessage(messages.bookmarks)} to='/bookmarks' />);
       }
 
@@ -167,8 +167,8 @@ class GettingStarted extends ImmutablePureComponent {
       listItems = listItems.concat([
         <div key='9'>
           <ColumnLink key='lists' icon='list' text={intl.formatMessage(messages.lists)} to='/lists' />
-          {lists.filter(list => !columns.find(item => item.get('id') === 'LIST' && item.getIn(['params', 'id']) === list.get('id'))).map(list =>
-            <ColumnLink key={`list-${list.get('id')}`} to={`/lists/${list.get('id')}`} icon='dot' text={list.get('title')} />,
+          {lists.filter(list => !columns.find(item => item.get("id") === "LIST" && item.getIn(["params", "id"]) === list.get("id"))).map(list =>
+            <ColumnLink key={`list-${list.get("id")}`} to={`/lists/${list.get("id")}`} icon='dot' text={list.get("title")} />,
           )}
         </div>,
       ]);

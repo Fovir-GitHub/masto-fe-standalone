@@ -66,42 +66,42 @@ class FilterBar extends PureComponent {
           onClick={this.onClick("mention")}
           title={intl.formatMessage(tooltips.mentions)}
         >
-          <Icon id={selectedFilter === 'mention' ? 'arrow-bend-double-up-left-filled' : 'arrow-bend-double-up-left'} fixedWidth />
+          <Icon id={selectedFilter === "mention" ? "arrow-bend-double-up-left-filled" : "arrow-bend-double-up-left"} fixedWidth />
         </button>
         <button
           className={selectedFilter === "favourite" ? "active" : ""}
           onClick={this.onClick("favourite")}
           title={intl.formatMessage(tooltips.favourites)}
         >
-          <Icon id={selectedFilter === 'favourite' ? 'star-filled' : 'star'} fixedWidth />
+          <Icon id={selectedFilter === "favourite" ? "star-filled" : "star"} fixedWidth />
         </button>
         <button
           className={selectedFilter === "reblog" ? "active" : ""}
           onClick={this.onClick("reblog")}
           title={intl.formatMessage(tooltips.boosts)}
         >
-          <Icon id={selectedFilter === 'reblog' ? 'rocket-launch-filled' : 'rocket-launch'} fixedWidth />
+          <Icon id={selectedFilter === "reblog" ? "rocket-launch-filled" : "rocket-launch"} fixedWidth />
         </button>
         <button
           className={selectedFilter === "poll" ? "active" : ""}
           onClick={this.onClick("poll")}
           title={intl.formatMessage(tooltips.polls)}
         >
-          <Icon id={selectedFilter === 'poll' ? 'chart-bar-horizontal-filled' : 'chart-bar-horizontal'} fixedWidth />
+          <Icon id={selectedFilter === "poll" ? "chart-bar-horizontal-filled" : "chart-bar-horizontal"} fixedWidth />
         </button>
         <button
           className={selectedFilter === "status" ? "active" : ""}
           onClick={this.onClick("status")}
           title={intl.formatMessage(tooltips.statuses)}
         >
-          <Icon id={selectedFilter === 'status' ? 'chat-circle-dots-filled' : 'chat-circle-dots'} fixedWidth />
+          <Icon id={selectedFilter === "status" ? "chat-circle-dots-filled" : "chat-circle-dots"} fixedWidth />
         </button>
         <button
           className={selectedFilter === "follow" ? "active" : ""}
           onClick={this.onClick("follow")}
           title={intl.formatMessage(tooltips.follows)}
         >
-          <Icon id={selectedFilter === 'follow' ? 'user-plus-filled' : 'user-plus'} fixedWidth />
+          <Icon id={selectedFilter === "follow" ? "user-plus-filled" : "user-plus"} fixedWidth />
         </button>
       </div>
     );
