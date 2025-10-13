@@ -33,8 +33,10 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    width: var(--size);
+    padding-inline: 4px;
+    min-width: var(--size);
     height: var(--size);
+    box-sizing: border-box;
     border: 2px solid darken($ui-base-color, 7%);
     border-radius: 50%;
     color: $primary-text-color;
