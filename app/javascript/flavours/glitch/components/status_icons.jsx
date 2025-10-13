@@ -119,7 +119,7 @@ class StatusIcons extends PureComponent {
             title={intl.formatMessage(messages.inReplyTo)}
           />
         ) : null}
-        {settings.get("local_only") && status.get("local_only") &&
+        {settings.get('local_only') && status.get('local_only') &&
           <Icon
             fixedWidth
             id='house-line'

@@ -121,7 +121,7 @@ export class IconButton extends React.PureComponent<Props, States> {
 
     let contents = (
       <>
-        <IconSVG id={icon} fixedWidth aria-hidden='true' />{' '}
+        <Icon id={icon} fixedWidth aria-hidden='true' />{' '}
         {typeof counter !== 'undefined' && (
           <span className='icon-button__counter'>
             <AnimatedNumber value={counter} obfuscate={obfuscateCount} />

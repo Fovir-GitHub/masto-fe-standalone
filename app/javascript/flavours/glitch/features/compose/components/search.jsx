@@ -360,7 +360,7 @@ class Search extends PureComponent {
           onFocus={this.handleFocus}
           onBlur={this.handleBlur}
         />
-        <button type="button" className={hasValue ? 'search__button active' : 'search__button'} onClick={this.handleClear}>
+        <button type='button' className={hasValue ? 'search__button active' : 'search__button'} onClick={this.handleClear}>
           <Icon id='x' />
         </button>
         <div className='search__popout'>

@@ -126,10 +126,10 @@ class Account extends ImmutablePureComponent {
         buttons = <IconButton active icon='lock-open-simple' title={intl.formatMessage(messages.unblock, { name: account.get('username') })} onClick={this.handleBlock} />;
       } else if (muting) {
         let hidingNotificationsButton;
-        if (account.getIn(["relationship", "muting_notifications"])) {
-          hidingNotificationsButton = <IconButton active icon='bell' title={intl.formatMessage(messages.unmute_notifications, { name: account.get("username") })} onClick={this.handleUnmuteNotifications} />;
+        if (account.getIn(['relationship', 'muting_notifications'])) {
+          hidingNotificationsButton = <IconButton active icon='bell' title={intl.formatMessage(messages.unmute_notifications, { name: account.get('username') })} onClick={this.handleUnmuteNotifications} />;
         } else {
-          hidingNotificationsButton = <IconButton active icon='bell-slash' title={intl.formatMessage(messages.mute_notifications, { name: account.get("username")  })} onClick={this.handleMuteNotifications} />;
+          hidingNotificationsButton = <IconButton active icon='bell-slash' title={intl.formatMessage(messages.mute_notifications, { name: account.get('username')  })} onClick={this.handleMuteNotifications} />;
         }
         buttons = (
           <>
