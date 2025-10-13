@@ -22,6 +22,16 @@
     --color-content-fg: var(--color-fg);
     --color-content-secondary-bg: var(--color-secondary-bg);
 
+    /* State */
+    --color-success-bg: #d1e3dd;
+    // --color-success-bg: rgba(121, 189, 154, 0.3);
+    --color-success-fg: #3a654e;
+    --color-success-lines: var(--color-success-bg);
+
+    --color-destructive-bg: #f8c6cd;
+    // --color-destructive-bg: rgba(223, 64, 90, 0.3);
+    --color-destructive-fg: #a11c32;
+
     /* UI */
     --color-ui-base: ;
     --color-ui-bg: ;

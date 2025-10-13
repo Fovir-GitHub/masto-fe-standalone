@@ -322,18 +322,57 @@
 }
 
 .account--panel {
+  display: flex;
+  gap: 5px;
   background: lighten($ui-base-color, 4%);
   border-top: 1px solid lighten($ui-base-color, 8%);
   border-bottom: 1px solid lighten($ui-base-color, 8%);
   display: flex;
   flex-direction: row;
-  padding: 10px 0;
+  padding: 5px;
 }
 
 .account--panel__button,
 .detailed-status__button {
   flex: 1 1 auto;
   text-align: center;
+}
+
+.account--panel__button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  button {
+    width: 100%;
+    padding: 6px;
+  }
+
+  &:first-child button {
+    color: var(--color-success-fg);
+    background: var(--color-success-bg);
+
+    &:hover,
+    &:focus-visible {
+      color: var(--color-success-bg);
+      background: var(--color-success-fg);
+    }
+  }
+
+  &:last-child button {
+    color: var(--color-destructive-fg);
+    background: var(--color-destructive-bg);
+
+    &:hover,
+    &:focus-visible {
+      color: var(--color-destructive-bg);
+      background: var(--color-destructive-fg);
+    }
+  }
+
+  svg.gts-icon {
+    --size: 20px;
+  }
 }
 
 .relationship-tag {
@@ -829,7 +868,18 @@
 }
 
 .follow-request-banner .button {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  justify-content: center;
   width: 100%;
+
+  svg.gts-icon {
+    --size: 20px;
+
+    width: var(--size);
+    height: var(--size);
+  }
 }
 
 .account-memorial-banner__message {
