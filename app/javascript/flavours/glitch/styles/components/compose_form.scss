@@ -416,6 +416,16 @@
       transparent
     );
   }
+
+  button.icon-button {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
+
+  svg.gts-icon {
+    display: block;
+  }
 }
 
 .compose-form__upload__actions {
