@@ -82,24 +82,10 @@ export class IconButton extends React.PureComponent<Props, States> {
   };
 
   render() {
-    // Hack required for some icons which have an overriden size
-    let containerSize = "1.28571429em";
-    if (this.props.style?.fontSize) {
-      containerSize = `${this.props.size * 1.28571429}px`;
-    }
-
     const style = {
-      fontSize: `${this.props.size}px`,
-      height: containerSize,
-      lineHeight: `${this.props.size}px`,
       ...this.props.style,
       ...(this.props.active ? this.props.activeStyle : {}),
     };
-    if (!this.props.label) {
-      style.width = containerSize;
-    } else {
-      style.textAlign = "left";
-    }
 
     const {
       active,
@@ -135,8 +121,8 @@ export class IconButton extends React.PureComponent<Props, States> {
 
     let contents = (
       <>
-        <Icon id={icon} fixedWidth aria-hidden='true' />{" "}
-        {typeof counter !== "undefined" && (
+        <IconSVG id={icon} fixedWidth aria-hidden='true' />{' '}
+        {typeof counter !== 'undefined' && (
           <span className='icon-button__counter'>
             <AnimatedNumber value={counter} obfuscate={obfuscateCount} />
           </span>
