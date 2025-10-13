@@ -22,14 +22,15 @@
     --color-content-fg: var(--color-fg);
     --color-content-secondary-bg: var(--color-secondary-bg);
 
-    /* State */
+    /* State: Success */
     --color-success-bg: #d1e3dd;
     --color-success-fg: #3a654e;
     --color-success-lines: var(--color-success-bg);
 
+    /* State: Destructive */
     --color-destructive-bg: #f8c6cd;
     --color-destructive-fg: #a11c32;
-    --color-success-lines: var(--color-destructive-bg);
+    --color-destructive-lines: var(--color-destructive-bg);
 
     /* UI */
     --color-ui-base: ;
