@@ -142,7 +142,7 @@ class PollForm extends ImmutablePureComponent {
           {options.map((title, i) => <Option title={title} lang={lang} key={i} index={i} onChange={onChangeOption} onRemove={onRemoveOption} isPollMultiple={isMultiple} autoFocus={i === autoFocusIndex} {...other} />)}
           {options.size < pollLimits.max_options && (
             <label className='poll__text editable'>
-              <span className={classNames("poll__input")} style={{ opacity: 0 }} />
+              <span className={classNames('poll__input')} style={{ opacity: 0 }} />
               <button className='button button-secondary' onClick={this.handleAddOption}><Icon id='plus' /> <FormattedMessage {...messages.add_option} /></button>
             </label>
           )}

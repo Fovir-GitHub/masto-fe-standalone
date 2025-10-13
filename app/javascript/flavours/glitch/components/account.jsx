@@ -133,14 +133,14 @@ class Account extends ImmutablePureComponent {
         }
         buttons = (
           <>
-            <IconButton active icon='volume-up' title={intl.formatMessage(messages.unmute, { name: account.get("username") })} onClick={this.handleMute} />
+            <IconButton active icon='speaker-high' title={intl.formatMessage(messages.unmute, { name: account.get('username') })} onClick={this.handleMute} />
             {hidingNotificationsButton}
           </>
         );
       } else if (defaultAction === 'mute') {
-        buttons = <IconButton icon='volume-off' title={intl.formatMessage(messages.mute, { name: account.get('username') })} onClick={this.handleMute} />;
+        buttons = <IconButton icon='speaker-slash' title={intl.formatMessage(messages.mute, { name: account.get('username') })} onClick={this.handleMute} />;
       } else if (defaultAction === 'block') {
-        buttons = <IconButton icon='lock' title={intl.formatMessage(messages.block, { name: account.get('username') })} onClick={this.handleBlock} />;
+        buttons = <IconButton icon='lock-simple' title={intl.formatMessage(messages.block, { name: account.get('username') })} onClick={this.handleBlock} />;
       } else if (!account.get('moved') || following) {
         buttons = <IconButton icon={following ? 'user-minus' : 'user-plus'} title={intl.formatMessage(following ? messages.unfollow : messages.follow)} onClick={this.handleFollow} className={following ? 'destructive' : ''} active={following} />;
       }

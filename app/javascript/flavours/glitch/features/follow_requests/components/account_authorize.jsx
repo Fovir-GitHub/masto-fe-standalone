@@ -40,8 +40,8 @@ class AccountAuthorize extends ImmutablePureComponent {
         </div>
 
         <div className='account--panel'>
-          <div className='account--panel__button'><IconSVGButton title={intl.formatMessage(messages.authorize)} icon='check' onClick={onAuthorize} /></div>
-          <div className='account--panel__button'><IconSVGButton title={intl.formatMessage(messages.reject)} icon='x' onClick={onReject} /></div>
+          <div className='account--panel__button'><IconButton title={intl.formatMessage(messages.authorize)} icon='check' onClick={onAuthorize} /></div>
+          <div className='account--panel__button'><IconButton title={intl.formatMessage(messages.reject)} icon='x' onClick={onReject} /></div>
         </div>
       </div>
     );

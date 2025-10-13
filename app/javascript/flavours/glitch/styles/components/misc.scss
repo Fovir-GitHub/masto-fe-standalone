@@ -547,7 +547,9 @@ body > [data-popper-placement] {
   z-index: 9999;
 
   &__text-button {
-    display: inline;
+    display: flex;
+    align-items: center;
+    gap: 5px;
     color: inherit;
     background: transparent;
     border: 0;

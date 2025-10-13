@@ -181,7 +181,7 @@ class HomeTimeline extends PureComponent {
           aria-label={intl.formatMessage(showAnnouncements ? messages.hide_announcements : messages.show_announcements)}
           onClick={this.handleToggleAnnouncementsClick}
         >
-          <IconSVGWithBadge id='megaphone-simple' count={unreadAnnouncements} />
+          <IconWithBadge id='megaphone-simple' count={unreadAnnouncements} />
         </button>
       );
     }

@@ -122,7 +122,7 @@ class FollowRequest extends ImmutablePureComponent {
 
               <div className='account__relationship'>
                 <IconButton title={intl.formatMessage(messages.authorize)} icon='check' onClick={onAuthorize} />
-                <IconButton title={intl.formatMessage(messages.reject)} icon='times' onClick={onReject} />
+                <IconButton title={intl.formatMessage(messages.reject)} icon='x' onClick={onReject} />
               </div>
             </div>
           </div>

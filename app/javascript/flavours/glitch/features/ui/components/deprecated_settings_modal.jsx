@@ -51,12 +51,12 @@ class DeprecatedSettingsModal extends PureComponent {
             values={{
               app_settings: (
                 <strong className='deprecated-settings-label'>
-                  <Icon id='cogs' /> <FormattedMessage id='navigation_bar.app_settings' defaultMessage='App settings' />
+                  <Icon id='gear' /> <FormattedMessage id='navigation_bar.app_settings' defaultMessage='App settings' />
                 </strong>
               ),
               preferences: (
                 <strong className='deprecated-settings-label'>
-                  <Icon id='cog' /> <FormattedMessage id='navigation_bar.preferences' defaultMessage='Preferences' />
+                  <Icon id='gear' /> <FormattedMessage id='navigation_bar.preferences' defaultMessage='Preferences' />
                 </strong>
               ),
             }}

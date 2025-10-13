@@ -49,7 +49,7 @@ class NotificationOverlay extends ImmutablePureComponent {
       >
         <div className='wrappy'>
           <div className='ckbox' aria-hidden='true' title={label}>
-            {active ? (<Icon id='check' />) : ""}
+            {active ? (<Icon id='check' />) : ''}
           </div>
         </div>
       </div>

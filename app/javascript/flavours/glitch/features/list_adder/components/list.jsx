@@ -46,7 +46,7 @@ class List extends ImmutablePureComponent {
     let button;
 
     if (added) {
-      button = <IconButton icon='times' title={intl.formatMessage(messages.remove)} onClick={onRemove} />;
+      button = <IconButton icon='x' title={intl.formatMessage(messages.remove)} onClick={onRemove} />;
     } else {
       button = <IconButton icon='plus' title={intl.formatMessage(messages.add)} onClick={onAdd} />;
     }

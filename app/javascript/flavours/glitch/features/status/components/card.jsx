@@ -213,7 +213,7 @@ export default class Card extends PureComponent {
               <div className='status-card__actions'>
                 <div>
                   <button onClick={this.handleEmbedClick}><Icon id={iconVariant} /></button>
-                  {horizontal && <a href={card.get("url")} target='_blank' rel='noopener noreferrer'><Icon id='external-link' /></a>}
+                  {horizontal && <a href={card.get('url')} target='_blank' rel='noopener noreferrer'><Icon id='arrow-square-out' /></a>}
                 </div>
               </div>
             )}
