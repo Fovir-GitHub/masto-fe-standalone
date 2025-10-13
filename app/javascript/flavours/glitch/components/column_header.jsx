@@ -7,7 +7,7 @@ import { FormattedMessage, injectIntl, defineMessages } from "react-intl";
 import classNames from "classnames";
 
 import { Icon } from "flavours/glitch/components/icon";
-import { IconButton } from "flavours/glitch/components/icon_svg_button";
+import { IconButton } from "flavours/glitch/components/icon_button";
 
 const messages = defineMessages({
   show: { id: "column_header.show_settings", defaultMessage: "Show settings" },

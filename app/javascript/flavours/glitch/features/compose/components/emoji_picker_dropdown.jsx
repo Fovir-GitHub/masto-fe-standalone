@@ -10,6 +10,8 @@ import ImmutablePropTypes from "react-immutable-proptypes";
 import { supportsPassiveEvents } from "detect-passive-events";
 import Overlay from "react-overlays/Overlay";
 
+import { Icon } from "flavours/glitch/components/icon";
+
 import { useSystemEmojiFont } from "flavours/glitch/initial_state";
 import { assetHost } from "flavours/glitch/utils/config";
 
