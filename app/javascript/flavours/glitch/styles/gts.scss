@@ -37,12 +37,12 @@
     min-width: var(--size);
     height: var(--size);
     box-sizing: border-box;
-    border: 2px solid darken($ui-base-color, 7%);
+    border: 2px solid var(--color-bg);
     border-radius: 50%;
-    color: $primary-text-color;
+    color: var(--color-badge-fg);
     font-size: 10px;
     font-weight: 500;
-    background: $ui-highlight-color;
+    background: var(--color-badge-bg);
   }
 
   &__issue-badge {

@@ -8,6 +8,7 @@
   --color-lines: #c0cdd9;
 
   /* Accent */
+  --color-accent: #4d4eff;
   --color-accent-bg: #d9e1e8;
   --color-accent-fg: #282c37;
   --color-accent-lines: #c0cdd9;
@@ -19,6 +20,10 @@
   --color-drawer-bg: #fff;
   --color-drawer-bg--hover: #ccd7e0;
   --color-drawer-fg: var(--color-fg);
+
+  /* Badge */
+  --color-badge-bg: var(--color-accent);
+  --color-badge-fg: #fff;
 
   /* Notifications */
   --color-notifications-bg--active: #fff;
