@@ -2511,7 +2511,6 @@ __metadata:
     exif-js: "npm:^2.3.0"
     favico.js: "npm:^0.3.10"
     file-loader: "npm:^6.2.0"
-    font-awesome: "npm:^4.7.0"
     fuzzysort: "npm:^2.0.4"
     glob: "npm:^10.2.6"
     globals: "npm:^16.4.0"
@@ -8015,13 +8014,6 @@ __metadata:
     debug:
       optional: true
   checksum: 10c0/d301f430542520a54058d4aeeb453233c564aaccac835d29d15e050beb33f339ad67d9bddbce01739c5dc46a6716dbe3d9d0d5134b1ca203effa11a7ef092343
-  languageName: node
-  linkType: hard
-
-"font-awesome@npm:^4.7.0":
-  version: 4.7.0
-  resolution: "font-awesome@npm:4.7.0"
-  checksum: 10c0/1c456e2939c55192eed67db9c0efb8db3e92fd357ca189ca00030eb44acffa1e9f835288d2204c14b9a9c490a7b14b7090dfaff80ded6b2473f50a923dfb41e7
   languageName: node
   linkType: hard
 

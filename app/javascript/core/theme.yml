@@ -10,9 +10,6 @@ pack:
   embed: embed.js
   error:
   home:
-  mailer:
-    filename: mailer.js
-    stylesheet: true
   modal:
   public:
   settings: settings.js
