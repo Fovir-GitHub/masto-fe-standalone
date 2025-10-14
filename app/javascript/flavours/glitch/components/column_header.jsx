@@ -118,7 +118,7 @@ class ColumnHeader extends PureComponent {
     }
 
     if (multiColumn && pinned) {
-      pinButton = (<IconButton key='pin-button' onClick={this.handlePin} className='column-header__footer-button' label='Unpin' icon='push-pin-slash' />);
+      pinButton = (<IconButton key='pin-button' onClick={this.handlePin} className='column-header__footer-button' label='Unpin' icon='push-pin-slash' title={formatMessage({id: "column_header.unpin", defaultMessage: "Unpin"})} />);
 
       moveButtons = (
         <div key='move-buttons' className='column-header__footer-arrows'>
@@ -127,7 +127,7 @@ class ColumnHeader extends PureComponent {
         </div>
       );
     } else if (multiColumn && this.props.onPin) {
-      pinButton = (<IconButton key='pin-button' onClick={this.handlePin} className='column-header__footer-button' label='Pin' icon='push-pin' />);
+      pinButton = (<IconButton key='pin-button' onClick={this.handlePin} className='column-header__footer-button' label='Pin' icon='push-pin'  title={formatMessage({id: "column_header.pin", defaultMessage: "Pin"})} />);
     }
 
     if (!pinned && ((multiColumn && router.history.location?.state?.fromMastodon) || showBackButton)) {
