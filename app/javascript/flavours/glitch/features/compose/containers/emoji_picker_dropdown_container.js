@@ -5,8 +5,6 @@ import { createSelector } from "reselect";
 import { useEmoji } from "flavours/glitch/actions/emojis";
 import { changeSetting } from "flavours/glitch/actions/settings";
 
-import { Icon } from "flavours/glitch/components/icon";
-
 import EmojiPickerDropdown from "../components/emoji_picker_dropdown";
 
 const perLine = 8;
