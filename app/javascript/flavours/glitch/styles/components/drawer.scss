@@ -148,6 +148,15 @@
   overflow: hidden;
 }
 
+.navigation-bar .compose__action-bar button {
+  display: flex;
+  padding: 6px;
+
+  svg.gts-icon {
+    --size: 20px;
+  }
+}
+
 .drawer--results {
   overflow-x: hidden;
   overflow-y: scroll;
