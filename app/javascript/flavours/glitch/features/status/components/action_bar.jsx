@@ -221,7 +221,7 @@ class ActionBar extends PureComponent {
     return (
       <div className='status__action-bar detailed-status__action-bar'>
         <div className='detailed-status__button'>
-          <IconButton title={intl.formatMessage(messages.reply)} icon={status.get("in_reply_to_id", null) === null ? "arrow-bend-up-left" : "arrow-double-bend-up-left"} onClick={this.handleReplyClick} />
+          <IconButton title={intl.formatMessage(messages.reply)} icon={status.get("in_reply_to_id", null) === null ? "arrow-bend-up-left" : "arrow-bend-double-up-left"} onClick={this.handleReplyClick} />
         </div>
         <div className='detailed-status__button'>
           <IconButton className={classNames({ reblogPrivate })} disabled={!publicStatus && !reblogPrivate} active={status.get("reblogged")} title={reblogTitle} icon={status.get("reblogged") ? "rocket-launch-filled" : "rocket-launch"} onClick={this.handleReblogClick} />
