@@ -171,13 +171,13 @@ class Results extends PureComponent {
             )}
 
             {hashtags.size > 0 && (
-              <SearchSection key='hashtags' title={<><Icon id='hashtag' fixedWidth /><FormattedMessage id='search_results.hashtags' defaultMessage='Hashtags' /></>} onClickMore={this.handleLoadMoreHashtags}>
+              <SearchSection key='hashtags' title={<><Icon id='tag' fixedWidth /><FormattedMessage id='search_results.hashtags' defaultMessage='Hashtags' /></>} onClickMore={this.handleLoadMoreHashtags}>
                 {hashtags.take(INITIAL_DISPLAY).map(hashtag => <Hashtag key={hashtag.get("name")} hashtag={hashtag} />)}
               </SearchSection>
             )}
 
             {statuses.size > 0 && (
-              <SearchSection key='statuses' title={<><Icon id='quote-right' fixedWidth /><FormattedMessage id='search_results.statuses' defaultMessage='Posts' /></>} onClickMore={this.handleLoadMoreStatuses}>
+              <SearchSection key='statuses' title={<><Icon id='chat-circle-dots' fixedWidth /><FormattedMessage id='search_results.statuses' defaultMessage='Posts' /></>} onClickMore={this.handleLoadMoreStatuses}>
                 {statuses.take(INITIAL_DISPLAY).map(id => <Status key={id} id={id} />)}
               </SearchSection>
             )}

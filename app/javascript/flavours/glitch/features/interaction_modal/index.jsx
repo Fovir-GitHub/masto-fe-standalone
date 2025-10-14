@@ -354,12 +354,12 @@ class InteractionModal extends React.PureComponent {
 
     switch(type) {
       case "reply":
-        icon = <Icon id='reply' />;
+        icon = <Icon id='arrow-bend-up-left' />;
         title = <FormattedMessage id='interaction_modal.title.reply' defaultMessage="Reply to {name}'s post" values={{ name }} />;
         actionDescription = <FormattedMessage id='interaction_modal.description.reply' defaultMessage='With an account on Mastodon, you can respond to this post.' />;
         break;
       case "reblog":
-        icon = <Icon id='retweet' />;
+        icon = <Icon id='rocket-launch' />;
         title = <FormattedMessage id='interaction_modal.title.reblog' defaultMessage="Boost {name}'s post" values={{ name }} />;
         actionDescription = <FormattedMessage id='interaction_modal.description.reblog' defaultMessage='With an account on Mastodon, you can boost this post to share it with your own followers.' />;
         break;

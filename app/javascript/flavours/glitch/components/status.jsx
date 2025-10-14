@@ -648,7 +648,7 @@ class Status extends ImmutablePureComponent {
 
     if (pictureInPicture.get("inUse")) {
       media.push(<PictureInPicturePlaceholder />);
-      mediaIcons.push("video-camera");
+      mediaIcons.push("film-strip");
     } else if (attachments.size > 0) {
       const language = status.getIn(["translation", "language"]) || status.get("language");
 
@@ -688,7 +688,7 @@ class Status extends ImmutablePureComponent {
             )}
           </Bundle>,
         );
-        mediaIcons.push("music");
+        mediaIcons.push("music-note");
       } else if (attachments.getIn([0, "type"]) === "video") {
         const attachment = status.getIn(["media_attachments", 0]);
         const description = attachment.getIn(["translation", "description"]) || attachment.get("description");
@@ -715,7 +715,7 @@ class Status extends ImmutablePureComponent {
             />)}
           </Bundle>,
         );
-        mediaIcons.push("video-camera");
+        mediaIcons.push("film-strip");
       } else {  //  Media type is 'image' or 'gifv'
         media.push(
           <Bundle fetchComponent={MediaGallery} loading={this.renderLoadingMediaGallery}>
@@ -737,7 +737,7 @@ class Status extends ImmutablePureComponent {
             )}
           </Bundle>,
         );
-        mediaIcons.push("picture-o");
+        mediaIcons.push("image");
       }
 
       if (!status.get("sensitive") && !(status.get("spoiler_text").length > 0) && settings.getIn(["collapsed", "backgrounds", "preview_images"])) {
@@ -759,7 +759,7 @@ class Status extends ImmutablePureComponent {
     if (status.get("poll")) {
       const language = status.getIn(["translation", "language"]) || status.get("language");
       contentMedia.push(<PollContainer pollId={status.get("poll")} lang={language} />);
-      contentMediaIcons.push("tasks");
+      contentMediaIcons.push("chart-bar-horizontal");
     }
 
     //  Here we prepare extra data-* attributes for CSS selectors.
@@ -819,17 +819,15 @@ class Status extends ImmutablePureComponent {
           {(connectReply || connectUp || connectToRoot) && <div className={classNames("status__line", { "status__line--full": connectReply, "status__line--first": !status.get("in_reply_to_id") && !connectToRoot })} />}
 
           <header className='status__info'>
-            <span>
-              {muted && prepend}
-              {!muted || !isCollapsed ? (
-                <StatusHeader
-                  status={status}
-                  friend={account}
-                  collapsed={isCollapsed}
-                  parseClick={parseClick}
-                />
-              ) : null}
-            </span>
+            {muted && prepend}
+            {!muted || !isCollapsed ? (
+              <StatusHeader
+                status={status}
+                friend={account}
+                collapsed={isCollapsed}
+                parseClick={parseClick}
+              />
+            ) : null}
             <StatusIcons
               status={status}
               mediaIcons={contentMediaIcons.concat(extraMediaIcons)}

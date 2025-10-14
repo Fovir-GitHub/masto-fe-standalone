@@ -168,14 +168,14 @@
 
   &:hover,
   &:active,
-  &:focus {
+  &:focus-visible {
     color: lighten($action-button-color, 7%);
     background-color: rgba($action-button-color, 0.15);
     transition: all 200ms ease-out;
     transition-property: background-color, color;
   }
 
-  &:focus {
+  &:focus-visible {
     background-color: rgba($action-button-color, 0.3);
   }
 
@@ -213,12 +213,12 @@
 
     &:hover,
     &:active,
-    &:focus {
+    &:focus-visible {
       color: darken($lighter-text-color, 7%);
       background-color: rgba($lighter-text-color, 0.15);
     }
 
-    &:focus {
+    &:focus-visible {
       background-color: rgba($lighter-text-color, 0.3);
     }
 
@@ -241,7 +241,7 @@
     background: rgba($base-overlay-background, 0.6);
     color: rgba($primary-text-color, 0.7);
     border-radius: 4px;
-    padding: 2px;
+    padding: 4px;
 
     &:hover {
       background: rgba($base-overlay-background, 0.9);
@@ -288,14 +288,14 @@
 
   &:hover,
   &:active,
-  &:focus {
+  &:focus-visible {
     color: darken($lighter-text-color, 7%);
     background-color: rgba($lighter-text-color, 0.15);
     transition: all 200ms ease-out;
     transition-property: background-color, color;
   }
 
-  &:focus {
+  &:focus-visible {
     background-color: rgba($lighter-text-color, 0.3);
   }
 
@@ -547,7 +547,9 @@ body > [data-popper-placement] {
   z-index: 9999;
 
   &__text-button {
-    display: inline;
+    display: flex;
+    align-items: center;
+    gap: 5px;
     color: inherit;
     background: transparent;
     border: 0;
@@ -1320,6 +1322,12 @@ button.icon-button.active i.fa-retweet {
   height: 100%;
   position: absolute;
   z-index: 100;
+
+  svg.gts-icon {
+    --size: 18px;
+
+    display: block;
+  }
 
   &--minified {
     display: flex;

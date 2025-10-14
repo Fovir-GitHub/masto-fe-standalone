@@ -42,7 +42,7 @@ class Header extends ImmutablePureComponent {
           <DisplayName account={account} />
         </Link>
 
-        <IconButton icon='times' onClick={onClose} title={intl.formatMessage(messages.close)} />
+        <IconButton icon='x' onClick={onClose} title={intl.formatMessage(messages.close)} />
       </div>
     );
   }

@@ -35,7 +35,8 @@ export const DismissableBanner: React.FC<PropsWithChildren<Props>> = ({
     <div className='dismissable-banner'>
       <div className='dismissable-banner__action'>
         <IconButton
-          icon='times'
+          icon='x'
+          className='dismissable-banner__action-button'
           title={intl.formatMessage(messages.dismiss)}
           onClick={handleDismiss}
         />

@@ -181,7 +181,7 @@ class ListTimeline extends PureComponent {
     return (
       <Column bindToDocument={!multiColumn} ref={this.setRef} label={title}>
         <ColumnHeader
-          icon='list-ul'
+          icon='dot'
           active={hasUnread}
           title={title}
           onPin={this.handlePin}
@@ -190,13 +190,15 @@ class ListTimeline extends PureComponent {
           pinned={pinned}
           multiColumn={multiColumn}
         >
-          <div className='column-settings__row column-header__links'>
+          <div className='column-settings__row column-header__links column-header__button-row'>
             <button type='button' className='text-btn column-header__setting-btn' tabIndex={0} onClick={this.handleEditClick}>
-              <Icon id='pencil' /> <FormattedMessage id='lists.edit' defaultMessage='Edit list' />
+              <Icon id='pencil-simple-line' />
+              <FormattedMessage id='lists.edit' defaultMessage='Edit list' />
             </button>
 
             <button type='button' className='text-btn column-header__setting-btn' tabIndex={0} onClick={this.handleDeleteClick}>
-              <Icon id='trash' /> <FormattedMessage id='lists.delete' defaultMessage='Delete list' />
+              <Icon id='trash' />
+              <FormattedMessage id='lists.delete' defaultMessage='Delete list' />
             </button>
           </div>
 

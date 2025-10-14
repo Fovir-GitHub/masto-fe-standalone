@@ -721,7 +721,7 @@ class Status extends ImmutablePureComponent {
     return (
       <Column bindToDocument={!multiColumn} ref={this.setColumnRef} label={intl.formatMessage(messages.detailedStatus)}>
         <ColumnHeader
-          icon='comment'
+          icon='chat-circle-text'
           title={intl.formatMessage(messages.tootHeading)}
           onClick={this.handleHeaderClick}
           showBackButton

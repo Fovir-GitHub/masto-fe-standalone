@@ -28,7 +28,7 @@ export const LoadGap: React.FC<Props> = ({ disabled, maxId, onClick }) => {
       onClick={handleClick}
       aria-label={intl.formatMessage(messages.load_more)}
     >
-      <Icon id='ellipsis-h' />
+      <Icon id='dots-three-filled' />
     </button>
   );
 };

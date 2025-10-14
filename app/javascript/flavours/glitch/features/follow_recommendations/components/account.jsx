@@ -60,7 +60,7 @@ class Account extends ImmutablePureComponent {
     if (account.getIn(["relationship", "following"])) {
       button = <IconButton icon='check' title={intl.formatMessage(messages.unfollow)} active onClick={this.handleFollow} />;
     } else {
-      button = <IconButton icon='plus' title={intl.formatMessage(messages.follow)} onClick={this.handleFollow} />;
+      button = <IconButton icon='user-plus' title={intl.formatMessage(messages.follow)} onClick={this.handleFollow} />;
     }
 
     return (

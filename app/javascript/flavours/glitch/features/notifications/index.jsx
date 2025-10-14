@@ -297,7 +297,7 @@ class Notifications extends PureComponent {
           onClick={this.handleMarkAsRead}
           className='column-header__button'
         >
-          <Icon id='check' />
+          <Icon id='checks' />
         </button>,
       );
     }

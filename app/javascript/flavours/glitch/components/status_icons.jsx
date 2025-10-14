@@ -114,7 +114,7 @@ class StatusIcons extends PureComponent {
           <Icon
             className='status__reply-icon'
             fixedWidth
-            id='comment'
+            id='arrow-bend-double-up-left'
             aria-hidden='true'
             title={intl.formatMessage(messages.inReplyTo)}
           />
@@ -122,7 +122,7 @@ class StatusIcons extends PureComponent {
         {settings.get("local_only") && status.get("local_only") &&
           <Icon
             fixedWidth
-            id='home'
+            id='house-line'
             aria-hidden='true'
             title={intl.formatMessage(messages.localOnly)}
           />}
@@ -138,7 +138,7 @@ class StatusIcons extends PureComponent {
                 intl.formatMessage(messages.uncollapse) :
                 intl.formatMessage(messages.collapse)
             }
-            icon='angle-double-up'
+            icon='caret-circle-double-up'
             onClick={this.handleCollapsedClick}
           />
         )}

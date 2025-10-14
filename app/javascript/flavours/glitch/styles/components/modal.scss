@@ -1063,6 +1063,12 @@
     position: absolute;
     top: 10px;
     inset-inline-end: 10px;
+    display: flex;
+    padding: 6px;
+
+    svg.gts-icon {
+      --size: 20px;
+    }
   }
 }
 

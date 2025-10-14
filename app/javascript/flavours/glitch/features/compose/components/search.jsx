@@ -347,6 +347,7 @@ class Search extends PureComponent {
 
     return (
       <div className={classNames("search", { active: expanded })}>
+        <Icon id='magnifying-glass'  className='search__icon' />
         <input
           ref={this.setRef}
           className='search__input'
@@ -359,11 +360,9 @@ class Search extends PureComponent {
           onFocus={this.handleFocus}
           onBlur={this.handleBlur}
         />
-
-        <div role='button' tabIndex={0} className='search__icon' onClick={this.handleClear}>
-          <Icon id='search' className={hasValue ? "" : "active"} />
-          <Icon id='times-circle' className={hasValue ? "active" : ""} />
-        </div>
+        <button type='button' className={hasValue ? "search__button active" : "search__button"} onClick={this.handleClear}>
+          <Icon id='x' />
+        </button>
         <div className='search__popout'>
           {options.length === 0 && (
             <>
@@ -373,7 +372,9 @@ class Search extends PureComponent {
                 {recent.size > 0 ? this._getOptions().map(({ label, action, forget }, i) => (
                   <button key={label} onMouseDown={action} className={classNames("search__popout__menu__item search__popout__menu__item--flex", { selected: selectedOption === i })}>
                     <span>{label}</span>
-                    <button className='icon-button' onMouseDown={forget}><Icon id='times' /></button>
+                    <button className='icon-button' onMouseDown={forget}>
+                      <Icon id='x' />
+                    </button>
                   </button>
                 )) : (
                   <div className='search__popout__menu__message'>

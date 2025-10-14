@@ -141,7 +141,7 @@ class GettingStarted extends ImmutablePureComponent {
       }
 
       if (!columns.find(item => item.get("id") === "PUBLIC")) {
-        navItems.push(<ColumnLink key='public_timeline' icon='globe' text={intl.formatMessage(messages.public_timeline)} to='/public' />);
+        navItems.push(<ColumnLink key='public_timeline' icon='planet' text={intl.formatMessage(messages.public_timeline)} to='/public' />);
       }
     }
 
@@ -151,24 +151,24 @@ class GettingStarted extends ImmutablePureComponent {
 
     if (signedIn) {
       if (!multiColumn || !columns.find(item => item.get("id") === "DIRECT")) {
-        navItems.push(<ColumnLink key='conversations' icon='envelope' text={intl.formatMessage(messages.direct)} to='/conversations' />);
+        navItems.push(<ColumnLink key='conversations' icon='at' text={intl.formatMessage(messages.direct)} to='/conversations' />);
       }
 
       if (!multiColumn || !columns.find(item => item.get("id") === "BOOKMARKS")) {
-        navItems.push(<ColumnLink key='bookmarks' icon='bookmark' text={intl.formatMessage(messages.bookmarks)} to='/bookmarks' />);
+        navItems.push(<ColumnLink key='bookmarks' icon='bookmarks' text={intl.formatMessage(messages.bookmarks)} to='/bookmarks' />);
       }
 
       if (myAccount.get("locked") || unreadFollowRequests > 0) {
         navItems.push(<ColumnLink key='follow_requests' icon='user-plus' text={intl.formatMessage(messages.follow_requests)} badge={badgeDisplay(unreadFollowRequests, 40)} to='/follow_requests' />);
       }
 
-      navItems.push(<ColumnLink key='getting_started' icon='ellipsis-h' text={intl.formatMessage(messages.misc)} to='/getting-started-misc' />);
+      navItems.push(<ColumnLink key='getting_started' icon='dots-three-outline' text={intl.formatMessage(messages.misc)} to='/getting-started-misc' />);
 
       listItems = listItems.concat([
         <div key='9'>
-          <ColumnLink key='lists' icon='bars' text={intl.formatMessage(messages.lists)} to='/lists' />
+          <ColumnLink key='lists' icon='list' text={intl.formatMessage(messages.lists)} to='/lists' />
           {lists.filter(list => !columns.find(item => item.get("id") === "LIST" && item.getIn(["params", "id"]) === list.get("id"))).map(list =>
-            <ColumnLink key={`list-${list.get("id")}`} to={`/lists/${list.get("id")}`} icon='list-ul' text={list.get("title")} />,
+            <ColumnLink key={`list-${list.get("id")}`} to={`/lists/${list.get("id")}`} icon='dot' text={list.get("title")} />,
           )}
         </div>,
       ]);
@@ -187,7 +187,7 @@ class GettingStarted extends ImmutablePureComponent {
                 {listItems}
                 <ColumnSubheading text={intl.formatMessage(messages.settings_subheading)} />
                 { preferencesLink !== undefined && <ColumnLink icon='cog' text={intl.formatMessage(messages.preferences)} href={preferencesLink} /> }
-                <ColumnLink icon='cogs' text={intl.formatMessage(messages.settings)} onClick={openSettings} />
+                <ColumnLink icon='gear' text={intl.formatMessage(messages.settings)} onClick={openSettings} />
               </>
             )}
           </div>

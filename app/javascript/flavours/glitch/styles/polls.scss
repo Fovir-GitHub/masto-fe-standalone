@@ -25,6 +25,12 @@
     }
   }
 
+  &__text button {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
+
   progress {
     border: 0;
     display: block;
@@ -182,6 +188,8 @@
   }
 
   &__footer {
+    display: flex;
+    gap: 5px;
     padding-top: 6px;
     padding-bottom: 5px;
     color: $dark-text-color;

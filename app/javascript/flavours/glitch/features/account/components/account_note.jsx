@@ -57,7 +57,7 @@ class Header extends ImmutablePureComponent {
       action_buttons = (
         <div className='account__header__account-note__buttons'>
           <button className='icon-button' tabIndex={0} onClick={this.props.onCancelAccountNote} disabled={isSubmitting}>
-            <Icon id='times' size={15} /> <FormattedMessage id='account_note.cancel' defaultMessage='Cancel' />
+            <Icon id='x' size={15} /> <FormattedMessage id='account_note.cancel' defaultMessage='Cancel' />
           </button>
           <div className='flex-spacer' />
           <button className='icon-button' tabIndex={0} onClick={this.props.onSaveAccountNote} disabled={isSubmitting}>
@@ -69,7 +69,7 @@ class Header extends ImmutablePureComponent {
       action_buttons = (
         <div className='account__header__account-note__buttons'>
           <button className='icon-button' tabIndex={0} onClick={this.props.onEditAccountNote} disabled={isSubmitting}>
-            <Icon id='pencil' size={15} /> <FormattedMessage id='account_note.edit' defaultMessage='Edit' />
+            <Icon id='pencil-simple-line' size={15} /> <FormattedMessage id='account_note.edit' defaultMessage='Edit' />
           </button>
         </div>
       );

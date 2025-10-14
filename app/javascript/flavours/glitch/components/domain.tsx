@@ -34,7 +34,7 @@ export const Domain: React.FC<Props> = ({ domain, onUnblockDomain }) => {
         <div className='domain__buttons'>
           <IconButton
             active
-            icon='unlock'
+            icon='lock-simple-open'
             title={intl.formatMessage(messages.unblockDomain, { domain })}
             onClick={handleDomainUnblock}
           />

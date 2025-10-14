@@ -186,7 +186,14 @@
 
   &__close,
   &__zoom-button {
+    padding: 6px;
     color: rgba($white, 0.7);
+
+    .gts-icon {
+      --size: 24px;
+
+      display: block;
+    }
 
     &:hover,
     &:focus,
@@ -278,6 +285,10 @@
 
     .icon-button {
       color: $white;
+
+      .gts-icon {
+        --size: 24px;
+      }
 
       &:hover,
       &:focus,
@@ -566,6 +577,12 @@
     padding-bottom: 8px;
     margin: 0 -5px;
 
+    .gts-icon {
+      --size: 20px;
+
+      display: block;
+    }
+
     .video-player__download__icon {
       color: inherit;
 
@@ -650,7 +667,7 @@
     &.active {
       overflow: visible;
       width: 50px;
-      margin-inline-end: 16px;
+      margin-inline: 16px;
     }
 
     &::before {

@@ -27,7 +27,7 @@ export default class FollowRequestNote extends ImmutablePureComponent {
           </button>
 
           <button type='button' className='button button-tertiary button--destructive' onClick={onReject}>
-            <Icon id='times' fixedWidth />
+            <Icon id='x' fixedWidth />
             <FormattedMessage id='follow_request.reject' defaultMessage='Reject' />
           </button>
         </div>

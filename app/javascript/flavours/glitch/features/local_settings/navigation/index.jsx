@@ -37,28 +37,28 @@ class LocalSettingsNavigation extends PureComponent {
           active={index === 0}
           index={0}
           onNavigate={onNavigate}
-          icon='cogs'
+          icon='gear'
           title={intl.formatMessage(messages.general)}
         />
         <LocalSettingsNavigationItem
           active={index === 1}
           index={1}
           onNavigate={onNavigate}
-          icon='pencil'
+          icon='pencil-simple-line'
           title={intl.formatMessage(messages.compose)}
         />
         <LocalSettingsNavigationItem
           active={index === 2}
           index={2}
           onNavigate={onNavigate}
-          textIcon='CW'
+          icon='warning'
           title={intl.formatMessage(messages.content_warnings)}
         />
         <LocalSettingsNavigationItem
           active={index === 3}
           index={3}
           onNavigate={onNavigate}
-          icon='angle-double-up'
+          icon='caret-circle-double-up'
           title={intl.formatMessage(messages.collapsed)}
         />
         <LocalSettingsNavigationItem
@@ -73,7 +73,7 @@ class LocalSettingsNavigation extends PureComponent {
           className='close'
           index={5}
           onNavigate={onClose}
-          icon='times'
+          icon='x'
           title={intl.formatMessage(messages.close)}
         />
       </nav>

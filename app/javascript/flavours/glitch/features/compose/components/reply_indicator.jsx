@@ -52,7 +52,7 @@ class ReplyIndicator extends ImmutablePureComponent {
         <header className='reply-indicator__header'>
           <IconButton
             className='reply-indicator__cancel'
-            icon='times'
+            icon='x'
             onClick={this.handleClick}
             title={intl.formatMessage(messages.cancel)}
             inverted

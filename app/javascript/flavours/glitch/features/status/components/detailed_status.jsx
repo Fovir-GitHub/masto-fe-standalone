@@ -135,7 +135,7 @@ class DetailedStatus extends ImmutablePureComponent {
 
     let applicationLink = "";
     let reblogLink = "";
-    let reblogIcon = "retweet";
+    let reblogIcon = "rocket-launch";
     let favouriteLink = "";
     let edited = "";
 
@@ -255,9 +255,9 @@ class DetailedStatus extends ImmutablePureComponent {
     const visibilityLink = <> · <VisibilityIcon visibility={status.get("visibility")} /></>;
 
     if (status.get("visibility") === "direct") {
-      reblogIcon = "envelope";
+      reblogIcon = "at";
     } else if (status.get("visibility") === "private") {
-      reblogIcon = "lock";
+      reblogIcon = "lock-simple";
     }
 
     if (!["unlisted", "public"].includes(status.get("visibility"))) {

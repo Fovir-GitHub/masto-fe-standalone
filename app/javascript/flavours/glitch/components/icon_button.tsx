@@ -82,24 +82,10 @@ export class IconButton extends React.PureComponent<Props, States> {
   };
 
   render() {
-    // Hack required for some icons which have an overriden size
-    let containerSize = "1.28571429em";
-    if (this.props.style?.fontSize) {
-      containerSize = `${this.props.size * 1.28571429}px`;
-    }
-
     const style = {
-      fontSize: `${this.props.size}px`,
-      height: containerSize,
-      lineHeight: `${this.props.size}px`,
       ...this.props.style,
       ...(this.props.active ? this.props.activeStyle : {}),
     };
-    if (!this.props.label) {
-      style.width = containerSize;
-    } else {
-      style.textAlign = "left";
-    }
 
     const {
       active,

@@ -17,6 +17,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Preserve ‘mastodon-settings’ in localStorage (#66)
 - Redesigned the login page (#76)
+- Changed all icons with the Phosphor icon set (#77)
 
 ### Fixed
 

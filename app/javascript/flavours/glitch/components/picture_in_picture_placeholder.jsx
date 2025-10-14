@@ -22,7 +22,7 @@ class PictureInPicturePlaceholder extends PureComponent {
   render () {
     return (
       <div className='picture-in-picture-placeholder' role='button' tabIndex={0} onClick={this.handleClick}>
-        <Icon id='window-restore' />
+        <Icon id='browsers' />
         <FormattedMessage id='picture_in_picture.restore' defaultMessage='Put it back' />
       </div>
     );

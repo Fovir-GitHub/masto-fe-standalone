@@ -191,7 +191,7 @@ class Header extends ImmutablePureComponent {
     }
 
     if (account.getIn(["relationship", "requested"]) || account.getIn(["relationship", "following"])) {
-      bellBtn = <IconButton icon={account.getIn(["relationship", "notifying"]) ? "bell" : "bell-o"} size={24} active={account.getIn(["relationship", "notifying"])} title={intl.formatMessage(account.getIn(["relationship", "notifying"]) ? messages.disableNotifications : messages.enableNotifications, { name: account.get("username") })} onClick={this.props.onNotifyToggle} />;
+      bellBtn = <IconButton icon={account.getIn(["relationship", "notifying"]) ? "bell-ringing" : "bell"} size={24} active={account.getIn(["relationship", "notifying"])} title={intl.formatMessage(account.getIn(["relationship", "notifying"]) ? messages.disableNotifications : messages.enableNotifications, { name: account.get("username") })} onClick={this.props.onNotifyToggle} />;
     }
 
     if (me !== account.get("id")) {
@@ -217,7 +217,7 @@ class Header extends ImmutablePureComponent {
     }
 
     if (account.get("locked")) {
-      lockedIcon = <Icon id='lock' title={intl.formatMessage(messages.account_locked)} />;
+      lockedIcon = <Icon id='lock-simple' title={intl.formatMessage(messages.account_locked)} />;
     }
 
     if (signedIn && account.get("id") !== me && !suspended) {
@@ -360,7 +360,7 @@ class Header extends ImmutablePureComponent {
                   </>
                 )}
 
-                <DropdownMenuContainer disabled={menu.length === 0} items={menu} icon='ellipsis-v' size={24} direction='right' />
+                <DropdownMenuContainer disabled={menu.length === 0} items={menu} icon='dots-three-outline' size={24} direction='right' />
               </div>
             )}
           </div>

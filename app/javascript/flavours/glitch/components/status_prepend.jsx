@@ -29,9 +29,9 @@ export default class StatusPrepend extends PureComponent {
       <a
         onClick={this.handleClick}
         href={account.get("url")}
-        className='status__display-name'
+        className='status__prepend-display-name'
       >
-        <b
+        <span
           dangerouslySetInnerHTML={{
             __html : account.get("display_name_html") || account.get("username"),
           }}
@@ -114,20 +114,20 @@ export default class StatusPrepend extends PureComponent {
         iconId = "star";
         break;
       case "featured":
-        iconId = "thumb-tack";
+        iconId = "push-pin";
         break;
       case "poll":
-        iconId = "tasks";
+        iconId = "chart-bar-horizontal";
         break;
       case "reblog":
       case "reblogged_by":
-        iconId = "retweet";
+        iconId = "rocket-launch";
         break;
       case "status":
         iconId = "bell";
         break;
       case "update":
-        iconId = "pencil";
+        iconId = "pencil-simple-line";
         break;
     }
 

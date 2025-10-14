@@ -7,6 +7,7 @@ import { FormattedMessage, injectIntl, defineMessages } from "react-intl";
 import classNames from "classnames";
 
 import { Icon } from "flavours/glitch/components/icon";
+import { IconButton } from "flavours/glitch/components/icon_button";
 
 const messages = defineMessages({
   show: { id: "column_header.show_settings", defaultMessage: "Show settings" },
@@ -117,34 +118,39 @@ class ColumnHeader extends PureComponent {
     }
 
     if (multiColumn && pinned) {
-      pinButton = <button key='pin-button' className='text-btn column-header__setting-btn' onClick={this.handlePin}><Icon id='times' /> <FormattedMessage id='column_header.unpin' defaultMessage='Unpin' /></button>;
+      pinButton = (<IconButton key='pin-button' onClick={this.handlePin} className='column-header__footer-button' label='Unpin' icon='push-pin-slash' title={formatMessage({id: "column_header.unpin", defaultMessage: "Unpin"})} />);
 
       moveButtons = (
-        <div key='move-buttons' className='column-header__setting-arrows'>
-          <button title={formatMessage(messages.moveLeft)} aria-label={formatMessage(messages.moveLeft)} className='icon-button column-header__setting-btn' onClick={this.handleMoveLeft}><Icon id='chevron-left' /></button>
-          <button title={formatMessage(messages.moveRight)} aria-label={formatMessage(messages.moveRight)} className='icon-button column-header__setting-btn' onClick={this.handleMoveRight}><Icon id='chevron-right' /></button>
+        <div key='move-buttons' className='column-header__footer-arrows'>
+          <button title={formatMessage(messages.moveLeft)} aria-label={formatMessage(messages.moveLeft)} className='column-header__footer-button' onClick={this.handleMoveLeft}><Icon id='caret-left' /></button>
+          <button title={formatMessage(messages.moveRight)} aria-label={formatMessage(messages.moveRight)} className='column-header__footer-button' onClick={this.handleMoveRight}><Icon id='caret-right' /></button>
         </div>
       );
     } else if (multiColumn && this.props.onPin) {
-      pinButton = <button key='pin-button' className='text-btn column-header__setting-btn' onClick={this.handlePin}><Icon id='plus' /> <FormattedMessage id='column_header.pin' defaultMessage='Pin' /></button>;
+      pinButton = (<IconButton key='pin-button' onClick={this.handlePin} className='column-header__footer-button' label='Pin' icon='push-pin'  title={formatMessage({id: "column_header.pin", defaultMessage: "Pin"})} />);
     }
 
     if (!pinned && ((multiColumn && router.history.location?.state?.fromMastodon) || showBackButton)) {
       backButton = (
         <button onClick={this.handleBackClick} className='column-header__back-button'>
-          <Icon id='chevron-left' className='column-back-button__icon' fixedWidth />
+          <Icon id='arrow-left' className='column-back-button__icon' fixedWidth />
           <FormattedMessage id='column_back_button.label' defaultMessage='Back' />
         </button>
       );
     }
+    
+    const columnHeaderFooter = (
+      <div className='column-header__footer'>
+        {pinButton} {moveButtons}
+      </div>
+    );
 
     const collapsedContent = [
       extraContent,
     ];
 
     if (multiColumn) {
-      collapsedContent.push(pinButton);
-      collapsedContent.push(moveButtons);
+      collapsedContent.push(columnHeaderFooter);
     }
 
     if (this.context.identity.signedIn && (children || (multiColumn && this.props.onPin))) {
@@ -155,10 +161,10 @@ class ColumnHeader extends PureComponent {
           aria-label={formatMessage(collapsed ? messages.show : messages.hide)}
           onClick={this.handleToggleClick}
         >
-          <i className='icon-with-badge'>
-            <Icon id='sliders' />
-            {collapseIssues && <i className='icon-with-badge__issue-badge' />}
-          </i>
+          <div className='gts-icon-with-badge'>
+            <Icon id='slider-horizontal' />
+            {collapseIssues && <i className='gts-icon-with-badge__issue-badge' />}
+          </div>
         </button>
       );
     }

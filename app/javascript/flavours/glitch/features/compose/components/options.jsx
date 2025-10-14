@@ -214,7 +214,7 @@ class ComposerOptions extends ImmutablePureComponent {
         text: formatMessage(messages.plain),
       },
       markdown: {
-        icon: "arrow-circle-down",
+        icon: "markdown-logo",
         name: "text/markdown",
         text: formatMessage(messages.markdown),
       },
@@ -238,7 +238,7 @@ class ComposerOptions extends ImmutablePureComponent {
           icon='paperclip'
           items={[
             {
-              icon: "cloud-upload",
+              icon: "file-arrow-up",
               name: "upload",
               text: formatMessage(messages.upload),
             },
@@ -255,7 +255,7 @@ class ComposerOptions extends ImmutablePureComponent {
           <IconButton
             active={hasPoll}
             disabled={disabled || !allowPoll}
-            icon='tasks'
+            icon='chart-bar-horizontal'
             inverted
             onClick={onTogglePoll}
             size={18}
@@ -293,7 +293,7 @@ class ComposerOptions extends ImmutablePureComponent {
         <LanguageDropdown />
         <DropdownContainer
           disabled={disabled || isEditing}
-          icon='ellipsis-h'
+          icon='dots-three-outline'
           items={advancedOptions ? [
             {
               meta: formatMessage(messages.local_only_long),

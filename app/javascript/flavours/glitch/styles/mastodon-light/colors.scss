@@ -1,0 +1,38 @@
+/* 🎨 Colors */
+:root {
+  color-scheme: light;
+
+  /* Base */
+  --color-fg: #000;
+  --color-bg: #eff3f5;
+  --color-lines: #c0cdd9;
+
+  /* Accent */
+  --color-accent-bg: #d9e1e8;
+  --color-accent-fg: #282c37;
+  --color-accent-lines: #c0cdd9;
+
+  /* Secondary */
+  --color-secondary-fg: #606984;
+
+  /* Drawer */
+  --color-drawer-bg: #fff;
+  --color-drawer-bg--hover: #ccd7e0;
+  --color-drawer-fg: var(--color-fg);
+
+  /* Notifications */
+  --color-notifications-bg--active: #fff;
+  --color-notifications-bg--hover: #fff9;
+  --color-notifications-fg: var(--color-fg);
+
+  /* Search */
+  --color-search-bg--focus: #ccd7e0;
+  --color-search-fg: #282c37;
+  --color-search-fg--focus: var(--color-fg);
+  --color-search-placeholder: var(--color-search-fg);
+  --color-search-placeholder--focus: #5e6a7a;
+
+  /* Status */
+  --color-status-fg: var(--color-fg);
+  --color-status-bg: #fff;
+}

@@ -1,0 +1,152 @@
+/* 🔑 Keyframes */
+@keyframes bounce {
+    0% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.6);
+    }
+
+    75% {
+        transform: scale(0.8);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+@keyframes bounce-sml {
+    0% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.25);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+@keyframes bounce-vertical {
+    0% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-30%);
+    }
+
+    75% {
+        transform: translateY(20%);
+    }
+
+    100% {
+        transform: translate(0);
+    }
+}
+
+@keyframes launch {
+    0% {
+        transform: translate(0);
+        opacity: 0;
+    }
+
+    5% {
+        transform: translate(0);
+        opacity: 1;
+    }
+
+    50% {
+        transform: translate(200%, -200%);
+        opacity: 0;
+    }
+
+    80% {
+        transform: translate(200%, -200%);
+        opacity: 0;
+    }
+
+    85% {
+        transform: translate(-20%, 20%);
+        opacity: 0;
+    }
+
+    100% {
+        transform: translate(0);
+        opacity: 1;
+    }
+}
+
+@keyframes fadein {
+    from {
+        opacity: 0;
+        transform: translateY(-10%);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadein-short {
+    from {
+        transform: translate(0, -10px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translate(0, 0);
+        opacity: 1;
+    }
+}
+
+@keyframes slowin {
+    0% {
+        opacity: 0;
+    }
+
+    20% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes rotate-bounce {
+    0% {
+        transform: rotate(0) scale(1);
+    }
+
+    60% {
+        transform: rotate(80deg) scale(1.2);
+    }
+
+    100% {
+        transform: rotate(60deg) scale(1.1);
+    }
+}
+
+@keyframes bell-ring {
+    0% {
+        transform: rotate(0);
+    }
+
+    40% {
+        transform: rotate(15deg);
+    }
+
+    70% {
+        transform: rotate(-15deg);
+    }
+
+    100% {
+        transform: rotate(0);
+    }
+}

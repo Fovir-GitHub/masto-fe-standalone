@@ -1,0 +1,69 @@
+/* 🎨 Colors */
+:root {
+    color-scheme: dark;
+
+    /* Base */
+    --color-fg: #fff;
+    --color-bg: #191b22;
+    --color-lines: #3d4455;
+
+    /* Accent */
+    --color-accent: #8c8dff;
+    --color-accent-hover: #a3a3ff;
+    --color-accent-focus: var(--color-accent-hover);
+    --color-accent-bg: #1f232b;
+    --color-accent-fg: #9baec8;
+    --color-accent-lines: rgba(172, 172, 249, 0.3);
+    --color-accent-muted-fg: #666f7a;
+
+    /* Secondary */
+    --color-secondary-fg: #9c9ba6;
+    --color-secondary-bg: #13111f;
+
+    /* Content */
+    --color-content-fg: var(--color-fg);
+    --color-content-secondary-bg: var(--color-secondary-bg);
+
+    /* State: Success */
+    --color-success-bg: #d1e3dd;
+    --color-success-fg: #3a654e;
+    --color-success-lines: var(--color-success-bg);
+
+    /* State: Destructive */
+    --color-destructive-bg: #f8c6cd;
+    --color-destructive-fg: #a11c32;
+    --color-destructive-lines: var(--color-destructive-bg);
+
+    /* UI */
+    --color-ui-base: ;
+    --color-ui-bg: ;
+
+    /* Button */
+    --color-button-fg-destructive: red;
+
+    /* Drawer */
+    --color-drawer-bg: #313543;
+    --color-drawer-bg--hover: #1f232b;
+    --color-drawer-fg: #9baec8;
+    --color-drawer-lines: var(--color-accent-lines);
+
+    /* Notifications */
+    --color-notifications-bg: var(--color-accent-bg);
+    --color-notifications-bg--active: #313543;
+    --color-notifications-bg--hover: var(--color-lines);
+    --color-notifications-fg: #9baec8;
+    --color-notifications-lines: var(--color-accent-lines);
+
+    /* Search */
+    --color-search-bg: var(--color-accent-bg);
+    --color-search-bg--focus: #1f232b;
+    --color-search-fg: var(--color-fg);
+    --color-search-fg--focus: var(--color-fg);
+    --color-search-lines: var(--color-accent-lines);
+    --color-search-placeholder: #9baec8;
+    --color-search-placeholder--focus: #5e6a7a;
+
+    /* Status */
+    --color-status-fg: ;
+    --color-status-bg: #282c37;
+}

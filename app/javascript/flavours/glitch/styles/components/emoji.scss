@@ -72,33 +72,19 @@
 
 .emoji-button {
   display: block;
-  padding-top: 5px;
-  padding-bottom: 2px;
-  padding-inline-start: 2px;
-  padding-inline-end: 5px;
-  outline: 0;
-  cursor: pointer;
+  padding: 4px;
+  border: 0;
+  color: $inverted-text-color;
+  background: transparent;
 
-  &:active,
-  &:focus {
-    outline: 0 !important;
-  }
+  svg {
+    --size: 24px;
 
-  img {
-    filter: grayscale(100%);
-    opacity: 0.8;
-    display: block;
     margin: 0;
-    width: 22px;
-    height: 22px;
   }
 
-  &:hover,
-  &:active,
-  &:focus {
-    img {
-      opacity: 1;
-      filter: none;
-    }
+  &:focus-visible,
+  &:hover {
+    color: $ui-highlight-color;
   }
 }

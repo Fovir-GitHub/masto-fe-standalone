@@ -10,6 +10,8 @@ import ImmutablePropTypes from "react-immutable-proptypes";
 import { supportsPassiveEvents } from "detect-passive-events";
 import Overlay from "react-overlays/Overlay";
 
+import { Icon } from "flavours/glitch/components/icon";
+
 import { useSystemEmojiFont } from "flavours/glitch/initial_state";
 import { assetHost } from "flavours/glitch/utils/config";
 
@@ -389,13 +391,14 @@ class EmojiPickerDropdown extends PureComponent {
 
     return (
       <div className='emoji-picker-dropdown' onKeyDown={this.handleKeyDown}>
-        <div ref={this.setTargetRef} className='emoji-button' title={title} aria-label={title} aria-expanded={active} role='button' onClick={this.onToggle} onKeyDown={this.onToggle} tabIndex={0}>
-          {button || <img
+        <button ref={this.setTargetRef} className='emoji-button' title={title} aria-label={title} aria-expanded={active} onClick={this.onToggle} onKeyDown={this.onToggle}>
+          {button || <Icon 
+            fixedWidth
+            id='smiley'
+            aria-hidden='true'
             className={classNames("emojione", { "pulse-loading": active && loading })}
-            alt='🙂'
-            src={`${assetHost}/emoji/1f642.svg`}
           />}
-        </div>
+        </button>
 
         <Overlay show={active} placement={"bottom"} target={this.findTarget} popperConfig={{ strategy: "fixed" }}>
           {({ props, placement })=> (

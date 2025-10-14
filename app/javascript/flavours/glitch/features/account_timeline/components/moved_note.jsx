@@ -37,7 +37,7 @@ export default class MovedNote extends ImmutablePureComponent {
     return (
       <div className='account__moved-note'>
         <div className='account__moved-note__message'>
-          <div className='account__moved-note__icon-wrapper'><Icon id='suitcase' className='account__moved-note__icon' fixedWidth /></div>
+          <div className='account__moved-note__icon-wrapper'><Icon id='signpost' className='account__moved-note__icon' fixedWidth /></div>
           <FormattedMessage id='account.moved_to' defaultMessage='{name} has indicated that their new account is now:' values={{ name: <bdi><strong dangerouslySetInnerHTML={displayNameHtml} /></bdi> }} />
         </div>
 

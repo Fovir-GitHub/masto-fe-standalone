@@ -147,6 +147,20 @@
   height: 18px;
   padding: 10px;
   white-space: nowrap;
+
+  button.icon-button {
+    padding: 6px;
+  }
+
+  button.destructive:hover {
+    color: var(--color-button-fg-destructive);
+  }
+
+  .gts-icon {
+    --size: 20px;
+
+    display: block;
+  }
 }
 
 .account__header__wrapper {
@@ -178,6 +192,13 @@
     &:active {
       text-decoration: none;
     }
+  }
+
+  .gts-icon {
+    --size: 16px;
+
+    margin-inline-end: 5px;
+    vertical-align: text-bottom;
   }
 }
 
@@ -301,18 +322,56 @@
 }
 
 .account--panel {
+  display: flex;
+  gap: 5px;
   background: lighten($ui-base-color, 4%);
   border-top: 1px solid lighten($ui-base-color, 8%);
   border-bottom: 1px solid lighten($ui-base-color, 8%);
-  display: flex;
   flex-direction: row;
-  padding: 10px 0;
+  padding: 5px;
 }
 
 .account--panel__button,
 .detailed-status__button {
   flex: 1 1 auto;
   text-align: center;
+}
+
+.account--panel__button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  button {
+    width: 100%;
+    padding: 6px;
+  }
+
+  &:first-child button {
+    color: var(--color-success-fg);
+    background: var(--color-success-bg);
+
+    &:hover,
+    &:focus-visible {
+      color: var(--color-success-bg);
+      background: var(--color-success-fg);
+    }
+  }
+
+  &:last-child button {
+    color: var(--color-destructive-fg);
+    background: var(--color-destructive-bg);
+
+    &:hover,
+    &:focus-visible {
+      color: var(--color-destructive-bg);
+      background: var(--color-destructive-fg);
+    }
+  }
+
+  svg.gts-icon {
+    --size: 20px;
+  }
 }
 
 .relationship-tag {
@@ -358,63 +417,64 @@
 
 .notification__filter-bar,
 .account__section-headline {
-  background: darken($ui-base-color, 4%);
-  border-bottom: 1px solid lighten($ui-base-color, 8%);
-  cursor: default;
   display: flex;
-  flex-shrink: 0;
+  gap: 8px;
+  padding: 6px;
+  border: 1px solid var(--color-notifications-lines);
+  cursor: default;
+  background: var(--color-notifications-bg);
 
+  a,
   button {
-    background: transparent;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-grow: 1;
+    padding: 8px 6px;
+    min-width: 32px;
     border: 0;
-    margin: 0;
+    border-radius: var(--button-border-radius);
+    color: var(--color-notifications-fg);
+    line-height: 20px;
+    text-decoration: none;
+    background: transparent;
+    transition: all 0.3s;
+
+    &:focus-visible,
+    &:hover {
+      background: var(--color-notifications-bg--hover);
+    }
   }
 
-  button,
-  a {
-    display: block;
-    flex: 1 1 auto;
-    color: $darker-text-color;
-    padding: 15px 0;
-    font-size: 14px;
-    font-weight: 500;
-    text-align: center;
-    text-decoration: none;
+  a.active,
+  button.active {
+    background: var(--color-notifications-bg--active);
+
+    &:focus-visible,
+    &:hover {
+      background: var(--color-notifications-bg--hover);
+    }
+  }
+
+  a:not(:first-child),
+  button:not(:first-child) {
     position: relative;
 
-    &.active {
-      color: $primary-text-color;
-
-      &::before {
-        display: block;
-        content: '';
-        position: absolute;
-        bottom: -1px;
-        left: 0;
-        width: 100%;
-        height: 3px;
-        border-radius: 4px;
-        background: $highlight-text-color;
-      }
+    &::before {
+      position: absolute;
+      top: 6px;
+      right: calc(100% + 3px);
+      width: 2px;
+      height: 24px;
+      background: var(--color-notifications-lines);
+      content: '';
     }
   }
 
-  &.directory__section-headline {
-    background: darken($ui-base-color, 2%);
-    border-bottom-color: transparent;
+  svg.gts-icon {
+    --size: 20px;
 
-    a,
-    button {
-      &.active {
-        &::before {
-          display: none;
-        }
-
-        &::after {
-          border-color: transparent transparent darken($ui-base-color, 7%);
-        }
-      }
-    }
+    display: block;
   }
 }
 
@@ -553,7 +613,7 @@
     &__buttons {
       display: flex;
       align-items: center;
-      gap: 8px;
+      gap: 5px;
       padding-top: 55px;
       overflow: hidden;
 
@@ -567,10 +627,17 @@
       }
 
       .icon-button {
-        border: 1px solid lighten($ui-base-color, 12%);
-        border-radius: 4px;
-        box-sizing: content-box;
-        padding: 2px;
+        padding: 6px;
+        border: 1px solid var(--color-accent-lines);
+        border-radius: var(--button-border-radius);
+        color: var(--color-accent-fg);
+        background: var(--color-accent-bg);
+      }
+
+      .gts-icon {
+        --size: 24px;
+
+        display: block;
       }
     }
 
@@ -596,7 +663,9 @@
         text-overflow: ellipsis;
 
         small {
-          display: block;
+          display: flex;
+          gap: 5px;
+          align-items: center;
           font-size: 14px;
           color: $darker-text-color;
           font-weight: 400;
@@ -798,7 +867,18 @@
 }
 
 .follow-request-banner .button {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  justify-content: center;
   width: 100%;
+
+  svg.gts-icon {
+    --size: 20px;
+
+    width: var(--size);
+    height: var(--size);
+  }
 }
 
 .account-memorial-banner__message {
