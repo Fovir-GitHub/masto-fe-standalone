@@ -1,2 +1,2 @@
 import "./public-path";
-import "styles/application.scss";
+import "../css/core/_core.css";

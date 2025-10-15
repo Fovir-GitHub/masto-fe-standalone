@@ -10,6 +10,12 @@ const AssetsManifestPlugin = require("webpack-assets-manifest");
 const { env, settings, core, flavours, output } = require("./configuration");
 const rules = require("./rules");
 
+const foliui = {
+  core: {
+    import: "./app/css/core/_core.css",
+  }
+}
+
 function reducePacks (data, into = {}) {
   if (!data.pack) {
     return into;
@@ -61,6 +67,7 @@ function reducePacks (data, into = {}) {
 const entries = Object.assign(
   reducePacks(core),
   Object.values(flavours).reduce((map, data) => reducePacks(data, map), {}),
+  foliui,
 );
 
 
