@@ -5,6 +5,13 @@
 @import 'status/status-info';
 @import 'status/status-prepend';
 @import 'status/status-spoiler';
+.status {
+    background-color: var(--color-status-bg);
+
+    &.focusable:focus {
+        --color-status-bg: var(--color-status-bg--focus);
+    }
+}
 
 .status__content {
     line-height: 1.5;
