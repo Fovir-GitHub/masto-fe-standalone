@@ -6,6 +6,7 @@ import { defineMessages, FormattedMessage, injectIntl } from "react-intl";
 
 import ImmutablePropTypes from "react-immutable-proptypes";
 
+import { languages as preloadedLanguages } from "flavours/glitch/initial_state";
 
 //  Our imports
 import LocalSettingsPageItem from "./item";
@@ -34,6 +35,12 @@ const messages = defineMessages({
   private: { id: "privacy.private.short", defaultMessage: "Followers only" },
   direct: { id: "privacy.direct.short", defaultMessage: "Mentioned people only" },
 });
+
+const langs = []
+
+for (const lang of preloadedLanguages) {
+  langs.push({"value": lang[0], "label": lang[1]})
+}
 
 class LocalSettingsPage extends PureComponent {
 
@@ -203,6 +210,16 @@ class LocalSettingsPage extends PureComponent {
     ({ intl, onChange, settings }) => (
       <div className='glitch local-settings__page compose_box_opts'>
         <h1><FormattedMessage id='settings.compose_box_opts' defaultMessage='Compose box' /></h1>
+        <LocalSettingsPageItem
+          settings={settings}
+          item={["default_language"]}
+          id='mastodon-settings--default-language'
+          select={langs}
+          onChange={onChange}
+        >
+          <FormattedMessage id='settings.default_language' defaultMessage='Default language for new toots' />
+        </LocalSettingsPageItem>
+
         <LocalSettingsPageItem
           settings={settings}
           item={["always_show_spoilers_field"]}

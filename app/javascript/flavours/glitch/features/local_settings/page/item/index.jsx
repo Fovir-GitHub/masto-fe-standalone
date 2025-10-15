@@ -39,7 +39,7 @@ export default class LocalSettingsPageItem extends PureComponent {
 
   render () {
     const { handleChange } = this;
-    const { settings, item, id, inputProps, options, children, dependsOn, dependsOnNot, placeholder, disabled } = this.props;
+    const { settings, item, id, inputProps, select, options, children, dependsOn, dependsOnNot, placeholder, disabled } = this.props;
     let enabled = !disabled;
 
     if (dependsOn) {
@@ -51,6 +51,31 @@ export default class LocalSettingsPageItem extends PureComponent {
       for (let i = 0; i < dependsOnNot.length; i++) {
         enabled = enabled && !settings.getIn(dependsOnNot[i]);
       }
+    }
+    
+    if (select && select.length > 0) {
+      const currentValue = settings.getIn(item);
+      const optionElems = select && select.length > 0 && select.map((opt) => {
+        return (
+          <option
+            value={opt.value}
+            selected={currentValue === opt.value}
+          >
+            {opt.label}
+          </option>
+        )
+      })
+      return (
+        <div className='glitch local-settings__page__item select'>
+          <fieldset>
+            <label>Default language:
+              <select>
+                {optionElems}
+              </select>
+            </label>
+          </fieldset>
+        </div>
+      );
     }
 
     if (options && options.length > 0) {
