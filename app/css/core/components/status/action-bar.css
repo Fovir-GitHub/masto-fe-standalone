@@ -1,0 +1,16 @@
+/* 🚥 Status: Action bar */
+.status__action-bar {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+
+    button {
+        color: var(--color-accent);
+        background-color: transparent;
+    }
+}
+
+.status__relative-time {
+    margin-left: auto;
+    color: var(--color-content-fg);
+}

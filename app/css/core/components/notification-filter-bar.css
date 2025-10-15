@@ -1,0 +1,66 @@
+.notification__filter-bar {
+    display: flex;
+}
+
+.notification__filter-bar {
+    display: flex;
+    gap: 8px;
+    margin-inline: -1px;
+    padding: 6px;
+    border: 1px solid var(--color-accent-lines);
+    background: var(--color-accent-bg);
+
+    a,
+    button {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-grow: 1;
+        padding: 8px 6px;
+        min-width: 32px;
+        border: 0;
+        border-radius: var(--size-ui-radius);
+        color: var(--color-content-fg);
+        line-height: 20px;
+        text-decoration: none;
+        background: transparent;
+        transition: all 0.3s;
+
+        &:focus-visible,
+        &:hover {
+            background: var(--color-accent-lines);
+        }
+    }
+
+    a.active,
+    button.active {
+        color: var(--color-content-fg);
+        background: var(--color-content-bg);
+
+        /* &:focus-visible,
+        &:hover {
+            background: var(--color-notifications-bg--hover);
+        } */
+    }
+
+    a:not(:first-child),
+    button:not(:first-child) {
+        position: relative;
+
+        &::before {
+            position: absolute;
+            top: 6px;
+            right: calc(100% + 3px);
+            width: 2px;
+            height: 24px;
+            background: var(--color-accent-lines);
+            content: "";
+        }
+    }
+
+    svg.gts-icon {
+        --size: 20px;
+
+        display: block;
+    }
+}

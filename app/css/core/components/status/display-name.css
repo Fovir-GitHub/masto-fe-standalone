@@ -1,0 +1,35 @@
+/* 🚥 Status: Display name */
+.status__display-name {
+    align-self: start;
+    justify-self: start;
+    color: var(--color-content-fg);
+    font-size: 15px;
+    line-height: 1.2;
+    text-decoration: none;
+    overflow: hidden;
+
+    .display-name {
+        display: block;
+        max-width: 100%;
+        overflow: hidden;
+        font-weight: 700;
+        text-overflow: clip;
+    }
+
+    .display-name__html {
+        font-weight: 700;
+    }
+
+    .display-name__account {
+        color: var(--color-secondary-fg);
+        font-weight: 400;
+        word-break: normal;
+    }
+
+    &:hover .display-name__html {
+        text-decoration-line: underline;
+        text-decoration-color: currentColor;
+        text-decoration-thickness: 2px;
+        text-underline-offset: 2px;
+    }
+}

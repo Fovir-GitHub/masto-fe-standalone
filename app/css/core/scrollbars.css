@@ -1,0 +1,28 @@
+/* 🖱️ Scrollbars */
+:root:has(.app-body) *::-webkit-scrollbar-track {
+    background-color: var(--color-bg);
+    padding: 2px;
+}
+:root:has(.app-body) *::-webkit-scrollbar-thumb {
+    background-color: var(--color-accent);
+    border-radius: 8px;
+    opacity: 0.4;
+    box-shadow: none;
+}
+:root:has(.app-body) *::-webkit-scrollbar-track:hover {
+    background-color: var(--color-bg);
+}
+:root:has(.app-body) *::-webkit-scrollbar-thumb:hover {
+    background-color: var(--color-accent);
+    opacity: 0.7;
+}
+@media screen and (max-width: 1175px) {
+    :root:has(.app-body) *::-webkit-scrollbar {
+        display: none;
+    }
+}
+:root,
+* {
+    scrollbar-color: var(--color-accent) var(--color-bg);
+    scrollbar-width: thin;
+}

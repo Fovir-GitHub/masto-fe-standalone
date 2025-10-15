@@ -1,0 +1,39 @@
+/* 🎨 Colors */
+:root {
+    color-scheme: light dark;
+
+    --color-bg: #f2eff5;
+    --gradient-bg: linear-gradient(90deg, var(--color-bg), var(--color-bg));
+    --color-fg: #2a2d37;
+    --color-fg-muted: #888494;
+    --color-secondary-bg: #e8e4f2;
+    --color-secondary-separator: #dfdbed;
+
+    --color-content-bg: #ffffff;
+    --color-content-fg: #444a5a;
+    --color-content-fg-bold: #000000;
+    --color-content-fg-muted: color-mix(
+        in srgb,
+        var(--color-content-fg),
+        var(--color-content-bg) 40%
+    );
+    --color-content-secondary-bg: #f5f4f9;
+    --color-content-secondary-separator: rgba(223, 219, 237, 0.4);
+    --color-content-bg-focus: #fffcfa;
+
+    --color-accent: #5758ff;
+    --color-accent-focus: #563acc;
+    --color-accent-lines: rgba(99, 100, 255, 0.12);
+    --color-accent-bg: #e5ddf6;
+    --color-accent-fg: #ffffff;
+
+    --color-lines: #e1dde4;
+    --color-lines-translucent: rgba(0, 0, 0, 0.15);
+
+    --color-confirm: #79bd9a;
+    --color-confirm-bg: rgba(121, 189, 154, 0.3);
+    --color-confirm-fg: #4e8a6b;
+
+    --color-reject: #df405a;
+    --color-reject-bg: rgba(223, 64, 90, 0.3);
+}

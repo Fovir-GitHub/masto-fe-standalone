@@ -1,0 +1,9 @@
+/* 📏 Sizes */
+:root {
+    --size-layout-gap: 10px;
+    --size-layout-radius: 8px;
+    --size-ui-gap: 5px;
+    --size-ui-radius: 6px;
+
+    --size-icon: max(1em, 20px);
+}

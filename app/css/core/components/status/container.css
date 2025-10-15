@@ -1,0 +1,13 @@
+.status {
+    --color-status-bg: var(--color-content-bg);
+
+    display: flex;
+    flex-direction: column;
+    row-gap: var(--size-layout-gap);
+    padding: 15px;
+    text-wrap: pretty;
+
+    a {
+        word-break: break-word;
+    }
+}

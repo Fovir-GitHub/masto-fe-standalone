@@ -1,0 +1,10 @@
+/* 🚥 Status: Info */
+.status__info {
+    display: grid;
+    gap: 5px;
+    grid-template-columns: 1fr auto;
+
+    .notification__message {
+        grid-column: 1/-1;
+    }
+}

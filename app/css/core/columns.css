@@ -1,0 +1,24 @@
+.columns-area {
+    display: flex;
+    padding: var(--size-layout-gap);
+    column-gap: var(--size-layout-gap);
+}
+
+.column {
+    display: flex;
+    flex-direction: column;
+    flex-shrink: 0;
+    overflow: hidden;
+    border: 1px solid var(--color-lines);
+    border-radius: var(--size-layout-radius);
+    background: var(--color-content-bg);
+
+    .layout-multiple-columns & {
+        width: 400px;
+    }
+}
+
+.column > .scrollable {
+    max-height: 100%;
+    overflow-y: scroll;
+}

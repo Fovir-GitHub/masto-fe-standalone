@@ -1,0 +1,38 @@
+/* 🚥 Status: Avatar */
+.status__avatar {
+}
+
+.status {
+    .account__avatar {
+        border-radius: var(--size-ui-radius);
+    }
+
+    .account__avatar-overlay {
+        position: relative;
+        padding-block-end: 10px;
+        padding-inline-end: 10px;
+    }
+
+    .account__avatar-overlay-base,
+    .account__avatar-overlay-overlay {
+        display: block;
+        width: var(--size-avatar);
+        height: var(--size-avatar);
+        border-radius: var(--size-ui-radius);
+        background-position: center;
+        background-size: cover;
+        background-repeat: no-repeat;
+    }
+
+    .account__avatar-overlay-base {
+        --size-avatar: 36px;
+    }
+
+    .account__avatar-overlay-overlay {
+        --size-avatar: 24px;
+
+        position: absolute;
+        bottom: 0;
+        right: 0;
+    }
+}
