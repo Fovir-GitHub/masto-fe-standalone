@@ -22,7 +22,7 @@
         right: calc(100% + 5px);
         width: 20px;
         height: 100%;
-        content: '';
+        content: "";
         background: linear-gradient(90deg, transparent, var(--color-status-bg));
         transition: all 0.2s;
     }

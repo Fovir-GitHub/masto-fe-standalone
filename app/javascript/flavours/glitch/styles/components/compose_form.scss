@@ -64,7 +64,7 @@
     &:focus {
       outline: 0;
     }
-    @include single-column('screen and (max-width: 630px)') {
+    @include single-column("screen and (max-width: 630px)") {
       font-size: 16px;
     }
   }
@@ -103,7 +103,7 @@
     color: $highlight-text-color;
   }
 
-  input[type='checkbox'] {
+  input[type="checkbox"] {
     display: none;
   }
 
@@ -240,11 +240,11 @@
         outline: 0;
       }
 
-      @include single-column('screen and (max-width: 630px)') {
+      @include single-column("screen and (max-width: 630px)") {
         font-size: 16px;
       }
 
-      @include limited-single-column('screen and (max-width: 600px)') {
+      @include limited-single-column("screen and (max-width: 600px)") {
         height: 100px !important; // prevent auto-resize textarea
         resize: vertical;
       }

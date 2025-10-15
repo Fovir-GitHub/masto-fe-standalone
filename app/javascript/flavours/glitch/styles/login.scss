@@ -1,5 +1,5 @@
-@import 'styles/fonts/roboto';
-@import 'reset';
+@import "styles/fonts/roboto";
+@import "reset";
 
 :root {
     --color-bg: #191b22;
@@ -91,7 +91,7 @@ button {
     }
 }
 
-input[type='text'] {
+input[type="text"] {
     display: block;
     margin: 0;
     padding: 15px;

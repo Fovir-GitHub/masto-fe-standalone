@@ -141,7 +141,7 @@ html {
 }
 
 .compose-form__autosuggest-wrapper,
-.poll__option input[type='text'],
+.poll__option input[type="text"],
 .compose-form .spoiler-input__input,
 .compose-form__poll-wrapper select,
 .search__input,
@@ -495,10 +495,10 @@ html {
 }
 
 .simple_form {
-  input[type='text'],
-  input[type='number'],
-  input[type='email'],
-  input[type='password'],
+  input[type="text"],
+  input[type="number"],
+  input[type="email"],
+  input[type="password"],
   textarea {
     &:hover {
       border-color: lighten($ui-base-color, 12%);

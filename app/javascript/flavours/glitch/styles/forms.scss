@@ -309,9 +309,9 @@ code {
       max-width: 100%;
       height: auto;
       border-radius: 4px;
-      background: url('images/void.png');
+      background: url("images/void.png");
 
-      &[src$='missing.png'] {
+      &[src$="missing.png"] {
         visibility: hidden;
       }
 
@@ -404,7 +404,7 @@ code {
         flex: 1 1 auto;
       }
 
-      input[type='checkbox'] {
+      input[type="checkbox"] {
         position: absolute;
         inset-inline-start: 0;
         top: 5px;
@@ -420,12 +420,12 @@ code {
     border-radius: 4px;
   }
 
-  input[type='text'],
-  input[type='number'],
-  input[type='email'],
-  input[type='password'],
-  input[type='url'],
-  input[type='datetime-local'],
+  input[type="text"],
+  input[type="number"],
+  input[type="email"],
+  input[type="password"],
+  input[type="url"],
+  input[type="datetime-local"],
   textarea {
     box-sizing: border-box;
     font-size: 16px;
@@ -463,11 +463,11 @@ code {
     }
   }
 
-  input[type='text'],
-  input[type='number'],
-  input[type='email'],
-  input[type='password'],
-  input[type='datetime-local'] {
+  input[type="text"],
+  input[type="number"],
+  input[type="email"],
+  input[type="password"],
+  input[type="datetime-local"] {
     &:focus:invalid:not(:placeholder-shown),
     &:required:invalid:not(:placeholder-shown) {
       border-color: lighten($error-red, 12%);
@@ -479,11 +479,11 @@ code {
       color: lighten($error-red, 12%);
     }
 
-    input[type='text'],
-    input[type='number'],
-    input[type='email'],
-    input[type='password'],
-    input[type='datetime-local'],
+    input[type="text"],
+    input[type="number"],
+    input[type="email"],
+    input[type="password"],
+    input[type="datetime-local"],
     textarea,
     select {
       border-color: lighten($error-red, 12%);
@@ -619,7 +619,7 @@ code {
       overflow: hidden;
 
       &::after {
-        content: '';
+        content: "";
         display: block;
         position: absolute;
         top: 0;
@@ -1019,7 +1019,7 @@ code {
     flex: 1 1 auto;
   }
 
-  input[type='text'] {
+  input[type="text"] {
     background: transparent;
     border: 0;
     padding: 10px;
@@ -1205,7 +1205,7 @@ code {
     border-color: $highlight-text-color;
 
     &::before {
-      content: '';
+      content: "";
       width: 10px;
       height: 10px;
       border-radius: 50%;
