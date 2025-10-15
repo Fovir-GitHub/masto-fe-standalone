@@ -1,10 +1,11 @@
 /* 🚥 Status */
-@import 'status/status-account';
-@import 'status/status-display-name';
-@import 'status/status-icons';
-@import 'status/status-info';
-@import 'status/status-prepend';
-@import 'status/status-spoiler';
+@import "status/status-account";
+@import "status/status-display-name";
+@import "status/status-icons";
+@import "status/status-info";
+@import "status/status-prepend";
+@import "status/status-spoiler";
+
 .status {
     background-color: var(--color-status-bg);
 
