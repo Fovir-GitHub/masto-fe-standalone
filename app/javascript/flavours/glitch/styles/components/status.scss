@@ -169,12 +169,8 @@
     outline: 0;
     background: lighten($ui-base-color, 4%);
 
-    &.status.status-direct {
-      background: mix(lighten($ui-base-color, 4%), $ui-highlight-color, 95%);
-
-      &.muted {
-        background: transparent;
-      }
+    &.status.status-direct.muted {
+      background: transparent;
     }
 
     .detailed-status,
@@ -219,7 +215,7 @@
   }
 
   &.status-direct {
-    background: mix($ui-base-color, $ui-highlight-color, 95%);
+    --color-status-bg: #{mix($ui-base-color, $ui-highlight-color, 95%)};
     border-bottom-color: lighten($ui-base-color, 12%);
   }
 
