@@ -45,7 +45,7 @@
   &.full-width {
     margin-left: -10px;
     margin-right: -10px;
-    width: inherit;
+    width: calc(100% + 20px);
     max-width: none;
     border-radius: 0;
   }

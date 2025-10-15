@@ -14,8 +14,17 @@
     }
 }
 
-.status__content {
+.status__content,
+.detailed-status .status__content {
     line-height: 1.5;
+}
+
+.status__content p {
+    margin-bottom: 12px;
+}
+
+.media-gallery {
+    margin-top: 16px;
 }
 
 .status__action-bar :is(a, button) {
