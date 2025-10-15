@@ -1,13 +1,30 @@
 /* 🚥 Status */
-@import 'status/status-account';
-@import 'status/status-display-name';
-@import 'status/status-icons';
-@import 'status/status-info';
-@import 'status/status-prepend';
-@import 'status/status-spoiler';
+@import "status/status-account";
+@import "status/status-display-name";
+@import "status/status-icons";
+@import "status/status-info";
+@import "status/status-prepend";
+@import "status/status-spoiler";
 
-.status__content {
+.status {
+    background-color: var(--color-status-bg);
+
+    &.focusable:focus {
+        --color-status-bg: var(--color-status-bg--focus);
+    }
+}
+
+.status__content,
+.detailed-status .status__content {
     line-height: 1.5;
+}
+
+.status__content p {
+    margin-bottom: 12px;
+}
+
+.media-gallery {
+    margin-top: 16px;
 }
 
 .status__action-bar :is(a, button) {

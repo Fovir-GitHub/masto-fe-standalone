@@ -180,7 +180,7 @@
   }
 
   &.disabled {
-    color: darken($action-button-color, 13%);
+    opacity: 0.3;
     background-color: transparent;
     cursor: default;
   }
@@ -223,7 +223,6 @@
     }
 
     &.disabled {
-      color: lighten($lighter-text-color, 7%);
       background-color: transparent;
     }
 
@@ -344,7 +343,7 @@ body > [data-popper-placement] {
 
 .ellipsis {
   &::after {
-    content: '…';
+    content: "…";
   }
 }
 
@@ -471,7 +470,7 @@ body > [data-popper-placement] {
   .image-loader__preview-canvas {
     max-width: $media-modal-media-max-width;
     max-height: $media-modal-media-max-height;
-    background: url('~images/void.png') repeat;
+    background: url("~images/void.png") repeat;
     object-fit: contain;
   }
 
@@ -729,7 +728,7 @@ body > [data-popper-placement] {
   &:hover,
   &:focus,
   &:active {
-    @include multi-columns('screen and (min-width: 631px)') {
+    @include multi-columns("screen and (min-width: 631px)") {
       background: lighten($ui-base-color, 14%);
       border-bottom-color: lighten($ui-base-color, 14%);
     }
@@ -1054,7 +1053,7 @@ body > [data-popper-placement] {
     border-bottom-color: $ui-highlight-color;
   }
 
-  @include limited-single-column('screen and (max-width: 600px)') {
+  @include limited-single-column("screen and (max-width: 600px)") {
     font-size: 16px;
   }
 
@@ -1150,7 +1149,7 @@ button.icon-button.active i.fa-retweet {
   padding-top: 20px + 48px;
 
   .regeneration-indicator__figure {
-    background-image: url('~flavours/glitch/images/elephant_ui_disappointed.svg');
+    background-image: url("~flavours/glitch/images/elephant_ui_disappointed.svg");
   }
 }
 

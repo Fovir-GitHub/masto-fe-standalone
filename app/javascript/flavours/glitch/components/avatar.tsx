@@ -28,7 +28,8 @@ export const Avatar: React.FC<Props> = ({
     ...styleFromParent,
     width: `${size}px`,
     height: `${size}px`,
-    backgroundSize: `${size}px ${size}px`,
+    backgroundSize: "cover",
+    backgroundPosition: "center",
   };
 
   if (account) {

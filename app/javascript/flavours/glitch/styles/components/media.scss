@@ -66,7 +66,6 @@
 
 .media-gallery {
   box-sizing: border-box;
-  margin-top: 8px;
   overflow: hidden;
   border-radius: 4px;
   position: relative;
@@ -671,7 +670,7 @@
     }
 
     &::before {
-      content: '';
+      content: "";
       width: 50px;
       background: rgba($white, 0.35);
       border-radius: 4px;
@@ -741,7 +740,7 @@
     position: relative;
 
     &::before {
-      content: '';
+      content: "";
       width: 100%;
       background: rgba($white, 0.35);
       border-radius: 4px;
