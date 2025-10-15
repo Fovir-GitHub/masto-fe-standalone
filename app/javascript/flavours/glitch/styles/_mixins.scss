@@ -10,7 +10,7 @@
   background-size: $size $size;
 }
 
-@mixin single-column($media, $parent: '&') {
+@mixin single-column($media, $parent: "&") {
   .auto-columns #{$parent} {
     @media #{$media} {
       @content;
@@ -21,7 +21,7 @@
   }
 }
 
-@mixin limited-single-column($media, $parent: '&') {
+@mixin limited-single-column($media, $parent: "&") {
   .auto-columns #{$parent},
   .single-column #{$parent} {
     @media #{$media} {
@@ -30,7 +30,7 @@
   }
 }
 
-@mixin multi-columns($media, $parent: '&') {
+@mixin multi-columns($media, $parent: "&") {
   .auto-columns #{$parent} {
     @media #{$media} {
       @content;
