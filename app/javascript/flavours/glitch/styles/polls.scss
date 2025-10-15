@@ -76,8 +76,8 @@
       max-width: calc(100% - 45px - 25px);
     }
 
-    input[type='radio'],
-    input[type='checkbox'] {
+    input[type="radio"],
+    input[type="checkbox"] {
       display: none;
     }
 
@@ -85,7 +85,7 @@
       flex: 1 1 auto;
     }
 
-    input[type='text'] {
+    input[type="text"] {
       display: block;
       box-sizing: border-box;
       width: 100%;
