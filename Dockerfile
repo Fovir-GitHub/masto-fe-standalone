@@ -22,6 +22,9 @@ RUN yarn && yarn build:production
 ### RUNTIME IMAGE ###
 FROM nginx:alpine AS runtime
 
+# Ensure deps up to date.
+RUN apk upgrade --update --no-cache
+
 # Copy bigger nested stuff.
 COPY --from=builder /build/public/packs/js/flavours/glitch /usr/share/nginx/html/packs/js/flavours/glitch
 COPY --from=builder /build/public/packs/js/flavours/vanilla /usr/share/nginx/html/packs/js/flavours/vanilla
