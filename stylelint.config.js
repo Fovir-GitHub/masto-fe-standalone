@@ -36,18 +36,4 @@ module.exports = {
     "scss/dollar-variable-empty-line-before": null,
     "scss/no-global-function-names": null,
   },
-  overrides: [
-    {
-      "files": ["app/javascript/styles/mailer.scss"],
-      rules: {
-        "property-no-unknown": [
-          true,
-          {
-            ignoreProperties: [
-              "/^mso-/",
-            ] },
-        ],
-      },
-    },
-  ],
 };

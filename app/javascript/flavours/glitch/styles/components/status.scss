@@ -216,6 +216,7 @@
 
   &.status-direct {
     --color-status-bg: #{mix($ui-base-color, $ui-highlight-color, 95%)};
+
     border-bottom-color: lighten($ui-base-color, 12%);
   }
 

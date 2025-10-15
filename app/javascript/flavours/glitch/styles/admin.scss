@@ -1,4 +1,4 @@
-@use 'sass:math';
+@use "sass:math";
 
 $no-columns-breakpoint: 600px;
 $sidebar-width: 240px;
@@ -1456,7 +1456,7 @@ a.sparkline {
 
     &::after {
       display: block;
-      content: '';
+      content: "";
       width: 50px;
       height: 21px;
       position: absolute;
@@ -1850,7 +1850,7 @@ a.sparkline {
 
     &::after {
       position: absolute;
-      content: '';
+      content: "";
       width: 1px;
       background: $highlight-text-color;
       bottom: 0;

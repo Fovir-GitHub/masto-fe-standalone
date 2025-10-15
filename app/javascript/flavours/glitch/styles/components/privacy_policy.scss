@@ -87,14 +87,14 @@
     counter-increment: list-counter;
 
     &::before {
-      content: counter(list-counter) '.';
+      content: counter(list-counter) ".";
       position: absolute;
       inset-inline-start: 0;
     }
   }
 
   ul > li::before {
-    content: '';
+    content: "";
     position: absolute;
     background-color: $darker-text-color;
     border-radius: 50%;

@@ -54,4 +54,4 @@ $account-background-color: $white !default;
   @return hsl(hue($color), saturation($color), lightness($color) - $amount);
 }
 
-$emojis-requiring-inversion: 'chains';
+$emojis-requiring-inversion: "chains";
