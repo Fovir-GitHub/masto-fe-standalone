@@ -1,5 +1,5 @@
 {
-  "name": "@mastodon/mastodon",
+  "name": "@superseriousbusiness/folivora",
   "license": "AGPL-3.0-or-later",
   "engines": {
     "node": ">=16"
@@ -31,7 +31,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/mastodon/mastodon.git"
+    "url": "https://codeberg.org/superseriousbusiness/masto-fe-standalone.git"
   },
   "private": true,
   "dependencies": {
