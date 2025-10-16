@@ -1,4 +1,7 @@
 @use "sass:color";
+@use "mixins" as *;
+@use "variables" as *;
+
 $no-columns-breakpoint: 600px;
 
 code {

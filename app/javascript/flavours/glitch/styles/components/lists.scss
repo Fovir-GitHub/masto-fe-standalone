@@ -1,3 +1,7 @@
+@use "sass:color";
+@use "../mixins" as *;
+@use "../variables" as *;
+
 .list-editor {
   background: $ui-base-color;
   flex-direction: column;
@@ -12,7 +16,7 @@
 
   h4 {
     padding: 15px 0;
-    background: lighten($ui-base-color, 13%);
+    background: color.adjust($ui-base-color, $lightness: 13%);
     font-weight: 500;
     font-size: 16px;
     text-align: center;
@@ -65,11 +69,11 @@
   }
 
   &__account {
-    background: lighten($ui-base-color, 13%);
+    background: color.adjust($ui-base-color, $lightness: 13%);
   }
 
   &__lists {
-    background: lighten($ui-base-color, 13%);
+    background: color.adjust($ui-base-color, $lightness: 13%);
     height: 50vh;
     border-radius: 0 0 8px 8px;
     overflow-y: auto;
@@ -77,7 +81,7 @@
 
   .list {
     padding: 10px;
-    border-bottom: 1px solid lighten($ui-base-color, 8%);
+    border-bottom: 1px solid color.adjust($ui-base-color, $lightness: 8%);
   }
 
   .list__wrapper {

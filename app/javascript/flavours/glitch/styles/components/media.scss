@@ -1,3 +1,7 @@
+@use "sass:color";
+@use "../mixins" as *;
+@use "../variables" as *;
+
 .video-error-cover {
   align-items: center;
   background: $base-overlay-background;
@@ -23,7 +27,7 @@
   &:hover,
   &:active,
   &:focus {
-    color: lighten($darker-text-color, 8%);
+    color: color.adjust($darker-text-color, $lightness: 8%);
   }
 
   .status__content > & {
@@ -385,7 +389,7 @@
   overflow: hidden;
   box-sizing: border-box;
   position: relative;
-  background: darken($ui-base-color, 8%);
+  background: color.adjust($ui-base-color, $lightness: -8%);
   border-radius: 4px;
   padding-bottom: 44px;
   width: 100%;
@@ -554,7 +558,7 @@
       &:hover,
       &:active,
       &:focus {
-        color: lighten($darker-text-color, 7%);
+        color: color.adjust($darker-text-color, $lightness: 7%);
       }
     }
 
@@ -690,7 +694,7 @@
       inset-inline-start: 0;
       top: 50%;
       transform: translate(0, -50%);
-      background: lighten($ui-highlight-color, 8%);
+      background: color.adjust($ui-highlight-color, $lightness: 8%);
     }
 
     &__handle {
@@ -703,7 +707,7 @@
       inset-inline-start: 0;
       margin-inline-start: -6px;
       transform: translate(0, -50%);
-      background: lighten($ui-highlight-color, 8%);
+      background: color.adjust($ui-highlight-color, $lightness: 8%);
       box-shadow: 1px 2px 6px rgba($base-shadow-color, 0.2);
       opacity: 0;
 
@@ -757,7 +761,7 @@
       height: 4px;
       border-radius: 4px;
       top: 14px;
-      background: lighten($ui-highlight-color, 8%);
+      background: color.adjust($ui-highlight-color, $lightness: 8%);
     }
 
     &__buffer {
@@ -773,7 +777,7 @@
       height: 12px;
       top: 10px;
       margin-inline-start: -6px;
-      background: lighten($ui-highlight-color, 8%);
+      background: color.adjust($ui-highlight-color, $lightness: 8%);
       box-shadow: 1px 2px 6px rgba($base-shadow-color, 0.2);
 
       .no-reduce-motion & {

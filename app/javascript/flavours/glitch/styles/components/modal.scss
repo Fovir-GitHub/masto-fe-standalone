@@ -1,5 +1,9 @@
+@use "sass:color";
+@use "../mixins" as *;
+@use "../variables" as *;
+
 .modal-container--preloader {
-  background: lighten($ui-base-color, 8%);
+  background: color.adjust($ui-base-color, $lightness: 8%);
 }
 
 .modal-root {
@@ -134,7 +138,7 @@
 .onboarding-modal__paginator,
 .error-modal__footer {
   flex: 0 0 auto;
-  background: darken($ui-secondary-color, 8%);
+  background: color.adjust($ui-secondary-color, $lightness: -8%);
   display: flex;
   padding: 25px;
 
@@ -158,8 +162,8 @@
     &:hover,
     &:focus,
     &:active {
-      color: darken($lighter-text-color, 4%);
-      background-color: darken($ui-secondary-color, 16%);
+      color: color.adjust($lighter-text-color, $lightness: -4%);
+      background-color: color.adjust($ui-secondary-color, $lightness: -16%);
     }
 
     &.onboarding-modal__done,
@@ -169,7 +173,7 @@
       &:hover,
       &:focus,
       &:active {
-        color: lighten($inverted-text-color, 4%);
+        color: color.adjust($inverted-text-color, $lightness: 4%);
       }
     }
   }
@@ -190,17 +194,17 @@
   width: 14px;
   height: 14px;
   border-radius: 14px;
-  background: darken($ui-secondary-color, 16%);
+  background: color.adjust($ui-secondary-color, $lightness: -16%);
   margin: 0 3px;
   cursor: pointer;
 
   &:hover {
-    background: darken($ui-secondary-color, 18%);
+    background: color.adjust($ui-secondary-color, $lightness: -18%);
   }
 
   &.active {
     cursor: default;
-    background: darken($ui-secondary-color, 24%);
+    background: color.adjust($ui-secondary-color, $lightness: -24%);
   }
 }
 
@@ -231,7 +235,7 @@
     &:hover,
     &:focus,
     &:active {
-      color: lighten($highlight-text-color, 4%);
+      color: color.adjust($highlight-text-color, $lightness: 4%);
     }
   }
 
@@ -329,7 +333,7 @@
   }
 
   .figure {
-    background: darken($ui-base-color, 8%);
+    background: color.adjust($ui-base-color, $lightness: -8%);
     color: $secondary-text-color;
     margin-bottom: 20px;
     border-radius: 4px;
@@ -421,7 +425,7 @@
 .mute-modal,
 .block-modal,
 .compare-history-modal {
-  background: lighten($ui-secondary-color, 8%);
+  background: color.adjust($ui-secondary-color, $lightness: 8%);
   color: $inverted-text-color;
   border-radius: 8px;
   overflow: hidden;
@@ -455,7 +459,7 @@
   }
 
   .status__content__spoiler-link {
-    color: lighten($secondary-text-color, 8%);
+    color: color.adjust($secondary-text-color, $lightness: 8%);
   }
 }
 
@@ -537,7 +541,7 @@
   max-width: 90vw;
   width: 480px;
   height: 80vh;
-  background: lighten($ui-secondary-color, 8%);
+  background: color.adjust($ui-secondary-color, $lightness: 8%);
   color: $inverted-text-color;
   border-radius: 8px;
   overflow: hidden;
@@ -577,7 +581,7 @@
   &__lead {
     font-size: 17px;
     line-height: 22px;
-    color: lighten($inverted-text-color, 16%);
+    color: color.adjust($inverted-text-color, $lightness: 16%);
     margin-bottom: 30px;
 
     a {
@@ -620,7 +624,7 @@
     background: $ui-primary-color;
 
     &:hover {
-      background: lighten($ui-primary-color, 8%);
+      background: color.adjust($ui-primary-color, $lightness: 8%);
     }
   }
 
@@ -639,7 +643,7 @@
     &:active,
     &:focus,
     &:hover {
-      border-color: lighten($inverted-text-color, 15%);
+      border-color: color.adjust($inverted-text-color, $lightness: 15%);
       border-width: 4px;
     }
 
@@ -660,7 +664,7 @@
 
     & > .poll__option__text {
       font-size: 13px;
-      color: lighten($inverted-text-color, 16%);
+      color: color.adjust($inverted-text-color, $lightness: 16%);
 
       strong {
         font-size: 17px;
@@ -829,7 +833,7 @@
     margin-bottom: 10px;
 
     &:focus {
-      border: 1px solid darken($ui-secondary-color, 8%);
+      border: 1px solid color.adjust($ui-secondary-color, $lightness: -8%);
     }
 
     &__wrapper {
@@ -978,7 +982,7 @@
   &:hover,
   &:focus,
   &:active {
-    color: darken($lighter-text-color, 4%);
+    color: color.adjust($lighter-text-color, $lightness: -4%);
     background-color: transparent;
   }
 }
@@ -1022,9 +1026,9 @@
     outline: 0;
     font-family: inherit;
     background: $simple-background-color
-      url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 14.933 18.467' height='19.698' width='15.929'><path d='M3.467 14.967l-3.393-3.5H14.86l-3.392 3.5c-1.866 1.925-3.666 3.5-4 3.5-.335 0-2.135-1.575-4-3.5zm.266-11.234L7.467 0 11.2 3.733l3.733 3.734H0l3.733-3.734z' fill='#{hex-color(darken($simple-background-color, 14%))}'/></svg>")
+      url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 14.933 18.467' height='19.698' width='15.929'><path d='M3.467 14.967l-3.393-3.5H14.86l-3.392 3.5c-1.866 1.925-3.666 3.5-4 3.5-.335 0-2.135-1.575-4-3.5zm.266-11.234L7.467 0 11.2 3.733l3.733 3.734H0l3.733-3.734z' fill='#{hex-color(color.adjust($simple-background-color, $lightness: - 14%))}'/></svg>")
       no-repeat right 8px center / auto 16px;
-    border: 1px solid darken($simple-background-color, 14%);
+    border: 1px solid color.adjust($simple-background-color, $lightness: -14%);
     border-radius: 4px;
     padding: 6px 10px;
     padding-inline-end: 30px;
@@ -1159,7 +1163,7 @@
       }
 
       &:focus {
-        background: lighten($ui-base-color, 4%);
+        background: color.adjust($ui-base-color, $lightness: 4%);
       }
 
       @media screen and (width <= 600px) {
@@ -1364,7 +1368,7 @@ img.modal-warning {
     &__input {
       @include search-input;
 
-      border: 1px solid lighten($ui-base-color, 8%);
+      border: 1px solid color.adjust($ui-base-color, $lightness: 8%);
       padding: 4px 6px;
       color: $primary-text-color;
       font-size: 16px;
@@ -1381,7 +1385,7 @@ img.modal-warning {
         flex: 1 1 auto;
 
         &::placeholder {
-          color: lighten($darker-text-color, 4%);
+          color: color.adjust($darker-text-color, $lightness: 4%);
         }
 
         &:focus {
@@ -1398,12 +1402,12 @@ img.modal-warning {
       margin-top: -1px;
       padding-top: 5px;
       padding-bottom: 5px;
-      border: 1px solid lighten($ui-base-color, 8%);
+      border: 1px solid color.adjust($ui-base-color, $lightness: 8%);
     }
 
     &.focused &__input {
       border-color: $highlight-text-color;
-      background: lighten($ui-base-color, 4%);
+      background: color.adjust($ui-base-color, $lightness: 4%);
     }
 
     &.invalid &__input {
@@ -1471,7 +1475,7 @@ img.modal-warning {
   input {
     display: block;
     font-family: inherit;
-    background: darken($ui-base-color, 8%);
+    background: color.adjust($ui-base-color, $lightness: -8%);
     border: 1px solid $highlight-text-color;
     color: $darker-text-color;
     border-radius: 4px;
@@ -1484,7 +1488,7 @@ img.modal-warning {
 
     &:focus {
       outline: 0;
-      background: darken($ui-base-color, 4%);
+      background: color.adjust($ui-base-color, $lightness: -4%);
     }
   }
 

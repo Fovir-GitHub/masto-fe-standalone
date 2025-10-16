@@ -1,3 +1,7 @@
+@use "sass:color";
+@use "../mixins" as *;
+@use "../variables" as *;
+
 .privacy-policy {
   background: $ui-base-color;
   padding: 20px;
@@ -169,14 +173,14 @@
 
   code {
     font-size: 0.875em;
-    background: darken($ui-base-color, 8%);
+    background: color.adjust($ui-base-color, $lightness: -8%);
     border-radius: 4px;
     padding: 0.2em 0.3em;
   }
 
   hr {
     border: 0;
-    border-top: 1px solid lighten($ui-base-color, 4%);
+    border-top: 1px solid color.adjust($ui-base-color, $lightness: 4%);
     margin-top: 3em;
     margin-bottom: 3em;
   }

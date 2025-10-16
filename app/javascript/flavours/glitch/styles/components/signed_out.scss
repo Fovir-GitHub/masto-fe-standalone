@@ -1,3 +1,7 @@
+@use "sass:color";
+@use "../mixins" as *;
+@use "../variables" as *;
+
 .sign-in-banner {
   padding: 10px;
 
@@ -14,7 +18,7 @@
         text-decoration: underline;
 
         .fa {
-          color: lighten($dark-text-color, 7%);
+          color: color.adjust($dark-text-color, $lightness: 7%);
         }
       }
     }

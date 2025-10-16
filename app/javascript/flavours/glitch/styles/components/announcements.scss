@@ -1,3 +1,7 @@
+@use "sass:color";
+@use "../mixins" as *;
+@use "../variables" as *;
+
 .announcements__item__content {
   word-wrap: break-word;
   overflow-y: auto;
@@ -42,7 +46,7 @@
 }
 
 .announcements {
-  background: lighten($ui-base-color, 8%);
+  background: color.adjust($ui-base-color, $lightness: 8%);
   font-size: 13px;
   display: flex;
   align-items: flex-end;
@@ -126,7 +130,7 @@
 
   &__item {
     flex-shrink: 0;
-    background: lighten($ui-base-color, 12%);
+    background: color.adjust($ui-base-color, $lightness: 12%);
     border: 0;
     border-radius: 3px;
     margin: 2px;
@@ -169,26 +173,26 @@
     &:hover,
     &:focus,
     &:active {
-      background: lighten($ui-base-color, 16%);
+      background: color.adjust($ui-base-color, $lightness: 16%);
       transition: all 200ms ease-out;
       transition-property: background-color, color;
 
       &__count {
-        color: lighten($darker-text-color, 4%);
+        color: color.adjust($darker-text-color, $lightness: 4%);
       }
     }
 
     &.active {
       transition: all 100ms ease-in;
       transition-property: background-color, color;
-      background-color: mix(
-        lighten($ui-base-color, 12%),
+      background-color: color.mix(
+        color.adjust($ui-base-color, $lightness: 12%),
         $ui-highlight-color,
         80%
       );
 
       .reactions-bar__item__count {
-        color: lighten($highlight-text-color, 8%);
+        color: color.adjust($highlight-text-color, $lightness: 8%);
       }
     }
   }
@@ -219,7 +223,7 @@
     &:active,
     &:focus {
       opacity: 1;
-      color: lighten($darker-text-color, 4%);
+      color: color.adjust($darker-text-color, $lightness: 4%);
       transition: all 200ms ease-out;
       transition-property: background-color, color;
     }

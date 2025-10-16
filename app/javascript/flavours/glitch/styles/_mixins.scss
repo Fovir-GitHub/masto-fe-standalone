@@ -1,3 +1,5 @@
+@use "variables" as *;
+
 @mixin avatar-radius() {
   border-radius: $ui-avatar-border-size;
   background-position: 50%;

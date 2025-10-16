@@ -1,3 +1,6 @@
+@use "mixins" as *;
+@use "variables" as *;
+
 .status__content__text,
 .e-content,
 .reply-indicator__content {

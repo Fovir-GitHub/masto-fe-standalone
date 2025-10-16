@@ -1,3 +1,7 @@
+@use "sass:color";
+@use "mixins" as *;
+@use "variables" as *;
+
 .activity-stream {
   box-shadow: 0 0 15px rgba($base-shadow-color, 0.2);
   border-radius: 4px;
@@ -69,7 +73,7 @@
   }
 
   &--highlighted .entry {
-    background: lighten($ui-base-color, 8%);
+    background: color.adjust($ui-base-color, $lightness: 8%);
   }
 }
 

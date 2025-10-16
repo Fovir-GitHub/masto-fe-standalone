@@ -1,3 +1,7 @@
+@use "sass:color";
+@use "../mixins" as *;
+@use "../variables" as *;
+
 .search {
   position: relative;
 }
@@ -55,7 +59,7 @@
 
   &:focus-visible,
   &:hover {
-    background: darken($ui-base-color, 10%);
+    background: color.adjust($ui-base-color, $lightness: -10%);
   }
 }
 
@@ -168,7 +172,7 @@
   color: $dark-text-color;
   font-weight: 500;
   font-size: 16px;
-  background: lighten($ui-base-color, 2%);
+  background: color.adjust($ui-base-color, $lightness: 2%);
   cursor: default;
 }
 
@@ -181,8 +185,8 @@
 .trends {
   &__header {
     color: $dark-text-color;
-    background: lighten($ui-base-color, 2%);
-    border-bottom: 1px solid darken($ui-base-color, 4%);
+    background: color.adjust($ui-base-color, $lightness: 2%);
+    border-bottom: 1px solid color.adjust($ui-base-color, $lightness: -4%);
     font-weight: 500;
     padding: 15px;
     font-size: 16px;
@@ -198,7 +202,7 @@
     display: flex;
     align-items: center;
     padding: 15px;
-    border-bottom: 1px solid lighten($ui-base-color, 8%);
+    border-bottom: 1px solid color.adjust($ui-base-color, $lightness: 8%);
     gap: 15px;
 
     &:last-child {
@@ -255,7 +259,7 @@
       }
 
       path:last-child {
-        stroke: lighten($highlight-text-color, 6%) !important;
+        stroke: color.adjust($highlight-text-color, $lightness: 6%) !important;
         fill: none !important;
       }
     }
@@ -279,31 +283,37 @@
         }
 
         path:last-child {
-          stroke: lighten($gold-star, 6%) !important;
+          stroke: color.adjust($gold-star, $lightness: 6%) !important;
         }
       }
     }
 
     &--disabled {
       .trends__item__name {
-        color: lighten($ui-base-color, 12%);
+        color: color.adjust($ui-base-color, $lightness: 12%);
 
         a {
-          color: lighten($ui-base-color, 12%);
+          color: color.adjust($ui-base-color, $lightness: 12%);
         }
       }
 
       .trends__item__current {
-        color: lighten($ui-base-color, 12%);
+        color: color.adjust($ui-base-color, $lightness: 12%);
       }
 
       .trends__item__sparkline {
         path:first-child {
-          fill: rgba(lighten($ui-base-color, 12%), 0.25) !important;
+          fill: rgba(
+            color.adjust($ui-base-color, $lightness: 12%),
+            0.25
+          ) !important;
         }
 
         path:last-child {
-          stroke: lighten(lighten($ui-base-color, 12%), 6%) !important;
+          stroke: color.adjust(
+            color.adjust($ui-base-color, $lightness: 12%),
+            $lightness: 6%
+          ) !important;
         }
       }
     }

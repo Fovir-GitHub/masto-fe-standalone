@@ -1,6 +1,10 @@
+@use "sass:color";
+@use "../mixins" as *;
+@use "../variables" as *;
+
 .account {
   padding: 10px;
-  border-bottom: 1px solid lighten($ui-base-color, 8%);
+  border-bottom: 1px solid color.adjust($ui-base-color, $lightness: 8%);
   color: inherit;
   text-decoration: none;
 
@@ -165,7 +169,7 @@
 
 .account__header__wrapper {
   flex: 0 0 auto;
-  background: lighten($ui-base-color, 4%);
+  background: color.adjust($ui-base-color, $lightness: 4%);
 }
 
 .account__disclaimer {
@@ -203,8 +207,8 @@
 }
 
 .account__action-bar {
-  border-top: 1px solid lighten($ui-base-color, 8%);
-  border-bottom: 1px solid lighten($ui-base-color, 8%);
+  border-top: 1px solid color.adjust($ui-base-color, $lightness: 8%);
+  border-bottom: 1px solid color.adjust($ui-base-color, $lightness: 8%);
   line-height: 36px;
   overflow: hidden;
   flex: 0 0 auto;
@@ -222,7 +226,7 @@
   text-decoration: none;
   overflow: hidden;
   flex: 0 1 100%;
-  border-inline-start: 1px solid lighten($ui-base-color, 8%);
+  border-inline-start: 1px solid color.adjust($ui-base-color, $lightness: 8%);
   padding: 10px 0;
   border-bottom: 4px solid transparent;
 
@@ -278,7 +282,7 @@
   padding: 8px 10px;
   padding-inline-start: 68px;
   position: relative;
-  border-bottom: 1px solid lighten($ui-base-color, 8%);
+  border-bottom: 1px solid color.adjust($ui-base-color, $lightness: 8%);
   min-height: 54px;
 
   &__details {
@@ -324,9 +328,9 @@
 .account--panel {
   display: flex;
   gap: 5px;
-  background: lighten($ui-base-color, 4%);
-  border-top: 1px solid lighten($ui-base-color, 8%);
-  border-bottom: 1px solid lighten($ui-base-color, 8%);
+  background: color.adjust($ui-base-color, $lightness: 4%);
+  border-top: 1px solid color.adjust($ui-base-color, $lightness: 8%);
+  border-bottom: 1px solid color.adjust($ui-base-color, $lightness: 8%);
   flex-direction: row;
   padding: 5px;
 }
@@ -481,9 +485,9 @@
 .account__moved-note {
   padding: 14px 10px;
   padding-bottom: 16px;
-  background: lighten($ui-base-color, 4%);
-  border-top: 1px solid lighten($ui-base-color, 8%);
-  border-bottom: 1px solid lighten($ui-base-color, 8%);
+  background: color.adjust($ui-base-color, $lightness: 4%);
+  border-top: 1px solid color.adjust($ui-base-color, $lightness: 8%);
+  border-bottom: 1px solid color.adjust($ui-base-color, $lightness: 8%);
 
   &__message {
     position: relative;
@@ -563,7 +567,7 @@
     overflow: hidden;
     height: 145px;
     position: relative;
-    background: darken($ui-base-color, 4%);
+    background: color.adjust($ui-base-color, $lightness: -4%);
 
     img {
       object-fit: cover;
@@ -576,9 +580,9 @@
 
   &__bar {
     position: relative;
-    background: lighten($ui-base-color, 4%);
+    background: color.adjust($ui-base-color, $lightness: 4%);
     padding: 5px;
-    border-bottom: 1px solid lighten($ui-base-color, 12%);
+    border-bottom: 1px solid color.adjust($ui-base-color, $lightness: 12%);
 
     .avatar {
       display: block;
@@ -586,8 +590,8 @@
       width: 94px;
 
       .account__avatar {
-        background: darken($ui-base-color, 8%);
-        border: 2px solid lighten($ui-base-color, 4%);
+        background: color.adjust($ui-base-color, $lightness: -8%);
+        border: 2px solid color.adjust($ui-base-color, $lightness: 4%);
       }
     }
   }
@@ -707,10 +711,10 @@
 
     .account__header__fields {
       margin: 0;
-      border-top: 1px solid lighten($ui-base-color, 12%);
+      border-top: 1px solid color.adjust($ui-base-color, $lightness: 12%);
 
       a {
-        color: lighten($ui-highlight-color, 8%);
+        color: color.adjust($ui-highlight-color, $lightness: 8%);
       }
 
       dl:first-child .verified {
@@ -753,8 +757,8 @@
     flex-direction: column;
     font-size: 14px;
     font-weight: 400;
-    border-top: 1px solid lighten($ui-base-color, 12%);
-    border-bottom: 1px solid lighten($ui-base-color, 12%);
+    border-top: 1px solid color.adjust($ui-base-color, $lightness: 12%);
+    border-bottom: 1px solid color.adjust($ui-base-color, $lightness: 12%);
 
     &__header {
       display: flex;
@@ -783,7 +787,7 @@
         &:hover,
         &:active,
         &:focus {
-          color: lighten($darker-text-color, 7%);
+          color: color.adjust($darker-text-color, $lightness: 7%);
           background-color: rgba($darker-text-color, 0.15);
         }
 
@@ -792,7 +796,7 @@
         }
 
         &[disabled] {
-          color: darken($darker-text-color, 13%);
+          color: color.adjust($darker-text-color, $lightness: -13%);
           background-color: transparent;
           cursor: default;
         }
@@ -837,7 +841,7 @@
 .follow-request-banner,
 .account-memorial-banner {
   padding: 20px;
-  background: lighten($ui-base-color, 4%);
+  background: color.adjust($ui-base-color, $lightness: 4%);
   display: flex;
   align-items: center;
   flex-direction: column;

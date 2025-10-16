@@ -1,4 +1,6 @@
 @use "sass:color";
+@use "mixins" as *;
+@use "variables" as *;
 
 $maximum-width: 1235px;
 $fluid-breakpoint: $maximum-width + 20px;

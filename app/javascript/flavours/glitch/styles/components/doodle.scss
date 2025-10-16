@@ -1,3 +1,6 @@
+@use "../mixins" as *;
+@use "../variables" as *;
+
 $doodle-background: #d9e1e8;
 
 .doodle-modal {

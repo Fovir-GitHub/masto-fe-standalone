@@ -1,9 +1,13 @@
+@use "sass:color";
+@use "../mixins" as *;
+@use "../variables" as *;
+
 .account-card__header {
   position: relative;
 }
 
 .explore__search-header {
-  background: darken($ui-base-color, 4%);
+  background: color.adjust($ui-base-color, $lightness: -4%);
   justify-content: center;
   align-items: center;
   padding: 15px;
@@ -14,12 +18,12 @@
   }
 
   .search__input {
-    border: 1px solid lighten($ui-base-color, 8%);
+    border: 1px solid color.adjust($ui-base-color, $lightness: 8%);
     padding: 10px;
   }
 
   .search__popout {
-    border: 1px solid lighten($ui-base-color, 8%);
+    border: 1px solid color.adjust($ui-base-color, $lightness: 8%);
   }
 
   .search .fa {
@@ -45,7 +49,7 @@
   color: $primary-text-color;
   text-decoration: none;
   padding: 15px;
-  border-bottom: 1px solid lighten($ui-base-color, 8%);
+  border-bottom: 1px solid color.adjust($ui-base-color, $lightness: 8%);
   gap: 15px;
 
   &:last-child {

@@ -6,8 +6,8 @@
 */
 
 /* 🛠️ Config */
-@import "colors";
-@import "sizes";
+@use "colors";
+@use "sizes";
 
 /* 🧩 Components */
-@import "status";
+@use "status";

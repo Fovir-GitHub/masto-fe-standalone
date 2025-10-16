@@ -1,13 +1,15 @@
 @use "sass:meta";
 @use "sass:string";
 @use "sass:color";
+@use "mixins" as *;
+@use "variables" as *;
 
 @function hex-color($color) {
-  @if type-of($color) == "color" {
-    $color: str-slice(ie-hex-str($color), 4);
+  @if meta.type-of($color) == "color" {
+    $color: string.slice(color.ie-hex-str($color), 4);
   }
 
-  @return "%23" + unquote($color);
+  @return "%23" + string.unquote($color);
 }
 
 body {

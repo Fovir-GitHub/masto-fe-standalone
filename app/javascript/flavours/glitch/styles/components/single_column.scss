@@ -1,3 +1,8 @@
+@use "sass:color";
+@use "columns" as *;
+@use "../mixins" as *;
+@use "../variables" as *;
+
 .compose-panel {
   width: 285px;
   margin-top: 10px;
@@ -78,7 +83,7 @@
     flex: 0 0 auto;
     border: 0;
     background: transparent;
-    border-top: 1px solid lighten($ui-base-color, 4%);
+    border-top: 1px solid color.adjust($ui-base-color, $lightness: 4%);
     margin: 10px 0;
   }
 
@@ -260,7 +265,8 @@
     .navigation-panel {
       margin: 0;
       background: $ui-base-color;
-      border-inline-start: 1px solid lighten($ui-base-color, 8%);
+      border-inline-start: 1px solid
+        color.adjust($ui-base-color, $lightness: 8%);
       height: 100vh;
     }
 
@@ -278,7 +284,7 @@
   .layout-single-column .ui__header {
     display: flex;
     background: $ui-base-color;
-    border-bottom: 1px solid lighten($ui-base-color, 8%);
+    border-bottom: 1px solid color.adjust($ui-base-color, $lightness: 8%);
   }
 
   .layout-single-column {

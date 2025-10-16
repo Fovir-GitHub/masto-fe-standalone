@@ -1,3 +1,7 @@
+@use "sass:color";
+@use "../mixins" as *;
+@use "../variables" as *;
+
 .column__wrapper {
   display: flex;
   flex: 1 1 auto;
@@ -108,7 +112,7 @@ $ui-header-height: 55px;
 }
 
 .tabs-bar__wrapper {
-  background: darken($ui-base-color, 8%);
+  background: color.adjust($ui-base-color, $lightness: -8%);
   position: sticky;
   top: $ui-header-height;
   z-index: 2;
@@ -170,7 +174,7 @@ $ui-header-height: 55px;
 .column-back-button {
   box-sizing: border-box;
   width: 100%;
-  background: lighten($ui-base-color, 4%);
+  background: color.adjust($ui-base-color, $lightness: 4%);
   border-radius: 4px 4px 0 0;
   color: $highlight-text-color;
   cursor: pointer;
@@ -223,7 +227,7 @@ $ui-header-height: 55px;
 }
 
 .column-link {
-  background: lighten($ui-base-color, 8%);
+  background: color.adjust($ui-base-color, $lightness: 8%);
   color: $primary-text-color;
   display: block;
   font-size: 16px;
@@ -235,7 +239,7 @@ $ui-header-height: 55px;
   &:hover,
   &:focus,
   &:active {
-    background: lighten($ui-base-color, 11%);
+    background: color.adjust($ui-base-color, $lightness: 11%);
   }
 
   &:focus {
@@ -327,7 +331,7 @@ $ui-header-height: 55px;
   color: $darker-text-color;
   font-size: 16px;
   font-weight: 700;
-  background: lighten($ui-base-color, 4%);
+  background: color.adjust($ui-base-color, $lightness: 4%);
 }
 
 .column-header > button,
@@ -374,7 +378,7 @@ $ui-header-height: 55px;
   &:focus-visible,
   &:hover,
   &.active {
-    background: darken($ui-base-color, 4%);
+    background: color.adjust($ui-base-color, $lightness: -4%);
   }
 
   &:active {
@@ -418,7 +422,7 @@ $ui-header-height: 55px;
   &:hover,
   &.active {
     color: inherit;
-    background: darken($ui-base-color, 4%);
+    background: color.adjust($ui-base-color, $lightness: -4%);
   }
 
   &:active {
@@ -516,7 +520,7 @@ $ui-header-height: 55px;
     height: 0;
     background: transparent;
     border: 0;
-    border-top: 1px solid lighten($ui-base-color, 12%);
+    border-top: 1px solid color.adjust($ui-base-color, $lightness: 12%);
     margin: 10px 0;
   }
 
@@ -532,7 +536,7 @@ $ui-header-height: 55px;
 }
 
 .column-header__collapsible-inner {
-  background: lighten($ui-base-color, 8%);
+  background: color.adjust($ui-base-color, $lightness: 8%);
   padding: 15px;
 }
 
@@ -628,11 +632,11 @@ $ui-header-height: 55px;
   &:not([disabled]) {
     &:hover,
     &:focus {
-      background-color: darken($ui-base-color, 10%);
+      background-color: color.adjust($ui-base-color, $lightness: -10%);
     }
 
     &.active {
-      background-color: darken($ui-highlight-color, 2%);
+      background-color: color.adjust($ui-highlight-color, $lightness: -2%);
 
       &:hover,
       &:focus {
@@ -684,7 +688,7 @@ $ui-header-height: 55px;
 }
 
 .follow_requests-unlocked_explanation {
-  background: darken($ui-base-color, 4%);
+  background: color.adjust($ui-base-color, $lightness: -4%);
   contain: initial;
   flex-grow: 0;
 }
@@ -740,7 +744,7 @@ $ui-header-height: 55px;
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  background: lighten($ui-base-color, 4%);
+  background: color.adjust($ui-base-color, $lightness: 4%);
 
   label {
     flex: 1 1 auto;
@@ -767,7 +771,7 @@ $ui-header-height: 55px;
 }
 
 .column-settings__outer {
-  background: lighten($ui-base-color, 8%);
+  background: color.adjust($ui-base-color, $lightness: 8%);
   padding: 15px;
 }
 
@@ -793,7 +797,7 @@ $ui-header-height: 55px;
       @include search-input;
 
       &::placeholder {
-        color: lighten($darker-text-color, 4%);
+        color: color.adjust($darker-text-color, $lightness: 4%);
       }
 
       &::-moz-focus-inner {
@@ -807,7 +811,7 @@ $ui-header-height: 55px;
       }
 
       &:focus {
-        background: lighten($ui-base-color, 4%);
+        background: color.adjust($ui-base-color, $lightness: 4%);
       }
 
       @media screen and (width <= 600px) {
@@ -826,7 +830,7 @@ $ui-header-height: 55px;
     }
 
     &__multi-value {
-      background: lighten($ui-base-color, 8%);
+      background: color.adjust($ui-base-color, $lightness: 8%);
 
       &__remove {
         cursor: pointer;
@@ -834,8 +838,8 @@ $ui-header-height: 55px;
         &:hover,
         &:active,
         &:focus {
-          background: lighten($ui-base-color, 12%);
-          color: lighten($darker-text-color, 4%);
+          background: color.adjust($ui-base-color, $lightness: 12%);
+          color: color.adjust($darker-text-color, $lightness: 4%);
         }
       }
     }
@@ -855,12 +859,12 @@ $ui-header-height: 55px;
       &:hover,
       &:active,
       &:focus {
-        color: lighten($dark-text-color, 4%);
+        color: color.adjust($dark-text-color, $lightness: 4%);
       }
     }
 
     &__indicator-separator {
-      background-color: lighten($ui-base-color, 8%);
+      background-color: color.adjust($ui-base-color, $lightness: 8%);
     }
 
     &__menu {
@@ -881,7 +885,7 @@ $ui-header-height: 55px;
 
       &--is-focused,
       &--is-selected {
-        background: darken($ui-secondary-color, 10%);
+        background: color.adjust($ui-secondary-color, $lightness: -10%);
       }
     }
   }
@@ -895,7 +899,7 @@ $ui-header-height: 55px;
 
 .notifications-permission-banner {
   padding: 30px;
-  border-bottom: 1px solid lighten($ui-base-color, 8%);
+  border-bottom: 1px solid color.adjust($ui-base-color, $lightness: 8%);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -973,8 +977,8 @@ $ui-header-height: 55px;
 
 .column-list {
   margin: 0 20px;
-  border: 1px solid lighten($ui-base-color, 8%);
-  background: darken($ui-base-color, 2%);
+  border: 1px solid color.adjust($ui-base-color, $lightness: 8%);
+  background: color.adjust($ui-base-color, $lightness: -2%);
   border-radius: 4px;
 
   &__empty-message {
@@ -1089,7 +1093,7 @@ $ui-header-height: 55px;
 }
 
 .hashtag-header {
-  border-bottom: 1px solid lighten($ui-base-color, 8%);
+  border-bottom: 1px solid color.adjust($ui-base-color, $lightness: 8%);
   padding: 15px;
   font-size: 17px;
   line-height: 22px;
