@@ -5,6 +5,7 @@ import Mastodon from "flavours/glitch/containers/mastodon";
 import { me } from "flavours/glitch/initial_state";
 import * as perf from "flavours/glitch/performance";
 import ready from "flavours/glitch/ready";
+import { setReducedMotionBodyClass } from "flavours/glitch/utils/accessibility";
 import { store } from "flavours/glitch/store";
 
 /**
@@ -12,6 +13,7 @@ import { store } from "flavours/glitch/store";
  */
 function main() {
   perf.start("main()");
+  setReducedMotionBodyClass();
 
   return ready(async () => {
     const mountNode = document.getElementById("mastodon");
