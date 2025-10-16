@@ -190,7 +190,7 @@
   &__footer {
     display: flex;
     align-items: center;
-    gap: 5px;
+    gap: min(0.22em, 4px);
     padding-top: 6px;
     padding-bottom: 5px;
     color: $dark-text-color;
@@ -218,8 +218,8 @@
 
   .button {
     height: 36px;
+    margin-inline-end: min(0.22em, 4px);
     padding: 0 16px;
-    margin-inline-end: 10px;
     font-size: 14px;
   }
 }
