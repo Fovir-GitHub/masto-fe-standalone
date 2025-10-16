@@ -13,11 +13,9 @@
 
 /* Diff */
 .gts-icon {
-  --size: 1em;
-
   display: inline-block;
-  width: var(--size);
-  height: var(--size);
+  width: var(--size-icon);
+  height: var(--size-icon);
 }
 
 .gts-icon-with-badge {
@@ -59,7 +57,7 @@
 .column-header .gts-icon,
 .column-link .gts-icon,
 .local-settings__navigation__item .gts-icon {
-  --size: 24px;
+  --size-icon: 24px;
 }
 
 .navigation-panel {
@@ -94,12 +92,9 @@
   }
 }
 
-.notification__filter-bar svg,
-.status__info__icons svg {
-  --size: 18px;
-
-  width: var(--size);
-  height: var(--size);
+.notification__filter-bar svg.gts-icon,
+.status__info__icons svg.gts-icon {
+  --size-icon: 18px;
 }
 
 .detailed-status__meta {
@@ -121,16 +116,11 @@
 }
 
 .detailed-status__meta svg {
-  --size: 16px;
-
-  width: var(--size);
-  height: var(--size);
+  --size-icon: 16px;
 }
 
 .notification__favourite-icon-wrapper svg {
-  --size: 16px;
+  --size-icon: 16px;
 
-  width: var(--size);
-  height: var(--size);
   color: $highlight-text-color;
 }

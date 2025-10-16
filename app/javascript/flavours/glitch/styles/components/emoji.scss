@@ -77,8 +77,8 @@
   color: $inverted-text-color;
   background: transparent;
 
-  svg {
-    --size: 24px;
+  svg.gts-icon {
+    --size-icon: 24px;
 
     margin: 0;
   }

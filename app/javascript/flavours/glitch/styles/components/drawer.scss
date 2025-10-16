@@ -73,6 +73,8 @@
 }
 
 .layout-multiple-columns .drawer__tab {
+  --size-icon: 24px;
+
   display: flex;
   gap: 5px;
   align-items: center;
@@ -88,8 +90,6 @@
   transition: all 0.3s;
 
   .gts-icon {
-    --size: 24px;
-
     display: block;
   }
 
@@ -149,12 +149,10 @@
 }
 
 .navigation-bar .compose__action-bar button {
+  --size-icon: 20px;
+
   display: flex;
   padding: 6px;
-
-  svg.gts-icon {
-    --size: 20px;
-  }
 }
 
 .drawer--results {

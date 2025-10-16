@@ -1,5 +1,7 @@
 /* 🚥 Status: Icons */
 .status__info__icons {
+    --size-icon: 18px;
+
     position: relative;
     display: flex;
     gap: 5px;
@@ -7,8 +9,6 @@
     color: var(--color-secondary-fg);
 
     svg.gts-icon {
-        --size: 18px;
-
         display: block;
     }
 

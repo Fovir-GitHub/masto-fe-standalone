@@ -189,7 +189,7 @@
     color: rgba($white, 0.7);
 
     .gts-icon {
-      --size: 24px;
+      --size-icon: 24px;
 
       display: block;
     }
@@ -283,11 +283,9 @@
     padding: 20px 0;
 
     .icon-button {
-      color: $white;
+      --size-icon: 24px;
 
-      .gts-icon {
-        --size: 24px;
-      }
+      color: $white;
 
       &:hover,
       &:focus,
@@ -571,14 +569,14 @@
   }
 
   &__buttons-bar {
+    --size-icon: 20px;
+
     display: flex;
     justify-content: space-between;
     padding-bottom: 8px;
     margin: 0 -5px;
 
     .gts-icon {
-      --size: 20px;
-
       display: block;
     }
 

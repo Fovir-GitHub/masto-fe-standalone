@@ -19,11 +19,9 @@
 }
 
 .status__prepend-icon {
-    --size: 18px;
+    --size-icon: 18px;
 
     display: block;
-    width: var(--size);
-    height: var(--size);
 }
 
 .status__prepend-display-name {

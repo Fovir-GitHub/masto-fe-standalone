@@ -409,19 +409,11 @@
 }
 
 .status__action-bar {
+  --size-icon: 20px;
+
   display: flex;
   gap: 10px;
   align-items: center;
-
-  svg.gts-icon {
-    --size: 20px;
-  }
-
-  &.detailed-status__action-bar {
-    svg.gts-icon {
-      --size: 24px;
-    }
-  }
 }
 
 .status__action-bar-button,

@@ -4,7 +4,7 @@
 
 .search__icon,
 .search__icon.gts-icon {
-  --size: 20px;
+  --size-icon: 20px;
 
   position: absolute;
   top: 13px;
@@ -35,6 +35,8 @@
 }
 
 .search__button {
+  --size-icon: 20px;
+
   position: absolute;
   top: 7px;
   right: 7px;
@@ -48,8 +50,6 @@
   transition: all 0.3s;
 
   .gts-icon {
-    --size: 20px;
-
     display: block;
   }
 
@@ -154,13 +154,11 @@
 
 .search-results__header,
 .search-results__section__header h3 {
+  --size-icon: 20px;
+
   display: flex;
   gap: 5px;
   align-items: center;
-
-  .gts-icon {
-    --size: 20px;
-  }
 }
 
 .search-results__header {

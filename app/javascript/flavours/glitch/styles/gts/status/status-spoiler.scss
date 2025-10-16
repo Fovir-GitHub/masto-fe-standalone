@@ -1,5 +1,7 @@
 /* 🚥 Status: Spoiler link */
 .status__content__spoiler-link {
+    --size-icon: 14px;
+
     display: flex;
     gap: 5px;
     padding: 5px 8px;
@@ -10,10 +12,6 @@
     font-weight: 500;
     background: var(--color-accent-bg);
     transition: all 0.3s;
-
-    .gts-icon {
-        --size: 14px;
-    }
 
     &:hover {
         border-color: var(--color-lines);

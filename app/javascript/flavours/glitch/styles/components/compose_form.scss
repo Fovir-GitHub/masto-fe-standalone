@@ -514,7 +514,7 @@
   }
 
   svg.gts-icon {
-    --size: 20px;
+    --size-icon: 20px;
 
     scale: 1.2;
   }
@@ -565,15 +565,13 @@
 }
 
 .privacy-dropdown__option {
+  --size-icon: 24px;
+
   display: flex;
   align-items: center;
   padding: 10px;
   color: $inverted-text-color;
   cursor: pointer;
-
-  svg.gts-icon {
-    --size: 24px;
-  }
 
   .privacy-dropdown__option__content {
     flex: 1 1 auto;
