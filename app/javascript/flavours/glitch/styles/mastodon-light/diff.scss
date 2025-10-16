@@ -1,4 +1,5 @@
 @use "sass:color";
+@use "../variables" as *;
 
 // Notes!
 // Sass color functions, "darken" and "lighten" are automatically replaced.
@@ -482,7 +483,7 @@ html {
 
 // Change the default colors used on some parts of the profile pages
 .activity-stream-tabs {
-  background: $account-background-color;
+  background: var(--color-account-bg);
   border-bottom-color: color.adjust($ui-base-color, $lightness: 8%);
 }
 
@@ -546,7 +547,7 @@ html {
   }
 
   .entry {
-    background: $account-background-color;
+    background: var(--color-account-bg);
 
     .detailed-status.light,
     .more.light,
