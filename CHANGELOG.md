@@ -11,19 +11,30 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Added documentation for `yarn dev` (#75)
 - Added an .editorconfig (#78)
-- Added a changelog basaed on “Keep a Changelog” (#80)
+- Added a CHANGELOG.md basaed on “Keep a Changelog” (#80)
 
 ### Changed
 
 - Preserve ‘mastodon-settings’ in localStorage (#66)
 - Redesigned the login page (#76)
-- Changed all icons with the Phosphor icon set (#77)
+- Changed all icons to the Phosphor icon set (#77)
+- Changed AUTHORS.md to reflect fork contributors (#89)
 
 ### Fixed
 
 - Updated caniuse-lite browserlist (#82)
 - Fixed various linter issues (#85)
+- Fixed various CSS issues (#100)
 - Updated Prettier to 3.6.2 (#86)
+- Updated Yarn to 4.10.3 (#90)
+- Updated Webpack to 5.102.1 (#83)
+- Updated ESlint to 9.37.0 (#88)
+
+### Removed
+
+- Removed FontAwesome (#99)
+- Removed unused CSS files (#99)
+- Removed various unused assets
 
 ## [0.5.0] - 2025-07-14
 
