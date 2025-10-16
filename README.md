@@ -1,6 +1,6 @@
-# Masto-FE (🦥 flavour)
+# Folivora
 
-This is a fork of [Iceshrimp's Masto-FE Standalone](https://iceshrimp.dev/iceshrimp/masto-fe-standalone) repository, which is itself a fork of [Mastodon Glitch Edition](https://github.com/glitch-soc/mastodon), which in turn forks [Mastodon](https://github.com/mastodon/mastodon/). Phew!
+Folivora is a fork of [Iceshrimp's Masto-FE Standalone](https://iceshrimp.dev/iceshrimp/masto-fe-standalone) repository, which is itself a fork of [Mastodon Glitch Edition](https://github.com/glitch-soc/mastodon), which in turn forks [Mastodon](https://github.com/mastodon/mastodon/). Phew!
 
 The goal of this repository is to make it possible to smoothly and intuitively use the Mastodon frontend with a GoToSocial instance as the backend.
 
