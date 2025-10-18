@@ -29,7 +29,7 @@ const initialState = ImmutableMap({
     shared_state : true,
   }),
   collapsed : ImmutableMap({
-    enabled     : true,
+    enabled     : false,
     auto        : ImmutableMap({
       all              : false,
       notifications    : false,
