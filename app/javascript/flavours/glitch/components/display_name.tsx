@@ -18,6 +18,7 @@ interface Props {
   others?: List<Account>,
   localDomain?: string,
   inline?: boolean,
+  nameLayout?: string,
 }
 
 export class DisplayName extends React.PureComponent<Props> {
