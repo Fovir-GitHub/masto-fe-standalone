@@ -4,7 +4,6 @@ import React from "react";
 import classNames from "classnames";
 
 import ImmutablePropTypes from "react-immutable-proptypes";
-import ImmutablePureComponent from "react-immutable-pure-component";
 
 import { type List } from "immutable";
 
@@ -21,7 +20,7 @@ interface Props {
   inline?: boolean,
 }
 
-export class DisplayName extends ImmutablePureComponent {
+export class DisplayName extends React.PureComponent<Props> {
   static propTypes = {
     onChange: PropTypes.func.isRequired,
     nameLayout: ImmutablePropTypes.map.isRequired,
