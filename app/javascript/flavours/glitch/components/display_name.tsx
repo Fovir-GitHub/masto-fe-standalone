@@ -4,6 +4,8 @@ import React from "react";
 import classNames from "classnames";
 
 import  { type List } from "immutable";
+import ImmutablePropTypes from "react-immutable-proptypes";
+import ImmutablePureComponent from "react-immutable-pure-component";
 
 import  { type Account } from "flavours/glitch/types/resources";
 
@@ -18,7 +20,7 @@ interface Props {
   inline?: boolean,
 }
 
-export class DisplayName extends React.PureComponent<Props> {
+export class DisplayName extends ImmutablePureComponent {
   static propTypes = {
     onChange: PropTypes.func.isRequired,
     nameLayout: ImmutablePropTypes.map.isRequired,
