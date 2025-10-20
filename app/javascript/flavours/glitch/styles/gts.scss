@@ -125,3 +125,17 @@
 
   color: $highlight-text-color;
 }
+
+.drawer__pager {
+  flex-grow: unset;
+}
+
+.drawer__inner {
+  position: relative;
+  top: unset;
+}
+
+.drawer__inner__mastodon,
+.drawer__inner.darker {
+  display: none;
+}
