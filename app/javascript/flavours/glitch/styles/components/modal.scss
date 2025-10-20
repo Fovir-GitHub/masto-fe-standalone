@@ -1060,15 +1060,13 @@
   padding: 15px;
 
   .report-modal__close {
+    --size-icon: 20px;
+
     position: absolute;
     top: 10px;
     inset-inline-end: 10px;
     display: flex;
     padding: 6px;
-
-    svg.gts-icon {
-      --size: 20px;
-    }
   }
 }
 

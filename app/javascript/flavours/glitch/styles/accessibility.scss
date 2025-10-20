@@ -16,23 +16,21 @@ $emojis-requiring-inversion: "back" "copyright" "curly_loop" "currency_exchange"
 }
 
 .hicolor-privacy-icons {
-  .status__visibility-icon.fa-globe,
-  .privacy-dropdown__option .fa-globe {
+  :is(.status__visibility-icon, .privacy-dropdown__option) use[href*="planet"] {
     color: #1976d2;
   }
 
-  .status__visibility-icon.fa-unlock,
-  .privacy-dropdown__option .fa-unlock {
+  :is(.status__visibility-icon, .privacy-dropdown__option)
+    use[href*="lock-open-simple"] {
     color: #388e3c;
   }
 
-  .status__visibility-icon.fa-lock,
-  .privacy-dropdown__option .fa-lock {
+  :is(.status__visibility-icon, .privacy-dropdown__option)
+    use[href*="lock-simple"] {
     color: #ffa000;
   }
 
-  .status__visibility-icon.fa-envelope,
-  .privacy-dropdown__option .fa-envelope {
+  :is(.status__visibility-icon, .privacy-dropdown__option) use[href*="#at"] {
     color: #d32f2f;
   }
 }

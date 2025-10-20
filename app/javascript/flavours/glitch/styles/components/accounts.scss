@@ -157,7 +157,7 @@
   }
 
   .gts-icon {
-    --size: 20px;
+    --size-icon: 20px;
 
     display: block;
   }
@@ -195,7 +195,7 @@
   }
 
   .gts-icon {
-    --size: 16px;
+    --size-icon: 16px;
 
     margin-inline-end: 5px;
     vertical-align: text-bottom;
@@ -370,7 +370,7 @@
   }
 
   svg.gts-icon {
-    --size: 20px;
+    --size-icon: 20px;
   }
 }
 
@@ -472,7 +472,7 @@
   }
 
   svg.gts-icon {
-    --size: 20px;
+    --size-icon: 20px;
 
     display: block;
   }
@@ -635,7 +635,7 @@
       }
 
       .gts-icon {
-        --size: 24px;
+        --size-icon: 24px;
 
         display: block;
       }
@@ -867,18 +867,13 @@
 }
 
 .follow-request-banner .button {
+  --size-icon: 20px;
+
   display: flex;
   align-items: center;
   gap: 5px;
   justify-content: center;
   width: 100%;
-
-  svg.gts-icon {
-    --size: 20px;
-
-    width: var(--size);
-    height: var(--size);
-  }
 }
 
 .account-memorial-banner__message {

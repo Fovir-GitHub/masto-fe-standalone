@@ -89,16 +89,6 @@
       }
     }
 
-    &.mention {
-      &:hover {
-        text-decoration: none;
-
-        span {
-          text-decoration: underline;
-        }
-      }
-    }
-
     .fa {
       color: $dark-text-color;
     }
@@ -409,19 +399,11 @@
 }
 
 .status__action-bar {
+  --size-icon: 20px;
+
   display: flex;
   gap: 10px;
   align-items: center;
-
-  svg.gts-icon {
-    --size: 20px;
-  }
-
-  &.detailed-status__action-bar {
-    svg.gts-icon {
-      --size: 24px;
-    }
-  }
 }
 
 .status__action-bar-button,
@@ -446,9 +428,9 @@
 }
 
 .detailed-status {
-  background: lighten($ui-base-color, 4%);
-  padding: 14px 10px;
+  padding: 15px;
   border-top: 1px solid lighten($ui-base-color, 8%);
+  background: lighten($ui-base-color, 4%);
 
   &--flex {
     display: flex;
@@ -579,9 +561,8 @@ a.status__display-name,
 
 .status__avatar {
   flex: none;
-  margin-inline-end: 10px;
-  height: 48px;
-  width: 48px;
+  height: var(--size-avatar);
+  width: var(--size-avatar);
 }
 
 .muted {

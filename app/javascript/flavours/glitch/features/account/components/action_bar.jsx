@@ -28,7 +28,7 @@ class ActionBar extends PureComponent {
       return (
         <div>
           <div className='account__disclaimer'>
-            <Icon id='info' fixedWidth />
+            <Icon id='info' />
             <FormattedMessage
               id='account.suspended_disclaimer_full'
               defaultMessage='This user has been suspended by a moderator.'
@@ -43,7 +43,7 @@ class ActionBar extends PureComponent {
     if (account.get("acct") !== account.get("username")) {
       extraInfo = (
         <div className='account__disclaimer'>
-          <Icon id='info' fixedWidth />
+          <Icon id='info' />
           <FormattedMessage
             id='account.disclaimer_full'
             defaultMessage="Information below may reflect the user's profile incompletely."

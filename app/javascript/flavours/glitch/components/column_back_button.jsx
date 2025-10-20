@@ -32,7 +32,7 @@ export default class ColumnBackButton extends PureComponent {
 
     const component = (
       <button onClick={this.handleClick} className='column-back-button'>
-        <Icon id='arrow-left' className='column-back-button__icon' fixedWidth />
+        <Icon id='arrow-left' className='column-back-button__icon' />
         <FormattedMessage id='column_back_button.label' defaultMessage='Back' />
       </button>
     );

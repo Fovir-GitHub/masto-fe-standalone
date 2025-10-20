@@ -1,6 +1,6 @@
 /* 🚥 Status: Display name */
 .status__display-name {
-    align-self: start;
+    align-self: center;
     justify-self: start;
     color: var(--color-content-fg);
     font-size: 15px;
@@ -10,6 +10,12 @@
     .display-name {
         font-weight: 700;
         text-overflow: clip;
+    }
+
+    .display-name__html,
+    .display-name__account {
+        display: block;
+        line-height: max(21px, 1.4em);
     }
 
     .display-name__html {

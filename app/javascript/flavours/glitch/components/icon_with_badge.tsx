@@ -16,11 +16,11 @@ export const IconWithBadge: React.FC<Props> = ({
   issueBadge,
   className,
 }) => (
-  <div className='gts-icon-with-badge'>
-    <Icon id={id} fixedWidth className={className} />
+  <div className="gts-icon-with-badge">
+    <Icon id={id} className={className} />
     {count > 0 && (
-      <span className='gts-icon-with-badge__badge'>{formatNumber(count)}</span>
+      <span className="gts-icon-with-badge__badge">{formatNumber(count)}</span>
     )}
-    {issueBadge && <div className='gts-icon-with-badge__issue-badge' />}
+    {issueBadge && <div className="gts-icon-with-badge__issue-badge" />}
   </div>
 );

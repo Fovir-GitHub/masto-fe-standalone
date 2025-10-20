@@ -335,6 +335,8 @@ $ui-header-height: 55px;
 .column-header__back-button,
 .column-header__footer-button,
 .column-header__setting-btn {
+  --size-icon: 24px;
+
   display: flex;
   border: 0;
   color: inherit;
@@ -343,8 +345,6 @@ $ui-header-height: 55px;
   transition: all 0.3s;
 
   .gts-icon {
-    --size: 24px;
-
     display: block;
   }
 }
@@ -355,6 +355,7 @@ $ui-header-height: 55px;
   align-items: center;
   flex-grow: 1;
   padding: 12px 0 13px 15px;
+  text-align: start;
 }
 
 .column-header__buttons {
@@ -404,15 +405,13 @@ $ui-header-height: 55px;
 
 .column-header__footer-button,
 .column-header__setting-btn {
+  --size-icon: 20px;
+
   gap: 5px;
   align-items: center;
   padding: 6px;
   border-radius: var(--button-border-radius);
   color: inherit;
-
-  .gts-icon {
-    --size: 20px;
-  }
 
   &:focus-visible,
   &:hover,
@@ -735,6 +734,8 @@ $ui-header-height: 55px;
 }
 
 .column-inline-form {
+  --size-icon: 20px;
+
   padding: 7px 15px;
   padding-inline-end: 5px;
   display: flex;
@@ -759,10 +760,6 @@ $ui-header-height: 55px;
     flex: 0 0 auto;
     margin: 0 5px;
     padding: 6px;
-  }
-
-  .gts-icon {
-    --size: 20px;
   }
 }
 
@@ -1054,6 +1051,8 @@ $ui-header-height: 55px;
   }
 
   &__action {
+    --size-icon: 20px;
+
     float: right;
 
     .icon-button {
@@ -1066,8 +1065,6 @@ $ui-header-height: 55px;
     }
 
     .gts-icon {
-      --size: 20px;
-
       display: block;
     }
   }

@@ -189,7 +189,8 @@
 
   &__footer {
     display: flex;
-    gap: 5px;
+    align-items: center;
+    gap: min(0.22em, 4px);
     padding-top: 6px;
     padding-bottom: 5px;
     color: $dark-text-color;
@@ -217,8 +218,8 @@
 
   .button {
     height: 36px;
+    margin-inline-end: min(0.22em, 4px);
     padding: 0 16px;
-    margin-inline-end: 10px;
     font-size: 14px;
   }
 }
@@ -240,10 +241,10 @@
   }
 
   .poll__footer {
-    border-top: 1px solid darken($simple-background-color, 8%);
-    padding: 10px;
     display: flex;
     align-items: center;
+    border-top: 1px solid darken($simple-background-color, 8%);
+    padding: 10px;
 
     button,
     select {

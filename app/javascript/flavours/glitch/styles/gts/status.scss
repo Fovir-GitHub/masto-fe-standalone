@@ -30,3 +30,21 @@
 .status__action-bar :is(a, button) {
     color: var(--color-secondary-fg);
 }
+
+.status .mention {
+    &,
+    &:hover {
+        text-decoration: none;
+    }
+}
+
+.status .mention:is(:focus, :hover) span {
+    text-decoration-color: currentcolor;
+}
+
+.status .mention span {
+    text-decoration-line: underline;
+    text-decoration-color: var(--color-accent-lines);
+    text-decoration-thickness: 2px;
+    text-underline-offset: 2px;
+}

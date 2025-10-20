@@ -62,9 +62,10 @@ class Publisher extends ImmutablePureComponent {
     } else if (privacy === "private" || privacy === "direct") {
       const iconId = privacyIcons[privacy];
       publishText = (
-        <span>
-          <Icon id={iconId} /> {intl.formatMessage(messages.publish)}
-        </span>
+        <>
+          <Icon id={iconId} />
+          <span>{intl.formatMessage(messages.publish)}</span>
+        </>
       );
     } else {
       publishText = privacy !== "unlisted" ? intl.formatMessage(messages.publishLoud, { publish: intl.formatMessage(messages.publish) }) : intl.formatMessage(messages.publish);
@@ -80,26 +81,22 @@ class Publisher extends ImmutablePureComponent {
     return (
       <div className={computedClass}>
         {sideArm && !isEditing && sideArm !== "none" ? (
-          <div className='compose-form__publish-button-wrapper'>
-            <Button
-              className='side_arm'
-              disabled={disabled}
-              onClick={onSecondarySubmit}
-              style={{ padding: null }}
-              text={<Icon id={privacyIcons[sideArm]} />}
-              title={`${intl.formatMessage(messages.publish)}: ${intl.formatMessage(privacyNames[sideArm])}`}
-            />
-          </div>
-        ) : null}
-        <div className='compose-form__publish-button-wrapper'>
           <Button
-            className='primary'
-            text={publishText}
-            title={`${intl.formatMessage(messages.publish)}: ${intl.formatMessage(privacyNames[privacy])}`}
-            onClick={this.handleSubmit}
+            className='side_arm'
             disabled={disabled}
+            onClick={onSecondarySubmit}
+            style={{ padding: null }}
+            text={<Icon id={privacyIcons[sideArm]} />}
+            title={`${intl.formatMessage(messages.publish)}: ${intl.formatMessage(privacyNames[sideArm])}`}
           />
-        </div>
+        ) : null}
+        <Button
+          className='primary'
+          text={publishText}
+          title={`${intl.formatMessage(messages.publish)}: ${intl.formatMessage(privacyNames[privacy])}`}
+          onClick={this.handleSubmit}
+          disabled={disabled}
+        />
       </div>
     );
   }

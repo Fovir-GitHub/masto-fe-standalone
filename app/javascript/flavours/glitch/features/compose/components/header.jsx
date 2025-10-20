@@ -80,7 +80,7 @@ class Header extends ImmutablePureComponent {
           title={intl.formatMessage(messages.start)}
           to='/getting-started'
           className='drawer__tab'
-        ><Icon id='asterisk' /></Link>
+        ><Icon id='gts-simple' /></Link>
         {renderForColumn("HOME", (
           <Link
             aria-label={intl.formatMessage(messages.home_timeline)}

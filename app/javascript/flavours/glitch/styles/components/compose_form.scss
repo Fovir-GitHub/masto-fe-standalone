@@ -514,7 +514,7 @@
   }
 
   svg.gts-icon {
-    --size: 20px;
+    --size-icon: 20px;
 
     scale: 1.2;
   }
@@ -565,15 +565,13 @@
 }
 
 .privacy-dropdown__option {
+  --size-icon: 24px;
+
   display: flex;
   align-items: center;
   padding: 10px;
   color: $inverted-text-color;
   cursor: pointer;
-
-  svg.gts-icon {
-    --size: 24px;
-  }
 
   .privacy-dropdown__option__content {
     flex: 1 1 auto;
@@ -611,23 +609,22 @@
 
 .compose-form__publish {
   display: flex;
-  justify-content: flex-end;
-  min-width: 0;
-  flex: 0 0 auto;
   column-gap: 5px;
+  flex: 0 0 auto;
+  justify-content: flex-end;
+  margin-top: 10px;
+  min-width: 0;
 
-  .compose-form__publish-button-wrapper {
-    overflow: hidden;
-    padding-top: 10px;
+  button {
+    --size-icon: 18px;
 
-    button {
-      padding: 7px 10px;
-      text-align: center;
-    }
-
-    & > .side_arm {
-      width: 36px;
-    }
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+    gap: 5px;
+    padding: 8px 12px;
+    line-height: 20px;
+    text-align: center;
   }
 }
 
