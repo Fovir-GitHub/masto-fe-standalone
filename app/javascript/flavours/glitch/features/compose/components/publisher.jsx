@@ -63,8 +63,8 @@ class Publisher extends ImmutablePureComponent {
       const iconId = privacyIcons[privacy];
       publishText = (
         <>
-        <Icon id={iconId} />
-        <span>{intl.formatMessage(messages.publish)}</span>
+          <Icon id={iconId} />
+          <span>{intl.formatMessage(messages.publish)}</span>
         </>
       );
     } else {
@@ -81,22 +81,22 @@ class Publisher extends ImmutablePureComponent {
     return (
       <div className={computedClass}>
         {sideArm && !isEditing && sideArm !== "none" ? (
-            <Button
-              className='side_arm'
-              disabled={disabled}
-              onClick={onSecondarySubmit}
-              style={{ padding: null }}
-              text={<Icon id={privacyIcons[sideArm]} />}
-              title={`${intl.formatMessage(messages.publish)}: ${intl.formatMessage(privacyNames[sideArm])}`}
-            />
-        ) : null}
           <Button
-            className='primary'
-            text={publishText}
-            title={`${intl.formatMessage(messages.publish)}: ${intl.formatMessage(privacyNames[privacy])}`}
-            onClick={this.handleSubmit}
+            className='side_arm'
             disabled={disabled}
+            onClick={onSecondarySubmit}
+            style={{ padding: null }}
+            text={<Icon id={privacyIcons[sideArm]} />}
+            title={`${intl.formatMessage(messages.publish)}: ${intl.formatMessage(privacyNames[sideArm])}`}
           />
+        ) : null}
+        <Button
+          className='primary'
+          text={publishText}
+          title={`${intl.formatMessage(messages.publish)}: ${intl.formatMessage(privacyNames[privacy])}`}
+          onClick={this.handleSubmit}
+          disabled={disabled}
+        />
       </div>
     );
   }
