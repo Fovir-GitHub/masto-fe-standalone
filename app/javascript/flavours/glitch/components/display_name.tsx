@@ -125,16 +125,15 @@ export class DisplayName extends React.PureComponent<Props> {
     }
 
     return (
-      <span
-        className={classNames("display-name", { inline })}
+      <div
+        className={classNames("display-name", { inline }, nameLayout)}
         onMouseEnter={this.handleMouseEnter}
         onMouseLeave={this.handleMouseLeave}
       >
-        {nameLayout}
         {displayName}
         {inline ? " " : null}
         {suffix}
-      </span>
+      </div>
     );
   }
 }

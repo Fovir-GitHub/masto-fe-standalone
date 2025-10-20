@@ -18,6 +18,16 @@
         line-height: max(21px, 1.4em);
     }
 
+    .display-name.both_x {
+        display: flex;
+        gap: var(--size-ui-gap);
+    }
+
+    .display-name.handle bdi,
+    .display-name.display .display-name__account {
+        display: none;
+    }
+
     .display-name__html {
         font-weight: 700;
     }
@@ -27,7 +37,14 @@
         font-weight: 400;
     }
 
-    &:hover .display-name__html {
+    .display-name.handle .display-name__account {
+        color: currentcolor;
+        font-size: inherit;
+        font-weight: 700;
+    }
+
+    &:hover .display-name__html,
+    &:hover .display-name.handle .display-name__account {
         text-decoration-line: underline;
         text-decoration-color: currentColor;
         text-decoration-thickness: 2px;
