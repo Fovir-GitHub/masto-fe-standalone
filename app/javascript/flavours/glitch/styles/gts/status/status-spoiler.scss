@@ -1,4 +1,10 @@
 /* 🚥 Status: Spoiler link */
+
+.status__content__spoiler,
+.status__content__spoiler-link {
+    margin-block-start: var(--size-ui-gap);
+}
+
 .status__content__spoiler-link {
     --size-icon: 14px;
 
