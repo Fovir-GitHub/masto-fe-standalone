@@ -31,11 +31,9 @@
     color: var(--color-secondary-fg);
 }
 
-.status .mention {
-    &,
-    &:hover {
-        text-decoration: none;
-    }
+.status .mention,
+.status .mention:hover {
+    text-decoration: none;
 }
 
 .status .mention:is(:focus, :hover) span {
