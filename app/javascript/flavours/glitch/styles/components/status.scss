@@ -561,9 +561,8 @@ a.status__display-name,
 
 .status__avatar {
   flex: none;
-  margin-inline-end: 10px;
-  height: 48px;
-  width: 48px;
+  height: var(--size-avatar);
+  width: var(--size-avatar);
 }
 
 .muted {

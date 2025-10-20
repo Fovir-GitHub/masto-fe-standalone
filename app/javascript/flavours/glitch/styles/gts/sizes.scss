@@ -1,7 +1,5 @@
 /* 📏 Sizes */
 :root {
-    --size-icon: 20px;
-
     /* Layout: larger elements, mostly containers */
     --size-layout-gap: 10px;
     --size-layout-radius: 8px;
@@ -9,4 +7,8 @@
     /* UI: smaller elements such as form elements and icons */
     --size-ui-gap: 5px;
     --size-ui-radius: 6px;
+
+    /* Components */
+    --size-avatar: 46px;
+    --size-icon: 20px;
 }
