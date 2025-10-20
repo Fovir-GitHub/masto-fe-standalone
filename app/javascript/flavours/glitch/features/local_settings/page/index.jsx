@@ -213,7 +213,7 @@ class LocalSettingsPage extends PureComponent {
               { value: "display", message: intl.formatMessage(messages.namelayout_display) },
               { value: "handle", message: intl.formatMessage(messages.namelayout_handle) },
               { value: "both_y", message: intl.formatMessage(messages.namelayout_both_y) },
-              { value: "both_x", message: intl.formatMessage(messages.namelayout_both_x) }
+              { value: "both_x", message: intl.formatMessage(messages.namelayout_both_x) },
             ]}
           >
           </LocalSettingsPageItem>

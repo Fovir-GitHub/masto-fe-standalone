@@ -3,11 +3,12 @@ import React from "react";
 
 import classNames from "classnames";
 
-import  { type List } from "immutable";
 import ImmutablePropTypes from "react-immutable-proptypes";
 import ImmutablePureComponent from "react-immutable-pure-component";
 
-import  { type Account } from "flavours/glitch/types/resources";
+import { type List } from "immutable";
+
+import { type Account } from "flavours/glitch/types/resources";
 
 import { autoPlayGif } from "../initial_state";
 
@@ -81,7 +82,7 @@ export class DisplayName extends ImmutablePureComponent {
         .map((a) => (
           <bdi key={a.get("id")}>
             <strong
-              className='display-name__html'
+              className="display-name__html"
               dangerouslySetInnerHTML={{ __html: a.get("display_name_html") }}
             />
           </bdi>
@@ -101,25 +102,25 @@ export class DisplayName extends ImmutablePureComponent {
       displayName = (
         <bdi>
           <strong
-            className='display-name__html'
+            className="display-name__html"
             dangerouslySetInnerHTML={{
               __html: account.get("display_name_html"),
             }}
           />
         </bdi>
       );
-      suffix = <span className='display-name__account'>@{acct}</span>;
+      suffix = <span className="display-name__account">@{acct}</span>;
     } else {
       displayName = (
         <bdi>
-          <strong className='display-name__html'>
-            <Skeleton width='10ch' />
+          <strong className="display-name__html">
+            <Skeleton width="10ch" />
           </strong>
         </bdi>
       );
       suffix = (
-        <span className='display-name__account'>
-          <Skeleton width='7ch' />
+        <span className="display-name__account">
+          <Skeleton width="7ch" />
         </span>
       );
     }
