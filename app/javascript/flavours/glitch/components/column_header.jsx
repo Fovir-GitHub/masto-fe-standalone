@@ -133,7 +133,7 @@ class ColumnHeader extends PureComponent {
     if (!pinned && ((multiColumn && router.history.location?.state?.fromMastodon) || showBackButton)) {
       backButton = (
         <button onClick={this.handleBackClick} className='column-header__back-button'>
-          <Icon id='arrow-left' className='column-back-button__icon' fixedWidth />
+          <Icon id='arrow-left' className='column-back-button__icon' />
           <FormattedMessage id='column_back_button.label' defaultMessage='Back' />
         </button>
       );
@@ -176,7 +176,7 @@ class ColumnHeader extends PureComponent {
         <h1 className={buttonClassName}>
           {hasTitle && (
             <button onClick={this.handleTitleClick}>
-              <Icon id={icon} fixedWidth className='column-header__icon' />
+              <Icon id={icon} className='column-header__icon' />
               {title}
             </button>
           )}

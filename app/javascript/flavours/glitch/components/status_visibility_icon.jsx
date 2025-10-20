@@ -36,7 +36,6 @@ class VisibilityIcon extends ImmutablePureComponent {
 
     const icon = (<Icon
       className='status__visibility-icon'
-      fixedWidth
       id={visibilityIcon}
       title={label}
       aria-hidden='true'

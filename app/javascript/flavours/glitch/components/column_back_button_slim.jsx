@@ -27,7 +27,7 @@ export default class ColumnBackButtonSlim extends PureComponent {
     return (
       <div className='column-back-button--slim'>
         <div role='button' tabIndex={0} onClick={this.handleClick} className='column-back-button column-back-button--slim-button'>
-          <Icon id='arrow-left' className='column-back-button__icon' fixedWidth />
+          <Icon id='arrow-left' className='column-back-button__icon' />
           <FormattedMessage id='column_back_button.label' defaultMessage='Back' />
         </div>
       </div>
