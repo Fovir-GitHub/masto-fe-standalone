@@ -89,16 +89,6 @@
       }
     }
 
-    &.mention {
-      &:hover {
-        text-decoration: none;
-
-        span {
-          text-decoration: underline;
-        }
-      }
-    }
-
     .fa {
       color: $dark-text-color;
     }
