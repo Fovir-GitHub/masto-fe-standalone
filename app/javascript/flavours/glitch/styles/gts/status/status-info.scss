@@ -1,7 +1,7 @@
 /* 🚥 Status: Info */
 .status__info {
     display: grid;
-    gap: 5px;
+    gap: var(--size-ui-gap);
     grid-template-columns: 1fr auto;
 
     .notification__message {

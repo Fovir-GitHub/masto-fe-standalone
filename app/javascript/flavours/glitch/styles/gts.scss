@@ -2,8 +2,8 @@
 
 /* Variables */
 :root {
-  --drawer-border-radius: 8px;
-  --button-border-radius: 6px;
+  --drawer-border-radius: var(--size-layout-radius);
+  --button-border-radius: var(--size-ui-radius);
 }
 
 /* Icons debug */

@@ -4,7 +4,7 @@
 
     position: relative;
     display: flex;
-    gap: 5px;
+    gap: var(--size-ui-gap);
     align-items: start;
     color: var(--color-secondary-fg);
 
