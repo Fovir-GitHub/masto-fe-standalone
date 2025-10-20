@@ -53,6 +53,7 @@ const initialState = ImmutableMap({
     pop_in_player    : true,
     pop_in_position  : "right",
   }),
+  name_layout : "both_y",
   notifications : ImmutableMap({
     favicon_badge : false,
     tab_badge     : true,

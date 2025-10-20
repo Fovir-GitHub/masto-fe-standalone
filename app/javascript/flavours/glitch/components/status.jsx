@@ -826,6 +826,7 @@ class Status extends ImmutablePureComponent {
                 friend={account}
                 collapsed={isCollapsed}
                 parseClick={parseClick}
+                settings={settings}
               />
             ) : null}
             <StatusIcons

@@ -1,3 +1,4 @@
+import PropTypes from "prop-types";
 import React from "react";
 
 import classNames from "classnames";
@@ -18,6 +19,11 @@ interface Props {
 }
 
 export class DisplayName extends React.PureComponent<Props> {
+  static propTypes = {
+    onChange: PropTypes.func.isRequired,
+    nameLayout: ImmutablePropTypes.map.isRequired,
+  };
+
   handleMouseEnter: React.ReactEventHandler<HTMLSpanElement> = ({
     currentTarget,
   }) => {
@@ -55,7 +61,7 @@ export class DisplayName extends React.PureComponent<Props> {
   };
 
   render() {
-    const { others, localDomain, inline } = this.props;
+    const { others, localDomain, inline, nameLayout } = this.props;
 
     let displayName: React.ReactNode,
       suffix: React.ReactNode,
@@ -122,6 +128,7 @@ export class DisplayName extends React.PureComponent<Props> {
         onMouseEnter={this.handleMouseEnter}
         onMouseLeave={this.handleMouseLeave}
       >
+        {nameLayout}
         {displayName}
         {inline ? " " : null}
         {suffix}

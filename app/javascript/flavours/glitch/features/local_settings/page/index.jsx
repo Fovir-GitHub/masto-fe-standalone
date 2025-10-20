@@ -33,6 +33,10 @@ const messages = defineMessages({
   unlisted: { id: "privacy.unlisted.short", defaultMessage: "Unlisted" },
   private: { id: "privacy.private.short", defaultMessage: "Followers only" },
   direct: { id: "privacy.direct.short", defaultMessage: "Mentioned people only" },
+  namelayout_display: { id: "namelayout.display", defaultMessage: "Display name" },
+  namelayout_handle: { id: "namelayout.handle", defaultMessage: "Handle" },
+  namelayout_both_y: { id: "namelayout.both.vertical", defaultMessage: "Both (Vertical)" },
+  namelayout_both_x: { id: "namelayout.both.horizontal", defaultMessage: "Both (Horizontal)" },
 });
 
 class LocalSettingsPage extends PureComponent {
@@ -196,6 +200,22 @@ class LocalSettingsPage extends PureComponent {
           >
             <FormattedMessage id='settings.wide_view' defaultMessage='Wide view (Desktop mode only)' />
             <span className='hint'><FormattedMessage id='settings.wide_view_hint' defaultMessage='Stretches columns to better fill the available space.' /></span>
+          </LocalSettingsPageItem>
+        </section>
+        <section>
+          <h2><FormattedMessage id='settings.name_layout' defaultMessage='Name layout' /></h2>
+          <LocalSettingsPageItem
+            settings={settings}
+            item={["name_layout"]}
+            id='mastodon-settings--status-username-inline'
+            onChange={onChange}
+            options={[
+              { value: "display", message: intl.formatMessage(messages.namelayout_display) },
+              { value: "handle", message: intl.formatMessage(messages.namelayout_handle) },
+              { value: "both_y", message: intl.formatMessage(messages.namelayout_both_y) },
+              { value: "both_x", message: intl.formatMessage(messages.namelayout_both_x) }
+            ]}
+          >
           </LocalSettingsPageItem>
         </section>
       </div>

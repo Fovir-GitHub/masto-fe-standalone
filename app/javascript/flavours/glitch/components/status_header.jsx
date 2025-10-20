@@ -15,6 +15,7 @@ export default class StatusHeader extends PureComponent {
     status: ImmutablePropTypes.map.isRequired,
     friend: ImmutablePropTypes.map,
     parseClick: PropTypes.func.isRequired,
+    settings: ImmutablePropTypes.map.isRequired,
   };
 
   //  Handles clicks on account name/image
@@ -33,6 +34,7 @@ export default class StatusHeader extends PureComponent {
     const {
       status,
       friend,
+      settings,
     } = this.props;
 
     const account = status.get("account");
@@ -62,7 +64,7 @@ export default class StatusHeader extends PureComponent {
           onClick={this.handleAccountClick}
           rel='noopener noreferrer'
         >
-          <DisplayName account={account} />
+          <DisplayName account={account} nameLayout={settings.get("name_layout")} />
         </a>
       </div>
     );
