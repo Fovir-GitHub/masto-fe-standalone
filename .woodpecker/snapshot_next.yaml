@@ -1,0 +1,24 @@
+# https://woodpecker-ci.org/docs/usage/workflow-syntax#when---global-workflow-conditions
+when:
+  - event: push
+    branch: main
+
+# https://goreleaser.com/ci/woodpecker/
+# https://woodpecker-ci.org/docs/usage/workflow-syntax#clone
+clone:
+  git:
+    image: woodpeckerci/plugin-git
+    settings:
+      tags: true
+
+# https://woodpecker-ci.org/plugins/docker-buildx
+steps:
+  publish:
+    image: woodpeckerci/plugin-docker-buildx:5.2.2
+    settings:
+      pull_image: true
+      username: gotosocial
+      password:
+        from_secret: gts_docker_password
+      repo: superseriousbusiness/masto-fe-standalone
+      tag: next
