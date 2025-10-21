@@ -29,6 +29,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Updated Yarn to 4.10.3 (#90)
 - Updated Webpack to 5.102.1 (#83)
 - Updated ESlint to 9.37.0 (#88)
+- Fixed an issue where media items wouldn’t show correctly (#109)
 
 ### Removed
 

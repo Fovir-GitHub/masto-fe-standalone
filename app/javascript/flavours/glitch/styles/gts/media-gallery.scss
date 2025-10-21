@@ -1,1 +1,73 @@
 /* 🖼️ Media Gallery */
+.media-gallery {
+    position: relative;
+    display: grid;
+    grid-template-columns: auto auto;
+    gap: var(--size-ui-gap);
+    overflow: hidden;
+}
+
+.media-gallery:not(.full-width) {
+    border-radius: var(--size-ui-radius);
+}
+
+.media-gallery.full-width {
+    margin-inline: -15px;
+
+    /* the `div` is there for specificity */
+    div.media-gallery__item {
+        border-radius: 0;
+    }
+}
+
+.media-gallery:not(.full-width) .spoiler-button__overlay {
+    border-radius: var(--size-ui-radius);
+}
+
+.media-gallery__item {
+    overflow: hidden;
+}
+
+/* Only one image */
+.media-gallery__item:nth-child(2):nth-last-child(1) {
+    border-radius: var(--size-ui-radius);
+}
+
+/* First image in a set of two */
+.media-gallery__item:nth-child(2):nth-last-child(2) {
+    border-top-left-radius: var(--size-ui-radius);
+    border-bottom-left-radius: var(--size-ui-radius);
+}
+
+/* Second image in a set of two */
+.media-gallery__item:nth-child(3):nth-last-child(1) {
+    border-top-right-radius: var(--size-ui-radius);
+    border-bottom-right-radius: var(--size-ui-radius);
+}
+
+/* First image in a set of at least two */
+.media-gallery__item:nth-child(2):not(:nth-last-child(1)) {
+    border-top-left-radius: var(--size-ui-radius);
+}
+
+/* Second image in a set of at least two */
+.media-gallery__item:nth-child(3):not(:nth-last-child(1)) {
+    border-top-right-radius: var(--size-ui-radius);
+}
+
+/* Second to last image in an even set */
+.media-gallery__item:nth-last-child(2):nth-child(even) {
+    border-bottom-left-radius: var(--size-ui-radius);
+}
+
+/* Last image in an even set */
+.media-gallery__item:last-child:nth-child(odd) {
+    border-bottom-right-radius: var(--size-ui-radius);
+}
+
+/* Last image in an uneven set */
+.media-gallery__item:last-child:nth-child(even) {
+    grid-column: 1/-1;
+    border-bottom-right-radius: var(--size-ui-radius);
+    border-bottom-left-radius: var(--size-ui-radius);
+}
