@@ -64,29 +64,7 @@
   line-height: 18px;
 }
 
-.media-gallery {
-  box-sizing: border-box;
-  overflow: hidden;
-  border-radius: 4px;
-  position: relative;
-  width: 100%;
-  min-height: 64px;
-  display: grid;
-  grid-template-columns: 50% 50%;
-  grid-template-rows: 50% 50%;
-  gap: 2px;
-
-  @include fullwidth-gallery;
-}
-
 .media-gallery__item {
-  border: 0;
-  box-sizing: border-box;
-  display: block;
-  position: relative;
-  border-radius: 4px;
-  overflow: hidden;
-
   &--tall {
     grid-row: span 2;
   }
