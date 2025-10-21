@@ -11,7 +11,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Added documentation for `yarn dev` (#75)
 - Added an .editorconfig (#78)
-- Added a CHANGELOG.md basaed on “Keep a Changelog” (#80)
+- Added a CHANGELOG.md based on “Keep a Changelog” (#80)
 
 ### Changed
 
