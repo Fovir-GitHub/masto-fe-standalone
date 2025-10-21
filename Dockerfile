@@ -24,7 +24,6 @@ FROM nginx:alpine AS runtime
 
 # Copy bigger nested stuff.
 COPY --from=builder /build/public/packs/js/flavours/glitch /usr/share/nginx/html/packs/js/flavours/glitch
-COPY --from=builder /build/public/packs/js/flavours/vanilla /usr/share/nginx/html/packs/js/flavours/vanilla
 
 # Copy remaining files.
 COPY --from=builder /build/public /usr/share/nginx/html/
