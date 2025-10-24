@@ -19,7 +19,7 @@ const Account = connect(state => ({
   account: state.getIn(["accounts", me]),
 }))(({ account }) => (
   <Permalink href={account.get("url")} to={`/@${account.get("acct")}`} title={account.get("acct")}>
-    <Avatar account={account} size={35} />
+    <Avatar account={account} size={34} />
   </Permalink>
 ));
 
@@ -108,8 +108,7 @@ class Header extends PureComponent {
     return (
       <div className='ui__header'>
         <Link to='/' className='ui__header__logo'>
-          <WordmarkLogo />
-          <SymbolLogo />
+          <Icon id='gts-simple' />
         </Link>
 
         <div className='ui__header__links'>

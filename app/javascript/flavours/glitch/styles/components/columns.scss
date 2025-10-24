@@ -56,57 +56,6 @@
 
 $ui-header-height: 55px;
 
-.ui__header {
-  display: none;
-  box-sizing: border-box;
-  height: $ui-header-height;
-  position: sticky;
-  top: 0;
-  z-index: 3;
-  justify-content: space-between;
-  align-items: center;
-
-  &__logo {
-    display: inline-flex;
-    padding: 15px;
-
-    .logo {
-      height: $ui-header-height - 30px;
-      width: auto;
-    }
-
-    .logo--wordmark {
-      display: none;
-    }
-
-    @media screen and (width >= 320px) {
-      .logo--wordmark {
-        display: block;
-      }
-
-      .logo--icon {
-        display: none;
-      }
-    }
-  }
-
-  &__links {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    padding: 0 10px;
-    overflow: hidden;
-
-    .button {
-      flex: 0 0 auto;
-    }
-
-    .button-tertiary {
-      flex-shrink: 1;
-    }
-  }
-}
-
 .tabs-bar__wrapper {
   background: darken($ui-base-color, 8%);
   position: sticky;

@@ -1,0 +1,43 @@
+/* 🧑‍💻 UI: Header */
+.ui__header {
+    position: sticky;
+    top: 0;
+    z-index: 3;
+    display: none;
+    align-items: center;
+    justify-content: space-between;
+    padding-inline-start: 7px;
+    height: var(--size-header-block);
+    box-sizing: border-box;
+
+    svg.gts-icon {
+        display: block;
+    }
+}
+
+.ui__header__logo {
+    --size-icon: 32px;
+    padding: 8px;
+}
+
+.ui__header__links {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding-inline: 10px;
+    overflow: hidden;
+
+    a {
+        display: flex;
+        align-items: center;
+        line-height: 20px;
+    }
+
+    .button {
+        flex: 0 0 auto;
+    }
+
+    .button-tertiary {
+        flex-shrink: 1;
+    }
+}
